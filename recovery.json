@@ -1,0 +1,156 @@
+{
+ "note": "Sole acceptance ledger; written only by tools/promote.py --publish.",
+ "oracle": "cs11",
+ "tus": {
+  "src/_unknown/tu_0047abc0.c": {
+   "as": "tu_0047abc0.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "TimeNow": {
+     "va": "0047abc0",
+     "size": 16,
+     "mangled": "W?TimeNow$n()ul"
+    },
+    "TimeSleep": {
+     "va": "0047abd0",
+     "size": 16,
+     "mangled": "W?TimeSleep$n(ul)v"
+    },
+    "TimerSet": {
+     "va": "0047abe0",
+     "size": 32,
+     "mangled": "W?TimerSet$n(pn$Timer$$ul)v"
+    },
+    "TimerNext": {
+     "va": "0047ac00",
+     "size": 32,
+     "mangled": "W?TimerNext$n(pn$Timer$$ul)v"
+    },
+    "TimerExpired": {
+     "va": "0047ac20",
+     "size": 32,
+     "mangled": "W?TimerExpired$n(pn$Timer$$)i"
+    },
+    "TimerElapsed": {
+     "va": "0047ac40",
+     "size": 16,
+     "mangled": "W?TimerElapsed$n(pn$Timer$$)ul"
+    },
+    "TimerRemaining": {
+     "va": "0047ac50",
+     "size": 35,
+     "mangled": "W?TimerRemaining$n(pn$Timer$$)ul"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/misc/strpool.c": {
+   "as": "misc\\strpool.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "StrPool::Lock": {
+     "va": "0047c2c0",
+     "size": 86,
+     "mangled": "W?Lock$:StrPool$n()i"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "004a49e8",
+     "size": 15
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0042a598.c": {
+   "as": "tu_0042a598.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "W?$ct:Rate$n(ul)_": {
+     "va": "0042a598",
+     "size": 45,
+     "mangled": "W?$ct:Rate$n(ul)_"
+    },
+    "W?$dt:Rate$n()_": {
+     "va": "0042a5c5",
+     "size": 5,
+     "mangled": "W?$dt:Rate$n()_"
+    },
+    "Rate::Reset": {
+     "va": "0042a5ca",
+     "size": 21,
+     "mangled": "W?Reset$:Rate$n()v"
+    },
+    "Rate::Get": {
+     "va": "0042a5df",
+     "size": 27,
+     "mangled": "W?Get$:Rate$n()us"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_004297d4.c": {
+   "as": "tu_004297d4.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "PlyFind": {
+     "va": "00429863",
+     "size": 69,
+     "mangled": "W?PlyFind$n(pn$PlyKey$$)i"
+    },
+    "PlyFindCurrent": {
+     "va": "004298a8",
+     "size": 82,
+     "mangled": "W?PlyFindCurrent$n()i"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_004279fc.c": {
+   "as": "tu_004279fc.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "InputNop": {
+     "va": "004279fc",
+     "size": 1,
+     "mangled": "W?InputNop$n()v"
+    },
+    "InputSetRange": {
+     "va": "004279fd",
+     "size": 24,
+     "mangled": "W?InputSetRange$n(pn$InputReq$$ul)v"
+    },
+    "InputGetHi": {
+     "va": "00427a15",
+     "size": 14,
+     "mangled": "W?InputGetHi$n(pn$InputReq$$)ul"
+    },
+    "InputSetLoHi": {
+     "va": "00427a23",
+     "size": 29,
+     "mangled": "W?InputSetLoHi$n(pn$InputReq$$ul)v"
+    },
+    "InputPoll": {
+     "va": "00427be8",
+     "size": 63,
+     "mangled": "W?InputPoll$n(pn$InputReq$$)v"
+    },
+    "InputReset": {
+     "va": "00427c27",
+     "size": 64,
+     "mangled": "W?InputReset$n(pn$InputReq$$)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  }
+ }
+}

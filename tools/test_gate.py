@@ -1,0 +1,65 @@
+"""Self-tests of the proof machinery: the gate must reject what it should reject. Run after tool changes.
+
+    python tools/test_gate.py
+"""
+import sys
+import tempfile
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import cc  # noqa: E402
+import compare  # noqa: E402
+import gate  # noqa: E402
+from common import ROOT  # noqa: E402
+
+TIMER = ROOT / "src" / "_unknown" / "tu_0047abc0.c"
+
+
+def statuses(src, flags, at=None, find=False, as_name=None):
+    with tempfile.TemporaryDirectory(dir=ROOT / "build") as td:
+        obj = Path(td) / "t.obj"
+        rc, text = cc.compile_one(src, obj, flags, as_name=as_name)
+        assert rc == 0, text
+        reps, _ = compare.compare_object(obj, None, at, find)
+    return {e["names"][0]: e["status"] for r in reps for s in r["segments"] for e in s.get("extents", [])}
+
+
+def main():
+    fails = []
+
+    def check(cond, what):
+        print(("ok   " if cond else "FAIL ") + what)
+        if not cond:
+            fails.append(what)
+
+    st = statuses(TIMER, ["-4s", "-s", "-oxt"])
+    check(all(v == "STRICT" for v in st.values()) and len(st) == 7, "positive control: timer TU strict (bound placement)")
+    st = statuses(TIMER, ["-5s", "-s", "-oxt"])
+    check(not any(v == "STRICT" for k, v in st.items() if "TimerSet" in k), "wrong CPU flag (-5s) is not strict")
+    st = statuses(TIMER, ["-4s", "-s", "-ox"])
+    check(sum(v == "STRICT" for v in st.values()) < 7, "missing -ot is not fully strict")
+    inp = ROOT / "src" / "_unknown" / "tu_004279fc.c"
+    st = statuses(inp, ["-4s", "-s"], find=True)
+    check(sum(v == "STRICT" for v in st.values()) == 6, "positive control: input TU strict with profile plain")
+    st = statuses(inp, ["-4s", "-s", "-ox"], find=True)
+    check(sum(v == "STRICT" for v in st.values()) < 6, "plain-profile TU under -ox is not fully strict")
+    with tempfile.TemporaryDirectory(dir=ROOT / "build") as td:
+        p = Path(td) / "a.c"
+        p.write_text("int f(int x) { _asm { nop } return x; }\n")
+        check(bool(gate.policy(p)), "policy rejects inline asm")
+        p.write_text("/* _asm in a comment is fine */ int f(int x) { return x; }\n")
+        check(not gate.policy(p), "policy ignores comments")
+        # wrong address: shift TimeNow by 16 -> DIFF, never STRICT
+        st = statuses(TIMER, ["-4s", "-s", "-oxt"], at={"TimeNow": 0x47abd0, "TimeSleep": 0x47abc0})
+        check(st.get("W?TimeNow$n()ul") == "DIFF", "wrong placement is DIFF")
+        # a byte change in a constant must be caught
+        p2 = Path(td) / "tu_0047abc0.c"
+        p2.write_text(TIMER.read_text().replace("if (elapsed < t->duration)", "if (elapsed <= t->duration)"))
+        st = statuses(p2, ["-4s", "-s", "-oxt"])
+        check(st.get("W?TimerRemaining$n(pn$Timer$$)ul") == "DIFF", "changed comparison is DIFF")
+    print("TEST GATE OK" if not fails else f"TEST GATE FAILED: {fails}")
+    return 1 if fails else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

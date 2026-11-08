@@ -1,0 +1,111 @@
+{
+ "oracle": "dll10",
+ "file_sha256": "403836f812e5fa78f41954f77fe7d857d2285cf110cfd6a53a163892696f6787",
+ "file_size": 327680,
+ "timestamp": 834789288,
+ "linker": [
+  2,
+  55
+ ],
+ "image_base": 268435456,
+ "entry_va": 268499091,
+ "checksum": 0,
+ "headers_sha256": "2138302149b037316bc5b548a23a79f60a4c6a0a7e5a30e628b5819f2ad31900",
+ "sections": [
+  {
+   "name": ".text",
+   "rva": 4096,
+   "extent": 188416,
+   "rawoff": 1024,
+   "rawsize": 185344,
+   "chars": 1610612768,
+   "sha256": "bc7a2aa2b68c3ea61c0bf8b875258c14d1460da35c31a64ee40c7aeac38672e2"
+  },
+  {
+   "name": ".bss",
+   "rva": 192512,
+   "extent": 16384,
+   "rawoff": 0,
+   "rawsize": 0,
+   "chars": 3221225600,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+   "name": ".rdata",
+   "rva": 208896,
+   "extent": 32768,
+   "rawoff": 186368,
+   "rawsize": 32256,
+   "chars": 1073741888,
+   "sha256": "ede9c48e8421ff7671c6e766aad3d25a0ac0ed4f2bc4d6933e4c42ad669acdc1"
+  },
+  {
+   "name": ".data",
+   "rva": 241664,
+   "extent": 12288,
+   "rawoff": 218624,
+   "rawsize": 12288,
+   "chars": 3221225536,
+   "sha256": "84c0050ce275106e3f288031fbbd0be152ee40e1a8488d1979a1a3c98b954d08"
+  },
+  {
+   "name": ".idata",
+   "rva": 253952,
+   "extent": 8192,
+   "rawoff": 230912,
+   "rawsize": 8192,
+   "chars": 3221225536,
+   "sha256": "7c4a255af70a44b2b07f99c09501e9872c4638794f755b59e2f5a0e306446196"
+  },
+  {
+   "name": ".edata",
+   "rva": 262144,
+   "extent": 4096,
+   "rawoff": 239104,
+   "rawsize": 1024,
+   "chars": 1073741888,
+   "sha256": "78e1fbc106588770491399c805eb51bc1d4372ad2249ad38972b6f4c3c49d6ce"
+  },
+  {
+   "name": ".rsrc",
+   "rva": 266240,
+   "extent": 69632,
+   "rawoff": 240128,
+   "rawsize": 66048,
+   "chars": 1073741888,
+   "sha256": "37492c6ff1617465f990a022f70e2a38bfbd7a9f4964751a844d961c9767b298"
+  },
+  {
+   "name": ".reloc",
+   "rva": 335872,
+   "extent": 24576,
+   "rawoff": 306176,
+   "rawsize": 21504,
+   "chars": 1107296320,
+   "sha256": "82dd69994e1a55d9548037699fbee1242860f0819468a63cc191dea9b819c649"
+  }
+ ],
+ "relocs": {
+  "count": 7728,
+  "highlow": 7700,
+  "ordered_sha256": "fa03f3f2307493f70daf546128b3a6d970f995c8732ad66ea3932a621bfb1312",
+  "set_sha256": "dabc7544d676b7c0101c579261746d563520a6336eb976caefd465fd3d27c118",
+  "types": [
+   0,
+   3
+  ]
+ },
+ "imports": 309,
+ "exports": [
+  "?CWDLL_ChatBox@@YAKPAUHWND__@@PAPADPAD2HHPAHPAX33@Z",
+  "?CWDLL_EFMessageBox@@YAKPAUHWND__@@PAD1HK@Z",
+  "?CWDLL_EditPilotData@@YAXPAUHWND__@@PAUPilot@@HH@Z",
+  "?CWDLL_FileDialog@@YAHPAUHWND__@@HPAD11111@Z",
+  "?CWDLL_InfoBox@@YAXPAUHWND__@@PADH@Z",
+  "?CWDLL_MPConnectBox@@YAKPAUHWND__@@PADPAXPAH@Z",
+  "?CWDLL_MessageBox@@YAKPAUHWND__@@PADKH@Z",
+  "?CWDLL_MessageBoxScroll@@YAKPAUHWND__@@PADKH@Z",
+  "?CWDLL_PickList@@YAHPAUHWND__@@PADHHHPAHH@Z",
+  "?CWDLL_Preferences@@YAXPAUHWND__@@PAUPrefsData@@PAX@Z"
+ ]
+}

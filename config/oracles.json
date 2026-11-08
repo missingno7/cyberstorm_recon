@@ -1,0 +1,36 @@
+{
+ "note": "Immutable originals. Hash-checked on every load (tools/common.py). Files live under assets/ and are never committed. 'role': primary = matching target; secondary = independent build used as corroboration; runtime = evidence only, never a matching target.",
+ "primary": "cs11",
+ "oracles": {
+  "cs11": {
+   "path": "assets/legacy1.1/CSTORM.EXE",
+   "sha256": "ce1ce2b9d5dec874b800f7b9f0e2d6dd7a25634fdd0186e7b7e3639117eb67bc",
+   "role": "primary",
+   "build": "CyberStorm 1.10A retail patch, PE TimeDateStamp 0x32b72053 (1996-12-17), string 'Created: Dec 13 1996 13:51:31'"
+  },
+  "cs10": {
+   "path": "assets/legacy1.0/CSTORM.EXE",
+   "sha256": "c5d3cb8772442a131ebd5a6a84c725d31fd685311e98b4edaa89b822671d3e73",
+   "role": "secondary",
+   "build": "CyberStorm 1.00A retail CD, PE TimeDateStamp 0x31bfbcb7 (1996-06-13)"
+  },
+  "gog": {
+   "path": "assets/CSTORM.EXE",
+   "sha256": "b9d950fe3682885943ae1e7fe1b68a1b1e7b9b0c6d44fa426459eb879965b181",
+   "role": "runtime",
+   "build": "GOG 2019 release: cs11 plus store patches (WINMM -> _INMM import, 1,127 differing bytes)"
+  },
+  "dll11": {
+   "path": "assets/legacy1.1/CWARSDLL.DLL",
+   "sha256": "723f7417fbca5478259b5ad82fe1a3bdb5ebad8ac0d04e01022e352b1cce290b",
+   "role": "secondary",
+   "build": "CWARSDLL 1.1, MSVC-built (deferred target)"
+  },
+  "dll10": {
+   "path": "assets/legacy1.0/CWARSDLL.DLL",
+   "sha256": "403836f812e5fa78f41954f77fe7d857d2285cf110cfd6a53a163892696f6787",
+   "role": "secondary",
+   "build": "CWARSDLL 1.0, MSVC-built (deferred target)"
+  }
+ }
+}

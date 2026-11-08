@@ -1,0 +1,94 @@
+{
+ "oracle": "cs10",
+ "file_sha256": "c5d3cb8772442a131ebd5a6a84c725d31fd685311e98b4edaa89b822671d3e73",
+ "file_size": 709120,
+ "timestamp": 834649271,
+ "linker": [
+  2,
+  18
+ ],
+ "image_base": 4194304,
+ "entry_va": 4694680,
+ "checksum": 0,
+ "headers_sha256": "f631f5108b492ed9f8b501695eb48e811a603fe273a178e3222c234d3b8de8a8",
+ "sections": [
+  {
+   "name": "BEGTEXT",
+   "rva": 4096,
+   "extent": 536576,
+   "rawoff": 1024,
+   "rawsize": 535040,
+   "chars": 1610612768,
+   "sha256": "315e83dcc6ad09a0b59421d29c4517a1035e7967e1b568ebc6ef0dba7441b76d"
+  },
+  {
+   "name": "DGROUP",
+   "rva": 540672,
+   "extent": 118784,
+   "rawoff": 536064,
+   "rawsize": 116224,
+   "chars": 3221225536,
+   "sha256": "8a06cc077e491e6715bf44c617a763860a9d3a359e6b2682340533165a617d01"
+  },
+  {
+   "name": ".bss",
+   "rva": 659456,
+   "extent": 442368,
+   "rawoff": 0,
+   "rawsize": 442368,
+   "chars": 3221225600,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+   "name": ".idata",
+   "rva": 1101824,
+   "extent": 8192,
+   "rawoff": 652288,
+   "rawsize": 4608,
+   "chars": 3221225536,
+   "sha256": "abb7ace49a05362e8201bb7c4d3c7ee8bde2ae99581086ff3cd0070b189bea9f"
+  },
+  {
+   "name": ".edata",
+   "rva": 1110016,
+   "extent": 4096,
+   "rawoff": 656896,
+   "rawsize": 512,
+   "chars": 1073741888,
+   "sha256": "8bae10017dfad9a2a7bb12269a957a0b004a7daf528b461178bca88187180ccd"
+  },
+  {
+   "name": ".reloc",
+   "rva": 1114112,
+   "extent": 45056,
+   "rawoff": 657408,
+   "rawsize": 42496,
+   "chars": 1107296320,
+   "sha256": "42093b0fcf41cc0d0eb32a83d15ef46f2ecb9fdd0f4b0e23e9ab8c6cf4439376"
+  },
+  {
+   "name": ".rsrc",
+   "rva": 1159168,
+   "extent": 12288,
+   "rawoff": 699904,
+   "rawsize": 9216,
+   "chars": 1073741888,
+   "sha256": "bb871a50ff8831b3eb3926f62134d16d2616bb7d69a53835159beb8859aabebd"
+  }
+ ],
+ "relocs": {
+  "count": 20618,
+  "highlow": 20543,
+  "ordered_sha256": "ce5832d2359d9d6125332295dcf2ecddfcaa95a80948de0255fcc11894b709d1",
+  "set_sha256": "f39599c3e85542b7651be0d6d9d36e225afac8b703e88e66025397a87b5fbb9c",
+  "types": [
+   0,
+   3
+  ]
+ },
+ "imports": 162,
+ "exports": [
+  "W?AppAbout$n(pnvuiuil)l",
+  "W?MainWndProc$n(pnvuiuil)l"
+ ]
+}

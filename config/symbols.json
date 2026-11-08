@@ -1,0 +1,291 @@
+{
+ "note": "name -> binding; see tools/symbols.py",
+ "symbols": {
+  "PlyMatch": {
+   "va": "004275dc",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PlyMatch$n(pn$PlyEntry$$ll)i",
+   "evidence": "implied by src/_unknown/tu_004297d4.c 2026-11-09"
+  },
+  "InputNop": {
+   "va": "004279fc",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?InputNop$n()v",
+   "tu": "src/_unknown/tu_004279fc.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "InputSetRange": {
+   "va": "004279fd",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?InputSetRange$n(pn$InputReq$$ul)v",
+   "tu": "src/_unknown/tu_004279fc.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "InputGetHi": {
+   "va": "00427a15",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?InputGetHi$n(pn$InputReq$$)ul",
+   "tu": "src/_unknown/tu_004279fc.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "InputSetLoHi": {
+   "va": "00427a23",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?InputSetLoHi$n(pn$InputReq$$ul)v",
+   "tu": "src/_unknown/tu_004279fc.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "InputUpdate": {
+   "va": "00427a40",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?InputUpdate$n()v",
+   "evidence": "implied by src/_unknown/tu_004279fc.c 2026-11-09"
+  },
+  "InputPoll": {
+   "va": "00427be8",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?InputPoll$n(pn$InputReq$$)v",
+   "tu": "src/_unknown/tu_004279fc.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "InputReset": {
+   "va": "00427c27",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?InputReset$n(pn$InputReq$$)v",
+   "tu": "src/_unknown/tu_004279fc.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PlyFind": {
+   "va": "00429863",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PlyFind$n(pn$PlyKey$$)i",
+   "tu": "src/_unknown/tu_004297d4.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PlyFindCurrent": {
+   "va": "004298a8",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PlyFindCurrent$n()i",
+   "tu": "src/_unknown/tu_004297d4.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "W?$ct:Rate$n(ul)_": {
+   "va": "0042a598",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:Rate$n(ul)_",
+   "tu": "src/_unknown/tu_0042a598.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "W?$dt:Rate$n()_": {
+   "va": "0042a5c5",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$dt:Rate$n()_",
+   "tu": "src/_unknown/tu_0042a598.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "Rate::Reset": {
+   "va": "0042a5ca",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Reset$:Rate$n()v",
+   "tu": "src/_unknown/tu_0042a598.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "Rate::Get": {
+   "va": "0042a5df",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Get$:Rate$n()us",
+   "tu": "src/_unknown/tu_0042a598.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "TimeNow": {
+   "va": "0047abc0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TimeNow$n()ul",
+   "tu": "src/_unknown/tu_0047abc0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "TimeSleep": {
+   "va": "0047abd0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TimeSleep$n(ul)v",
+   "tu": "src/_unknown/tu_0047abc0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "TimerSet": {
+   "va": "0047abe0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TimerSet$n(pn$Timer$$ul)v",
+   "tu": "src/_unknown/tu_0047abc0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "TimerNext": {
+   "va": "0047ac00",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TimerNext$n(pn$Timer$$ul)v",
+   "tu": "src/_unknown/tu_0047abc0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "TimerExpired": {
+   "va": "0047ac20",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TimerExpired$n(pn$Timer$$)i",
+   "tu": "src/_unknown/tu_0047abc0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "TimerElapsed": {
+   "va": "0047ac40",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TimerElapsed$n(pn$Timer$$)ul",
+   "tu": "src/_unknown/tu_0047abc0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "TimerRemaining": {
+   "va": "0047ac50",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TimerRemaining$n(pn$Timer$$)ul",
+   "tu": "src/_unknown/tu_0047abc0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "StrPool::Lock": {
+   "va": "0047c2c0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Lock$:StrPool$n()i",
+   "tu": "src/misc/strpool.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ResMgr::Load": {
+   "va": "0047c920",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Load$:ResMgr$n(liii)pnv",
+   "evidence": "implied by src/misc/strpool.c 2026-11-09"
+  },
+  "AssertFail": {
+   "va": "0047d5a0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?AssertFail$n(pnxaipnxa)v",
+   "evidence": "implied by src/misc/strpool.c 2026-11-09"
+  },
+  "PlyGetKey": {
+   "va": "0047d770",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PlyGetKey$n(pn$PlyKey$$)v",
+   "evidence": "implied by src/_unknown/tu_004297d4.c 2026-11-09"
+  },
+  "gIn7c": {
+   "va": "004bb77c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gIn7c$nul",
+   "evidence": "implied by src/_unknown/tu_004279fc.c 2026-11-09"
+  },
+  "gIn80": {
+   "va": "004bb780",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gIn80$nul",
+   "evidence": "implied by src/_unknown/tu_004279fc.c 2026-11-09"
+  },
+  "gIn84": {
+   "va": "004bb784",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gIn84$nul",
+   "evidence": "implied by src/_unknown/tu_004279fc.c 2026-11-09"
+  },
+  "gInB": {
+   "va": "004bb788",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gInB$nul",
+   "evidence": "implied by src/_unknown/tu_004279fc.c 2026-11-09"
+  },
+  "gInA": {
+   "va": "004bb794",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gInA$nul",
+   "evidence": "implied by src/_unknown/tu_004279fc.c 2026-11-09"
+  },
+  "gInDirty": {
+   "va": "004bb798",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gInDirty$nul",
+   "evidence": "implied by src/_unknown/tu_004279fc.c 2026-11-09"
+  },
+  "gIn9c": {
+   "va": "004bb79c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gIn9c$nul",
+   "evidence": "implied by src/_unknown/tu_004279fc.c 2026-11-09"
+  },
+  "gInA0": {
+   "va": "004bb7a0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gInA0$nul",
+   "evidence": "implied by src/_unknown/tu_004279fc.c 2026-11-09"
+  },
+  "gInA4": {
+   "va": "004bb7a4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gInA4$nul",
+   "evidence": "implied by src/_unknown/tu_004279fc.c 2026-11-09"
+  },
+  "gPly": {
+   "va": "004bbff4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPly$n[]$PlyEntry$$",
+   "evidence": "implied by src/_unknown/tu_004297d4.c 2026-11-09"
+  },
+  "gPlyCount": {
+   "va": "004bc414",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPlyCount$ni",
+   "evidence": "implied by src/_unknown/tu_004297d4.c 2026-11-09"
+  },
+  "gPlyKey": {
+   "va": "004bc420",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPlyKey$n$PlyKey$$",
+   "evidence": "implied by src/_unknown/tu_004297d4.c 2026-11-09"
+  },
+  "gResMgr": {
+   "va": "00511ecc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gResMgr$n$ResMgr$$",
+   "evidence": "implied by src/misc/strpool.c 2026-11-09"
+  }
+ }
+}

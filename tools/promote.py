@@ -1,0 +1,159 @@
+"""Acceptance gate for one translation unit. Dry run by default; --publish (integrator only) writes.
+
+    python tools/promote.py CANDIDATE.c --tu src/DIR/FILE.c [--as DIR\\FILE.c] [--profile P | --flags "-4s -s -oxt"]
+                            [--at LABEL=VA ...] [--accept-loss LABEL ...] [--publish]
+
+Steps: source policy check -> fresh compile with the TU's pinned toolchain -> strict comparison (placement from
+bound symbols, --at, or a unique masked search) -> no previously accepted function may lose STRICT (unless named
+with --accept-loss, logged) -> on --publish: copy the candidate to --tu, record every STRICT code extent in
+recovery.json and mark its symbol 'matched' in config/symbols.json. Data segments are recorded when STRICT.
+"""
+import datetime
+import shutil
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import gate  # noqa: E402
+import symbols  # noqa: E402
+from common import ROOT, dump_json  # noqa: E402
+
+
+def main(argv):
+    argv = list(argv[1:])
+    opts = {"at": {}, "loss": []}
+    publish = "--publish" in argv
+    if publish:
+        argv.remove("--publish")
+    while argv and argv[0] != "--" and any(a.startswith("--") for a in argv):
+        i = next(k for k, a in enumerate(argv) if a.startswith("--"))
+        key, val = argv[i], argv[i + 1]
+        del argv[i:i + 2]
+        if key == "--at":
+            k, v = val.split("=")
+            opts["at"][k] = int(v, 16)
+        elif key == "--accept-loss":
+            opts["loss"].append(val)
+        else:
+            opts[key[2:]] = val
+    if len(argv) != 1 or "tu" not in opts:
+        print(__doc__)
+        return 2
+    cand = Path(argv[0]).resolve()
+    tu = opts["tu"].replace("\\", "/")
+    ledger = gate.load_ledger()
+    old = ledger["tus"].get(tu, {})
+    entry = {"as": opts.get("as", old.get("as")), "install": "wc106"}
+    if "flags" in opts:
+        entry["flags"] = opts["flags"].split()
+        entry["tool"] = opts.get("tool", old.get("tool", "wpp386"))
+    else:
+        entry["profile"] = opts.get("profile", old.get("profile", "ot"))
+        entry["flags"] = None
+    if not entry["as"]:
+        entry["as"] = Path(tu).name
+    bad = gate.policy(cand)
+    if bad:
+        print("POLICY FAIL:", ", ".join(bad))
+        return 1
+    try:
+        reports, mods, _ = gate.build_and_compare(cand, entry, at=opts["at"], find=True, imply=True)
+    except RuntimeError as e:
+        print(e)
+        return 1
+    conflicts = [c for r in reports for c in r["conflicts"]]
+    if conflicts:
+        print("CONFLICTS:", conflicts)
+        return 1
+    ext = gate.extents(reports)
+    strict = {n: e for n, e in ext.items() if e["status"] == "STRICT" and e["cls"].upper() == "CODE"}
+    lab_ext = gate.by_label(ext)
+    lost = []
+    for n, e in old.get("functions", {}).items():
+        now = lab_ext.get(n)
+        if not now or now["status"] != "STRICT" or now["va"] != e["va"]:
+            lost.append(n)
+    if lost and set(lost) - set(opts["loss"]):
+        print("LOSS (not accepted):", sorted(set(lost) - set(opts["loss"])))
+        return 1
+    # label collisions inside the candidate
+    labels = {}
+    for n in strict:
+        labels.setdefault(symbols.label(n), []).append(n)
+    dup = {k: v for k, v in labels.items() if len(v) > 1}
+    if dup:
+        print("label collision (overloads need distinct labels):", dup)
+        return 1
+    db = symbols.load()
+    syms = db["symbols"]
+    for n, e in strict.items():
+        lab = symbols.label(n)
+        cur = syms.get(lab)
+        if cur and cur["status"] == "matched" and (cur["va"] != e["va"] or cur.get("tu") != tu):
+            print(f"symbol {lab} already matched at {cur['va']} in {cur.get('tu')}; refusing")
+            return 1
+        clash = [k for k, v in syms.items() if v["va"] == e["va"] and v["status"] == "matched" and k != lab]
+        if clash:
+            print(f"{e['va']} already matched as {clash}; refusing")
+            return 1
+    implied = {}
+    for r in reports:
+        implied.update(r.get("implied_bindings", {}))
+        for k, why in r.get("implied_rejected", []):
+            print(f"  implied binding rejected: {symbols.label(k)}: {why}")
+    for k, v in implied.items():
+        lab = symbols.label(k)
+        cur = syms.get(lab)
+        if cur and (cur["va"] != v or (cur.get("mangled") and cur["mangled"] != k)):
+            print(f"implied binding {lab}={v} contradicts symbols.json {cur}; refusing")
+            return 1
+        print(f"  new hypothesis binding: {lab} = {v}")
+    gain = sorted({symbols.label(n) for n in strict} - set(old.get("functions", {})))
+    sbytes = sum(e["end"] - e["off"] for e in strict.values())
+    data_strict = [s for r in reports for s in r["segments"]
+                   if s["class"].upper() != "CODE" and s["status"] == "STRICT"]
+    for r in reports:
+        for s in r["segments"]:
+            print(f"  [{s['status']:8s}] {s['seg']:<12s} {s.get('base', '')}")
+            for e in s.get("extents", []):
+                if e["status"] != "STRICT":
+                    print(f"      {e['status']:8s} {e['va']} {symbols.label(e['names'][0])}")
+    print(f"{tu}: {len(strict)} strict functions ({sbytes} bytes), new {len(gain)}, lost {len(lost)}"
+          f"{' (accepted: ' + ', '.join(lost) + ')' if lost else ''}")
+    if not publish:
+        print("dry run OK (add --publish to accept)")
+        return 0
+    dest = ROOT / tu
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    if cand != dest.resolve():
+        shutil.copyfile(cand, dest)
+    now = datetime.date.today().isoformat()
+    rec = {k: v for k, v in entry.items() if v is not None}
+    rec["functions"] = {symbols.label(n): {"va": e["va"], "size": e["end"] - e["off"], "mangled": n}
+                        for n, e in sorted(strict.items(), key=lambda kv: kv[1]["va"])}
+    rec["data"] = {s["seg"]: {"va": s["base"], "size": s["size"]} for s in data_strict}
+    rec["accepted"] = now
+    ledger["tus"][tu] = rec
+    if lost:
+        ledger.setdefault("accepted_losses", []).append({"tu": tu, "functions": lost, "date": now})
+    for n, e in strict.items():
+        syms[symbols.label(n)] = {"va": e["va"], "kind": "func", "status": "matched", "mangled": n, "tu": tu,
+                                  "evidence": f"strict match {now}"}
+    for k, v in implied.items():
+        lab = symbols.label(k)
+        if lab not in syms:
+            syms[lab] = {"va": v, "kind": "func" if "$n(" in k or not k.startswith("W?") else "data",
+                         "status": "hypothesis", "mangled": k, "evidence": f"implied by {tu} {now}"}
+    for n in lost:
+        lab = symbols.label(n)
+        if lab in syms and syms[lab].get("tu") == tu:
+            syms[lab]["status"] = "hypothesis"
+            syms[lab]["evidence"] = f"lost strict {now}"
+    symbols.save(db)
+    dump_json(gate.LEDGER, ledger)
+    print("published")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv))

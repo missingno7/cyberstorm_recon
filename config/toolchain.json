@@ -1,0 +1,72 @@
+{
+ "note": "Pinned toolchain installs under CSTORM_TOOLS (default C:/tools); never committed. tools/cc.py hash-checks key files before compiling. 'tested' identity = the install we ran; the developers' exact build is a claim only where docs/toolchain.md says so.",
+ "installs": {
+  "wc106": {
+   "product": "WATCOM C/C++ 10.6 (CD volume WATCOM_C106, 1996-03-13)",
+   "dir": "watcom-10.6",
+   "source": "archive.org Watcom_C_10.6 / Watcom_C++_10.6.iso, sha256 18dd98ae9c8d883e2d680bf9e4eda1c4bf78376c5f05e071b55e57a6619aecf2 (pinned by rayman_recon config/toolchain.json)",
+   "tools": {
+    "wcc386": "BINNT/WCC386.EXE",
+    "wpp386": "BINNT/WPP386.EXE",
+    "wlink": "BINNT/WLINK.EXE",
+    "wlib": "BINNT/WLIB.EXE"
+   },
+   "key_files": {
+    "BINNT/WCC386.EXE": "b533dd0b4685cd6e1b32a4dcb2e83624a5bf36d61453af6d171527602c049d7e",
+    "BINW/WCC386.EXE": "a257b6a25a95f02b404c4571839297af0a8cd941479f4dd19149ea949fd88c42",
+    "BINNT/WPP386.EXE": "b533dd0b4685cd6e1b32a4dcb2e83624a5bf36d61453af6d171527602c049d7e",
+    "BINW/WPP386.EXE": "cad48c88ffe8dac8fbf61622667454e280d48e30e4f53b5f2af00867171f8b74",
+    "BINNT/WLINK.EXE": "b552cbf3627c7f4228dd8769c766047cf1ecb1d290fd3708b34b0e0589753ea3",
+    "BINW/WLINK.EXE": "383dfa7154f10ee325614ad98d671b0c1b279e8c5c3812ba916210df13d91f60",
+    "LIB386/NT/CLIB3S.LIB": "8a420e6f3503dacf381294e56a15773839f37e8b4b7a718254b273fb68edfb14",
+    "LIB386/PLIB3S.LIB": "7257dcd62c4d53c1edf389025bd4f9006bf076c00e3cfa11fbef97cedc2911ec",
+    "LIB386/MATH387S.LIB": "e891569ec780e149832a53c9a95bc4722c0b84b9bc5b831a9d2a5194d579ed67",
+    "LIB386/MATH3S.LIB": "a925be8ed51506ea491ae4a6b4d462f4db556422674d5bb8ff5c7566ae908af8"
+   },
+   "include": [
+    "H",
+    "H/NT"
+   ]
+  },
+  "wc105": {
+   "product": "WATCOM C/C++ 10.5 (derived install watcom-10.5-pck; see its PROVENANCE.txt). Excluded as the runtime (docs/toolchain.md); kept for compiler A/B probes only",
+   "dir": "watcom-10.5-pck",
+   "tools": {
+    "wcc386": "BINNT/WCC386.EXE",
+    "wpp386": "BINNT/WPP386.EXE",
+    "wlink": "BINNT/WLINK.EXE"
+   },
+   "key_files": {
+    "BINNT/WCC386.EXE": "115de0dd01c6513f53f12632be3956b43bf7360e46a5ae100ce33134df479469",
+    "BINW/WCC386.EXE": "1b97a68f7b8a3efd89b05f64ce99836b1e533f398699305f96dc423254939d6a",
+    "BINW/WPP386.EXE": "362898453ab0fee4260bb8457c5498fb69043958377e18a0046ed72552f80a15",
+    "BINW/WLINK.EXE": "a0f1162b3e68a80bdee2cf6d10db9b33235fb1f074146e3d0a08f928f4a1685c"
+   },
+   "include": [
+    "H",
+    "H/NT"
+   ]
+  }
+ },
+ "profiles": {
+  "ot": {
+   "install": "wc106",
+   "tool": "wpp386",
+   "flags": [
+    "-4s",
+    "-s",
+    "-oxt"
+   ],
+   "status": "verified on the timer TU (7/7 strict); 16-byte function and module alignment. -5s, -ox, -ot alone each fail there; -d1 no effect"
+  },
+  "plain": {
+   "install": "wc106",
+   "tool": "wpp386",
+   "flags": [
+    "-4s",
+    "-s"
+   ],
+   "status": "verified on 3 unaligned modules (rate 4/4 complete object, ply 2, input 6): no -o options. -ox, -or, -ot, -os, -oxt, -3s each fail on the input module; -oe/-oi/-ol/-on and -5s give identical bytes there (undecided, -4s kept for consistency with 'ot')"
+  }
+ }
+}

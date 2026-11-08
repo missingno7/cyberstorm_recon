@@ -1,0 +1,13 @@
+# originals, extracted data and toolchains are never committed
+assets/
+build/
+candidates/
+external/
+*.obj
+*.OBJ
+*.exe
+*.EXE
+*.dll
+*.DLL
+__pycache__/
+*.pyc
