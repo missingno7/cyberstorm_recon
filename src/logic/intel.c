@@ -1,8 +1,9 @@
+#pragma inline_depth(10)
 typedef unsigned char u8;
 typedef unsigned int u32;
 extern char modeCheckName[], fallbackName[], actorStateTable[]; extern int logicActorList;
 // AssertFail gets the path from the compiler's source-name literal.
-extern int gLocalActorKind, modeSwitch, g4d359c; extern char actorNameOrigin[];
+extern int gLocalActorKind, modeSwitch, g4d359c; extern char logicWorldOffsetX[];
 extern int MissionRandomTable[];
 extern void AssertFail(const char *, int, const char *);
 extern int LogicCopyPoint(const char *, const char *), GridClamp(int), GridFindClosest(int, u32, u32);
@@ -12,37 +13,23 @@ extern int ActorCanChoose(int *), ActorPercent(int *), BestLocRun(int *), BestLo
 extern int next_link_seed(void *), ResolveName(const char *, const int *);
 extern int *ActorListFind(void *, int);
 extern int *IntelChooseCandidate(int *, int); extern int IntelUpdate(int *, int);
-extern int IntelFindBest(int *, int, int), IntelFindBestByName(int, int);
+extern int IntelFindBest(int *, int = 0, int = 0), IntelFindBestByName(int, int);
 extern int IntelResetOne(int *, int), IntelClearReservation(int *, int);
-extern int IntelSetMode(const char *, int), IntelSetMode3(const char *, int, int), IntelClearMode(const char *);
-extern int IntelUnitQuery(int, int, int), IntelUnitState(int);
-extern int IntelPrepareState(int *, int, int), IntelContinueState(int *, int, int);
-struct ActorPoint { int x, y; }; class LogicActorList { public: int *CreateActor(int, ActorPoint *, int, const char *); };
-struct IntelUnitState { u8 pad[5]; u8 type; }; struct IntelUnit { u8 pad[0x20]; struct IntelUnitState info; };
+extern int SimPrepareAction(const char *, int), IntelSetMode3(const char *, int, int), IntelClearMode(const char *);
+extern int IntelUnitQuery(int, int, int), HercNeedsAmmo(int);
+extern int IntelPrepareState(int *, int = 0, int = 0), IntelContinueState(int *, int, int);
+struct ActorPoint { int x, y; }; class LogicActorList { public: int *At(int); int *CreateActor(int, ActorPoint *, int, const char *); };
+struct IntelUnitState { u8 pad[5]; u8 type; int Type() { return type; } }; struct IntelUnit { u8 pad[0x20]; struct IntelUnitState info; struct IntelUnitState *Info() { return &info; } int Allowed() { int n = Info()->Type(); return n != 1 && n != 7 && n != 14 && n != 17 && n != 18; } };
 extern int IntelTargetData(int, int *, int), IntelGetActorState(int *), IntelChooseSpawnPos(void *, int, int, int, int), IntelFinalizeActor(int *);
 extern int PointAngle(int *, int *);
 extern void BestLocSetData(int, int *, int);
 int IntelStateCommon(int *a);
 void IntelActorCommand(int *a, int command, int value, int *target);
 
-static inline int IntelState(int *a) { return a[0x22]; }
-static inline char IntelUnitAllowed(int *a)
-{
-    int unit = a[0];
-    if (unit == 0) return 0;
-    u8 *unitData = (u8 *)unit + 0x20;
-    if (unitData[5] == 1 || unitData[5] == 7 || unitData[5] == 14 ||
-        unitData[5] == 17 || unitData[5] == 18) return 0;
-    return 1;
-}
-static inline int IntelUnitActive(int *unit)
-{
-    int *data;
-    if (unit == 0 || *(char *)(unit[0] + 0x88) == 0) return 0;
-    data = *(int **)(unit[0] + 0x1c);
-    if (*(int *)((char *)data + 0x12) < 1 || *(char *)(unit[0] + 0x89) != 0) return 0;
-    return 1;
-}
+static inline int IntelState(int *a) { return a[0x22]; } static inline int IntelRadius() { return g4d359c; } static inline int IntelOwner(int *a) { if (a[0]) return *(int *)(a[0] + 8); return 0; }
+static inline int IntelUnitAllowed(int *a) { return a[0] && ((IntelUnit *)a[0])->Allowed(); }
+static inline int IntelHealthAlive(int *data) { return *(int *)((char *)data + 0x12) > 0; }
+static inline int IntelUnitActive(int *actor) { return actor[0] && *(u8 *)(actor[0] + 0x88) && IntelHealthAlive(*(int **)(actor[0] + 0x1c)) && !*(u8 *)(actor[0] + 0x89); }
 
 void IntelPredict(int *a)
 {
@@ -61,82 +48,63 @@ int IntelDisableMode()
 
 int IntelStateWait(int *a)
 {
-    u32 state = (u32)a[0x22];
-    int allowed;
-    int value;
-    if (state == 0) goto state0;
-    if (state <= 1) goto state1;
-    if (state == 3) goto state3;
-    goto finish;
-state1:
-    allowed = IntelUnitAllowed(a);
-    if (allowed) {
-        if (a[1] != 0) IntelResetOne(a, 1);
-        goto finish;
+    switch ((u32)IntelState(a)) {
+    case 0:
+        a[0x22] = 1;
+        IntelChooseCandidate(a, 0);
+        break;
+    case 1:
+        if (!IntelUnitAllowed(a)) {
+            a[0x22] = 3;
+            int value = LogicCopyPoint(ActorName(a), logicWorldOffsetX);
+            if (value < IntelRadius()) {
+                value = BestLocRun(a);
+                if (value) {
+                    SimPrepareAction(modeCheckName, value);
+                    if (IntelUnitAllowed(a)) a[0x22] = 1;
+                }
+            }
+        } else if (a[1]) IntelResetOne(a, 1);
+        break;
+    case 3:
+        if (!a[1] || IntelResetOne(a, 0)) a[0x22] = 8;
+        break;
     }
-    a[0x22] = 3;
-    value = LogicCopyPoint(ActorName(a), actorNameOrigin);
-    if (value >= g4d359c) goto finish;
-    value = BestLocRun(a);
-    if (value == 0) goto finish;
-    IntelSetMode(modeCheckName, value);
-    if (IntelUnitAllowed(a)) a[0x22] = 1;
-    goto finish;
-state3:
-    if (a[1] == 0 || IntelResetOne(a, 0) != 0) a[0x22] = 8;
-    goto finish;
-state0:
-    a[0x22] = 1;
-    IntelChooseCandidate(a, 0);
-finish:
-    if (a[0x22] == 8 && LogicCopyPoint(ActorName(a), actorNameOrigin) == g4d359c)
+    if (a[0x22] == 8 && LogicCopyPoint(ActorName(a), logicWorldOffsetX) == IntelRadius())
         IntelClearMode(modeCheckName);
     return a[0x22] == 8;
 }
 
 int IntelMaybeBlock(int *a, int allow)
 {
-    if (IntelChooseCandidate(a, 0) == 0) return 0;
-    int score = LogicCopyPoint(ActorName(a), ActorName((int *)a[1]));
-    if (score > 8 && allow == 0) return 0;
+    int score;
+    if (IntelChooseCandidate(a, 0) == 0) goto failed;
+    score = LogicCopyPoint(ActorName(a), ActorName((int *)a[1]));
+    if (score > 8 && allow == 0) goto clear;
     a[0x22] = 1;
-    IntelUnit *unit = (IntelUnit *)a[0];
-    if (unit != 0) {
-        char unitState = unit->info.type;
-        if (unitState != 1 && unitState != 7 && unitState != 14 &&
-            unitState != 17 && unitState != 18)
-            *(u8 *)(a[0] + 0x56) = 3;
-    }
+    if (IntelUnitAllowed(a)) *(u8 *)(a[0] + 0x56) = 3;
     return 1;
+clear: a[1] = 0;
+failed: return 0;
 }
 
 int IntelStateApproach(int *a)
 {
     if (a[1] != 0) return IntelStateCommon(a);
-    if (IntelChooseCandidate(a, 0) != 0) {
-        int score = LogicCopyPoint(ActorName(a), ActorName((int *)a[1]));
-        if (score > 8) a[1] = 0;
-        else {
-            a[0x22] = 1;
-            if (IntelUnitAllowed(a)) *(u8 *)(a[0] + 0x56) = 3;
-            return 0;
+    if (IntelMaybeBlock(a, 0)) return 0;
+    switch ((u32)IntelState(a)) {
+    case 0:
+        if (a[0x28]) {
+            int *actor = ((LogicActorList *)&logicActorList)->At(a[0x28]);
+            if (actor) a[0x26] = ActorValue(actor);
         }
+        if (a[0x26]) { SimPrepareAction(modeCheckName, a[0x26]); a[0x22] = 1; }
+        else a[0x22] = 8;
+        break;
+    case 1:
+        if (!IntelUnitAllowed(a)) a[0x22] = 8;
+        break;
     }
-    if (a[0x22] == 0) {
-        int *actor = 0;
-        if (a[0x28] != 0) actor = ActorListFind((void *)&logicActorList, a[0x28]);
-        if (actor != 0) a[0x26] = ActorValue(actor);
-        if (a[0x26] != 0) {
-            IntelSetMode(modeCheckName, a[0x26]);
-            a[0x22] = 1;
-            goto finish;
-        }
-    } else {
-        if (a[0x22] != 1) goto finish;
-        if (IntelUnitAllowed(a)) goto finish;
-    }
-    a[0x22] = 8;
-finish:
     return a[0x22] == 8;
 }
 
@@ -145,142 +113,91 @@ int IntelStateSearch(int *a)
     int value;
     if (a[0x26] != 0) {
         int local[2];
-        BestLocSetData(0x4d3594, local, a[0x26]);
+        BestLocSetData((int)fallbackName, local, a[0x26]);
         value = LogicCopyPoint((const char *)local, ActorName(a));
         if (value <= a[0x27]) a[0x26] = 0;
     }
-    u32 divisor = g4d359c; if (a[0x26] == 0) {
-        u32 first = next_link_seed(&MissionRandomTable);
-        u32 second = next_link_seed(&MissionRandomTable);
-        int found = GridFindClosest(0x4d3594, first % divisor, (second % 0x168) * 0xb60b61);
+    if (a[0x26] == 0) {
+        u32 divisor = IntelRadius();
+        u32 distance = (u32)next_link_seed(&MissionRandomTable) % divisor;
+        u32 direction = ((u32)next_link_seed(&MissionRandomTable) % 0x168) * 0xb60b61;
+        int found = GridFindClosest((int)fallbackName, distance, direction);
         if (found != 0) {
             int local[2];
-            BestLocSetData(0x4d3594, local, found);
+            BestLocSetData((int)fallbackName, local, found);
             IntelActorCommand(a, 2, 5, local);
             a[0x22] = 0;
         }
     }
-    if (a[0x22] == 0) {
-        if (a[0x26] != 0) {
-            IntelSetMode(modeCheckName, a[0x26]);
-            a[0x22] = 1;
-            goto finish;
-        }
-    } else if (a[0x22] != 1) goto finish;
-    else if (IntelUnitAllowed(a)) goto finish;
-    a[0x22] = 8;
-finish:
+    switch ((u32)IntelState(a)) {
+    case 0:
+        if (a[0x26]) { SimPrepareAction(modeCheckName, a[0x26]); a[0x22] = 1; }
+        else a[0x22] = 8;
+        break;
+    case 1:
+        if (!IntelUnitAllowed(a)) a[0x22] = 8;
+        break;
+    }
     return a[0x22] == 8;
 }
 
 int IntelStateMatch(int *a)
 {
-    int state = a[0x22];
-    int value;
-    int *candidate;
-    if (a[1] != 0) return IntelStateCommon(a);
-    candidate = IntelChooseCandidate(a, 0);
-    if (candidate != 0) {
-        value = LogicCopyPoint(ActorName(a), ActorName((int *)a[1]));
-        if (value > 8) a[1] = 0;
-        else {
-            a[0x22] = 1;
-            if (IntelUnitAllowed(a)) *(u8 *)(a[0] + 0x56) = 3;
-            return 0;
-        }
-    }
-    value = IntelUnitState(*(int *)(a[0] + 0x18));
-    if (value == 0) {
-        candidate = IntelChooseCandidate(a, 0);
-        if (candidate != 0) {
-            LogicCopyPoint(ActorName(a), ActorName((int *)a[1]));
-            a[0x22] = 1;
-            if (IntelUnitAllowed(a)) *(u8 *)(a[0] + 0x56) = 3;
-            return 0;
-        }
-    }
-    state = a[0x22];
-    if (state == 0) {
-        a[0x22] = 6;
-        goto finish;
-    }
-    if (state > 1) {
-        if (state <= 5) goto finish;
-        if (state > 6) {
-            if (state == 7) a[0x22] = 6;
-            goto finish;
-        }
+    if (a[1]) return IntelStateCommon(a);
+    if (IntelMaybeBlock(a, 0)) return 0;
+    if (!HercNeedsAmmo(*(int *)(a[0] + 0x18)) && IntelMaybeBlock(a, 1)) return 0;
+    switch ((u32)IntelState(a)) {
+    case 0: a[0x22] = 6; break;
+    case 6:
         a[0x22] = 8;
-        value = ActorValue(a);
-        value = IntelFindBestByName(0x4d3594, value);
-        if (value != 0) {
-            IntelSetMode(modeCheckName, value);
-            if (IntelUnitAllowed(a)) a[0x22] = 1;
-        }
-        if (a[0x22] != 8) goto finish;
-        candidate = IntelChooseCandidate(a, 0);
-        if (candidate != 0) {
-            LogicCopyPoint(ActorName(a), ActorName((int *)a[1]));
-            a[0x22] = 1;
-            if (IntelUnitAllowed(a)) *(u8 *)(a[0] + 0x56) = 3;
-            return 0;
-        }
-        goto finish;
+        { int value = IntelFindBestByName((int)fallbackName, ActorValue(a));
+          if (value) { SimPrepareAction(modeCheckName, value); if (IntelUnitAllowed(a)) a[0x22] = 1; } }
+        if (a[0x22] == 8 && IntelMaybeBlock(a, 1)) return 0;
+        break;
+    case 1: if (!IntelUnitAllowed(a)) a[0x22] = 7; break;
+    case 7: a[0x22] = 6; break;
     }
-    if (!IntelUnitAllowed(a)) a[0x22] = 7;
-finish:
     return a[0x22] == 8;
 }
 
 int IntelStateRetry(int *a)
 {
-    int state = a[0x22];
-    int value = 0;
-    int local[2];
-    if (state == 0) {
-        int *actor = 0;
-        if (a[0x28] != 0) actor = ActorListFind((void *)&logicActorList, a[0x28]);
-        if (actor != 0) a[0x26] = ActorValue(actor);
-        if (a[0x26] == 0) {
-            if (IntelPrepareState(a, 0, 0) == 0) goto fail;
-        } else if (IntelPrepareState(a, a[0x26], a[0x27]) == 0 &&
-                   IntelPrepareState(a, a[0x26], a[0x27] + 8) == 0)
-            IntelPrepareState(a, a[0x26], 0);
-        a[0x22] = 1;
-        goto finish;
+    switch ((u32)IntelState(a)) {
+    case 0:
+        if (a[0x28]) {
+            int *actor = ((LogicActorList *)&logicActorList)->At(a[0x28]);
+            if (actor) a[0x26] = ActorValue(actor);
+        }
+        if (a[0x26]) {
+            if (!IntelPrepareState(a, a[0x26], a[0x27]) && !IntelPrepareState(a, a[0x26], a[0x27] + 8))
+                IntelPrepareState(a, a[0x26], 0);
+            a[0x22] = 1;
+        } else {
+            if (IntelPrepareState(a)) a[0x22] = 1;
+            else a[0x22] = 8;
+        }
+        break;
+    case 1: case 2:
+        if (!IntelUnitAllowed(a)) {
+            if (!a[1]) { a[0x22] = 8; return 1; }
+            int value = 0;
+            if (a[0x26]) {
+                int point[2];
+                BestLocSetData((int)fallbackName, point, a[0x26]);
+                int distance = LogicCopyPoint((const char *)point, ActorName(a));
+                if (distance > a[0x27] + 4) value = a[0x26];
+                else value = IntelFindBest(a, a[0x26], a[0x27]);
+                if (distance <= a[0x27] && a[0x22] == 2) value = 0;
+            } else if (a[1]) value = IntelFindBest(a);
+            a[0x22] = 3;
+            if (value) { SimPrepareAction(modeCheckName, value); if (IntelUnitAllowed(a)) a[0x22] = 2; }
+        } else if (a[1]) IntelResetOne(a, 1);
+        break;
+    case 3:
+        if (!a[1] || IntelResetOne(a, 0)) a[0x22] = 8;
+        break;
     }
-    if (state >= 3) {
-        if (state != 3 || (a[1] != 0 && IntelResetOne(a, 0) == 0)) goto finish;
-        a[0x22] = 8;
-        goto finish;
-    }
-    if (IntelUnitAllowed(a)) {
-        if (a[1] != 0) IntelResetOne(a, 1);
-        goto finish;
-    }
-    if (a[1] == 0) {
-        a[0x22] = 8;
-        return 1;
-    }
-    if (a[0x26] == 0) {
-        if (a[1] != 0) value = IntelFindBest(a, 0, 0);
-    } else {
-        BestLocSetData(0x4d3594, local, a[0x26]);
-        int score = LogicCopyPoint((const char *)local, ActorName(a));
-        if (a[0x27] + 4 < score) value = a[0x26];
-        else value = IntelFindBest(a, a[0x26], a[0x27]);
-        if (score <= a[0x27] && a[0x22] == 2) value = 0;
-    }
-    a[0x22] = 3;
-    if (value != 0) {
-        IntelSetMode(modeCheckName, value);
-        if (IntelUnitAllowed(a)) a[0x22] = 2;
-    }
-finish:
     return a[0x22] == 8;
-fail:
-    a[0x22] = 8;
-    goto finish;
 }
 
 int IntelStateCommon(int *a)
@@ -288,7 +205,7 @@ int IntelStateCommon(int *a)
     int state = a[0x22];
     int value;
     if (a[3] & 8) {
-        if (IntelPrepareState(a, 0, 0) == 0) return IntelStateSearch(a);
+        if (IntelPrepareState(a) == 0) return IntelStateSearch(a);
         *(u8 *)(a + 3) &= 0xf7;
         a[0x22] = 1;
     }
@@ -296,12 +213,12 @@ int IntelStateCommon(int *a)
     case 0:
         a[0x22] = 8;
         if (a[0x28] != 0) {
-            int *actor = ActorListFind((void *)&logicActorList, a[0x28]);
+            int *actor = ((LogicActorList *)&logicActorList)->At(a[0x28]);
             a[1] = (int)actor;
-            if (actor != 0 && IntelUnitActive(actor)) a[0x22] = 1;
+            if (a[1] && IntelUnitActive((int *)a[1])) a[0x22] = 1;
         }
-        if (a[0x22] == 8 && IntelPrepareState(a, 0, 0) != 0) a[0x22] = 1;
-        if (a[0x22] == 8 && (a[0] != 0 ? *(int *)(a[0] + 8) : 0) == gLocalActorKind) {
+        if (a[0x22] == 8 && IntelPrepareState(a) != 0) a[0x22] = 1;
+        if (a[0x22] == 8 && IntelOwner(a) == gLocalActorKind) {
             *(u8 *)(a + 3) |= 8;
             a[0x22] = 0;
             return IntelStateSearch(a);
@@ -309,26 +226,22 @@ int IntelStateCommon(int *a)
         break;
     case 1:
         a[0x22] = 3;
-        value = IntelFindBest(a, 0, 0);
+        value = IntelFindBest(a);
         if (value == 0) break;
-        IntelSetMode(modeCheckName, value);
+        SimPrepareAction(modeCheckName, value);
         if (IntelUnitAllowed(a)) a[0x22] = 2;
         break;
     case 2:
-        if (a[1] != 0) {
-            if (IntelUnitAllowed(a)) IntelResetOne(a, 1);
-            else {
-                int score = LogicCopyPoint(ActorName(a), ActorName((int *)a[1]));
-                if (score < a[0x1a] || a[0x1b] < score) a[0x22] = 1;
-                else a[0x22] = 3;
-            }
-            break;
-        }
-        goto state3;
+        if (!a[1]) a[0x22] = 8;
+        else if (!IntelUnitAllowed(a)) {
+            int score = LogicCopyPoint(ActorName(a), ActorName((int *)a[1]));
+            if (score < a[0x1a] || score > a[0x1b]) a[0x22] = 1;
+            else a[0x22] = 3;
+        } else IntelResetOne(a, 1);
+        break;
     case 3:
-        if (IntelResetOne(a, 0) == 0) break;
-state3:
-        a[0x22] = 8;
+        if (IntelResetOne(a, 0)) a[0x22] = 8;
+        break;
     }
     return a[0x22] == 8;
 }
@@ -349,7 +262,7 @@ int IntelStateSeek(int *a)
         value = ActorValue((int *)a[1]);
         value = BestLocBegin(a, value);
         if (value == 0) goto finish;
-        IntelSetMode(modeCheckName, value);
+        SimPrepareAction(modeCheckName, value);
         if (IntelUnitAllowed(a)) a[0x22] = 4;
         goto finish;
     }
@@ -391,19 +304,19 @@ int IntelSpawnTimer(int *a)
 
 int IntelStateLink(int *a)
 {
-    int state = a[0x22];
-    int value;
-    if (state == 0) {
+    switch ((u32)IntelState(a)) {
+    case 0:
         a[0x22] = 8;
-        if (a[0x28] != 0) {
-            int *actor = ActorListFind((void *)&logicActorList, a[0x28]);
-            a[1] = (int)actor;
-            if (actor != 0 && IntelUnitActive(actor)) a[0x22] = 3;
+        if (a[0x28]) {
+            a[1] = (int)((LogicActorList *)&logicActorList)->At(a[0x28]);
+            if (a[1] && IntelUnitActive((int *)a[1])) a[0x22] = 3;
         }
-        if (a[0x22] == 8 && IntelPrepareState(a, 0, 0) != 0) a[0x22] = 3;
-        state = a[0x22];
+        if (a[0x22] == 8 && IntelPrepareState(a)) a[0x22] = 3;
+        if (a[0x22] != 3) break;
+    case 3:
+        if (IntelResetOne(a, 0)) a[0x22] = 8;
+        break;
     }
-    if (state == 3 && IntelResetOne(a, 0) != 0) a[0x22] = 8;
     return a[0x22] == 8;
 }
 
@@ -665,7 +578,94 @@ void IntelActorCommand(int *a, int command, int value, int *target)
         if (value != 0) {
             // assert source line follows the null lookup check
             // preserve the second original line boundary
-            int *actor = ActorListFind((void *)&logicActorList, value); if (actor == 0) AssertFail(__FILE__, __LINE__, 0);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            int *actor = ((LogicActorList *)&logicActorList)->At(value); if (actor == 0) AssertFail(__FILE__, __LINE__, 0);
             a[0x26] = ActorValue(actor);
             a[0x27] = 3;
             return;

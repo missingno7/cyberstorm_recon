@@ -7,9 +7,8 @@ extern unsigned long currentFrameCounter;
 extern unsigned long animationKindTable[];
 extern unsigned char animationFrameTypeTable[];
 extern unsigned long animationDefinitionTable[];
-extern int modeSwitch;
+extern int g_004d2dee;
 extern "C" {
-    unsigned char animationCachePadding[0x1000];
     char animNameBuffer[16];
     int *animationResourceTable[3990];
     unsigned long animationLastUseTable[3990];
@@ -58,7 +57,7 @@ int *AnimBitmapFrame(unsigned char *p)
             currentAnimationGroup = moduloFrame;
             if (modeFlags & 16)
                 currentAnimationGroup = 0;
-            if (currentAnimationFrame == 7 && modeSwitch != 0)
+            if (currentAnimationFrame == 7 && g_004d2dee != 0)
                 currentAnimationFrame = 6;
         } else if (mode < 2) {
             currentAnimationFrame = animationDefinitionTable[p[5] * 6] & 15;
@@ -83,40 +82,41 @@ int *AnimBitmapFrame(unsigned char *p)
             if (*resource == 0)
             *resource = (int *)gResMgr.Load((long)(animFormatPool + 0x1b));
             if (*resource == 0) {
-// source line padding for the original line-120 assertion
-// source line padding for the original line-120 assertion
-                // line number is pinned to the original assertion
-// source line padding for the original line-120 assertion
-// source line padding for the original line-120 assertion
-// source line padding for the original line-120 assertion
-// source line padding for the original line-120 assertion
-// source line padding for the original line-120 assertion
-// source line padding for the original line-120 assertion
-// source line padding for the original line-120 assertion
-// source line padding for the original line-120 assertion
-// source line padding for the original line-120 assertion
-// source line padding for the original line-120 assertion
-// source line padding for the original line-120 assertion
-// source line padding for the original line-120 assertion
-// source line padding for the original line-120 assertion
-// source line padding for the original line-120 assertion
-// source line padding for the original line-120 assertion
-// source line padding for the original line-120 assertion
-// source line padding for the original line-120 assertion
-// source line padding for the original line-120 assertion
-// source line padding for the original line-120 assertion
-// source line padding for the original line-120 assertion
-// source line padding for the original line-120 assertion
-// source line padding for the original line-120 assertion
-// source line padding for the original line-120 assertion
-// source line padding for the original line-120 assertion
-// source line padding for the original line-120 assertion
-// source line padding for the original line-120 assertion
-// source line padding for the original line-120 assertion
-// source line padding for the original line-120 assertion
-// source line padding for the original line-120 assertion
-// source line padding for the original line-120 assertion
-// source line padding for the original line-120 assertion
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
                 AssertFail(animBmpSourcePath, __LINE__, 0);
             }
         }
@@ -150,10 +150,10 @@ int *AnimBitmapFrame(unsigned char *p)
                 sprintf(animNameBuffer, animFormatPool + 0x10, p[5]);
             *resource = (int *)gResMgr.Load((long)animNameBuffer, 1, 0, 0);
             if (*resource == 0) {
-// source line padding for the original line-157 assertion
-// source line padding for the original line-157 assertion
-// source line padding for the original line-157 assertion
-// source line padding for the original line-157 assertion
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
                 AssertFail(animBmpSourcePath, __LINE__, 0);
             }
         }
@@ -161,8 +161,8 @@ int *AnimBitmapFrame(unsigned char *p)
         p[9] = *(unsigned char *)effectResourceTable[p[5]];
         return (int *)((char *)effectResourceTable[p[5]] + 4 + p[8] * 12);
     }
-// source line padding for the original line-166 assertion
-// source line padding for the original line-166 assertion
+// Original assertion source-line padding.
+// Original assertion source-line padding.
     AssertFail(animBmpSourcePath, __LINE__, 0);
     p[9] = 0;
     return 0;
@@ -176,14 +176,14 @@ void *AnimEnsureFX(int index)
         void *loaded = gResMgr.Load((long)name);
         effectResourceTable[index] = (int *)loaded;
         if (loaded == 0) {
-// source line padding for the original line-187 assertion
-// source line padding for the original line-187 assertion
-// source line padding for the original line-187 assertion
-// source line padding for the original line-187 assertion
-// source line padding for the original line-187 assertion
-// source line padding for the original line-187 assertion
-// source line padding for the original line-187 assertion
-// source line padding for the original line-187 assertion
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
+// Original assertion source-line padding.
             AssertFail(animBmpSourcePath, __LINE__, 0);
         }
     }
@@ -196,10 +196,10 @@ extern "C" void f_cb80(void *data);
 int AnimBitmapSweep(int rowEarlyAge, int rowLateAge, int outerAge,
                     int innerAge, int effectAge)
 {
-    int **groupResources = animationResourceTable;
-    int group = 0;
+int **groupResources = animationResourceTable;
+    int group;
     int row;
-    do {
+    for (group = 0; group < 0x5f; ++group, groupResources += 42) {
         row = 0;
         int **rowResources = groupResources;
         int rowEnd = group * 0xa8;
@@ -229,9 +229,7 @@ int AnimBitmapSweep(int rowEarlyAge, int rowLateAge, int outerAge,
             rowResources += 6;
             ++row;
         } while (row < 7);
-        groupResources += 42;
-        ++group;
-    } while (group < 0x5f);
+    }
 
     group = 0;
     do {
@@ -246,6 +244,7 @@ int AnimBitmapSweep(int rowEarlyAge, int rowLateAge, int outerAge,
     } while (group != 0x118);
     return row;
 }
+
 
 
 

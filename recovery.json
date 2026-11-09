@@ -4034,7 +4034,7 @@
   "src/logic/lactors.c": {
    "as": "logic\\lactors.c",
    "install": "wc106",
-   "profile": "plain",
+   "profile": "plain-oe",
    "functions": {
     "LogicActorList::Load": {
      "va": "0046406c",
@@ -4102,18 +4102,52 @@
      "mangled": "W?$ct:LogicActor$n()_"
     }
    },
-   "data": {},
+   "data": {
+    "CONST": {
+     "va": "0048b5c8",
+     "size": 24
+    },
+    "_DATA": {
+     "va": "004a3ae4",
+     "size": 16
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/logic/intel.c": {
    "as": "logic\\intel.c",
    "install": "wc106",
-   "profile": "plain",
+   "profile": "plain-oe",
    "functions": {
     "IntelDisableMode": {
      "va": "004663de",
      "size": 19,
      "mangled": "W?IntelDisableMode$n()i"
+    },
+    "IntelStateWait": {
+     "va": "004663f1",
+     "size": 425,
+     "mangled": "W?IntelStateWait$n(pni)i"
+    },
+    "IntelMaybeBlock": {
+     "va": "0046659a",
+     "size": 173,
+     "mangled": "W?IntelMaybeBlock$n(pnii)i"
+    },
+    "IntelStateApproach": {
+     "va": "00466647",
+     "size": 410,
+     "mangled": "W?IntelStateApproach$n(pni)i"
+    },
+    "IntelStateSearch": {
+     "va": "004667e1",
+     "size": 372,
+     "mangled": "W?IntelStateSearch$n(pni)i"
+    },
+    "IntelStateMatch": {
+     "va": "00466955",
+     "size": 827,
+     "mangled": "W?IntelStateMatch$n(pni)i"
     }
    },
    "data": {},
@@ -4323,6 +4357,11 @@
    "install": "wc106",
    "profile": "ot",
    "functions": {
+    "W?.fn_init$n()v": {
+     "va": "00460c50",
+     "size": 192,
+     "mangled": "W?.fn_init$n()v"
+    },
     "SimHotResizeFogBuffers": {
      "va": "00460d10",
      "size": 96,
@@ -4332,6 +4371,16 @@
      "va": "00460d70",
      "size": 48,
      "mangled": "W?SimHotReleaseFogBuffers$n()v"
+    },
+    "SimHotReadFogBuffers": {
+     "va": "00460da0",
+     "size": 64,
+     "mangled": "W?SimHotReadFogBuffers$n(i)v"
+    },
+    "SimHotWriteFogBuffers": {
+     "va": "00460de0",
+     "size": 64,
+     "mangled": "W?SimHotWriteFogBuffers$n(i)v"
     },
     "SimHotInitializeFog": {
      "va": "00460e20",
@@ -4357,20 +4406,35 @@
      "va": "00461970",
      "size": 192,
      "mangled": "W?SimHotbriefRemove$n(iii)v"
+    },
+    "ViewState::$dt": {
+     "va": "00461d80",
+     "size": 5,
+     "mangled": "W?$dt:ViewState$n()_"
     }
    },
-   "data": {},
+   "data": {
+    "W?$Wts0dn$ViewState$$$nx[]uc": {
+     "va": "0048de28",
+     "size": 17
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/sim/hotbrief.c": {
    "as": "sim\\hotbrief.c",
    "install": "wc106",
-   "profile": "ot",
+   "profile": "ot-oe",
    "functions": {
     "HotbriefResources::$ct": {
      "va": "00461e40",
      "size": 32,
      "mangled": "W?$ct:HotbriefResources$n()_"
+    },
+    "HotbriefOpen": {
+     "va": "00461e60",
+     "size": 240,
+     "mangled": "W?HotbriefOpen$n(pnvpnvi)v"
     },
     "HotbriefRelease": {
      "va": "00461f50",
@@ -4380,7 +4444,12 @@
     "HotbriefUpdate": {
      "va": "00461fb0",
      "size": 64,
-     "mangled": "W?HotbriefUpdate$n(pnv)v"
+     "mangled": "W?HotbriefUpdate$n(pnv)i"
+    },
+    "HotbriefTimerUpdate": {
+     "va": "00461ff0",
+     "size": 240,
+     "mangled": "W?HotbriefTimerUpdate$n(pnv)v"
     },
     "HotbriefClearActive": {
      "va": "004625f0",
@@ -4393,14 +4462,24 @@
      "mangled": "W?HotbriefEmpty$n()v"
     }
    },
-   "data": {},
+   "data": {
+    "W?$Wts0en$MenuSpacer$$$nx[]uc": {
+     "va": "0048d964",
+     "size": 17
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/logic/logic.c": {
    "as": "logic\\logic.c",
    "install": "wc106",
-   "profile": "plain",
+   "profile": "plain-oe",
    "functions": {
+    "LogicReadActorRecord": {
+     "va": "00462d31",
+     "size": 105,
+     "mangled": "W?LogicReadActorRecord$n(pnvpn$FileRecord$$)i"
+    },
     "LogicWriteActorRecord": {
      "va": "00462d9a",
      "size": 78,
@@ -4411,15 +4490,55 @@
      "size": 75,
      "mangled": "W?LogicLoadActorState$n(pnulpnxulpnul)v"
     },
+    "LogicGetScriptData": {
+     "va": "00462e33",
+     "size": 9,
+     "mangled": "W?LogicGetScriptData$n()pnv"
+    },
+    "LogicActorBuild": {
+     "va": "00462e3c",
+     "size": 451,
+     "mangled": "W?LogicActorBuild$n(pnvpnxul)pnv"
+    },
     "LogicStoreActorLink": {
      "va": "00462fff",
      "size": 65,
      "mangled": "W?LogicStoreActorLink$n(pnvpnv)i"
     },
+    "LogicCheckActorOrder": {
+     "va": "00463375",
+     "size": 373,
+     "mangled": "W?LogicCheckActorOrder$n(pnucui)v"
+    },
     "LogicResetActorList": {
      "va": "004634ea",
      "size": 35,
      "mangled": "W?LogicResetActorList$n()v"
+    },
+    "LogicUpdateMissionStatus": {
+     "va": "0046350d",
+     "size": 154,
+     "mangled": "W?LogicUpdateMissionStatus$n(pnuc)v"
+    },
+    "LogicMarkMissionReady": {
+     "va": "004635a7",
+     "size": 53,
+     "mangled": "W?LogicMarkMissionReady$n(pnuci)v"
+    },
+    "LogicCheckMissionAction": {
+     "va": "004635dc",
+     "size": 529,
+     "mangled": "W?LogicCheckMissionAction$n(pnuc)v"
+    },
+    "LogicCopyActorValues": {
+     "va": "00463973",
+     "size": 73,
+     "mangled": "W?LogicCopyActorValues$n(pnvii)v"
+    },
+    "LogicAdvanceMissionState": {
+     "va": "004639bc",
+     "size": 115,
+     "mangled": "W?LogicAdvanceMissionState$n(pnuc)v"
     }
    },
    "data": {},
@@ -4444,7 +4563,12 @@
    "install": "wc106",
    "profile": "ot",
    "functions": {},
-   "data": {},
+   "data": {
+    "_DATA": {
+     "va": "004a0594",
+     "size": 14
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/shell/hbupgrad.c": {
@@ -9123,6 +9247,55 @@
      "va": "00477dc1",
      "size": 20,
      "mangled": "W?MenuCount$n(pnv)i"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_00460800.c": {
+   "as": "_unknown\\tu_00460800.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "FxDamage": {
+     "va": "00460800",
+     "size": 384,
+     "mangled": "W?FxDamage$n(pn$WeaponInfo$$pn$ActorRecord$$ii)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_00464d7c.c": {
+   "as": "_unknown\\tu_00464d7c.c",
+   "install": "wc106",
+   "flags": [
+    "-4s",
+    "-s",
+    "-bm",
+    "-oe=90"
+   ],
+   "tool": "wpp386",
+   "functions": {
+    "ActorStrengthAt": {
+     "va": "00464d7c",
+     "size": 74,
+     "mangled": "W?ActorStrengthAt$n(pn$LogicActor$$pnxa)i"
+    },
+    "ActorNetStrengthAt": {
+     "va": "00464dc6",
+     "size": 192,
+     "mangled": "W?ActorNetStrengthAt$n(pnxa)i"
+    },
+    "ActorUpdateView": {
+     "va": "004651fd",
+     "size": 404,
+     "mangled": "W?ActorUpdateView$n(pn$LogicActor$$i)i"
+    },
+    "ActorTryTargetAction": {
+     "va": "00465391",
+     "size": 313,
+     "mangled": "W?ActorTryTargetAction$n(pn$LogicActor$$i)i"
     }
    },
    "data": {},

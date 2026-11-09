@@ -1,6 +1,6 @@
+#pragma pack(push,1)
 typedef unsigned char u8;
-typedef unsigned long u32; struct ActorPoint { int x, y; }; struct UnitInfo { u8 pad[0x12]; int active; }; struct ActorUnit { u8 pad0[0x18]; void *actorData; UnitInfo *info; u8 pad20[0x68]; u8 alive, inactive; }; struct ApplyPoint { int x, y; }; extern int PointAngle(ApplyPoint *left, ApplyPoint *right);
-
+typedef unsigned long u32; struct ActorPoint { int x, y; }; struct UnitInfo { u8 pad[0x12]; int active; int Active() { return active > 0; } }; struct ActorUnit { u8 pad0[0x18]; void *actorData; UnitInfo *info; u8 pad20[0x68]; u8 alive, inactive; }; struct ApplyPoint { int x, y; }; extern int PointAngle(ApplyPoint *left, ApplyPoint *right);
 struct LogicActor {
     void *unit;
     int field4; u8 pad8[4];
@@ -9,14 +9,14 @@ struct LogicActor {
     int index, next, type, value, timer;
     u8 pad28[0x70 - 0x28];
     ActorPoint position; int randomValue, state7c, linkedIndex; u8 pad84[4]; int state88, state8c; u8 pad90[0xa8 - 0x90];
-    LogicActor() {}
+    int Available() { ActorUnit *u = (ActorUnit *)unit; return u && u->alive && u->info->Active() && !((ActorUnit *)unit)->inactive; } int Friendly() { return (flags & 1) == 0; } int Attached() { return unit != 0; } int Flag2() { return (flags & 2) != 0; } int Live() { ActorUnit *u = (ActorUnit *)unit; return u && u->alive && u->info->Active(); } LogicActor() {}
 };
 struct ActorGlobals { LogicActor actorRecords[512]; int actorCount, actorSerial; };
 ActorGlobals logicActors;
 extern int StreamRead(void *stream, void *buffer, int count), StreamWrite(void *stream, const void *buffer, int count);
 extern int ActorRead(LogicActor *actor, void *stream), ActorWrite(LogicActor *actor, void *stream);
 extern void AssertFail(const char *file, int line, const char *message);
-extern const char invalidActorTypeFormat[]; // AssertFail uses the embedded source path.
+static const char lactorsSourcePath[] = __FILE__; extern const char invalidActorTypeFormat[]; // AssertFail uses the embedded source path.
 extern "C" char *BriefFormat(const char *format, ...); extern int gRemoteActorKind, gLocalActorKind, modeFlags, actorModeValue, currentActorValue;
 extern unsigned int MissionRandomTable[];
 extern unsigned int next_link_seed(void *table);
@@ -28,7 +28,7 @@ class LogicActorList {
 public:
     int Load(void *stream); int Save(void *stream);
     void Clear(); LogicActor *At(int index); LogicActor *First(); LogicActor *Next(LogicActor *actor);
-    LogicActor *Reserve(); LogicActor *Reserve(int);
+    LogicActor *Reserve();
     LogicActor *CreateActor(int type, ActorPoint *position, int value, const char *name); LogicActor *FindByUnit(void *unit);
     LogicActor *SelectActor(LogicActor *actor); void ResetActorState(); void ResetActorValues(); int HasLocalMismatch(); int AllLocalActorsPresent(); int AllRemoteActorsPresent(); void UpdateActorPercentages(); void CalculateActorValues(int force); void NotifyActorLinks();
 };
@@ -100,7 +100,7 @@ LogicActor *LogicActorList::Next(LogicActor *actor)
      
      
      
-LogicActor *LogicActorList::Reserve() { if (logicActors.actorCount >= 512) AssertFail(__FILE__, __LINE__, 0); LogicActor *actor = logicActors.actorRecords + logicActors.actorCount; actor->index = ++logicActors.actorCount; return actor; } inline LogicActor *LogicActorList::Reserve(int) { if (logicActors.actorCount >= 512) AssertFail(__FILE__, __LINE__, 0); int oldCount = logicActors.actorCount; LogicActor *actor = logicActors.actorRecords + oldCount; int next = oldCount + 1; logicActors.actorCount = next; actor->index = next; return actor; }
+LogicActor *LogicActorList::Reserve() { if (logicActors.actorCount >= 512) AssertFail(lactorsSourcePath, __LINE__, 0); LogicActor *actor = logicActors.actorRecords + logicActors.actorCount; actor->index = ++logicActors.actorCount; return actor; }
 
 
 
@@ -111,7 +111,7 @@ LogicActor *LogicActorList::Reserve() { if (logicActors.actorCount >= 512) Asser
 
 LogicActor *LogicActorList::CreateActor(int type, ActorPoint *position, int value, const char *name)
 {
-    if (type <= 0 || type >= 32) AssertFail(__FILE__, __LINE__, BriefFormat("Invalid Actor Type (%d)", type));
+    if (type <= 0 || type >= 32) AssertFail(lactorsSourcePath, __LINE__, BriefFormat("Invalid Actor Type (%d)", type));
     if (name == 0) {
         if (type >= 17) name = (const char *)gLocalActorKind;
         else name = (const char *)gRemoteActorKind;
@@ -123,11 +123,11 @@ LogicActor *LogicActorList::CreateActor(int type, ActorPoint *position, int valu
             //
             //
             //
-            AssertFail(__FILE__, __LINE__, 0);
+            AssertFail(lactorsSourcePath, __LINE__, 0);
             }
-        } else if (name != (const char *)gRemoteActorKind) AssertFail(__FILE__, __LINE__, 0);
+        } else if (name != (const char *)gRemoteActorKind) AssertFail(lactorsSourcePath, __LINE__, 0);
     }
-    if (type > 0 && type < 10 && ActorListIsBusy()) return 0;
+    if (type >= 1 && type <= 9 && ActorListIsBusy()) return 0;
     LogicActor *actor = Reserve();
     actor->name = name;
     int actorIndex = actor->index;
@@ -136,7 +136,7 @@ LogicActor *LogicActorList::CreateActor(int type, ActorPoint *position, int valu
     actor->value = value;
     actor->flags = 0;
         if (type >= 17) *((u8 *)&actor->flags) |= 1;
-    if ((type > 0 && type < 10) || (type > 16 && type < 25)) *((u8 *)&actor->flags) |= 2;
+    if ((type >= 1 && type <= 9) || (type >= 17 && type <= 24)) *((u8 *)&actor->flags) |= 2;
     actor->timer = currentActorValue;
     ActorArraySet(actor, 1, 0);
     actor->position = *position;
@@ -185,9 +185,7 @@ LogicActor *LogicActorList::SelectActor(LogicActor *actor)
             LogicActor *scan = ActorFirst();
             while (scan != 0) {
                 ActorUnit *unit = (ActorUnit *)scan->unit;
-                int active = 0;
-                if (unit && unit->alive && unit->info->active > 0 && unit->inactive == 0)
-                    active = 1;
+                int active = scan->Available();
                 if (active && scan->next == 0) {
                     u8 flags = *((u8 *)&scan->flags);
                     int choose = 0;
@@ -234,57 +232,33 @@ LogicActor *LogicActorList::SelectActor(LogicActor *actor)
 extern "C" int LogicDeleteFromMap(void *unused, int index)
 {
     LogicActor *actor;
-    if (!index) {
-        actor = ActorFirst();
-    } else {
+    if (index) {
         actor = ActorAt(index);
         if (actor != 0) actor = ActorNext(actor);
+    } else {
+        actor = ActorFirst();
     }
-    for (;;) {
-        if (!actor) return 0;
-        ActorUnit *unit = (ActorUnit *)actor->unit;
-        int active;
-        if (unit == 0) active = 0;
-        else if (!unit->alive) active = 0;
-        else if (unit->info->active <= 0) active = 0;
-        else active = 1;
-        u8 flags = *((u8 *)&actor->flags);
-        int eligible;
-        if (active && (flags & 1) == 0) eligible = (flags & 2) != 0;
-        else eligible = 0;
-        if (eligible)
-            break;
+    while (actor) {
+        if (actor->Live() && actor->Friendly() && actor->Flag2()) break;
         actor = ActorNext(actor);
     }
-    return actor->index;
+    return actor ? actor->index : 0;
 }
 
 extern "C" int LogicRefreshMap(void *unused, int index)
 {
     LogicActor *actor;
-    if (!index) {
-        actor = ActorFirst();
-    } else {
+    if (index) {
         actor = ActorAt(index);
         if (actor != 0) actor = ActorNext(actor);
+    } else {
+        actor = ActorFirst();
     }
-    for (;;) {
-        if (actor == 0) return 0;
-        ActorUnit *unit = (ActorUnit *)actor->unit;
-        int active;
-        if (unit == 0) active = 0;
-        else if (unit->alive == 0) active = 0;
-        else if (unit->info->active <= 0) active = 0;
-        else active = 1;
-        u8 flags = *((u8 *)&actor->flags);
-        int eligible;
-        if (active && (flags & 1) != 0) eligible = (flags & 2) != 0;
-        else eligible = 0;
-        if (eligible)
-            break;
+    while (actor) {
+        if (actor->Live() && !actor->Friendly() && actor->Flag2()) break;
         actor = ActorNext(actor);
     }
-    return actor->index;
+    return actor ? actor->index : 0;
 }
 
 
@@ -298,9 +272,7 @@ void LogicActorList::ResetActorState()
         *((u8 *)&actor->flags) &= (u8)~8;
         if (actor->type == 30) {
             ActorUnit *unit = (ActorUnit *)actor->unit;
-            int active = 0;
-            if (unit && unit->alive && unit->info->active > 0 && unit->inactive == 0)
-                active = 1;
+            int active = actor->Available();
             if (active && ActorArrayGet(actor, 7) == 11) {
                 SetModeForUnit(modeCheckName, actor->unit);
                 IntelActorEvent(actor);
@@ -352,16 +324,19 @@ int LogicActorList::AllRemoteActorsPresent()
     return 1;
 }
 
+static inline int ClampPercent(int p) { if (p <= 1) return 1; if (p >= 100) return 100; return p; }
+
 void LogicActorList::UpdateActorPercentages()
 {
     for (LogicActor *actor = ActorFirst(); actor != 0; actor = ActorNext(actor)) {
         int percent = 100;
-        if (actor->unit != 0) {
-            if (ActorIsAvailable(actor) == 0) {
+        if (actor->Attached()) {
+            if (ActorIsAvailable(actor)) percent = 0;
+            else {
                 percent = ActorPercentFromUnit(((ActorUnit *)actor->unit)->actorData);
-                if (percent < 2) percent = 1;
-                if (percent > 99) percent = 100;
-            } else percent = 0;
+                if (percent <= 1) percent = 1;
+                else if (percent >= 100) percent = 100;
+            }
         }
         ActorArraySet(actor, 5, percent);
     }
@@ -372,9 +347,7 @@ void LogicActorList::CalculateActorValues(int force)
     LogicActor *actor = ActorFirst();
     while (actor != 0) {
         ActorUnit *unit = (ActorUnit *)actor->unit;
-        int active = 0;
-        if (unit != 0 && unit->alive != 0 && unit->info->active > 0 && unit->inactive == 0)
-            active = 1;
+        int active = actor->Available();
         if (active) {
             int value;
             if (!force) {
@@ -388,9 +361,7 @@ void LogicActorList::CalculateActorValues(int force)
                 while (other != 0) {
                     if (other != actor && other->name != actor->name) {
                         ActorUnit *otherUnit = (ActorUnit *)other->unit;
-                        int otherActive = 0;
-                        if (otherUnit != 0 && otherUnit->alive != 0 && otherUnit->info->active > 0 && otherUnit->inactive == 0)
-                            otherActive = 1;
+                        int otherActive = other->Available();
                         if (otherActive) {
                             int direction = PointAngle((ApplyPoint *)((char *)unit + 0x32), (ApplyPoint *)((char *)otherUnit + 0x32));
                             int response = NeighborResponse(other, ActorName(actor));
