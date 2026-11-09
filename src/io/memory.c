@@ -1,4 +1,4 @@
-struct MemoryStatus { unsigned long length; unsigned long load; unsigned long totalPhysical; unsigned long availablePhysical; unsigned long totalPageFile; unsigned long availablePageFile; unsigned long totalVirtual; unsigned long availableVirtual; };
+struct MemoryStatus { unsigned long length; unsigned long load; unsigned long totalPhysical; unsigned long availablePhysical; unsigned long totalPageFile; unsigned long availablePageFile; unsigned long totalVirtual; unsigned long availableVirtual; }; static const char errorText[] = "Ran out of memory or disk space.  Try clearing more disk space and running again.";
 extern "C" __declspec(dllimport) void __stdcall GlobalMemoryStatus(MemoryStatus *status);
 extern "C" __declspec(dllimport) void * __stdcall GlobalFree(void *block);
 extern "C" __declspec(dllimport) void * __stdcall GlobalAlloc(unsigned int flags, unsigned long bytes);
@@ -312,7 +312,8 @@ void *GlobalBlockAlloc(unsigned long bytes, unsigned int options)
 
 
 
-        AssertFail(__FILE__, __LINE__, "GlobalAlloc failed");
+        AssertFail(__FILE__, __LINE__, errorText);
     }
     return block;
 }
+

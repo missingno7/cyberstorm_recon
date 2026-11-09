@@ -992,6 +992,14 @@
    "mangled": "W?AllocateMissionImage$n(pnxaii)pnv",
    "evidence": "implied by src/logic/miss.c 2026-11-09"
   },
+  "StrPool::GetSecondString": {
+   "va": "0047c4f0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?GetSecondString$:StrPool$n(li)pna",
+   "tu": "src/misc/strpool.c",
+   "evidence": "placed (at) in src/misc/strpool.c 2026-11-09"
+  },
   "ResMgr::FindPath": {
    "va": "0047c710",
    "kind": "func",
@@ -1136,9 +1144,10 @@
   "AssertFail": {
    "va": "0047d5a0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?AssertFail$n(pnxaipnxa)v",
-   "evidence": "implied by src/misc/strpool.c 2026-11-09"
+   "tu": "src/debug/assert.c",
+   "evidence": "strict match 2026-11-09"
   },
   "AssertExit": {
    "va": "0047d640",
@@ -1174,6 +1183,22 @@
    "kind": "func",
    "status": "matched",
    "mangled": "W?FileInit$n(pn$FileRecord$$)v",
+   "tu": "src/io/file.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "FileRecord::Release": {
+   "va": "0047e470",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Release$:FileRecord$n()pn$1$",
+   "tu": "src/io/file.c",
+   "evidence": "placed (at) in src/io/file.c 2026-11-09"
+  },
+  "FileRecord::Open": {
+   "va": "0047e4d0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Open$:FileRecord$n(pnxaul)i",
    "tu": "src/io/file.c",
    "evidence": "strict match 2026-11-09"
   },
@@ -1227,6 +1252,30 @@
    "tu": "src/io/file.c",
    "evidence": "strict match 2026-11-09"
   },
+  "FileRecord::Printf": {
+   "va": "0047e800",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Printf$:FileRecord$n(pnxae)v",
+   "tu": "src/io/file.c",
+   "evidence": "placed (at) in src/io/file.c 2026-11-09"
+  },
+  "SetRange": {
+   "va": "0047e8d0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SetRange$n(pn$FileRecord$$ill)v",
+   "tu": "src/io/file.c",
+   "evidence": "placed (at) in src/io/file.c 2026-11-09"
+  },
+  "FileExists": {
+   "va": "0047e920",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?FileExists$n(pnxa)i",
+   "tu": "src/io/file.c",
+   "evidence": "placed (at) in src/io/file.c 2026-11-09"
+  },
   "FileCopy": {
    "va": "0047e970",
    "kind": "func",
@@ -1267,6 +1316,14 @@
    "tu": "src/io/file.c",
    "evidence": "strict match 2026-11-09"
   },
+  "FileFreeSpace": {
+   "va": "0047ea90",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?FileFreeSpace$n(c)l",
+   "tu": "src/io/file.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "MemoryStatusValue": {
    "va": "0047eb00",
    "kind": "func",
@@ -1290,6 +1347,14 @@
    "mangled": "MemFree",
    "evidence": "implied by src/io/resource.c 2026-11-09"
   },
+  "GlobalBlockAlloc": {
+   "va": "0047eb50",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?GlobalBlockAlloc$n(ului)pnv",
+   "tu": "src/io/memory.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "MemoryAllocationRetry": {
    "va": "0047eb98",
    "kind": "func",
@@ -1310,6 +1375,27 @@
    "status": "hypothesis",
    "mangled": "W?g48aa2c$n[]a",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "assertFormat": {
+   "va": "0048bff4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?assertFormat$n[]xa",
+   "evidence": "implied by src/debug/assert.c 2026-11-09"
+  },
+  "assertTitle": {
+   "va": "0048c02c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?assertTitle$n[]xa",
+   "evidence": "implied by src/debug/assert.c 2026-11-09"
+  },
+  "fileRootFormat": {
+   "va": "0048c0b8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?fileRootFormat$n[]xa",
+   "evidence": "implied by src/io/file.c 2026-11-09"
   },
   "g48dc00": {
    "va": "0048dc00",
@@ -1401,6 +1487,41 @@
    "status": "hypothesis",
    "mangled": "W?missLimitByType$n[]i",
    "evidence": "implied by src/logic/miss.c 2026-11-09"
+  },
+  "assertProgram": {
+   "va": "004a4264",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?assertProgram$n[]xa",
+   "evidence": "implied by src/debug/assert.c 2026-11-09"
+  },
+  "assertVersion": {
+   "va": "004a4270",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?assertVersion$n[]xa",
+   "evidence": "implied by src/debug/assert.c 2026-11-09"
+  },
+  "assertDate": {
+   "va": "004a42bc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?assertDate$n[]xa",
+   "evidence": "implied by src/debug/assert.c 2026-11-09"
+  },
+  "assertFooter": {
+   "va": "004a42c8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?assertFooter$n[]xa",
+   "evidence": "implied by src/debug/assert.c 2026-11-09"
+  },
+  "errorText": {
+   "va": "004a4a88",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?errorText$n[]xa",
+   "evidence": "implied by src/io/memory.c 2026-11-09"
   },
   "g4b3290": {
    "va": "004b3290",
@@ -1786,6 +1907,20 @@
    "status": "hypothesis",
    "mangled": "W?g_assertCallbacks$n[]pn()v",
    "evidence": "implied by src/debug/assert.c 2026-11-09"
+  },
+  "g_fileOpenCount": {
+   "va": "00514460",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g_fileOpenCount$nul",
+   "evidence": "implied by src/io/file.c 2026-11-09"
+  },
+  "g_fileDirectCount": {
+   "va": "00514468",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g_fileDirectCount$nul",
+   "evidence": "implied by src/io/file.c 2026-11-09"
   }
  }
 }

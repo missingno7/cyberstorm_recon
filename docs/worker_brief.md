@@ -31,6 +31,10 @@ You reconstruct C++ source that Watcom 10.6 compiles to the exact bytes of `CSTO
 - `x &= ~M; x |= v & M;` (two statements) gives the in-memory `and/or` shape; one expression does not.
 - Pointer-walk loops (`T *e = table; ...; i++, e++`) and indexing (`&table[i]`) compile differently.
 - A 1-byte function (`ret`) cannot be placed by search: use `--at`.
+- C or C++ is per TU. Byte-width tests of `char` fields (`mov dl,[x]; test dl,dl`) mean the C front end
+  (`--profile ot-c|plain-c`, plain C structs and functions); `xor r,r; mov rl,[x]; test r,r` or `movsx` mean
+  C++. Global objects with constructors/destructors, `W?` names and default arguments mean C++.
+- Use Watcom's `<windows.h>` for Win32 calls, not hand-written `__stdcall` prototypes.
 - An EBP frame without locals can come from calling a function with default arguments (C++).
 - `mov eax,[g]; test eax,eax` vs `cmp [g],0` can come from an inline accessor.
 - Statement order is visible in store order; operand order in `a < b` vs `b > a` is visible.

@@ -67,6 +67,25 @@
     "-s"
    ],
    "status": "verified on 3 unaligned modules (rate 4/4 complete object, ply 2, input 6): no -o options. -ox, -or, -ot, -os, -oxt, -3s each fail on the input module; -oe/-oi/-ol/-on and -5s give identical bytes there (undecided, -4s kept for consistency with 'ot')"
+  },
+  "ot-c": {
+   "install": "wc106",
+   "tool": "wcc386",
+   "flags": [
+    "-4s",
+    "-s",
+    "-oxt"
+   ],
+   "status": "C front end variant of 'ot' (io\file.c byte tests: `mov dl,[x]; test dl,dl` only with wcc386); TU-level choice, under investigation"
+  },
+  "plain-c": {
+   "install": "wc106",
+   "tool": "wcc386",
+   "flags": [
+    "-4s",
+    "-s"
+   ],
+   "status": "C front end variant of 'plain'; untested"
   }
  }
 }

@@ -1,4 +1,5 @@
 typedef void (*AssertCallback)();
+static const char assertFormat[]="%s\r\n\r\nProgram: %s\r\nVersion: %s %s\r\nFile: %s (#%d)\r\n\r\n%s"; static const char assertProgram[]="CyberStorm"; static const char assertVersion[]="#########################################################################"; static const char assertDate[]="Dec 13 1996"; static const char assertFooter[]="------------------------------------------------------------------------------------------------------\r\nThis program prevents CyberStorm from proceeding.\r\n\r\nUseful Tips:\r\n    The above text may seem cryptic, but often contains useful sentences.  Scan the above text for any useful information, such as asking you to 'clear some disk space'.\r\n    After pressing the 'OK' box, restart your computer and run CyberStorm again. If you have a previous saved game available, try loading that game and continue from that point.\r\n"; static const char assertTitle[]="Problem!";
 extern int g_assertCallbackCount;
 extern int g_assertMessageActive;
 extern AssertCallback g_assertCallbacks[50];
@@ -24,14 +25,17 @@ void RegisterAssertCallback(AssertCallback callback)
         if (wasActive == 0) {
             char buffer[1024];
             g_assertMessageActive = 1;
-            sprintf(buffer, "%s\r\n\r\nProgram: %s\r\nVersion: %s %s\r\nFile: %s (#%d)\r\n\r\n%s",
-                (const char *)wasActive, "CyberStorm", "1.10A", "Dec 13 1996", __FILE__, 104, "Assertion failed");
+            sprintf(buffer, assertFormat,
+                (const char *)wasActive, assertProgram, assertVersion, assertDate, __FILE__, 104, assertFooter);
             MessageBeep(wasActive);
-            MessageBoxA(g_mainWindow, buffer, "Problem!", 0x2000);
+            MessageBoxA(g_mainWindow, buffer, assertTitle, 0x2000);
             g_assertMessageActive = wasActive;
         }
     }
-    g_assertCallbacks[g_assertCallbackCount++] = callback;
+    register int oldCount = g_assertCallbackCount;
+    register AssertCallback *slot = g_assertCallbacks + oldCount;
+    g_assertCallbackCount = oldCount + 1;
+    *slot = callback;
 }
 
 void AssertFail(const char *file, int line, const char *message)
@@ -39,10 +43,10 @@ void AssertFail(const char *file, int line, const char *message)
     if (g_assertMessageActive == 0) {
         char buffer[1024];
         g_assertMessageActive = 1;
-        sprintf(buffer, "%s\r\n\r\nProgram: %s\r\nVersion: %s %s\r\nFile: %s (#%d)\r\n\r\n%s",
-            message, "CyberStorm", "1.10A", "Dec 13 1996", file, line, "Assertion failed");
+        sprintf(buffer, assertFormat,
+            message, assertProgram, assertVersion, assertDate, file, line, assertFooter);
         MessageBeep(0);
-        MessageBoxA(g_mainWindow, buffer, "Problem!", 0x2000);
+        MessageBoxA(g_mainWindow, buffer, assertTitle, 0x2000);
         g_assertMessageActive = 0;
     }
 }
@@ -55,6 +59,7 @@ void AssertExit(unsigned int code)
     }
     ExitProcess(code);
 }
+
 
 
 

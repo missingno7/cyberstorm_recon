@@ -58,27 +58,76 @@ def find_masked(hay, pat, mask, min_anchor=8):
 
 
 def scan(img, libs):
+    """Pass 1: members with an unmasked anchor >= 8 bytes. Pass 2 (repeated): short members (anchor >= 4)
+    accepted only where every self-relative call/jump fixup lands on a library public already identified
+    with the same name (so look-alike wrappers such as operator new[] / delete[] are told apart)."""
     text = img.section("BEGTEXT")
     code = img.section_bytes("BEGTEXT")
     tva = img.image_base + text.rva
     sites = {v - tva for v in img.reloc_sites() if tva <= v < tva + len(code)}
     out = []
+    short = []
     for lib in libs:
         for m in omf.load(lib):
             for si, seg in enumerate(m.segments):
                 if not seg or seg.cls.upper() != "CODE" or seg.size == 0:
                     continue
                 pat, mask, fx = masked_pattern(m, si)
-                for base in find_masked(code, pat, mask):
-                    want = {base + o for o, sz, rel in fx if not rel and sz == 4}
-                    have = {s for s in sites if base <= s < base + seg.size}
-                    rel_ok = all(rel or sz == 4 for o, sz, rel in fx)
-                    cls = "exact+sites" if want == have and rel_ok else "masked"
-                    out.append({"lib": str(lib), "module": m.name, "seg": seg.name, "size": seg.size,
-                                "va": tva + base, "class": cls,
-                                "publics": [n for n, s, o, _ in m.publics if s == si],
-                                "public_vas": {n: tva + base + o for n, s, o, _ in m.publics if s == si}})
+                hits = find_masked(code, pat, mask)
+                if not hits:
+                    hits4 = find_masked(code, pat, mask, min_anchor=4)
+                    if hits4 and len(hits4) <= 64:
+                        short.append((lib, m, si, seg, pat, mask, fx, hits4))
+                    continue
+                for base in hits:
+                    out.append(_hit(lib, m, si, seg, fx, base, sites, tva))
+    known = {}
+    for r in out:
+        if r["class"] == "exact+sites":
+            known.update(r["public_vas"])
+    changed = True
+    while changed:
+        changed = False
+        for item in list(short):
+            lib, m, si, seg, pat, mask, fx, hits = item
+            good = []
+            for base in hits:
+                ok = True
+                for f in m.fixups:
+                    if f.seg != si or not f.self_rel or f.size() != 4:
+                        continue
+                    if f.target[0] & 3 != 2:
+                        ok = False
+                        break
+                    name = m.externs[f.target[1]]
+                    disp = 0 if f.target[0] & 4 else f.disp
+                    field = int.from_bytes(code[base + f.off:base + f.off + 4], "little")
+                    dest = (tva + base + f.off + 4 + field) & 0xFFFFFFFF
+                    if name not in known or known[name] + disp != dest:
+                        ok = False
+                        break
+                if ok and any(f.seg == si and f.self_rel for f in m.fixups):
+                    good.append(base)
+            if len(good) == 1:
+                r = _hit(lib, m, si, seg, fx, good[0], sites, tva)
+                r["short"] = True
+                out.append(r)
+                if r["class"] == "exact+sites":
+                    known.update(r["public_vas"])
+                short.remove(item)
+                changed = True
     return out
+
+
+def _hit(lib, m, si, seg, fx, base, sites, tva):
+    want = {base + o for o, sz, rel in fx if not rel and sz == 4}
+    have = {s for s in sites if base <= s < base + seg.size}
+    rel_ok = all(rel or sz == 4 for o, sz, rel in fx)
+    cls = "exact+sites" if want == have and rel_ok else "masked"
+    return {"lib": str(lib), "module": m.name, "seg": seg.name, "size": seg.size,
+            "va": tva + base, "class": cls,
+            "publics": [n for n, s, o, _ in m.publics if s == si],
+            "public_vas": {n: tva + base + o for n, s, o, _ in m.publics if s == si}}
 
 
 def main(argv):

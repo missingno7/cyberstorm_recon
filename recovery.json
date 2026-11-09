@@ -73,16 +73,11 @@
     },
     "SetPointer": {
      "va": "0047c340",
-     "size": 11,
+     "size": 16,
      "mangled": "W?SetPointer$n(pnpnvpnv)v"
     }
    },
-   "data": {
-    "CONST": {
-     "va": "004a49e8",
-     "size": 15
-    }
-   },
+   "data": {},
    "accepted": "2026-11-09"
   },
   "src/_unknown/tu_0042a598.c": {
@@ -182,13 +177,23 @@
      "size": 48,
      "mangled": "W?DrainAssertCallbacks$n()v"
     },
+    "AssertFail": {
+     "va": "0047d5a0",
+     "size": 160,
+     "mangled": "W?AssertFail$n(pnxaipnxa)v"
+    },
     "AssertExit": {
      "va": "0047d640",
      "size": 57,
      "mangled": "W?AssertExit$n(ui)v"
     }
    },
-   "data": {},
+   "data": {
+    "CONST": {
+     "va": "004a4a34",
+     "size": 15
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/io/memory.c": {
@@ -205,9 +210,19 @@
      "va": "0047eb40",
      "size": 16,
      "mangled": "W?GlobalBlockFree$n(pnv)pnv"
+    },
+    "GlobalBlockAlloc": {
+     "va": "0047eb50",
+     "size": 72,
+     "mangled": "W?GlobalBlockAlloc$n(ului)pnv"
     }
    },
-   "data": {},
+   "data": {
+    "CONST": {
+     "va": "004a4ba8",
+     "size": 12
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/io/file.c": {
@@ -219,6 +234,11 @@
      "va": "0047e450",
      "size": 32,
      "mangled": "W?FileInit$n(pn$FileRecord$$)v"
+    },
+    "FileRecord::Open": {
+     "va": "0047e4d0",
+     "size": 208,
+     "mangled": "W?Open$:FileRecord$n(pnxaul)i"
     },
     "FileGetAndClearError": {
      "va": "0047e7f0",
@@ -249,6 +269,11 @@
      "va": "0047ea60",
      "size": 48,
      "mangled": "W?DirectoryRemove$n(pnxa)i"
+    },
+    "FileFreeSpace": {
+     "va": "0047ea90",
+     "size": 105,
+     "mangled": "W?FileFreeSpace$n(c)l"
     }
    },
    "data": {},
@@ -662,6 +687,14 @@
      "size": 11
     }
    },
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_47eb98.c": {
+   "as": "_unknown\\tu_47eb98.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {},
+   "data": {},
    "accepted": "2026-11-09"
   }
  }
