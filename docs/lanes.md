@@ -6,7 +6,7 @@ Model: `luna` = gpt-6-luna xhigh, `sol` = gpt-6.1-sol high (Codex; all new lanes
 | Lane | Model | Modules (start VA: file) | State (2026-11-09 midday) |
 |---|---|---|---|
 | w1 | luna | assert.c, strpool.c, memory.c, io\file.c | done; tail handed to b1 |
-| b1 | sol | w1 tail; 00425978 framework; gui\flic.c; gui\menu.c; 0042a5fc/0042a0e0; shell\shell.c | running (mplaunch.c) |
+| b1 | sol | w1 tail; 00425978 framework; gui\flic.c; gui\menu.c; 0042a5fc/0042a0e0; shell\shell.c | done (mplaunch 38; 8 DIFF + initializer open) |
 | w2 | luna | io\resource.c | done (19) |
 | w3 | luna | logic\lactor.c, miss.c, bestloc.c | done |
 | w4 | luna | multi\linkapp.c, link.c, chat.c | done; 16 withdrawn (fake array, docs/blocked.md) |
@@ -29,6 +29,7 @@ Model: `luna` = gpt-6-luna xhigh, `sol` = gpt-6.1-sol high (Codex; all new lanes
 | s6 | sol | shell\hbupgrad.c (from w14) | done (42; 18 parked) |
 | s7 | sol | 0044688c, 00446848 | running |
 | s8 | sol | 00433640, pop\pdeath.c | running |
+| s9 | sol | 0040d2b0, 0040e794, 0040f4d8 | running |
 | l1 | luna | shell\hercbuy.c | done (19) |
 | o1 | opus | multi\linkdlg.c, linkq.c, message.c | done |
 | o2 | opus | sim\apply.c, fxout.c, explo.c | done |
