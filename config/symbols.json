@@ -2937,6 +2937,13 @@
    "mangled": "W?Fixup$:ActorListObject$n()v",
    "evidence": "implied by src/multi/message.c 2026-11-09"
   },
+  "PopFindItem": {
+   "va": "00438374",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PopFindItem$n(pnvii)i",
+   "evidence": "implied by src/pop/psystem.c 2026-11-09"
+  },
   "PopItemReady": {
    "va": "004383e1",
    "kind": "func",
@@ -2950,6 +2957,13 @@
    "status": "hypothesis",
    "mangled": "W?StateInvoke$n(pnvii)i",
    "evidence": "implied by src/logic/lactor.c 2026-11-09"
+  },
+  "PopItemValue": {
+   "va": "00438730",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PopItemValue$n(i)i",
+   "evidence": "implied by src/pop/psystem.c 2026-11-09"
   },
   "LoadActorData": {
    "va": "00439df6",
@@ -3056,6 +3070,13 @@
    "mangled": "W?ActorActivate$n(pn$ActorRecord$$)v",
    "evidence": "implied by src/multi/message.c 2026-11-09"
   },
+  "PopRegisterItem": {
+   "va": "004431c5",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PopRegisterItem$n(pnvi)v",
+   "evidence": "implied by src/pop/psystem.c 2026-11-09"
+  },
   "PopNodeReset": {
    "va": "00443f58",
    "kind": "func",
@@ -3087,6 +3108,14 @@
    "mangled": "W?PopSystemOpen$n(pn$PopNode$$pnv)v",
    "tu": "src/pop/psystem.c",
    "evidence": "placed (at) in src/pop/psystem.c 2026-11-09"
+  },
+  "PopNode::Open": {
+   "va": "00443fbe",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Open$:PopNode$n(pnv)v",
+   "tu": "src/pop/psystem.c",
+   "evidence": "strict match 2026-11-09"
   },
   "PopNodeClear": {
    "va": "004440b0",
@@ -8818,6 +8847,20 @@
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4d1cfc$n[]a",
+   "evidence": "implied by src/pop/psystem.c 2026-11-09"
+  },
+  "g4d1d24": {
+   "va": "004d1d24",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4d1d24$n[]i",
+   "evidence": "implied by src/pop/psystem.c 2026-11-09"
+  },
+  "g4d1d28": {
+   "va": "004d1d28",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4d1d28$n[]i",
    "evidence": "implied by src/pop/psystem.c 2026-11-09"
   },
   "g4d1dec": {

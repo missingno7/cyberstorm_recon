@@ -832,6 +832,11 @@
      "size": 23,
      "mangled": "W?PopLoadItem$n(i)i"
     },
+    "PopNode::Open": {
+     "va": "00443fbe",
+     "size": 242,
+     "mangled": "W?Open$:PopNode$n(pnv)v"
+    },
     "PopNodeClear": {
      "va": "004440b0",
      "size": 26,
