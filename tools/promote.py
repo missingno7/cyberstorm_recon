@@ -131,6 +131,8 @@ def main(argv):
         return 0
     dest = ROOT / tu
     dest.parent.mkdir(parents=True, exist_ok=True)
+    # snapshot for rollback if the post-publish check (verify's view: no --at, no search) fails
+    backup = {p: (p.read_bytes() if p.exists() else None) for p in (dest, gate.LEDGER, symbols.PATH)}
     shutil.copyfile(cand, dest)
     now = datetime.date.today().isoformat()
     rec = {k: v for k, v in entry.items() if v is not None}
@@ -149,6 +151,17 @@ def main(argv):
         if lab not in syms:
             syms[lab] = {"va": v, "kind": "func" if "$n(" in k or not k.startswith("W?") else "data",
                          "status": "hypothesis", "mangled": k, "evidence": f"implied by {tu} {now}"}
+    # this TU's own non-strict functions placed by --at or unique search: keep the placement as a hypothesis
+    # binding, so references to them resolve without --at (as in verify)
+    taken = {e["va"] for e in syms.values()}
+    for n, e in ext.items():
+        if e["cls"].upper() != "CODE" or e["status"] == "STRICT" or not e.get("va"):
+            continue
+        lab = symbols.label(n)
+        if e.get("placed") in ("at", "found") and lab not in syms and e["va"] not in taken:
+            syms[lab] = {"va": e["va"], "kind": "func", "status": "hypothesis", "mangled": n, "tu": tu,
+                         "evidence": f"placed ({e['placed']}) in {tu} {now}"}
+            taken.add(e["va"])
     for n in lost:
         lab = symbols.label(n)
         if lab in syms and syms[lab].get("tu") == tu:
@@ -156,6 +169,20 @@ def main(argv):
             syms[lab]["evidence"] = f"lost strict {now}"
     symbols.save(db)
     dump_json(gate.LEDGER, ledger)
+    # post-publish check exactly as verify sees it
+    reports2, _, _ = gate.build_and_compare(dest, rec)
+    ext2 = gate.by_label(gate.extents(reports2))
+    bad = [n for n, e in rec["functions"].items()
+           if (ext2.get(n) or {}).get("status") != "STRICT" or ext2[n]["va"] != e["va"]
+           or ext2[n]["end"] - ext2[n]["off"] != e["size"]]
+    if bad:
+        for p, b in backup.items():
+            if b is None:
+                p.unlink(missing_ok=True)
+            else:
+                p.write_bytes(b)
+        print(f"ROLLED BACK: not strict without --at/search: {bad}")
+        return 1
     print("published")
     return 0
 

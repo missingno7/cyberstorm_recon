@@ -1,6 +1,257 @@
 {
  "note": "name -> binding; see tools/symbols.py",
  "symbols": {
+  "BriefCloseAudio": {
+   "va": "004010b0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "BriefCloseAudio",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "MissBriefModuleInit": {
+   "va": "00415074",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?MissBriefModuleInit$n()v",
+   "tu": "src/shell/missbrf.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BriefFactory::GetObject": {
+   "va": "00415155",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?GetObject$:BriefFactory$n()i",
+   "tu": "src/shell/missbrf.c",
+   "evidence": "placed (at) in src/shell/missbrf.c 2026-11-09"
+  },
+  "MissBrief::Begin": {
+   "va": "0041518b",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Begin$:MissBrief$n(pnvuc)v",
+   "tu": "src/shell/missbrf.c",
+   "evidence": "placed (at) in src/shell/missbrf.c 2026-11-09"
+  },
+  "MissBriefClose": {
+   "va": "004152e0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?MissBriefClose$n(pn$MissBrief$$)v",
+   "tu": "src/shell/missbrf.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MissBriefExit": {
+   "va": "00415312",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?MissBriefExit$n(pn$MissBrief$$)v",
+   "tu": "src/shell/missbrf.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MissBriefUpdate": {
+   "va": "0041534d",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?MissBriefUpdate$n(pn$MissBrief$$)v",
+   "tu": "src/shell/missbrf.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MissBriefOrphan": {
+   "va": "004153d5",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?MissBriefOrphan$n()v",
+   "tu": "src/shell/missbrf.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MissBriefDrawMap": {
+   "va": "004153e3",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?MissBriefDrawMap$n(pn$MissBrief$$)v",
+   "tu": "src/shell/missbrf.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MissBriefLoadBackground": {
+   "va": "00415495",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MissBriefLoadBackground$n(pn$MissBrief$$)v",
+   "tu": "src/shell/missbrf.c",
+   "evidence": "placed (at) in src/shell/missbrf.c 2026-11-09"
+  },
+  "HercBayModuleInit": {
+   "va": "00415a88",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercBayModuleInit$n()v",
+   "tu": "src/shell/hercbay.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercBayGetObject": {
+   "va": "00415b70",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HercBayGetObject$n(i)i",
+   "tu": "src/shell/hercbay.c",
+   "evidence": "placed (at) in src/shell/hercbay.c 2026-11-09"
+  },
+  "HercBay::Start": {
+   "va": "00415b96",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Start$:HercBay$n(pnv)v",
+   "tu": "src/shell/hercbay.c",
+   "evidence": "placed (at) in src/shell/hercbay.c 2026-11-09"
+  },
+  "HercBayConfigureControls": {
+   "va": "00415d6b",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HercBayConfigureControls$n()v",
+   "tu": "src/shell/hercbay.c",
+   "evidence": "placed (at) in src/shell/hercbay.c 2026-11-09"
+  },
+  "HercBayAltStart": {
+   "va": "00415f93",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HercBayAltStart$n(pn$HercBay$$pnv)v",
+   "tu": "src/shell/hercbay.c",
+   "evidence": "placed (at) in src/shell/hercbay.c 2026-11-09"
+  },
+  "HercBayClose": {
+   "va": "00416024",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercBayClose$n(pn$HercBay$$)v",
+   "tu": "src/shell/hercbay.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercBaySetStatus": {
+   "va": "004160b2",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercBaySetStatus$n(pn$HercBay$$)v",
+   "tu": "src/shell/hercbay.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercBaySetDisplay": {
+   "va": "0041617f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercBaySetDisplay$n()v",
+   "tu": "src/shell/hercbay.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercFrame::Draw": {
+   "va": "0041635e",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Draw$:HercFrame$n(i)v",
+   "tu": "src/shell/hercbay.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercBayActions::Reactivate": {
+   "va": "004163a2",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Reactivate$:HercBayActions$n(pn$HercBay$$)v",
+   "tu": "src/shell/hercbay.c",
+   "evidence": "placed (at) in src/shell/hercbay.c 2026-11-09"
+  },
+  "HercBayDone": {
+   "va": "00416415",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercBayDone$n()v",
+   "tu": "src/shell/hercbay.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PopLoadResource": {
+   "va": "00425978",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PopLoadResource$n(ipnxaii)i",
+   "evidence": "implied by src/pop/psystem.c 2026-11-09"
+  },
+  "BriefStateSet": {
+   "va": "00425ba1",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "BriefStateSet",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "HercRefresh": {
+   "va": "00425ba1",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "HercRefresh",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "BriefRenderUpdate": {
+   "va": "00425e1a",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "BriefRenderUpdate",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "PopRefreshNode": {
+   "va": "00425e1a",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PopRefreshNode$n(pn$PopNode$$)v",
+   "evidence": "implied by src/pop/psystem.c 2026-11-09"
+  },
+  "BriefStatus": {
+   "va": "00425f1c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "BriefStatus",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "PopNotifyChanged": {
+   "va": "00425f1c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PopNotifyChanged$n(pn$PopNode$$)v",
+   "evidence": "implied by src/pop/psystem.c 2026-11-09"
+  },
+  "BriefGetHandle": {
+   "va": "0042604d",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "BriefGetHandle",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "HercGetHandle": {
+   "va": "0042604d",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "HercGetHandle",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "BriefCloseScreen": {
+   "va": "00426642",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "BriefCloseScreen",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "HercCloseScreen": {
+   "va": "00426642",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "HercCloseScreen",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "BriefSwitch": {
+   "va": "00426b21",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "BriefSwitch",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
   "PlyMatch": {
    "va": "004275dc",
    "kind": "func",
@@ -63,6 +314,62 @@
    "tu": "src/_unknown/tu_004279fc.c",
    "evidence": "strict match 2026-11-09"
   },
+  "BriefModuleInitB": {
+   "va": "00427f89",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "BriefModuleInitB",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "HercModuleInitD": {
+   "va": "00427f89",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "HercModuleInitD",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "BriefModuleInitA": {
+   "va": "004284d5",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "BriefModuleInitA",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "HercModuleInitA": {
+   "va": "004284d5",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "HercModuleInitA",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "HercModuleInitWidget": {
+   "va": "00428c5f",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "HercModuleInitWidget",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "HercModuleInitC": {
+   "va": "00428e3b",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "HercModuleInitC",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "HercModuleInitB": {
+   "va": "00428efa",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "HercModuleInitB",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "HercSetDisplay": {
+   "va": "00428f33",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "HercSetDisplay",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
   "PlyFind": {
    "va": "00429863",
    "kind": "func",
@@ -78,6 +385,48 @@
    "mangled": "W?PlyFindCurrent$n()i",
    "tu": "src/_unknown/tu_004297d4.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "BriefDone": {
+   "va": "004298fa",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "BriefDone",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "HercDone": {
+   "va": "004298fa",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "HercDone",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "BriefModuleInitC": {
+   "va": "00429a44",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "BriefModuleInitC",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "BriefModuleInitD": {
+   "va": "00429ab2",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "BriefModuleInitD",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "BriefModulePlace": {
+   "va": "00429d28",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "BriefModulePlace",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "BriefCloseWait": {
+   "va": "0042a0e0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "BriefCloseWait",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
   },
   "Rate::$ct": {
    "va": "0042a598",
@@ -110,6 +459,20 @@
    "mangled": "W?Get$:Rate$n()us",
    "tu": "src/_unknown/tu_0042a598.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "BriefRender": {
+   "va": "0042a7cc",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "BriefRender",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "HercDraw16": {
+   "va": "0042a7cc",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "HercDraw16",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
   },
   "GridClear": {
    "va": "0042ad60",
@@ -258,6 +621,13 @@
    "mangled": "W?SendEvent$n(pnvipnvii)v",
    "evidence": "implied by src/logic/lactor.c 2026-11-09"
   },
+  "PopItemReady": {
+   "va": "004383e1",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PopItemReady$n(pnvi)i",
+   "evidence": "implied by src/pop/psystem.c 2026-11-09"
+  },
   "StateInvoke": {
    "va": "00438602",
    "kind": "func",
@@ -271,6 +641,69 @@
    "status": "hypothesis",
    "mangled": "W?StateAction$n(pnv)i",
    "evidence": "implied by src/logic/lactor.c 2026-11-09"
+  },
+  "PopNodeReset": {
+   "va": "00443f58",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PopNodeReset$n(pn$PopNode$$)v",
+   "tu": "src/pop/psystem.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PopModuleInit": {
+   "va": "00443f64",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PopModuleInit$n()v",
+   "tu": "src/pop/psystem.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PopLoadItem": {
+   "va": "00443fa7",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PopLoadItem$n(i)i",
+   "tu": "src/pop/psystem.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PopSystemOpen": {
+   "va": "00443fbe",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PopSystemOpen$n(pn$PopNode$$pnv)v",
+   "tu": "src/pop/psystem.c",
+   "evidence": "placed (at) in src/pop/psystem.c 2026-11-09"
+  },
+  "PopNodeClear": {
+   "va": "004440b0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PopNodeClear$n(pn$PopNode$$)v",
+   "tu": "src/pop/psystem.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PopNodeUpdate": {
+   "va": "00444184",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PopNodeUpdate$n(pn$PopNode$$)v",
+   "tu": "src/pop/psystem.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PopNodeChanged": {
+   "va": "004441e3",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PopNodeChanged$n(pn$PopNode$$)v",
+   "tu": "src/pop/psystem.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PopUpdateItem": {
+   "va": "004441f8",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PopUpdateItem$n(pn$PopNode$$i)v",
+   "evidence": "implied by src/pop/psystem.c 2026-11-09"
   },
   "ReleaseState": {
    "va": "00455ac0",
@@ -428,6 +861,27 @@
    "tu": "src/logic/bestloc.c",
    "evidence": "strict match 2026-11-09"
   },
+  "BriefModuleConstruct": {
+   "va": "0047ab8c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "BriefModuleConstruct",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "HercModuleConstruct": {
+   "va": "0047ab8c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "HercModuleConstruct",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "PopObjectConstruct": {
+   "va": "0047ab8c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PopObjectConstruct$n(pnv)v",
+   "evidence": "implied by src/pop/psystem.c 2026-11-09"
+  },
   "TimeNow": {
    "va": "0047abc0",
    "kind": "func",
@@ -483,6 +937,13 @@
    "mangled": "W?TimerRemaining$n(pn$Timer$$)ul",
    "tu": "src/_unknown/tu_0047abc0.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "BriefBlit": {
+   "va": "0047bea0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "BriefBlit",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
   },
   "StrPool::$ct": {
    "va": "0047c280",
@@ -701,6 +1162,13 @@
    "mangled": "MemoryRelease",
    "evidence": "implied by src/terr/tfog.c 2026-11-09"
   },
+  "PopConstructorArray": {
+   "va": "0047e068",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PopConstructorArray$n(pnvipnv)v",
+   "evidence": "implied by src/pop/psystem.c 2026-11-09"
+  },
   "FileInit": {
    "va": "0047e450",
    "kind": "func",
@@ -829,6 +1297,97 @@
    "mangled": "W?MemoryAllocationRetry$n(ul)pnv",
    "evidence": "implied by src/terr/tfast.c 2026-11-09"
   },
+  "g48a9df": {
+   "va": "0048a9fb",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g48a9df$n[]a",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "g48aa2c": {
+   "va": "0048aa84",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g48aa2c$n[]a",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "g48dc00": {
+   "va": "0048dc00",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g48dc00$ni",
+   "evidence": "implied by src/pop/psystem.c 2026-11-09"
+  },
+  "g48ea1c": {
+   "va": "0048ea1c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g48ea1c$ni",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "g48ea24": {
+   "va": "0048ea24",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g48ea24$ni",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "g48ea28": {
+   "va": "0048ea28",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g48ea28$n[]i",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "g48ea2c": {
+   "va": "0048ea2c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g48ea2c$n[]i",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "g48ea50": {
+   "va": "0048ea50",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g48ea50$ni",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "g48eaf4": {
+   "va": "0048eaf4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g48eaf4$ni",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "g48eafc": {
+   "va": "0048eafc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g48eafc$ni",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "g4a0010": {
+   "va": "004a0010",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4a0010$ni",
+   "evidence": "implied by src/pop/psystem.c 2026-11-09"
+  },
+  "g4a0018": {
+   "va": "004a0018",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4a0018$ni",
+   "evidence": "implied by src/pop/psystem.c 2026-11-09"
+  },
+  "gPopItemName": {
+   "va": "004a002c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPopItemName$n[]a",
+   "evidence": "implied by src/pop/psystem.c 2026-11-09"
+  },
   "actorSourcePath": {
    "va": "004a3a9c",
    "kind": "data",
@@ -842,6 +1401,139 @@
    "status": "hypothesis",
    "mangled": "W?missLimitByType$n[]i",
    "evidence": "implied by src/logic/miss.c 2026-11-09"
+  },
+  "g4b3290": {
+   "va": "004b3290",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b3290$ni",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "g4b32b8": {
+   "va": "004b32b8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b32b8$ni",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "g4b32e0": {
+   "va": "004b32e0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b32e0$ni",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "gBriefStatus": {
+   "va": "004b3300",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gBriefStatus$ni",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "g4b3308": {
+   "va": "004b3308",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b3308$ni",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "gBriefSurface": {
+   "va": "004b3308",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gBriefSurface$ni",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "g4b3310": {
+   "va": "004b3310",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b3310$ni",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "g4b3338": {
+   "va": "004b3338",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b3338$ni",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "g4b3364": {
+   "va": "004b3364",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b3364$ni",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "g4b3390": {
+   "va": "004b3390",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b3390$ni",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "g4b369c": {
+   "va": "004b369c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b369c$ni",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "g4b36c8": {
+   "va": "004b36c8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b36c8$ni",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "g4b36f4": {
+   "va": "004b36f4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b36f4$ni",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "g4b3720": {
+   "va": "004b3720",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b3720$ni",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "g4b3748": {
+   "va": "004b3748",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b3748$ni",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "g4b3778": {
+   "va": "004b3778",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b3778$ni",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "g4b379c": {
+   "va": "004b379c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b379c$ni",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "g4b37bc": {
+   "va": "004b37bc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b37bc$ni",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "g4b37c4": {
+   "va": "004b37c4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b37c4$ni",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
   },
   "gIn7c": {
    "va": "004bb77c",
@@ -870,6 +1562,13 @@
    "status": "hypothesis",
    "mangled": "W?gInB$nul",
    "evidence": "implied by src/_unknown/tu_004279fc.c 2026-11-09"
+  },
+  "g4bb78c": {
+   "va": "004bb78c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4bb78c$ni",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
   },
   "gInA": {
    "va": "004bb794",
@@ -926,6 +1625,41 @@
    "status": "hypothesis",
    "mangled": "W?gPlyKey$n$PlyKey$$",
    "evidence": "implied by src/_unknown/tu_004297d4.c 2026-11-09"
+  },
+  "g4d030f": {
+   "va": "004d030f",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4d030f$ni",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "g4d0413": {
+   "va": "004d0413",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4d0413$ni",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "g4d1cfc": {
+   "va": "004d1cfc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4d1cfc$n[]a",
+   "evidence": "implied by src/pop/psystem.c 2026-11-09"
+  },
+  "g4d1dec": {
+   "va": "004d1dec",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4d1dec$ni",
+   "evidence": "implied by src/pop/psystem.c 2026-11-09"
+  },
+  "g4d2498": {
+   "va": "004d2498",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4d2498$npnv",
+   "evidence": "implied by src/pop/psystem.c 2026-11-09"
   },
   "fallbackName": {
    "va": "004d3594",
@@ -997,6 +1731,13 @@
    "mangled": "W?bestLocIndex$ni",
    "evidence": "implied by src/logic/bestloc.c 2026-11-09"
   },
+  "g511948": {
+   "va": "00511948",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g511948$ni",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
   "missionImageName": {
    "va": "00511e2c",
    "kind": "data",
@@ -1017,6 +1758,13 @@
    "status": "hypothesis",
    "mangled": "W?g_mainWindow$npnv",
    "evidence": "implied by src/debug/assert.c 2026-11-09"
+  },
+  "g513888": {
+   "va": "00513888",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g513888$ni",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
   },
   "g_assertMessageActive": {
    "va": "00513988",

@@ -541,6 +541,128 @@
    },
    "data": {},
    "accepted": "2026-11-09"
+  },
+  "src/shell/missbrf.c": {
+   "as": "shell\\missbrf.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "MissBriefModuleInit": {
+     "va": "00415074",
+     "size": 225,
+     "mangled": "W?MissBriefModuleInit$n()v"
+    },
+    "MissBriefClose": {
+     "va": "004152e0",
+     "size": 50,
+     "mangled": "W?MissBriefClose$n(pn$MissBrief$$)v"
+    },
+    "MissBriefExit": {
+     "va": "00415312",
+     "size": 59,
+     "mangled": "W?MissBriefExit$n(pn$MissBrief$$)v"
+    },
+    "MissBriefUpdate": {
+     "va": "0041534d",
+     "size": 136,
+     "mangled": "W?MissBriefUpdate$n(pn$MissBrief$$)v"
+    },
+    "MissBriefOrphan": {
+     "va": "004153d5",
+     "size": 14,
+     "mangled": "W?MissBriefOrphan$n()v"
+    },
+    "MissBriefDrawMap": {
+     "va": "004153e3",
+     "size": 178,
+     "mangled": "W?MissBriefDrawMap$n(pn$MissBrief$$)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/shell/hercbay.c": {
+   "as": "shell\\hercbay.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "HercBayModuleInit": {
+     "va": "00415a88",
+     "size": 232,
+     "mangled": "W?HercBayModuleInit$n()v"
+    },
+    "HercBayClose": {
+     "va": "00416024",
+     "size": 40,
+     "mangled": "W?HercBayClose$n(pn$HercBay$$)v"
+    },
+    "HercBaySetStatus": {
+     "va": "004160b2",
+     "size": 57,
+     "mangled": "W?HercBaySetStatus$n(pn$HercBay$$)v"
+    },
+    "HercBaySetDisplay": {
+     "va": "0041617f",
+     "size": 22,
+     "mangled": "W?HercBaySetDisplay$n()v"
+    },
+    "HercFrame::Draw": {
+     "va": "0041635e",
+     "size": 68,
+     "mangled": "W?Draw$:HercFrame$n(i)v"
+    },
+    "HercBayDone": {
+     "va": "00416415",
+     "size": 14,
+     "mangled": "W?HercBayDone$n()v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/pop/psystem.c": {
+   "as": "pop\\psystem.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "PopNodeReset": {
+     "va": "00443f58",
+     "size": 12,
+     "mangled": "W?PopNodeReset$n(pn$PopNode$$)v"
+    },
+    "PopModuleInit": {
+     "va": "00443f64",
+     "size": 67,
+     "mangled": "W?PopModuleInit$n()v"
+    },
+    "PopLoadItem": {
+     "va": "00443fa7",
+     "size": 23,
+     "mangled": "W?PopLoadItem$n(i)i"
+    },
+    "PopNodeClear": {
+     "va": "004440b0",
+     "size": 26,
+     "mangled": "W?PopNodeClear$n(pn$PopNode$$)v"
+    },
+    "PopNodeUpdate": {
+     "va": "00444184",
+     "size": 95,
+     "mangled": "W?PopNodeUpdate$n(pn$PopNode$$)v"
+    },
+    "PopNodeChanged": {
+     "va": "004441e3",
+     "size": 21,
+     "mangled": "W?PopNodeChanged$n(pn$PopNode$$)v"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048b2cc",
+     "size": 11
+    }
+   },
+   "accepted": "2026-11-09"
   }
  }
 }
