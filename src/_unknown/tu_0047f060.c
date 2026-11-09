@@ -13,12 +13,7 @@ extern "C" void Crc16(unsigned short *crc, const unsigned char *data, unsigned i
     if (data) {
         while (count--) {
             unsigned char value = *data++;
-            for (unsigned char mask = 0x80; mask; mask >>= 1) {
-                unsigned short high = *crc & 0x8000;
-                *crc <<= 1;
-                *crc |= (unsigned char)((value & mask) != 0);
-                if (high) *crc ^= 0x1021;
-            }
+            Crc16Byte(crc, value);
         }
     }
 }

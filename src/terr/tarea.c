@@ -5,7 +5,7 @@ struct AreaWalk {
     unsigned int phase;
     int edge;
 };
-struct AreaPoint { int x; int y; };
+struct AreaPoint { int x; int y; AreaPoint &operator+=(const AreaPoint &p) { x+=p.x; y+=p.y; return *this; } AreaPoint &operator-=(const AreaPoint &p) { x-=p.x; y-=p.y; return *this; } };
 
 static const char AreaSourcePath[] = "terr\\tarea.c";
 extern "C" void AssertFail(const char *, int, const char *);
@@ -146,15 +146,17 @@ int AreaFind(int *grid, int position)
     return 0;
 }
 
+inline int AreaRingCount(int radius) { if (radius < 0) return 0; return (((radius + 1) * radius) >> 1) * 6 + 1; }
+
 int AreaIndexToPoint(int *grid, int index)
 {
     int savedIndex = index;
     AreaPoint point = *(AreaPoint *)(grid + 8);
     if (savedIndex != 0) {
-        int ring = (savedIndex + 4) / 6;
+        index+=4; index/=6;
         int sum = 0;
         int r = 0;
-        if (ring > 0) { do { ++r; sum += r; } while (sum < ring); }
+        if (index > 0) { do { ++r; sum += r; } while (sum < index); }
         AreaWalk walk;
         walk.step = r;
         walk.x = 0;
@@ -164,15 +166,13 @@ int AreaIndexToPoint(int *grid, int index)
         int previous = r - 1;
         int current = 0;
         if (previous >= 0) current = (((previous + 1) * previous) >> 1) * 6 + 1;
-        if (walk.step <= (unsigned int)grid[5]) {
+        ++current; if (walk.step <= (unsigned int)grid[5]) {
             do {
-                ++current;
                 if (current == savedIndex) {
-                    point.x += walk.x;
-                    point.y += walk.y;
+                    point += *(AreaPoint *)&walk;
                     break;
                 }
-                DisplayStep(&walk);
+                DisplayStep(&walk); ++current;
             } while (walk.step <= (unsigned int)grid[5]);
         }
     }
@@ -220,10 +220,7 @@ void AreaEnumerate(int *record, void *callback, unsigned int ring, unsigned int 
     walk.y = ring * 2;
     walk.edge = walk.y;
     walk.phase = ((unsigned int)ring > 0);
-    int previous = (int)ring - 1;
-    int index;
-    if (previous >= 0) index = (((previous + 1) * previous) >> 1) * 6 + 1;
-    else index = 0;
+    int index = AreaRingCount((int)ring - 1);
     ++index;
     while (walk.step <= maxRing) {
         record[1] = record[8] + walk.x;

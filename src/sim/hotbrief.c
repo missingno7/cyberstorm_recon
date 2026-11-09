@@ -21,7 +21,7 @@ class ResMgr { public: void *Load(const char *, int, void * = 0, int = 0); }; vo
 void MenuDrawImage(void *, void *, int, int); void f_0047ddf0(void); void InputPoll(void *);
 void f_0047c240(void *); void f_0047cfc0(void *, int, int, int, char *); void ShellServiceFrame(void *);
 void ShellLimitFrameRate(void *); int f_0047e920(const char *); char *BriefFormat(void *, ...);
-void f_00477295(char *); void f_00477295(void *); void *AllocateMissionImage(void *, int, int);
+void f_00477295(char *); void f_00477295(void *); void *AllocateMissionImage(void *, int, int = 1);
 void HotbriefSetup(void *); void f_00450b00(void *); void f_00450aa0(void *, int);
 void TimerSet(unsigned long *, unsigned long); int TimerExpired(unsigned long *); void MenuDrawImage(void *, void *, int, int);
 void MenuSetClip(void *, int, int, int, int); void BriefRenderUpdate(void *); int f_00438678(int);
@@ -262,7 +262,7 @@ void HotbriefMainLoop(void *mission, int selection)
     char *missionTitle = f_0047c350(
         gMissionNamePool, *(int *)((char *)mission + 0x2d6) + 0x28, 1);
     strcpy(title, missionTitle);
-    char *message = BriefFormat(AllocateMissionImage(DAT_00511e7c, 0x1a4, 1), title);
+    char *message = BriefFormat(AllocateMissionImage(DAT_00511e7c, 0x1a4), title);
     f_00477295(message);
     HotbriefOpen(&gHotbriefResources, (char *)mission + 8, selection);
     f_0047ddf0();

@@ -1,7 +1,8 @@
 // Working labels for terrain drawing. The object starts with its switch table at 42d3d0.
 typedef unsigned int uint;
 typedef unsigned char byte;
-struct DrawPoint { int x, y; DrawPoint() {} DrawPoint(int a, int b) { x=a; y=b; } DrawPoint(const DrawPoint &p) { x=p.x; y=p.y; } DrawPoint &operator+=(const DrawPoint &p) { x+=p.x; y+=p.y; return *this; } };
+struct Point { int x, y; Point() {} Point(int a, int b) { x=a; y=b; } Point(const Point &p) { x=p.x; y=p.y; } Point &operator+=(const Point &p) { x+=p.x; y+=p.y; return *this; } };
+typedef Point DrawPoint;
 struct MenuImage { int offset, width, height; };
 struct ExploFrame { int offset, width, height; };
 #pragma pack(push,1)
@@ -14,14 +15,14 @@ extern TerrainDefinition TerrainDefinitions[];
 extern TerrainAnimation TerrainFrames;
 extern byte TerrainOutlineColors[];
 extern byte *MapDetails;
-extern void *TerrainVisibility;
+struct TerrainVisibilityState { char reserved[12]; char *values; char *explored; int Hidden(int index) { return !values[index]; } int Unexplored(int index) { return !explored[index]; } }; extern TerrainVisibilityState *TerrainVisibility;
 extern void *terrainImage, *hexCursor;
 extern byte terrainTypeRemap[], hexMask[], worldColorInfo[], worldColorExtras[], worldColors[];
 extern byte *TerrainScratch;
 extern unsigned long gMenuColors[];
 extern unsigned long TerrainPalette[];
 extern char g513888[];
-extern DrawPoint SearchNeighbours[6];
+extern DrawPoint pathDirections[6];
 extern "C" int ResolveName(const char *, const char *);
 extern "C" void BestLocSetData(void *, void *, void *);
 extern void MenuSetColors(void *, unsigned long, long);
@@ -46,20 +47,21 @@ void TerrainDrawOverlay(int *view, uint location, int sprite, int type, int x, i
     int selected = -1;
     if (type <= 64) {
         TileSprite *def = TileSprites + type;
+        unsigned short animated=def->animated; unsigned int first=def->first;
         if (def->kind < 5) {
             switch (def->kind) {
             case 1: {
-                int relative = sprite - def->first;
-                selected = ((6 - view[20] + relative / 3) % 6) * 3 + def->first + relative % 3;
-                if (frame && def->animated) selected += def->stride * (frame - 1) + def->animated - def->first;
+                int relative = sprite - first;
+                selected = ((6 - view[20] + relative / 3) % 6) * 3 + first + relative % 3;
+                if (frame && animated) selected += def->stride * (frame - 1) + animated - first;
                 break;
             }
             case 3: case 4:
                 selected = sprite;
-                if (frame && def->animated) selected += def->animated - def->first + def->stride * (frame - 1);
+                if (frame && animated) selected += animated - first + def->stride * (frame - 1);
                 break;
             default:
-                if (frame && def->animated) sprite += def->animated - def->first + def->stride * (frame - 1);
+                if (frame && animated) sprite += animated - first + def->stride * (frame - 1);
                 selected = sprite;
                 if (location & 2) {
                     int half = view[26] / 2;
@@ -125,8 +127,7 @@ void TerrainDrawTile(int *view, uint location, DrawPoint *point, uint orientatio
         *(void **)(g513888 + 0x60) = 0;
         if (location && TerrainVisibility && !((char **)((char *)TerrainVisibility + 16))[0][location])
             *(void **)(g513888 + 0x60) = worldColors;
-        MenuImage local;
-        local.offset = (int)pixels - (int)&local; local.width = image->width; local.height = image->height;
+        MenuImage local; int width=image->width,height=image->height; local.offset=(int)pixels-(int)&local; local.width=width; local.height=height;
         int fast = view[29] == 64 && !*(void **)(g513888 + 0x60) &&
             *(int *)(g513888 + 0x78) <= y && *(int *)(g513888 + 0x74) <= x &&
             y + 64 <= *(int *)(g513888 + 0x80) && x + view[29] <= *(int *)(g513888 + 0x7c);
@@ -159,12 +160,12 @@ void TerrainDrawTile(int *view, uint location, DrawPoint *point, uint orientatio
 int TerrainVisibleDrop(int *view, DrawPoint *point, int height, int direction)
 {
     int edge = (direction + view[20]) % 6;
-    DrawPoint neighbour = SearchNeighbours[edge];
+    DrawPoint neighbour = pathDirections[edge];
     neighbour += *point;
     int location = ResolveName((const char *)view[0], (const char *)&neighbour);
     if (location) {
         uint other = 0;
-        if (!TerrainVisibility || ((char **)((char *)TerrainVisibility + 12))[0][location])
+        if (!TerrainVisibility || !TerrainVisibility->Hidden(location))
             other = ((byte *)((int *)view[0])[17])[location * 12 + 1];
         if ((int)other < height) height -= other; else height = 0;
     }
@@ -173,8 +174,8 @@ int TerrainVisibleDrop(int *view, DrawPoint *point, int height, int direction)
 
 void TerrainDrawCliff(int *view, int location, DrawPoint *point, int level)
 {
-    int obscured = location && TerrainVisibility && !((char **)((char *)TerrainVisibility + 16))[0][location];
-    int textured = !obscured && (view[33] & 4);
+    int obscured=0; if(location && TerrainVisibility && TerrainVisibility->Unexplored(location)) obscured=1;
+    int textured; if(!obscured && (view[33]&4))textured=1;else textured=0;
     int x = point->x - view[27], y = point->y - view[27];
     DrawPoint cell; BestLocSetData((void *)view[0], &cell, (void *)location);
     byte *tile = (byte *)((int *)view[0])[17] + location * 12;
@@ -208,9 +209,12 @@ void TerrainDrawCliff(int *view, int location, DrawPoint *point, int level)
     if (height > 0) {
         if (!textured) {
             uint color = obscured ? gMenuColors[8] : worldColorExtras[tile[0] * 3 + 1];
-            MenuSetColors(g513888, view[33] & 0x200 ? 0 : color, color);
+            uint firstColor=view[33]&0x200 ? 0 : color; MenuSetColors(g513888,firstColor,color);
             MenuFill(g513888, x + view[26], y + view[29], view[27] + 1, height + 1);
         } else f_00435700(TerrainFrame(sprite + 1), shade, x + view[26], y + view[29], height + y + view[29]);
     }
 }
+
+
+
 

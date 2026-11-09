@@ -1,5 +1,6 @@
 // Working labels: shortest-path workspace. No source path survives in this range.
-struct SearchPoint { int x, y; SearchPoint &operator+=(const SearchPoint &p) { x += p.x; y += p.y; return *this; } };
+struct Point { int x, y; Point &operator+=(const Point &p) { x += p.x; y += p.y; return *this; } };
+typedef Point SearchPoint;
 struct SearchWorkspace {
     void *grid;
     int reserved[4];
@@ -21,7 +22,7 @@ extern "C" int ResolveName(const char *, const char *);
 extern "C" void MemoryRelease(void *);
 extern void *MemoryAllocationRetry(unsigned long);
 extern int f_00432c00(void *, int, int);
-extern SearchPoint SearchNeighbours[6];
+extern SearchPoint pathDirections[6];
 
 void SearchInitialize(SearchWorkspace *self, const char *name, int radius)
 {
@@ -55,17 +56,12 @@ void SearchRelease(SearchWorkspace *self)
     self->previous = 0;
 }
 
-void BestLocSetup(void *object, int origin, int radius)
+inline int SearchClamp(int value,int low,int high) { if(value<=low)return low;if(value>=high)return high;return value; }
+void BestLocSetup(SearchWorkspace *self,int origin,int radius)
 {
-    SearchWorkspace *self = (SearchWorkspace *)object;
-    if (!radius) radius = self->maxRadius;
-    else {
-        int maximum = self->maxRadius;
-        if (radius <= 1) radius = 1;
-        else if (radius >= maximum) radius = maximum;
-    }
+    int chosen=radius?SearchClamp(radius,1,self->maxRadius):self->maxRadius;
     BestLocSetCandidate(self, (void *)origin);
-    DisplaySetRadius((int *)self, radius);
+    DisplaySetRadius((int *)self, chosen);
     self->start = AreaFind((int *)self, origin);
     self->cost[0] = -10001;
     self->previous[0] = 0;
@@ -81,8 +77,8 @@ void BestLocSetup(void *object, int origin, int radius)
         int location = ResolveName((const char *)self->grid, (const char *)&point);
         self->cost[current] = -self->cost[current];
         if (self->cost[current] == 10000) self->cost[current] = 0;
-        SearchPoint *end = SearchNeighbours + 6;
-        for (SearchPoint *delta = SearchNeighbours; delta != end; ++delta) {
+        SearchPoint *end = pathDirections + 6;
+        for (SearchPoint *delta = pathDirections; delta != end; ++delta) {
             SearchPoint neighbour = point;
             neighbour += *delta;
             int nextLocation = ResolveName((const char *)self->grid, (const char *)&neighbour);
@@ -91,11 +87,8 @@ void BestLocSetup(void *object, int origin, int radius)
                 int distance = f_00432c00(self->grid, nextLocation, location);
                 if (distance > 0) {
                     distance += self->cost[current];
-                    int newCost = -distance;
-                    if (newCost > self->cost[next]) {
-                        self->cost[next] = newCost;
-                        self->previous[next] = current;
-                    }
+                    int newCost=-distance;
+                    if (-self->cost[next]!=distance && self->cost[next]<=newCost) { self->cost[next]=newCost;self->previous[next]=current; }
                 }
                 if (self->cost[best] < self->cost[next]) best = next;
             }
@@ -150,4 +143,6 @@ int SearchGetCost(SearchWorkspace *self, int location)
     }
     return 0;
 }
+
+
 

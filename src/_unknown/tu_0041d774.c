@@ -61,7 +61,7 @@ void ValidateMultiplayer(MultiplayerBase *);
 int HasMission(void *);
 int SoundTrigger(unsigned int,int);
 extern "C" void HercSetMissionStart(void *, int);
-int GetProfileValue(void *);
+extern "C" int f_0043d846(void *);
 struct PlayerInfo { char bytes[48]; };
 void GetPlayerInfo(void *, PlayerInfo *);
 extern char g511948;
@@ -160,7 +160,7 @@ void ShellMultiplayerOpen(MultiplayerBase *s, InputReq *input, int host) {
     MultiplayerConfigure(s);
     RefreshMultiplayerControls(s);
     if (s->mode == 0) MultiplayerWait(s);
-    sprintf(multiplayerProfileText, "%d", GetProfileValue(profileManager));
+    sprintf(multiplayerProfileText, "%d", f_0043d846(profileManager));
     g4b813c.SetText(multiplayerProfileText);
 }
 
@@ -414,6 +414,7 @@ void MultiplayerDrawText(MultiplayerBase *s, const char *text) {
 }
 
 /* The unused third parameter is evidenced by caller pushes 1/0 and 12-byte cleanup. */
+struct MenuImageSet {int count; MenuImage images[1];};
 void MultiplayerDrawHover(MultiplayerBase *s, int hover, int force = 1) {
     if (!s->busy && s->pool && hover != multiplayerHover) {
         U32 mask = ~0UL;
@@ -423,15 +424,16 @@ void MultiplayerDrawHover(MultiplayerBase *s, int hover, int force = 1) {
         }
         GuiResetClip(&gMenuClip);
         viewportClipLeft = gBriefDrawSource;
-        int selected = hover; for (int i = 0; i < 4; ++i) {
+        int i=0; int selected=hover; for (;i<4;++i) {
             if (mask & (1UL << i)) {
-                U32 imageIndex = (i == hover) + i * 2; MenuDrawImage(&g513888, (MenuImage *)((char *)s->pool + 4 + imageIndex * 12), 0, 0);
-                if (i == 3) { U32 imageIndex = (i == selected) + 8; MenuDrawImage(&g513888, (MenuImage *)((char *)s->pool + 4 + imageIndex * 12), 0, 0); }
+                U32 imageIndex = (i == hover) + i * 2; MenuDrawImage(&g513888, &((MenuImageSet *)s->pool)->images[imageIndex], 0, 0);
+                if (i == 3) { U32 imageIndex = (i == selected) + 8; MenuDrawImage(&g513888, &((MenuImageSet *)s->pool)->images[imageIndex], 0, 0); }
             }
         }
         multiplayerHover = hover;
     }
 }
+
 int MultiplayerDone(MultiplayerBase *);
 void MultiplayerUpdate(MultiplayerBase *s) {
     if (s->IsActive()) {
@@ -458,14 +460,14 @@ void MultiplayerUpdate(MultiplayerBase *s) {
 
 
 void ShellMultiplayerRender(MultiplayerBase *s) {
-    if (s->IsActive()) {
+    int i; if (s->IsActive()) {
         if (s->unknown157) {
             U32 result = s->mainPage.Update((Surface *)&g511948);
             if (result & 4) { s->audioMode = 1; BriefCloseScreen(&s->mainPage); HercSetMissionStart(&g4b74f4, 2); }
             g4b7f6c.flags &= ~0x1000000UL;
         }
         
-if (!s->busy) for (int i=0;i<17;++i) (s->pages+i)->Update((Surface *)&g511948);
+if (!s->busy) for (i=0;i<17;++i) (s->pages+i)->Update((Surface *)&g511948);
 
         Timer *blink = &s->timerA; if (TimerExpired(blink) && s->canStart) {
             if (s->unknownc6 == 0) { s->unknownc6 = 1; g4b8038.SetColor(2); TimerSet(blink,800); }
@@ -477,13 +479,14 @@ if (!s->busy) for (int i=0;i<17;++i) (s->pages+i)->Update((Surface *)&g511948);
             PlayerInfo info;
             GetPlayerInfo(profileManager, &info);
             sprintf(multiplayerPlayerText, "%2d", (unsigned char)info.bytes[0]);
-            sprintf(multiplayerProfileText, "%d", GetProfileValue(profileManager));
+            sprintf(multiplayerProfileText, "%d", f_0043d846(profileManager));
             g4b813c.flags &= ~0x1000000UL; g4b8108.flags &= ~0x1000000UL;
             TimerSet(refresh, 1000);
         }
         s->Draw();
     }
 }
+
 int MultiplayerDone(MultiplayerBase *s) {
     if (s->busy) return -1;
     return BriefDone("mpbase");
@@ -520,6 +523,8 @@ void MultiplayerSaveOptions(MultiplayerBase *s) {
     s->unknown157 = 1;
     LogicCallMode(12, 0);
 }
+
+
 
 
 

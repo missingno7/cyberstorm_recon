@@ -190,7 +190,7 @@ extern "C" ListRow *f_00441456(GameSession *s,int *count) {
     return g4c9338;
 }
 extern "C" char *f_004418a9(GameSession *s,int index) {
-    if(index<0 || index>=s->stat70cf)return 0;
+    int i; if(index<0 || index>=s->stat70cf)return 0;
     UnitTemplate t;
     int id=g4c9338[index].index;
     if(id>=0)t=unitTemplates[id];
@@ -205,7 +205,7 @@ extern "C" char *f_004418a9(GameSession *s,int index) {
     DebugTextAppend(BriefFormat("%s%s%s%s\n\n",reportToken_004941c8,reportToken_0049419c,reportToken_00494184,g4c9338[index].name));
     DebugTextAppend(BriefFormat("%s",reportToken_004941c8));
     TypeItem *type=&unitTypes[t.slots[0]];
-    for(int i=0; i<23; ++i) {
+    for(i=0; i<23; ++i) {
         if(type->rules[i].head[0]) {
             DebugTextAppend(BriefFormat("%s%s%s%s%s\n",reportToken_0049417c,gMenuPrefixStrings.GetString(i+1025),reportToken_004941a8,reportToken_00494184,gHercStrings.GetString(HercItemTables[i].stringBase+t.slots[i])));
         }
@@ -222,17 +222,16 @@ extern "C" char *f_004418a9(GameSession *s,int index) {
     strcpy(g4c933c,gDebugText);
     return g4c933c;
 }
+
 extern "C" int f_00441b19(GameSession *s,int index) {
     if(index<0 || index>=s->stat70cf)return 0;
     if(s->hercCount==s->capacity)return 0;
     ActorUnit *unit=&s->hercs[s->hercCount];
     int id=g4c9338[index].index;
     UnitTemplate t;
-    UnitTemplate *source;
     Snapshot *p;
     if(id>=0) {
-        source=&unitTemplates[id];
-        p=0;
+        LoadActorData(unit,&unitTemplates[id],0);
     }
     else {
         int n=-id-1;
@@ -240,9 +239,8 @@ extern "C" int f_00441b19(GameSession *s,int index) {
         while(p && --n!=-1)p=p->next;
         if(!p)return 0;
         memcpy(t.slots,p->slots,23);
-        source=&t;
+        LoadActorData(unit,&t,p);
     }
-    LoadActorData(unit,source,p);
     char name[28];
     strcpy(name,f_00439d2c(unit));
     f_0043c4bf(s,name,unit);
@@ -251,6 +249,7 @@ extern "C" int f_00441b19(GameSession *s,int index) {
     s->hercSelection=index+1;
     return s->hercCount;
 }
+
 extern "C" int f_00441c2c(GameSession *s,unsigned index) {
     ActorUnit *unit=&s->hercs[s->hercCount];
     unsigned n;
@@ -417,3 +416,5 @@ extern "C" void f_004424d4(ActorRecord *actor) {
         f_00477295(BriefFormat(reportWarning,actor->id,(char *)GetModePlayer(modeCheckName,actor->id)+0x44,actor->unit,unit?"(QUESTIONABLE DATA)":"(looks fine)",actor->pilot,pilot?"(QUESTIONABLE DATA)":"(looks fine)"));
     }
 }
+
+

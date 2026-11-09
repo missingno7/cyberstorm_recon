@@ -7,7 +7,7 @@ struct GuiControl {
 };
 extern void *PTR_f_00446804_0048dd04;
 struct StrPool {
-    char *GetString(long id, int loadData);
+    char *GetString(long id, int loadData=0);
     void Lock();
     void Unlock();
 };
@@ -363,7 +363,7 @@ int f_00445e23(HercModule *self) {
   if(!self->showDamage){
    if(self->points){int need=HercRepairNeeded((ActorUnit *)self->unit,self->selected);if(need){
     if(need<100000){if(oldPoints!=self->points)HelpSetDirty(1);self->help.id=self->selected+38;
-     char *destination=gShellMiniStrings.GetString(339,0);char *format=targetBriefResource.GetString(338,0);sprintf(destination,format,need,self->points);
+     sprintf(gShellMiniStrings.GetString(339),targetBriefResource.GetString(338),need,self->points);
     }else self->help.id=self->selected+62;
    }}
   }else self->help.id=36;

@@ -4819,6 +4819,11 @@
      "size": 240,
      "mangled": "W?HotbriefTimerUpdate$n(pnv)v"
     },
+    "HotbriefMainLoop": {
+     "va": "00462490",
+     "size": 352,
+     "mangled": "W?HotbriefMainLoop$n(pnvi)v"
+    },
     "HotbriefClearActive": {
      "va": "004625f0",
      "size": 16,
@@ -6863,6 +6868,11 @@
    "install": "wc106",
    "profile": "ot",
    "functions": {
+    "AreaEnumerate": {
+     "va": "0042ce60",
+     "size": 192,
+     "mangled": "W?AreaEnumerate$n(pnipnvuiui)v"
+    },
     "AreaEnumerateAll": {
      "va": "0042cf20",
      "size": 27,
@@ -6882,6 +6892,11 @@
    "install": "wc106",
    "profile": "ot",
    "functions": {
+    "W?.fn_init$n()v": {
+     "va": "0042b940",
+     "size": 32,
+     "mangled": "W?.fn_init$n()v"
+    },
     "DisplayInitialize": {
      "va": "0042b960",
      "size": 32,
@@ -6891,6 +6906,11 @@
      "va": "0042b980",
      "size": 16,
      "mangled": "W?DisplayIdentity$n(pnv)pnv"
+    },
+    "DisplaySetRect": {
+     "va": "0042b990",
+     "size": 80,
+     "mangled": "W?DisplaySetRect$n(pnvpnx$DisplayRect$$)v"
     },
     "DisplayScale": {
      "va": "0042bed0",
@@ -6902,10 +6922,50 @@
      "size": 32,
      "mangled": "W?DisplayPointScale$n(pnii)i"
     },
+    "DisplayGetBounds": {
+     "va": "0042bf30",
+     "size": 272,
+     "mangled": "W?DisplayGetBounds$n(pnipnuipnui)v"
+    },
+    "DisplayPointToScreen": {
+     "va": "0042c040",
+     "size": 240,
+     "mangled": "W?DisplayPointToScreen$n(pnipnipnii)v"
+    },
     "DisplayPointToScreenScaled": {
      "va": "0042c130",
      "size": 192,
      "mangled": "W?DisplayPointToScreenScaled$n(pnipnuipnui)i"
+    },
+    "DisplayRectOutside": {
+     "va": "0042c1f0",
+     "size": 96,
+     "mangled": "W?DisplayRectOutside$n(ipni)i"
+    },
+    "DisplaySubmitElement": {
+     "va": "0042c250",
+     "size": 416,
+     "mangled": "W?DisplaySubmitElement$n(pni)i"
+    },
+    "DisplaySort": {
+     "va": "0042c3f0",
+     "size": 160,
+     "mangled": "W?DisplaySort$n(pnpnvi)v"
+    },
+    "DisplayProcess": {
+     "va": "0042c490",
+     "size": 480,
+     "mangled": "W?DisplayProcess$n(pnipnvpnvpnv)v"
+    },
+    "DisplayConsiderElement": {
+     "va": "0042c800",
+     "size": 128,
+     "mangled": "W?DisplayConsiderElement$n(pni)i"
+    },
+    "DisplayPickAt": {
+     "va": "0042c880",
+     "size": 336,
+     "mangled": "W?DisplayPickAt$n(pnipni)i"
     },
     "DisplayIdentityA": {
      "va": "0042c9d0",
@@ -6938,7 +6998,24 @@
      "mangled": "W?DisplaySetCandidate$n(pnii)v"
     }
    },
-   "data": {},
+   "data": {
+    "_DATA": {
+     "va": "00490460",
+     "size": 36
+    },
+    "W?$Wsi09gaps$n[]i$:.0$:?DisplaySortItems$n(pnpnvi)vnx[]i": {
+     "va": "00490470",
+     "size": 20
+    },
+    "W?$Wts0ln$DisplayRenderItem$$$nx[]uc": {
+     "va": "0048daf4",
+     "size": 17
+    },
+    "W?$Wts0dn$GridPoint$$$nx[]uc": {
+     "va": "0048daa4",
+     "size": 17
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/terr/tsurface.c": {
@@ -6946,6 +7023,11 @@
    "install": "wc106",
    "profile": "ot-oe",
    "functions": {
+    "SurfaceAdjust": {
+     "va": "0042fc40",
+     "size": 80,
+     "mangled": "W?SurfaceAdjust$n(pnausuius)ui"
+    },
     "SurfaceMidpoint": {
      "va": "004319b0",
      "size": 32,
@@ -6986,6 +7068,11 @@
      "size": 48,
      "mangled": "W?SurfaceReleaseAllocation$n(pni)pni"
     },
+    "SurfaceApplyNoiseDetails": {
+     "va": "00431eb0",
+     "size": 144,
+     "mangled": "W?SurfaceApplyNoiseDetails$n(pni)v"
+    },
     "SurfaceClearAllocationAndRelease": {
      "va": "00432020",
      "size": 48,
@@ -6995,6 +7082,11 @@
      "va": "00432050",
      "size": 80,
      "mangled": "W?SurfaceGridValue$n(pn$SurfaceGridLayout$$pnui)uc"
+    },
+    "SurfaceApplyColorMap": {
+     "va": "00432100",
+     "size": 96,
+     "mangled": "W?SurfaceApplyColorMap$n(pni)v"
     }
    },
    "data": {
@@ -7274,10 +7366,20 @@
      "size": 108,
      "mangled": "W?MultiplayerDrawText$n(pn$MultiplayerBase$$pnxa)v"
     },
+    "MultiplayerDrawHover": {
+     "va": "0041f08c",
+     "size": 276,
+     "mangled": "W?MultiplayerDrawHover$n(pn$MultiplayerBase$$ii)v"
+    },
     "MultiplayerUpdate": {
      "va": "0041f1a0",
      "size": 358,
      "mangled": "W?MultiplayerUpdate$n(pn$MultiplayerBase$$)v"
+    },
+    "ShellMultiplayerRender": {
+     "va": "0041f306",
+     "size": 405,
+     "mangled": "W?ShellMultiplayerRender$n(pn$MultiplayerBase$$)v"
     },
     "MultiplayerDone": {
      "va": "0041f49b",
@@ -7288,6 +7390,11 @@
      "va": "0041f4bc",
      "size": 99,
      "mangled": "W?MultiplayerSetMoneyValues$n(pn$MultiplayerBase$$)v"
+    },
+    "MultiplayerUpdateValues": {
+     "va": "0041f51f",
+     "size": 176,
+     "mangled": "W?MultiplayerUpdateValues$n(pn$MultiplayerBase$$)v"
     },
     "MultiplayerSaveOptions": {
      "va": "0041f5cf",
@@ -7301,6 +7408,10 @@
     }
    },
    "data": {
+    "CONST": {
+     "va": "0048ab6c",
+     "size": 157
+    },
     "CONST2": {
      "va": "0048d480",
      "size": 292
@@ -7311,6 +7422,14 @@
     },
     "W?$Wts0kn$MenuPrefixButton$$$nx[]uc": {
      "va": "0048c9ec",
+     "size": 17
+    },
+    "W?$Wts0en$UpgradeBar$$$nx[]uc": {
+     "va": "0048d024",
+     "size": 17
+    },
+    "W?$Wts0gn$UpgradeArrow$$$nx[]uc": {
+     "va": "0048d010",
      "size": 17
     },
     "W?$Wts08n$Flic$$$nx[]uc": {
@@ -8286,6 +8405,11 @@
      "va": "004413e0",
      "size": 118,
      "mangled": "f_004413e0"
+    },
+    "f_00441b19": {
+     "va": "00441b19",
+     "size": 275,
+     "mangled": "f_00441b19"
     },
     "f_00441c2c": {
      "va": "00441c2c",
@@ -11275,6 +11399,11 @@
      "va": "0047f060",
      "size": 80,
      "mangled": "Crc16Byte"
+    },
+    "Crc16": {
+     "va": "0047f0b0",
+     "size": 100,
+     "mangled": "Crc16"
     }
    },
    "data": {},

@@ -1,6 +1,7 @@
 // Working labels for line traversal and terrain occlusion. Separate object at 42eca0.
 typedef unsigned int uint;
-struct RayPoint { int x, y; RayPoint() {} RayPoint(int a, int b) { x=a; y=b; } int &X() { return x; } int &Y() { return y; } };
+struct Point { int x, y; Point() {} Point(int a, int b) { x=a; y=b; } int &X() { return x; } int &Y() { return y; } };
+typedef Point RayPoint;
 inline int RaySign(int x) { if (x < 0) return -1; return x > 0; }
 struct ApplyPoint { int x, y; };
 extern "C" int abs(int);
@@ -14,8 +15,8 @@ extern void f_0047efb0(void *, int);
 extern void MenuDrawImage(void *, const struct MenuImage *, long, long);
 extern char g513888[];
 extern int heightStep;
-extern RayPoint SearchNeighbours[6];
-extern char *RayResources;
+extern RayPoint pathDirections[6];
+struct MenuImages; extern MenuImages *drawCursorImages;
 extern int RayCachedOrigin, RayCachedTarget, RayCachedResult, RayCachedSample;
 RayPoint RayHit;
 int RayLocations[100];
@@ -67,7 +68,7 @@ void RayWalk(RayPoint *from, RayPoint *to, void (*visit)(RayPoint *))
 void RayCollect(RayPoint *point)
 {
     int direction = 0;
-    if (RayCount < 100) { RayPoint *delta = SearchNeighbours; do {
+    RayPoint *delta=pathDirections; while (RayCount<100) {
         if (direction > 6) return;
         RayPoint candidate; candidate.x = point->x; candidate.y = point->y;
         if (candidate.x & 1) candidate.y |= 1; else candidate.y &= ~1;
@@ -79,7 +80,7 @@ void RayCollect(RayPoint *point)
             if (i == RayCount) { RayLocations[RayCount] = location; ++RayCount; }
         }
         ++delta; ++direction;
-    } while (RayCount < 100); }
+    }
 }
 
 int RayOcclusion(int *grid, int origin, int target, int sample, RayPoint *hit)
@@ -95,7 +96,7 @@ RayPoint impact, end, start, point, startCell, endCell;
     }
     RayCachedTarget = target; RayCachedSample = sample; RayCachedResult = 100; RayCachedOrigin = origin;
     RayHit = end; RayCount = 0; RayGrid = grid;
-    memset(RaySamples, 0xff, 100);
+    memset(RaySamples, -1, 100);
     unsigned char *startTile = (unsigned char *)grid[17] + origin * 12;
     unsigned char *endTile = (unsigned char *)grid[17] + target * 12;
     impact = end;
@@ -103,7 +104,7 @@ RayPoint impact, end, start, point, startCell, endCell;
 
     BestLocSetData(grid, &startCell, (void *)origin);
     BestLocSetData(grid, &endCell, (void *)target);
-    int found = 0;
+    unsigned char found = 0;
     RayWalk(&startCell, &endCell, RayCollect);
     if (!RayCount) return 100;
     uint distance = ISqrt((end.y - start.y) * (end.y - start.y) + (end.x - start.x) * (end.x - start.x));
@@ -144,12 +145,8 @@ RayPoint impact, end, start, point, startCell, endCell;
                         if (RaySamples[offset]) {
                             if (!found && row == sampleRow && column == sampleColumn) {
                                 impact.x = tenth * (sampleColumn - 5); found = 1;
-                                int half = grid[1] >> 1;
-                                int radial = half * half - (impact.x - point.x) * (impact.x - point.x);
-                                if (startTile[1] < endTile[1] && radial > 0) {
-                                    impact.y = ISqrt(radial);
-                                    impact.y = point.y - impact.y;
-                                } else impact.y = point.y;
+                                int half=grid[1]>>1;
+                                if(startTile[1]<endTile[1] && (impact.y=half*half-(impact.x-point.x)*(impact.x-point.x))>0) { impact.y=ISqrt(impact.y);impact.y=point.y-impact.y; }else impact.y=point.y;
                                 f_0047efb0(&impact, angle);
                                 impact.x += start.x; impact.y += start.y;
                             }
@@ -167,7 +164,7 @@ RayPoint impact, end, start, point, startCell, endCell;
 
 void RayDrawSamples(void *, int x, int y, int step)
 {
-    const struct MenuImage *image = (const struct MenuImage *)(RayResources + 0x544);
+    const struct MenuImage *image = (const struct MenuImage *)((char *)drawCursorImages + 0x544);
     for (int row = 0; row < 10; ++row) {
         int screenX = x;
         for (int column = 0; column < 10; ++column) {
@@ -177,6 +174,8 @@ void RayDrawSamples(void *, int x, int y, int step)
         y += step;
     }
 }
+
+
 
 
 
