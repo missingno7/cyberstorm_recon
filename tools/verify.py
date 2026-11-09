@@ -43,6 +43,8 @@ def main(argv):
         for n, e in ent["functions"].items():
             x = ext.get(n) or {}
             s = syms.get(f"{n}@{x.get('scope')}") if x.get("local") else syms.get(n)
+            if s and e.get("mangled") and s.get("mangled") not in (None, e["mangled"]):
+                s = syms.get(f"{n}#{e['mangled']}")     # same label, another function: exact-mangled key
             if not s or s["status"] != "matched" or s["va"] != e["va"]:
                 bad.append(f"{n} (symbols.json)")
         bad += gate.data_losses(reports, ent.get("data"))      # recorded data must stay STRICT (audit v1 F2)

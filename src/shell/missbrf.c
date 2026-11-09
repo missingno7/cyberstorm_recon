@@ -1,6 +1,6 @@
-struct GuiControl; struct InputReq; struct StrPool; struct Timer; typedef unsigned long U32; class GuiScreen { char pad00[0x10]; public: int active; char pad14[0x40]; GuiScreen(GuiControl **, unsigned, U32); void LoadLayout(long); void Open(InputReq *, StrPool *, long, int); };
+struct GuiControl; struct InputReq; struct StrPool; struct Timer; typedef unsigned long U32; class GuiScreen { char pad00[0x10]; public: int active; char pad14[0x40]; GuiScreen(GuiControl **, unsigned, U32); ~GuiScreen(){active=0;} void LoadLayout(long); void Open(InputReq *, StrPool *, long, int); };
 void TimerSet(Timer *, U32); struct Timer { U32 words[3]; Timer(U32 n) { TimerSet(this, n); } };
-struct Surface; struct Flic { char body[0x80]; Flic(); int Open(long source, int priority = 0x64, int mode = 0); unsigned long Update(Surface *surface); };
+struct Surface; struct Flic { char body[0x80]; Flic(); ~Flic(); int Open(long source, int priority = 0x64, int mode = 0); unsigned long Update(Surface *surface); };
 class MissBrief : public GuiScreen { public: Timer timer; Flic animation; int IsActive() const { return active != 0; } void Begin(void *callback, unsigned char number); void LoadBackground(); MissBrief(); };
 inline void *operator new(unsigned int, void *place) { return place; }
 
@@ -170,26 +170,22 @@ void MissBrief::LoadBackground()
     *(int *)(animation + 0x4c) = -1;
 }
 
-struct ModuleConstruct { ModuleConstruct(void *p) { BriefModuleConstruct(p); } };
-struct InitA { InitA(void *p, int a, int b) { BriefModuleInitA(p, a, b); } };
-struct InitB { InitB(void *p) { BriefModuleInitB(p); } };
-struct InitC { InitC(void *p, int a, int b) { BriefModuleInitC(p, a, b); } };
-struct InitD { InitD(void *p, void *q, int v) { BriefModuleInitD(p, q, v); } };
-struct Place { Place(void *p, void *q, int x, int y) { BriefModulePlace(p, q, x, y); } };
-struct State { State(int value) { g48ea24 = value; } };
-ModuleConstruct moduleConstruct(&g48ea1c);
-InitA firstWidget(&g4b3290, 0, 0);
-State stateOne(1);
-InitA secondWidget(&g4b32b8, 0, 0);
-State stateTwo(2);
-InitB thirdWidget(&g4b32e0);
-State stateThree(3);
-InitC fourthWidget(&g4b3308, 0x32, 0);
-InitD fifthWidget(&g4b3310, &g4b3308, 0);
-State stateFour(4);
-Place sixthWidget(&g4b3338, &g4b3308, 0x14, 0x30);
-State stateFive(5);
-Place seventhWidget(&g4b3364, &g4b3308, -0x14, 0x2d);
-State stateSix(6);
+
+/* Real global objects supply Watcom's constructor-state stores. The opaque
+ * layouts here preserve the shared widgets' observed sizes. */
+#pragma aux brief_button_constructor "BriefModuleInitA";
+#pragma aux brief_help_constructor "BriefModuleInitB";
+#pragma aux brief_range_constructor "BriefModuleInitC";
+#pragma aux brief_bar_constructor "BriefModuleInitD";
+#pragma aux brief_arrow_constructor "BriefModulePlace";
+class MenuButton {public:char data[40];__pragma("brief_button_constructor") MenuButton(int,int);~MenuButton();};
+class MenuHelpRegion {public:char data[40];__pragma("brief_help_constructor") MenuHelpRegion();~MenuHelpRegion();};
+class UpgradeRange {public:char data[8];__pragma("brief_range_constructor") UpgradeRange(int,int);};
+class UpgradeBar {public:char data[40];__pragma("brief_bar_constructor") UpgradeBar(UpgradeRange *,int);~UpgradeBar();};
+class UpgradeArrow {public:char data[44];__pragma("brief_arrow_constructor") UpgradeArrow(UpgradeRange *,int,int);~UpgradeArrow();};
+MenuButton briefFirst(0,0),briefSecond(0,0);
+MenuHelpRegion briefHelp;
+UpgradeRange briefRange(50,0);
+UpgradeBar briefBar(&briefRange,0);
+UpgradeArrow briefNext(&briefRange,20,48),briefPrevious(&briefRange,-20,45);
 MissBrief g4b3390;
-State stateSeven(7);

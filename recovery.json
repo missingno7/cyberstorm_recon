@@ -783,12 +783,25 @@
      "va": "00415495",
      "size": 190,
      "mangled": "W?LoadBackground$:MissBrief$n()v"
+    },
+    "MissBrief::$dt": {
+     "va": "004155dc",
+     "size": 29,
+     "mangled": "W?$dt:MissBrief$n()_"
     }
    },
    "data": {
     "CONST": {
      "va": "0048a9ef",
      "size": 37
+    },
+    "CONST2": {
+     "va": "0048cfc0",
+     "size": 60
+    },
+    "_DATA": {
+     "va": "0048ea1c",
+     "size": 12
     }
    },
    "accepted": "2026-11-09"
@@ -1732,6 +1745,21 @@
      "va": "00429286",
      "size": 91,
      "mangled": "W?Send$:MenuChat$n()v"
+    },
+    "MenuImageLabel::$dt": {
+     "va": "00429708",
+     "size": 67,
+     "mangled": "W?$dt:MenuImageLabel$n()_"
+    },
+    "MenuSpacer::$dt": {
+     "va": "0042974c",
+     "size": 67,
+     "mangled": "W?$dt:MenuSpacer$n()_"
+    },
+    "MenuImageButton::$dt": {
+     "va": "00429790",
+     "size": 67,
+     "mangled": "W?$dt:MenuImageButton$n()_"
     }
    },
    "data": {
@@ -1794,6 +1822,18 @@
     "W?$Wvf0cos:MenuChat$$nx[]pn()v": {
      "va": "0048d98c",
      "size": 20
+    },
+    "W?$Wts0jn$MenuImageButton$$$nx[]uc": {
+     "va": "0048d978",
+     "size": 17
+    },
+    "W?$Wts0in$MenuImageLabel$$$nx[]uc": {
+     "va": "0048d950",
+     "size": 17
+    },
+    "W?$Wts0en$MenuSpacer$$$nx[]uc": {
+     "va": "0048d964",
+     "size": 17
     }
    },
    "accepted": "2026-11-09"
@@ -9997,6 +10037,336 @@
      "size": 17
     }
    },
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_004155fc.c": {
+   "as": "_unknown\\tu_004155fc.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "004155fc",
+     "size": 198,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "MissionDebrief::$ct": {
+     "va": "004156c2",
+     "size": 54,
+     "mangled": "W?$ct:MissionDebrief$n()_"
+    },
+    "ShellMissionBegin": {
+     "va": "004156f8",
+     "size": 243,
+     "mangled": "ShellMissionBegin"
+    },
+    "ShellMissionClose": {
+     "va": "004157eb",
+     "size": 50,
+     "mangled": "ShellMissionClose"
+    },
+    "ShellMissionExit": {
+     "va": "0041581d",
+     "size": 49,
+     "mangled": "ShellMissionExit"
+    },
+    "ShellMissionRender": {
+     "va": "0041584e",
+     "size": 136,
+     "mangled": "ShellMissionRender"
+    },
+    "DebriefSetPolygon": {
+     "va": "004158d6",
+     "size": 14,
+     "mangled": "W?DebriefSetPolygon$n()v"
+    },
+    "MissionDebrief::DrawMap": {
+     "va": "004158e4",
+     "size": 161,
+     "mangled": "W?DrawMap$:MissionDebrief$n()v"
+    },
+    "MissionDebrief::LoadBackground": {
+     "va": "00415985",
+     "size": 227,
+     "mangled": "W?LoadBackground$:MissionDebrief$n()v"
+    },
+    "MissionDebrief::$dt": {
+     "va": "00415a68",
+     "size": 29,
+     "mangled": "W?$dt:MissionDebrief$n()_"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048aa14",
+     "size": 38
+    },
+    "CONST2": {
+     "va": "0048d038",
+     "size": 52
+    },
+    "_DATA": {
+     "va": "0048ea88",
+     "size": 12
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_00426cdc.c": {
+   "as": "_unknown\\tu_00426cdc.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "GuiControl::$ct": {
+     "va": "00426cdc",
+     "size": 26,
+     "mangled": "W?$ct:GuiControl$n(ulul)_"
+    },
+    "GuiControl::$dt": {
+     "va": "00426cf6",
+     "size": 61,
+     "mangled": "W?$dt:GuiControl$n()_"
+    },
+    "GuiControlStyle": {
+     "va": "00426d33",
+     "size": 65,
+     "mangled": "W?GuiControlStyle$n(pn$GuiControl$$uiul)i"
+    },
+    "MenuControlChanged": {
+     "va": "00426d74",
+     "size": 115,
+     "mangled": "W?MenuControlChanged$n(pn$GuiControl$$uipnul)i"
+    },
+    "GuiControlSetShortcut": {
+     "va": "00426e37",
+     "size": 67,
+     "mangled": "W?GuiControlSetShortcut$n(pn$GuiControl$$pnxa)v"
+    },
+    "MenuClearRect": {
+     "va": "00426e7a",
+     "size": 63,
+     "mangled": "W?MenuClearRect$n(pnx$GuiRect$$)v"
+    },
+    "MenuDrawWrapped": {
+     "va": "00426eb9",
+     "size": 322,
+     "mangled": "W?MenuDrawWrapped$n(pnxallllpnx$GuiRect$$ii)v"
+    },
+    "MenuDrawPanel": {
+     "va": "00426ffb",
+     "size": 260,
+     "mangled": "W?MenuDrawPanel$n(pnx$MenuImage$$pnx$GuiRect$$)v"
+    },
+    "MenuStretchImage": {
+     "va": "004270ff",
+     "size": 79,
+     "mangled": "W?MenuStretchImage$n(lpnx$GuiRect$$)v"
+    },
+    "MenuCenterImage": {
+     "va": "0042714e",
+     "size": 110,
+     "mangled": "W?MenuCenterImage$n(lpnx$GuiRect$$)v"
+    },
+    "MenuTileImage": {
+     "va": "004271bc",
+     "size": 166,
+     "mangled": "W?MenuTileImage$n(lpnx$GuiRect$$)v"
+    },
+    "GuiControl::Event": {
+     "va": "00427264",
+     "size": 3,
+     "mangled": "W?Event$:GuiControl$n(uiul)i"
+    },
+    "GuiControl::Draw": {
+     "va": "00427268",
+     "size": 1,
+     "mangled": "W?Draw$:GuiControl$n(ui)v"
+    }
+   },
+   "data": {
+    "W?$Wvf0eos:GuiControl$$nx[]pn()v": {
+     "va": "0048d93c",
+     "size": 20
+    },
+    "W?$Wts0en$GuiControl$$$nx[]uc": {
+     "va": "0048d928",
+     "size": 17
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0042726c.c": {
+   "as": "_unknown\\tu_0042726c.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "Surface::$ct": {
+     "va": "0042726c",
+     "size": 31,
+     "mangled": "W?$ct:Surface$n(ul)_"
+    },
+    "Surface::$dt": {
+     "va": "0042728b",
+     "size": 66,
+     "mangled": "W?$dt:Surface$n()_"
+    },
+    "SurfaceAttach": {
+     "va": "004272cd",
+     "size": 97,
+     "mangled": "W?SurfaceAttach$n(pn$Surface$$pnvll)i"
+    },
+    "SurfaceCreate": {
+     "va": "0042732e",
+     "size": 107,
+     "mangled": "W?SurfaceCreate$n(pn$Surface$$ll)i"
+    },
+    "SurfaceFree": {
+     "va": "00427399",
+     "size": 60,
+     "mangled": "W?SurfaceFree$n(pn$Surface$$)v"
+    },
+    "SurfaceGetPixel": {
+     "va": "004273d5",
+     "size": 48,
+     "mangled": "W?SurfaceGetPixel$n(pn$Surface$$ll)i"
+    },
+    "SurfaceGetRow": {
+     "va": "00427405",
+     "size": 39,
+     "mangled": "W?SurfaceGetRow$n(pn$Surface$$l)pnc"
+    },
+    "SurfaceClear": {
+     "va": "0042742c",
+     "size": 45,
+     "mangled": "W?SurfaceClear$n(pn$Surface$$)v"
+    },
+    "MenuRestore": {
+     "va": "00427459",
+     "size": 244,
+     "mangled": "W?MenuRestore$n(pn$Surface$$pn$1$rnx$GuiRect$$ll)i"
+    },
+    "SurfaceCopyRegion": {
+     "va": "0042754d",
+     "size": 61,
+     "mangled": "W?SurfaceCopyRegion$n(pn$Surface$$pn$1$ll)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_004275bc.c": {
+   "as": "_unknown\\tu_004275bc.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {},
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_00427c68.c": {
+   "as": "_unknown\\tu_00427c68.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {},
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_00429a44.c": {
+   "as": "_unknown\\tu_00429a44.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "UpgradeBar::$dt": {
+     "va": "00415554",
+     "size": 67,
+     "mangled": "W?$dt:UpgradeBar$n()_"
+    },
+    "UpgradeArrow::$dt": {
+     "va": "00415598",
+     "size": 67,
+     "mangled": "W?$dt:UpgradeArrow$n()_"
+    },
+    "UpgradeRange::$ct": {
+     "va": "00429a44",
+     "size": 49,
+     "mangled": "W?$ct:UpgradeRange$n(ii)_"
+    },
+    "UpgradeRange::Set": {
+     "va": "00429a75",
+     "size": 43,
+     "mangled": "W?Set$:UpgradeRange$n(i)v"
+    },
+    "UpgradeRange::Resize": {
+     "va": "00429aa0",
+     "size": 18,
+     "mangled": "W?Resize$:UpgradeRange$n(i)v"
+    },
+    "UpgradeBar::$ct": {
+     "va": "00429ab2",
+     "size": 39,
+     "mangled": "W?$ct:UpgradeBar$n(pn$UpgradeRange$$i)_"
+    },
+    "UpgradeBar::Draw": {
+     "va": "00429ad9",
+     "size": 452,
+     "mangled": "W?Draw$:UpgradeBar$n(ui)v"
+    },
+    "UpgradeBar::Event": {
+     "va": "00429c9d",
+     "size": 139,
+     "mangled": "W?Event$:UpgradeBar$n(uiul)i"
+    },
+    "UpgradeArrow::$ct": {
+     "va": "00429d28",
+     "size": 46,
+     "mangled": "W?$ct:UpgradeArrow$n(pn$UpgradeRange$$ii)_"
+    },
+    "UpgradeArrow::Draw": {
+     "va": "00429d56",
+     "size": 136,
+     "mangled": "W?Draw$:UpgradeArrow$n(ui)v"
+    },
+    "UpgradeArrow::Event": {
+     "va": "00429dde",
+     "size": 197,
+     "mangled": "W?Event$:UpgradeArrow$n(uiul)i"
+    }
+   },
+   "data": {
+    "W?$Wvf0eos:UpgradeBar$$nx[]pn()v": {
+     "va": "0048dae0",
+     "size": 20
+    },
+    "W?$Wvf0gos:UpgradeArrow$$nx[]pn()v": {
+     "va": "0048dacc",
+     "size": 20
+    },
+    "W?$Wts0en$UpgradeBar$$$nx[]uc": {
+     "va": "0048d024",
+     "size": 17
+    },
+    "W?$Wts0gn$UpgradeArrow$$$nx[]uc": {
+     "va": "0048d010",
+     "size": 17
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_00429ea4.c": {
+   "as": "_unknown\\tu_00429ea4.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "GuiPaletteRamp": {
+     "va": "00429ea4",
+     "size": 193,
+     "mangled": "W?GuiPaletteRamp$n(lpn$Palette$$$PaletteColor$$$2$)v"
+    },
+    "GuiFilterPalette": {
+     "va": "00429f65",
+     "size": 378,
+     "mangled": "W?GuiFilterPalette$n(pn$Palette$$i)v"
+    }
+   },
+   "data": {},
    "accepted": "2026-11-09"
   }
  },

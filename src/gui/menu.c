@@ -77,15 +77,15 @@ public:
 };
 class MenuImageButton:public GuiControl {
 public:
-    U32 state;long image,repeat;MenuImageButton(long,long,U32);virtual ~MenuImageButton();virtual void Reset(unsigned);virtual void Draw(unsigned);virtual int Event(unsigned,U32);
+    U32 state;long image,repeat;MenuImageButton(long=0,long=0,U32=0);virtual ~MenuImageButton(){}virtual void Reset(unsigned);virtual void Draw(unsigned);virtual int Event(unsigned,U32);
 };
 class MenuImageLabel:public GuiControl {
 public:
-    const char *text;long image;signed char alignX,alignY,font,unused,color,bevel;MenuImageLabel(long,signed char,signed char,signed char,signed char,signed char,signed char);virtual ~MenuImageLabel();virtual void Draw(unsigned);void SetStyle(signed char,signed char,signed char,signed char,signed char,signed char);
+    const char *text;long image;signed char alignX,alignY,font,unused,color,bevel;MenuImageLabel(long=0,signed char=0,signed char=0,signed char=1,signed char=0,signed char=11,signed char=0);virtual ~MenuImageLabel(){}virtual void Draw(unsigned);void SetStyle(signed char,signed char,signed char,signed char,signed char,signed char);
 };
 class MenuSpacer:public GuiControl {
 public:
-    MenuSpacer();virtual ~MenuSpacer();virtual void Draw(unsigned);
+    MenuSpacer();virtual ~MenuSpacer(){}virtual void Draw(unsigned);
 };
 class MenuPrefixButton:public GuiControl {
 public:
