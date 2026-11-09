@@ -806,6 +806,144 @@
     }
    },
    "accepted": "2026-11-09"
+  },
+  "src/sim/target.c": {
+   "as": "sim\\target.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "TargetModuleInit": {
+     "va": "0045a600",
+     "size": 224,
+     "mangled": "W?TargetModuleInit$n()v"
+    },
+    "TargetLoadResource": {
+     "va": "0045a6e0",
+     "size": 32,
+     "mangled": "W?TargetLoadResource$n(pnv)v"
+    },
+    "TargetMapAlert": {
+     "va": "0045a700",
+     "size": 64,
+     "mangled": "W?TargetMapAlert$n(pnvi)v"
+    },
+    "TargetClearActive": {
+     "va": "0045a740",
+     "size": 32,
+     "mangled": "W?TargetClearActive$n(pnv)v"
+    },
+    "TargetClose": {
+     "va": "0045a760",
+     "size": 64,
+     "mangled": "W?TargetClose$n(pnv)v"
+    },
+    "TargetEmpty": {
+     "va": "0045a910",
+     "size": 16,
+     "mangled": "W?TargetEmpty$n()v"
+    },
+    "TargetFillRecord": {
+     "va": "0045a920",
+     "size": 128,
+     "mangled": "W?TargetFillRecord$n(pnvpn$TargetRecord$$i)i"
+    },
+    "TargetSetupState": {
+     "va": "0045a9a0",
+     "size": 80,
+     "mangled": "W?TargetSetupState$n(pnvpn$TargetRecord$$i)i"
+    },
+    "TargetRecordType": {
+     "va": "0045acd0",
+     "size": 36,
+     "mangled": "W?TargetRecordType$n(pnvi)i"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/logic/lsys.c": {
+   "as": "logic\\lsys.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "LogicNoop": {
+     "va": "0046ac20",
+     "size": 1,
+     "mangled": "W?LogicNoop$n()v"
+    },
+    "LogicTextNext": {
+     "va": "0046b19a",
+     "size": 68,
+     "mangled": "W?LogicTextNext$n()v"
+    },
+    "LogicTextBegin": {
+     "va": "0046b2ac",
+     "size": 58,
+     "mangled": "W?LogicTextBegin$n()v"
+    },
+    "LogicTextPointer": {
+     "va": "0046b2e6",
+     "size": 6,
+     "mangled": "W?LogicTextPointer$n()pna"
+    },
+    "LogicEmpty": {
+     "va": "0046b304",
+     "size": 1,
+     "mangled": "W?LogicEmpty$n()v"
+    },
+    "LogicZero": {
+     "va": "0046b305",
+     "size": 3,
+     "mangled": "W?LogicZero$n()i"
+    },
+    "LogicRedraw": {
+     "va": "0046b3b4",
+     "size": 16,
+     "mangled": "W?LogicRedraw$n(ii)v"
+    },
+    "LogicOtherRedraw": {
+     "va": "0046b3c4",
+     "size": 16,
+     "mangled": "W?LogicOtherRedraw$n(ii)v"
+    },
+    "LogicCopyActor": {
+     "va": "0046b666",
+     "size": 21,
+     "mangled": "W?LogicCopyActor$n(pnvpnipni)v"
+    },
+    "LogicActorArrayGet": {
+     "va": "0046b722",
+     "size": 39,
+     "mangled": "W?LogicActorArrayGet$n(pnviipni)v"
+    },
+    "LogicActorArraySet": {
+     "va": "0046b749",
+     "size": 44,
+     "mangled": "W?LogicActorArraySet$n(pnviii)v"
+    },
+    "LogicActorDelete": {
+     "va": "0046b775",
+     "size": 19,
+     "mangled": "W?LogicActorDelete$n(pnvi)v"
+    },
+    "LogicSetActorLinkAt": {
+     "va": "0046b7dd",
+     "size": 68,
+     "mangled": "W?LogicSetActorLinkAt$n(pnviipnii)v"
+    },
+    "LogicRemoveActor": {
+     "va": "0046b8ef",
+     "size": 19,
+     "mangled": "W?LogicRemoveActor$n(pnvi)v"
+    },
+    "LogicRefreshActor": {
+     "va": "0046b902",
+     "size": 19,
+     "mangled": "W?LogicRefreshActor$n(pnvi)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
   }
  }
 }

@@ -175,6 +175,13 @@
    "mangled": "W?PopLoadResource$n(ipnxaii)i",
    "evidence": "implied by src/pop/psystem.c 2026-11-09"
   },
+  "BriefObjectOpen": {
+   "va": "004259f7",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "BriefObjectOpen",
+   "evidence": "implied by src/sim/target.c 2026-11-09"
+  },
   "BriefStateSet": {
    "va": "00425ba1",
    "kind": "func",
@@ -216,6 +223,13 @@
    "status": "hypothesis",
    "mangled": "W?PopNotifyChanged$n(pn$PopNode$$)v",
    "evidence": "implied by src/pop/psystem.c 2026-11-09"
+  },
+  "BriefObjectLoadResource": {
+   "va": "00425f87",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "BriefObjectLoadResource",
+   "evidence": "implied by src/sim/target.c 2026-11-09"
   },
   "BriefGetHandle": {
    "va": "0042604d",
@@ -490,6 +504,13 @@
    "tu": "src/terr/tgrid.c",
    "evidence": "strict match 2026-11-09"
   },
+  "TargetObjectInit": {
+   "va": "0042b1a0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "TargetObjectInit",
+   "evidence": "implied by src/sim/target.c 2026-11-09"
+  },
   "ResolveName": {
    "va": "0042b230",
    "kind": "func",
@@ -520,6 +541,13 @@
    "tu": "src/terr/tgrid.c",
    "evidence": "strict match 2026-11-09"
   },
+  "LogicCopyPoint": {
+   "va": "0042b420",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "LogicCopyPoint",
+   "evidence": "implied by src/logic/lsys.c 2026-11-09"
+  },
   "BestLocVisit": {
    "va": "0042cf20",
    "kind": "func",
@@ -540,6 +568,13 @@
    "status": "hypothesis",
    "mangled": "W?GridConvert$n(pn$FastCoord$$pn$1$pn$1$)v",
    "evidence": "implied by src/terr/tfast.c 2026-11-09"
+  },
+  "TargetInitAt": {
+   "va": "00432c40",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "TargetInitAt",
+   "evidence": "implied by src/sim/target.c 2026-11-09"
   },
   "FogNoOp": {
    "va": "00432f40",
@@ -781,6 +816,20 @@
    "mangled": "W?ModeCheck$n(pnxa)i",
    "evidence": "implied by src/logic/lactor.c 2026-11-09"
   },
+  "BriefModuleSetup": {
+   "va": "00453470",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "BriefModuleSetup",
+   "evidence": "implied by src/sim/target.c 2026-11-09"
+  },
+  "BriefModuleOpen": {
+   "va": "00453800",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "BriefModuleOpen",
+   "evidence": "implied by src/sim/target.c 2026-11-09"
+  },
   "ReleaseState": {
    "va": "00455ac0",
    "kind": "func",
@@ -794,6 +843,117 @@
    "status": "hypothesis",
    "mangled": "W?CreateState$n(i)pnv",
    "evidence": "implied by src/logic/lactor.c 2026-11-09"
+  },
+  "TargetActorById": {
+   "va": "00456590",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "TargetActorById",
+   "evidence": "implied by src/sim/target.c 2026-11-09"
+  },
+  "TargetModuleInit": {
+   "va": "0045a600",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TargetModuleInit$n()v",
+   "tu": "src/sim/target.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "TargetLoadResource": {
+   "va": "0045a6e0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TargetLoadResource$n(pnv)v",
+   "tu": "src/sim/target.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "TargetMapAlert": {
+   "va": "0045a700",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TargetMapAlert$n(pnvi)v",
+   "tu": "src/sim/target.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "TargetClearActive": {
+   "va": "0045a740",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TargetClearActive$n(pnv)v",
+   "tu": "src/sim/target.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "TargetClose": {
+   "va": "0045a760",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TargetClose$n(pnv)v",
+   "tu": "src/sim/target.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "TargetUpdate": {
+   "va": "0045a7a0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?TargetUpdate$n(pnv)v",
+   "tu": "src/sim/target.c",
+   "evidence": "placed (at) in src/sim/target.c 2026-11-09"
+  },
+  "TargetHandleEvent": {
+   "va": "0045a7d0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?TargetHandleEvent$n(pnv)v",
+   "tu": "src/sim/target.c",
+   "evidence": "placed (at) in src/sim/target.c 2026-11-09"
+  },
+  "TargetSetInactive": {
+   "va": "0045a900",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?TargetSetInactive$n(pnv)v",
+   "tu": "src/sim/target.c",
+   "evidence": "placed (at) in src/sim/target.c 2026-11-09"
+  },
+  "TargetEmpty": {
+   "va": "0045a910",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TargetEmpty$n()v",
+   "tu": "src/sim/target.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "TargetFillRecord": {
+   "va": "0045a920",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TargetFillRecord$n(pnvpn$TargetRecord$$i)i",
+   "tu": "src/sim/target.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "TargetSetupState": {
+   "va": "0045a9a0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TargetSetupState$n(pnvpn$TargetRecord$$i)i",
+   "tu": "src/sim/target.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "TargetInitializeRecord": {
+   "va": "0045a9f0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?TargetInitializeRecord$n(pnvpn$TargetRecord$$ii)v",
+   "tu": "src/sim/target.c",
+   "evidence": "placed (at) in src/sim/target.c 2026-11-09"
+  },
+  "TargetRecordType": {
+   "va": "0045acd0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TargetRecordType$n(pnvi)i",
+   "tu": "src/sim/target.c",
+   "evidence": "strict match 2026-11-09"
   },
   "UpdatePayload": {
    "va": "0045ba00",
@@ -898,6 +1058,34 @@
    "tu": "src/logic/lactor.c",
    "evidence": "strict match 2026-11-09"
   },
+  "ActorListFind": {
+   "va": "00464181",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "ActorListFind",
+   "evidence": "implied by src/logic/lsys.c 2026-11-09"
+  },
+  "LogicActorIndexAt": {
+   "va": "0046437c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "LogicActorIndexAt",
+   "evidence": "implied by src/logic/lsys.c 2026-11-09"
+  },
+  "LogicDeleteFromMap": {
+   "va": "0046461b",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "LogicDeleteFromMap",
+   "evidence": "implied by src/logic/lsys.c 2026-11-09"
+  },
+  "LogicRefreshMap": {
+   "va": "004646f4",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "LogicRefreshMap",
+   "evidence": "implied by src/logic/lsys.c 2026-11-09"
+  },
   "MissionRecordInitialize": {
    "va": "00465525",
    "kind": "func",
@@ -982,6 +1170,346 @@
    "mangled": "W?BestLocRun$n(pnv)i",
    "tu": "src/logic/bestloc.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "LogicActorCommand": {
+   "va": "00467560",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "LogicActorCommand",
+   "evidence": "implied by src/logic/lsys.c 2026-11-09"
+  },
+  "LogicDeleteActorFromList": {
+   "va": "0046ab2e",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "LogicDeleteActorFromList",
+   "evidence": "implied by src/logic/lsys.c 2026-11-09"
+  },
+  "LogicNoop": {
+   "va": "0046ac20",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LogicNoop$n()v",
+   "tu": "src/logic/lsys.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LogicReset": {
+   "va": "0046ac21",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LogicReset$n()v",
+   "tu": "src/logic/lsys.c",
+   "evidence": "placed (at) in src/logic/lsys.c 2026-11-09"
+  },
+  "LogicStateValue": {
+   "va": "0046ac6c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LogicStateValue$n(pnvi)ui",
+   "tu": "src/logic/lsys.c",
+   "evidence": "placed (at) in src/logic/lsys.c 2026-11-09"
+  },
+  "LogicSetActorMode": {
+   "va": "0046ae1e",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LogicSetActorMode$n(pnvii)v",
+   "tu": "src/logic/lsys.c",
+   "evidence": "placed (at) in src/logic/lsys.c 2026-11-09"
+  },
+  "MissionAllocateFromData": {
+   "va": "0046ae4b",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MissionAllocateFromData$n(pnvi)pnv",
+   "tu": "src/logic/lsys.c",
+   "evidence": "placed (at) in src/logic/lsys.c 2026-11-09"
+  },
+  "LogicActorSearch": {
+   "va": "0046ae86",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LogicActorSearch$n(pnviiipni)i",
+   "tu": "src/logic/lsys.c",
+   "evidence": "placed (at) in src/logic/lsys.c 2026-11-09"
+  },
+  "LogicActorUpdate": {
+   "va": "0046af1c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LogicActorUpdate$n(pnviiipni)v",
+   "tu": "src/logic/lsys.c",
+   "evidence": "placed (at) in src/logic/lsys.c 2026-11-09"
+  },
+  "LogicConsoleResize": {
+   "va": "0046afa3",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LogicConsoleResize$n()v",
+   "tu": "src/logic/lsys.c",
+   "evidence": "placed (at) in src/logic/lsys.c 2026-11-09"
+  },
+  "LogicCheckMode": {
+   "va": "0046b03a",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LogicCheckMode$n()v",
+   "tu": "src/logic/lsys.c",
+   "evidence": "placed (at) in src/logic/lsys.c 2026-11-09"
+  },
+  "LogicTextAppend": {
+   "va": "0046b05d",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LogicTextAppend$n(pnvpnxa)v",
+   "tu": "src/logic/lsys.c",
+   "evidence": "placed (at) in src/logic/lsys.c 2026-11-09"
+  },
+  "LogicTextPrevious": {
+   "va": "0046b140",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LogicTextPrevious$n()v",
+   "tu": "src/logic/lsys.c",
+   "evidence": "placed (at) in src/logic/lsys.c 2026-11-09"
+  },
+  "LogicTextNext": {
+   "va": "0046b19a",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LogicTextNext$n()v",
+   "tu": "src/logic/lsys.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LogicTextClear": {
+   "va": "0046b1de",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LogicTextClear$n()v",
+   "tu": "src/logic/lsys.c",
+   "evidence": "placed (at) in src/logic/lsys.c 2026-11-09"
+  },
+  "LogicTextMark": {
+   "va": "0046b27a",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LogicTextMark$n()v",
+   "tu": "src/logic/lsys.c",
+   "evidence": "placed (at) in src/logic/lsys.c 2026-11-09"
+  },
+  "LogicTextBegin": {
+   "va": "0046b2ac",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LogicTextBegin$n()v",
+   "tu": "src/logic/lsys.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LogicTextPointer": {
+   "va": "0046b2e6",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LogicTextPointer$n()pna",
+   "tu": "src/logic/lsys.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LogicTextHasCurrent": {
+   "va": "0046b2ec",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LogicTextHasCurrent$n()i",
+   "tu": "src/logic/lsys.c",
+   "evidence": "placed (at) in src/logic/lsys.c 2026-11-09"
+  },
+  "LogicEmpty": {
+   "va": "0046b304",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LogicEmpty$n()v",
+   "tu": "src/logic/lsys.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LogicZero": {
+   "va": "0046b305",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LogicZero$n()i",
+   "tu": "src/logic/lsys.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LogicDrawConsole": {
+   "va": "0046b308",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LogicDrawConsole$n()v",
+   "tu": "src/logic/lsys.c",
+   "evidence": "placed (at) in src/logic/lsys.c 2026-11-09"
+  },
+  "LogicRedraw": {
+   "va": "0046b3b4",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LogicRedraw$n(ii)v",
+   "tu": "src/logic/lsys.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LogicOtherRedraw": {
+   "va": "0046b3c4",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LogicOtherRedraw$n(ii)v",
+   "tu": "src/logic/lsys.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LogicDrawAtPoint": {
+   "va": "0046b3d4",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LogicDrawAtPoint$n(pnvpnii)v",
+   "tu": "src/logic/lsys.c",
+   "evidence": "placed (at) in src/logic/lsys.c 2026-11-09"
+  },
+  "LogicDrawFromPoint": {
+   "va": "0046b447",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LogicDrawFromPoint$n(pnvpniiiiii)v",
+   "tu": "src/logic/lsys.c",
+   "evidence": "placed (at) in src/logic/lsys.c 2026-11-09"
+  },
+  "LogicConnectPoints": {
+   "va": "0046b4cb",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LogicConnectPoints$n(pnvpnipni)v",
+   "tu": "src/logic/lsys.c",
+   "evidence": "placed (at) in src/logic/lsys.c 2026-11-09"
+  },
+  "LogicDrawPoint": {
+   "va": "0046b5a5",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LogicDrawPoint$n(pnvpni)v",
+   "tu": "src/logic/lsys.c",
+   "evidence": "placed (at) in src/logic/lsys.c 2026-11-09"
+  },
+  "LogicFindObject": {
+   "va": "0046b622",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LogicFindObject$n(pnvpnuiuii)v",
+   "tu": "src/logic/lsys.c",
+   "evidence": "placed (at) in src/logic/lsys.c 2026-11-09"
+  },
+  "LogicCopyActor": {
+   "va": "0046b666",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LogicCopyActor$n(pnvpnipni)v",
+   "tu": "src/logic/lsys.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LogicTransformPoint": {
+   "va": "0046b67b",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LogicTransformPoint$n(pnvpni)pni",
+   "tu": "src/logic/lsys.c",
+   "evidence": "placed (at) in src/logic/lsys.c 2026-11-09"
+  },
+  "LogicActorPosition": {
+   "va": "0046b6ce",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LogicActorPosition$n(pnvipni)v",
+   "tu": "src/logic/lsys.c",
+   "evidence": "placed (at) in src/logic/lsys.c 2026-11-09"
+  },
+  "LogicActorArrayGet": {
+   "va": "0046b722",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LogicActorArrayGet$n(pnviipni)v",
+   "tu": "src/logic/lsys.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LogicActorArraySet": {
+   "va": "0046b749",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LogicActorArraySet$n(pnviii)v",
+   "tu": "src/logic/lsys.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LogicActorDelete": {
+   "va": "0046b775",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LogicActorDelete$n(pnvi)v",
+   "tu": "src/logic/lsys.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LogicSetActorLink": {
+   "va": "0046b788",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LogicSetActorLink$n(pnviii)v",
+   "tu": "src/logic/lsys.c",
+   "evidence": "placed (at) in src/logic/lsys.c 2026-11-09"
+  },
+  "LogicSetActorLinkAt": {
+   "va": "0046b7dd",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LogicSetActorLinkAt$n(pnviipnii)v",
+   "tu": "src/logic/lsys.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LogicMapUpdate": {
+   "va": "0046b821",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LogicMapUpdate$n(pnviipni)v",
+   "tu": "src/logic/lsys.c",
+   "evidence": "placed (at) in src/logic/lsys.c 2026-11-09"
+  },
+  "LogicMapViewPoint": {
+   "va": "0046b88b",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LogicMapViewPoint$n(pnvipni)v",
+   "tu": "src/logic/lsys.c",
+   "evidence": "placed (at) in src/logic/lsys.c 2026-11-09"
+  },
+  "LogicRemoveActor": {
+   "va": "0046b8ef",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LogicRemoveActor$n(pnvi)v",
+   "tu": "src/logic/lsys.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LogicRefreshActor": {
+   "va": "0046b902",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LogicRefreshActor$n(pnvi)v",
+   "tu": "src/logic/lsys.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LogicCallMode": {
+   "va": "0046c461",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "LogicCallMode",
+   "evidence": "implied by src/logic/lsys.c 2026-11-09"
+  },
+  "LogicClearMode": {
+   "va": "0046c980",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "LogicClearMode",
+   "evidence": "implied by src/logic/lsys.c 2026-11-09"
   },
   "LogMode": {
    "va": "00472cc3",
@@ -1637,6 +2165,27 @@
    "mangled": "W?gPopItemName$n[]a",
    "evidence": "implied by src/pop/psystem.c 2026-11-09"
   },
+  "targetHeader": {
+   "va": "004a256c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?targetHeader$ni",
+   "evidence": "implied by src/sim/target.c 2026-11-09"
+  },
+  "targetModuleState": {
+   "va": "004a2574",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?targetModuleState$ni",
+   "evidence": "implied by src/sim/target.c 2026-11-09"
+  },
+  "targetSavedObject": {
+   "va": "004a2588",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?targetSavedObject$ni",
+   "evidence": "implied by src/sim/target.c 2026-11-09"
+  },
   "actorSourcePath": {
    "va": "004a3a9c",
    "kind": "data",
@@ -1650,6 +2199,20 @@
    "status": "hypothesis",
    "mangled": "W?missLimitByType$n[]i",
    "evidence": "implied by src/logic/miss.c 2026-11-09"
+  },
+  "logicTextWrite": {
+   "va": "004a3d0c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?logicTextWrite$npna",
+   "evidence": "implied by src/logic/lsys.c 2026-11-09"
+  },
+  "logicTextCurrent": {
+   "va": "004a3d10",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?logicTextCurrent$npna",
+   "evidence": "implied by src/logic/lsys.c 2026-11-09"
   },
   "assertProgram": {
    "va": "004a4264",
@@ -1861,6 +2424,13 @@
    "mangled": "W?g4bb78c$ni",
    "evidence": "implied by src/shell/missbrf.c 2026-11-09"
   },
+  "targetSharedState": {
+   "va": "004bb78c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?targetSharedState$ni",
+   "evidence": "implied by src/sim/target.c 2026-11-09"
+  },
   "gInA": {
    "va": "004bb794",
    "kind": "data",
@@ -1959,6 +2529,13 @@
    "mangled": "W?modeCheckName$n[]a",
    "evidence": "implied by src/logic/lactor.c 2026-11-09"
   },
+  "logicFlagWord": {
+   "va": "004d248d",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?logicFlagWord$ni",
+   "evidence": "implied by src/logic/lsys.c 2026-11-09"
+  },
   "g4d2498": {
    "va": "004d2498",
    "kind": "data",
@@ -1986,6 +2563,20 @@
    "status": "hypothesis",
    "mangled": "W?bestLocSortKey$n[]uc",
    "evidence": "implied by src/logic/bestloc.c 2026-11-09"
+  },
+  "targetFallbackName": {
+   "va": "004d3594",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?targetFallbackName$n[]a",
+   "evidence": "implied by src/sim/target.c 2026-11-09"
+  },
+  "targetDefinitionTable": {
+   "va": "004d35d8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?targetDefinitionTable$npn$TargetTriple$$",
+   "evidence": "implied by src/sim/target.c 2026-11-09"
   },
   "gFastTransform": {
    "va": "004d3698",
@@ -2015,12 +2606,68 @@
    "mangled": "W?bestLocCount$ni",
    "evidence": "implied by src/logic/bestloc.c 2026-11-09"
   },
+  "targetLimits": {
+   "va": "004d388c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?targetLimits$ni",
+   "evidence": "implied by src/sim/target.c 2026-11-09"
+  },
+  "targetPrompt": {
+   "va": "004dca54",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?targetPrompt$ni",
+   "evidence": "implied by src/sim/target.c 2026-11-09"
+  },
+  "targetPrompt1": {
+   "va": "004dca80",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?targetPrompt1$ni",
+   "evidence": "implied by src/sim/target.c 2026-11-09"
+  },
+  "targetPrompt2": {
+   "va": "004dcaac",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?targetPrompt2$ni",
+   "evidence": "implied by src/sim/target.c 2026-11-09"
+  },
+  "targetPrompt3": {
+   "va": "004dcad8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?targetPrompt3$ni",
+   "evidence": "implied by src/sim/target.c 2026-11-09"
+  },
+  "targetPrompt4": {
+   "va": "004dcb04",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?targetPrompt4$ni",
+   "evidence": "implied by src/sim/target.c 2026-11-09"
+  },
+  "targetPrompt5": {
+   "va": "004dcb30",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?targetPrompt5$ni",
+   "evidence": "implied by src/sim/target.c 2026-11-09"
+  },
   "eventCode": {
    "va": "004dd16c",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?eventCode$na",
    "evidence": "implied by src/logic/lactor.c 2026-11-09"
+  },
+  "logicActorList": {
+   "va": "004dd180",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?logicActorList$ni",
+   "evidence": "implied by src/logic/lsys.c 2026-11-09"
   },
   "bestLocActor": {
    "va": "004f2874",
@@ -2050,6 +2697,27 @@
    "mangled": "W?bestLocIndex$ni",
    "evidence": "implied by src/logic/bestloc.c 2026-11-09"
   },
+  "logicCacheReady": {
+   "va": "004f39ac",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?logicCacheReady$ni",
+   "evidence": "implied by src/logic/lsys.c 2026-11-09"
+  },
+  "logicTextCursor": {
+   "va": "004f39b0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?logicTextCursor$ni",
+   "evidence": "implied by src/logic/lsys.c 2026-11-09"
+  },
+  "logicTextBuffer": {
+   "va": "004f39c4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?logicTextBuffer$n[]a",
+   "evidence": "implied by src/logic/lsys.c 2026-11-09"
+  },
   "modeLogName": {
    "va": "004faf48",
    "kind": "data",
@@ -2070,6 +2738,13 @@
    "status": "hypothesis",
    "mangled": "W?missionImageName$n[]xa",
    "evidence": "implied by src/logic/miss.c 2026-11-09"
+  },
+  "targetBriefResource": {
+   "va": "00511e54",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?targetBriefResource$n[]a",
+   "evidence": "implied by src/sim/target.c 2026-11-09"
   },
   "gResMgr": {
    "va": "00511ecc",
