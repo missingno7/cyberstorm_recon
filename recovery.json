@@ -4092,6 +4092,11 @@
    "install": "wc106",
    "profile": "plain-oe",
    "functions": {
+    "Scene::$ct": {
+     "va": "0041fd2d",
+     "size": 87,
+     "mangled": "W?$ct:Scene$n()_"
+    },
     "LaunchResetPlayers": {
      "va": "004203bf",
      "size": 169,
@@ -4157,6 +4162,11 @@
      "size": 25,
      "mangled": "W?LaunchConnectionReady$n()i"
     },
+    "ShellNetworkSetupExit": {
+     "va": "00422e70",
+     "size": 554,
+     "mangled": "W?ShellNetworkSetupExit$n(pn$Scene$$)ul"
+    },
     "MultiplayerLaunchRender": {
      "va": "0042309a",
      "size": 226,
@@ -4212,6 +4222,11 @@
      "size": 55,
      "mangled": "W?LaunchPlayerCount$n()uc"
     },
+    "LaunchRefreshPlayerLabels": {
+     "va": "00423a14",
+     "size": 368,
+     "mangled": "W?LaunchRefreshPlayerLabels$n(pn$Scene$$)v"
+    },
     "LaunchCanJoin": {
      "va": "00423e48",
      "size": 64,
@@ -4226,6 +4241,16 @@
      "va": "00423fac",
      "size": 86,
      "mangled": "W?LaunchAdvanceTeam$n(pn$Scene$$i)v"
+    },
+    "ShellNetworkSetupCanStart": {
+     "va": "00424002",
+     "size": 418,
+     "mangled": "W?ShellNetworkSetupCanStart$n(pn$Scene$$)i"
+    },
+    "LaunchDropMissingPlayers": {
+     "va": "004241a4",
+     "size": 88,
+     "mangled": "W?LaunchDropMissingPlayers$n(pn$Scene$$)v"
     },
     "LaunchFindFreeTeamSlot": {
      "va": "004241fc",

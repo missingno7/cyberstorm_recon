@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdio.h>
 typedef unsigned long U32;
-struct InputReq {U32 mask,state;};
+struct InputReq {U32 mask,state;int HelpPressed(){return (state&0xa0)==0x20;}};
 struct Timer;extern void TimerSet(Timer *,U32);extern int TimerExpired(Timer *);
 struct Timer {U32 start,end,duration;Timer(U32 n){TimerSet(this,n);}};
 struct Surface {long width,height;unsigned char *pixels;U32 flags;Surface(U32);~Surface();};
@@ -19,18 +19,21 @@ struct Flic {
 struct GuiControl;struct StrPool;
 struct GuiRect {long x,y,width,height;};
 struct GuiPoint {long x,y;};
+struct GuiControlData:GuiRect {unsigned char style[4];U32 attributes,shortcut;};
+class GuiControl:public GuiControlData {public:virtual ~GuiControl();virtual void Reset(unsigned);virtual void Draw(unsigned);virtual int Event(unsigned,U32);virtual int HitTest(const GuiPoint *);};
 struct GuiScreen:GuiRect {
     InputReq *input;GuiControl **controls;StrPool *strings;unsigned count,focus;
     long hovered;unsigned pressed;U32 options;long firstString;int navigation,delayed;
     unsigned delayedControl;Timer repeatTimer;
     GuiScreen(GuiControl **,unsigned,U32);
-    void Invalidate();void Draw();int Update();long HitTest(const GuiPoint *);
+    void Invalidate();void Draw();int Update();long HitTest(const GuiPoint *);void LoadLayout(long);void Open(InputReq *,StrPool *,long,int);
 };
 #pragma pack(push,1)
 struct Scene:GuiScreen {
-    unsigned char unknown4c[0x5c];
+    unsigned char unknown4c[0x3c];
+    const char *playerNames[8];
     long selectedPlayer;
-    unsigned char unknownac[4];
+    long selectedIndex;
     unsigned char mode;
     int dirty;
     int playerDirty;
@@ -54,20 +57,22 @@ struct Scene:GuiScreen {
     Timer syncTimer,refreshTimer,soundTimer;
     int twoPlayersOnly;
     Flic movie;
-    Scene();
+    Scene();void Open(InputReq *);
     int IsActive(){return input!=0;}
 };
-struct PlayerState {long state;unsigned char unknown04[0xa4];long peer;U32 limit,cost;long unknownb4;U32 ready;};
-struct LaunchReadyLabel {unsigned char unknown00[0x17],flags,unknown18[0xc];const char *text;};
-class MenuLabel {public:unsigned char unknown00[0x17],flags,unknown18[0x19];void SetText(const char *);};
-class MenuNumber {public:unsigned char unknown00[0x17],flags;void SetValue(long,signed char);};
-struct LaunchStatusLabel {unsigned char unknown00[0x17],flags,unknown18[0xc];long style;const char *text;unsigned char unknown2c[3];};
+struct PlayerState {long state;unsigned char unknown04[0x40];char shortName[20];unsigned char unknown58[0x50];long peer;U32 limit,cost;long unknownb4;U32 ready;};
+struct LaunchReadyLabel {unsigned char unknown00[0x14];union {U32 style;struct {unsigned char styleBytes[3],flags;};};unsigned char unknown18[0xc];const char *text;void SetText(const char *s){text=s;}void Invalidate(){flags&=~1;}void SetVisibilityBits(U32 v){style=(style&0xff1fffffUL)+v;}};
+class MenuLabel {public:unsigned char unknown00[0x14];union {U32 style;struct {unsigned char styleBytes[3],flags;};};unsigned char unknown18[0x19];void Invalidate(){flags&=~1;}void SetVisibilityBits(U32 v){style=(style&0xff1fffffUL)+v;}void SetText(const char *);void SetColor(long);void SetAlign(long);void SetBackground(int);void SetFont(unsigned char);};
+class MenuNumber {public:unsigned char unknown00[0x14];union {U32 style;struct {unsigned char styleBytes[3],flags;};};unsigned char unknown18[0xc];const char *text;long value;signed char font,color,flash,align;void SetVisibilityBits(U32 v){style=(style&0xff1fffffUL)+v;}void SetValue(long,signed char);void SetFont(signed char);};
+class MenuTextButton {public:unsigned char unknown00[0x17],flags,unknown18[0xc];long style;const char *text;unsigned char unknown2c[3];void SetColor(signed char);void Invalidate(){flags&=~1;}};
+typedef MenuTextButton LaunchStatusLabel;
+class MenuPrefixButton {public:unsigned char unknown00[44];void SetAlign(signed char);};
 #pragma pack(pop)
 extern PlayerState chat_player_state_table[];
 extern int gLinkIsSigs;
 inline int LaunchLinkType(){return gLinkIsSigs;}
 inline int LaunchFirstPlayerState(){return chat_player_state_table[1].state;}
-struct MenuNetwork {int localSlot,host;int BroadcastSlot(int,PlayerState *);int BroadcastLocal();int BroadcastInfo(void *);};extern MenuNetwork gMenuNetwork;
+struct MenuNetwork {int localSlot,host;int BroadcastSlot(int,PlayerState *);int BroadcastLocal();int BroadcastInfo(void *);int Poll();};extern MenuNetwork gMenuNetwork;
 extern char gameOptions;
 extern LaunchReadyLabel gLaunchReadyLabels[8];
 extern MenuLabel gLaunchNameLabels[8];
@@ -101,6 +106,8 @@ inline U32 LaunchRandomIndex(U32 count){return next_link_seed(MissionRandomTable
 extern long gLaunchRule;
 extern int gLaunchOption105,gLaunchOption78;
 extern unsigned char gLaunchRuleButton,gLaunchOption105Button,gLaunchOption78Button;
+extern unsigned char gLaunchAloneCancel,gLaunchAloneAccept,gLaunchNotReadyCancel;
+extern unsigned char gLaunchPlayerCancel,gLaunchPlayerAccept;
 extern void LaunchRefreshRules(Scene *);
 extern "C" void f_cb80(void *);
 extern "C" void f_cbf0(void *);
@@ -118,6 +125,35 @@ void LaunchRefreshAffordability(Scene *screen);
 extern void LaunchSetActiveButtons(Scene *);
 
 int LaunchFindFreeTeamSlot(Scene *screen,int player);
+
+extern MenuPrefixButton gLaunchHeadings[4];
+extern MenuNumber gLaunchSummaryNumbers[5],gLaunchSummaryNumber6,gLaunchSummaryNumber7;
+extern MenuLabel gLaunchOptionLabel0,gLaunchOptionLabel1,gLaunchOptionLabel2,gLaunchOptionLabel3,gLaunchStatusHeading;
+extern MenuLabel gLaunchMoneyLabels[8],gLaunchLimitLabels[8];
+extern char gLaunchMoneyText[8][20],gLaunchLimitText[8][4];
+extern const char *gLaunchOption78Text,*gLaunchRuleText,*gLaunchOption105Text;
+
+struct LaunchChoice {U32 value;U32 Value(){return value;}};
+extern LaunchChoice gLaunchScenarioChoice,gLaunchLimitChoice,gLaunchDurationChoice,gLaunchSettingChoice,gLaunchCostChoice;
+extern int multiState,g4bb78c;extern long gLaunchHoveredControl;
+extern void LinkSigsPoll();extern void NetworkPoll();extern void MenuHelpOpenTopic(long);
+struct SoundSettings;extern int SoundPlay(unsigned,const SoundSettings * =0);extern int SoundTrigger(unsigned,int);
+extern unsigned char gLaunchReadyErrorCancel;
+
+class MenuChat {public:unsigned char unknown00[97];void Clear();};extern MenuChat gLaunchChats[8];
+class MenuButton {public:unsigned char unknown00[40];void Reset(unsigned);};
+struct ResMgr {void *Load(long,int=1,int=0,int=0);};extern ResMgr gResMgr;
+struct Palette;extern char gShellBackground,g511948,gMenuSavedSurface;
+extern void ShellApplyPalette(Palette *);extern void DecodeLaunchPalette(Palette *,const void *);
+extern void SurfaceCopyRegion(void *,void *,long,long);
+extern int viewportClipLeft,gBriefDrawSource;
+extern "C" int f_cba0(void *,const char *);
+extern "C" void AssertFail(const char *,int,const char *);
+extern "C" void BriefWaitA(int);extern "C" void BriefWaitB(int);extern "C" void BriefSetMode(LaunchChoice *,long);
+struct PlayerInfo {unsigned char kind,unknown01[39];long value;unsigned char unknown2c[4];};
+struct ProfileManager;extern ProfileManager profileManager;extern void GetPlayerInfo(void *,PlayerInfo *);
+void LaunchSetupControlStyles(Scene *);
+
 
 /* Definitions follow original function order; unresolved bodies stay external. */
 void LaunchResetPlayers(Scene *screen);
@@ -150,9 +186,148 @@ void LaunchMarkPlayerGone(Scene *screen);
 void LaunchSetPlayerName(Scene *screen,unsigned player,const char *name);
 void ShellNetworkSetupAction70(Scene *screen);
 void LaunchAdvanceTeam(Scene *screen,int player);
-void ShellNetworkSetupJoinPlayer(Scene *,unsigned char index);
+void ShellNetworkSetupJoinPlayer(Scene *,int argument);
 void LaunchDropMissingPlayers(Scene *screen);
 int LaunchFindFreeTeamSlot(Scene *screen,int player);
+
+Scene::Scene():GuiScreen(gLaunchControls,105,0),syncTimer(0),refreshTimer(0),soundTimer(0)
+{
+}
+
+void Scene::Open(InputReq *input)
+{
+    if(this->IsActive()){
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        AssertFail(__FILE__,__LINE__,"Tried to open MpLaunch, already opened..");return;
+    }
+    this->twoPlayersOnly=LaunchLinkType()!=0;
+    f_cba0(&DAT_00511dcc,"font4.fnx");
+    if(multiState==5){this->selectedPlayer=2;this->selectedIndex=1;this->mode=3;}
+    else{this->selectedPlayer=gMenuNetwork.localSlot;this->selectedIndex=this->selectedPlayer-1;this->mode=1;}
+    BriefWaitA(7);BriefWaitB(8);
+    this->dirty=0;this->playerDirty=0;this->loaded=0;
+    *(GuiRect *)&viewportClipLeft=*(GuiRect *)&gBriefDrawSource;
+    ShellClearFrame();gLaunchHoveredControl=-1;
+    this->LoadLayout((long)"mplaunch.box");this->GuiScreen::Open(input,&gShellStrings,3701,1);
+    gLaunchChats[this->selectedIndex].Clear();
+    for(int i=0;i<8;++i)memset(gLaunchPlayerNames[i],0,80);
+    ((MenuButton *)&gLaunchSummaryNumbers[3])->Reset(8);((MenuButton *)&gLaunchSummaryNumbers[4])->Reset(9);
+    ((MenuButton *)&gLaunchCostNumber)->Reset(10);((MenuButton *)&gLaunchBudgetNumber)->Reset(11);
+    ((MenuButton *)&gLaunchTitleLabel)->Reset(12);((MenuButton *)&gLaunchSettingNumber)->Reset(13);
+    ((MenuButton *)&gLaunchDurationLabel)->Reset(14);((MenuButton *)&gLaunchSummaryNumber6)->Reset(15);((MenuButton *)&gLaunchSummaryNumber7)->Reset(16);
+    gLaunchSummaryNumbers[3].text=gShellStrings.GetString(3709,1);gLaunchSummaryNumbers[4].text=gShellStrings.GetString(3710,1);
+    gLaunchCostNumber.text=gShellStrings.GetString(3711,1);gLaunchBudgetNumber.text=gShellStrings.GetString(3712,1);
+    gLaunchTitleLabel.text=gShellStrings.GetString(3713,1);gLaunchSettingNumber.text=gShellStrings.GetString(3714,1);
+    for(i=0;i<8;++i)((GuiControl *)&gLaunchStatusLabels[i])->Reset(i+37);
+    LaunchSetupControlStyles(this);LaunchShuffleSlots(this);
+    this->resource=0;this->resource=gResMgr.Load((long)"mpl.bmx");
+    DecodeLaunchPalette((Palette *)&gShellBackground,(const unsigned char *)this->resource+16);
+    ShellApplyPalette((Palette *)&gShellBackground);
+    MenuDrawImage(&g513888,&((MenuImages *)this->resource)->images[0],0,0);
+    SurfaceCopyRegion(&gMenuSavedSurface,&g511948,0,0);
+    LaunchInitChoices(this);LaunchClearPlayerFlags(this);LaunchResetValues(this);LaunchResetPlayers(this);
+    PlayerInfo player;GetPlayerInfo(&profileManager,&player);
+    if(gMenuNetwork.host){
+        BriefWaitB(9);chat_player_state_table[this->selectedPlayer].ready=1;
+        gLaunchReadyLabels[this->selectedIndex].SetText("X");gLaunchReadyLabels[this->selectedIndex].Invalidate();
+        gLaunchBudget=player.kind;BriefSetMode(&gLaunchLimitChoice,gLaunchBudget-1);
+        if(gLaunchOption105&~1)gLaunchOption105=1;
+        for(i=0;i<10;++i){
+            if((U32)this->costs[i]>chat_player_state_table[this->selectedPlayer].cost){
+                gLaunchMap=i;gLaunchConfig=this->costs[i];BriefSetMode(&gLaunchCostChoice,i);break;
+            }
+        }
+        BriefSetMode(&gLaunchScenarioChoice,gLaunchScenario);BriefSetMode(&gLaunchDurationChoice,gLaunchDurationIndex);BriefSetMode(&gLaunchSettingChoice,gLaunchSetting);
+        this->value25d=(unsigned char)gLaunchScenarioChoice.Value();this->value261=(unsigned char)gLaunchLimitChoice.Value();
+        this->value265=(unsigned char)gLaunchDurationChoice.Value();this->value269=(unsigned char)gLaunchSettingChoice.Value();this->value26d=(unsigned char)gLaunchCostChoice.Value();
+    }else{
+        chat_player_state_table[this->selectedPlayer].ready=0;
+        gLaunchReadyLabels[this->selectedIndex].SetText(" ");gLaunchReadyLabels[this->selectedIndex].Invalidate();this->loaded=1;
+    }
+    LaunchSetActiveButtons(this);LaunchRefreshRules(this);LaunchRefreshPlayerLabels(this);SoundTrigger(97,10);
+}
 
 void LaunchResetPlayers(Scene *screen)
 {
@@ -235,6 +410,22 @@ void LaunchRefreshSlots(Scene *screen)
     }
 }
 
+void LaunchSetupControlStyles(Scene *)
+{
+    gLaunchHeadings[0].SetAlign(2);gLaunchHeadings[1].SetAlign(2);gLaunchHeadings[2].SetAlign(2);gLaunchHeadings[3].SetAlign(2);
+    ((MenuNumber *)&gLaunchTitleLabel)->SetFont(0);
+    gLaunchSummaryNumbers[0].SetFont(0);gLaunchSummaryNumbers[1].SetFont(0);gLaunchSummaryNumbers[2].SetFont(0);
+    gLaunchSummaryNumbers[3].SetFont(0);gLaunchSummaryNumbers[4].SetFont(0);
+    ((MenuNumber *)&gLaunchTitleLabel)->SetFont(0);gLaunchSummaryNumber6.SetFont(0);gLaunchSummaryNumber7.SetFont(0);
+    gLaunchOptionLabel0.SetBackground(0);gLaunchOptionLabel1.SetBackground(0);gLaunchOptionLabel2.SetBackground(0);gLaunchOptionLabel3.SetBackground(0);
+    gLaunchOptionLabel0.SetColor(3);gLaunchOptionLabel1.SetColor(3);gLaunchStatusHeading.SetBackground(0);
+    gLaunchSummaryNumbers[1].SetVisibilityBits(0xa00000UL);
+    for(unsigned char i=0;i<8;++i){
+        gLaunchMoneyLabels[i].SetAlign(0);gLaunchLimitLabels[i].SetAlign(0);
+        gLaunchMoneyLabels[i].SetBackground(0);gLaunchLimitLabels[i].SetBackground(0);gLaunchNameLabels[i].SetFont(4);
+    }
+}
+
 void ShellNetworkSetupAction4(Scene *screen)
 {
     char path[256];int found=0;
@@ -244,6 +435,85 @@ void ShellNetworkSetupAction4(Scene *screen)
     }
     if(found&&LoadMission(path,1))ShellNetworkSetupLoaded(screen);
     else Problem(303,0);
+}
+
+void LaunchRefreshBudgetLabels(Scene *screen)
+{
+    int refresh=0;int player=1;
+    while(player<=8){
+        if(chat_player_state_table[player].state==1||chat_player_state_table[player].state==2){
+            if(screen->nameDirty[player-1]!=chat_player_state_table[player].cost){
+                LaunchRefreshEligibility(screen);screen->moneyDirty[player-1]=1;
+                screen->nameDirty[player-1]=chat_player_state_table[player].cost;
+                char *text=gLaunchMoneyText[player-1];sprintf(text,"%d",screen->nameDirty[player-1]);
+                MenuLabel *label=&gLaunchMoneyLabels[player-1];label->SetText(text);label->flags&=~1;
+            }
+            if(screen->previousNames[player-1]!=chat_player_state_table[player].limit){
+                LaunchRefreshAffordability(screen);screen->limitDirty[player-1]=1;
+                screen->previousNames[player-1]=chat_player_state_table[player].limit;
+                char *text=gLaunchLimitText[player-1];sprintf(text,"%2d",screen->previousNames[player-1]);
+                MenuLabel *label=&gLaunchLimitLabels[player-1];label->SetText(text);label->flags&=~1;
+            }
+            if(screen->mode==1){
+                gLaunchReadyLabels[player-1].SetVisibilityBits(0x200000UL);
+                gLaunchReadyLabels[screen->selectedIndex].SetVisibilityBits(0);
+                gLaunchMoneyLabels[player-1].SetVisibilityBits(0);gLaunchLimitLabels[player-1].SetVisibilityBits(0);
+            }
+        }else{
+            gLaunchMoneyLabels[player-1].SetVisibilityBits(0xa00000UL);gLaunchLimitLabels[player-1].SetVisibilityBits(0xa00000UL);
+            if(TimerExpired(&screen->refreshTimer)){
+                refresh=1;
+                if(screen->mode==1){
+                    long y=(player-1)*26+45;
+                    BriefBlit(&g513888,1,0,442,y,442,y,190,22);
+                    MenuLabel *label=&gLaunchNameLabels[player-1];label->SetText(" ");label->flags&=~1;
+                    gLaunchReadyLabels[player-1].SetVisibilityBits(0xa00000UL);
+                    BriefBlit(&g513888,1,0,1,y,1,y,25,24);
+                }
+            }
+        }
+        ++player;
+    }
+    if(refresh)TimerSet(&screen->refreshTimer,1200);
+}
+
+void LaunchRefreshCostLabels(Scene *screen)
+{
+    int player=1;
+    while(player<=8){
+        int invalid=0;
+        if(chat_player_state_table[player].state==1||chat_player_state_table[player].state==2){
+            if(screen->moneyDirty[player-1]){
+                long y=player*26+21;MenuLabel *label=&gLaunchMoneyLabels[player-1];
+                if(screen->eligible[player-1]){
+                    MenuDrawImage(&g513888,&((MenuImages *)gShellImages)->images[69],541,y);label->SetColor(18);
+                }else{
+                    MenuDrawImage(&g513888,&((MenuImages *)gShellImages)->images[68],541,y);label->SetColor(14);invalid=1;
+                }
+                SurfacePresent(&g513888);
+                gLaunchMoneyLabels[player-1].SetVisibilityBits(0);gLaunchMoneyLabels[player-1].flags&=~1;
+                screen->moneyDirty[player-1]=0;
+            }
+            if(screen->limitDirty[player-1]){
+                long y=player*26+21;MenuLabel *label=&gLaunchLimitLabels[player-1];
+                if(screen->affordable[player-1]){
+                    MenuDrawImage(&g513888,&((MenuImages *)gShellImages)->images[71],460,y);label->SetColor(18);
+                }else{
+                    MenuDrawImage(&g513888,&((MenuImages *)gShellImages)->images[70],460,y);label->SetColor(14);invalid=1;
+                }
+                SurfacePresent(&g513888);
+                gLaunchLimitLabels[player-1].SetVisibilityBits(0);screen->limitDirty[player-1]=0;
+                gLaunchLimitLabels[player-1].flags&=~1;
+            }
+            LaunchStatusLabel *status=&gLaunchStatusLabels[player-1];
+            if(invalid){
+                status->SetColor(14);chat_player_state_table[player].ready=0;
+                LaunchReadyLabel *label=&gLaunchReadyLabels[player-1];label->text=" ";label->flags&=~1;
+            }else status->SetColor(2);
+            gLaunchStatusLabels[player-1].flags&=~1;
+        }
+        ++player;
+    }
 }
 
 void LaunchRefreshReadyLabels(Scene *screen)
@@ -258,6 +528,32 @@ void LaunchRefreshReadyLabels(Scene *screen)
             }
         }
     }
+}
+
+void LaunchRefreshRules(Scene *screen)
+{
+
+
+    long id=gLaunchOption78+3978;gLaunchOption78Text=gShellStrings.GetString(id,0);gLaunchOption78Button&=~1;
+    id=gLaunchRule+3973;gLaunchRuleText=gShellStrings.GetString(id,0);gLaunchRuleButton&=~1;
+    id=gLaunchOption105+4077;gLaunchOption105Text=gShellStrings.GetString(id,0);gLaunchOption105Button&=~1;
+    if(!gMenuNetwork.host){
+        if(screen->mode==1){
+            screen->value265=gLaunchDurationIndex;screen->value261=gLaunchBudget;screen->value269=gLaunchSetting;
+            screen->value26d=gLaunchMap;screen->value25d=gLaunchScenario;
+            gLaunchDurationLabel.text=gShellStrings.GetString(screen->value265+3834,1);
+        }
+        gLaunchBudgetNumber.SetValue(gLaunchBudget,0);gLaunchSettingNumber.SetValue(screen->value269,0);
+        gLaunchCostNumber.SetValue(screen->costs[screen->value26d],0);
+        BriefBlit(&g513888,1,0,500,340,500,340,140,120);
+        MenuDrawImage(&g513888,&((MenuImages *)screen->resource)->images[screen->value25d+2],515,340);
+        gLaunchTitleLabel.text=gShellStrings.GetString(screen->value25d+3811,1);
+        gLaunchTitleLabel.flags&=~1;gLaunchSettingNumber.flags&=~1;gLaunchBudgetNumber.flags&=~1;
+        gLaunchDurationLabel.flags&=~1;gLaunchCostNumber.flags&=~1;screen->Draw();SurfacePresent(&g513888);
+    }
+    LaunchRefreshReadyLabels(screen);LaunchRefreshPlayerLabels(screen);LaunchRefreshBudgetLabels(screen);LaunchRefreshCostLabels(screen);
+
+
 }
 
 void ShellNetworkSetupAction79(Scene *screen)
@@ -299,6 +595,36 @@ int LaunchConnectionReady()
         int ready=LaunchFirstPlayerState();if(!ready)return ready;
     }
     return 1;
+}
+
+U32 ShellNetworkSetupExit(Scene *screen)
+{
+    if(screen->IsActive()){
+        if(LaunchCanJoin(screen))return 5;
+        LinkSigsPoll();
+        if(screen->mode==3&&multiState==6){screen->mode=1;LaunchSetActiveButtons(screen);}
+        if(!LaunchConnectionReady())return 5;
+        LaunchReadyCount(screen);
+        if(gMenuNetwork.host){
+            screen->value25d=(unsigned char)gLaunchScenarioChoice.Value();screen->value261=(unsigned char)gLaunchLimitChoice.Value();
+            screen->value265=(unsigned char)gLaunchDurationChoice.Value();screen->value269=(unsigned char)gLaunchSettingChoice.Value();screen->value26d=(unsigned char)gLaunchCostChoice.Value();
+        }
+        for(int i=0;i<5;++i){
+            if((&screen->value25d)[i]!=(&screen->value271)[i]){
+                screen->settingChanged[i]=1;(&screen->value271)[i]=(&screen->value25d)[i];
+                if(gMenuNetwork.host)screen->dirty=1;
+            }else screen->settingChanged[i]=0;
+        }
+        gLaunchHoveredControl=screen->HitTest((const GuiPoint *)&g4bb78c);
+        if(screen->mode==1&&gLaunchHoveredControl==102&&screen->input->HelpPressed())MenuHelpOpenTopic(screen->value25d+3853);
+        gMenuNetwork.Poll();NetworkPoll();
+        if(TimerExpired(&screen->soundTimer)){
+            for(int i=0;i<8;++i){if(!strcmp(gLaunchPlayerNames[i],"Elsa")){SoundPlay(349);break;}}
+            TimerSet(&screen->soundTimer,6000);
+        }
+        return screen->Update();
+    }
+    return 0;
 }
 
 void MultiplayerLaunchRender(Scene *screen)
@@ -412,6 +738,36 @@ void LaunchClearPlayerFlags(Scene *screen)
     for(unsigned char player=0;player<8;++player)screen->playerFlags[player]=0;
 }
 
+void ShellNetworkSetupRefresh(Scene *screen)
+{
+
+
+    if(screen->mode!=1)return;
+    if(!screen->eligible[screen->selectedIndex]&&!screen->affordable[screen->selectedIndex]){
+        screen->mode=6;LaunchShowMessage(screen,(const unsigned char *)gShellStrings.GetString(3876,1));gLaunchReadyErrorCancel&=~1;return;
+    }else if(!screen->eligible[screen->selectedIndex]){
+        screen->mode=6;LaunchShowMessage(screen,(const unsigned char *)gShellStrings.GetString(3877,1));gLaunchReadyErrorCancel&=~1;return;
+    }else if(!screen->affordable[screen->selectedIndex]){
+        screen->mode=6;LaunchShowMessage(screen,(const unsigned char *)gShellStrings.GetString(3878,1));gLaunchReadyErrorCancel&=~1;return;
+    }
+    if(screen->eligible[screen->selectedIndex]&&screen->affordable[screen->selectedIndex])switch(chat_player_state_table[screen->selectedPlayer].ready){
+    case 0:
+        chat_player_state_table[screen->selectedPlayer].ready=1;
+        gLaunchReadyLabels[screen->selectedIndex].text="X";gLaunchReadyLabels[screen->selectedIndex].flags&=~1;
+        SoundTrigger(420,0);screen->loaded=1;break;
+    case 1:
+        chat_player_state_table[screen->selectedPlayer].ready=0;
+        gLaunchReadyLabels[screen->selectedIndex].text=" ";gLaunchReadyLabels[screen->selectedIndex].flags&=~1;
+        SoundTrigger(417,0);screen->loaded=1;break;
+    default:
+        chat_player_state_table[screen->selectedPlayer].ready=0;
+        gLaunchReadyLabels[screen->selectedIndex].text=" ";gLaunchReadyLabels[screen->selectedIndex].flags&=~1;
+        screen->loaded=1;break;
+    }
+
+
+}
+
 signed char LaunchReadyCount(Scene *screen)
 {
     signed char count=0;int player=1;
@@ -434,8 +790,67 @@ unsigned char LaunchPlayerCount()
     return count;
 }
 
-void ShellNetworkSetupJoinPlayer(Scene *,unsigned char index)
+void LaunchRefreshPlayerLabels(Scene *screen)
 {
+    int changed=0;
+    for(int player=1;player<=8;++player){
+        long state=chat_player_state_table[player].state;
+        if(state!=screen->playerStates[player-1]){
+            LaunchStatusLabel *label=&gLaunchStatusLabels[player-1];
+            switch(state){
+            case 0:
+                label->text=gShellStrings.GetString(3849,1);label->style=0;
+                screen->nameDirty[player-1]=1;screen->previousNames[player-1]=99;
+                break;
+            case 1:case 2:
+                screen->playerNames[player-1]=chat_player_state_table[player].shortName;
+                label->text=screen->playerNames[player-1];label->style=1;break;
+            case 6:
+                label->text=gShellStrings.GetString(3850,1);label->style=2;
+                screen->nameDirty[player-1]=1;screen->previousNames[player-1]=99;
+                break;
+            case 7:
+                label->text=gShellStrings.GetString(3850,1);label->style=3;
+                screen->nameDirty[player-1]=1;screen->previousNames[player-1]=99;
+                break;
+            }
+            screen->playerStates[player-1]=state;changed=1;
+        }
+    }
+    if(changed){
+        BriefBlit(&g513888,1,0,25,45,25,45,111,205);
+        for(int i=0;i<8;++i)gLaunchStatusLabels[i].Invalidate();
+    }
+}
+
+void ShellNetworkSetupSelectPlayer(Scene *screen,int argument)
+{
+    if(gMenuNetwork.host){
+        BriefBlit(&g513888,1,0,25,45,25,45,85,205);
+        LaunchStatusLabel *label=&gLaunchStatusLabels[(unsigned char)argument];
+        switch(label->style){
+        case 0:
+            chat_player_state_table[(unsigned char)argument+1].state=6;label->style=2;
+            label->text=gShellStrings.GetString(3850,1);break;
+        case 1:
+            screen->mode=2;LaunchShowMessage(screen,(const unsigned char *)gShellStrings.GetString(3852,1));
+            gLaunchPlayerCancel&=~1;gLaunchPlayerAccept&=~1;break;
+        case 2:
+            chat_player_state_table[(unsigned char)argument+1].state=0;label->style=0;
+            label->text=gShellStrings.GetString(3850,1);break;
+        case 3:
+            chat_player_state_table[(unsigned char)argument+1].state=0;label->style=0;
+            label->text=gShellStrings.GetString(3850,1);break;
+        }
+        for(int i=0;i<8;++i)gLaunchStatusLabels[i].Invalidate();
+        int player=(unsigned char)argument+1;
+        gMenuNetwork.BroadcastSlot(player,&chat_player_state_table[player]);
+    }
+}
+
+void ShellNetworkSetupJoinPlayer(Scene *,int argument)
+{
+    unsigned char index=argument;
     MenuMessage message;MenuMessageBasic(&message,0x101f);
     unsigned player=index+1;
     MenuSend(&message,chat_player_state_table[player].peer);
@@ -500,6 +915,24 @@ void LaunchAdvanceTeam(Scene *screen,int player)
     }
 }
 
+int ShellNetworkSetupCanStart(Scene *screen)
+{
+    unsigned char count=LaunchPlayerCount();
+    signed char ready=LaunchReadyCount(screen);
+    if(count==1){
+        screen->mode=4;
+        LaunchShowMessage(screen,(const unsigned char *)gShellStrings.GetString(3847,1));
+        gLaunchAloneCancel&=~1;gLaunchAloneAccept&=~1;
+    }else if(ready==count){
+        return 1;
+    }else{
+        screen->mode=5;
+        LaunchShowMessage(screen,(const unsigned char *)gShellStrings.GetString(3848,1));
+        gLaunchNotReadyCancel&=~1;
+    }
+    return 0;
+}
+
 void LaunchDropMissingPlayers(Scene *screen)
 {
     for(int player=2;player<=8;++player){
@@ -524,3 +957,8 @@ int LaunchFindFreeTeamSlot(Scene *screen,int player)
     }
     return -1;
 }
+
+
+
+
+
