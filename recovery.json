@@ -75,6 +75,11 @@
      "va": "0047c340",
      "size": 16,
      "mangled": "W?SetPointer$n(pnpnvpnv)v"
+    },
+    "StrPool::GetSecondString": {
+     "va": "0047c4f0",
+     "size": 58,
+     "mangled": "W?GetSecondString$:StrPool$n(li)pna"
     }
    },
    "data": {},

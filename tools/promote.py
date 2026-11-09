@@ -154,7 +154,9 @@ def main(argv):
                          "status": "hypothesis", "mangled": k, "evidence": f"implied by {tu} {now}"}
     # this TU's own non-strict functions placed by --at or unique search: keep the placement as a hypothesis
     # binding, so references to them resolve without --at (as in verify)
-    taken = {e["va"] for e in syms.values()}
+    # the owning TU's name wins; other TUs' hypothesis names for the same VA stay as aliases until a naming
+    # cleanup. Only a *matched* function at that VA under another name blocks the placement.
+    taken = {e["va"] for e in syms.values() if e["status"] == "matched"}
     for n, e in ext.items():
         if e["cls"].upper() != "CODE" or e["status"] == "STRICT" or not e.get("va"):
             continue

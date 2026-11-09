@@ -1061,13 +1061,21 @@
    "mangled": "W?AllocateMissionImage$n(pnxaii)pnv",
    "evidence": "implied by src/logic/miss.c 2026-11-09"
   },
+  "StrPool::GetString": {
+   "va": "0047c350",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?GetString$:StrPool$n(li)pna",
+   "tu": "src/misc/strpool.c",
+   "evidence": "placed (at) in src/misc/strpool.c 2026-11-09"
+  },
   "StrPool::GetSecondString": {
    "va": "0047c4f0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?GetSecondString$:StrPool$n(li)pna",
    "tu": "src/misc/strpool.c",
-   "evidence": "placed (at) in src/misc/strpool.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "ResMgr::FindPath": {
    "va": "0047c710",
