@@ -3770,6 +3770,13 @@
    "mangled": "W?Fixup$:ActorListObject$n()v",
    "evidence": "implied by src/multi/message.c 2026-11-09"
   },
+  "PilotChecksum": {
+   "va": "0043819f",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PilotChecksum$n(pnv)i",
+   "evidence": "implied by src/multi/minipkt.c 2026-11-09"
+  },
   "PopFindItem": {
    "va": "00438374",
    "kind": "func",
@@ -3797,6 +3804,13 @@
    "status": "hypothesis",
    "mangled": "W?PopItemValue$n(i)i",
    "evidence": "implied by src/pop/psystem.c 2026-11-09"
+  },
+  "BlockChecksum": {
+   "va": "00439339",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?BlockChecksum$n(pnv)i",
+   "evidence": "implied by src/multi/minipkt.c 2026-11-09"
   },
   "LoadActorData": {
    "va": "00439df6",
@@ -4268,6 +4282,13 @@
    "mangled": "W?ResetPlayer$n(pn$PlayerSlot$$)v",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
   },
+  "ModeBeginDiagnose": {
+   "va": "004547c0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ModeBeginDiagnose$n()v",
+   "evidence": "implied by src/multi/minipkt.c 2026-11-09"
+  },
   "WorldDrawBegin": {
    "va": "004554c0",
    "kind": "func",
@@ -4281,6 +4302,13 @@
    "status": "hypothesis",
    "mangled": "W?ReleaseState$n(pnv)v",
    "evidence": "implied by src/logic/lactor.c 2026-11-09"
+  },
+  "ActorChecksum": {
+   "va": "00455f90",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ActorChecksum$n(pn$ActorRecord$$)i",
+   "evidence": "implied by src/multi/minipkt.c 2026-11-09"
   },
   "ActorSaveState": {
    "va": "00456060",
@@ -7020,6 +7048,13 @@
    "tu": "src/multi/mstart.c",
    "evidence": "strict match 2026-11-09"
   },
+  "MenuNetwork::ResetReady#W?ResetReady$:MenuNetwork$n(i)v": {
+   "va": "0046fe7a",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ResetReady$:MenuNetwork$n(i)v",
+   "evidence": "implied by src/multi/minipkt.c 2026-11-09"
+  },
   "MenuNetwork::Synchronize": {
    "va": "0046fecf",
    "kind": "func",
@@ -7292,6 +7327,13 @@
    "tu": "src/multi/message.c",
    "evidence": "strict match 2026-11-09"
   },
+  "LocalPeer#W?LocalPeer$n(pn$MenuMessage$$)i": {
+   "va": "0047157a",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LocalPeer$n(pn$MenuMessage$$)i",
+   "evidence": "implied by src/multi/minipkt.c 2026-11-09"
+  },
   "MessageChecksum": {
    "va": "00471580",
    "kind": "func",
@@ -7386,6 +7428,13 @@
    "tu": "src/multi/message.c",
    "evidence": "strict match 2026-11-09"
   },
+  "MenuMessage::$ct#W?$ct:MenuMessage$n()_": {
+   "va": "00471a09",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$ct:MenuMessage$n()_",
+   "evidence": "implied by src/multi/minipkt.c 2026-11-09"
+  },
   "MenuMessageBasic": {
    "va": "00471a1b",
    "kind": "func",
@@ -7401,6 +7450,13 @@
    "mangled": "W?MenuMessageBasic$n(pn$MenuMessage$$i)v",
    "evidence": "implied by src/multi/mstart.c (overload-safe migration 2026-11-09)"
   },
+  "MenuMessage::$ct#W?$ct:MenuMessage$n(i)_": {
+   "va": "00471a1b",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$ct:MenuMessage$n(i)_",
+   "evidence": "implied by src/multi/minipkt.c 2026-11-09"
+  },
   "MenuMessageStart": {
    "va": "00471aa9",
    "kind": "func",
@@ -7415,6 +7471,13 @@
    "status": "hypothesis",
    "mangled": "W?MenuMessageStart$n(pn$MenuMessage$$ipnv)v",
    "evidence": "implied by src/multi/mstart.c (overload-safe migration 2026-11-09)"
+  },
+  "MenuMessage::$ct#W?$ct:MenuMessage$n(ipn$ActorRecord$$)_": {
+   "va": "00471aa9",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$ct:MenuMessage$n(ipn$ActorRecord$$)_",
+   "evidence": "implied by src/multi/minipkt.c 2026-11-09"
   },
   "MenuMessageData": {
    "va": "00471b2f",
@@ -7491,12 +7554,21 @@
    "mangled": "W?LinkBeginThread$n(pnvuipn(pnv)uipnvuiuipnul)pnv",
    "evidence": "implied by src/multi/linkdlg.c 2026-11-09"
   },
+  "W?.fn_init$n()v@multi/minipkt.c": {
+   "va": "00471ce8",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/multi/minipkt.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "PacketType": {
    "va": "00471d9b",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?PacketType$n(pnv)i",
-   "evidence": "implied by src/multi/message.c 2026-11-09"
+   "tu": "src/multi/minipkt.c",
+   "evidence": "strict match 2026-11-09"
   },
   "QueuePump": {
    "va": "00471da2",
@@ -7505,12 +7577,59 @@
    "mangled": "W?QueuePump$n(pnv)v",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
   },
+  "PacketList::Process": {
+   "va": "00471da2",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Process$:PacketList$n()v",
+   "tu": "src/multi/minipkt.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PacketList::Step": {
+   "va": "00471db6",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Step$:PacketList$n()i",
+   "tu": "src/multi/minipkt.c",
+   "evidence": "placed (found) in src/multi/minipkt.c 2026-11-09"
+  },
   "PacketApply": {
    "va": "00471e98",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?PacketApply$n(pnv)v",
    "evidence": "implied by src/multi/message.c 2026-11-09"
+  },
+  "PacketApply#W?PacketApply$n(pn$Packet$$)i": {
+   "va": "00471e98",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PacketApply$n(pn$Packet$$)i",
+   "evidence": "implied by src/multi/minipkt.c 2026-11-09"
+  },
+  "CheckActor": {
+   "va": "00472384",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?CheckActor$n(pn$Packet$$pn$ActorRecord$$)v",
+   "tu": "src/multi/minipkt.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PacketName": {
+   "va": "00472436",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PacketName$n(pn$Packet$$)pnxa",
+   "tu": "src/multi/minipkt.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PacketList::$ct": {
+   "va": "00472444",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:PacketList$n()_",
+   "tu": "src/multi/minipkt.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ClearList": {
    "va": "004724a1",
@@ -7519,12 +7638,123 @@
    "mangled": "W?ClearList$n(pnv)v",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
   },
+  "PacketList::Reset": {
+   "va": "004724a1",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Reset$:PacketList$n()v",
+   "evidence": "implied by src/multi/minipkt.c 2026-11-09"
+  },
   "SetList": {
    "va": "004724ab",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?SetList$n(pnv)v",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "PacketList::Stop": {
+   "va": "004724ab",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Stop$:PacketList$n()v",
+   "tu": "src/multi/minipkt.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PacketList::Add": {
+   "va": "004724ba",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Add$:PacketList$n()pn$Packet$$",
+   "tu": "src/multi/minipkt.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PacketList::Poll": {
+   "va": "004725bd",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Poll$:PacketList$n()v",
+   "tu": "src/multi/minipkt.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PacketList::Send": {
+   "va": "00472690",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Send$:PacketList$n(i)v",
+   "tu": "src/multi/minipkt.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PacketList::Repair": {
+   "va": "00472723",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Repair$:PacketList$n(pn$ActorRecord$$aai)v",
+   "tu": "src/multi/minipkt.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PacketList::Simple": {
+   "va": "00472850",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Simple$:PacketList$n(ipn$ActorRecord$$)v",
+   "tu": "src/multi/minipkt.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PacketList::RepairCurrent": {
+   "va": "00472964",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?RepairCurrent$:PacketList$n(aai)v",
+   "tu": "src/multi/minipkt.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PacketList::JackUp": {
+   "va": "00472a67",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?JackUp$:PacketList$n(pn$ActorRecord$$)v",
+   "tu": "src/multi/minipkt.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PacketList::Placidex": {
+   "va": "00472b3f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Placidex$:PacketList$n(pn$ActorRecord$$)v",
+   "tu": "src/multi/minipkt.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PacketList::Remove": {
+   "va": "00472b57",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Remove$:PacketList$n(pn$ActorRecord$$)v",
+   "tu": "src/multi/minipkt.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PacketList::Crouch": {
+   "va": "00472b6f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Crouch$:PacketList$n(pn$ActorRecord$$)v",
+   "tu": "src/multi/minipkt.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PacketList::Stand": {
+   "va": "00472b87",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Stand$:PacketList$n(pn$ActorRecord$$)v",
+   "tu": "src/multi/minipkt.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PacketList::Face": {
+   "va": "00472b9f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Face$:PacketList$n(pn$ActorRecord$$ii)v",
+   "tu": "src/multi/minipkt.c",
+   "evidence": "strict match 2026-11-09"
   },
   "LogMode": {
    "va": "00472cc3",
@@ -7533,12 +7763,124 @@
    "mangled": "W?LogMode$n(pnxapnvii)v",
    "evidence": "implied by src/logic/lactor.c 2026-11-09"
   },
+  "PacketList::Shields": {
+   "va": "00472cc3",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Shields$:PacketList$n(pn$ActorRecord$$aa)v",
+   "tu": "src/multi/minipkt.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PacketList::ShieldsCurrent": {
+   "va": "00472de8",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ShieldsCurrent$:PacketList$n(aa)v",
+   "tu": "src/multi/minipkt.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PacketList::Toggle": {
+   "va": "00472ed7",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Toggle$:PacketList$n(pn$ActorRecord$$a)v",
+   "tu": "src/multi/minipkt.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PacketList::ToggleCurrent": {
+   "va": "00472ff3",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ToggleCurrent$:PacketList$n(a)v",
+   "tu": "src/multi/minipkt.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PacketList::Focus": {
+   "va": "004730d1",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Focus$:PacketList$n(pn$ActorRecord$$)v",
+   "tu": "src/multi/minipkt.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PacketList::Move": {
+   "va": "004731e8",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Move$:PacketList$n(pn$ActorRecord$$ii)v",
+   "tu": "src/multi/minipkt.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PacketList::DeadPilot": {
+   "va": "0047330d",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?DeadPilot$:PacketList$n(pn$ActorRecord$$)v",
+   "tu": "src/multi/minipkt.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PacketList::DeadActor": {
+   "va": "00473421",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?DeadActor$:PacketList$n(pn$ActorRecord$$)v",
+   "tu": "src/multi/minipkt.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PacketList::Fire": {
+   "va": "0047352a",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Fire$:PacketList$n(pn$ActorRecord$$iiii)v",
+   "tu": "src/multi/minipkt.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PacketList::ReturnFire": {
+   "va": "0047365e",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ReturnFire$:PacketList$n(pn$ActorRecord$$aaa)v",
+   "tu": "src/multi/minipkt.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PacketList::EndTurn": {
+   "va": "0047378b",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?EndTurn$:PacketList$n(i)v",
+   "tu": "src/multi/minipkt.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PacketList::EnsureCybridEndTurn": {
+   "va": "0047398d",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?EnsureCybridEndTurn$:PacketList$n()v",
+   "tu": "src/multi/minipkt.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "FinishMode": {
    "va": "00473c08",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?FinishMode$n(pnv)v",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "PacketList::Diagnose": {
+   "va": "00473c08",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Diagnose$:PacketList$n()v",
+   "tu": "src/multi/minipkt.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PacketList::Check": {
+   "va": "00474169",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Check$:PacketList$n(ipn$ActorRecord$$)v",
+   "tu": "src/multi/minipkt.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ResetQueue": {
    "va": "0047431b",
@@ -11496,12 +11838,47 @@
    "mangled": "W?modeLogName$n[]a",
    "evidence": "implied by src/logic/lactor.c 2026-11-09"
   },
+  "modeLogName#W?modeLogName$n$PacketList$$": {
+   "va": "004faf48",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?modeLogName$n$PacketList$$",
+   "evidence": "implied by src/multi/minipkt.c 2026-11-09"
+  },
   "networkLog": {
    "va": "004fb134",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?networkLog$n[]a",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "networkLog#W?networkLog$n$PacketList$$": {
+   "va": "004fb134",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?networkLog$n$PacketList$$",
+   "evidence": "implied by src/multi/minipkt.c 2026-11-09"
+  },
+  "gCheckedActor": {
+   "va": "004fb320",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gCheckedActor$npn$ActorRecord$$",
+   "evidence": "implied by src/multi/minipkt.c 2026-11-09"
+  },
+  "gCheckActors": {
+   "va": "004fb324",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gCheckActors$ni",
+   "evidence": "implied by src/multi/minipkt.c 2026-11-09"
+  },
+  "gDiagnoseSerial": {
+   "va": "004fb328",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gDiagnoseSerial$ni",
+   "evidence": "implied by src/multi/minipkt.c 2026-11-09"
   },
   "networkQueue": {
    "va": "004fb32c",

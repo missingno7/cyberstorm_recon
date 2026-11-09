@@ -3290,6 +3290,189 @@
    },
    "data": {},
    "accepted": "2026-11-09"
+  },
+  "src/multi/minipkt.c": {
+   "as": "multi\\minipkt.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "00471ce8",
+     "size": 179,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "PacketType": {
+     "va": "00471d9b",
+     "size": 7,
+     "mangled": "W?PacketType$n(pnv)i"
+    },
+    "PacketList::Process": {
+     "va": "00471da2",
+     "size": 20,
+     "mangled": "W?Process$:PacketList$n()v"
+    },
+    "CheckActor": {
+     "va": "00472384",
+     "size": 178,
+     "mangled": "W?CheckActor$n(pn$Packet$$pn$ActorRecord$$)v"
+    },
+    "PacketName": {
+     "va": "00472436",
+     "size": 14,
+     "mangled": "W?PacketName$n(pn$Packet$$)pnxa"
+    },
+    "PacketList::$ct": {
+     "va": "00472444",
+     "size": 93,
+     "mangled": "W?$ct:PacketList$n()_"
+    },
+    "PacketList::Stop": {
+     "va": "004724ab",
+     "size": 15,
+     "mangled": "W?Stop$:PacketList$n()v"
+    },
+    "PacketList::Add": {
+     "va": "004724ba",
+     "size": 259,
+     "mangled": "W?Add$:PacketList$n()pn$Packet$$"
+    },
+    "PacketList::Poll": {
+     "va": "004725bd",
+     "size": 211,
+     "mangled": "W?Poll$:PacketList$n()v"
+    },
+    "PacketList::Send": {
+     "va": "00472690",
+     "size": 147,
+     "mangled": "W?Send$:PacketList$n(i)v"
+    },
+    "PacketList::Repair": {
+     "va": "00472723",
+     "size": 301,
+     "mangled": "W?Repair$:PacketList$n(pn$ActorRecord$$aai)v"
+    },
+    "PacketList::Simple": {
+     "va": "00472850",
+     "size": 276,
+     "mangled": "W?Simple$:PacketList$n(ipn$ActorRecord$$)v"
+    },
+    "PacketList::RepairCurrent": {
+     "va": "00472964",
+     "size": 259,
+     "mangled": "W?RepairCurrent$:PacketList$n(aai)v"
+    },
+    "PacketList::JackUp": {
+     "va": "00472a67",
+     "size": 216,
+     "mangled": "W?JackUp$:PacketList$n(pn$ActorRecord$$)v"
+    },
+    "PacketList::Placidex": {
+     "va": "00472b3f",
+     "size": 24,
+     "mangled": "W?Placidex$:PacketList$n(pn$ActorRecord$$)v"
+    },
+    "PacketList::Remove": {
+     "va": "00472b57",
+     "size": 24,
+     "mangled": "W?Remove$:PacketList$n(pn$ActorRecord$$)v"
+    },
+    "PacketList::Crouch": {
+     "va": "00472b6f",
+     "size": 24,
+     "mangled": "W?Crouch$:PacketList$n(pn$ActorRecord$$)v"
+    },
+    "PacketList::Stand": {
+     "va": "00472b87",
+     "size": 24,
+     "mangled": "W?Stand$:PacketList$n(pn$ActorRecord$$)v"
+    },
+    "PacketList::Face": {
+     "va": "00472b9f",
+     "size": 292,
+     "mangled": "W?Face$:PacketList$n(pn$ActorRecord$$ii)v"
+    },
+    "PacketList::Shields": {
+     "va": "00472cc3",
+     "size": 293,
+     "mangled": "W?Shields$:PacketList$n(pn$ActorRecord$$aa)v"
+    },
+    "PacketList::ShieldsCurrent": {
+     "va": "00472de8",
+     "size": 239,
+     "mangled": "W?ShieldsCurrent$:PacketList$n(aa)v"
+    },
+    "PacketList::Toggle": {
+     "va": "00472ed7",
+     "size": 284,
+     "mangled": "W?Toggle$:PacketList$n(pn$ActorRecord$$a)v"
+    },
+    "PacketList::ToggleCurrent": {
+     "va": "00472ff3",
+     "size": 222,
+     "mangled": "W?ToggleCurrent$:PacketList$n(a)v"
+    },
+    "PacketList::Focus": {
+     "va": "004730d1",
+     "size": 279,
+     "mangled": "W?Focus$:PacketList$n(pn$ActorRecord$$)v"
+    },
+    "PacketList::Move": {
+     "va": "004731e8",
+     "size": 293,
+     "mangled": "W?Move$:PacketList$n(pn$ActorRecord$$ii)v"
+    },
+    "PacketList::DeadPilot": {
+     "va": "0047330d",
+     "size": 276,
+     "mangled": "W?DeadPilot$:PacketList$n(pn$ActorRecord$$)v"
+    },
+    "PacketList::DeadActor": {
+     "va": "00473421",
+     "size": 265,
+     "mangled": "W?DeadActor$:PacketList$n(pn$ActorRecord$$)v"
+    },
+    "PacketList::Fire": {
+     "va": "0047352a",
+     "size": 308,
+     "mangled": "W?Fire$:PacketList$n(pn$ActorRecord$$iiii)v"
+    },
+    "PacketList::ReturnFire": {
+     "va": "0047365e",
+     "size": 301,
+     "mangled": "W?ReturnFire$:PacketList$n(pn$ActorRecord$$aaa)v"
+    },
+    "PacketList::EndTurn": {
+     "va": "0047378b",
+     "size": 514,
+     "mangled": "W?EndTurn$:PacketList$n(i)v"
+    },
+    "PacketList::EnsureCybridEndTurn": {
+     "va": "0047398d",
+     "size": 635,
+     "mangled": "W?EnsureCybridEndTurn$:PacketList$n()v"
+    },
+    "PacketList::Diagnose": {
+     "va": "00473c08",
+     "size": 1377,
+     "mangled": "W?Diagnose$:PacketList$n()v"
+    },
+    "PacketList::Check": {
+     "va": "00474169",
+     "size": 336,
+     "mangled": "W?Check$:PacketList$n(ipn$ActorRecord$$)v"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048b9f4",
+     "size": 248
+    },
+    "_DATA": {
+     "va": "004a3fcc",
+     "size": 116
+    }
+   },
+   "accepted": "2026-11-09"
   }
  },
  "accepted_losses": [
