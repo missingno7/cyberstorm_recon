@@ -562,8 +562,16 @@
   "MissBriefModuleInit": {
    "va": "00415074",
    "kind": "func",
-   "status": "matched",
+   "status": "hypothesis",
    "mangled": "W?MissBriefModuleInit$n()v",
+   "tu": "src/shell/missbrf.c",
+   "evidence": "lost strict 2026-11-09"
+  },
+  "W?.fn_init$n()v@shell/missbrf.c": {
+   "va": "00415074",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.fn_init$n()v",
    "tu": "src/shell/missbrf.c",
    "evidence": "strict match 2026-11-09"
   },
@@ -575,13 +583,21 @@
    "tu": "src/shell/missbrf.c",
    "evidence": "placed (at) in src/shell/missbrf.c 2026-11-09"
   },
+  "MissBrief::$ct": {
+   "va": "00415155",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:MissBrief$n()_",
+   "tu": "src/shell/missbrf.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "MissBrief::Begin": {
    "va": "0041518b",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?Begin$:MissBrief$n(pnvuc)v",
    "tu": "src/shell/missbrf.c",
-   "evidence": "placed (at) in src/shell/missbrf.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "MissBriefClose": {
    "va": "004152e0",
@@ -631,6 +647,14 @@
    "tu": "src/shell/missbrf.c",
    "evidence": "placed (at) in src/shell/missbrf.c 2026-11-09"
   },
+  "MissBrief::LoadBackground": {
+   "va": "00415495",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LoadBackground$:MissBrief$n()v",
+   "tu": "src/shell/missbrf.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "ShellMissionClose": {
    "va": "004157eb",
    "kind": "func",
@@ -655,8 +679,16 @@
   "HercBayModuleInit": {
    "va": "00415a88",
    "kind": "func",
-   "status": "matched",
+   "status": "hypothesis",
    "mangled": "W?HercBayModuleInit$n()v",
+   "tu": "src/shell/hercbay.c",
+   "evidence": "lost strict 2026-11-09"
+  },
+  "W?.fn_init$n()v@shell/hercbay.c": {
+   "va": "00415a88",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.fn_init$n()v",
    "tu": "src/shell/hercbay.c",
    "evidence": "strict match 2026-11-09"
   },
@@ -668,21 +700,29 @@
    "tu": "src/shell/hercbay.c",
    "evidence": "placed (at) in src/shell/hercbay.c 2026-11-09"
   },
+  "HercBay::$ct": {
+   "va": "00415b70",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:HercBay$n()_",
+   "tu": "src/shell/hercbay.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "HercBay::Start": {
    "va": "00415b96",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?Start$:HercBay$n(pnv)v",
    "tu": "src/shell/hercbay.c",
-   "evidence": "placed (at) in src/shell/hercbay.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "HercBayConfigureControls": {
    "va": "00415d6b",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?HercBayConfigureControls$n()v",
    "tu": "src/shell/hercbay.c",
-   "evidence": "placed (at) in src/shell/hercbay.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "HercBayReturnFromPurchase": {
    "va": "00415e1d",
@@ -721,6 +761,14 @@
    "mangled": "W?HercBayShutdown$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "HercBayCleanup": {
+   "va": "0041604c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercBayCleanup$n(pn$HercBay$$)v",
+   "tu": "src/shell/hercbay.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "HercBaySetStatus": {
    "va": "004160b2",
    "kind": "func",
@@ -743,6 +791,14 @@
    "mangled": "W?HercBayRender$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "HercBayUpdateState": {
+   "va": "004160eb",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercBayUpdateState$n(pn$HercBay$$)v",
+   "tu": "src/shell/hercbay.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "HercBaySetDisplay": {
    "va": "0041617f",
    "kind": "func",
@@ -758,6 +814,22 @@
    "mangled": "W?HercBayNoStorage$n(pn$HercBay$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "HercBayDrawMission": {
+   "va": "00416195",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercBayDrawMission$n(pn$HercBay$$)v",
+   "tu": "src/shell/hercbay.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercBay::DrawImage": {
+   "va": "00416284",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?DrawImage$:HercBay$n(pnv)v",
+   "tu": "src/shell/hercbay.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "HercFrame::Draw": {
    "va": "0041635e",
    "kind": "func",
@@ -769,10 +841,10 @@
   "HercBayActions::Reactivate": {
    "va": "004163a2",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?Reactivate$:HercBayActions$n(pn$HercBay$$)v",
+   "status": "matched",
+   "mangled": "W?Reactivate$:HercBayActions$n()v",
    "tu": "src/shell/hercbay.c",
-   "evidence": "placed (at) in src/shell/hercbay.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "HercBayActions::Reactivate#W?Reactivate$:HercBayActions$n()v": {
    "va": "004163a2",
@@ -907,6 +979,20 @@
    "status": "hypothesis",
    "mangled": "W?HercUpgradeRender$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "HercSetMissionStart": {
+   "va": "0041c891",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "HercSetMissionStart",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "HercSetMission": {
+   "va": "0041caf9",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "HercSetMission",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
   },
   "ShellMultiplayerShutdown": {
    "va": "0041cb39",
@@ -1973,6 +2059,13 @@
    "tu": "src/gui/menu.c",
    "evidence": "strict match 2026-11-09"
   },
+  "MenuPrefixButton::SetText#W?SetText$:MenuPrefixButton$n(pna)v": {
+   "va": "00428c9f",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SetText$:MenuPrefixButton$n(pna)v",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
   "MenuPrefixButton::SetColor": {
    "va": "00428caf",
    "kind": "func",
@@ -1988,6 +2081,13 @@
    "mangled": "W?SetAlign$:MenuPrefixButton$n(c)v",
    "tu": "src/gui/menu.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "MenuPrefixButton::SetAlign#W?SetAlign$:MenuPrefixButton$n(a)v": {
+   "va": "00428cbf",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SetAlign$:MenuPrefixButton$n(a)v",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
   },
   "MenuPrefixButton::SetPrefix": {
    "va": "00428ccf",
@@ -2073,6 +2173,13 @@
    "mangled": "W?SetValue$:MenuNumber$n(lc)v",
    "tu": "src/gui/menu.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "MenuNumber::SetValue#W?SetValue$:MenuNumber$n(la)v": {
+   "va": "00428f33",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SetValue$:MenuNumber$n(la)v",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
   },
   "MenuNumber::SetFont": {
    "va": "00428f4a",
@@ -2202,6 +2309,20 @@
    "kind": "func",
    "status": "hypothesis",
    "mangled": "BriefModuleInitC",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "BriefSetMode": {
+   "va": "00429a75",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "BriefSetMode",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "BriefAdjust": {
+   "va": "00429aa0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "BriefAdjust",
    "evidence": "implied by src/shell/missbrf.c 2026-11-09"
   },
   "BriefModuleInitD": {
@@ -2979,6 +3100,13 @@
    "mangled": "W?StateAction$n(pnv)i",
    "evidence": "implied by src/logic/lactor.c 2026-11-09"
   },
+  "HercPrepareAssets": {
+   "va": "0043b7a4",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "HercPrepareAssets",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
   "GameSession::$ct": {
    "va": "0043b9ae",
    "kind": "func",
@@ -3042,6 +3170,13 @@
    "mangled": "W?GetPlayerInfo$n(pnvpn$PlayerInfo$$)v",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
   },
+  "BriefMissionFile": {
+   "va": "0043e3ac",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "BriefMissionFile",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
   "GetGameInfo": {
    "va": "00440ea6",
    "kind": "func",
@@ -3055,6 +3190,13 @@
    "status": "hypothesis",
    "mangled": "W?ApplyGameInfo$n(pnvpn$GameInfo$$)v",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "BriefLookup": {
+   "va": "00441208",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "BriefLookup",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
   },
   "ProfileManager::HasContinuation": {
    "va": "00441399",
@@ -6349,6 +6491,20 @@
    "mangled": "W?HelpClearTopic$n()v",
    "evidence": "implied by src/_unknown/tu_0042a0e0.c 2026-11-09"
   },
+  "BriefWaitB": {
+   "va": "00476512",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "BriefWaitB",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "HercWait": {
+   "va": "00476512",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "HercWait",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
   "MenuHelpOpenTopic": {
    "va": "00476528",
    "kind": "func",
@@ -6369,6 +6525,20 @@
    "status": "hypothesis",
    "mangled": "W?LinkSelectDialog$n(pnapn(i)pnapnv)ul",
    "evidence": "implied by src/multi/linkdlg.c 2026-11-09"
+  },
+  "BriefWaitA": {
+   "va": "00477798",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "BriefWaitA",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "HercSelect": {
+   "va": "00477798",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "HercSelect",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
   },
   "create_chat_popup": {
    "va": "00477a08",
@@ -6621,6 +6791,13 @@
    "status": "hypothesis",
    "mangled": "W?MenuDrawImage$n(pnvpnx$MenuImage$$ll)v",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "MenuDrawImage#W?MenuDrawImage$n(pnvpn$MenuImage$$ll)v": {
+   "va": "0047bff0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuDrawImage$n(pnvpn$MenuImage$$ll)v",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
   },
   "DrawSprite": {
    "va": "0047c0f0",
@@ -6934,6 +7111,13 @@
    "status": "hypothesis",
    "mangled": "W?PlayTimeRange$:MciState$n(iiuii)i",
    "evidence": "implied by src/io/resource.c 2026-11-09"
+  },
+  "BriefFormat": {
+   "va": "0047d420",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "BriefFormat",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
   },
   "DrainAssertCallbacks": {
    "va": "0047d4c0",
@@ -7414,12 +7598,47 @@
    "mangled": "W?$dt:CriticalSection$n()_",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
   },
+  "g48a9d0": {
+   "va": "0048a9d0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g48a9d0$n[]a",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
   "g48a9df": {
    "va": "0048a9fb",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g48a9df$n[]a",
    "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "g48aa3c": {
+   "va": "0048aa3c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g48aa3c$n[]a",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "g48aa48": {
+   "va": "0048aa48",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g48aa48$n[]a",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "g48aa54": {
+   "va": "0048aa54",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g48aa54$n[]a",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "g48aa78": {
+   "va": "0048aa78",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g48aa78$n[]a",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
   },
   "g48aa2c": {
    "va": "0048aa84",
@@ -7792,6 +8011,20 @@
    "mangled": "W?g48ea50$ni",
    "evidence": "implied by src/shell/missbrf.c 2026-11-09"
   },
+  "g48ea60": {
+   "va": "0048ea60",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g48ea60$n[]a",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "g48ea70": {
+   "va": "0048ea70",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g48ea70$ni",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
   "g48eaf4": {
    "va": "0048eaf4",
    "kind": "data",
@@ -7804,6 +8037,13 @@
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g48eafc$ni",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "g48eb10": {
+   "va": "0048eb10",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g48eb10$ni",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
   },
   "gMenuFonts": {
@@ -8408,11 +8648,25 @@
    "mangled": "W?g4b369c$ni",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
   },
+  "g4b36b0": {
+   "va": "004b36b0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b36b0$ni",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
   "g4b36c8": {
    "va": "004b36c8",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4b36c8$ni",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "g4b36dc": {
+   "va": "004b36dc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b36dc$ni",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
   },
   "g4b36f4": {
@@ -8422,6 +8676,13 @@
    "mangled": "W?g4b36f4$ni",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
   },
+  "g4b3708": {
+   "va": "004b3708",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b3708$ni",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
   "g4b3720": {
    "va": "004b3720",
    "kind": "data",
@@ -8429,11 +8690,25 @@
    "mangled": "W?g4b3720$ni",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
   },
+  "g4b3734": {
+   "va": "004b3734",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b3734$ni",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
   "g4b3748": {
    "va": "004b3748",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4b3748$ni",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "g4b3777": {
+   "va": "004b3777",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b3777$na",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
   },
   "g4b3778": {
@@ -8471,6 +8746,13 @@
    "mangled": "W?g4b37c4$n$Scene$$",
    "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
   },
+  "g4b37c4#W?g4b37c4$n$HercBay$$": {
+   "va": "004b37c4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b37c4$n$HercBay$$",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
   "g4b416c": {
    "va": "004b416c",
    "kind": "data",
@@ -8498,6 +8780,13 @@
    "status": "hypothesis",
    "mangled": "W?g4b74f4$na",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "g4b74f4#W?g4b74f4$ni": {
+   "va": "004b74f4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b74f4$ni",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
   },
   "g4b7904": {
    "va": "004b7904",
@@ -9808,6 +10097,13 @@
    "mangled": "W?gShellBackground$na",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "gShellBackground#W?gShellBackground$n[]a": {
+   "va": "00511968",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gShellBackground$n[]a",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
   "gShellFont": {
    "va": "00511dc8",
    "kind": "data",
@@ -9822,12 +10118,26 @@
    "mangled": "W?gShellImages$npnv",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "g511dd4": {
+   "va": "00511dd4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g511dd4$ni",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
   "gMenuPrefixStrings": {
    "va": "00511df0",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gMenuPrefixStrings$n$StrPool$$",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "g511e18": {
+   "va": "00511e18",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g511e18$n$StrPool$$",
+   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
   },
   "missionImageName": {
    "va": "00511e2c",
@@ -9934,6 +10244,20 @@
    "mangled": "W?g513888$n$GuiCanvas$$",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "g5138ac": {
+   "va": "005138ac",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g5138ac$ni",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "g5138b0": {
+   "va": "005138b0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g5138b0$ni",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
   "gMenuBackground": {
    "va": "005138e0",
    "kind": "data",
@@ -10017,6 +10341,13 @@
    "status": "hypothesis",
    "mangled": "W?viewportClipBottom$ni",
    "evidence": "implied by src/_unknown/tu_00458f20.c 2026-11-09"
+  },
+  "gBriefDrawSource": {
+   "va": "0051390c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gBriefDrawSource$ni",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
   },
   "gMenuClip": {
    "va": "0051391c",

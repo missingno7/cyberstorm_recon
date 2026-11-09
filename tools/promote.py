@@ -118,7 +118,8 @@ def main(argv):
         if cur and cur["status"] == "matched" and (cur["va"] != e["va"] or cur.get("tu") != tu):
             print(f"symbol {lab} already matched at {cur['va']} in {cur.get('tu')}; refusing")
             return 1
-        clash = [k for k, v in syms.items() if v["va"] == e["va"] and v["status"] == "matched" and k != lab]
+        clash = [k for k, v in syms.items() if v["va"] == e["va"] and v["status"] == "matched" and k != lab
+                 and not (v.get("tu") == tu and k in opts["loss"])]   # a renamed function of this TU
         if clash:
             print(f"{e['va']} already matched as {clash}; refusing")
             return 1

@@ -739,10 +739,20 @@
    "install": "wc106",
    "profile": "plain",
    "functions": {
-    "MissBriefModuleInit": {
+    "W?.fn_init$n()v": {
      "va": "00415074",
      "size": 225,
-     "mangled": "W?MissBriefModuleInit$n()v"
+     "mangled": "W?.fn_init$n()v"
+    },
+    "MissBrief::$ct": {
+     "va": "00415155",
+     "size": 54,
+     "mangled": "W?$ct:MissBrief$n()_"
+    },
+    "MissBrief::Begin": {
+     "va": "0041518b",
+     "size": 341,
+     "mangled": "W?Begin$:MissBrief$n(pnvuc)v"
     },
     "MissBriefClose": {
      "va": "004152e0",
@@ -768,9 +778,19 @@
      "va": "004153e3",
      "size": 178,
      "mangled": "W?MissBriefDrawMap$n(pn$MissBrief$$)v"
+    },
+    "MissBrief::LoadBackground": {
+     "va": "00415495",
+     "size": 190,
+     "mangled": "W?LoadBackground$:MissBrief$n()v"
     }
    },
-   "data": {},
+   "data": {
+    "CONST": {
+     "va": "0048a9ef",
+     "size": 37
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/shell/hercbay.c": {
@@ -778,30 +798,70 @@
    "install": "wc106",
    "profile": "plain",
    "functions": {
-    "HercBayModuleInit": {
+    "W?.fn_init$n()v": {
      "va": "00415a88",
      "size": 232,
-     "mangled": "W?HercBayModuleInit$n()v"
+     "mangled": "W?.fn_init$n()v"
+    },
+    "HercBay::$ct": {
+     "va": "00415b70",
+     "size": 38,
+     "mangled": "W?$ct:HercBay$n()_"
+    },
+    "HercBay::Start": {
+     "va": "00415b96",
+     "size": 469,
+     "mangled": "W?Start$:HercBay$n(pnv)v"
+    },
+    "HercBayConfigureControls": {
+     "va": "00415d6b",
+     "size": 178,
+     "mangled": "W?HercBayConfigureControls$n()v"
     },
     "HercBayClose": {
      "va": "00416024",
      "size": 40,
      "mangled": "W?HercBayClose$n(pn$HercBay$$)v"
     },
+    "HercBayCleanup": {
+     "va": "0041604c",
+     "size": 102,
+     "mangled": "W?HercBayCleanup$n(pn$HercBay$$)v"
+    },
     "HercBaySetStatus": {
      "va": "004160b2",
      "size": 57,
      "mangled": "W?HercBaySetStatus$n(pn$HercBay$$)v"
+    },
+    "HercBayUpdateState": {
+     "va": "004160eb",
+     "size": 148,
+     "mangled": "W?HercBayUpdateState$n(pn$HercBay$$)v"
     },
     "HercBaySetDisplay": {
      "va": "0041617f",
      "size": 22,
      "mangled": "W?HercBaySetDisplay$n()v"
     },
+    "HercBayDrawMission": {
+     "va": "00416195",
+     "size": 239,
+     "mangled": "W?HercBayDrawMission$n(pn$HercBay$$)v"
+    },
+    "HercBay::DrawImage": {
+     "va": "00416284",
+     "size": 218,
+     "mangled": "W?DrawImage$:HercBay$n(pnv)v"
+    },
     "HercFrame::Draw": {
      "va": "0041635e",
      "size": 68,
      "mangled": "W?Draw$:HercFrame$n(i)v"
+    },
+    "HercBayActions::Reactivate": {
+     "va": "004163a2",
+     "size": 115,
+     "mangled": "W?Reactivate$:HercBayActions$n()v"
     },
     "HercBayDone": {
      "va": "00416415",
@@ -809,7 +869,12 @@
      "mangled": "W?HercBayDone$n()v"
     }
    },
-   "data": {},
+   "data": {
+    "CONST": {
+     "va": "0048eb00",
+     "size": 16
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/pop/psystem.c": {
@@ -2956,6 +3021,20 @@
    "tu": "src/sim/target.c",
    "functions": [
     "TargetModuleInit"
+   ],
+   "date": "2026-11-09"
+  },
+  {
+   "tu": "src/shell/missbrf.c",
+   "functions": [
+    "MissBriefModuleInit"
+   ],
+   "date": "2026-11-09"
+  },
+  {
+   "tu": "src/shell/hercbay.c",
+   "functions": [
+    "HercBayModuleInit"
    ],
    "date": "2026-11-09"
   }

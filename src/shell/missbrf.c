@@ -1,28 +1,29 @@
-struct MissBrief {
-    char pad00[0x10];
-    int active;
-    int IsActive() const { return active != 0; }
-    void Begin(void *callback, unsigned char number);
-};
+struct GuiControl; struct InputReq; struct StrPool; struct Timer; typedef unsigned long U32; class GuiScreen { char pad00[0x10]; public: int active; char pad14[0x40]; GuiScreen(GuiControl **, unsigned, U32); void LoadLayout(long); void Open(InputReq *, StrPool *, long, int); };
+void TimerSet(Timer *, U32); struct Timer { U32 words[3]; Timer(U32 n) { TimerSet(this, n); } };
+struct Surface; struct Flic { char body[0x80]; Flic(); int Open(long source, int priority = 0x64, int mode = 0); unsigned long Update(Surface *surface); };
+class MissBrief : public GuiScreen { public: Timer timer; Flic animation; int IsActive() const { return active != 0; } void Begin(void *callback, unsigned char number); void LoadBackground(); MissBrief(); };
+inline void *operator new(unsigned int, void *place) { return place; }
 
-extern "C" void TimerSet(void *timer, int value); extern "C" int BriefObjectCreate(void *owner, void *descriptor, int count, int flags); extern "C" int BriefObjectRelease(char *object);
+
+int PopLoadResource(int owner, const char *descriptor, int count, int flags = 0); extern "C" int BriefObjectRelease(char *object);
 extern "C" void BriefCloseWait(); extern "C" void BriefCloseAudio(); extern "C" void BriefCloseScreen(char *object); extern "C" int BriefGetHandle(char *object, void *resource); extern "C" void BriefStateSet(char *object); extern "C" int BriefSwitch(char *object, void *resource);
 extern "C" void BriefBlit(void *surface, int a, int b, int c, int d, int e, int f, int g, int h); extern "C" int BriefLookup(int table, int number); extern "C" int BriefMissionFile(int table, int number); extern "C" int BriefFormat(const char *format, ...);
 extern "C" int BriefRender(int a, int b, int c, int d, int e, int f, int g, int h, int i, int j, int k, int l, int m, int n, int o, int p); extern "C" void BriefStatus(char *object); extern "C" void BriefRenderUpdate(char *object); extern "C" void BriefDone(const char *name);
-extern "C" void BriefWaitA(int value); extern "C" void BriefWaitB(int value); extern "C" void AssertFail(const char *file, int line, const char *message); extern "C" int BriefOpenFile(char *object, const char *name); extern "C" void BriefOpenResource(char *object, void *callback, void *resource, int a, int b);
-extern "C" void BriefSetMode(void *control, int mode); extern "C" void BriefAdjust(int surface, int y); extern "C" void BriefPlayAnimation(char *object, const char *name, int frames, int flags); extern "C" void BriefCopyHeader(void *object, void *format); extern "C" void BriefDrawCurrent(void *surface, int a, int b, int c, int d, int e, int f, int g, int h); extern "C" void BriefProcessData(void *data);
+extern "C" void BriefWaitA(int value); extern "C" void BriefWaitB(int value); void AssertFail(const char *file, int line, const char *message); extern "C" int BriefOpenFile(char *object, const char *name); extern "C" void BriefOpenResource(char *object, void *callback, void *resource, int a, int b);
+extern "C" void BriefSetMode(void *control, int mode); extern "C" void BriefAdjust(int surface, int y); extern "C" void BriefPlayAnimation(char *object, const char *name, int frames, int flags); extern "C" void BriefCopyHeader(void *object, void *format); extern "C" void BriefDrawCurrent(void *surface, int a, int b, int c, int d, int e, int f, int g, int h); struct Palette; void ShellApplyPalette(Palette *data);
 
 void MissBriefDrawMap(MissBrief *screen);
 
 extern int g48ea70, g48ea50, g4bb78c, g513888;
 extern int g48ea28[2], g48ea2c[2];
-extern int gBriefStatus, gBriefSurface, gBriefTable, gBriefLookupTable;
-extern int gBriefResource, gBriefCanvas, gBriefControlA, gBriefDrawTarget, gBriefDrawSource;
+extern int gBriefStatus, gBriefSurface, viewportClipLeft, gBriefDrawSource;
+extern StrPool gShellStrings; struct ProfileManager; extern ProfileManager profileManager;
 extern int gBriefDrawA, gBriefDrawB, gBriefHeaderFormat;
 extern char gBriefDataBuffer[];
-extern char g48a9df[];
+extern char gShellBackground[]; extern int g5138ac, g5138b0;
+extern char g48a9df[]; extern char g48a9d0[]; extern char g48ea60[];
 extern int g48ea1c, g48ea24, g4b3290, g4b32b8, g4b32e0;
-extern int g4b3308, g4b3310, g4b3338, g4b3364, g4b3390;
+extern int g4b3308, g4b3310, g4b3338, g4b3364;
 extern "C" void BriefModuleConstruct(void *object);
 extern "C" void BriefModuleInitA(void *object, int a, int b);
 extern "C" void BriefModuleInitB(void *object);
@@ -30,59 +31,58 @@ extern "C" void BriefModuleInitC(void *object, int a, int b);
 extern "C" void BriefModuleInitD(void *object, void *surface, int value);
 extern "C" void BriefModulePlace(void *object, void *surface, int x, int y);
 
-class BriefFactory {
-public:
-    int GetObject();
-};
+inline int Read5138ac() { return g5138ac; }
+inline int Read5138b0() { return g5138b0; }
 
-void MissBriefModuleInit()
-{
-    BriefModuleConstruct(&g48ea1c);
-    BriefModuleInitA(&g4b3290, 0, 0);
-    g48ea24 = 1; BriefModuleInitA(&g4b32b8, 0, 0);
-    g48ea24 = 2; BriefModuleInitB(&g4b32e0);
-    g48ea24 = 3; BriefModuleInitC(&g4b3308, 0x32, 0);
-    BriefModuleInitD(&g4b3310, &g4b3308, 0);
-    g48ea24 = 4; BriefModulePlace(&g4b3338, &g4b3308, 0x14, 0x30); g48ea24 = 5;
-    BriefModulePlace(&g4b3364, &g4b3308, -0x14, 0x2d); g48ea24 = 6;
-    ((BriefFactory *)&g4b3390)->GetObject(); g48ea24 = 7;
-}
 
-int BriefFactory::GetObject()
-{
-    register void *owner = this;
-    char *timer = (char *)BriefObjectCreate(owner, &g48ea70, 6, 0) + 0x54;
-    TimerSet(timer, 0);
-    return BriefObjectRelease(timer + 0x0c) - 0x60;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+MissBrief::MissBrief() : GuiScreen((GuiControl **)&g48ea70, 6, 0), timer(0), animation() {}
+
+
+
+
+
 /* AssertFail remains on source line 68. */ struct BriefMissionEntry { unsigned long words[11]; };
 void MissBrief::Begin(void *callback, unsigned char number)
 {
-    if (IsActive())
-        return;
-    BriefWaitA(6);
-    BriefWaitB(0x19);
-    BriefCloseAudio();
-    gBriefStatus = -1;
+    if (IsActive()) return;
+    BriefWaitA(6); BriefWaitB(0x19);
+    BriefCloseAudio(); gBriefStatus = -1;
     if (number > 9)
-        AssertFail(__FILE__, 68, 0);
+
+
+
+
+
+        AssertFail(g48ea60, 68, g48a9d0);
     ((unsigned char *)this)[0x50] = number;
-    BriefMissionEntry *entry = (BriefMissionEntry *)BriefLookup(gBriefTable, number);
+    BriefMissionEntry *entry = (BriefMissionEntry *)BriefLookup((int)&profileManager, number);
     *(BriefMissionEntry *)((char *)this + 0x100) = *entry;
     ((unsigned char *)this)[0x53] = ((unsigned char *)this)[0x101];
     ((unsigned char *)this)[0x51] = ((unsigned char *)this)[0x100] + 1;
-    *(int *)((char *)this + 0x12c) = BriefMissionFile(gBriefLookupTable,
+    *(int *)((char *)this + 0x12c) = BriefMissionFile((int)&profileManager,
                                                        ((unsigned char *)this)[0x50]);
     *(int *)((char *)this + 0xf0) = 0;
-    BriefOpenFile((char *)this, "missbrf.box");
+    LoadLayout((long)"missbrf.box");
     register void *callbackCopy = callback;
-    BriefOpenResource((char *)this, callbackCopy, &gBriefResource, 0xa8d, 1);
-    BriefSetMode(&gBriefSurface, 0);
+    Open((InputReq *)callbackCopy, &gShellStrings, 0xa8d, 1);
+    BriefSetMode((void *)&gBriefSurface, 0);
     *(int *)((char *)this + 0xf4) = 0;
+    LoadBackground();
+    BriefBlit(&g513888, 0, 1, 0x140, 0, 0x140, 0, 0x11d, 0x1e0);
     MissBriefDrawMap(this);
-    BriefBlit(&gBriefCanvas, 0, 1, 0x140, 0, 0x140, 0, 0x11d, 0x1e0);
-    MissBriefDrawMap(this);
-    BriefAdjust(gBriefControlA, *(int *)((char *)this + 0xf8) - 0x165);
+    BriefAdjust((int)&gBriefSurface, *(int *)((char *)this + 0xf8) - 0x165);
 }
 
 void MissBriefClose(MissBrief *screen)
@@ -124,7 +124,7 @@ void MissBriefUpdate(MissBrief *screen)
 
 void MissBriefOrphan()
 {
-    BriefDone(g48a9df);
+    BriefDone("missbrf");
 }
 
 void MissBriefDrawMap(MissBrief *screen)
@@ -146,24 +146,50 @@ void MissBriefDrawMap(MissBrief *screen)
 struct BriefHeader { unsigned long words[4]; };
 struct BriefCopyArea { unsigned long words[0x114]; unsigned short tail; };
 
-void MissBriefLoadBackground(MissBrief *screen)
+void MissBrief::LoadBackground()
 {
-    char *name = (char *)BriefFormat("BG_%1d%02d%c.FLX",
-                                     ((unsigned char *)screen)[0x51],
-                                     ((unsigned char *)screen)[0x53],
-                                     ((unsigned char *)screen)[0x52] + 0x41);
-    BriefPlayAnimation((char *)screen + 0x60, name, 0x64, 0);
+    register MissBrief *self = this; char *name = (char *)BriefFormat("BG_%1d%02d%c.FLX",
+                                     ((unsigned char *)self)[0x51],
+                                     ((unsigned char *)self)[0x53],
+                                     ((unsigned char *)self)[0x52] + 0x41);
+    ((Flic *)((char *)self + 0x60))->Open((long)name);
     BriefCloseWait();
     BriefCloseAudio();
-    char *region = (char *)screen + 0x80;
-    if (*(int *)(region + 4) == 0)
+    char *region = (char *)self; region += 0x80;
+    int regionValue = *(int *)(region + 4);
+    if (regionValue == 0)
         return;
-    *(BriefHeader *)&gBriefDrawTarget = *(BriefHeader *)&gBriefDrawSource;
-    BriefCopyHeader((char *)screen + 0x60, &gBriefHeaderFormat);
-    BriefDrawCurrent(&gBriefCanvas, 0, 1, 0, 0, 0, 0,
-                     gBriefDrawA, gBriefDrawB);
-    char *source = *(char **)(region + 0x3c);
-    *(BriefCopyArea *)gBriefDataBuffer = *(BriefCopyArea *)source;
-    BriefProcessData(gBriefDataBuffer);
-    *(int *)(region + 0x2c) = -1;
+    *(BriefHeader *)&viewportClipLeft = *(BriefHeader *)&gBriefDrawSource;
+    register char *animation = (char *)self + 0x60;
+    ((Flic *)animation)->Update((Surface *)&g511948);
+    BriefBlit(&g513888, 0, 1, 0, 0, 0, 0,
+              Read5138ac(), Read5138b0());
+    char *source = *(char **)(animation + 0x3c);
+    *(BriefCopyArea *)gShellBackground = *(BriefCopyArea *)source;
+    ShellApplyPalette((Palette *)gShellBackground);
+    *(int *)(animation + 0x4c) = -1;
 }
+
+struct ModuleConstruct { ModuleConstruct(void *p) { BriefModuleConstruct(p); } };
+struct InitA { InitA(void *p, int a, int b) { BriefModuleInitA(p, a, b); } };
+struct InitB { InitB(void *p) { BriefModuleInitB(p); } };
+struct InitC { InitC(void *p, int a, int b) { BriefModuleInitC(p, a, b); } };
+struct InitD { InitD(void *p, void *q, int v) { BriefModuleInitD(p, q, v); } };
+struct Place { Place(void *p, void *q, int x, int y) { BriefModulePlace(p, q, x, y); } };
+struct State { State(int value) { g48ea24 = value; } };
+ModuleConstruct moduleConstruct(&g48ea1c);
+InitA firstWidget(&g4b3290, 0, 0);
+State stateOne(1);
+InitA secondWidget(&g4b32b8, 0, 0);
+State stateTwo(2);
+InitB thirdWidget(&g4b32e0);
+State stateThree(3);
+InitC fourthWidget(&g4b3308, 0x32, 0);
+InitD fifthWidget(&g4b3310, &g4b3308, 0);
+State stateFour(4);
+Place sixthWidget(&g4b3338, &g4b3308, 0x14, 0x30);
+State stateFive(5);
+Place seventhWidget(&g4b3364, &g4b3308, -0x14, 0x2d);
+State stateSix(6);
+MissBrief g4b3390;
+State stateSeven(7);
