@@ -389,10 +389,10 @@
   "Shell::PlayTravel": {
    "va": "00406e50",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?PlayTravel$:Shell$n(ul)v",
    "tu": "src/shell/shell.c",
-   "evidence": "placed (at) in src/shell/shell.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "Shell::UpdateCredits": {
    "va": "00406fc9",

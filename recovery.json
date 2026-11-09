@@ -2683,6 +2683,11 @@
      "size": 517,
      "mangled": "W?PlayTakeoff$:Shell$n(i)i"
     },
+    "Shell::PlayTravel": {
+     "va": "00406e50",
+     "size": 377,
+     "mangled": "W?PlayTravel$:Shell$n(ul)v"
+    },
     "Shell::UpdateCredits": {
      "va": "00406fc9",
      "size": 230,
@@ -2753,6 +2758,10 @@
     },
     "W?$Wts09n$Shell$$$nx[]uc": {
      "va": "0048c870",
+     "size": 17
+    },
+    "W?$Wts08n$Flic$$$nx[]uc": {
+     "va": "0048c848",
      "size": 17
     }
    },

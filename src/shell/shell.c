@@ -66,7 +66,7 @@ extern void HotseatClose(Scene *); extern void SoundClearContext();
 
 extern U32 gInDirty; extern void InputPoll(InputReq *); extern void SurfaceClear(void *); extern void ShellPlayMovie(const char *);
 extern void ShellIntroStart(Scene *,InputReq *,int=0);
-struct ProfileManager {unsigned char unknown00[0x426];U32 mode;unsigned char unknown42a[0x15];unsigned char ready;unsigned char unknown440[0x6c87];long credits;U32 Mode(){return mode;}long Credits(){return credits;}void SetDifficulty(unsigned char);void RefreshMissions();void UnlockItem(int,int);void RestartCampaign();void ApplyCampaignCheat();void AdvanceCampaign();void PrepareRoster();void SetMissionChoice(U32);int LaunchMission(void *);int IsReady(){return ready;}long PendingCost();void CommitPurchases();int HasContinuation();void SelectScenario(int);void SetMode(U32);int Count();void *Select(int);void Advance(int);long Value(int);};
+struct ProfileManager {unsigned char unknown00[0x426];U32 mode;unsigned char unknown42a[0x15];unsigned char ready;unsigned char unknown440[0x6c87];long credits;U32 Mode(){return mode;}long Credits(){return credits;}ProfileManager *SetProfileMode(unsigned char);void RefreshMissions();void UnlockItem(int,int);void RestartCampaign();void ApplyCampaignCheat();void AdvanceCampaign();void PrepareRoster();void SetMissionChoice(U32);int LaunchMission(void *);int IsReady(){return ready;}long PendingCost();void CommitPurchases();int HasContinuation();void SelectScenario(int);void SetMode(U32);int Count();void *Select(int);void Advance(int);long Value(int);};
 extern ProfileManager profileManager; extern int g4d030f; extern long SendEvent(void *,int,void * =0,int=0,int=0);
 extern void ShellMainMenuOpen(Scene *,InputReq *,int); extern void ShellMultiplayerOpen(Scene *,InputReq *,int); extern int gGuiPaletteFaded;
 extern void GuiFadeIn();extern void GuiFadeOut(); extern Scene g4b16a4,g4b07f8,g4b0c50,g4b01c8,g4b0e18,g4ba9a8; extern void ShellIntroRender(Scene *);
@@ -110,13 +110,13 @@ public:
     int WithinBudget();
     void ProcessInput();
     void UpdateMainMenuSelection();
-    void UpdateComms();
+
     void UpdateMainMenu();
     void UpdateMission();
     void UpdateBioderm();
     void UpdateBriefing();
     void UpdateHercBay();
-    void UpdateHercBuy();
+
     void UpdateStorage();
     void UpdateHercUpgrade();
     char *DifficultyLabel();
@@ -148,6 +148,10 @@ public:
 #pragma pack(pop)
 
 
+extern "C" void ShellHercBuyHandler(Shell *);
+#pragma aux ShellHercBuyHandler "W?UpdateHercBuy$:Shell$n()v";
+extern "C" void ShellCommsHandler(void *);
+#pragma aux ShellCommsHandler "W?UpdateComms$:Shell$n()v";
 /* Class extents are independently present in the original destructor type records. */
 struct Rate {U32 count,last,interval;Rate(U32);~Rate();};
 #pragma pack(push,1)
@@ -182,7 +186,7 @@ extern void CommsScreenOpen(Scene *,InputReq *,unsigned char); extern void Shell
 
 extern long gIn7c;
 inline long ShellInputCommand(){return gIn7c;}
-extern void ShellInputSound(long); extern void ShellRefreshDifficulty(); extern void ShellSelectionOpen(Scene *,InputReq *,const char *);
+extern void SpecialOptionSound(int); extern void ResetMultiplayerInput(); extern void ShellSelectionOpen(Scene *,InputReq *,const char *);
 struct HercBay {unsigned char unknown00[0x4c];long ownedCount,buyActive,storageActive;long OwnedCount(){return ownedCount;}long Buying(){return buyActive;}long Storing(){return storageActive;}void Start(void *);};
 extern StrPool gShellMissionStrings; extern void ShellMainMenuRefresh(Scene *);
 class GuiScreen:public GuiRect {public:InputReq *input;int IsActive(){return input!=0;}void Invalidate();};
@@ -320,10 +324,10 @@ void Shell::Close(int exitCode)
 }
 
 
-extern StrPool gShellMessages;
-extern const char *ShellFormatText(const char *,...);
-extern void ShellErrorMessage(const char *);
-extern int ShellConfirmMessage(const char *);
+extern StrPool gShellMessages; extern void GenerateMissions(ProfileManager *); extern "C" int f_0043d0c8(GameSession *); extern "C" int f_0043cef6(GameSession *);
+extern "C" char *BriefFormat(const char *,...);
+extern void f_00477295(const char *);
+extern int f_0047723b(const char *);
 extern int g4d0413;
 /* Six register-byte differences and an extent blocker remain. */
 inline void ShellConfirmPurchasesCore()
@@ -339,13 +343,13 @@ inline void ShellConfirmPurchasesCore()
         subtotal+=SendEvent(current,0x75);
 
     }
-    long pending=profileManager.PendingCost();
+    long pending=f_0043cef6((GameSession *)&profileManager);
     long total=subtotal+pending;
     long budget=profileManager.Credits();
     if(total>budget){
-        ShellErrorMessage(ShellFormatText(gShellMessages.GetString(423,1),total,budget));
-    }else if(ShellConfirmMessage(ShellFormatText(gShellMessages.GetString(424,1),pending,subtotal,total,budget))){
-        profileManager.CommitPurchases();
+        f_00477295(BriefFormat(gShellMessages.GetString(423,1),total,budget));
+    }else if(f_0047723b(BriefFormat(gShellMessages.GetString(424,1),pending,subtotal,total,budget))){
+        f_0043d0c8((GameSession *)&profileManager);
         index=1;
         for(; (current=profileManager.Select(index))!=0; ++index){
             SendEvent(current,0x74);
@@ -361,7 +365,7 @@ void ShellConfirmPurchases(){ShellConfirmPurchasesCore();}
 void Shell::ProcessInput()
 {
     long key=ShellInputCommand();
-    ShellInputSound(key);
+    SpecialOptionSound(key);
     switch(key){
     case 30202:
         ShellCloseAllScreens();resumeReason=0;ResumeMenus();break;
@@ -376,18 +380,18 @@ void Shell::ProcessInput()
     case 30207:
         if(screen!=10){ShellCloseAllScreens();BeginComms(6);}break;
     case 31995:
-        profileManager.SetDifficulty(0);profileManager.RefreshMissions();ShellRefreshDifficulty();break;
+        profileManager.SetProfileMode(0);GenerateMissions(&profileManager);ResetMultiplayerInput();break;
     case 31996:
-        profileManager.SetDifficulty(1);profileManager.RefreshMissions();ShellRefreshDifficulty();break;
+        profileManager.SetProfileMode(1);GenerateMissions(&profileManager);ResetMultiplayerInput();break;
     case 31997:
-        profileManager.SetDifficulty(2);profileManager.RefreshMissions();ShellRefreshDifficulty();break;
+        profileManager.SetProfileMode(2);GenerateMissions(&profileManager);ResetMultiplayerInput();break;
     case 32001:++profileManager.credits;break;
     case 32002:profileManager.credits+=1000;break;
     case 32003:profileManager.credits+=10000;break;
     case 32004:profileManager.credits+=100000;break;
     case 32005:profileManager.credits=47000000;break;
     case 32007:{
-        profileManager.CommitPurchases();
+        f_0043d0c8((GameSession *)&profileManager);
         for(int i=1;i<=profileManager.Count();++i){
             void *item=profileManager.Select(i);
             if(item){SendEvent(item,0x74);SendEvent(item,0x76);SendEvent(item,0x78);}
@@ -410,7 +414,7 @@ void Shell::ProcessInput()
         if(unlocked)gShellMissionStrings.Unlock();
         ShellCloseAllScreens();screen=5;ShellMainMenuOpen(&g4aebe0,&input,0);
         break;}
-    case 32008:profileManager.RefreshMissions();break;
+    case 32008:GenerateMissions(&profileManager);break;
     case 32010:profileManager.AdvanceCampaign();break;
     case 32012:profileManager.RestartCampaign();break;
     case 31992:
@@ -438,14 +442,14 @@ void Shell::Update()
     ShellMultiplayerTick(&g4b74f4);
     switch(screen){
     case 2:case 3:case 4:case 6:case 7:case 11:case 13:case 14:case 18:case 19:case 20:case 21:case 22:case 23:case 24:case 26:case 29:case 33:case 36:default:break;
-    case 10:UpdateComms();break;
+    case 10:ShellCommsHandler(this);break;
     case 1:UpdateMainMenu();break;
     case 31:UpdateMission();break;
     case 5:UpdateMainMenuSelection();break;
     case 8:UpdateBioderm();break;
     case 28:UpdateBriefing();break;
     case 9:UpdateHercBay();break;
-    case 25:UpdateHercBuy();break;
+    case 25:ShellHercBuyHandler(this);break;
     case 27:UpdateStorage();break;
     case 30:UpdateHercUpgrade();break;
     case 12:UpdateSelection();UpdateMap();break;
@@ -467,10 +471,6 @@ char *Shell::DifficultyLabel()
     case 1:return gShellStrings.GetString(502,1);
     case 2:return gShellStrings.GetString(503,1);
     }
-
-
-
-
 
 
 
@@ -606,38 +606,38 @@ void Shell::BeginBriefing(unsigned char number)
     screen=28;
     g4b3390.Begin(&input,number);
 }
-void Shell::UpdateComms()
-{
+extern "C" void ShellCommsHandler(void *object)
+{ Shell *self=(Shell *)object;
     U32 result=CommsScreenExit(&g4b2e30);
     if(!result&&ShellInputKey()==1)result=14;
     if(!result)return;
     switch(result){
     case 68:
-        auxiliaryState=10;CommsScreenClose(&g4b2e30);screen=32;
-        ShellMapOpen(&g4afbfc,&input,2200);break;
+        self->auxiliaryState=10;CommsScreenClose(&g4b2e30);self->screen=32;
+        ShellMapOpen(&g4afbfc,&self->input,2200);break;
     case 69:MenuHelpOpenTopic(66);break;
     case 70:MenuHelpOpenTopic(67);break;
-    case 71:ShellPlayMovie("cst001");gInDirty=1;InputPoll(&input);break;
-    case 72:ShellPlayMovie("cst002");gInDirty=1;InputPoll(&input);break;
-    case 14:CommsScreenClose(&g4b2e30);resumeReason=0;ResumeMenus();break;
-    case 1:BeginBriefing(0);break;
-    case 2:BeginBriefing(1);break;
-    case 3:BeginBriefing(2);break;
-    case 4:BeginBriefing(3);break;
-    case 5:BeginBriefing(4);break;
-    case 6:BeginBriefing(5);break;
-    case 7:BeginBriefing(6);break;
-    case 8:BeginBriefing(7);break;
-    case 9:BeginBriefing(8);break;
+    case 71:ShellPlayMovie("cst001");gInDirty=1;InputPoll(&self->input);break;
+    case 72:ShellPlayMovie("cst002");gInDirty=1;InputPoll(&self->input);break;
+    case 14:CommsScreenClose(&g4b2e30);self->resumeReason=0;self->ResumeMenus();break;
+    case 1:self->BeginBriefing(0);break;
+    case 2:self->BeginBriefing(1);break;
+    case 3:self->BeginBriefing(2);break;
+    case 4:self->BeginBriefing(3);break;
+    case 5:self->BeginBriefing(4);break;
+    case 6:self->BeginBriefing(5);break;
+    case 7:self->BeginBriefing(6);break;
+    case 8:self->BeginBriefing(7);break;
+    case 9:self->BeginBriefing(8);break;
     case 10:CommsScreenConfirm(&g4b2e30);break;
     case 11:CommsScreenNext(&g4b2e30);break;
     case 12:CommsScreenPrevious(&g4b2e30);break;
     case 51:
-        auxiliaryState=10;CommsScreenClose(&g4b2e30);screen=32;
-        gShellMapMode=0;ShellMapOpen(&g4afbfc,&input,0);break;
+        self->auxiliaryState=10;CommsScreenClose(&g4b2e30);self->screen=32;
+        gShellMapMode=0;ShellMapOpen(&g4afbfc,&self->input,0);break;
     case 52:case 53:case 54:case 55:case 56:case 57:case 58:case 59:case 60:case 61:case 62:case 63:case 64: 
-        auxiliaryState=10;CommsScreenClose(&g4b2e30);screen=32;
-        gShellMapMode=1;ShellMapOpen(&g4afbfc,&input,13-(64-result));break;
+        self->auxiliaryState=10;CommsScreenClose(&g4b2e30);self->screen=32;
+        gShellMapMode=1;ShellMapOpen(&g4afbfc,&self->input,13-(64-result));break;
     case 66:CommsScreenConfirm(&g4b2e30);break;
     }
 }
@@ -751,7 +751,7 @@ void Shell::UpdateHercBay()
     case 4:((HercBayActions *)&g4b37c4)->Reactivate();break;
     }
 }
-void Shell::UpdateHercBuy()
+extern "C" void ShellHercBuyHandler(Shell *self)
 {
     U32 result=HercBuyExit(&g4b416c);
     if(!result)return;
@@ -759,13 +759,13 @@ void Shell::UpdateHercBuy()
     switch(result){
     case 31:
         HercBuyAccept(&g4b416c);HercBuyClose(&g4b416c);
-        HercBayReturnFromPurchase(&g4b37c4,&input);screen=9;break;
+        HercBayReturnFromPurchase(&g4b37c4,&self->input);self->screen=9;break;
     case 32:
         HercBuyCancel(&g4b416c);HercBuyClose(&g4b416c);
-        HercBayReturnFromPurchase(&g4b37c4,&input);screen=9;break;
+        HercBayReturnFromPurchase(&g4b37c4,&self->input);self->screen=9;break;
     case 33:case 38:HercBuyRefresh(&g4b416c);break;
     case 39:
-        if(HercBuyCommit(&g4b416c)){screen=25;HercBuyRefresh(&g4b416c);}break;
+        if(HercBuyCommit(&g4b416c)){self->screen=25;HercBuyRefresh(&g4b416c);}break;
     }
 }
 void Shell::UpdateStorage()
@@ -898,9 +898,9 @@ void Shell::UpdateMultiplayerMenu()
     if(!InputButtonPressed(1))hit=-1;
     if(hit>=0){
         SoundPlay(5,0);
-        switch(hit){
-        case -1:ExploIdle();break;
-        case 3:if(ShellMultiplayerCanStart(&g4b82fc)){
+        ++hit; switch(hit){
+        case 0:ExploIdle();break;
+        case 4:if(ShellMultiplayerCanStart(&g4b82fc)){
             if(StartMultiplayer(uiSystem.sessionName,0)){
                 ShellMultiplayerClose(&g4b82fc);ShellNetworkSetupBegin(&g4ba2bc,&input);screen=37;
                 strncpy(gNetworkPlayerName,sessionName,13);gNetworkPlayerName[12]=0;
@@ -908,17 +908,17 @@ void Shell::UpdateMultiplayerMenu()
                 ShellMultiplayerClose(&g4b82fc);ShellMultiplayerOpen(&g4b82fc,&input,0);auxiliaryState=35;
             }
         }break;
-        case 0:
-            ShellMultiplayerClose(&g4b82fc);ShellSelectionOpen(&g4aff6c,&input,"Bioderm");screen=8;break;
         case 1:
+            ShellMultiplayerClose(&g4b82fc);ShellSelectionOpen(&g4aff6c,&input,"Bioderm");screen=8;break;
+        case 2:
             ShellMultiplayerClose(&g4b82fc);((HercBay *)&g4b37c4)->Start(&input);screen=9;break;
         }
         return;
     }
-    U32 result=ShellMultiplayerExit(&g4b82fc);
-    if(!result&&ShellInputKey()==1)result=6;
-    if(!result)return;
-    switch(result+1){
+    hit=ShellMultiplayerExit(&g4b82fc);
+    if(!hit&&ShellInputKey()==1)hit=6;
+    if(!hit)return;
+    ++hit;switch(hit){
     case 1:case 2:case 5:case 12:default:break;
     case 0:ExploIdle();break;
     case 3:
@@ -1177,7 +1177,12 @@ void Shell::UpdateMainMenu()
             ShellClearFrame();
             if(MenuLoadBackground("SEQUEL.ART",&gShellBackground)){
                 gShellEndingScreen=1;
-                ShellApplyPalette((Palette *)&gShellBackground);
+                {Palette *palette=(Palette *)&gShellBackground;
+    SurfaceCopyRegion(&gMenuSavedSurface,&g511948,0,0);
+    if(gShellOverlayPaletteActive)PaletteCopyRange(palette,gShellOverlayColors,171,37);
+    GuiFilterPalette(palette,gShellTintModeActive?3:1);
+    ApplyPaletteData(palette);
+}
                 GuiPumpMessages();SoundPlay(30);SurfacePresent(&g513888);InputClearEvents();
                 while(1){
                     gInDirty=1;InputPoll(&input);
@@ -1201,13 +1206,13 @@ void Shell::UpdateMainMenu()
         case 13:gShellAttractReady=0;ShellIntroSetMode(&g4afa84,1);break;
         case 10:
             difficulty=0;gShellAttractReady=0;ShellIntroClose(&g4afa84);resumeReason=1;ResumeMenus();
-            profileManager.SetDifficulty(0);profileManager.RefreshMissions();break;
+            profileManager.SetProfileMode(0);GenerateMissions(&profileManager);break;
         case 11:
             gShellAttractReady=0;ShellIntroClose(&g4afa84);resumeReason=1;ResumeMenus();
-            difficulty=1;profileManager.SetDifficulty(1);profileManager.RefreshMissions();break;
+            difficulty=1;profileManager.SetProfileMode(1);GenerateMissions(&profileManager);break;
         case 12:
             gShellAttractReady=0;ShellIntroClose(&g4afa84);resumeReason=1;ResumeMenus();
-            difficulty=2;profileManager.SetDifficulty(2);profileManager.RefreshMissions();break;
+            difficulty=2;profileManager.SetProfileMode(2);GenerateMissions(&profileManager);break;
         case 16:
             profileManager.SetMode(3);
             if(LoadMission(0,1)){
@@ -3109,11 +3114,6 @@ void ShellLoadPalette(const char *name)
 
 
 
-
-
-
-
-
     if(!loaded)AssertFail(ShellSourceFile,__LINE__,0);
     SurfaceCopyRegion(&gMenuSavedSurface,&g511948,0,0);
     if(gShellOverlayPaletteActive)PaletteCopyRange(&palette,gShellOverlayColors,171,37);
@@ -3123,7 +3123,7 @@ void ShellLoadPalette(const char *name)
 
 
 extern void HelpClearTopic();
-extern void ShellSetMenuState(int);
+extern "C" void BriefWaitA(int);
 extern int MenuLoadBackground(const char *,void *);
 extern char gShellBackground;
 extern void SurfaceFlush(void *);
@@ -3450,10 +3450,10 @@ int Shell::PlayTakeoff(int)
 void Shell::PlayTravel(U32 route)
 {
     Flic movie;
-    ShellSetMenuState(6);
+    BriefWaitA(6);
     HelpClearTopic();
     if(gGuiEffectPriority>50){
-        if(!PlayTakeoff()){
+if(PlayTakeoff()==0){
             switch(route){
             case 0:movie.Open((long)"icemoon.flx");break;
             case 1:SoundPlay(38);movie.Open((long)"whoosh.flx");break;
