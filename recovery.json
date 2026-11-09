@@ -5133,6 +5133,367 @@
    },
    "data": {},
    "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0044950c.c": {
+   "as": "_unknown\\tu_0044950c.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "0044950c",
+     "size": 110,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "PopInfo::$ct": {
+     "va": "0044957a",
+     "size": 30,
+     "mangled": "W?$ct:PopInfo$n()_"
+    },
+    "PopInfoOpen": {
+     "va": "00449598",
+     "size": 68,
+     "mangled": "W?PopInfoOpen$n(pn$PopInfo$$pn$InputReq$$)v"
+    },
+    "PopInfoClose": {
+     "va": "004495dc",
+     "size": 26,
+     "mangled": "W?PopInfoClose$n(pn$PopInfo$$)v"
+    },
+    "PopInfoUpdate": {
+     "va": "004495f6",
+     "size": 58,
+     "mangled": "W?PopInfoUpdate$n(pn$PopInfo$$)v"
+    },
+    "PopInfoDraw": {
+     "va": "00449aa7",
+     "size": 145,
+     "mangled": "W?PopInfoDraw$n(pn$PopInfo$$)v"
+    },
+    "PopInfoSelect": {
+     "va": "00449b38",
+     "size": 49,
+     "mangled": "W?PopInfoSelect$n(pn$PopInfo$$i)v"
+    },
+    "PopInfoEvent": {
+     "va": "00449b69",
+     "size": 63,
+     "mangled": "W?PopInfoEvent$n()i"
+    },
+    "PopInfo::$dt": {
+     "va": "00449ba8",
+     "size": 12,
+     "mangled": "W?$dt:PopInfo$n()_"
+    }
+   },
+   "data": {
+    "CONST2": {
+     "va": "0048dda0",
+     "size": 36
+    },
+    "_DATA": {
+     "va": "004a0154",
+     "size": 12
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_00449bb4.c": {
+   "as": "_unknown\\tu_00449bb4.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "00449bb4",
+     "size": 87,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "PopWorld::$ct": {
+     "va": "00449c0b",
+     "size": 23,
+     "mangled": "W?$ct:PopWorld$n()_"
+    },
+    "PopWorldOpen": {
+     "va": "00449c22",
+     "size": 68,
+     "mangled": "W?PopWorldOpen$n(pn$PopWorld$$pn$InputReq$$)v"
+    },
+    "PopWorldClose": {
+     "va": "00449c66",
+     "size": 26,
+     "mangled": "W?PopWorldClose$n(pn$PopWorld$$)v"
+    },
+    "PopWorldUpdate": {
+     "va": "00449c80",
+     "size": 58,
+     "mangled": "W?PopWorldUpdate$n(pn$PopWorld$$)v"
+    },
+    "PopWorldEvent": {
+     "va": "00449eb5",
+     "size": 63,
+     "mangled": "W?PopWorldEvent$n()i"
+    },
+    "PopWorld::$dt": {
+     "va": "00449ef4",
+     "size": 12,
+     "mangled": "W?$dt:PopWorld$n()_"
+    }
+   },
+   "data": {
+    "CONST2": {
+     "va": "0048ddec",
+     "size": 28
+    },
+    "_DATA": {
+     "va": "004a0178",
+     "size": 12
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/sim/sim.c": {
+   "as": "sim\\sim.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "WorldDrawTerrain": {
+     "va": "0044ad70",
+     "size": 384,
+     "mangled": "W?WorldDrawTerrain$n(pn$SimGame$$)v"
+    },
+    "SimDraw": {
+     "va": "0044aef0",
+     "size": 248,
+     "mangled": "W?SimDraw$n(pn$SimGame$$)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0044b8b0.c": {
+   "as": "_unknown\\tu_0044b8b0.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "f_44bba0": {
+     "va": "0044bba0",
+     "size": 176,
+     "mangled": "W?f_44bba0$n(pn$SimGame$$)v"
+    },
+    "SimResetLimits": {
+     "va": "0044bc50",
+     "size": 32,
+     "mangled": "W?SimResetLimits$n(pn$SimGame$$)v"
+    },
+    "SimSetTransformX": {
+     "va": "0044bc70",
+     "size": 32,
+     "mangled": "W?SimSetTransformX$n(i)v"
+    },
+    "SimShortcutMode": {
+     "va": "0044bc90",
+     "size": 64,
+     "mangled": "W?SimShortcutMode$n()i"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0044d150.c": {
+   "as": "_unknown\\tu_0044d150.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "SimAlert::$ct": {
+     "va": "0044d300",
+     "size": 32,
+     "mangled": "W?$ct:SimAlert$n()_"
+    },
+    "SimAlertOpen": {
+     "va": "0044d320",
+     "size": 144,
+     "mangled": "W?SimAlertOpen$n(pn$SimAlert$$pn$InputReq$$)v"
+    },
+    "SimAlertClose": {
+     "va": "0044d3b0",
+     "size": 32,
+     "mangled": "W?SimAlertClose$n(pn$SimAlert$$)v"
+    },
+    "SimAlertUpdate": {
+     "va": "0044d3d0",
+     "size": 64,
+     "mangled": "W?SimAlertUpdate$n(pn$SimAlert$$)v"
+    },
+    "SimAlertDraw": {
+     "va": "0044d410",
+     "size": 208,
+     "mangled": "W?SimAlertDraw$n(pn$SimAlert$$)v"
+    },
+    "SimAlertSetValue": {
+     "va": "0044d4e0",
+     "size": 160,
+     "mangled": "W?SimAlertSetValue$n(pnvi)v"
+    },
+    "W?$Wda013$:MenuSpacer$n(ui)pnv": {
+     "va": "0044d6f0",
+     "size": 21,
+     "mangled": "W?$Wda013$:MenuSpacer$n(ui)pnv"
+    },
+    "SimAlert::$dt": {
+     "va": "0044d760",
+     "size": 16,
+     "mangled": "W?$dt:SimAlert$n()_"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048b480",
+     "size": 13
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/sim/simdo.c": {
+   "as": "sim\\simdo.c",
+   "install": "wc106",
+   "profile": "ot-oe",
+   "functions": {
+    "SimFocusReady": {
+     "va": "0044d770",
+     "size": 48,
+     "mangled": "W?SimFocusReady$n(pn$SimGame$$)i"
+    },
+    "SimSetMode": {
+     "va": "0044da10",
+     "size": 128,
+     "mangled": "W?SimSetMode$n(pn$SimGame$$i)v"
+    },
+    "SimSaveBookmark": {
+     "va": "0044dc80",
+     "size": 48,
+     "mangled": "W?SimSaveBookmark$n(pn$SimGame$$i)v"
+    },
+    "SimCycleFocus": {
+     "va": "0044dcf0",
+     "size": 80,
+     "mangled": "W?SimCycleFocus$n(pn$SimGame$$i)i"
+    },
+    "SimFinishFocus": {
+     "va": "0044e110",
+     "size": 64,
+     "mangled": "W?SimFinishFocus$n(pn$SimGame$$)v"
+    },
+    "SimPreviewCost": {
+     "va": "0044e150",
+     "size": 288,
+     "mangled": "W?SimPreviewCost$n(pn$SimGame$$ii)i"
+    },
+    "SimSpendFocus": {
+     "va": "0044e270",
+     "size": 80,
+     "mangled": "W?SimSpendFocus$n(pn$SimGame$$i)i"
+    },
+    "SimSpendOnActor": {
+     "va": "0044e2c0",
+     "size": 160,
+     "mangled": "W?SimSpendOnActor$n(pn$SimGame$$pn$ActorRecord$$i)i"
+    },
+    "SimTargetAction": {
+     "va": "0044e4e0",
+     "size": 336,
+     "mangled": "W?SimTargetAction$n(pn$SimGame$$i)v"
+    },
+    "SimResetFocusCache": {
+     "va": "0044e630",
+     "size": 32,
+     "mangled": "W?SimResetFocusCache$n()v"
+    },
+    "SimPrepareAction": {
+     "va": "0044e820",
+     "size": 288,
+     "mangled": "W?SimPrepareAction$n(pn$SimGame$$i)v"
+    },
+    "SimRefreshFog": {
+     "va": "0044e940",
+     "size": 192,
+     "mangled": "W?SimRefreshFog$n(pn$SimGame$$i)v"
+    },
+    "SimAdoptFocus": {
+     "va": "0044f220",
+     "size": 112,
+     "mangled": "W?SimAdoptFocus$n(pn$SimGame$$pn$ActorRecord$$)v"
+    },
+    "SimStartPhase": {
+     "va": "0044f670",
+     "size": 48,
+     "mangled": "W?SimStartPhase$n(pn$SimGame$$)v"
+    },
+    "SimDelayPhase": {
+     "va": "0044f6a0",
+     "size": 48,
+     "mangled": "W?SimDelayPhase$n(pn$SimGame$$)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/sim/simturn.c": {
+   "as": "sim\\simturn.c",
+   "install": "wc106",
+   "profile": "ot-oe",
+   "functions": {
+    "SimOnlyStationary": {
+     "va": "00450130",
+     "size": 128,
+     "mangled": "W?SimOnlyStationary$n(pn$SimGame$$)i"
+    },
+    "SimPlayerHasUnits": {
+     "va": "004501b0",
+     "size": 112,
+     "mangled": "W?SimPlayerHasUnits$n(pn$SimGame$$i)i"
+    },
+    "SimUpdateOwnerPayloads": {
+     "va": "00450220",
+     "size": 80,
+     "mangled": "W?SimUpdateOwnerPayloads$n(pn$SimGame$$)v"
+    },
+    "SimChangePlayer": {
+     "va": "00450420",
+     "size": 400,
+     "mangled": "W?SimChangePlayer$n(pn$SimGame$$i)v"
+    },
+    "SimRestoreOwnerFocus": {
+     "va": "004505b0",
+     "size": 96,
+     "mangled": "W?SimRestoreOwnerFocus$n(pn$SimGame$$)v"
+    },
+    "SimDisableInactiveActors": {
+     "va": "00450610",
+     "size": 80,
+     "mangled": "W?SimDisableInactiveActors$n()v"
+    },
+    "SimRefreshPanel": {
+     "va": "00450660",
+     "size": 368,
+     "mangled": "W?SimRefreshPanel$n(pn$SimGame$$i)v"
+    },
+    "SimAddPlayer": {
+     "va": "00450930",
+     "size": 128,
+     "mangled": "W?SimAddPlayer$n(pn$SimGame$$ipn$PlayerSlot$$)i"
+    },
+    "SimRemovePlayer": {
+     "va": "004509b0",
+     "size": 128,
+     "mangled": "W?SimRemovePlayer$n(pn$SimGame$$i)v"
+    },
+    "SimSetMenuState": {
+     "va": "00450aa0",
+     "size": 84,
+     "mangled": "W?SimSetMenuState$n(pn$SimGame$$i)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
   }
  },
  "accepted_losses": [
