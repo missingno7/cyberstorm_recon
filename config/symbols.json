@@ -8,6 +8,76 @@
    "mangled": "BriefCloseAudio",
    "evidence": "implied by src/shell/missbrf.c 2026-11-09"
   },
+  "MenuHelpRegion::$dt": {
+   "va": "00408610",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:MenuHelpRegion$n()_",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "MenuLabel::$dt": {
+   "va": "00408654",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:MenuLabel$n()_",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "MenuPrefixButton::$dt": {
+   "va": "00408698",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:MenuPrefixButton$n()_",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "MenuPanel::$dt": {
+   "va": "004086dc",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:MenuPanel$n()_",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "MenuNumber::$dt": {
+   "va": "00408720",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:MenuNumber$n()_",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "MenuButton::$dt": {
+   "va": "00408764",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:MenuButton$n()_",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "MenuCaption::$dt": {
+   "va": "0040d24c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:MenuCaption$n()_",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "MenuListButton::$dt": {
+   "va": "00414f5c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:MenuListButton$n()_",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "GuiControl::HitTest": {
+   "va": "00415024",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HitTest$:GuiControl$n(pnx$GuiPoint$$)i",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "GuiControl::Reset": {
+   "va": "00415068",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Reset$:GuiControl$n(ui)v",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
   "MissBriefModuleInit": {
    "va": "00415074",
    "kind": "func",
@@ -167,6 +237,27 @@
    "mangled": "W?HercBayDone$n()v",
    "tu": "src/shell/hercbay.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "MenuEdit::$dt": {
+   "va": "004242f4",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:MenuEdit$n()_",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "MenuTextButton::$dt": {
+   "va": "00424338",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:MenuTextButton$n()_",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "MenuChat::$dt": {
+   "va": "0042437c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:MenuChat$n()_",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
   },
   "PopLoadResource": {
    "va": "00425978",
@@ -506,12 +597,26 @@
    "tu": "src/gui/flic.c",
    "evidence": "strict match 2026-11-09"
   },
+  "GuiControl::$ct": {
+   "va": "00426cdc",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$ct:GuiControl$n(ulul)_",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
   "GuiControlStyle": {
    "va": "00426d33",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?GuiControlStyle$n(pn$GuiControl$$uiul)i",
    "evidence": "implied by src/_unknown/tu_00425978.c 2026-11-09"
+  },
+  "MenuControlChanged": {
+   "va": "00426d74",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuControlChanged$n(pnvuipnul)i",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
   },
   "GuiControlShortcut": {
    "va": "00426de7",
@@ -526,6 +631,27 @@
    "status": "hypothesis",
    "mangled": "W?GuiControlSetShortcut$n(pn$GuiControl$$pnxa)v",
    "evidence": "implied by src/_unknown/tu_00425978.c 2026-11-09"
+  },
+  "MenuDrawWrapped": {
+   "va": "00426eb9",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuDrawWrapped$n(pnxallllpnx$GuiRect$$ii)v",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "MenuDrawPanel": {
+   "va": "00426ffb",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuDrawPanel$n(pnx$MenuImage$$pnx$GuiRect$$)v",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "GuiControl::Event": {
+   "va": "00427264",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Event$:GuiControl$n(uiul)i",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
   },
   "Surface::$ct": {
    "va": "0042726c",
@@ -547,6 +673,13 @@
    "status": "hypothesis",
    "mangled": "W?SurfaceClear$n(pn$Surface$$)v",
    "evidence": "implied by src/gui/flic.c 2026-11-09"
+  },
+  "MenuRestore": {
+   "va": "00427459",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuRestore$n(pnvpnvpnx$GuiRect$$ll)v",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
   },
   "PlyMatch": {
    "va": "004275dc",
@@ -610,6 +743,91 @@
    "tu": "src/_unknown/tu_004279fc.c",
    "evidence": "strict match 2026-11-09"
   },
+  "MenuLabel::$ct": {
+   "va": "00427e0c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:MenuLabel$n(pnxalucli)_",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuLabel::SetFont": {
+   "va": "00427e48",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetFont$:MenuLabel$n(uc)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuLabel::SetText": {
+   "va": "00427e54",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetText$:MenuLabel$n(pnxa)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuLabel::SetColor": {
+   "va": "00427e60",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetColor$:MenuLabel$n(l)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuLabel::SetAlign": {
+   "va": "00427e6c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetAlign$:MenuLabel$n(l)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuLabel::Reset": {
+   "va": "00427e78",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Reset$:MenuLabel$n(ui)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuEdit::Reset": {
+   "va": "00427e78",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Reset$:MenuEdit$n(ui)v",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "MenuListButton::Reset": {
+   "va": "00427e78",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Reset$:MenuListButton$n(ui)v",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "MenuImageButton::Reset": {
+   "va": "00427e78",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Reset$:MenuImageButton$n(ui)v",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "MenuLabel::SetBackground": {
+   "va": "00427e8a",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetBackground$:MenuLabel$n(i)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuLabel::Draw": {
+   "va": "00427e96",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Draw$:MenuLabel$n(ui)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "placed (at) in src/gui/menu.c 2026-11-09"
+  },
   "BriefModuleInitB": {
    "va": "00427f89",
    "kind": "func",
@@ -623,6 +841,102 @@
    "status": "hypothesis",
    "mangled": "HercModuleInitD",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "MenuHelpRegion::$ct": {
+   "va": "00427f89",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:MenuHelpRegion$n()_",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuHelpRegion::Draw": {
+   "va": "00427fb0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Draw$:MenuHelpRegion$n(ui)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuHelpRegion::Event": {
+   "va": "00427ff0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Event$:MenuHelpRegion$n(uiul)i",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuCaption::$ct": {
+   "va": "00428018",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:MenuCaption$n(pnxac)_",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuCaption::SetText": {
+   "va": "00428043",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetText$:MenuCaption$n(pnxa)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuCaption::Reset": {
+   "va": "00428053",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Reset$:MenuCaption$n(ui)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuCaption::Draw": {
+   "va": "00428066",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Draw$:MenuCaption$n(ui)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuEdit::$ct": {
+   "va": "00428103",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:MenuEdit$n(pnaul)_",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuEdit::GetText": {
+   "va": "00428131",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?GetText$:MenuEdit$n()pna",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuEdit::SetText": {
+   "va": "00428139",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetText$:MenuEdit$n(pnxa)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuEdit::Draw": {
+   "va": "00428162",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Draw$:MenuEdit$n(ui)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuEdit::Event": {
+   "va": "0042827d",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Event$:MenuEdit$n(uiul)i",
+   "tu": "src/gui/menu.c",
+   "evidence": "placed (at) in src/gui/menu.c 2026-11-09"
   },
   "BriefModuleInitA": {
    "va": "004284d5",
@@ -638,12 +952,264 @@
    "mangled": "HercModuleInitA",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
   },
+  "MenuButton::$ct": {
+   "va": "004284d5",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:MenuButton$n(pnxaul)_",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuButton::Reset": {
+   "va": "00428501",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Reset$:MenuButton$n(ui)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuNumber::Reset": {
+   "va": "00428501",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Reset$:MenuNumber$n(ui)v",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "MenuButton::Draw": {
+   "va": "0042851a",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Draw$:MenuButton$n(ui)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuButton::Event": {
+   "va": "0042860f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Event$:MenuButton$n(uiul)i",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuTextButton::Event": {
+   "va": "0042860f",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Event$:MenuTextButton$n(uiul)i",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "MenuListButton::Event": {
+   "va": "0042860f",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Event$:MenuListButton$n(uiul)i",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "MenuPrefixButton::Event": {
+   "va": "0042860f",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Event$:MenuPrefixButton$n(uiul)i",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "MenuTextButton::$ct": {
+   "va": "00428615",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:MenuTextButton$n(pnxaulccc)_",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuTextButton::Reset": {
+   "va": "0042865d",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Reset$:MenuTextButton$n(ui)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuTextButton::SetColor": {
+   "va": "0042867c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetColor$:MenuTextButton$n(c)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuTextButton::SetAlign": {
+   "va": "0042868c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetAlign$:MenuTextButton$n(c)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuTextButton::SetFont": {
+   "va": "0042869c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetFont$:MenuTextButton$n(c)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuTextButton::Draw": {
+   "va": "004286ac",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Draw$:MenuTextButton$n(ui)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuListButton::$ct": {
+   "va": "00428739",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:MenuListButton$n()_",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuListButton::Draw": {
+   "va": "00428759",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Draw$:MenuListButton$n(ui)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuImageButton::$ct": {
+   "va": "0042885c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:MenuImageButton$n(llul)_",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuImageButton::Draw": {
+   "va": "0042888f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Draw$:MenuImageButton$n(ui)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuImageButton::Event": {
+   "va": "00428992",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Event$:MenuImageButton$n(uiul)i",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuImageLabel::$ct": {
+   "va": "00428a47",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:MenuImageLabel$n(lcccccc)_",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuImageLabel::SetStyle": {
+   "va": "00428a98",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetStyle$:MenuImageLabel$n(cccccc)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuImageLabel::Draw": {
+   "va": "00428ac7",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Draw$:MenuImageLabel$n(ui)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "placed (at) in src/gui/menu.c 2026-11-09"
+  },
+  "MenuSpacer::$ct": {
+   "va": "00428c2e",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:MenuSpacer$n()_",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuSpacer::Draw": {
+   "va": "00428c47",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Draw$:MenuSpacer$n(ui)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "HercModuleInitWidget": {
    "va": "00428c5f",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "HercModuleInitWidget",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "MenuPrefixButton::$ct": {
+   "va": "00428c5f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:MenuPrefixButton$n(pnxaccc)_",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuPrefixButton::SetText": {
+   "va": "00428c9f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetText$:MenuPrefixButton$n(pnxa)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuPrefixButton::SetColor": {
+   "va": "00428caf",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetColor$:MenuPrefixButton$n(c)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuPrefixButton::SetAlign": {
+   "va": "00428cbf",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetAlign$:MenuPrefixButton$n(c)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuPrefixButton::SetPrefix": {
+   "va": "00428ccf",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetPrefix$:MenuPrefixButton$n(c)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuPrefixButton::Reset": {
+   "va": "00428cdf",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Reset$:MenuPrefixButton$n(ui)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuPrefixButton::Draw": {
+   "va": "00428cee",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Draw$:MenuPrefixButton$n(ui)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuPrefixButton::SetFont": {
+   "va": "00428e2b",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetFont$:MenuPrefixButton$n(c)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
   },
   "HercModuleInitC": {
    "va": "00428e3b",
@@ -652,6 +1218,22 @@
    "mangled": "HercModuleInitC",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
   },
+  "MenuPanel::$ct": {
+   "va": "00428e3b",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:MenuPanel$n()_",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuPanel::Draw": {
+   "va": "00428e5b",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Draw$:MenuPanel$n(ui)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "placed (at) in src/gui/menu.c 2026-11-09"
+  },
   "HercModuleInitB": {
    "va": "00428efa",
    "kind": "func",
@@ -659,12 +1241,121 @@
    "mangled": "HercModuleInitB",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
   },
+  "MenuNumber::$ct": {
+   "va": "00428efa",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:MenuNumber$n(cc)_",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "HercSetDisplay": {
    "va": "00428f33",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "HercSetDisplay",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "MenuNumber::SetValue": {
+   "va": "00428f33",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetValue$:MenuNumber$n(lc)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuNumber::SetFont": {
+   "va": "00428f4a",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetFont$:MenuNumber$n(c)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuNumber::Draw": {
+   "va": "00428f56",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Draw$:MenuNumber$n(ui)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuChat::$ct": {
+   "va": "0042902f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:MenuChat$n(ul)_",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuChat::GetText": {
+   "va": "004290db",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?GetText$:MenuChat$n()pna",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuChat::Reset": {
+   "va": "004290e1",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Reset$:MenuChat$n(ui)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuChat::Clear": {
+   "va": "0042912f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Clear$:MenuChat$n()v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuChat::Draw": {
+   "va": "00429136",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Draw$:MenuChat$n(ui)v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuChat::Send": {
+   "va": "00429286",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Send$:MenuChat$n()v",
+   "tu": "src/gui/menu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuChat::Event": {
+   "va": "004292e1",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Event$:MenuChat$n(uiul)i",
+   "tu": "src/gui/menu.c",
+   "evidence": "placed (at) in src/gui/menu.c 2026-11-09"
+  },
+  "MenuImageLabel::$dt": {
+   "va": "00429708",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:MenuImageLabel$n()_",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "MenuSpacer::$dt": {
+   "va": "0042974c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:MenuSpacer$n()_",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "MenuImageButton::$dt": {
+   "va": "00429790",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:MenuImageButton$n()_",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
   },
   "PlyFind": {
    "va": "00429863",
@@ -769,6 +1460,13 @@
    "status": "hypothesis",
    "mangled": "HercDraw16",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "MenuFormatNumber": {
+   "va": "0042ac40",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuFormatNumber$n(lll)pnxa",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
   },
   "GridClear": {
    "va": "0042ad60",
@@ -2130,12 +2828,47 @@
    "mangled": "W?SoundPlayDefault$n(uii)i",
    "evidence": "implied by src/gui/flic.c 2026-11-09"
   },
+  "MenuNetwork::Count": {
+   "va": "0046f2e1",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Count$:MenuNetwork$n()i",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "MenuSend": {
+   "va": "00471789",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuSend$n(pnx$MenuMessage$$i)v",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "MenuMessage::$ct": {
+   "va": "00471be0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$ct:MenuMessage$n(uipnxa)_",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
   "LogMode": {
    "va": "00472cc3",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?LogMode$n(pnxapnvii)v",
    "evidence": "implied by src/logic/lactor.c 2026-11-09"
+  },
+  "MenuHelpSetTopic": {
+   "va": "004762bb",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuHelpSetTopic$n(l)v",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "MenuHelpOpenTopic": {
+   "va": "00476528",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuHelpOpenTopic$n(l)v",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
   },
   "BriefModuleConstruct": {
    "va": "0047ab8c",
@@ -2214,6 +2947,13 @@
    "tu": "src/_unknown/tu_0047abc0.c",
    "evidence": "strict match 2026-11-09"
   },
+  "MenuSetClip": {
+   "va": "0047ac80",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuSetClip$n(pn$GuiRect$$llll)v",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
   "ApplyPaletteData": {
    "va": "0047b430",
    "kind": "func",
@@ -2221,12 +2961,40 @@
    "mangled": "W?ApplyPaletteData$n(pnvii)v",
    "evidence": "implied by src/gui/flic.c 2026-11-09"
   },
+  "MenuSetColors": {
+   "va": "0047b930",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuSetColors$n(pnvull)v",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "MenuFill": {
+   "va": "0047bad0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuFill$n(pnvllll)v",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "MenuLine": {
+   "va": "0047bc60",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuLine$n(pnvllll)v",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
   "BriefBlit": {
    "va": "0047bea0",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "BriefBlit",
    "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "MenuDrawImage": {
+   "va": "0047bff0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuDrawImage$n(pnvpnx$MenuImage$$ll)v",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
   },
   "StrPool::$ct": {
    "va": "0047c280",
@@ -2382,6 +3150,20 @@
    "mangled": "f_cbf0",
    "tu": "src/io/resource.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "MenuTextWidth": {
+   "va": "0047cc10",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuTextWidth$n(pn$Font$$pnxa)l",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "MenuDrawText": {
+   "va": "0047cf80",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuDrawText$n(pn$Font$$llpnxa)v",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
   },
   "f_d110": {
    "va": "0047d110",
@@ -2742,6 +3524,104 @@
    "mangled": "W?fileRootFormat$n[]xa",
    "evidence": "implied by src/io/file.c 2026-11-09"
   },
+  "W?$Wvf0cos:MenuChat$$nx[]pn()v": {
+   "va": "0048d98c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wvf0cos:MenuChat$$nx[]pn()v",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "W?$Wvf0eos:MenuNumber$$nx[]pn()v": {
+   "va": "0048d9a0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wvf0eos:MenuNumber$$nx[]pn()v",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "W?$Wvf0dos:MenuPanel$$nx[]pn()v": {
+   "va": "0048d9b4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wvf0dos:MenuPanel$$nx[]pn()v",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "W?$Wvf0kos:MenuPrefixButton$$nx[]pn()v": {
+   "va": "0048d9c8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wvf0kos:MenuPrefixButton$$nx[]pn()v",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "W?$Wvf0eos:MenuSpacer$$nx[]pn()v": {
+   "va": "0048d9dc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wvf0eos:MenuSpacer$$nx[]pn()v",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "W?$Wvf0ios:MenuImageLabel$$nx[]pn()v": {
+   "va": "0048d9f0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wvf0ios:MenuImageLabel$$nx[]pn()v",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "W?$Wvf0jos:MenuImageButton$$nx[]pn()v": {
+   "va": "0048da04",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wvf0jos:MenuImageButton$$nx[]pn()v",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "W?$Wvf0ios:MenuListButton$$nx[]pn()v": {
+   "va": "0048da18",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wvf0ios:MenuListButton$$nx[]pn()v",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "W?$Wvf0ios:MenuTextButton$$nx[]pn()v": {
+   "va": "0048da2c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wvf0ios:MenuTextButton$$nx[]pn()v",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "W?$Wvf0eos:MenuButton$$nx[]pn()v": {
+   "va": "0048da40",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wvf0eos:MenuButton$$nx[]pn()v",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "W?$Wvf0cos:MenuEdit$$nx[]pn()v": {
+   "va": "0048da54",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wvf0cos:MenuEdit$$nx[]pn()v",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "W?$Wvf0fos:MenuCaption$$nx[]pn()v": {
+   "va": "0048da68",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wvf0fos:MenuCaption$$nx[]pn()v",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "W?$Wvf0ios:MenuHelpRegion$$nx[]pn()v": {
+   "va": "0048da7c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wvf0ios:MenuHelpRegion$$nx[]pn()v",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "W?$Wvf0dos:MenuLabel$$nx[]pn()v": {
+   "va": "0048da90",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wvf0dos:MenuLabel$$nx[]pn()v",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
   "g48dc00": {
    "va": "0048dc00",
    "kind": "data",
@@ -2811,6 +3691,13 @@
    "status": "hypothesis",
    "mangled": "W?g48eafc$ni",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "gMenuFonts": {
+   "va": "0048f368",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gMenuFonts$n[]pn$Font$$",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
   },
   "FogSourcePath": {
    "va": "004905ec",
@@ -3120,12 +4007,33 @@
    "mangled": "W?gFlicSoundDefaults$n$SoundSettings$$",
    "evidence": "implied by src/gui/flic.c 2026-11-09"
   },
+  "gMenuImages": {
+   "va": "004bb748",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gMenuImages$npn$MenuImages$$",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
   "gGuiCurrentInput": {
    "va": "004bb74c",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gGuiCurrentInput$npn$InputReq$$",
    "evidence": "implied by src/_unknown/tu_00425978.c 2026-11-09"
+  },
+  "gGuiStringPool": {
+   "va": "004bb750",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gGuiStringPool$npn$StrPool$$",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "gGuiStringBase": {
+   "va": "004bb75c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gGuiStringBase$nl",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
   },
   "gIn7c": {
    "va": "004bb77c",
@@ -3204,6 +4112,34 @@
    "mangled": "W?gInA4$nul",
    "evidence": "implied by src/_unknown/tu_004279fc.c 2026-11-09"
   },
+  "W?repeatTimer$:.0$:?Event$n(uiul)i:MenuImageButton$n$Timer$$": {
+   "va": "004bb7ac",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?repeatTimer$:.0$:?Event$n(uiul)i:MenuImageButton$n$Timer$$",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "W?$Wbi00$:.0$:?Event$n(uiul)i:MenuImageButton$n[]uc": {
+   "va": "004bb7b8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wbi00$:.0$:?Event$n(uiul)i:MenuImageButton$n[]uc",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "gMenuHistory": {
+   "va": "004bb7c0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gMenuHistory$n[]a",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "gMenuVisible": {
+   "va": "004bbfc0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gMenuVisible$n[]a",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
   "gPly": {
    "va": "004bbff4",
    "kind": "data",
@@ -3224,6 +4160,20 @@
    "status": "hypothesis",
    "mangled": "W?gPlyKey$n$PlyKey$$",
    "evidence": "implied by src/_unknown/tu_004297d4.c 2026-11-09"
+  },
+  "gMenuColors": {
+   "va": "004bc4bc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gMenuColors$n[]ul",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "gMenuColorMap": {
+   "va": "004bc534",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gMenuColorMap$n[]ul",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
   },
   "gFogGlobalMode": {
    "va": "004c6890",
@@ -3519,6 +4469,13 @@
    "mangled": "W?logicTextBuffer$n[]a",
    "evidence": "implied by src/logic/lsys.c 2026-11-09"
   },
+  "gMenuNetwork": {
+   "va": "004f6624",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gMenuNetwork$n$MenuNetwork$$",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
   "modeLogName": {
    "va": "004faf48",
    "kind": "data",
@@ -3532,6 +4489,20 @@
    "status": "hypothesis",
    "mangled": "W?g511948$ni",
    "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "gMenuSavedSurface": {
+   "va": "00511958",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gMenuSavedSurface$na",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "gMenuPrefixStrings": {
+   "va": "00511df0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gMenuPrefixStrings$n$StrPool$$",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
   },
   "missionImageName": {
    "va": "00511e2c",
@@ -3567,6 +4538,48 @@
    "status": "hypothesis",
    "mangled": "W?g513888$ni",
    "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "gMenuBackground": {
+   "va": "005138e0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gMenuBackground$nul",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "gMenuForeground": {
+   "va": "005138e4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gMenuForeground$nul",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "gMenuTextMode": {
+   "va": "005138ec",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gMenuTextMode$nul",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "gMenuTextColor": {
+   "va": "005138f4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gMenuTextColor$nul",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "gMenuTextMap": {
+   "va": "005138f8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gMenuTextMap$npnul",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "gMenuClip": {
+   "va": "0051391c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gMenuClip$n$GuiRect$$",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
   },
   "g_assertMessageActive": {
    "va": "00513988",

@@ -150,7 +150,7 @@ def main(argv):
     for k, v in implied.items():
         lab = symbols.label(k)
         if lab not in syms:
-            syms[lab] = {"va": v, "kind": "func" if "$n(" in k or not k.startswith("W?") else "data",
+            syms[lab] = {"va": v, "kind": "func" if symbols.is_function(k) else "data",
                          "status": "hypothesis", "mangled": k, "evidence": f"implied by {tu} {now}"}
     # this TU's own non-strict functions placed by --at or unique search: keep the placement as a hypothesis
     # binding, so references to them resolve without --at (as in verify)

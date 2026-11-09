@@ -412,9 +412,7 @@ def plausible(img, name, va):
     """An implied binding must point where such a symbol can live: code symbols at a function start of the
     function map, data symbols inside DGROUP or .bss."""
     fm = Path(__file__).resolve().parent.parent / "build" / "funcmap" / f"{img.name}.json"
-    is_func = "$n(" in name or not name.startswith("W?")
-    if name.startswith("W?") and "$n(" not in name:
-        is_func = False
+    is_func = symbols.is_function(name)
     rva = va - img.image_base
     sec = img.section_at_rva(rva)
     if sec is None:

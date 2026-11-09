@@ -1202,6 +1202,361 @@
     }
    },
    "accepted": "2026-11-09"
+  },
+  "src/gui/menu.c": {
+   "as": "gui\\menu.c",
+   "install": "wc106",
+   "flags": [
+    "-4s",
+    "-s",
+    "-bm"
+   ],
+   "tool": "wpp386",
+   "functions": {
+    "MenuLabel::$ct": {
+     "va": "00427e0c",
+     "size": 60,
+     "mangled": "W?$ct:MenuLabel$n(pnxalucli)_"
+    },
+    "MenuLabel::SetFont": {
+     "va": "00427e48",
+     "size": 12,
+     "mangled": "W?SetFont$:MenuLabel$n(uc)v"
+    },
+    "MenuLabel::SetText": {
+     "va": "00427e54",
+     "size": 12,
+     "mangled": "W?SetText$:MenuLabel$n(pnxa)v"
+    },
+    "MenuLabel::SetColor": {
+     "va": "00427e60",
+     "size": 12,
+     "mangled": "W?SetColor$:MenuLabel$n(l)v"
+    },
+    "MenuLabel::SetAlign": {
+     "va": "00427e6c",
+     "size": 12,
+     "mangled": "W?SetAlign$:MenuLabel$n(l)v"
+    },
+    "MenuLabel::Reset": {
+     "va": "00427e78",
+     "size": 18,
+     "mangled": "W?Reset$:MenuLabel$n(ui)v"
+    },
+    "MenuLabel::SetBackground": {
+     "va": "00427e8a",
+     "size": 12,
+     "mangled": "W?SetBackground$:MenuLabel$n(i)v"
+    },
+    "MenuHelpRegion::$ct": {
+     "va": "00427f89",
+     "size": 39,
+     "mangled": "W?$ct:MenuHelpRegion$n()_"
+    },
+    "MenuHelpRegion::Draw": {
+     "va": "00427fb0",
+     "size": 64,
+     "mangled": "W?Draw$:MenuHelpRegion$n(ui)v"
+    },
+    "MenuHelpRegion::Event": {
+     "va": "00427ff0",
+     "size": 40,
+     "mangled": "W?Event$:MenuHelpRegion$n(uiul)i"
+    },
+    "MenuCaption::$ct": {
+     "va": "00428018",
+     "size": 43,
+     "mangled": "W?$ct:MenuCaption$n(pnxac)_"
+    },
+    "MenuCaption::SetText": {
+     "va": "00428043",
+     "size": 16,
+     "mangled": "W?SetText$:MenuCaption$n(pnxa)v"
+    },
+    "MenuCaption::Reset": {
+     "va": "00428053",
+     "size": 19,
+     "mangled": "W?Reset$:MenuCaption$n(ui)v"
+    },
+    "MenuCaption::Draw": {
+     "va": "00428066",
+     "size": 157,
+     "mangled": "W?Draw$:MenuCaption$n(ui)v"
+    },
+    "MenuEdit::$ct": {
+     "va": "00428103",
+     "size": 46,
+     "mangled": "W?$ct:MenuEdit$n(pnaul)_"
+    },
+    "MenuEdit::GetText": {
+     "va": "00428131",
+     "size": 8,
+     "mangled": "W?GetText$:MenuEdit$n()pna"
+    },
+    "MenuEdit::SetText": {
+     "va": "00428139",
+     "size": 41,
+     "mangled": "W?SetText$:MenuEdit$n(pnxa)v"
+    },
+    "MenuEdit::Draw": {
+     "va": "00428162",
+     "size": 283,
+     "mangled": "W?Draw$:MenuEdit$n(ui)v"
+    },
+    "MenuButton::$ct": {
+     "va": "004284d5",
+     "size": 44,
+     "mangled": "W?$ct:MenuButton$n(pnxaul)_"
+    },
+    "MenuButton::Reset": {
+     "va": "00428501",
+     "size": 25,
+     "mangled": "W?Reset$:MenuButton$n(ui)v"
+    },
+    "MenuButton::Draw": {
+     "va": "0042851a",
+     "size": 245,
+     "mangled": "W?Draw$:MenuButton$n(ui)v"
+    },
+    "MenuButton::Event": {
+     "va": "0042860f",
+     "size": 6,
+     "mangled": "W?Event$:MenuButton$n(uiul)i"
+    },
+    "MenuTextButton::$ct": {
+     "va": "00428615",
+     "size": 72,
+     "mangled": "W?$ct:MenuTextButton$n(pnxaulccc)_"
+    },
+    "MenuTextButton::Reset": {
+     "va": "0042865d",
+     "size": 31,
+     "mangled": "W?Reset$:MenuTextButton$n(ui)v"
+    },
+    "MenuTextButton::SetColor": {
+     "va": "0042867c",
+     "size": 16,
+     "mangled": "W?SetColor$:MenuTextButton$n(c)v"
+    },
+    "MenuTextButton::SetAlign": {
+     "va": "0042868c",
+     "size": 16,
+     "mangled": "W?SetAlign$:MenuTextButton$n(c)v"
+    },
+    "MenuTextButton::SetFont": {
+     "va": "0042869c",
+     "size": 16,
+     "mangled": "W?SetFont$:MenuTextButton$n(c)v"
+    },
+    "MenuTextButton::Draw": {
+     "va": "004286ac",
+     "size": 141,
+     "mangled": "W?Draw$:MenuTextButton$n(ui)v"
+    },
+    "MenuListButton::$ct": {
+     "va": "00428739",
+     "size": 32,
+     "mangled": "W?$ct:MenuListButton$n()_"
+    },
+    "MenuListButton::Draw": {
+     "va": "00428759",
+     "size": 259,
+     "mangled": "W?Draw$:MenuListButton$n(ui)v"
+    },
+    "MenuImageButton::$ct": {
+     "va": "0042885c",
+     "size": 51,
+     "mangled": "W?$ct:MenuImageButton$n(llul)_"
+    },
+    "MenuImageButton::Draw": {
+     "va": "0042888f",
+     "size": 259,
+     "mangled": "W?Draw$:MenuImageButton$n(ui)v"
+    },
+    "MenuImageButton::Event": {
+     "va": "00428992",
+     "size": 181,
+     "mangled": "W?Event$:MenuImageButton$n(uiul)i"
+    },
+    "MenuImageLabel::$ct": {
+     "va": "00428a47",
+     "size": 81,
+     "mangled": "W?$ct:MenuImageLabel$n(lcccccc)_"
+    },
+    "MenuImageLabel::SetStyle": {
+     "va": "00428a98",
+     "size": 47,
+     "mangled": "W?SetStyle$:MenuImageLabel$n(cccccc)v"
+    },
+    "MenuSpacer::$ct": {
+     "va": "00428c2e",
+     "size": 25,
+     "mangled": "W?$ct:MenuSpacer$n()_"
+    },
+    "MenuSpacer::Draw": {
+     "va": "00428c47",
+     "size": 24,
+     "mangled": "W?Draw$:MenuSpacer$n(ui)v"
+    },
+    "MenuPrefixButton::$ct": {
+     "va": "00428c5f",
+     "size": 64,
+     "mangled": "W?$ct:MenuPrefixButton$n(pnxaccc)_"
+    },
+    "MenuPrefixButton::SetText": {
+     "va": "00428c9f",
+     "size": 16,
+     "mangled": "W?SetText$:MenuPrefixButton$n(pnxa)v"
+    },
+    "MenuPrefixButton::SetColor": {
+     "va": "00428caf",
+     "size": 16,
+     "mangled": "W?SetColor$:MenuPrefixButton$n(c)v"
+    },
+    "MenuPrefixButton::SetAlign": {
+     "va": "00428cbf",
+     "size": 16,
+     "mangled": "W?SetAlign$:MenuPrefixButton$n(c)v"
+    },
+    "MenuPrefixButton::SetPrefix": {
+     "va": "00428ccf",
+     "size": 16,
+     "mangled": "W?SetPrefix$:MenuPrefixButton$n(c)v"
+    },
+    "MenuPrefixButton::Reset": {
+     "va": "00428cdf",
+     "size": 15,
+     "mangled": "W?Reset$:MenuPrefixButton$n(ui)v"
+    },
+    "MenuPrefixButton::Draw": {
+     "va": "00428cee",
+     "size": 317,
+     "mangled": "W?Draw$:MenuPrefixButton$n(ui)v"
+    },
+    "MenuPrefixButton::SetFont": {
+     "va": "00428e2b",
+     "size": 16,
+     "mangled": "W?SetFont$:MenuPrefixButton$n(c)v"
+    },
+    "MenuPanel::$ct": {
+     "va": "00428e3b",
+     "size": 32,
+     "mangled": "W?$ct:MenuPanel$n()_"
+    },
+    "MenuNumber::$ct": {
+     "va": "00428efa",
+     "size": 57,
+     "mangled": "W?$ct:MenuNumber$n(cc)_"
+    },
+    "MenuNumber::SetValue": {
+     "va": "00428f33",
+     "size": 23,
+     "mangled": "W?SetValue$:MenuNumber$n(lc)v"
+    },
+    "MenuNumber::SetFont": {
+     "va": "00428f4a",
+     "size": 12,
+     "mangled": "W?SetFont$:MenuNumber$n(c)v"
+    },
+    "MenuNumber::Draw": {
+     "va": "00428f56",
+     "size": 217,
+     "mangled": "W?Draw$:MenuNumber$n(ui)v"
+    },
+    "MenuChat::$ct": {
+     "va": "0042902f",
+     "size": 172,
+     "mangled": "W?$ct:MenuChat$n(ul)_"
+    },
+    "MenuChat::GetText": {
+     "va": "004290db",
+     "size": 6,
+     "mangled": "W?GetText$:MenuChat$n()pna"
+    },
+    "MenuChat::Reset": {
+     "va": "004290e1",
+     "size": 78,
+     "mangled": "W?Reset$:MenuChat$n(ui)v"
+    },
+    "MenuChat::Clear": {
+     "va": "0042912f",
+     "size": 7,
+     "mangled": "W?Clear$:MenuChat$n()v"
+    },
+    "MenuChat::Draw": {
+     "va": "00429136",
+     "size": 336,
+     "mangled": "W?Draw$:MenuChat$n(ui)v"
+    },
+    "MenuChat::Send": {
+     "va": "00429286",
+     "size": 91,
+     "mangled": "W?Send$:MenuChat$n()v"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048f3f0",
+     "size": 11
+    },
+    "W?$Wvf0dos:MenuLabel$$nx[]pn()v": {
+     "va": "0048da90",
+     "size": 20
+    },
+    "W?$Wvf0ios:MenuHelpRegion$$nx[]pn()v": {
+     "va": "0048da7c",
+     "size": 20
+    },
+    "W?$Wvf0fos:MenuCaption$$nx[]pn()v": {
+     "va": "0048da68",
+     "size": 20
+    },
+    "W?$Wvf0cos:MenuEdit$$nx[]pn()v": {
+     "va": "0048da54",
+     "size": 20
+    },
+    "W?$Wvf0eos:MenuButton$$nx[]pn()v": {
+     "va": "0048da40",
+     "size": 20
+    },
+    "W?$Wvf0ios:MenuTextButton$$nx[]pn()v": {
+     "va": "0048da2c",
+     "size": 20
+    },
+    "W?$Wvf0ios:MenuListButton$$nx[]pn()v": {
+     "va": "0048da18",
+     "size": 20
+    },
+    "W?$Wvf0jos:MenuImageButton$$nx[]pn()v": {
+     "va": "0048da04",
+     "size": 20
+    },
+    "W?$Wvf0ios:MenuImageLabel$$nx[]pn()v": {
+     "va": "0048d9f0",
+     "size": 20
+    },
+    "W?$Wvf0eos:MenuSpacer$$nx[]pn()v": {
+     "va": "0048d9dc",
+     "size": 20
+    },
+    "W?$Wvf0kos:MenuPrefixButton$$nx[]pn()v": {
+     "va": "0048d9c8",
+     "size": 20
+    },
+    "W?$Wvf0dos:MenuPanel$$nx[]pn()v": {
+     "va": "0048d9b4",
+     "size": 20
+    },
+    "W?$Wvf0eos:MenuNumber$$nx[]pn()v": {
+     "va": "0048d9a0",
+     "size": 20
+    },
+    "W?$Wvf0cos:MenuChat$$nx[]pn()v": {
+     "va": "0048d98c",
+     "size": 20
+    }
+   },
+   "accepted": "2026-11-09"
   }
  }
 }

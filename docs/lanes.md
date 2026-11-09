@@ -14,5 +14,7 @@ One owner per module at a time. Candidates live in `candidates/<lane>/`, reports
 | w7 | 004561d0 sim\actorlst.c, 00456ca0 sim\actoradd.c, 00456f90 sim\worldact.c | done; 14 parked |
 | w8 | 0045a600 sim\target.c, 0046ac20 logic\lsys.c | running (round 2) |
 | w10 | 00457390 sim\anim.c, 004599b0 sim\animbmp.c | running |
+| o1 (Claude Opus 5.5 trial) | 0046d9ac multi\linkdlg.c, 004706b0 multi\message.c | running (model comparison) |
+| s1 (sol, control) | 0046ec5c multi\mstart.c | running (model comparison) |
 | w9 | 00464054 logic\lactors.c, 0046639c logic\intel.c | running |
 | integrator | 0042a598 (rate), 004279fc (input), 004297d4 (ply), 0047abc0 (timer) | probes, partial |

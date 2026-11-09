@@ -56,18 +56,20 @@
    "flags": [
     "-4s",
     "-s",
-    "-oxt"
+    "-oxt",
+    "-bm"
    ],
-   "status": "verified on the timer TU (7/7 strict); 16-byte function and module alignment. -5s, -ox, -ot alone each fail there; -d1 no effect"
+   "status": "verified on the timer TU (7/7 strict); 16-byte function and module alignment. -5s, -ox, -ot alone each fail there; -d1 no effect; -bm added 2026-11-09: required by gui\\menu.c (56 vs 53 strict), neutral on all 25 other accepted TUs, matches the multithreaded C++ runtime (PLIBMT3S)"
   },
   "plain": {
    "install": "wc106",
    "tool": "wpp386",
    "flags": [
     "-4s",
-    "-s"
+    "-s",
+    "-bm"
    ],
-   "status": "verified on 3 unaligned modules (rate 4/4 complete object, ply 2, input 6): no -o options. -ox, -or, -ot, -os, -oxt, -3s each fail on the input module; -oe/-oi/-ol/-on and -5s give identical bytes there (undecided, -4s kept for consistency with 'ot')"
+   "status": "verified on 3 unaligned modules (rate 4/4 complete object, ply 2, input 6): no -o options. -ox, -or, -ot, -os, -oxt, -3s each fail on the input module; -oe/-oi/-ol/-on and -5s give identical bytes there (undecided, -4s kept for consistency with 'ot'); -bm added 2026-11-09 (see 'ot')"
   },
   "ot-c": {
    "install": "wc106",
@@ -75,7 +77,8 @@
    "flags": [
     "-4s",
     "-s",
-    "-oxt"
+    "-oxt",
+    "-bm"
    ],
    "status": "C front end variant of 'ot' (io\file.c byte tests: `mov dl,[x]; test dl,dl` only with wcc386); TU-level choice, under investigation"
   },
@@ -84,7 +87,8 @@
    "tool": "wcc386",
    "flags": [
     "-4s",
-    "-s"
+    "-s",
+    "-bm"
    ],
    "status": "C front end variant of 'plain'; untested"
   }

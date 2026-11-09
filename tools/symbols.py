@@ -38,6 +38,16 @@ def label(sym):
     return "::".join(parts + [name])
 
 
+def is_function(sym):
+    """Function vs data from the mangled name: Watcom puts the symbol's own type after the LAST `$n`
+    (`W?f$n(i)v` function, `W?g$ni` data, a function-local static `W?x$:.0$:?Event$n(uiul)i:Cls$n[]uc` data).
+    C names (no `W?`) are treated as functions."""
+    if not sym.startswith("W?"):
+        return True
+    i = sym.rfind("$n")
+    return i >= 0 and sym[i + 2:i + 3] == "("
+
+
 def import_name(sym):
     """'__imp__GetTickCount@0' / '__imp_GetTickCount' -> 'GetTickCount', else None."""
     if not sym.startswith("__imp_"):

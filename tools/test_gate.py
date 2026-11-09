@@ -45,6 +45,9 @@ def main():
              "W?gVar$ni": "gVar", "W?InputNop$n()v": "InputNop", "W?n$ni": "n", "cfunc": "cfunc",
              "W?Load$:ResMgr$n(liii)pnv": "ResMgr::Load", "W?gResMgr$n$ResMgr$$": "gResMgr"}
     check(all(symbols.label(k) == v for k, v in cases.items()), "symbol labels demangle correctly")
+    fcases = {"W?f$n(i)v": True, "W?g$ni": False, "W?x$:.0$:?Event$n(uiul)i:Cls$n[]uc": False,
+              "W?gResMgr$n$ResMgr$$": False, "W?Lock$:StrPool$n()i": True, "cfunc": True}
+    check(all(symbols.is_function(k) == v for k, v in fcases.items()), "function/data classification")
     st = statuses(TIMER, ["-4s", "-s", "-oxt"])
     check(all(v == "STRICT" for v in st.values()) and len(st) == 7, "positive control: timer TU strict (bound placement)")
     st = statuses(TIMER, ["-5s", "-s", "-oxt"])
