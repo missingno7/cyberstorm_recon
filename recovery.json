@@ -9543,6 +9543,301 @@
    },
    "data": {},
    "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0047ab81.c": {
+   "as": "_unknown\\tu_0047ab81.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "InitializeRuntimeModuleHead": {
+     "va": "0047ab81",
+     "size": 11,
+     "mangled": "W?InitializeRuntimeModuleHead$n()v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0047ac80.c": {
+   "as": "_unknown\\tu_0047ac80.c",
+   "install": "wc106",
+   "profile": "ot-oe",
+   "functions": {
+    "MenuSetClip": {
+     "va": "0047ac80",
+     "size": 112,
+     "mangled": "W?MenuSetClip$n(pn$ClipState$$iiii)i"
+    },
+    "GuiRemapClipRect": {
+     "va": "0047acf0",
+     "size": 112,
+     "mangled": "W?GuiRemapClipRect$n(pn$ClipState$$iiii)i"
+    },
+    "ClipAddRect": {
+     "va": "0047ad60",
+     "size": 48,
+     "mangled": "W?ClipAddRect$n(pn$ClipState$$pnx$Rect$$)i"
+    },
+    "ClipAddDirty": {
+     "va": "0047ad90",
+     "size": 64,
+     "mangled": "W?ClipAddDirty$n(pn$ClipState$$pnx$1$)i"
+    },
+    "ClipAddSize": {
+     "va": "0047add0",
+     "size": 80,
+     "mangled": "W?ClipAddSize$n(pn$ClipState$$pnx$GuiRect$$)i"
+    },
+    "GuiResetClip": {
+     "va": "0047ae20",
+     "size": 32,
+     "mangled": "W?GuiResetClip$n(pn$ClipState$$)v"
+    },
+    "SimClipFlush": {
+     "va": "0047ae40",
+     "size": 48,
+     "mangled": "W?SimClipFlush$n(pn$ClipState$$)v"
+    },
+    "ClipInitializeSize": {
+     "va": "0047ae70",
+     "size": 80,
+     "mangled": "W?ClipInitializeSize$n(pn$ClipState$$pnx$GuiRect$$)v"
+    },
+    "ClipInitialize": {
+     "va": "0047aec0",
+     "size": 48,
+     "mangled": "W?ClipInitialize$n(pn$ClipState$$pnx$Rect$$)v"
+    },
+    "ClipGetSize": {
+     "va": "0047aef0",
+     "size": 272,
+     "mangled": "W?ClipGetSize$n(pn$ClipState$$pn$GuiRect$$)i"
+    },
+    "f_0047b000": {
+     "va": "0047b000",
+     "size": 64,
+     "mangled": "W?f_0047b000$n(pn$ClipState$$pn$GuiRect$$)i"
+    },
+    "SimClipRestore": {
+     "va": "0047b040",
+     "size": 160,
+     "mangled": "W?SimClipRestore$n(pn$ClipState$$)v"
+    },
+    "SimClipIntersects": {
+     "va": "0047b0e0",
+     "size": 80,
+     "mangled": "W?SimClipIntersects$n(pnx$ClipState$$pnx$1$)i"
+    },
+    "ClipIntersectsSize": {
+     "va": "0047b130",
+     "size": 64,
+     "mangled": "W?ClipIntersectsSize$n(pn$ClipState$$iiii)i"
+    },
+    "ClipIntersectsRect": {
+     "va": "0047b170",
+     "size": 80,
+     "mangled": "W?ClipIntersectsRect$n(pn$ClipState$$pnx$GuiRect$$)i"
+    },
+    "ClipApply": {
+     "va": "0047b1c0",
+     "size": 128,
+     "mangled": "W?ClipApply$n(pn$ClipState$$)v"
+    },
+    "ClipApplyRect": {
+     "va": "0047b240",
+     "size": 19,
+     "mangled": "W?ClipApplyRect$n(pnx$Rect$$)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0047b260.c": {
+   "as": "_unknown\\tu_0047b260.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "0047b260",
+     "size": 48,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "SurfaceBackendReady": {
+     "va": "0047b290",
+     "size": 16,
+     "mangled": "W?SurfaceBackendReady$n()i"
+    },
+    "SurfaceBackendClose": {
+     "va": "0047b2a0",
+     "size": 48,
+     "mangled": "W?SurfaceBackendClose$n()v"
+    },
+    "SurfacePresent": {
+     "va": "0047b3a0",
+     "size": 48,
+     "mangled": "W?SurfacePresent$n(pnv)v"
+    },
+    "f_0047b3d0": {
+     "va": "0047b3d0",
+     "size": 64,
+     "mangled": "W?f_0047b3d0$n(pn$GuiCanvas$$iiii)v"
+    },
+    "SurfacePaletteReset": {
+     "va": "0047b410",
+     "size": 32,
+     "mangled": "W?SurfacePaletteReset$n()v"
+    },
+    "ApplyPaletteData": {
+     "va": "0047b430",
+     "size": 112,
+     "mangled": "W?ApplyPaletteData$n(pnx$tagPALETTEENTRY$$uii)v"
+    },
+    "PaletteBlend": {
+     "va": "0047b5b0",
+     "size": 160,
+     "mangled": "W?PaletteBlend$n(pn$Palette$$pnx$1$iui)v"
+    }
+   },
+   "data": {
+    "CONST2": {
+     "va": "0048e2c8",
+     "size": 12
+    },
+    "_DATA": {
+     "va": "004a4988",
+     "size": 12
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0047b720.c": {
+   "as": "_unknown\\tu_0047b720.c",
+   "install": "wc106",
+   "profile": "ot-oe",
+   "functions": {
+    "GuiCanvas::$ct": {
+     "va": "0047b720",
+     "size": 144,
+     "mangled": "W?$ct:GuiCanvas$n(pnx$SurfaceDesc$$)_"
+    },
+    "GuiCanvas::$dt": {
+     "va": "0047b7b0",
+     "size": 16,
+     "mangled": "W?$dt:GuiCanvas$n()_"
+    },
+    "f_47b7c0": {
+     "va": "0047b7c0",
+     "size": 128,
+     "mangled": "W?f_47b7c0$n(pn$GuiCanvas$$pnx$SurfaceDesc$$)v"
+    },
+    "SurfaceGetPixel": {
+     "va": "0047b840",
+     "size": 64,
+     "mangled": "W?SurfaceGetPixel$n(pn$GuiCanvas$$ii)i"
+    },
+    "SurfaceSetPixel": {
+     "va": "0047b880",
+     "size": 64,
+     "mangled": "W?SurfaceSetPixel$n(pn$GuiCanvas$$iiuc)v"
+    },
+    "SurfacePixelAddress": {
+     "va": "0047b8c0",
+     "size": 80,
+     "mangled": "W?SurfacePixelAddress$n(pn$GuiCanvas$$ii)pnuc"
+    },
+    "SurfaceSetStyle": {
+     "va": "0047b910",
+     "size": 32,
+     "mangled": "W?SurfaceSetStyle$n(pn$GuiCanvas$$pnx$DrawStyle$$)v"
+    },
+    "MenuSetColors": {
+     "va": "0047b930",
+     "size": 32,
+     "mangled": "W?MenuSetColors$n(pn$GuiCanvas$$ii)v"
+    },
+    "SurfaceSetClip": {
+     "va": "0047b950",
+     "size": 96,
+     "mangled": "W?SurfaceSetClip$n(pn$GuiCanvas$$pnx$Rect$$)v"
+    },
+    "SimAlertPrepare": {
+     "va": "0047b9b0",
+     "size": 128,
+     "mangled": "W?SimAlertPrepare$n(pn$GuiCanvas$$pnx$GuiRect$$)v"
+    },
+    "SurfaceSetClipSize": {
+     "va": "0047ba30",
+     "size": 128,
+     "mangled": "W?SurfaceSetClipSize$n(pn$GuiCanvas$$iiii)v"
+    },
+    "SigsStart": {
+     "va": "0047bab0",
+     "size": 32,
+     "mangled": "W?SigsStart$n(pn$GuiCanvas$$uc)v"
+    },
+    "MenuLine": {
+     "va": "0047bc60",
+     "size": 368,
+     "mangled": "W?MenuLine$n(pn$GuiCanvas$$iiii)v"
+    },
+    "SurfaceArea": {
+     "va": "0047bdd0",
+     "size": 16,
+     "mangled": "W?SurfaceArea$n(pn$GuiCanvas$$ii)i"
+    },
+    "SurfaceReadRect": {
+     "va": "0047bde0",
+     "size": 96,
+     "mangled": "W?SurfaceReadRect$n(pn$GuiCanvas$$pnuciiuiui)v"
+    },
+    "SurfaceWriteRect": {
+     "va": "0047be40",
+     "size": 96,
+     "mangled": "W?SurfaceWriteRect$n(pn$GuiCanvas$$pnxuciiuiui)v"
+    },
+    "BriefBlit": {
+     "va": "0047bea0",
+     "size": 176,
+     "mangled": "W?BriefBlit$n(pn$GuiCanvas$$iiiiiiuiui)v"
+    },
+    "SurfaceCopyAligned": {
+     "va": "0047bf50",
+     "size": 80,
+     "mangled": "W?SurfaceCopyAligned$n(pn$GuiCanvas$$iiiiiiii)v"
+    },
+    "PopDrawSurface": {
+     "va": "0047bfa0",
+     "size": 80,
+     "mangled": "W?PopDrawSurface$n(pn$GuiCanvas$$iiiiii)v"
+    },
+    "MenuDrawImage": {
+     "va": "0047bff0",
+     "size": 256,
+     "mangled": "W?MenuDrawImage$n(pn$GuiCanvas$$pnx$MenuImage$$ii)v"
+    },
+    "DrawSprite": {
+     "va": "0047c0f0",
+     "size": 128,
+     "mangled": "W?DrawSprite$n(pn$GuiCanvas$$pnx$MenuImage$$iiiii)v"
+    },
+    "MenuImageData": {
+     "va": "0047c170",
+     "size": 80,
+     "mangled": "W?MenuImageData$n(pn$GuiCanvas$$pnx$MenuImage$$)pn$2$"
+    },
+    "SurfaceLoadBackground": {
+     "va": "0047c1c0",
+     "size": 128,
+     "mangled": "W?SurfaceLoadBackground$n(pn$GuiCanvas$$pnxa)i"
+    },
+    "SurfaceFlush": {
+     "va": "0047c240",
+     "size": 51,
+     "mangled": "W?SurfaceFlush$n(pn$GuiCanvas$$)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
   }
  },
  "accepted_losses": [

@@ -19054,6 +19054,14 @@
    "tu": "src/main/WIN/winmain.c",
    "evidence": "placed (at) in src/main/WIN/winmain.c 2026-11-09"
   },
+  "InitializeRuntimeModuleHead": {
+   "va": "0047ab81",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?InitializeRuntimeModuleHead$n()v",
+   "tu": "src/_unknown/tu_0047ab81.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "BriefModuleConstruct": {
    "va": "0047ab8c",
    "kind": "func",
@@ -19162,9 +19170,10 @@
   "MenuSetClip": {
    "va": "0047ac80",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?MenuSetClip$n(pn$GuiRect$$llll)v",
-   "evidence": "implied by src/gui/menu.c 2026-11-09"
+   "status": "matched",
+   "mangled": "W?MenuSetClip$n(pn$ClipState$$iiii)i",
+   "tu": "src/_unknown/tu_0047ac80.c",
+   "evidence": "strict match 2026-11-09"
   },
   "MenuSetClip#W?MenuSetClip$n(pnviiii)v": {
    "va": "0047ac80",
@@ -19173,14 +19182,61 @@
    "mangled": "W?MenuSetClip$n(pnviiii)v",
    "evidence": "implied by src/sim/hotbrief.c 2026-11-09"
   },
+  "MenuSetClip#W?MenuSetClip$n(pn$GuiRect$$llll)v": {
+   "va": "0047ac80",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuSetClip$n(pn$GuiRect$$llll)v",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
   "GuiRemapClipRect": {
+   "va": "0047acf0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?GuiRemapClipRect$n(pn$ClipState$$iiii)i",
+   "tu": "src/_unknown/tu_0047ac80.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "GuiRemapClipRect#W?GuiRemapClipRect$n(pn$GuiRect$$llll)v": {
    "va": "0047acf0",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?GuiRemapClipRect$n(pn$GuiRect$$llll)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "ClipAddRect": {
+   "va": "0047ad60",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ClipAddRect$n(pn$ClipState$$pnx$Rect$$)i",
+   "tu": "src/_unknown/tu_0047ac80.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ClipAddDirty": {
+   "va": "0047ad90",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ClipAddDirty$n(pn$ClipState$$pnx$1$)i",
+   "tu": "src/_unknown/tu_0047ac80.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ClipAddSize": {
+   "va": "0047add0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ClipAddSize$n(pn$ClipState$$pnx$GuiRect$$)i",
+   "tu": "src/_unknown/tu_0047ac80.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "GuiResetClip": {
+   "va": "0047ae20",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?GuiResetClip$n(pn$ClipState$$)v",
+   "tu": "src/_unknown/tu_0047ac80.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "GuiResetClip#W?GuiResetClip$n(pnv)v": {
    "va": "0047ae20",
    "kind": "func",
    "status": "hypothesis",
@@ -19190,18 +19246,59 @@
   "SimClipFlush": {
    "va": "0047ae40",
    "kind": "func",
+   "status": "matched",
+   "mangled": "W?SimClipFlush$n(pn$ClipState$$)v",
+   "tu": "src/_unknown/tu_0047ac80.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimClipFlush#W?SimClipFlush$n(pnv)v": {
+   "va": "0047ae40",
+   "kind": "func",
    "status": "hypothesis",
    "mangled": "W?SimClipFlush$n(pnv)v",
    "evidence": "implied by src/sim/sim.c 2026-11-09"
   },
+  "ClipInitializeSize": {
+   "va": "0047ae70",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ClipInitializeSize$n(pn$ClipState$$pnx$GuiRect$$)v",
+   "tu": "src/_unknown/tu_0047ac80.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ClipInitialize": {
+   "va": "0047aec0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ClipInitialize$n(pn$ClipState$$pnx$Rect$$)v",
+   "tu": "src/_unknown/tu_0047ac80.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ClipGetSize": {
+   "va": "0047aef0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ClipGetSize$n(pn$ClipState$$pn$GuiRect$$)i",
+   "tu": "src/_unknown/tu_0047ac80.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "f_0047b000": {
    "va": "0047b000",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?f_0047b000$n(pn$ClipState$$pn$GuiRect$$)i",
-   "evidence": "implied by src/_unknown/tu_00454990.c 2026-11-09"
+   "tu": "src/_unknown/tu_0047ac80.c",
+   "evidence": "strict match 2026-11-09"
   },
   "SimClipRestore": {
+   "va": "0047b040",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SimClipRestore$n(pn$ClipState$$)v",
+   "tu": "src/_unknown/tu_0047ac80.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimClipRestore#W?SimClipRestore$n(pnv)v": {
    "va": "0047b040",
    "kind": "func",
    "status": "hypothesis",
@@ -19211,9 +19308,73 @@
   "SimClipIntersects": {
    "va": "0047b0e0",
    "kind": "func",
+   "status": "matched",
+   "mangled": "W?SimClipIntersects$n(pnx$ClipState$$pnx$1$)i",
+   "tu": "src/_unknown/tu_0047ac80.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimClipIntersects#W?SimClipIntersects$n(pnx$GuiRect$$pnxv)i": {
+   "va": "0047b0e0",
+   "kind": "func",
    "status": "hypothesis",
    "mangled": "W?SimClipIntersects$n(pnx$GuiRect$$pnxv)i",
    "evidence": "implied by src/sim/sim.c 2026-11-09"
+  },
+  "ClipIntersectsSize": {
+   "va": "0047b130",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ClipIntersectsSize$n(pn$ClipState$$iiii)i",
+   "tu": "src/_unknown/tu_0047ac80.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ClipIntersectsRect": {
+   "va": "0047b170",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ClipIntersectsRect$n(pn$ClipState$$pnx$GuiRect$$)i",
+   "tu": "src/_unknown/tu_0047ac80.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ClipApply": {
+   "va": "0047b1c0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ClipApply$n(pn$ClipState$$)v",
+   "tu": "src/_unknown/tu_0047ac80.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ClipApplyRect": {
+   "va": "0047b240",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ClipApplyRect$n(pnx$Rect$$)v",
+   "tu": "src/_unknown/tu_0047ac80.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "W?.fn_init$n()v@_unknown/tu_0047b260.c": {
+   "va": "0047b260",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/_unknown/tu_0047b260.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SurfaceBackendReady": {
+   "va": "0047b290",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SurfaceBackendReady$n()i",
+   "tu": "src/_unknown/tu_0047b260.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SurfaceBackendClose": {
+   "va": "0047b2a0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SurfaceBackendClose$n()v",
+   "tu": "src/_unknown/tu_0047b260.c",
+   "evidence": "strict match 2026-11-09"
   },
   "f_47b2d0": {
    "va": "0047b2d0",
@@ -19225,9 +19386,10 @@
   "SurfacePresent": {
    "va": "0047b3a0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?SurfacePresent$n(pnv)v",
-   "evidence": "implied by src/_unknown/tu_0042a0e0.c 2026-11-09"
+   "tu": "src/_unknown/tu_0047b260.c",
+   "evidence": "strict match 2026-11-09"
   },
   "SurfacePresent#SurfacePresent": {
    "va": "0047b3a0",
@@ -19239,11 +19401,35 @@
   "f_0047b3d0": {
    "va": "0047b3d0",
    "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0047b3d0$n(pn$GuiCanvas$$iiii)v",
+   "tu": "src/_unknown/tu_0047b260.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0047b3d0#W?f_0047b3d0$n(pnvllll)v": {
+   "va": "0047b3d0",
+   "kind": "func",
    "status": "hypothesis",
    "mangled": "W?f_0047b3d0$n(pnvllll)v",
    "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
   },
+  "SurfacePaletteReset": {
+   "va": "0047b410",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SurfacePaletteReset$n()v",
+   "tu": "src/_unknown/tu_0047b260.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "ApplyPaletteData": {
+   "va": "0047b430",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ApplyPaletteData$n(pnx$tagPALETTEENTRY$$uii)v",
+   "tu": "src/_unknown/tu_0047b260.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ApplyPaletteData#W?ApplyPaletteData$n(pnvii)v": {
    "va": "0047b430",
    "kind": "func",
    "status": "hypothesis",
@@ -19257,7 +19443,23 @@
    "mangled": "PaletteAttach",
    "evidence": "implied by src/terr/tbuild.c 2026-11-09"
   },
+  "PaletteAttach#W?PaletteAttach$n(pn$Palette$$pnx$CycleConfig$$)v": {
+   "va": "0047b4a0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PaletteAttach$n(pn$Palette$$pnx$CycleConfig$$)v",
+   "tu": "src/_unknown/tu_0047b260.c",
+   "evidence": "placed (at) in src/_unknown/tu_0047b260.c 2026-11-09"
+  },
   "PaletteBlend": {
+   "va": "0047b5b0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PaletteBlend$n(pn$Palette$$pnx$1$iui)v",
+   "tu": "src/_unknown/tu_0047b260.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PaletteBlend#PaletteBlend": {
    "va": "0047b5b0",
    "kind": "func",
    "status": "hypothesis",
@@ -19271,33 +19473,144 @@
    "mangled": "W?SimPaletteCycle$n(pnv)v",
    "evidence": "implied by src/sim/simgame.c 2026-11-09"
   },
+  "SimPaletteCycle#W?SimPaletteCycle$n(pn$Palette$$)v": {
+   "va": "0047b650",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SimPaletteCycle$n(pn$Palette$$)v",
+   "tu": "src/_unknown/tu_0047b260.c",
+   "evidence": "placed (at) in src/_unknown/tu_0047b260.c 2026-11-09"
+  },
+  "GuiCanvas::$ct": {
+   "va": "0047b720",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:GuiCanvas$n(pnx$SurfaceDesc$$)_",
+   "tu": "src/_unknown/tu_0047b720.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "GuiCanvas::$dt": {
+   "va": "0047b7b0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$dt:GuiCanvas$n()_",
+   "tu": "src/_unknown/tu_0047b720.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "f_47b7c0": {
+   "va": "0047b7c0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_47b7c0$n(pn$GuiCanvas$$pnx$SurfaceDesc$$)v",
+   "tu": "src/_unknown/tu_0047b720.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_47b7c0#W?f_47b7c0$n(pn$GuiCanvas$$i)v": {
    "va": "0047b7c0",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?f_47b7c0$n(pn$GuiCanvas$$i)v",
    "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
   },
+  "SurfaceGetPixel": {
+   "va": "0047b840",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SurfaceGetPixel$n(pn$GuiCanvas$$ii)i",
+   "tu": "src/_unknown/tu_0047b720.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SurfaceSetPixel": {
+   "va": "0047b880",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SurfaceSetPixel$n(pn$GuiCanvas$$iiuc)v",
+   "tu": "src/_unknown/tu_0047b720.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SurfacePixelAddress": {
+   "va": "0047b8c0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SurfacePixelAddress$n(pn$GuiCanvas$$ii)pnuc",
+   "tu": "src/_unknown/tu_0047b720.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SurfaceSetStyle": {
+   "va": "0047b910",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SurfaceSetStyle$n(pn$GuiCanvas$$pnx$DrawStyle$$)v",
+   "tu": "src/_unknown/tu_0047b720.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "MenuSetColors": {
+   "va": "0047b930",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?MenuSetColors$n(pn$GuiCanvas$$ii)v",
+   "tu": "src/_unknown/tu_0047b720.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuSetColors#W?MenuSetColors$n(pnvull)v": {
    "va": "0047b930",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?MenuSetColors$n(pnvull)v",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
   },
+  "SurfaceSetClip": {
+   "va": "0047b950",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SurfaceSetClip$n(pn$GuiCanvas$$pnx$Rect$$)v",
+   "tu": "src/_unknown/tu_0047b720.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SurfaceSetClip#W?SurfaceSetClip$n(pnvpnx$Rect$$)v": {
+   "va": "0047b950",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SurfaceSetClip$n(pnvpnx$Rect$$)v",
+   "evidence": "implied by src/_unknown/tu_0047ac80.c 2026-11-09"
+  },
   "SimAlertPrepare": {
+   "va": "0047b9b0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SimAlertPrepare$n(pn$GuiCanvas$$pnx$GuiRect$$)v",
+   "tu": "src/_unknown/tu_0047b720.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimAlertPrepare#W?SimAlertPrepare$n(pnvpnx$GuiRect$$)v": {
    "va": "0047b9b0",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?SimAlertPrepare$n(pnvpnx$GuiRect$$)v",
    "evidence": "implied by src/_unknown/tu_0044d150.c 2026-11-09"
   },
+  "SurfaceSetClipSize": {
+   "va": "0047ba30",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SurfaceSetClipSize$n(pn$GuiCanvas$$iiii)v",
+   "tu": "src/_unknown/tu_0047b720.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SurfaceSetClipSize#W?SurfaceSetClipSize$n(pnviiii)v": {
+   "va": "0047ba30",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SurfaceSetClipSize$n(pnviiii)v",
+   "evidence": "implied by src/_unknown/tu_0047ac80.c 2026-11-09"
+  },
   "SigsStart": {
    "va": "0047bab0",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?SigsStart$n(pnii)v",
-   "evidence": "implied by src/multi/linkdlg.c 2026-11-09"
+   "status": "matched",
+   "mangled": "W?SigsStart$n(pn$GuiCanvas$$uc)v",
+   "tu": "src/_unknown/tu_0047b720.c",
+   "evidence": "strict match 2026-11-09"
   },
   "SigsStart#W?SigsStart$n(pnvuc)v": {
    "va": "0047bab0",
@@ -19313,12 +19626,27 @@
    "mangled": "W?SigsStart$n(pnvi)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "SigsStart#W?SigsStart$n(pnii)v": {
+   "va": "0047bab0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SigsStart$n(pnii)v",
+   "evidence": "implied by src/multi/linkdlg.c 2026-11-09"
+  },
   "MenuFill": {
    "va": "0047bad0",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?MenuFill$n(pnvllll)v",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "MenuFill#W?MenuFill$n(pn$GuiCanvas$$iiii)v": {
+   "va": "0047bad0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuFill$n(pn$GuiCanvas$$iiii)v",
+   "tu": "src/_unknown/tu_0047b720.c",
+   "evidence": "placed (at) in src/_unknown/tu_0047b720.c 2026-11-09"
   },
   "SurfaceRemapRect": {
    "va": "0047bc10",
@@ -19327,19 +19655,60 @@
    "mangled": "W?SurfaceRemapRect$n(pnvllll)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "SurfaceRemapRect#W?SurfaceRemapRect$n(pn$GuiCanvas$$iiiui)v": {
+   "va": "0047bc10",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SurfaceRemapRect$n(pn$GuiCanvas$$iiiui)v",
+   "tu": "src/_unknown/tu_0047b720.c",
+   "evidence": "placed (at) in src/_unknown/tu_0047b720.c 2026-11-09"
+  },
   "MenuLine": {
+   "va": "0047bc60",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?MenuLine$n(pn$GuiCanvas$$iiii)v",
+   "tu": "src/_unknown/tu_0047b720.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuLine#W?MenuLine$n(pnvllll)v": {
    "va": "0047bc60",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?MenuLine$n(pnvllll)v",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
   },
+  "SurfaceArea": {
+   "va": "0047bdd0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SurfaceArea$n(pn$GuiCanvas$$ii)i",
+   "tu": "src/_unknown/tu_0047b720.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SurfaceReadRect": {
+   "va": "0047bde0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SurfaceReadRect$n(pn$GuiCanvas$$pnuciiuiui)v",
+   "tu": "src/_unknown/tu_0047b720.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SurfaceWriteRect": {
+   "va": "0047be40",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SurfaceWriteRect$n(pn$GuiCanvas$$pnxuciiuiui)v",
+   "tu": "src/_unknown/tu_0047b720.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "BriefBlit": {
    "va": "0047bea0",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "BriefBlit",
-   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+   "status": "matched",
+   "mangled": "W?BriefBlit$n(pn$GuiCanvas$$iiiiiiuiui)v",
+   "tu": "src/_unknown/tu_0047b720.c",
+   "evidence": "strict match 2026-11-09"
   },
   "BriefBlit#W?BriefBlit$n(pnviillllll)v": {
    "va": "0047bea0",
@@ -19348,12 +19717,28 @@
    "mangled": "W?BriefBlit$n(pnviillllll)v",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
+  "BriefBlit#BriefBlit": {
+   "va": "0047bea0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "BriefBlit",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "SurfaceCopyAligned": {
+   "va": "0047bf50",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SurfaceCopyAligned$n(pn$GuiCanvas$$iiiiiiii)v",
+   "tu": "src/_unknown/tu_0047b720.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "PopDrawSurface": {
    "va": "0047bfa0",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?PopDrawSurface$n(pnviiiiii)v",
-   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+   "status": "matched",
+   "mangled": "W?PopDrawSurface$n(pn$GuiCanvas$$iiiiii)v",
+   "tu": "src/_unknown/tu_0047b720.c",
+   "evidence": "strict match 2026-11-09"
   },
   "PopDrawSurface#W?PopDrawSurface$n(pnviillll)v": {
    "va": "0047bfa0",
@@ -19362,12 +19747,20 @@
    "mangled": "W?PopDrawSurface$n(pnviillll)v",
    "evidence": "implied by src/pop/ppilot.c 2026-11-09"
   },
+  "PopDrawSurface#W?PopDrawSurface$n(pnviiiiii)v": {
+   "va": "0047bfa0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PopDrawSurface$n(pnviiiiii)v",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
   "MenuDrawImage": {
    "va": "0047bff0",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?MenuDrawImage$n(pnvpnx$MenuImage$$ll)v",
-   "evidence": "implied by src/gui/menu.c 2026-11-09"
+   "status": "matched",
+   "mangled": "W?MenuDrawImage$n(pn$GuiCanvas$$pnx$MenuImage$$ii)v",
+   "tu": "src/_unknown/tu_0047b720.c",
+   "evidence": "strict match 2026-11-09"
   },
   "MenuDrawImage#W?MenuDrawImage$n(pnvpn$MenuImage$$ll)v": {
    "va": "0047bff0",
@@ -19390,7 +19783,22 @@
    "mangled": "W?MenuDrawImage$n(pnvpnvii)v",
    "evidence": "implied by src/sim/hotbrief.c 2026-11-09"
   },
+  "MenuDrawImage#W?MenuDrawImage$n(pnvpnx$MenuImage$$ll)v": {
+   "va": "0047bff0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuDrawImage$n(pnvpnx$MenuImage$$ll)v",
+   "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
   "DrawSprite": {
+   "va": "0047c0f0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?DrawSprite$n(pn$GuiCanvas$$pnx$MenuImage$$iiiii)v",
+   "tu": "src/_unknown/tu_0047b720.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "DrawSprite#W?DrawSprite$n(pnvpn$ExploFrame$$iiiii)v": {
    "va": "0047c0f0",
    "kind": "func",
    "status": "hypothesis",
@@ -19400,11 +19808,35 @@
   "MenuImageData": {
    "va": "0047c170",
    "kind": "func",
+   "status": "matched",
+   "mangled": "W?MenuImageData$n(pn$GuiCanvas$$pnx$MenuImage$$)pn$2$",
+   "tu": "src/_unknown/tu_0047b720.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuImageData#W?MenuImageData$n(pnvpnx$MenuImage$$)pn$1$": {
+   "va": "0047c170",
+   "kind": "func",
    "status": "hypothesis",
    "mangled": "W?MenuImageData$n(pnvpnx$MenuImage$$)pn$1$",
    "evidence": "implied by src/_unknown/tu_00452950.c 2026-11-09"
   },
+  "SurfaceLoadBackground": {
+   "va": "0047c1c0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SurfaceLoadBackground$n(pn$GuiCanvas$$pnxa)i",
+   "tu": "src/_unknown/tu_0047b720.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "SurfaceFlush": {
+   "va": "0047c240",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SurfaceFlush$n(pn$GuiCanvas$$)v",
+   "tu": "src/_unknown/tu_0047b720.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SurfaceFlush#W?SurfaceFlush$n(pnv)v": {
    "va": "0047c240",
    "kind": "func",
    "status": "hypothesis",
@@ -20441,6 +20873,20 @@
    "mangled": "W?Crc16$n(pnuspnxvui)v",
    "evidence": "implied by src/_unknown/tu_00435dec.c 2026-11-09"
   },
+  "RenderImage": {
+   "va": "0047f114",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?RenderImage$n(pnx$MenuImage$$iiiii)v",
+   "evidence": "implied by src/_unknown/tu_0047b720.c 2026-11-09"
+  },
+  "RenderSpecialImage": {
+   "va": "0047f5e0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?RenderSpecialImage$n(pnx$MenuImage$$ii)v",
+   "evidence": "implied by src/_unknown/tu_0047b720.c 2026-11-09"
+  },
   "SimMarkPosition": {
    "va": "0047f84e",
    "kind": "func",
@@ -20510,6 +20956,76 @@
    "status": "hypothesis",
    "mangled": "W?$dt:CriticalSection$n()_",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "InitializeWinG": {
+   "va": "004806a0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?InitializeWinG$n()i",
+   "evidence": "implied by src/_unknown/tu_0047b260.c 2026-11-09"
+  },
+  "WinGSurface::$dt": {
+   "va": "004808c0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:WinGSurface$n()_",
+   "evidence": "implied by src/_unknown/tu_0047b260.c 2026-11-09"
+  },
+  "BlitWinGSurface": {
+   "va": "00480bb0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?BlitWinGSurface$n(pn$WinGSurface$$iiiiii)v",
+   "evidence": "implied by src/_unknown/tu_0047b260.c 2026-11-09"
+  },
+  "SetWinGPalette": {
+   "va": "00480bf0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SetWinGPalette$n(pn$WinGSurface$$pnxvuiui)v",
+   "evidence": "implied by src/_unknown/tu_0047b260.c 2026-11-09"
+  },
+  "RenderCopy": {
+   "va": "00480f99",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?RenderCopy$n(pnxucpnuciiii)v",
+   "evidence": "implied by src/_unknown/tu_0047b720.c 2026-11-09"
+  },
+  "RenderHorizontal": {
+   "va": "0048105e",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?RenderHorizontal$n(iii)v",
+   "evidence": "implied by src/_unknown/tu_0047b720.c 2026-11-09"
+  },
+  "RenderVertical": {
+   "va": "004810b5",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?RenderVertical$n(iii)v",
+   "evidence": "implied by src/_unknown/tu_0047b720.c 2026-11-09"
+  },
+  "RenderLine": {
+   "va": "004810eb",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?RenderLine$n(iiii)v",
+   "evidence": "implied by src/_unknown/tu_0047b720.c 2026-11-09"
+  },
+  "RenderClipLine": {
+   "va": "00481194",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?RenderClipLine$n(pnipnipnipnipnx$Rect$$)i",
+   "evidence": "implied by src/_unknown/tu_0047b720.c 2026-11-09"
+  },
+  "DecodeImage": {
+   "va": "00481290",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?DecodeImage$n(ucpnxvpn$DecodeBuffer$$)v",
+   "evidence": "implied by src/_unknown/tu_0047b720.c 2026-11-09"
   },
   "g48a9d0": {
    "va": "0048a9d0",
@@ -22309,6 +22825,13 @@
    "mangled": "W?messageFile$n[]a",
    "evidence": "implied by src/multi/message.c 2026-11-09"
   },
+  "imageDecodeBuffer": {
+   "va": "004a4098",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?imageDecodeBuffer$n$DecodeBuffer$$",
+   "evidence": "implied by src/_unknown/tu_0047b720.c 2026-11-09"
+  },
   "gRichTextFonts": {
    "va": "004a40a8",
    "kind": "data",
@@ -22506,6 +23029,13 @@
    "mangled": "W?g4a48e4$ni",
    "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
   },
+  "useDirtyRects": {
+   "va": "004a48ec",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?useDirtyRects$ni",
+   "evidence": "implied by src/_unknown/tu_0047b720.c 2026-11-09"
+  },
   "g4a48f0": {
    "va": "004a48f0",
    "kind": "data",
@@ -22519,6 +23049,20 @@
    "status": "hypothesis",
    "mangled": "W?gConfigDefault$n$WinConfig$$",
    "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+  },
+  "runtimeModuleAnchor": {
+   "va": "004a496c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?runtimeModuleAnchor$na",
+   "evidence": "implied by src/_unknown/tu_0047ab81.c 2026-11-09"
+  },
+  "defaultSurfaceDesc": {
+   "va": "004a49a4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?defaultSurfaceDesc$n$SurfaceDesc$$",
+   "evidence": "implied by src/_unknown/tu_0047b260.c 2026-11-09"
   },
   "ResourceSourcePath": {
    "va": "004a49f8",
@@ -30547,6 +31091,20 @@
    "mangled": "W?gMenuClip$n[]a",
    "evidence": "implied by src/sim/hotbrief.c 2026-11-09"
   },
+  "displaySurface": {
+   "va": "00513944",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?displaySurface$npn$WinGSurface$$",
+   "evidence": "implied by src/_unknown/tu_0047b260.c 2026-11-09"
+  },
+  "decodedImage": {
+   "va": "00513948",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?decodedImage$n$MenuImage$$",
+   "evidence": "implied by src/_unknown/tu_0047b720.c 2026-11-09"
+  },
   "gShellResources": {
    "va": "00513958",
    "kind": "data",
@@ -30658,6 +31216,13 @@
    "status": "hypothesis",
    "mangled": "W?g_fileDirectCount$nul",
    "evidence": "implied by src/io/file.c 2026-11-09"
+  },
+  "runtimeModuleHead": {
+   "va": "0051448c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?runtimeModuleHead$npnv",
+   "evidence": "implied by src/_unknown/tu_0047ab81.c 2026-11-09"
   },
   "W?$Wts0gn$OutlinePoint$$$nx[]uc": {
    "va": "24448d68",
