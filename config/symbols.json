@@ -11322,10 +11322,10 @@
   "f_004423d7": {
    "va": "004423d7",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "f_004423d7",
    "tu": "src/_unknown/tu_004413e0.c",
-   "evidence": "placed (at) in src/_unknown/tu_004413e0.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "ActorActivate": {
    "va": "004424d4",

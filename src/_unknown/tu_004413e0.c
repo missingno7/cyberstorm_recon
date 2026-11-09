@@ -261,12 +261,12 @@ extern "C" int f_00441c2c(GameSession *s,unsigned index) {
     return s->hercCount;
 }
 extern "C" int f_00441ca7(GameSession *s,int value,int levels) {
-    if(levels>0) {
-        if(levels>1)value=f_00441ca7(s,value,levels-1);
-        value=value*80/100;
-    }
-    return value;
+    if (levels < 1) return value;
+    int result = value;
+    if (levels > 1) result = f_00441ca7(s, value, levels - 1);
+    return result * 80 / 100;
 }
+
 extern "C" int f_00441ce1(GameSession *s,int index) {
     if(index==-1)index=s->hercSelection;
     if(index<1 || index>s->hercCount)return -1;

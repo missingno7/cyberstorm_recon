@@ -92,3 +92,5 @@ Unassigned large modules: sim\sim.c + simdo.c (0044950c, 30 KB), shell\mplaunch.
 | s53 | sol | path strings in _DATA (static char File[] idiom), 11 TUs | done (all 11 at oracle address; memory.c split open) |
 | r3 | sol | research: register allocator model from Open Watcom cg source (build/ref/ow) | done (model valid on probes; 0 new; rows in codegen_rules.md) |
 | s54 | sol | non-allocation blockers: switch layout, shared tails, EBP frames, control flow (88 functions, build/prompts/s54_targets.txt) | done (+11 in 6 TUs; 78 parked with residues in its report) |
+| s55 | sol | allocation cluster with the r3 model (final-use order), first half of 242 targets (build/prompts/s55_targets.txt) | done (+1: f_004423d7 via immutable recursive input; 107 triaged) |
+| s56 | sol | same, second half incl. sim\simdo.c (build/prompts/s56_targets.txt) | done (0 new; 113 triaged, 39 variants) |
