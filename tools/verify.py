@@ -85,8 +85,21 @@ def main(argv):
               f"{len(asm)} functions, {asm_done[1]} of {sum(f['size'] for f in asm)} bytes")
     else:
         print(f"strict: {nfun} functions, {nbytes} bytes in {len(ledger['tus'])} TUs")
+    if (ROOT / load_json(CONFIG / "toolchain.json")["resources"]["script"]).exists():
+        import contextlib
+        import io
+        import rsrc
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf):
+            exe, rconf = rsrc.build()
+            r_ok, r_strict, r_total = rsrc.compare(exe, rconf)
+        print(f"resources (tools/rsrc.py): {r_strict} of {r_total} STRICT, .rsrc layout "
+              f"{'equal' if r_ok else 'DIFFERENT'} except bind stamp and the UNKNOWN slack")
+        if not r_ok:
+            print(buf.getvalue())
+            ok = False
     if tu_starts is not None:
-        outl = {tu for tu, _ in tucheck.order_outliers([(tu, pl) for tu, _, _, pl in tu_rows])}
+        outl ={tu for tu, _ in tucheck.order_outliers([(tu, pl) for tu, _, _, pl in tu_rows])}
         outl |= tucheck.data_gaps([(tu, pl) for tu, _, _, pl in tu_rows], img, tu_starts)
         tu_done = [sum(1 for tu, c, _, _ in tu_rows if c and tu not in outl),
                    sum(sz for tu, c, sz, _ in tu_rows if c and tu not in outl)]

@@ -1,0 +1,124 @@
+/* CyberStorm resource script (reconstruction; the original script's name is unknown).
+   Compiled with WATCOM WRC 10.6 -bt=nt. Icon and cursor images are generated from the pixel text next to this
+   file by tools/resgen.py (appicon.ico.txt, mcursor1..7.cur.txt). Command IDs are the numbers the game code uses. */
+#include <windows.h>
+
+APPICON  ICON   appicon.ico
+MCURSOR1 CURSOR mcursor1.cur
+MCURSOR2 CURSOR mcursor2.cur
+MCURSOR3 CURSOR mcursor3.cur
+MCURSOR4 CURSOR mcursor4.cur
+MCURSOR5 CURSOR mcursor5.cur
+MCURSOR6 CURSOR mcursor6.cur
+MCURSOR7 CURSOR mcursor7.cur
+
+APPMENU MENU
+BEGIN
+    POPUP "&Game"
+    BEGIN
+        MENUITEM "&Save Game\tCtrl+S", 30001
+        MENUITEM "&Load Game\tCtrl+L", 30002
+        MENUITEM SEPARATOR
+        MENUITEM "Save Herc Configuration", 30007
+        MENUITEM "Load Herc Configuration", 30008
+        MENUITEM SEPARATOR
+        MENUITEM "&Prefs\tCtrl+P", 30005
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit\tAlt+F4", 30006
+    END
+    POPUP "&Battle"
+    BEGIN
+        MENUITEM "Next Unit\t>", 30130
+        MENUITEM "Prev Unit\t<", 30131
+        MENUITEM "Defend\tD", 30132
+        MENUITEM SEPARATOR
+        POPUP "&View"
+        BEGIN
+            MENUITEM "Herc Damage\tF2", 30107
+            MENUITEM "Bioderm Condition\tF3", 30106
+            MENUITEM "World Conditions\tF4", 30109
+            MENUITEM "Movement Info\tF5", 30100
+            MENUITEM "Weapon Info\tF6", 30102
+            MENUITEM "Systems Info\tF7", 30103
+            MENUITEM "Shields Info\tF8", 30104
+        END
+        POPUP "&Mini-Map\tM"
+        BEGIN
+            MENUITEM "Show Elevation", 30120
+            MENUITEM "Show Terrain Colors", 30121
+            MENUITEM "Show Terrain Type", 30122
+            MENUITEM "Show Sensor Range", 30123
+            MENUITEM "Show Ore Locations", 30124
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&End turn\tCtrl+E", 30133
+        MENUITEM "&Leave Battle\tCtrl+X", 30134
+    END
+    POPUP "B&ase"
+    BEGIN
+        MENUITEM "Jump to: Herc Base", 30202
+        MENUITEM "Jump to: Bioderm Facility", 30203
+        MENUITEM "Jump to: Herc Bay", 30204
+        MENUITEM "Jump to: Herc Command Center", 30205
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "Get Help\aF1", 30300
+        MENUITEM SEPARATOR
+        MENUITEM "Contents", 30301
+        MENUITEM SEPARATOR
+        MENUITEM "&About...", 30306
+    END
+END
+
+APPABOUT DIALOG 23, 17, 228, 120
+STYLE WS_POPUP | WS_DLGFRAME
+BEGIN
+    CTEXT           "- CyberStorm -", -1, 28, 12, 168, 8
+    CTEXT           "(c) 1995 Sierra On-Line, Inc.   All rights reserved.", -1, 8, 30, 208, 8
+    ICON            "AppIcon", -1, 12, 10, 13, 13
+    ICON            "AppIcon", -1, 197, 11, 13, 13
+    GROUPBOX        "Version:", -1, 16, 49, 196, 39
+    CTEXT           "####", 200, 18, 60, 192, 8
+    CTEXT           "####", 201, 18, 70, 192, 8
+    DEFPUSHBUTTON   "OK", IDOK, 98, 97, 32, 14, WS_GROUP
+END
+
+STRINGTABLE
+BEGIN
+    0, "Empty"
+END
+
+APPACCEL ACCELERATORS
+BEGIN
+    VK_F12, 30311, VIRTKEY
+END
+
+1 VERSIONINFO
+FILEVERSION 1,0,0,0
+PRODUCTVERSION 1,0,0,0
+FILEFLAGSMASK 0x3fL
+FILEFLAGS 0x0L
+FILEOS VOS_NT_WINDOWS32
+FILETYPE VFT_APP
+FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName", "Sierra, Inc\0"
+            VALUE "FileDescription", "MissionForce: CyberStorm from Dynamix, Inc\0"
+            VALUE "FileVersion", "1.0.0.0\0"
+            VALUE "InternalName", "CSTORM\0"
+            VALUE "LegalCopyright", "Copyright Sierra, Inc \xa9 1996\0"
+            VALUE "OriginalFilename", "CSTORM.EXE\0"
+            VALUE "ProductName", "MissionForce: CyberStorm\0"
+            VALUE "ProductVersion", "1.0.0.0\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END

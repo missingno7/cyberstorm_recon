@@ -18,6 +18,10 @@ Numbers come from `python tools/verify.py`; this file only summarises them.
   placement and literals a neighbour does not yet emit. About 440 functions remain DIFF/parked; 127 of them differ
   in 16 bytes or fewer (lanes s48-s51). Register allocation is the dominant blocker (codegen_rules.md, r1/r2).
 
+- 2026-11-09 (late): compiler release settled by measurement (11.0 and 10.0a lose most accepted functions; 10.6
+  stays). Resources: `.rsrc` rebuilt from `src/res/` with WRC 10.6, 21 of 21 resources STRICT, section layout equal
+  except the bind stamp and 88 bytes of original slack garbage (UNKNOWN).
+
 ## Next
 - Near-miss functions (s48-s51), TU completion (s52), pdeath object split.
 - Image level: startup/BEGTEXT and library member order, .rsrc, then a full link once enough objects are complete.

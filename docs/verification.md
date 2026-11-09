@@ -96,6 +96,19 @@ promote.py --publish records those addresses as `hypothesis` bindings ("own data
 (no --at, no search) can reach the objects; verify still proves every item (BSS zero in the oracle, data bytes and
 relocations equal). Before this, such functions were withdrawn as "strict only with --at/search" (s15 tu_0041cb48).
 
+## Resources (2026-11-09, `tools/rsrc.py`, reported by verify)
+Source: `src/res/cstorm.rc` (WRC script; menu, About dialog, string table, accelerators, version info) and readable
+pixel text for the icon and the seven cursors (`*.ico.txt`, `*.cur.txt`, generated to .ico/.cur by tools/resgen.py).
+Policy: no RCDATA, every file a statement names must have a pixel-text source. Build: WRC 10.6 (DOS build under the
+pinned DOSBox-X, `config/toolchain.json` runners/resources) compiles at the recorded build clock (the only field that
+depends on it is the version block's file date); WLINK links a one-function stub; WRC binds the .res into it, as the
+original build did. Proof: each resource (type, name, language) STRICT by bytes; the whole `.rsrc` section equal
+after rebasing data-entry RVAs, except (a) directory TimeDateStamps = bind time, an image-level clock field, and
+(b) 88 slack bytes after the last resource (0x1ba8..0x1c00) that the original binder filled from uninitialized
+memory: explicit UNKNOWN debt, no copy elsewhere in the file. Result: 21 of 21 STRICT, layout equal.
+Corroboration: 1.00A holds the same resources byte for byte except the menu, cursor 3 and the version date, plus
+eight dialogs (ids 106..130) that 1.10A dropped.
+
 ## Image-level link probe (2026-11-09, `tools/linkprobe.py`)
 COMPLETE TUs that are adjacent in the original (only zero fill between them) form 11 runs (27 TUs). Each run is
 compiled fresh and linked alone with the pinned WLINK 10.6 (`system nt_win`, `option undefsok`, objects in original

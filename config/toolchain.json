@@ -10,7 +10,9 @@
     "wpp386": "BINNT/WPP386.EXE",
     "wlink": "BINNT/WLINK.EXE",
     "wlib": "BINNT/WLIB.EXE",
-    "wasm": "BINNT/WASM.EXE"
+    "wasm": "BINNT/WASM.EXE",
+    "wrc": "BINNT/WRC.EXE",
+    "wrc_dos": "BINW/WRC.EXE"
    },
    "key_files": {
     "BINNT/WCC386.EXE": "b533dd0b4685cd6e1b32a4dcb2e83624a5bf36d61453af6d171527602c049d7e",
@@ -24,7 +26,11 @@
     "LIB386/MATH387S.LIB": "e891569ec780e149832a53c9a95bc4722c0b84b9bc5b831a9d2a5194d579ed67",
     "LIB386/MATH3S.LIB": "a925be8ed51506ea491ae4a6b4d462f4db556422674d5bb8ff5c7566ae908af8",
     "LIB386/PLIBMT3S.LIB": "2de982d2abbd2b1e03e898acd7f0c58ecc1df8fa56f3e4ff154ee6021977e35f",
-    "BINNT/WASM.EXE": "b533dd0b4685cd6e1b32a4dcb2e83624a5bf36d61453af6d171527602c049d7e"
+    "BINNT/WASM.EXE": "b533dd0b4685cd6e1b32a4dcb2e83624a5bf36d61453af6d171527602c049d7e",
+    "BINW/WRC.EXE": "fb7ba26ad120a14c5e18fa49f631b382029c52a2ac72cd6f8f8196f2ad92dfa0",
+    "BINW/W32RUN.EXE": "f3b2864d171319728baaf95c1188e7b98d5b9ce2bb13768b5272e3ec5c94f4f4",
+    "BINW/DOS4GW.EXE": "b8265123ac8a189637448618409ef3ecd2e9f3e1a47062c685a02240f688dec1",
+    "BINNT/WRC.EXE": "b533dd0b4685cd6e1b32a4dcb2e83624a5bf36d61453af6d171527602c049d7e"
    },
    "include": [
     "H",
@@ -73,6 +79,42 @@
     "TASM32.EXE": "ba50fe547863b96242d98cff54cdf95ab268a8682395afad172eedbfc46c5b26"
    },
    "include": []
+  },
+  "wc110": {
+   "dir": "watcom-11.0",
+   "include": [
+    "H",
+    "H/NT"
+   ],
+   "key_files": {
+    "BINNT/WCC386.EXE": "506dc43c0fb7034e71a309729121ab2d89cebbdce22631a60e2e2f94b1a03e89",
+    "BINNT/WPP386.EXE": "bf951e324d182d2134482221568b2f8039f9c2c705db2e5c6232bffdf2ad10d5",
+    "BINNT/WCCD386.DLL": "81460d4c6b5eaf87540eb29225d113dc360977f580b4b3991fb8e1bed441b275",
+    "BINNT/WPPD386.DLL": "4fb623167a61fe8ec08e111f2b6d9ac5b0dcee7a6480d198089ae902f937323b"
+   },
+   "product": "WATCOM C/C++ 11.0 (local C:/tools/watcom-11.0). Excluded as the runtime (banner); kept for compiler A/B probes only",
+   "tools": {
+    "wcc386": "BINNT/WCC386.EXE",
+    "wpp386": "BINNT/WPP386.EXE",
+    "wlink": "BINNT/WLINK.EXE"
+   }
+  },
+  "wc100a": {
+   "dir": "watcom-10.0a",
+   "include": [
+    "H",
+    "H/NT"
+   ],
+   "key_files": {
+    "BINNT/WCC386.EXE": "8fee7d6ab3f2c06a0a874135e3898386898679e7dd53993fcc508e296364767d",
+    "BINNT/WPP386.EXE": "8fee7d6ab3f2c06a0a874135e3898386898679e7dd53993fcc508e296364767d"
+   },
+   "product": "WATCOM C/C++ 10.0a (local C:/tools/watcom-10.0a). Excluded as the runtime (banner); kept for compiler A/B probes only",
+   "tools": {
+    "wcc386": "BINNT/WCC386.EXE",
+    "wpp386": "BINNT/WPP386.EXE",
+    "wlink": "BINNT/WLINK.EXE"
+   }
   }
  },
  "profiles": {
@@ -167,6 +209,30 @@
     "-m5"
    ],
    "status": "verified reproducing configuration: Borland TASM32 with -ml (case-sensitive symbols) and -m5 (multi-pass: forward jumps short, no NOP padding) reproduces 11 of 12 hand-assembly routines byte for byte; TASM 4.0 and 5.0 give identical bytes on all of them, so the historical version is undecided (s46 + integrator 2026-11-09)"
+  }
+ },
+ "runners": {
+  "dosbox-x": {
+   "path": "dosbox-x/dosbox-x.exe",
+   "sha256": "b028a4d328302ea270722dec69f3ec3a10ebf76beba72a51970db33a88df2bf6",
+   "note": "DOSBox-X (C:/tools/CATALOG.md). Used only to run WRC 10.6 (DOS build, W32RUN) under a set clock: country=1, cycles=fixed 300000 (deterministic emulated time)"
+  }
+ },
+ "resources": {
+  "script": "src/res/cstorm.rc",
+  "compile": [
+   "-q",
+   "-r",
+   "-bt=nt"
+  ],
+  "clock": {
+   "date": "12/13/1996",
+   "time": "13:52:59",
+   "cycles": 300000,
+   "evidence": "VS_FIXEDFILEINFO dwFileDateLS 0x32b1a60d = 1996-12-13 13:53:01 in WRC's default zone EST5EDT (TZ unset); the binary's own build string reads 'Created: Dec 13 1996 13:51:31'. The DOS clock starts 2 emulated seconds earlier because DOS/4GW startup and preprocessing <windows.h> take that long at the pinned cycle rate"
+  },
+  "unknown": {
+   "slack": "88 bytes after the last resource up to the 0x200 file alignment (.rsrc 0x1ba8..0x1c00): the original binder wrote uninitialized buffer memory there (no copy anywhere else in the file; 1.00A's slack holds unrelated x86 code). Not reproducible; reported as UNKNOWN"
   }
  }
 }

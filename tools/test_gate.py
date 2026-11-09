@@ -137,6 +137,40 @@ def audit_v1_r2_scalars(check):
     check(not any(x == "STRICT" for x in res["zero"]), "R2.2 negative: zero (BSS) object over nonzero oracle data is not STRICT")
 
 
+def resource_checks(check):
+    """tools/rsrc.py: policy and sensitivity (a one-pixel or one-character change is not STRICT)."""
+    import shutil
+    import rsrc
+    from common import CONFIG, load_json
+    script = ROOT / load_json(CONFIG / "toolchain.json")["resources"]["script"]
+    if not script.exists():
+        return
+    with tempfile.TemporaryDirectory(dir=ROOT / "build") as td:
+        d = Path(td)
+        for f in script.parent.iterdir():
+            shutil.copyfile(f, d / f.name)
+        rc = d / script.name
+        text = rc.read_text(encoding="cp1252")
+        rc.write_text(text + "\nBLOB RCDATA { 1, 2, 3 }\n", encoding="cp1252")
+        check(bool(rsrc.policy(rc)), "resource policy rejects RCDATA")
+        rc.write_text(text.replace("mcursor7.cur", "mcursor7.bin"), encoding="cp1252")
+        check(bool(rsrc.policy(rc)), "resource policy rejects a file without pixel-text source")
+        rc.write_text(text.replace("Show Ore Locations", "Show Ore Locationz"), encoding="cp1252")
+        cur = d / "mcursor3.cur.txt"
+        lines = cur.read_text(encoding="ascii").splitlines()
+        i = next(k for k, ln in enumerate(lines) if ln and set(ln) <= set(".#o~") and "#" in ln)
+        lines[i] = lines[i].replace("#", ".", 1)
+        cur.write_text("\n".join(lines) + "\n", encoding="ascii")
+        exe, conf = rsrc.build(script=rc)
+        import io
+        import contextlib
+        with contextlib.redirect_stdout(io.StringIO()) as buf:
+            ok, strict, total = rsrc.compare(exe, conf, verbose=True)
+        out = buf.getvalue()
+        check(not ok and strict == total - 2 and "APPMENU" in out.split("DIFF", 1)[-1],
+              "changed menu text and one cursor pixel are not STRICT (resources)")
+
+
 def main():
     fails = []
 
@@ -230,6 +264,7 @@ def main():
         check(all(v != "STRICT" for v in st6.values()), "placement at an interior address is not STRICT (F4)")
     audit_v1_f3_f5(check)
     audit_v1_r2_scalars(check)
+    resource_checks(check)
     print("TEST GATE OK" if not fails else f"TEST GATE FAILED: {fails}")
     return 1 if fails else 0
 
