@@ -944,6 +944,117 @@
    },
    "data": {},
    "accepted": "2026-11-09"
+  },
+  "src/sim/actorlst.c": {
+   "as": "sim\\actorlst.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "004561d0",
+     "size": 48,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "ActorListConstruct": {
+     "va": "00456200",
+     "size": 112,
+     "mangled": "W?ActorListConstruct$n()i"
+    },
+    "ActorListRead": {
+     "va": "00456320",
+     "size": 176,
+     "mangled": "W?ActorListRead$n(pnv)i"
+    },
+    "ActorGetByIndex": {
+     "va": "00456550",
+     "size": 64,
+     "mangled": "W?ActorGetByIndex$n(i)pn$ActorRecord$$"
+    },
+    "ActorCloseRecord": {
+     "va": "00456c80",
+     "size": 20,
+     "mangled": "W?ActorCloseRecord$n(pn$ActorRecord$$)pn$1$"
+    },
+    "ActorRecord::$ct": {
+     "va": "00467971",
+     "size": 11,
+     "mangled": "W?$ct:ActorRecord$n()_"
+    }
+   },
+   "data": {
+    "CONST2": {
+     "va": "0048dfd8",
+     "size": 12
+    },
+    "_DATA": {
+     "va": "004a04f8",
+     "size": 12
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/sim/actoradd.c": {
+   "as": "sim\\actoradd.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "ActorFindAndSet": {
+     "va": "00456ca0",
+     "size": 64,
+     "mangled": "W?ActorFindAndSet$n(pnv)i"
+    },
+    "ActorListIsBusy": {
+     "va": "00456ce0",
+     "size": 32,
+     "mangled": "W?ActorListIsBusy$n()i"
+    },
+    "ActorCreate": {
+     "va": "00456d00",
+     "size": 128,
+     "mangled": "W?ActorCreate$n(pnvpnvii)pn$ActorRecord$$"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/sim/worldact.c": {
+   "as": "sim\\worldact.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "WorldActionShutdown": {
+     "va": "00457020",
+     "size": 48,
+     "mangled": "W?WorldActionShutdown$n()i"
+    },
+    "WorldActionUpdate": {
+     "va": "00457180",
+     "size": 128,
+     "mangled": "W?WorldActionUpdate$n(ii)i"
+    },
+    "WorldActionRemove": {
+     "va": "00457200",
+     "size": 80,
+     "mangled": "W?WorldActionRemove$n(pnv)i"
+    },
+    "WorldActionCallback": {
+     "va": "004572d0",
+     "size": 64,
+     "mangled": "W?WorldActionCallback$n(pnv)i"
+    },
+    "WorldActionRead": {
+     "va": "00457310",
+     "size": 112,
+     "mangled": "W?WorldActionRead$n(pnvi)i"
+    },
+    "WorldActionStop": {
+     "va": "00457380",
+     "size": 14,
+     "mangled": "W?WorldActionStop$n(pnv)i"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
   }
  }
 }
