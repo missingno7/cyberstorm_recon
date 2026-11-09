@@ -2609,7 +2609,7 @@
   "src/sim/anim.c": {
    "as": "sim\\anim.c",
    "install": "wc106",
-   "profile": "ot",
+   "profile": "ot-oe",
    "functions": {
     "AnimActionClear": {
      "va": "00457390",
@@ -2626,6 +2626,11 @@
      "size": 16,
      "mangled": "W?AnimActionIsSet$n(pnv)i"
     },
+    "AnimActionAdvance": {
+     "va": "00457430",
+     "size": 64,
+     "mangled": "W?AnimActionAdvance$n(pnv)i"
+    },
     "AnimActionRelease": {
      "va": "004575a0",
      "size": 64,
@@ -2638,7 +2643,7 @@
     },
     "AnimActionCreateBlock": {
      "va": "004587d0",
-     "size": 76,
+     "size": 80,
      "mangled": "W?AnimActionCreateBlock$n(pnv)v"
     },
     "AnimActionFreeBlock": {
@@ -2672,7 +2677,12 @@
      "mangled": "W?AnimActionChecksum$n(pnvpnus)v"
     }
    },
-   "data": {},
+   "data": {
+    "_DATA": {
+     "va": "004a0534",
+     "size": 11
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/_unknown/tu_00458f20.c": {
@@ -4562,11 +4572,21 @@
    "as": "sim\\animbmp.c",
    "install": "wc106",
    "profile": "ot",
-   "functions": {},
+   "functions": {
+    "AnimEnsureFX": {
+     "va": "00459e60",
+     "size": 128,
+     "mangled": "W?AnimEnsureFX$n(i)pnv"
+    }
+   },
    "data": {
     "_DATA": {
      "va": "004a0594",
      "size": 14
+    },
+    "CONST": {
+     "va": "0048b4e4",
+     "size": 51
     }
    },
    "accepted": "2026-11-09"
@@ -9383,6 +9403,13 @@
    "tu": "src/_unknown/tu_0044b8b0.c",
    "functions": [
     "SimShortcutMode"
+   ],
+   "date": "2026-11-09"
+  },
+  {
+   "tu": "src/sim/anim.c",
+   "functions": [
+    "AnimActionCreateBlock"
    ],
    "date": "2026-11-09"
   }

@@ -199,9 +199,9 @@ def main(argv):
     for m in mods:
         for pn, psi, po, loc in m.publics:
             seg = m.segments[psi]
-            if seg.name not in bases or symbols.is_local(pn, loc) or seg.cls.upper() == "CODE":
+            if seg.name not in bases or seg.cls.upper() == "CODE":
                 continue
-            lab = symbols.label(pn)
+            lab = symbols.key_for(pn, loc, scope)        # statics: TU-scoped key, as the resolver looks them up
             if lab in syms and syms[lab].get("mangled") not in (None, pn):
                 lab = f"{lab}#{pn}"
             if lab not in syms:

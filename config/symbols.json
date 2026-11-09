@@ -12903,10 +12903,10 @@
   "AnimActionAdvance": {
    "va": "00457430",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?AnimActionAdvance$n(pnv)i",
    "tu": "src/sim/anim.c",
-   "evidence": "placed (at) in src/sim/anim.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "AnimActionStep": {
    "va": "00457470",
@@ -13201,10 +13201,10 @@
   "AnimEnsureFX": {
    "va": "00459e60",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?AnimEnsureFX$n(i)pnv",
    "tu": "src/sim/animbmp.c",
-   "evidence": "placed in src/sim/animbmp.c 2026-11-09; strict only with --at/search"
+   "evidence": "strict match 2026-11-09"
   },
   "AnimBitmapSweep": {
    "va": "00459ee0",
@@ -20140,6 +20140,13 @@
    "mangled": "W?TimerNow$n()ui",
    "evidence": "implied by src/sim/explo.c 2026-11-09"
   },
+  "TimerNow#TimerNow": {
+   "va": "0047fc80",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "TimerNow",
+   "evidence": "implied by src/sim/anim.c 2026-11-09"
+  },
   "GameClockSet": {
    "va": "0047fc90",
    "kind": "func",
@@ -20272,6 +20279,14 @@
    "status": "hypothesis",
    "mangled": "W?g48ab51$n[]a",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "animFormatPool@sim/animbmp.c": {
+   "va": "0048b4e4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?animFormatPool$n[]xa",
+   "tu": "src/sim/animbmp.c",
+   "evidence": "own data placed in src/sim/animbmp.c 2026-11-09"
   },
   "snw_valid_dll": {
    "va": "0048b7ec",
