@@ -37,15 +37,18 @@ Model: `luna` = gpt-6-luna xhigh, `sol` = gpt-6.1-sol high (Codex; all new lanes
 | s14 | sol | terr\tdisplay.c, tarea.c, tsurface.c (from w13); 0042cf40, 0042e210 | done (40; 46 parked) |
 | s15 | sol | 0041c7d8..0041d774, 0046b918 | done (30; 15 parked) |
 | s16 | sol | 00417efc..00418ef0, 004481c0 | done (33; 7 parked) |
-| s17 | sol | sim\anim.c, animbmp.c, simhot.c (from w10/w12); 00460800 | running |
-| s18 | sol | logic\logic.c + sim\hotbrief.c, logic\lactors.c, intel.c (from w12/w9); 00464d7c | running |
+| s17 | sol | sim\anim.c, animbmp.c, simhot.c (from w10/w12); 00460800 | done (26; 25 parked) |
+| s18 | sol | logic\logic.c + sim\hotbrief.c, logic\lactors.c, intel.c (from w12/w9); 00464d7c | done (43; 29 parked) |
 | s19 | sol | 004742bc..00477dd8 | done (115 in 15 TUs; 11 parked) |
-| s20 | sol | 0045a050..0045a600, 0045ad00..0045bc50, 0045cc00..0045dbd0 | running |
+| s20 | sol | 0045a050..0045a600, 0045ad00..0045bc50, 0045cc00..0045dbd0 | done (21: sim\animfluf.c, sim\weapai.c, 5 unnamed; 18 parked) |
 | s21 | sol | 00415554..00415a88, 00426cdc..00427e0c, 00429708..0042a0e0 | running |
 | s22 | sol | 004323c0..00432f40, 00435084..00435dec, 0043e3ac..0043ef34 | running |
 | s23 | sol | 00443e88..004451e8 (around pop\psystem.c) | running |
 | s24 | sol | 0047ab81..0047c280 | running |
 | s25 | sol | 0047d400..004816cc | running |
+| s26 | sol | 0040bec0..0040d2b0, pop\pherc.c (2nd pass) | running |
+| s27 | sol | 2nd pass: shell\hercbuy.c, shell\hotseat.c, multi\link.c | running |
+| s28 | sol | 2nd pass: logic\lgen.c + sinterp.c, terr\tgrid.c | running |
 | l1 | luna | shell\hercbuy.c | done (19) |
 | o1 | opus | multi\linkdlg.c, linkq.c, message.c | done |
 | o2 | opus | sim\apply.c, fxout.c, explo.c | done |
