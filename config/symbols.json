@@ -4274,6 +4274,20 @@
    "mangled": "BriefMissionFile",
    "evidence": "implied by src/shell/missbrf.c 2026-11-09"
   },
+  "f_43ee17": {
+   "va": "0043ee17",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_43ee17$n(pnvpn$FileRecord$$i)i",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+  },
+  "f_43ee71": {
+   "va": "0043ee71",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_43ee71$n(pnvpn$FileRecord$$)i",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+  },
   "ProfileManager::BeginMissions": {
    "va": "0043ef64",
    "kind": "func",
@@ -4583,6 +4597,13 @@
    "mangled": "W?WorldDrawTerrain$n(pnv)v",
    "evidence": "implied by src/sim/fxout.c 2026-11-09"
   },
+  "f_44bba0": {
+   "va": "0044bba0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_44bba0$n(pn$ModeSystem$$)v",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+  },
   "SimValueGadget::$dt": {
    "va": "0044d710",
    "kind": "func",
@@ -4604,6 +4625,13 @@
    "status": "hypothesis",
    "mangled": "W?SimSetView$n(pn$SimGame$$i)v",
    "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
+  "f_44db70": {
+   "va": "0044db70",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_44db70$n(pn$ModeSystem$$i)v",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
   },
   "SimSetFocus": {
    "va": "0044dd40",
@@ -6936,6 +6964,13 @@
    "tu": "src/logic/lsys.c",
    "evidence": "strict match 2026-11-09"
   },
+  "f_46b9bd": {
+   "va": "0046b9bd",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_46b9bd$n()v",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+  },
   "SoundLoad": {
    "va": "0046c15e",
    "kind": "func",
@@ -8830,6 +8865,13 @@
    "mangled": "W?HelpClearTopic$n()v",
    "evidence": "implied by src/_unknown/tu_0042a0e0.c 2026-11-09"
   },
+  "OptionsDlgProc": {
+   "va": "00476505",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?OptionsDlgProc$n()i",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+  },
   "BriefWaitB": {
    "va": "00476512",
    "kind": "func",
@@ -8850,6 +8892,13 @@
    "status": "hypothesis",
    "mangled": "W?MenuHelpOpenTopic$n(l)v",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "f_4765e6": {
+   "va": "004765e6",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_4765e6$n()i",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
   },
   "ExploIdle": {
    "va": "0047682c",
@@ -8878,6 +8927,13 @@
    "status": "hypothesis",
    "mangled": "W?f_00477295$n(pna)v",
    "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "f_477352": {
+   "va": "00477352",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_477352$n(ipnapnapna)i",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
   },
   "f_004773cc": {
    "va": "004773cc",
@@ -8956,12 +9012,140 @@
    "mangled": "W?set_chat_menu_item$n(pnvii)v",
    "evidence": "implied by src/multi/chat.c 2026-11-09"
   },
+  "W?.fn_init$n()v@main/win/winmain.c": {
+   "va": "00477dd8",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/main/WIN/winmain.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "CenterWindow": {
+   "va": "00477dee",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?CenterWindow$n(pnvui)v",
+   "tu": "src/main/WIN/winmain.c",
+   "evidence": "placed (at) in src/main/WIN/winmain.c 2026-11-09"
+  },
+  "ActivateMainWindow": {
+   "va": "00477ef3",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ActivateMainWindow$n()v",
+   "tu": "src/main/WIN/winmain.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ShutdownCallback": {
+   "va": "00477f2a",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ShutdownCallback$n()v",
+   "tu": "src/main/WIN/winmain.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "InitApplication": {
+   "va": "00477f4c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?InitApplication$n()i",
+   "tu": "src/main/WIN/winmain.c",
+   "evidence": "placed (at) in src/main/WIN/winmain.c 2026-11-09"
+  },
+  "Problem": {
+   "va": "00477ff9",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Problem$n(uli)v",
+   "tu": "src/main/WIN/winmain.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "RunOptionsDialog": {
+   "va": "00478089",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?RunOptionsDialog$n()v",
+   "tu": "src/main/WIN/winmain.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SetMenuVisible": {
+   "va": "0047817e",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetMenuVisible$n(i)v",
+   "tu": "src/main/WIN/winmain.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "AboutDlgProc": {
+   "va": "004781cf",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?AboutDlgProc$n(pnvuiuil)i",
+   "tu": "src/main/WIN/winmain.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SetGameWindowSize": {
+   "va": "0047822d",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetGameWindowSize$n(ii)v",
+   "tu": "src/main/WIN/winmain.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "GetWindowOffset": {
+   "va": "004782f3",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?GetWindowOffset$n(pnipni)i",
+   "tu": "src/main/WIN/winmain.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LayoutGameWindow": {
+   "va": "0047831c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LayoutGameWindow$n(i)v",
+   "tu": "src/main/WIN/winmain.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ClearGameWindow": {
+   "va": "004784d8",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ClearGameWindow$n()v",
+   "tu": "src/main/WIN/winmain.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SaveHercConfig": {
+   "va": "0047852f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SaveHercConfig$n(pnvi)i",
+   "tu": "src/main/WIN/winmain.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "f_004786d8": {
    "va": "004786d8",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "f_004786d8",
    "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
+  },
+  "LoadHercConfig": {
+   "va": "004786d8",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LoadHercConfig$n(pnv)i",
+   "tu": "src/main/WIN/winmain.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SaveGame": {
+   "va": "004788db",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SaveGame$n(pnxa)v",
+   "tu": "src/main/WIN/winmain.c",
+   "evidence": "placed (at) in src/main/WIN/winmain.c 2026-11-09"
   },
   "LoadMission": {
    "va": "00478d52",
@@ -8970,12 +9154,53 @@
    "mangled": "W?LoadMission$n(pnxai)i",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
   },
+  "PostCornerClick": {
+   "va": "0047965f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PostCornerClick$n()v",
+   "tu": "src/main/WIN/winmain.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HandleMenuKey": {
+   "va": "004796ab",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HandleMenuKey$n(uil)v",
+   "tu": "src/main/WIN/winmain.c",
+   "evidence": "placed (at) in src/main/WIN/winmain.c 2026-11-09"
+  },
+  "WndProc": {
+   "va": "004797f4",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?WndProc$n(pnvuiuil)l",
+   "tu": "src/main/WIN/winmain.c",
+   "evidence": "placed (at) in src/main/WIN/winmain.c 2026-11-09"
+  },
   "GuiPumpMessages": {
    "va": "0047a3bd",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?GuiPumpMessages$n()v",
-   "evidence": "implied by src/_unknown/tu_0042a0e0.c 2026-11-09"
+   "tu": "src/main/WIN/winmain.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ApplySettings": {
+   "va": "0047a44b",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ApplySettings$n(pna)i",
+   "tu": "src/main/WIN/winmain.c",
+   "evidence": "placed (at) in src/main/WIN/winmain.c 2026-11-09"
+  },
+  "_WinMain@16": {
+   "va": "0047a517",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "_WinMain@16",
+   "tu": "src/main/WIN/winmain.c",
+   "evidence": "placed (at) in src/main/WIN/winmain.c 2026-11-09"
   },
   "BriefModuleConstruct": {
    "va": "0047ab8c",
@@ -9089,6 +9314,13 @@
    "mangled": "W?GuiResetClip$n(pnv)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "f_47b2d0": {
+   "va": "0047b2d0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_47b2d0$n(pn$GuiCanvas$$)i",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+  },
   "SurfacePresent": {
    "va": "0047b3a0",
    "kind": "func",
@@ -9116,6 +9348,13 @@
    "status": "hypothesis",
    "mangled": "W?SimPaletteCycle$n(pnv)v",
    "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
+  "f_47b7c0": {
+   "va": "0047b7c0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_47b7c0$n(pn$GuiCanvas$$i)v",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
   },
   "MenuSetColors": {
    "va": "0047b930",
@@ -9581,6 +9820,13 @@
    "tu": "src/debug/assert.c",
    "evidence": "strict match 2026-11-09"
   },
+  "f_47d710": {
+   "va": "0047d710",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_47d710$n()v",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+  },
   "PlyGetKey": {
    "va": "0047d770",
    "kind": "func",
@@ -9608,6 +9854,13 @@
    "status": "hypothesis",
    "mangled": "W?PaletteFindColor$n(pn$Palette$$pnx$PaletteColor$$)uc",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "f_47dde0": {
+   "va": "0047dde0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_47dde0$n()v",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
   },
   "GuiReadKey": {
    "va": "0047df20",
@@ -10910,6 +11163,13 @@
    "mangled": "W?searchPaths$n[]pna",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
   },
+  "g4a425c": {
+   "va": "004a425c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4a425c$npna",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+  },
   "assertProgram": {
    "va": "004a4264",
    "kind": "data",
@@ -10972,6 +11232,27 @@
    "status": "hypothesis",
    "mangled": "W?joiningMessage$n[]xa",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "g4a48e4": {
+   "va": "004a48e4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4a48e4$ni",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+  },
+  "g4a48f0": {
+   "va": "004a48f0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4a48f0$ni",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+  },
+  "gConfigDefault": {
+   "va": "004a491c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gConfigDefault$n$WinConfig$$",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
   },
   "ResourceSourcePath": {
    "va": "004a49f8",
@@ -12408,6 +12689,13 @@
    "mangled": "W?modeCheckName$n[]a",
    "evidence": "implied by src/logic/lactor.c 2026-11-09"
   },
+  "modeCheckName#W?modeCheckName$n$ModeSystem$$": {
+   "va": "004d2460",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?modeCheckName$n$ModeSystem$$",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+  },
   "gRedrawFlags": {
    "va": "004d248c",
    "kind": "data",
@@ -13661,6 +13949,13 @@
    "mangled": "gResMgr",
    "evidence": "implied by src/io/resource.c (overload-safe migration 2026-11-09)"
   },
+  "gGameSettings": {
+   "va": "00512370",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gGameSettings$n$GameSettings$$",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+  },
   "gGuiEffectPriority": {
    "va": "00512374",
    "kind": "data",
@@ -13675,6 +13970,20 @@
    "mangled": "W?ShowStatus$npn(pnvpnxaii)v",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
   },
+  "gOptionsDialog": {
+   "va": "00512520",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gOptionsDialog$npn(pnvpn$GameSettings$$pnv)i",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+  },
+  "g512538": {
+   "va": "00512538",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g512538$npnv",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+  },
   "g_mainWindow": {
    "va": "0051253c",
    "kind": "data",
@@ -13688,6 +13997,104 @@
    "status": "hypothesis",
    "mangled": "g_mainWindow",
    "evidence": "implied by src/debug/assert.c (overload-safe migration 2026-11-09)"
+  },
+  "g512540": {
+   "va": "00512540",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g512540$npnv",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+  },
+  "g512544": {
+   "va": "00512544",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g512544$npnv",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+  },
+  "g512550": {
+   "va": "00512550",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g512550$ni",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+  },
+  "g512554": {
+   "va": "00512554",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g512554$ni",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+  },
+  "g512560": {
+   "va": "00512560",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g512560$ni",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+  },
+  "g512564": {
+   "va": "00512564",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g512564$ni",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+  },
+  "g512568": {
+   "va": "00512568",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g512568$ni",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+  },
+  "g51256c": {
+   "va": "0051256c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g51256c$ni",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+  },
+  "g512580": {
+   "va": "00512580",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g512580$npnv",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+  },
+  "g512584": {
+   "va": "00512584",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g512584$ni",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+  },
+  "g512588": {
+   "va": "00512588",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g512588$ni",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+  },
+  "gWinConfig": {
+   "va": "00512598",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gWinConfig$n$WinConfig$$",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+  },
+  "g5125c0": {
+   "va": "005125c0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g5125c0$ni",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+  },
+  "g5125c4": {
+   "va": "005125c4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g5125c4$ni",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
   },
   "g513888": {
    "va": "00513888",
@@ -13730,6 +14137,41 @@
    "status": "hypothesis",
    "mangled": "W?g5138b0$ni",
    "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "gViewX": {
+   "va": "005138c8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gViewX$ni",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+  },
+  "gViewY": {
+   "va": "005138cc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gViewY$ni",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+  },
+  "gViewW": {
+   "va": "005138d0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gViewW$ni",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+  },
+  "gViewH": {
+   "va": "005138d4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gViewH$ni",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+  },
+  "gViewChanged": {
+   "va": "005138d8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gViewChanged$ni",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
   },
   "gMenuBackground": {
    "va": "005138e0",

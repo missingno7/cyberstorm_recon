@@ -3874,6 +3874,90 @@
     }
    },
    "accepted": "2026-11-09"
+  },
+  "src/main/WIN/winmain.c": {
+   "as": "main\\WIN\\winmain.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "00477dd8",
+     "size": 22,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "ActivateMainWindow": {
+     "va": "00477ef3",
+     "size": 55,
+     "mangled": "W?ActivateMainWindow$n()v"
+    },
+    "ShutdownCallback": {
+     "va": "00477f2a",
+     "size": 34,
+     "mangled": "W?ShutdownCallback$n()v"
+    },
+    "Problem": {
+     "va": "00477ff9",
+     "size": 144,
+     "mangled": "W?Problem$n(uli)v"
+    },
+    "RunOptionsDialog": {
+     "va": "00478089",
+     "size": 245,
+     "mangled": "W?RunOptionsDialog$n()v"
+    },
+    "SetMenuVisible": {
+     "va": "0047817e",
+     "size": 81,
+     "mangled": "W?SetMenuVisible$n(i)v"
+    },
+    "AboutDlgProc": {
+     "va": "004781cf",
+     "size": 94,
+     "mangled": "W?AboutDlgProc$n(pnvuiuil)i"
+    },
+    "SetGameWindowSize": {
+     "va": "0047822d",
+     "size": 198,
+     "mangled": "W?SetGameWindowSize$n(ii)v"
+    },
+    "GetWindowOffset": {
+     "va": "004782f3",
+     "size": 41,
+     "mangled": "W?GetWindowOffset$n(pnipni)i"
+    },
+    "LayoutGameWindow": {
+     "va": "0047831c",
+     "size": 444,
+     "mangled": "W?LayoutGameWindow$n(i)v"
+    },
+    "ClearGameWindow": {
+     "va": "004784d8",
+     "size": 87,
+     "mangled": "W?ClearGameWindow$n()v"
+    },
+    "SaveHercConfig": {
+     "va": "0047852f",
+     "size": 425,
+     "mangled": "W?SaveHercConfig$n(pnvi)i"
+    },
+    "LoadHercConfig": {
+     "va": "004786d8",
+     "size": 515,
+     "mangled": "W?LoadHercConfig$n(pnv)i"
+    },
+    "PostCornerClick": {
+     "va": "0047965f",
+     "size": 76,
+     "mangled": "W?PostCornerClick$n()v"
+    },
+    "GuiPumpMessages": {
+     "va": "0047a3bd",
+     "size": 142,
+     "mangled": "W?GuiPumpMessages$n()v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
   }
  },
  "accepted_losses": [
