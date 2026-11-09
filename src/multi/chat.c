@@ -1,5 +1,6 @@
-unsigned char chat_data[0x60000];
-#define CHAT_WORD(address) (*(unsigned int *)(chat_data + ((address) - 0x4a0000)))
+#include <windows.h>
+extern char dialogOpenData[], g4dd0c0[]; int chatLogPending; char chatLogText[256];
+
 extern const char chat_wildcard[];
 extern const char reset_chat_wildcard[];
 extern const char chat_file_path[];
@@ -7,7 +8,7 @@ extern char targetBriefResource[];
 extern const char chat_player_state_table[];
 
 extern "C" {
-__declspec(dllimport) void __stdcall InitializeCriticalSection(void *);
+
 void *memset(void *, int, unsigned int);
 char *strcpy(char *, const char *);
 int close_chat_handle(unsigned int);
@@ -18,7 +19,7 @@ void LogicTextAppend(void *, const char *);
 
 void *initialize_chat(void *self)
 {
-    InitializeCriticalSection(chat_data + (0x4f64a0 - 0x4a0000));
+    InitializeCriticalSection((CRITICAL_SECTION *)dialogOpenData);
     *(unsigned int *)((char *)self + 0x3d76) = 0;
     return self;
 }
@@ -27,7 +28,7 @@ int reset_chat_history(void *self)
 {
     memset(self, 0, 0x3d7a);
     *(unsigned char *)self = 1;
-    CHAT_WORD(0x4f64b8) = 0;
+    chatLogPending = 0;
     strcpy((char *)self + 0x262 + (*(unsigned int *)((char *)self + 0x3d62)) * 0x64, reset_chat_wildcard);
     return 1;
 }
@@ -36,43 +37,28 @@ void clear_chat(void *self)
 {
     memset(self, 0, 0x3d7a);
     *(unsigned char *)self = 1;
-    CHAT_WORD(0x4f64b8) = 0;
+    chatLogPending = 0;
 }
 
-void flush_chat_log(void)
-{
-    if (CHAT_WORD(0x4f64b8) != 0) {
-        CHAT_WORD(0x4f64b8) = 0;
-        LogicTextAppend((char *)chat_data + (0x4dd0c0 - 0x4a0000),
-                        (char *)chat_data + (0x4f64bc - 0x4a0000));
-    }
-}
 
-void set_chat_mode(void *self, unsigned int mode, const char *text)
-{
-    memset(self, 0, 0xa);
-    *((unsigned char *)self + mode) = 1;
-    strcpy((char *)self + 0x3cfa, text);
-    core_chat(self);
-}
 
-int chat_ready(void)
-{
-    return 1;
-}
+
+
+
 
 extern "C" {
-__declspec(dllimport) void __stdcall EnterCriticalSection(void *);
-__declspec(dllimport) void __stdcall LeaveCriticalSection(void *);
+
+
 char *strcat(char *, const char *);
 unsigned int strlen(const char *);
 int sprintf(char *, const char *, ...);
-void parse_chat_text(unsigned int *, unsigned int, const char *);
-int chat_entry_name(void *, int);
-void append_chat_name(unsigned int *, int);
+
+
+
 }
 
-class MenuNetwork { public: int IsRemote(int); };
+struct ChatPlayerState {int state; char rest[184];}; class MenuNetwork { public: int localSlot; int IsRemote(int); int PeerForSlot(int); };
+struct MenuMessage { char bytes[0x1da]; MenuMessage(unsigned int,const char *); }; int MenuSend(MenuMessage *,int);
 extern MenuNetwork gMenuNetwork;
 
 void build_chat_menu_line(void *, unsigned int, const char *, unsigned int = 0xffffffff);
@@ -82,15 +68,15 @@ void enable_chat_menu(void *, int, int, int);
 int chat_menu_state(void *, int, int);
 int chat_menu_valid(void *);
 void set_chat_menu_item(void *, int, int);
-void refresh_chat_selection(void *);
+int MenuClear(void *);
 struct ChatMenuOwner {
     unsigned char prefix[0x3d76];
     void *menu;
 };
 void update_chat_menu(void *);
 void *AllocateMissionImage(const char *, int, int = 0);
-int chat_suppressed(void);
-int chat_log_open(void);
+extern int g4faf40; inline int chat_suppressed(void) {return g4faf40;}
+struct ModeSystem {int active; int IsActive(){return active;}}; extern ModeSystem modeCheckName; inline int chat_log_open(void) {return modeCheckName.IsActive();}
 void AssertFail(const char *, int, const char *);
 
 // source-line padding for the shared assertion
@@ -136,85 +122,104 @@ void AssertFail(const char *, int, const char *);
 // source-line padding for the shared assertion
 // source-line padding for the shared assertion
 // source-line padding for the shared assertion
-// source-line padding for the shared assertion
+// Preserve the source location of the shared length assertion.
+// Preserve the source location of the shared length assertion.
+// Preserve the source location of the shared length assertion.
+// Preserve the source location of the shared length assertion.
+// Preserve the source location of the shared length assertion.
+// Preserve the source location of the shared length assertion.
+// Preserve the source location of the shared length assertion.
+// Preserve the source location of the shared length assertion.
+// Preserve the source location of the shared length assertion.
+// Preserve the source location of the shared length assertion.
+// Preserve the source location of the shared length assertion.
+// Preserve the source location of the shared length assertion.
+// Preserve the source location of the shared length assertion.
+// Preserve the source location of the shared length assertion.
+// Preserve the source location of the shared length assertion.
 #define CHAT_LENGTH_ASSERT(s) do { if (strlen(s) >= 100) AssertFail(chat_file_path, 140, 0); } while (0)
-
-int process_chat(void *self)
-{
-    unsigned int local_text[0x77];
-    register unsigned int *parsed_names = local_text;
-    char *input_text = (char *)self + 0x3cfa;
-    int i;
-    register char *speaker_name;
-    unsigned int name_id;
-    EnterCriticalSection(chat_data + (0x4f64a0 - 0x4a0000));
-    *((unsigned char *)self + 0x3d5d) = 0;
-    parse_chat_text(local_text, 0x1001, input_text);
-    if (*(char *)self == 0) {
-        for (i = 1; i < 9; ++i) {
-            if (*((char *)self + i) != 0 &&
-                gMenuNetwork.IsRemote(i) != 0) {
-                name_id = chat_entry_name((void *)0x4f6624, i);
-                append_chat_name(parsed_names, name_id);
-            }
-        }
-    } else {
-        append_chat_name(parsed_names, 0);
-    }
-    speaker_name = (char *)chat_data + (0x4f6a14 - 0x4a0000) +
-                   CHAT_WORD(0x4f6624) * 0xbc + 0x10;
-    CHAT_LENGTH_ASSERT(input_text);
-    *(unsigned int *)((char *)self + 10 +
-        *(unsigned int *)((char *)self + 0x3d62) * 4) =
-        (unsigned int)speaker_name;
-    strcpy((char *)self + 0x262 +
-        *(unsigned int *)((char *)self + 0x3d62) * 100,
-        input_text);
-    i = *(unsigned int *)((char *)self + 0x3d62) + 1;
-    *(unsigned int *)((char *)self + 0x3d62) = i;
-    if (i >= 0x96)
-        *(unsigned int *)((char *)self + 0x3d62) = 0;
-    strcpy((char *)self + 0x262 +
-        *(unsigned int *)((char *)self + 0x3d62) * 100, chat_wildcard);
-    *input_text = 0;
-    LeaveCriticalSection(chat_data + (0x4f64a0 - 0x4a0000));
-    return 1;
-}
-
-int add_chat_message(void *self, void *name, const char *text)
-{
-    int row;
-    EnterCriticalSection(chat_data + (0x4f64a0 - 0x4a0000));
-    register const char *source_text = text;
-    register void *entry_name = name;
-    CHAT_LENGTH_ASSERT(source_text);
-    *(unsigned int *)((char *)self + 10 +
-        *(unsigned int *)((char *)self + 0x3d62) * 4) =
-        (unsigned int)entry_name;
-    strcpy((char *)self + 0x262 +
-        *(unsigned int *)((char *)self + 0x3d62) * 100, source_text);
-    row = *(unsigned int *)((char *)self + 0x3d62) + 1;
-    *(unsigned int *)((char *)self + 0x3d62) = row;
-    if (row >= 0x96)
-        *(unsigned int *)((char *)self + 0x3d62) = 0;
-    strcpy((char *)self + 0x262 +
-        *(unsigned int *)((char *)self + 0x3d62) * 100, chat_wildcard);
-    if (chat_suppressed() == 0 && chat_log_open() != 0) {
-        CHAT_WORD(0x4f64b8) = 1;
-        sprintf((char *)chat_data + (0x4f64bc - 0x4a0000),
-                "[%s]: %s", source_text, source_text);
-    }
-    LeaveCriticalSection(chat_data + (0x4f64a0 - 0x4a0000));
-    return 1;
-}
 
 struct ChatHistoryView {
     unsigned char flags[10];
     void *names[150];
     char messages[150][100];
     unsigned char gap[0x3d62 - (0x262 + 150 * 100)];
-    int current;
+    int current; void Append(void *,const char *);
 };
+
+inline void ChatHistoryView::Append(void *name, const char *text)
+{
+
+    CHAT_LENGTH_ASSERT(text);
+    names[current] = name;
+    strcpy(messages[current], text);
+    ++current;
+    if (current >= 0x96)
+        current = 0;
+    strcpy(messages[current], chat_wildcard);
+}
+
+int process_chat(void *self)
+{
+
+
+
+    int i;
+    register char *speaker_name;
+    unsigned int name_id;
+    EnterCriticalSection((CRITICAL_SECTION *)dialogOpenData);
+    *((unsigned char *)self + 0x3d5d) = 0;
+    MenuMessage local_text(0x1001, (char *)self + 0x3cfa);
+    if (*(char *)self) {
+        MenuSend(&local_text, 0);
+    } else {
+        for (i = 1; i < 9; ++i) {
+            if (*((char *)self + i) && gMenuNetwork.IsRemote(i)) {
+                name_id = gMenuNetwork.PeerForSlot(i);
+                MenuSend(&local_text, name_id);
+            }
+        }
+    }
+    speaker_name = (char *)chat_player_state_table +
+                   gMenuNetwork.localSlot * 0xbc + 0x10;
+    ((ChatHistoryView*)self)->Append(speaker_name, (char *)self + 0x3cfa);
+    *((char *)self + 0x3cfa) = 0;
+    LeaveCriticalSection((CRITICAL_SECTION *)dialogOpenData);
+    return 1;
+}
+
+int add_chat_message(void *self, void *name, const char *text)
+{
+    int row;
+    EnterCriticalSection((CRITICAL_SECTION *)dialogOpenData);
+
+
+    ((ChatHistoryView*)self)->Append(name, text);
+    if (g4faf40 == 0 && chat_log_open() != 0) {
+        chatLogPending = 1;
+        sprintf(chatLogText,
+                "[%s]: %s", name, text);
+    }
+    LeaveCriticalSection((CRITICAL_SECTION *)dialogOpenData);
+    return 1;
+}
+
+void flush_chat_log(void)
+{
+    if (chatLogPending != 0) {
+        chatLogPending = 0;
+        LogicTextAppend(g4dd0c0,
+                        chatLogText);
+    }
+}
+
+void set_chat_mode(void *self, unsigned int mode, const char *text)
+{
+    memset(self, 0, 0xa);
+    *((unsigned char *)self + mode) = 1;
+    strcpy((char *)self + 0x3cfa, text);
+    core_chat(self);
+}
 
 void append_chat_history(void *self, void *name, const char *text)
 {
@@ -226,6 +231,11 @@ void append_chat_history(void *self, void *name, const char *text)
     if (history->current >= 0x96)
         history->current = 0;
     strcpy(history->messages[history->current], chat_wildcard);
+}
+
+int chat_ready(void)
+{
+    return 1;
 }
 
 void create_chat_menu(void *self)
@@ -294,18 +304,13 @@ void handle_chat_menu_command(void *self, unsigned int item)
 
 void refresh_chat_menu(void *self)
 {
-    int index = 1;
-    int state;
-    while (index < 9) {
-        state = *(int *)(chat_data + (0x4f6a14 - 0x4a0000) + index * 0xbc);
-        if (state == 1 && state == 2) {
-            index += state;
+    for (int index=1; index<9; ++index) {
+        if (((ChatPlayerState *)chat_player_state_table)[index].state == 1 &&
+            ((ChatPlayerState *)chat_player_state_table)[index].state == 2)
             continue;
-        } else {
-            refresh_chat_selection(*(void **)((char *)self + 0x3d76));
-            update_chat_menu(self);
-            return;
-        }
+        MenuClear(*(void **)((char *)self + 0x3d76));
+        update_chat_menu(self);
+        break;
     }
 }
 
@@ -313,11 +318,6 @@ char *format_chat_entry(void *self, char *destination, int age)
 {
     int row;
     if (age < 0)
-
-
-
-
-
 
 
 
@@ -331,3 +331,5 @@ char *format_chat_entry(void *self, char *destination, int age)
     strcat(destination, (char *)self + 0x262 + row * 100);
     return destination;
 }
+
+

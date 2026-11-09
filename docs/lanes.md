@@ -57,7 +57,7 @@ Model: `luna` = gpt-6-luna xhigh, `sol` = gpt-6.1-sol high (Codex; all new lanes
 | s34 | sol | 2nd pass: sim\anim.c, logic\logic.c + hotbrief.c, lactors.c, intel.c | done |
 | s35 | sol | 2nd pass: shell\mplaunch.c, main\WIN\winmain.c, shell\pilotgui.c, shell\commscrn.c | done |
 | s36 | sol | 2nd pass: sim\actorlst.c, simgame.c, explo.c, 0045cc00 | done |
-| s37 | sol | 2nd pass: logic\miss.c, lsys.c, multi\linkapp.c, chat.c | running |
+| s37 | sol | 2nd pass: logic\miss.c, lsys.c, multi\linkapp.c, chat.c | done |
 | s38 | sol | 2nd pass: unnamed 0041d774, 004413e0, 00433640, 00435130, 0047f060/0047f5e0, 00480ee0 | done (+5) |
 | r1 | sol | research: systemic blockers of parked functions | done (nested-default rule; inventory in codegen_rules.md) |
 | s39 | sol | classify unmatched non-game code (runtime library, assembly) | done (config/nongame.json) |

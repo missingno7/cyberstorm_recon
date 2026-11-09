@@ -678,7 +678,7 @@
   "src/logic/miss.c": {
    "as": "logic\\miss.c",
    "install": "wc106",
-   "profile": "plain",
+   "profile": "plain-oe",
    "functions": {
     "MissionRecordInitialize": {
      "va": "00465525",
@@ -690,6 +690,11 @@
      "size": 6,
      "mangled": "W?MissionBaseType$n()i"
     },
+    "MissionRowCount": {
+     "va": "00465c03",
+     "size": 6,
+     "mangled": "W?MissionRowCount$n()i"
+    },
     "MissionCountForType": {
      "va": "00465c09",
      "size": 30,
@@ -699,6 +704,16 @@
      "va": "00465c67",
      "size": 42,
      "mangled": "W?MissionAllocateType$n(i)pnv"
+    },
+    "MissionAllocateItem": {
+     "va": "00465c91",
+     "size": 81,
+     "mangled": "W?MissionAllocateItem$n(ii)v"
+    },
+    "MissionLoadItem": {
+     "va": "00465ce2",
+     "size": 77,
+     "mangled": "W?MissionLoadItem$n(ii)v"
     }
    },
    "data": {},
@@ -1116,12 +1131,33 @@
   "src/logic/lsys.c": {
    "as": "logic\\lsys.c",
    "install": "wc106",
-   "profile": "plain",
+   "flags": [
+    "-4s",
+    "-s",
+    "-bm",
+    "-ol"
+   ],
+   "tool": "wpp386",
    "functions": {
     "LogicNoop": {
      "va": "0046ac20",
      "size": 1,
      "mangled": "W?LogicNoop$n()v"
+    },
+    "LogicReset": {
+     "va": "0046ac21",
+     "size": 75,
+     "mangled": "W?LogicReset$n()v"
+    },
+    "LogicStateValue": {
+     "va": "0046ac6c",
+     "size": 434,
+     "mangled": "W?LogicStateValue$n(pnvi)ui"
+    },
+    "LogicSetActorMode": {
+     "va": "0046ae1e",
+     "size": 45,
+     "mangled": "W?LogicSetActorMode$n(pn$LogicActorModeRecord$$ii)v"
     },
     "MissionAllocateFromData": {
      "va": "0046ae4b",
@@ -1137,6 +1173,11 @@
      "va": "0046af1c",
      "size": 135,
      "mangled": "W?LogicActorUpdate$n(pnviiipni)v"
+    },
+    "LogicConsoleResize": {
+     "va": "0046afa3",
+     "size": 151,
+     "mangled": "W?LogicConsoleResize$n()v"
     },
     "LogicCheckMode": {
      "va": "0046b03a",
@@ -1192,6 +1233,11 @@
      "va": "0046b305",
      "size": 3,
      "mangled": "W?LogicZero$n()i"
+    },
+    "LogicDrawConsole": {
+     "va": "0046b308",
+     "size": 172,
+     "mangled": "W?LogicDrawConsole$n()v"
     },
     "LogicRedraw": {
      "va": "0046b3b4",
@@ -1258,6 +1304,11 @@
      "size": 19,
      "mangled": "W?LogicActorDelete$n(pnvi)v"
     },
+    "LogicSetActorLink": {
+     "va": "0046b788",
+     "size": 85,
+     "mangled": "W?LogicSetActorLink$n(pnviii)v"
+    },
     "LogicSetActorLinkAt": {
      "va": "0046b7dd",
      "size": 68,
@@ -1267,6 +1318,11 @@
      "va": "0046b821",
      "size": 106,
      "mangled": "W?LogicMapUpdate$n(pnviipni)v"
+    },
+    "LogicMapViewPoint": {
+     "va": "0046b88b",
+     "size": 100,
+     "mangled": "W?LogicMapViewPoint$n(pnvipni)v"
     },
     "LogicRemoveActor": {
      "va": "0046b8ef",
@@ -2931,25 +2987,78 @@
   "src/multi/linkapp.c": {
    "as": "multi\\linkapp.c",
    "install": "wc106",
-   "profile": "plain",
+   "profile": "plain-oe",
    "functions": {
+    "W?.fn_init$n()v": {
+     "va": "0046d538",
+     "size": 80,
+     "mangled": "W?.fn_init$n()v"
+    },
     "wait_for_name_release": {
      "va": "0046d588",
      "size": 60,
      "mangled": "W?wait_for_name_release$n(pnv)i"
+    },
+    "wait_for_link_shutdown": {
+     "va": "0046d5c4",
+     "size": 63,
+     "mangled": "W?wait_for_link_shutdown$n()v"
+    },
+    "clear_link_entries": {
+     "va": "0046d603",
+     "size": 28,
+     "mangled": "W?clear_link_entries$n()v"
+    },
+    "retry_link_timer": {
+     "va": "0046d61f",
+     "size": 184,
+     "mangled": "W?retry_link_timer$n(i)i"
+    },
+    "set_link_timer": {
+     "va": "0046d6d7",
+     "size": 117,
+     "mangled": "W?set_link_timer$n(i)v"
     },
     "format_link_name": {
      "va": "0046d86d",
      "size": 57,
      "mangled": "W?format_link_name$n(ii)v"
     },
+    "save_link_tick": {
+     "va": "0046d8a6",
+     "size": 21,
+     "mangled": "W?save_link_tick$n()v"
+    },
+    "drain_link_queue": {
+     "va": "0046d8bb",
+     "size": 128,
+     "mangled": "W?drain_link_queue$n()v"
+    },
     "cancel_current_link_entry": {
      "va": "0046d93b",
      "size": 104,
      "mangled": "W?cancel_current_link_entry$n(ui)i"
+    },
+    "LinkPeerTimer::$dt": {
+     "va": "0046d9a4",
+     "size": 5,
+     "mangled": "W?$dt:LinkPeerTimer$n()_"
     }
    },
-   "data": {},
+   "data": {
+    "CONST2": {
+     "va": "0048e174",
+     "size": 20
+    },
+    "_DATA": {
+     "va": "004a3f00",
+     "size": 12
+    },
+    "W?$Wts0hn$LinkPeerTimer$$$nx[]uc": {
+     "va": "0048e188",
+     "size": 17
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/multi/link.c": {
@@ -3026,6 +3135,36 @@
    "install": "wc106",
    "profile": "plain",
    "functions": {
+    "initialize_chat": {
+     "va": "0046e570",
+     "size": 31,
+     "mangled": "W?initialize_chat$n(pnv)pnv"
+    },
+    "reset_chat_history": {
+     "va": "0046e58f",
+     "size": 68,
+     "mangled": "W?reset_chat_history$n(pnv)i"
+    },
+    "clear_chat": {
+     "va": "0046e5d3",
+     "size": 38,
+     "mangled": "W?clear_chat$n(pnv)v"
+    },
+    "process_chat": {
+     "va": "0046e5f9",
+     "size": 353,
+     "mangled": "W?process_chat$n(pnv)i"
+    },
+    "add_chat_message": {
+     "va": "0046e75a",
+     "size": 233,
+     "mangled": "W?add_chat_message$n(pnvpnvpnxa)i"
+    },
+    "flush_chat_log": {
+     "va": "0046e843",
+     "size": 38,
+     "mangled": "W?flush_chat_log$n()v"
+    },
     "set_chat_mode": {
      "va": "0046e869",
      "size": 57,
@@ -3061,13 +3200,23 @@
      "size": 197,
      "mangled": "W?handle_chat_menu_command$n(pnvui)v"
     },
+    "refresh_chat_menu": {
+     "va": "0046eb7e",
+     "size": 84,
+     "mangled": "W?refresh_chat_menu$n(pnv)v"
+    },
     "format_chat_entry": {
      "va": "0046ebd2",
      "size": 135,
      "mangled": "W?format_chat_entry$n(pnvpnai)pna"
     }
    },
-   "data": {},
+   "data": {
+    "CONST": {
+     "va": "0048b8c2",
+     "size": 13
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/sim/apply.c": {

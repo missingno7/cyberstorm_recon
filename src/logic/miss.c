@@ -1,4 +1,4 @@
-typedef unsigned char u8;
+inline int MissionBound(int v,int lo,int hi) { if(v<=lo)return lo; if(v>=hi)return hi; return v; }
 
 struct MissionRef {
     int type;
@@ -29,37 +29,36 @@ struct MissionRecord {
     int field48;
     int field4c;
     int field50;
-    int field54;
+    int field54; int IsPassive() {return field28==0||field28==2;} int IsCombat() {return field28==2||field28==3;} int BoundedType() {int t=type; if(t<=0)t=0;else if(t>=2)t=2;return t;}
 };
 
-extern int missLimitByType[];
+int MissionItemAddress(int,int); extern int missLimitByType[];
 extern int missOffsetByType[];
 extern int missionCurrentOffset;
 extern void *AllocateMissionImage(const char *image, int bytes, int mode = 1);
-extern void *LoadMissionImage(const char *image, int bytes, int mode = 1);
+struct StrPool { char *GetSecondString(long id,int mode=1); };
 extern const char missionImageName[];
 
-extern void MissionLookup(int offset, const char *table);
+extern char g4c9234[]; extern void SimLoadPalette(int offset, const char *table);
 extern int RandomRange(int *seed, int low, int high);
 
 int MissionRef::Resolve()
 {
-    int type = this->type;
-    int item = this->item;
-    if (type <= 0)
-        type = 0;
-    else if (type >= 2)
-        type = 2;
-    int last = missLimitByType[type] - 1;
-    if (item <= 0)
-        item = 0;
-    else if (item >= last)
-        item = last;
-    item = missOffsetByType[type] + item;
-    MissionLookup(item, (const char *)0x4c9234);
-    missionCurrentOffset = item;
-    return item;
+    int offset=MissionItemAddress(type,item);
+    SimLoadPalette(offset,g4c9234);
+    missionCurrentOffset=offset;
+    return offset;
 }
+
+
+
+
+
+
+
+
+
+
 
 extern int TimeNow(void);
 extern int MissionRandomTable[];
@@ -67,17 +66,17 @@ extern int missionPlayerCount;
 extern int missionEstimateTable[];
 extern void MissionDataInit(MissionRecord *, int, int, int, int, int, int);
 extern void AssertFail(const char *file, int line, int condition);
-extern void *MissionResourceLoad(void *manager, const char *file, int mode, void *buffer, int bytes);
-extern int MissionRandomPercent(int *seed);
-extern void MissionStateParse(void *table, void *record, void *output);
+struct ResMgr { void *Load(const char *,int,void *,unsigned long); }; extern ResMgr gResMgr;
+extern "C" unsigned int next_link_seed(unsigned int *);
+extern char g4dd0c0[]; void LogicLoadActorState(unsigned long *,const unsigned long *,unsigned long *);
 extern unsigned char missionRecordTable[];
 extern int missionBonusByRank[];
 extern char missionResourceManager[];
 extern char missionTableFilename[];
 extern int missionRandomSeed;
 extern int missionRank;
-extern int ClampRange(int value, int low, int high);
-extern int sprintf(char *destination, const char *format, ...);
+extern int ClampRange(int value, int low=0, int high=2);
+#include <stdio.h>
 extern unsigned char missionStateOutput[];
 extern char missionImageString[];
 extern char missionImageBuffer[];
@@ -106,58 +105,27 @@ void MissionRecordInitialize(MissionRecord *record, int mode, int type, int item
 
 int MissionEstimate(MissionRecord *record, int difficulty, int *baseOut)
 {
-    int allowed;
-    int iVar2;
-    int iVar3;
-    int iVar4;
-    if (difficulty <= 1)
-        difficulty = 1;
-    else if (difficulty >= 0xd)
-        difficulty = 0xd;
-    int players = missionPlayerCount;
-    if (players <= 1)
-        iVar2 = 1;
-    else {
-        iVar2 = players;
-        if (players >= 5)
-            iVar2 = 5;
+    if(difficulty<=1) difficulty=1; else if(difficulty>=13) difficulty=13;
+    int row = difficulty-1;
+    int players=missionPlayerCount;
+    if(players<=1) players=1; else if(players>=5) players=5;
+    int column=players-1;
+    int base=missionEstimateTable[column+row*5];
+    int spread=base/10;
+    int low, high;
+    switch(record->field10) {
+    case 0: low=base-spread; high=base; break;
+    case 2: low=base; high=base+spread; break;
+    default: spread >>= 1; low=base-spread; high=base+spread; break;
     }
-    iVar2 = missionEstimateTable[iVar2 - 1 + (difficulty - 1) * 5];
-    iVar3 = iVar2 / 10;
-    if (record->field10 == 0) {
-        iVar4 = iVar2 - iVar3;
-        iVar3 = iVar2;
-    } else {
-        iVar4 = iVar2;
-        if (record->field10 != 2) {
-            iVar3 >>= 1;
-            iVar4 = iVar2 - iVar3;
-        }
-        iVar3 = iVar3 + iVar2;
-    }
-    iVar3 = RandomRange(MissionRandomTable, iVar4, iVar3);
-    if (record->field28 == 0 || record->field28 == 2)
-        allowed = 1;
-    else {
-        allowed = 0;
-        if (record->field28 == 2 || record->field28 == 3)
-            allowed = 1;
-        if (!allowed)
-            iVar4 = 0xc0;
-        else
-            goto useExtra;
-    }
-useExtra:
-    if (allowed)
-        iVar4 = RandomRange(MissionRandomTable, 0xc0, 0x154);
-    iVar3 = (record->field24 * (iVar3 * iVar4 >> 8)) / 100;
-    if (iVar3 < 1)
-        iVar3 = 0;
-    else if (499999 < iVar3)
-        iVar3 = 500000;
-    if (baseOut)
-        *baseOut = iVar2;
-    return iVar3;
+    int estimate=RandomRange(MissionRandomTable,low,high);
+    int factor=record->IsPassive() || record->IsCombat() ? RandomRange(MissionRandomTable,0xc0,0x154) : 0xc0;
+    estimate *= factor;
+    estimate >>= 8;
+    estimate = record->field24 * estimate / 100;
+    if(estimate<=0) estimate=0; else if(estimate>=500000) estimate=500000;
+    if(baseOut) *baseOut=base;
+    return estimate;
 }
 
 void MissionDataInit(MissionRecord *record, int field28, int field2c, int field30,
@@ -171,15 +139,15 @@ void MissionDataInit(MissionRecord *record, int field28, int field2c, int field3
     record->field34 = field34;
     record->field38 = field38;
     record->field40 = field40;
-    missionRandomSeed = record->time + 0x45;
+    MissionRandomTable[0] = record->time + 0x45;
     int type = record->type;
     int item = record->item;
     type = ClampRange(type, 0, 2);
     item = ClampRange(item, 0, missLimitByType[type] - 1);
     int offset = missOffsetByType[type] + item;
-    MissionLookup(offset, (const char *)0x4c9234);
+    SimLoadPalette(offset, g4c9234);
     missionCurrentOffset = offset;
-    void *loaded = MissionResourceLoad(missionResourceManager, missionTableFilename, 1,
+    void *loaded = gResMgr.Load(missionTableFilename, 1,
                                        localTable, 0x120);
     /*
      * The source line below is deliberately kept at the assertion immediate.
@@ -203,95 +171,123 @@ void MissionDataInit(MissionRecord *record, int field28, int field2c, int field3
     /* ASSERT_PAD_30 */
     /* ASSERT_PAD_31 */
     /* ASSERT_PAD_32 */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     if (!loaded) AssertFail(__FILE__, __LINE__, 0);
-    int iVar2 = 0;
-    int iVar6 = 0x1f;
+    int iVar2=0;
+    int iVar6=0x1f;
+
     if (record->mode == 3) {
-        int group = record->type;
-        group = group <= 0 ? 0 : (group >= 2 ? 2 : group);
-        /* Preserve the second assertion's original __LINE__ immediate. */
-        iVar2 = group * 8;
-        iVar6 = group * 8 + 7;
+        int group=record->type;
+        int bounded=group<=0?0:(group>=2?2:group);
+        iVar2=bounded*8;
+        iVar6=iVar2+7;
     }
+
     unsigned char *pbVar7 = localTable + record->mode * 0x20;
-    unsigned int uVar5 = (unsigned int)MissionRandomPercent(&missionRandomSeed) % 100;
+    unsigned int uVar5 = (unsigned int)next_link_seed((unsigned int *)MissionRandomTable) % 100;
     pbVar7 += iVar2;
-    while (iVar2 <= iVar6) {
-        int nextIndex = iVar2 + 1; unsigned char probability = *pbVar7;
-        if ((int)uVar5 < (int)probability) {
-            record->field1c = (record->mode + 1) * 100 + nextIndex;
-            iVar2 = nextIndex;
+    int index=iVar2-1;
+    while (++index<=iVar6) {
+        int probability=*pbVar7;
+        if ((int)uVar5<probability) {
+            record->field1c=(record->mode+1)*100+index+1;
             break;
         }
-        uVar5 -= probability; ++pbVar7; iVar2 = nextIndex;
+        uVar5-=probability;
+        ++pbVar7;
     }
-    /* ASSERT_LINE_PAD_01 */
-    /* ASSERT_LINE_PAD_02 */
-    if (iVar6 < iVar2) AssertFail(__FILE__, __LINE__, 0);
+    if (iVar6 < index) AssertFail(__FILE__, __LINE__, 0);
     int rank = missionRank;
-    if (rank < 1)
+    if (rank <= 0)
         rank = 0;
-    else if (rank > 2)
+    else if (rank >= 2)
         rank = 2;
     record->field20 = rank;
     if (record->mode == 1)
         record->field20 = rank + 3;
-    MissionStateParse(missionRecordTable, record, workArea);
+    LogicLoadActorState((unsigned long *)g4dd0c0, (const unsigned long *)record, (unsigned long *)workArea);
     record->field24 = *(int *)(workArea + 4);
     type = record->type;
     item = record->item;
     type = ClampRange(type, 0, 2);
     item = ClampRange(item, 0, missLimitByType[type] - 1);
     offset = missOffsetByType[type] + item;
-    MissionLookup(offset, (const char *)0x4c9234);
+    SimLoadPalette(offset, g4c9234);
     missionCurrentOffset = offset;
     int estimate = MissionEstimate(record, record->field34, &record->field48);
     record->field4c = estimate;
     record->field50 = estimate / 0x14;
     int factor;
     int secondary;
-    int modeKind = record->field0c;
-    if (modeKind == 0) {
-        factor = record->type * 2 + record->field34 / 2 + 0x5f;
-        secondary = record->type * 4;
-        iVar6 = record->field34 / 2 + 0x5a;
-    } else if (modeKind == 1) {
+    switch(record->field0c) {
+    case 1:
         factor = record->field34 + 100 + record->type * 4;
-        iVar6 = record->field34 + 0x6e;
-        secondary = record->type << 3;
-    } else if (modeKind == 2) {
+        secondary = record->field34 + 0x6e + (record->type << 3);
+        break;
+    case 2:
         factor = record->field34 + 0x69 + record->type * 6;
         secondary = record->field34 + 0x82 + record->type * 10;
-        goto missionScales;
-    } else {
+        break;
+    default:
         factor = record->type * 2 + record->field34 / 2 + 0x5f;
-        secondary = record->type * 4;
-        iVar6 = record->field34 / 2 + 0x5a;
+        secondary = record->type * 4 + record->field34 / 2 + 0x5a;
+        break;
     }
-    secondary += iVar6;
 missionScales:
     record->field4c = factor * record->field4c / 100;
     record->field50 = record->field50 * secondary / 100;
-    if (record->field28 == 2 || record->field28 == 3) {
+    if (record->IsCombat()) {
         int bonus = record->field38;
-        if (bonus < 1)
+        if (bonus <= 0)
             bonus = 0;
-        else if (bonus > 9)
+        else if (bonus >= 10)
             bonus = 10;
         record->field50 = missionBonusByRank[bonus];
     }
     record->field54 = 1000;
 }
 
-void MissionCopy(int *source, int *destination)
+void MissionCopy(MissionRecord *record,int *destination)
 {
+    int *source=(int*)record;
     int item = source[1];
-    int type = ClampRange(source[0], 0, 2);
+    int type = ClampRange(source[0]);
     item = ClampRange(item, 0, missLimitByType[type] - 1);
     int offset = missOffsetByType[type] + item;
-    MissionLookup(offset, (const char *)0x4c9234);
+    SimLoadPalette(offset,g4c9234);
     missionCurrentOffset = offset;
-    MissionStateParse(missionRecordTable, source, missionStateOutput);
+    LogicLoadActorState((unsigned long *)g4dd0c0, (const unsigned long *)source, (unsigned long *)missionStateOutput);
 
     destination[0] = source[0];
     destination[1] = source[1];
@@ -312,9 +308,9 @@ void MissionCopy(int *source, int *destination)
         banner = missionImageBuffer;
     }
     int scale = (source[0x13] * 6 + 200000) / 150000;
-    if (scale < 2)
+    if (scale <= 1)
         scale = 1;
-    else if (scale > 5)
+    else if (scale >= 6)
         scale = 6;
     destination[9] = (int)missionCopyView;
     destination[10] = (int)banner;
@@ -325,7 +321,7 @@ void MissionCopy(int *source, int *destination)
     destination[14] = index;
     destination[15] = (int)AllocateMissionImage(missionImageName, index + 0x35);
     destination[16] = (int)AllocateMissionImage(missionImageName, offset + 1);
-    destination[17] = (int)LoadMissionImage(missionImageName, offset + 1);
+    destination[17] = (int)((StrPool *)missionImageName)->GetSecondString(offset + 1);
     destination[18] = (int)AllocateMissionImage(missionImageName, missionCopySeedA + 0x630);
     destination[19] = (int)AllocateMissionImage(missionImageName, missionCopySeedB + 0x63b);
     destination[20] = (int)AllocateMissionImage(missionImageName, missionCopySeedC + 0x650);
@@ -335,19 +331,12 @@ void MissionCopy(int *source, int *destination)
 
 int MissionRef::Address()
 {
-    register MissionRef *ref = this;
-    int type = ref->type;
-    int item = ref->item;
-    if (type <= 0)
-        type = 0;
-    else if (type >= 2)
-        type = 2;
-    int last = missLimitByType[type] - 1;
-    if (item <= 0)
-        item = 0;
-    else if (item >= last)
-        item = last;
-    return missOffsetByType[type] + item;
+    int type = this->type;
+    int item = this->item;
+    int boundedType = MissionBound(type, 0, 2);
+    int last = missLimitByType[boundedType] - 1;
+    int boundedItem = MissionBound(item, 0, last);
+    return missOffsetByType[boundedType] + boundedItem;
 }
 
 int MissionBaseType(void)
@@ -369,18 +358,17 @@ int MissionCountForType(int type)
     return missLimitByType[type];
 }
 
-int MissionItemAddress(int type, int item)
+int MissionItemAddress(int type,int item)
 {
-    int boundedType;
-    if (type <= 0)
-        boundedType = 0;
-    else if (type >= 2)
-        boundedType = 2;
-    else
-        boundedType = type;
-    int last = missLimitByType[boundedType] - 1;
-    int boundedItem = item <= 0 ? 0 : (item >= last ? last : item);
-    return missOffsetByType[boundedType] + boundedItem;
+    int boundedType=MissionBound(type,0,2);
+    int last=missLimitByType[boundedType]-1;
+    int boundedItem;
+    if (item<=0) boundedItem=0;
+    else if (item>=last) boundedItem=last;
+    else boundedItem=item;
+    int offset=missOffsetByType[boundedType];
+    offset+=boundedItem;
+    return offset;
 }
 
 void *MissionAllocateType(int type)
@@ -392,28 +380,20 @@ void *MissionAllocateType(int type)
     return AllocateMissionImage(missionImageName, type + 0x32, 1);
 }
 
-void MissionAllocateItem(register int type, int item)
+void MissionAllocateItem(int type,int item)
 {
-    register int typeIndex = type;
-    if (typeIndex <= 0)
-        typeIndex = 0;
-    else if (typeIndex >= 2)
-        typeIndex = 2;
-    AllocateMissionImage(missionImageName,
-        missOffsetByType[typeIndex] +
-        (item <= 0 ? 0 : (item >= missLimitByType[typeIndex] - 1 ?
-        missLimitByType[typeIndex] - 1 : item)) + 1);
+    AllocateMissionImage(missionImageName,MissionItemAddress(type,item)+1);
+}
+void MissionLoadItem(int type,int item)
+{
+    ((StrPool *)missionImageName)->GetSecondString(MissionItemAddress(type,item)+1);
 }
 
-void MissionLoadItem(register int type, int item)
-{
-    register int typeIndex = type;
-    if (typeIndex <= 0)
-        typeIndex = 0;
-    else if (typeIndex >= 2)
-        typeIndex = 2;
-    LoadMissionImage(missionImageName,
-        missOffsetByType[typeIndex] +
-        (item <= 0 ? 0 : (item >= missLimitByType[typeIndex] - 1 ?
-        missLimitByType[typeIndex] - 1 : item)) + 1);
-}
+
+
+
+
+
+
+
+

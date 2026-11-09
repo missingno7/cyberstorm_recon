@@ -1,7 +1,7 @@
-struct LogicRect { int x, y, width, height; };
+struct LogicRect { int x,y,width,height; LogicRect() {} LogicRect(int a,int b,int c,int d):x(a),y(b),width(c),height(d) {} };
 struct LogicPoint { int x, y; LogicPoint() {} };
 struct LogicActorModeRecord { unsigned char reserved[0x5c]; int mode; };
-struct LogicStateModeRegion { char padding[0x28]; int value; };
+struct LogicStateModeRegion { char padding[0x28]; int value; int IsPassive() {return value==0||value==2;} int IsCombat() {return value==2||value==3;} };
 struct LogicStateRecord { int prefix; LogicStateModeRegion mode; };
 static const char logicSourcePath[] = __FILE__;
 
@@ -16,8 +16,8 @@ extern "C" void *ActorFindAt(void *, int); extern "C" int ActorInvoke(void *, in
 extern "C" void ActorWrite(void *, int, int, void *); extern "C" void ActorResize(void *, int, int);
 extern "C" void ActorResizeMore(void *, int, int, void *); extern "C" int LogicMissionData(int, int);
 extern "C" void BriefRender(int, int, int, int, const char *, int, int, int,
-                              int *, int, int, int, int, int, int, int);
-extern "C" void MenuSetColors(void *, int, int); extern "C" void MenuFill(void *, int, int, int, int);
+                              int *, int=0, int=0, int=-1, int=1, int=0, int=0, int=0x7fffffff);
+struct GuiCanvas; void MenuSetColors(GuiCanvas *,int,int); void MenuFill(GuiCanvas *,int,int,int,int);
 extern "C" void LogicFrame(void *, int, int); extern "C" void LogicFrameInset(void *, int, int, int, int);
 extern "C" void LogicDrawText(int, int, int, int, const char *, int, int, int, int,
                                 int, int, int, int, int, int, int);
@@ -39,7 +39,7 @@ extern "C" void LogicMapInput(int, int); extern "C" void LogicMapInputEx(int, in
 extern "C" void LogicFindActorAt(void *, int); extern "C" void BestLocSetData(void *, void *, void *);
 extern "C" void LogicSetPlayerMode(int, int); extern "C" void LogicCallMode(int, int);
 extern "C" void LogicClearMode(int, int); extern "C" void LogicDeleteActorFromList(void *, int);
-extern "C" void LogicActorCommand(void *, int, int, void *); extern "C" int GridFindClosest(const char *, unsigned int, int);
+extern "C" void LogicActorCommand(void *, int, int, void * = 0); extern "C" int GridFindClosest(const char *, unsigned int, int);
 extern "C" void *LogicActorIndexAt(void *, int);
 extern "C" int LogicGetNamedPoint(const char *, int *);
 extern "C" int LogicLookupRange(const char *, int, int);
@@ -51,27 +51,27 @@ extern "C" void LogicDeleteFromMap(void *, int);
 extern "C" void LogicRefreshMap(void *, int);
 extern "C" void LogicMapViewUpdate(void *, int, int *);
 
-extern int logicCacheReady;
+extern int playerCount, gLocalActorKind, leaderPlayer, gRemoteActorKind; extern int logicCacheReady;
 extern char logicStateFlags[];
 extern int logicCacheCount;
 extern int logicCacheTotal;
 extern int logicCacheValue;
 extern int logicMissionByteCount;
-extern char *logicMissionBytes;
+extern unsigned char *simVisibleTypes;
 extern int logicWorldOffsetX;
 extern int logicWorldOffsetY;
-extern int logicLeft;
-extern int logicRight;
-extern int logicTop;
-extern int logicBottom;
+struct ViewRect {int left,top,right,bottom;}; extern ViewRect gViewRect;
+
+
+
 extern int logicFrameColor;
 extern int logicFrameShade;
 extern int logicScreenSurface;
 extern int logicFrameSurface;
-extern int g513888;
+struct GuiCanvas; extern GuiCanvas g513888;
 extern int gMenuColors;
-extern int f_004bc4e4;
-extern int logicActorList;
+extern unsigned long deathTextColor;
+struct LogicActorList { void *First(); void *Next(void *); }; extern LogicActorList logicActorList;
 extern int logicMapBounds;
 extern int logicFlagWord;
 extern int logicMode;
@@ -102,6 +102,7 @@ void LogicReset(void)
     memset(logicStateFlags, 1, 0xe);
 }
 
+inline int LogicActorActive(void *actor) { return *(int *)actor!=0; } inline int LogicActorEnabled(void *actor) { return (((unsigned char *)actor)[0xc]&1)!=0; }
 unsigned int __cdecl LogicStateValue(void *state, int field)
 {
     switch (field) {
@@ -110,11 +111,11 @@ unsigned int __cdecl LogicStateValue(void *state, int field)
     case 1:
         return *(unsigned int *)((char *)state + 0x5c);
     case 2:
-        if (logicStateFlags[field] != 0) {
+        if (logicStateFlags[field]) {
             logicStateFlags[field] = 0;
-            int count = 0;
-            for (int i = 0; i <= logicMissionByteCount; ++i) {
-                if (((signed char *)logicMissionBytes)[i] != 0)
+            int count = 0; int maximum = logicMissionByteCount;
+            for (int i = 0; i <= maximum; ++i) {
+                if (((signed char *)simVisibleTypes)[i] != 0)
                     ++count;
             }
             if (count <= 0)
@@ -125,57 +126,63 @@ unsigned int __cdecl LogicStateValue(void *state, int field)
         }
         return logicCacheTotal;
     case 3:
-        if (logicStateFlags[field] != 0) {
+        if (logicStateFlags[field]) {
             logicStateFlags[field] = 0;
             logicCacheCount = 0;
-            void *actor = ActorListFirst(&logicActorList);
-            while (actor != 0) {
-                if (*(int *)actor != 0 && (((unsigned char *)actor)[0xc] & 1) != 0)
+            void *actor=logicActorList.First();
+            while (actor) {
+                if (LogicActorActive(actor) && LogicActorEnabled(actor))
                     logicCacheCount += ActorStateCall(actor);
-                actor = ActorListNext(&logicActorList, actor);
+                actor=logicActorList.Next(actor);
             }
+
+
+
+
+
         }
         return logicCacheCount;
     case 4:
         return g4c9248;
     case 5:
-        return ((LogicStateRecord *)state)->mode.value != 0 &&
-               ((LogicStateRecord *)state)->mode.value != 2;
+        return !((LogicStateRecord *)state)->mode.IsPassive();
     case 6:
-        return ((LogicStateRecord *)state)->mode.value == 2 ||
-               ((LogicStateRecord *)state)->mode.value == 3;
+        return ((LogicStateRecord *)state)->mode.IsCombat();
     case 7:
         return *(unsigned int *)((char *)state + 0x44);
     case 8:
-        return logicWorldOffsetX;
+        return playerCount;
     case 9:
-        return logicWorldOffsetY;
+        return gLocalActorKind;
     case 10:
         return *(unsigned int *)((char *)state + 0x38);
     case 11:
-        if (((LogicStateRecord *)state)->mode.value != 0 &&
-            ((LogicStateRecord *)state)->mode.value != 2)
+        if (!((LogicStateRecord *)state)->mode.IsPassive())
             return *(unsigned int *)((char *)state + 0x34);
         return 0;
     case 12:
         return *(unsigned int *)((char *)state + 0x10);
     case 13:
-        return logicMapBounds != logicFlagWord;
+        return leaderPlayer != gRemoteActorKind;
+    default: return 0;
     }
-    return 0;
 }
 
 void __cdecl LogicSetActorMode(LogicActorModeRecord *actor, int mode, int value)
 {
-    if (mode == 1) {
-        if ((actor->reserved[0] & 2) == 0) {
-            if (value < 1) value = 0;
-            else if (value > 2) value = 3;
-            actor->mode = value;
-        }
-    } else return;
-    return;
+    switch (mode) {
+    case 1:
+        if ((actor->reserved[0] & 2) != 0)
+            return;
+        if (value<=0) value=0;
+        else if (value>=3) value=3;
+        actor->mode=value;
+    }
 }
+
+
+
+
 
 void *MissionAllocateFromData(register int *data, unsigned int mode)
 {
@@ -185,7 +192,6 @@ void *MissionAllocateFromData(register int *data, unsigned int mode)
     default: return "$(]";
     }
 }
-
 int LogicActorSearch(void *unused, int mode, int actorId, int flags, int *point)
 {
     int result = 0;
@@ -207,7 +213,6 @@ int LogicActorSearch(void *unused, int mode, int actorId, int flags, int *point)
     }
     return result;
 }
-
 void LogicActorUpdate(void *unused, int actorId, int mode, int flags, int *point)
 {
     void *actor = ActorListFind(&logicActorList, actorId);
@@ -226,33 +231,28 @@ void LogicActorUpdate(void *unused, int actorId, int mode, int flags, int *point
     }
     LogicActorCommand(actor, mode, flags, point);
 }
-
 void LogicConsoleResize(void)
 {
     if (*logicTextCurrent) {
-        LogicRect scratch;
-        volatile int renderedHeight;
-        scratch.x = logicTop + 0xf;
-        scratch.y = logicLeft;
-        scratch.width = logicBottom - logicTop - 0x1d;
-        scratch.height = logicRight - logicLeft + 1;
+        LogicRect scratch(gViewRect.left,gViewRect.top,
+                          gViewRect.right-gViewRect.left,
+                          gViewRect.bottom-gViewRect.top+1);
+        int renderedHeight;
+        scratch.x+=15;
+        scratch.width-=29;
         BriefRender(scratch.x, scratch.y, scratch.width, scratch.height, logicTextCurrent,
-                    0, 0, 4, (int *)&renderedHeight, 0, 0, -1, 1, 0, 0, 0x7fffffff);
-        logicTextRect.x = scratch.x;
-        logicTextRect.y = scratch.y + (scratch.height - renderedHeight) - 0xf;
-        logicTextRect.width = scratch.width;
-        logicTextRect.height = renderedHeight;
+                    0, 0, 4, (int *)&renderedHeight);
+        scratch.y += scratch.height - renderedHeight - 0xf;
+        scratch.height = renderedHeight;
+        logicTextRect = scratch;
         logicFlagWord |= 8;
     }
 }
-
 void LogicCheckMode(void)
 {
     int state = logicMode == 2 || logicMode == 3;
     if (!state) logicCacheReady = state;
 }
-
-
 void LogicTextAppend(void *unused, const char *text)
 {
     if (logicCacheReady == 0)
@@ -265,7 +265,7 @@ void LogicTextAppend(void *unused, const char *text)
     int needed = strlen(text) + 1;
     if (needed > freeBytes) {
         if ((unsigned int)needed > 0x800U)
-            AssertFail(logicSourcePath, 0x10c, "message too long");
+            AssertFail(logicSourcePath, __LINE__, "message too long");
         int dropped = 0;
         for (;;) { if (needed <= freeBytes + dropped) break;
             int length = strlen(logicTextBuffer + dropped);
@@ -379,15 +379,15 @@ int LogicZero(void)
 }
 void LogicDrawConsole(void)
 {
-    int x = logicTextRect.x;
-    int y = logicTextRect.y;
-    volatile int width = logicTextRect.width;
-    int height = logicTextRect.height;
     if (*logicTextCurrent && logicTextCursor == 0) {
-        MenuSetColors(&g513888, f_004bc4e4, gMenuColors);
+        LogicRect rect=logicTextRect;
+        int x=rect.x, y=rect.y, width=rect.width, height=rect.height;
+
+
+        MenuSetColors(&g513888, deathTextColor, gMenuColors);
         MenuFill(&g513888, x - 5, y - 5, width + 10, height + 10);
         BriefRender(x, y, width, height, logicTextCurrent,
-                    0, 0, 4, 0, 0, 0, 10, 1, 0, 0, 0x7fffffff);
+                    0, 0, 4, 0, 0, 0, 10);
     }
 }
 void LogicRedraw(int unused, int action)
@@ -527,7 +527,7 @@ void LogicActorPosition(void *unused, int actorId, int *point)
 {
     void *actor = ActorListFind(&logicActorList, actorId);
     if (actor == 0)
-        AssertFail(logicSourcePath, 0x212, 0);
+        AssertFail(logicSourcePath, __LINE__, 0);
     *(LogicPoint *)point = *(LogicPoint *)ActorName(actor);
     point[0] -= logicWorldOffsetX;
     point[1] -= logicWorldOffsetY;
@@ -552,6 +552,7 @@ void LogicActorDelete(void *unused, int actorId)
     LogicDeleteActorFromList(&logicActorList, actorId);
 }
 
+struct LogicActorReference {int prefix[5]; int id; int Id() {return id;} };
 void LogicSetActorLink(void *unused, int firstId, int parameter, int secondId)
 {
     int first = (int)LogicActorIndexAt(&logicActorList, firstId);
@@ -559,8 +560,8 @@ void LogicSetActorLink(void *unused, int firstId, int parameter, int secondId)
         ActorArraySet((void *)first, 7, parameter);
         int second = (int)LogicActorIndexAt(&logicActorList, secondId);
         if (second != 0) {
-            int command = *(int *)((char *)second + 0x14);
-            LogicActorCommand((void *)first, 3, command, 0);
+            LogicActorCommand((void*)first,3,((LogicActorReference*)second)->Id(),0);
+
         }
     }
 }
@@ -609,3 +610,8 @@ void LogicRefreshActor(void *unused, int actorId)
 {
     LogicRefreshMap(&logicActorList, actorId);
 }
+
+
+
+
+
