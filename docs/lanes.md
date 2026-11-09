@@ -1,7 +1,7 @@
 # Lane assignments (integrator-owned)
 
 One owner per module at a time. Candidates live in `candidates/<lane>/`, reports in `candidates/<lane>/REPORT.md`.
-Model: `luna` = gpt-6-luna xhigh, `sol` = gpt-6.1-sol high (Codex); `opus` = Claude Opus 5.5 subagent.
+Model: `luna` = gpt-6-luna xhigh, `sol` = gpt-6.1-sol high (Codex; all new lanes from 2026-11-09 09:10, user decision); `opus` = Claude Opus 5.5 subagent.
 
 | Lane | Model | Modules (start VA: file) | State (2026-11-09 08:55) |
 |---|---|---|---|
@@ -22,6 +22,9 @@ Model: `luna` = gpt-6-luna xhigh, `sol` = gpt-6.1-sol high (Codex); `opus` = Cla
 | w14 | luna | shell\hbupgrad.c | running |
 | w15 | luna | shell\pilotgui.c | running |
 | s1 | sol | multi\mstart.c | done (39) |
+| s2 | sol | 0044950c sim\sim.c + sim\simdo.c | running |
+| s3 | sol | 0043b7e0 (unnamed, 79 functions) | running |
+| s4 | sol | 00409408, 0043ef34 (unnamed) | running |
 | l1 | luna | shell\hercbuy.c | done (19) |
 | o1 | opus | multi\linkdlg.c, linkq.c, message.c | done |
 | o2 | opus | sim\apply.c, fxout.c, explo.c | done |
