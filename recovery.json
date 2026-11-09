@@ -355,6 +355,113 @@
     }
    },
    "accepted": "2026-11-09"
+  },
+  "src/logic/lactor.c": {
+   "as": "logic\\lactor.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "ActorRead": {
+     "va": "00463b18",
+     "size": 114,
+     "mangled": "W?ActorRead$n(pn$LogicActor$$pnv)i"
+    },
+    "ActorWrite": {
+     "va": "00463b8a",
+     "size": 94,
+     "mangled": "W?ActorWrite$n(pn$LogicActor$$pnv)i"
+    },
+    "ActorGetEvent": {
+     "va": "00463be8",
+     "size": 58,
+     "mangled": "W?ActorGetEvent$n(pn$LogicActor$$)pna"
+    },
+    "ActorRelease": {
+     "va": "00463c22",
+     "size": 20,
+     "mangled": "W?ActorRelease$n(pn$LogicActor$$)v"
+    },
+    "ActorValue": {
+     "va": "00463c36",
+     "size": 32,
+     "mangled": "W?ActorValue$n(pn$LogicActor$$)i"
+    },
+    "ActorName": {
+     "va": "00463c56",
+     "size": 18,
+     "mangled": "W?ActorName$n(pn$LogicActor$$)pna"
+    },
+    "ActorEnable": {
+     "va": "00463c68",
+     "size": 47,
+     "mangled": "W?ActorEnable$n(pn$LogicActor$$)i"
+    },
+    "ActorStateCall": {
+     "va": "00463c97",
+     "size": 43,
+     "mangled": "W?ActorStateCall$n(pn$LogicActor$$)i"
+    },
+    "ActorArrayGet": {
+     "va": "00463fbf",
+     "size": 27,
+     "mangled": "W?ActorArrayGet$n(pn$LogicActor$$i)i"
+    },
+    "ActorArraySet": {
+     "va": "00463fda",
+     "size": 28,
+     "mangled": "W?ActorArraySet$n(pn$LogicActor$$ii)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/logic/miss.c": {
+   "as": "logic\\miss.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "MissionBaseType": {
+     "va": "00465bfd",
+     "size": 6,
+     "mangled": "W?MissionBaseType$n()i"
+    },
+    "MissionCountForType": {
+     "va": "00465c09",
+     "size": 30,
+     "mangled": "W?MissionCountForType$n(i)i"
+    },
+    "MissionAllocateType": {
+     "va": "00465c67",
+     "size": 42,
+     "mangled": "W?MissionAllocateType$n(i)pnv"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/logic/bestloc.c": {
+   "as": "logic\\bestloc.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "BestLocEmpty": {
+     "va": "00465d30",
+     "size": 1,
+     "mangled": "W?BestLocEmpty$n()v"
+    },
+    "BestLocBegin": {
+     "va": "004661b4",
+     "size": 154,
+     "mangled": "W?BestLocBegin$n(pnvpnv)i"
+    },
+    "BestLocRun": {
+     "va": "0046631e",
+     "size": 123,
+     "mangled": "W?BestLocRun$n(pnv)i"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
   }
  }
 }

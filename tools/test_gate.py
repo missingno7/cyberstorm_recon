@@ -32,6 +32,14 @@ def main():
         if not cond:
             fails.append(what)
 
+    import py_compile
+    bad = []
+    for t in sorted((ROOT / "tools").glob("*.py")):
+        try:
+            py_compile.compile(str(t), doraise=True, cfile=str(ROOT / "build" / "pyc" / (t.name + "c")))
+        except py_compile.PyCompileError as e:
+            bad.append(t.name)
+    check(not bad, f"all tools parse {bad or ''}")
     import symbols
     cases = {"W?get$:Foo$n()i": "Foo::get", "W?$ct:Foo$n()_": "Foo::$ct", "W?$dt:Foo$n()_": "Foo::$dt",
              "W?gVar$ni": "gVar", "W?InputNop$n()v": "InputNop", "W?n$ni": "n", "cfunc": "cfunc",

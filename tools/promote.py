@@ -44,9 +44,7 @@ def main(argv):
     norm_dir = ROOT / "build" / "promote"
     norm_dir.mkdir(parents=True, exist_ok=True)
     cand = norm_dir / orig_cand.name
-    cand.write_bytes(orig_cand.read_bytes().replace(b"
-", b"
-"))
+    cand.write_bytes(orig_cand.read_bytes().replace(b"\r\n", b"\n"))
     tu = opts["tu"].replace("\\", "/")
     ledger = gate.load_ledger()
     old = ledger["tus"].get(tu, {})
