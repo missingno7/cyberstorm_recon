@@ -142,11 +142,11 @@ void HercBayReturnFromPurchase(HercBay *bay, void *callback)
     if (bay->IsActive())
         return;
     register char *screen = (char *)bay;
-    register void *handler = callback;
     register int selector = logicMode;
     if (selector == 1) { HercSelect(2); } else { HercSelect(9); }
     g4b37bc = -1;
     ((GuiScreen *)screen)->LoadLayout((long)g48aa60);
+    register void *handler = callback;
     ((GuiScreen *)screen)->Open((InputReq *)handler, &gShellStrings, 0x709, 1);
     BriefStatus(screen);
     screen += 0x58;

@@ -3820,6 +3820,14 @@
    "tu": "src/pop/psystem.c",
    "evidence": "strict match 2026-11-09"
   },
+  "PopNodeHandleSelection": {
+   "va": "004440ca",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PopNodeHandleSelection$n(pn$PopNode$$)i",
+   "tu": "src/pop/psystem.c",
+   "evidence": "placed (at) in src/pop/psystem.c 2026-11-09"
+  },
   "PopNodeUpdate": {
    "va": "00444184",
    "kind": "func",
@@ -3842,6 +3850,22 @@
    "status": "hypothesis",
    "mangled": "W?PopUpdateItem$n(pn$PopNode$$i)v",
    "evidence": "implied by src/pop/psystem.c 2026-11-09"
+  },
+  "PopNode::GetValue": {
+   "va": "004443e4",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?GetValue$:PopNode$n(i)i",
+   "tu": "src/pop/psystem.c",
+   "evidence": "placed (at) in src/pop/psystem.c 2026-11-09"
+  },
+  "PopSystemCallback": {
+   "va": "004444cd",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PopSystemCallback$n(ypnv)v",
+   "tu": "src/pop/psystem.c",
+   "evidence": "placed (at) in src/pop/psystem.c 2026-11-09"
   },
   "WorldDrawTerrain": {
    "va": "0044ad70",
