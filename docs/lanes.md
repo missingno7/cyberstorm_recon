@@ -1,20 +1,37 @@
 # Lane assignments (integrator-owned)
 
 One owner per module at a time. Candidates live in `candidates/<lane>/`, reports in `candidates/<lane>/REPORT.md`.
+Model: `luna` = gpt-6-luna xhigh, `sol` = gpt-6.1-sol high (Codex); `opus` = Claude Opus 5.5 subagent.
 
-| Lane | Modules (start VA: file) | State (2026-11-09) |
-|---|---|---|
-| w1 | 0047d4c0 debug\assert.c, 0047c280 misc\strpool.c, 0047eb00 io\memory.c, 0047e450 io\file.c | done; parked tail handed to b1 |
-| b1 (sol) | w1's tail; then 00425978 (unknown), 004260c4 gui\flic.c | running |
-| w2 | 0047c530 io\resource.c | running (round 2) |
-| w3 | 00463b18 logic\lactor.c, 004654cc logic\miss.c, 00465d30 logic\bestloc.c | done; 14 parked |
-| w4 | 0046d538 multi\linkapp.c, 0046cdbc multi\link.c, 0046e570 multi\chat.c | running (round 3) |
-| w5 | 0042acf0 terr\tgrid.c, 00432f40 terr\tfog.c, 00434c80 terr\tfast.c | running (round 3) |
-| w6 | 00415074 shell\missbrf.c, 00415a88 shell\hercbay.c, 00443f58 pop\psystem.c | running (round 2) |
-| w7 | 004561d0 sim\actorlst.c, 00456ca0 sim\actoradd.c, 00456f90 sim\worldact.c | done; 14 parked |
-| w8 | 0045a600 sim\target.c, 0046ac20 logic\lsys.c | running (round 2) |
-| w10 | 00457390 sim\anim.c, 004599b0 sim\animbmp.c | running |
-| o1 (Claude Opus 5.5 trial) | 0046d9ac multi\linkdlg.c, 004706b0 multi\message.c | running (model comparison) |
-| s1 (sol, control) | 0046ec5c multi\mstart.c | running (model comparison) |
-| w9 | 00464054 logic\lactors.c, 0046639c logic\intel.c | running |
-| integrator | 0042a598 (rate), 004279fc (input), 004297d4 (ply), 0047abc0 (timer) | probes, partial |
+| Lane | Model | Modules (start VA: file) | State (2026-11-09 08:55) |
+|---|---|---|---|
+| w1 | luna | assert.c, strpool.c, memory.c, io\file.c | done; tail handed to b1 |
+| b1 | sol | w1 tail; 00425978 framework; gui\flic.c; gui\menu.c; 0042a5fc/0042a0e0; shell\shell.c | running (shell.c) |
+| w2 | luna | io\resource.c | done (19) |
+| w3 | luna | logic\lactor.c, miss.c, bestloc.c | done |
+| w4 | luna | multi\linkapp.c, link.c, chat.c | done; 16 withdrawn (fake array, docs/blocked.md) |
+| w5 | luna | terr\tgrid.c, tfog.c, tfast.c | done |
+| w6 | luna | shell\missbrf.c, hercbay.c, pop\psystem.c | done |
+| w7 | luna | sim\actorlst.c, actoradd.c, worldact.c | done |
+| w8 | luna | sim\target.c, logic\lsys.c | done |
+| w9 | luna | logic\lactors.c, logic\intel.c | running |
+| w10 | luna | sim\anim.c, sim\animbmp.c | running |
+| w11 | luna | shell\hotseat.c, pop\pherc.c | done |
+| w12 | luna | sim\simhot.c, logic\logic.c + sim\hotbrief.c | running |
+| w13 | luna | terr\tsurface.c, terr\tarea.c + tdisplay.c | running |
+| w14 | luna | shell\hbupgrad.c | running |
+| w15 | luna | shell\pilotgui.c | running |
+| s1 | sol | multi\mstart.c | done (39) |
+| l1 | luna | shell\hercbuy.c | done (19) |
+| o1 | opus | multi\linkdlg.c, linkq.c, message.c | done |
+| o2 | opus | sim\apply.c, fxout.c, explo.c | done |
+| o3 | opus | logic\lgen.c, logic\sinterp.c | done |
+| o4 | opus | shell\commscrn.c | done (32) |
+| o5 | opus | multi\minipkt.c | done (33) |
+| o6 | opus | sim\simgame object, tu_00452950 | done (36); multi-file objects open |
+| o7 | opus | main\WIN\winmain.c | done (15) |
+| v1 | sol | adversarial gate audit (rounds 1-2) | done; all findings fixed |
+| integrator | - | rate, input, ply, timer probes | partial |
+
+Unassigned large modules: sim\sim.c + simdo.c (0044950c, 30 KB), shell\mplaunch.c (0041f648), 0043b7e0, 00409408,
+0043ef34, 00435dec, 0041d774, 0044688c, 00433640, pop\pdeath.c, and the parked tails of finished lanes.
