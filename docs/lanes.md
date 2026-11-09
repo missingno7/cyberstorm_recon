@@ -53,14 +53,14 @@ Model: `luna` = gpt-6-luna xhigh, `sol` = gpt-6.1-sol high (Codex; all new lanes
 | s30 | sol | 2nd pass: 00435dec, 0043b7e0 | done (+8; 24 parked) |
 | s31 | sol | 2nd pass: shell\hbupgrad.c, 0046b918 | done (+9; 23 parked) |
 | s32 | sol | 2nd pass: sim\sim.c region (0044950c) | done (+4; 30 parked) |
-| s33 | sol | 2nd pass: terr\tdisplay.c, tarea.c, tsurface.c and neighbours | running |
+| s33 | sol | 2nd pass: terr\tdisplay.c, tarea.c, tsurface.c and neighbours | done (+14 in candidates; 32 parked) |
 | s34 | sol | 2nd pass: sim\anim.c, logic\logic.c + hotbrief.c, lactors.c, intel.c | done |
 | s35 | sol | 2nd pass: shell\mplaunch.c, main\WIN\winmain.c, shell\pilotgui.c, shell\commscrn.c | running |
 | s36 | sol | 2nd pass: sim\actorlst.c, simgame.c, explo.c, 0045cc00 | running |
 | s37 | sol | 2nd pass: logic\miss.c, lsys.c, multi\linkapp.c, chat.c | running |
-| s38 | sol | 2nd pass: unnamed 0041d774, 004413e0, 00433640, 00435130, 0047f060/0047f5e0, 00480ee0 | running |
-| r1 | sol | research: systemic blockers of parked functions | running |
-| s39 | sol | classify unmatched non-game code (runtime library, assembly) | running |
+| s38 | sol | 2nd pass: unnamed 0041d774, 004413e0, 00433640, 00435130, 0047f060/0047f5e0, 00480ee0 | done (+5) |
+| r1 | sol | research: systemic blockers of parked functions | done (nested-default rule; inventory in codegen_rules.md) |
+| s39 | sol | classify unmatched non-game code (runtime library, assembly) | done (config/nongame.json) |
 | l1 | luna | shell\hercbuy.c | done (19) |
 | o1 | opus | multi\linkdlg.c, linkq.c, message.c | done |
 | o2 | opus | sim\apply.c, fxout.c, explo.c | done |
