@@ -12016,6 +12016,14 @@
   "PopWorldDrawText": {
    "va": "00449cba",
    "kind": "func",
+   "status": "matched",
+   "mangled": "W?PopWorldDrawText$n(pn$PopWorld$$)v",
+   "tu": "src/_unknown/tu_00449bb4.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PopWorldDrawText#W?PopWorldDrawText$n()v": {
+   "va": "00449cba",
+   "kind": "func",
    "status": "hypothesis",
    "mangled": "W?PopWorldDrawText$n()v",
    "tu": "src/_unknown/tu_00449bb4.c",
@@ -12356,10 +12364,10 @@
   "SimPan": {
    "va": "0044d7a0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?SimPan$n(pn$SimGame$$ii)v",
    "tu": "src/sim/simdo.c",
-   "evidence": "placed (at) in src/sim/simdo.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "SimPanBy": {
    "va": "0044d850",
@@ -12744,10 +12752,10 @@
   "SimChooseNextPlayer": {
    "va": "00450270",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?SimChooseNextPlayer$n(pn$SimGame$$)v",
    "tu": "src/sim/simturn.c",
-   "evidence": "placed (at) in src/sim/simturn.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "SimChooseNextPlayer#W?SimChooseNextPlayer$n(pn$SimGame$$)i": {
    "va": "00450270",
@@ -12813,6 +12821,14 @@
    "evidence": "strict match 2026-11-09"
   },
   "GetModePlayer": {
+   "va": "00450a30",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?GetModePlayer$n(pn$SimGame$$i)pn$PlayerSlot$$",
+   "tu": "src/sim/simturn.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "GetModePlayer#W?GetModePlayer$n(pnvi)pn$PlayerSlot$$": {
    "va": "00450a30",
    "kind": "func",
    "status": "hypothesis",
@@ -30788,6 +30804,13 @@
    "mangled": "W?currentFrameCounter$nul",
    "evidence": "implied by src/sim/animbmp.c 2026-11-09"
   },
+  "worldDescriptionId": {
+   "va": "004d2736",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?worldDescriptionId$nl",
+   "evidence": "implied by src/_unknown/tu_00449bb4.c 2026-11-09"
+  },
   "playerCount": {
    "va": "004d273a",
    "kind": "data",
@@ -31146,6 +31169,13 @@
    "status": "hypothesis",
    "mangled": "W?gGameTurn$ni",
    "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
+  "cameraSpeed": {
+   "va": "004d3788",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?cameraSpeed$ni",
+   "evidence": "implied by src/sim/simdo.c 2026-11-09"
   },
   "simLimit1": {
    "va": "004d378c",

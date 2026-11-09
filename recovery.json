@@ -5605,6 +5605,11 @@
      "size": 58,
      "mangled": "W?PopWorldUpdate$n(pn$PopWorld$$)v"
     },
+    "PopWorldDrawText": {
+     "va": "00449cba",
+     "size": 188,
+     "mangled": "W?PopWorldDrawText$n(pn$PopWorld$$)v"
+    },
     "PopWorldEvent": {
      "va": "00449eb5",
      "size": 63,
@@ -5617,6 +5622,10 @@
     }
    },
    "data": {
+    "CONST": {
+     "va": "0048b430",
+     "size": 32
+    },
     "CONST2": {
      "va": "0048ddec",
      "size": 28
@@ -5842,6 +5851,11 @@
      "size": 48,
      "mangled": "W?SimFocusReady$n(pn$SimGame$$)i"
     },
+    "SimPan": {
+     "va": "0044d7a0",
+     "size": 176,
+     "mangled": "W?SimPan$n(pn$SimGame$$ii)v"
+    },
     "SimSetMode": {
      "va": "0044da10",
      "size": 128,
@@ -5961,6 +5975,11 @@
      "size": 80,
      "mangled": "W?SimUpdateOwnerPayloads$n(pn$SimGame$$)v"
     },
+    "SimChooseNextPlayer": {
+     "va": "00450270",
+     "size": 432,
+     "mangled": "W?SimChooseNextPlayer$n(pn$SimGame$$)v"
+    },
     "SimChangePlayer": {
      "va": "00450420",
      "size": 400,
@@ -5991,13 +6010,23 @@
      "size": 128,
      "mangled": "W?SimRemovePlayer$n(pn$SimGame$$i)v"
     },
+    "GetModePlayer": {
+     "va": "00450a30",
+     "size": 112,
+     "mangled": "W?GetModePlayer$n(pn$SimGame$$i)pn$PlayerSlot$$"
+    },
     "SimSetMenuState": {
      "va": "00450aa0",
      "size": 84,
      "mangled": "W?SimSetMenuState$n(pn$SimGame$$i)v"
     }
    },
-   "data": {},
+   "data": {
+    "CONST": {
+     "va": "004a030c",
+     "size": 14
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/terr/tbuild.c": {

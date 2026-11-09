@@ -47,115 +47,115 @@ extern void SendEvent(void *,int,void *,int,int);
 struct StrPool {char *GetString(long,int=0);};
 extern StrPool targetBriefResource;
 extern void SimMessage(SimGame *,const char *);
+extern PlayerSlot *GetModePlayer(SimGame *,int);
 extern int logicMode;
 extern "C" void BriefWaitA(int);
 inline int ActorIsMobile(ActorRecord *a) {return a->traits.type!=1 && a->traits.type!=7 && a->traits.type!=14 && a->traits.type!=17 && a->traits.type!=18;}
-inline PlayerSlot *CheckedSlot(SimGame *s,int n) {
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
-// Original checked-slot ASSERT source line follows.
+
+int SimOnlyStationary(SimGame *s) {
+ int result=1;
+ for(ActorRecord *a=ActorFindByOwner(s->mode);a;a=ActorFindOwnerNext(a,s->mode)) if(a->traits.Mobile()) result=0;
+ return result;
+}
+int SimPlayerHasUnits(SimGame *s,int n) {
+ if(n==s->localPlayer) return 1;
+ int result=0;
+ for(ActorRecord *a=ActorFindByOwner(n);a;a=ActorFindOwnerNext(a,n)) {
+  if(a->owner==s->localPlayer) result=1;
+  else if(SimHotbriefCheckActor(a)) result=1;
+ }
+ return result;
+}
+void SimUpdateOwnerPayloads(SimGame *s) {
+ for(ActorRecord *a=ActorFindByOwner(s->mode);a;a=ActorFindOwnerNext(a,s->mode)) UpdatePayload(a->unit,a->variant);
+}
+void SimChooseNextPlayer(SimGame *s) {
+ int next;
+ if(s->multi && s->forcedPlayer) {
+  s->nextPlayer=s->forcedPlayer;
+  s->forcedPlayer=0;
+  return;
+ }
+ else {
+  int remaining=18;
+  int n=s->mode;
+  next=0;
+  int wrapped=0;
+  s->nextPlayer=0;
+  while(remaining--) {
+   if(n==s->playerCount) {n=1;wrapped=1;} else n++;
+   int status=GetModePlayer(s,n)->status;
+   if(status!=0 && status!=6 && status!=7 && SimPlayerHasUnits(s,n)) next=n;
+   if(next) break;
+  }
+  s->turn+=wrapped;
+ }
+ s->nextPlayer=next;
+}
+
+void SimChangePlayer(SimGame *s,int n) {
+ int old=s->mode;
+ s->slot=GetModePlayer(s,n); s->slotStatus=s->slot->status; s->mode=s->slot->id;
+ s->linked=s->slotStatus==1; s->remote=s->slotStatus==2; s->automated=s->slotStatus==3;
+ if(s->extraSaved) {
+  if(!s->automated) {
+   SimHotBriefGameOver(s); SimHotWriteFogBuffers(old); SimHotReadFogBuffers(s->mode);
+   s->linked=1; s->remote=0; s->automated=0; int player=s->mode; s->screen=-1; s->player=player;
+  } else {
+   if(ActorFindByOwner(s->localPlayer)) SimHotBriefGameOver(s);
+   SimHotInitializeFog(); SigsStart(&g513888,0); SurfacePresent(&g513888); int player=s->localPlayer; s->screen=-1; s->player=player;
+  }
+ }
+}
+void SimRestoreOwnerFocus(SimGame *s) {
+ ActorRecord *a=ActorListTransfer(s->slot->actor);
+ if(!a || a->owner!=s->mode) ActorFindByOwner(s->mode);
+ SimSetFocus(s,ActorListTransfer(s->slot->actor));
+}
+void SimDisableInactiveActors() {
+ for(ActorRecord *a=ActorFindFree();a;a=ActorFindNext(a)) {
+  if(a->traits.type==17) a->disabled=1;
+  if(a->model>=9 && a->model<=17 && !a->active) a->disabled=1;
+ }
+}
+void SimRefreshPanel(SimGame *s,int force) {
+ if(!s->focus || s->focus->owner==s->player) {
+  ActorRecord *a=s->focus;
+  if(!a || !a->pilot || !a->unit) memset(s->stats,0,36);
+  else {
+   void *pilot=a->pilot;
+   s->stats[0].value=PilotValue(pilot,200); s->stats[0].maximum=PilotValue(pilot,201); s->stats[0].spare=-1;
+   s->stats[1].value=PilotValue(pilot,204); s->stats[1].maximum=PilotValue(pilot,205); s->stats[1].spare=PilotValue(pilot,206);
+   s->stats[2].value=PilotValue(pilot,207); s->stats[2].maximum=PilotValue(pilot,208); s->stats[2].spare=PilotValue(pilot,209);
+   unsigned mode=PilotValue(pilot,215)-64;
+   if(s->portrait.mode!=mode || force) {
+    s->screen|=0x400;
+    unsigned portrait=PilotValue(s->focus->pilot,202)+1;
+    if(turnPortraitMode<60 || mode==4) {SimAnimSet(&s->portrait,1,portrait,5); s->portrait.frame=(char)mode-1;}
+    else SimAnimSet(&s->portrait,1,portrait,mode);
+   }
+   s->screen|=0x50;
+  }
+ }
+}
+void SimApplyLeadership(SimGame *s,ActorRecord *target) {
+ char text[128]; int total=0;
+ ActorRecord *a=ActorFindByOwner(s->mode);const GridPoint *point=&target->position;while(a){long dx=a->position.x-point->x,dy=a->position.y-point->y;
+  int distance=(int)(ISqrt(dx*dx+dy*dy)+100)/1000;
+  int value=PilotValue(a->pilot,7);if(distance>2)value-=(distance-2)*10;if(value>0)total+=value/2; a=ActorFindOwnerNext(a,s->mode);}
+ unsigned before=PilotValue(target->pilot,204);
+ SendEvent(target->pilot,108,(void *)total,0,0);
+ unsigned after=PilotValue(target->pilot,204);
+ if(before!=after && s->linked) {sprintf(text,targetBriefResource.GetString(1204),target->pilot); SimMessage(s,text);}
+}
+
+int SimAddPlayer(SimGame *s,int status,PlayerSlot *source) {
+ if(s->playerCount>=9) return 0;
+ PlayerSlot *p=&s->slots[s->playerCount]; memset(p,0,sizeof(*p)); if(source) *p=*source;
+ p->status=status; ++s->playerCount; p->id=s->playerCount; return s->playerCount;
+}
+void SimRemovePlayer(SimGame *s,int n) {GetModePlayer(s,n)->status=0;}
+PlayerSlot *GetModePlayer(SimGame *s,int n) {
 // Original checked-slot ASSERT source line follows.
 // Original checked-slot ASSERT source line follows.
 // Original checked-slot ASSERT source line follows.
@@ -610,107 +610,13 @@ inline PlayerSlot *CheckedSlot(SimGame *s,int n) {
 // Original checked-slot ASSERT source line follows.
 // Original checked-slot ASSERT source line follows.
  if(!(n>0 && n<=s->playerCount)) AssertFail(__FILE__,__LINE__,0);
- if(n<1 || n>s->playerCount || n!=s->slots[n-1].id) return 0; return &s->slots[n-1];
+ if(n<1 || n>s->playerCount || n!=s->slots[n-1].id)return 0;return &s->slots[n-1];
 }
-int SimOnlyStationary(SimGame *s) {
- int result=1;
- for(ActorRecord *a=ActorFindByOwner(s->mode);a;a=ActorFindOwnerNext(a,s->mode)) if(a->traits.Mobile()) result=0;
- return result;
-}
-int SimPlayerHasUnits(SimGame *s,int n) {
- if(n==s->localPlayer) return 1;
- int result=0;
- for(ActorRecord *a=ActorFindByOwner(n);a;a=ActorFindOwnerNext(a,n)) {
-  if(a->owner==s->localPlayer) result=1;
-  else if(SimHotbriefCheckActor(a)) result=1;
- }
- return result;
-}
-void SimUpdateOwnerPayloads(SimGame *s) {
- for(ActorRecord *a=ActorFindByOwner(s->mode);a;a=ActorFindOwnerNext(a,s->mode)) UpdatePayload(a->unit,a->variant);
-}
-void SimChooseNextPlayer(SimGame *s) {
- int next;
- if(s->multi && s->forcedPlayer && (next=s->forcedPlayer)!=0) s->forcedPlayer=0;
- else {
-  int n=s->mode,remaining=18,wrapped=0; next=0; s->nextPlayer=0;
-  while(remaining--) {
-   if(n==s->playerCount) {n=1;wrapped=1;} else n++;
-   int status=CheckedSlot(s,n)->status;
-   if(status!=0 && status!=6 && status!=7 && SimPlayerHasUnits(s,n)) next=n;
-   if(next) break;
-  }
-  s->turn+=wrapped;
- }
- s->nextPlayer=next;
-}
-
-void SimChangePlayer(SimGame *s,int n) {
- int old=s->mode;
- s->slot=CheckedSlot(s,n); s->slotStatus=s->slot->status; s->mode=s->slot->id;
- s->linked=s->slotStatus==1; s->remote=s->slotStatus==2; s->automated=s->slotStatus==3;
- if(s->extraSaved) {
-  if(!s->automated) {
-   SimHotBriefGameOver(s); SimHotWriteFogBuffers(old); SimHotReadFogBuffers(s->mode);
-   s->linked=1; s->remote=0; s->automated=0; int player=s->mode; s->screen=-1; s->player=player;
-  } else {
-   if(ActorFindByOwner(s->localPlayer)) SimHotBriefGameOver(s);
-   SimHotInitializeFog(); SigsStart(&g513888,0); SurfacePresent(&g513888); int player=s->localPlayer; s->screen=-1; s->player=player;
-  }
- }
-}
-void SimRestoreOwnerFocus(SimGame *s) {
- ActorRecord *a=ActorListTransfer(s->slot->actor);
- if(!a || a->owner!=s->mode) ActorFindByOwner(s->mode);
- SimSetFocus(s,ActorListTransfer(s->slot->actor));
-}
-void SimDisableInactiveActors() {
- for(ActorRecord *a=ActorFindFree();a;a=ActorFindNext(a)) {
-  if(a->traits.type==17) a->disabled=1;
-  if(a->model>=9 && a->model<=17 && !a->active) a->disabled=1;
- }
-}
-void SimRefreshPanel(SimGame *s,int force) {
- if(!s->focus || s->focus->owner==s->player) {
-  ActorRecord *a=s->focus;
-  if(!a || !a->pilot || !a->unit) memset(s->stats,0,36);
-  else {
-   void *pilot=a->pilot;
-   s->stats[0].value=PilotValue(pilot,200); s->stats[0].maximum=PilotValue(pilot,201); s->stats[0].spare=-1;
-   s->stats[1].value=PilotValue(pilot,204); s->stats[1].maximum=PilotValue(pilot,205); s->stats[1].spare=PilotValue(pilot,206);
-   s->stats[2].value=PilotValue(pilot,207); s->stats[2].maximum=PilotValue(pilot,208); s->stats[2].spare=PilotValue(pilot,209);
-   unsigned mode=PilotValue(pilot,215)-64;
-   if(s->portrait.mode!=mode || force) {
-    s->screen|=0x400;
-    unsigned portrait=PilotValue(s->focus->pilot,202)+1;
-    if(turnPortraitMode<60 || mode==4) {SimAnimSet(&s->portrait,1,portrait,5); s->portrait.frame=(char)mode-1;}
-    else SimAnimSet(&s->portrait,1,portrait,mode);
-   }
-   s->screen|=0x50;
-  }
- }
-}
-void SimApplyLeadership(SimGame *s,ActorRecord *target) {
- char text[128]; int total=0;
- ActorRecord *a=ActorFindByOwner(s->mode);const GridPoint *point=&target->position;while(a){long dx=a->position.x-point->x,dy=a->position.y-point->y;
-  int distance=(int)(ISqrt(dx*dx+dy*dy)+100)/1000;
-  int value=PilotValue(a->pilot,7);if(distance>2)value-=(distance-2)*10;if(value>0)total+=value/2; a=ActorFindOwnerNext(a,s->mode);}
- unsigned before=PilotValue(target->pilot,204);
- SendEvent(target->pilot,108,(void *)total,0,0);
- unsigned after=PilotValue(target->pilot,204);
- if(before!=after && s->linked) {sprintf(text,targetBriefResource.GetString(1204),target->pilot); SimMessage(s,text);}
-}
-
-int SimAddPlayer(SimGame *s,int status,PlayerSlot *source) {
- if(s->playerCount>=9) return 0;
- PlayerSlot *p=&s->slots[s->playerCount]; memset(p,0,sizeof(*p)); if(source) *p=*source;
- p->status=status; ++s->playerCount; p->id=s->playerCount; return s->playerCount;
-}
-void SimRemovePlayer(SimGame *s,int n) {CheckedSlot(s,n)->status=0;}
-PlayerSlot *GetModePlayer(void *object,int n) {return CheckedSlot((SimGame *)object,n);}
 inline int TurnMenuMode() {return logicMode==2 || logicMode==3;}
 void SimSetMenuState(SimGame *s,int enabled) {
  if(s->multi || TurnMenuMode()) BriefWaitA((enabled==0)+13);
  else BriefWaitA((enabled==0)+10);
 }
+
+
 

@@ -104,10 +104,12 @@ int SimFocusReady(SimGame *s) { if(s->focus && s->focus->active && !s->focus->di
 inline int SimClamp(int n,int lo,int hi) { if(n<=lo)return lo; if(n>=hi)return hi; return n; }
 inline int SimCanCenter(SimGame *s){return s->linked?0:s->automated?0:SimFocusReady(s);}inline int SimActorHidden(int n){return !actorVisibility[n];}
 void SimPan(SimGame *s,int dx,int dy) {
- long x=dx,y=dy; GridPoint d;
- int speed=SimClamp(cameraSpeed,0,10)*70+50; int multiplier=SimShiftDown()?10:1;
- int divisor=s->view.scale*100;
- d.x=x*866*multiplier*speed*16/divisor; d.y=y*500*multiplier*speed*16/divisor;
+ int speed=SimClamp(cameraSpeed,0,10)*70+50;
+ int multiplier=SimShiftDown()?10:1;
+ dx=dx*866*multiplier*speed*16/(s->view.scale*100);
+ dy=dy*500*multiplier*speed*16/(s->view.scale*100);
+ GridPoint d;
+ d.x=dx;d.y=dy;
  SimPanBy(s,&d);
 }
 void SimPanBy(SimGame *s,GridPoint *d) {
@@ -170,8 +172,6 @@ void SimSetFocus(SimGame *s,ActorRecord *a) {
  if(s->multi && ModeCheck((const char *)s))modeLogName.Focus(a);
  if(s->linked)SimClosePopups(s);
  s->focus=a;s->focusPilot=a->pilot;s->focusUnit=a->unit;
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
  // Preserve original sim\simdo.c assertion line.
  // Preserve original sim\simdo.c assertion line.
  // Preserve original sim\simdo.c assertion line.

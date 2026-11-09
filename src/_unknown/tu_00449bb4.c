@@ -1,6 +1,6 @@
 #pragma aux callback_popworldevent "W?PopWorldEvent$n()i";
 struct SimGame;int __pragma("callback_popworldevent") PopWorldEvent(SimGame *);
-// Unknown original TU: POPINFO.BOX screen, 0044950c..00449bb4.
+// Unknown original TU: POPWORLD.BOX screen, 00449bb4..00449f00.
 // Class and function names are working labels. Partial field layout is evidence-based.
 typedef unsigned long U32;
 struct GuiRect { long x,y,width,height; };
@@ -42,18 +42,18 @@ extern GuiRect gMenuClip;
 extern char g513888;
 extern void GuiRemapClipRect(GuiRect *,long,long,long,long);
 extern void PopDrawSurface(void *,int,int,int,int,int,int);
-extern StrPool worldStrings,worldCaptionStrings;
+extern StrPool quickStrings,g511ddc;
 extern long worldDescriptionId;
 extern char gDebugText[];
 extern void DebugTextClear();
 extern "C" int sprintf(char *,const char *,...);
 extern void RichTextDraw(long,long,long,long,const unsigned char *,long,long,long,long *,long *,const long *,int,int=1,U32=0,long=0,long=0x7fffffff);
-void PopWorldDrawText() {
- worldStrings.Lock(); long id=worldDescriptionId;
+void PopWorldDrawText(PopWorld *unused) {
+ quickStrings.Lock(); long id=worldDescriptionId;
  DebugTextClear(); id+=40;
- sprintf(gDebugText,"\n\n%s:  %s\n\n     %s",worldCaptionStrings.GetString(154),worldStrings.GetString(id,1),worldStrings.GetSecondString(id,1));
+ sprintf(gDebugText,"\n\n%s:  %s\n\n     %s",g511ddc.GetString(154),quickStrings.GetString(id,1),quickStrings.GetSecondString(id,1));
  RichTextDraw(popWorldFrame.x,popWorldFrame.y,popWorldFrame.width,popWorldFrame.height,(const unsigned char *)gDebugText,0,0,4,0,0,0,11,0);
- worldStrings.Unlock();
+ quickStrings.Unlock();
 }
 void PopWorldDraw(PopWorld *p) {
  if(p->IsActive()) { if(p->dirty) {
@@ -61,8 +61,10 @@ void PopWorldDraw(PopWorld *p) {
  long x=p->x,y=p->y,w=p->width,h=p->height;
  GuiRemapClipRect(&gMenuClip,x,y,w,h);
  PopDrawSurface(&g513888,1,0,p->x,p->y,p->width,p->height);
- PopWorldDrawText(); p->Invalidate(); p->dirty=0;
+ PopWorldDrawText(p); p->Invalidate(); p->dirty=0;
  } p->Draw(); }
 }
 int PopWorldEvent(SimGame *) { if(popWorld.IsActive()) { long n=popWorld.HitTest(&g4bb78c); if(n>=0) targetLimits=n+1300; return popWorld.Update(); } return 0; }
 PopWorld::~PopWorld() { input=0; }
+
+
