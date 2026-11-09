@@ -64,6 +64,7 @@ Model: `luna` = gpt-6-luna xhigh, `sol` = gpt-6.1-sol high (Codex; all new lanes
 | s40 | sol | integration debt: GuiPoint COMDAT, MCI owner, sinterp verify divergence, aliases | running |
 | r2 | sol | research: register/stack allocation cluster | running |
 | s41 | sol | 3rd pass: sim\sim.c region | running |
+| s42 | sol | 3rd pass: shell\hbupgrad.c, pop\pherc.c, 0043b7e0 | running |
 | l1 | luna | shell\hercbuy.c | done (19) |
 | o1 | opus | multi\linkdlg.c, linkq.c, message.c | done |
 | o2 | opus | sim\apply.c, fxout.c, explo.c | done |
