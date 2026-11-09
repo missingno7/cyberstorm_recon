@@ -1,4 +1,4 @@
-struct FlicSound;
+struct FlicSound; inline const char *BioRoomName(){return "bioroom";}
 typedef unsigned long U32;
 struct GuiRect { long x, y, width, height; };
 struct GuiPoint { long x, y; };
@@ -93,7 +93,7 @@ extern Surface g511948; extern char gMenuSavedSurface,gShellBackground;
 extern int g513888;
 extern GuiPoint g4bb78c;
 extern GuiRect gMenuClip; extern ViewRect viewportClipLeft,gBriefDrawSource;
-extern int bioLastRegion,bioRoomHandle,bioListState; extern unsigned short bioMedlabState,bioListMode,bioVrMode,bioStandbyState;
+int bioLastRegion=-999; static char biomenuFile[]=__FILE__; extern int bioRoomHandle,bioListState; extern unsigned short bioMedlabState,bioListMode,bioVrMode,bioStandbyState;
 extern int bioAnimationEnabled;
 extern GuiControl *bioControls[];
 extern "C" void AssertFail(const char *,int,const char *);
@@ -313,11 +313,11 @@ void BioScreen::Setup(InputReq *request){
 
 
 
- if(!gScreenImages)AssertFail(__FILE__,__LINE__,(const char *)gScreenImages);
+ if(!gScreenImages)AssertFail(biomenuFile,__LINE__,(const char *)gScreenImages);
  if(!Lights())lights=(unsigned char *)gResMgr.Load((long)"biolite.bmx");
 
 
- if(!lights)AssertFail(__FILE__,__LINE__,(const char *)lights);
+ if(!lights)AssertFail(biomenuFile,__LINE__,(const char *)lights);
  animation.Open((long)"biodlop1.flx",100,1);animation.SetLoops(-1);
 }
 void BioScreen::Suppress(unsigned short n){suppressed=n;}
@@ -345,7 +345,7 @@ case 192:break;
 int BioScreen::Event(){if(IsActive()){
  if(state)return 0;int region=HitTest(&g4bb78c);
  for(int i=0;i<5;++i)bioButtons[i].SetVisibility(0);
- bioListState=region;if(region<0){region=BriefDone("bioroom");DrawRegions(region,0);if(region>=0&&region<4){bioListState=region+100;switch(region){case 0:bioButtons[0].attributes=(bioButtons[0].attributes&0xff1fffffUL)+0x400000;break;case 1:bioButtons[1].attributes=(bioButtons[1].attributes&0xff1fffffUL)+0x400000;break;case 2:bioButtons[2].attributes=(bioButtons[2].attributes&0xff1fffffUL)+0x400000;break;case 3:bioButtons[3].attributes=(bioButtons[3].attributes&0xff1fffffUL)+0x400000;break;}}}
+ bioListState=region;if(region<0){region=BriefDone(BioRoomName());DrawRegions(region,0);if(region>=0&&region<4){bioListState=region+100;switch(region){case 0:bioButtons[0].attributes=(bioButtons[0].attributes&0xff1fffffUL)+0x400000;break;case 1:bioButtons[1].attributes=(bioButtons[1].attributes&0xff1fffffUL)+0x400000;break;case 2:bioButtons[2].attributes=(bioButtons[2].attributes&0xff1fffffUL)+0x400000;break;case 3:bioButtons[3].attributes=(bioButtons[3].attributes&0xff1fffffUL)+0x400000;break;}}}
  if(gGuiEffectPriority>25&&region>=0&&region<=4)DrawRegions(region,0);return GuiScreen::Update();
  }return 0;}
 void BioScreen::Render(){
@@ -361,7 +361,7 @@ void BioScreen::Render(){
  }PilotGuiSelectionControlsRender(&g4b16a4);
 }
 int BioScreen::IsVatOpening(){unsigned n=state;return n==1;}
-void BioScreen::Finish(){BriefDone("bioroom");}
+void BioScreen::Finish(){BriefDone(BioRoomName());}
 void BioScreen::ToggleVat(){switch(state){ case 2:PlayOnce("vdclose.flx",bioVatClose,"vatdoor.plx");state=3;gBiodermSelectionMode=1;PilotGuiDisable(&g4b16a4);bioListMode=2;break;case 0:
  PilotGuiEnable(&g4b16a4);if(gBiodermSelectionMode==3){MenuDrawImage(&g513888,(const MenuImage *)(gScreenImages+0x1c),0,0);SurfacePresent(&g513888);}StartVat();state=1;gBiodermSelectionMode=0;bioListMode=0;suppressed=0;SoundTrigger(0x41,0);break;
 }}

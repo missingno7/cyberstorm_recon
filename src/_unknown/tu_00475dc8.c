@@ -29,11 +29,19 @@ StrPool quickStrings((long)"QStart.bin",(long)sharedPoolBuffer,8192);
 StrPool resourcePool((long)"MultiTxt.bin",(long)sharedPoolBuffer,8192);
 StrPool helpLinks((long)"HelpLink.bin",(long)sharedPoolBuffer,8192);
 ResMgr gResMgr;
-extern char *cdPath;
-extern char *resourceCdPath;
-/* This initialized pointer is in the later resource-path object. Preserve this
- * TU's startup assignment without incorrectly allocating it in this BSS. */
-struct ResourcePathInit { ResourcePathInit() { resourceCdPath=cdPath; } } resourcePathInit;
+/* Initialized shared resource configuration. sigsGameId is a working label:
+ * its address is also used as a search-directory string. The 200-byte extent
+ * and ten-entry table capacities follow the adjacent initialized objects. */
+extern unsigned long gSessionTable[];
+struct DecodeBuffer { int size; unsigned char *data; };
+struct UnpackBuffer { unsigned size; void *data; };
+DecodeBuffer imageDecodeBuffer = {65536, (unsigned char *)gDebugText};
+UnpackBuffer unpackScratch = {16384, gSessionTable};
+Font *gRichTextFonts[9] = {&shellFont, &g511dc0, &gDefaultFont, &gShellFont, &gShellFont, 0, 0, 0, 0};
+char *cdPath = "#:\\CSTORM\\";
+char sigsGameId[200] = "";
+const char *resourceArchives[10] = {"CYBDATA1.RBX", "CYBDATA2.RBX", "CYBDATA3.RBX", "CYBDATA4.RBX", (char *)&sigsGameId, 0, 0, 0, 0, 0};
+char *searchPaths[10] = {"", (char *)&sigsGameId, cdPath, 0, 0, 0, 0, 0, 0, 0};
 void DebugTextClear() { memset(gDebugText,0,65536); }
 void SmallDebugTextClear() { memset(smallDebugText,0,8192); }
 void DebugTextAppend(const char *text) {

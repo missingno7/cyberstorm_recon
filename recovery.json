@@ -3223,8 +3223,8 @@
    },
    "data": {
     "CONST": {
-     "va": "0048b8c2",
-     "size": 13
+     "va": "0048b8ac",
+     "size": 35
     }
    },
    "accepted": "2026-11-09"
@@ -6895,14 +6895,26 @@
      "va": "00449138",
      "size": 16,
      "mangled": "W?.tdctor$:Surface$n()rn$1$"
-    },
-    "DeathSummary": {
-     "va": "00449148",
-     "size": 963,
-     "mangled": "W?DeathSummary$n(pn$Shell$$)v"
     }
    },
-   "data": {},
+   "data": {
+    "CONST": {
+     "va": "0048b3c0",
+     "size": 25
+    },
+    "_DATA": {
+     "va": "004a0138",
+     "size": 13
+    },
+    "W?$Wts08n$Flic$$$nx[]uc": {
+     "va": "0048c848",
+     "size": 17
+    },
+    "W?$Wts0bn$Surface$$$nx[]uc": {
+     "va": "0048dd8c",
+     "size": 17
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/_unknown/tu_0040d2b0.c": {
@@ -8537,7 +8549,7 @@
     }
    },
    "data": {
-    "_DATA": {
+    "CONST": {
      "va": "0048a80c",
      "size": 20
     }
@@ -10126,7 +10138,7 @@
    "data": {
     "CONST": {
      "va": "0048bd74",
-     "size": 149
+     "size": 213
     },
     "CONST2": {
      "va": "0048e208",
@@ -10134,7 +10146,7 @@
     },
     "_DATA": {
      "va": "004a408c",
-     "size": 12
+     "size": 348
     },
     "XI": {
      "va": "004a6ce4",
@@ -12441,20 +12453,40 @@
     }
    },
    "data": {
+    "CONST": {
+     "va": "0048a5c4",
+     "size": 434
+    },
     "CONST2": {
      "va": "0048ca7c",
      "size": 44
     },
     "_DATA": {
      "va": "0048e690",
-     "size": 12
+     "size": 32
+    },
+    "XI": {
+     "va": "004a6b70",
+     "size": 6
+    },
+    "W?$Wts0dn$MenuPanel$$$nx[]uc": {
+     "va": "0048c99c",
+     "size": 17
     },
     "W?$Wts0kn$MenuPrefixButton$$$nx[]uc": {
      "va": "0048c9ec",
      "size": 17
     },
+    "W?$Wts0in$MenuHelpRegion$$$nx[]uc": {
+     "va": "0048c9c4",
+     "size": 17
+    },
     "W?$Wts0fn$MenuCaption$$$nx[]uc": {
      "va": "0048cabc",
+     "size": 17
+    },
+    "W?$Wts0dn$BioScreen$$$nx[]uc": {
+     "va": "0048caa8",
      "size": 17
     }
    },
@@ -12646,6 +12678,25 @@
    },
    "data": {},
    "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_00449148.c": {
+   "as": "_unknown\\tu_00449148.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "DeathSummary": {
+     "va": "00449148",
+     "size": 963,
+     "mangled": "W?DeathSummary$n(pn$Shell$$)v"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048b3dc",
+     "size": 23
+    }
+   },
+   "accepted": "2026-11-09"
   }
  },
  "accepted_losses": [
@@ -12772,6 +12823,42 @@
    "tu": "src/_unknown/tu_0044d150.c",
    "functions": [
     "W?$Wda013$:MenuSpacer$n(ui)pnv"
+   ],
+   "date": "2026-11-09"
+  },
+  {
+   "tu": "src/pop/pdeath.c",
+   "functions": [
+    "DeathSummary"
+   ],
+   "date": "2026-11-09"
+  },
+  {
+   "tu": "src/_unknown/tu_0040ffb8.c",
+   "functions": [
+    "data:_DATA"
+   ],
+   "date": "2026-11-09"
+  },
+  {
+   "tu": "src/_unknown/tu_00475dc8.c",
+   "functions": [
+    "data:CONST",
+    "data:_DATA"
+   ],
+   "date": "2026-11-09"
+  },
+  {
+   "tu": "src/shell/biomenu.c",
+   "functions": [
+    "data:_DATA"
+   ],
+   "date": "2026-11-09"
+  },
+  {
+   "tu": "src/multi/chat.c",
+   "functions": [
+    "data:CONST"
    ],
    "date": "2026-11-09"
   }

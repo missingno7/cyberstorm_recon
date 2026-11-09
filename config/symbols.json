@@ -12368,7 +12368,7 @@
    "kind": "func",
    "status": "matched",
    "mangled": "W?DeathSummary$n(pn$Shell$$)v",
-   "tu": "src/pop/pdeath.c",
+   "tu": "src/_unknown/tu_00449148.c",
    "evidence": "strict match 2026-11-09"
   },
   "W?.fn_init$n()v@_unknown/tu_0044950c.c": {
@@ -24268,6 +24268,14 @@
    "tu": "src/_unknown/tu_004087e0.c",
    "evidence": "own data placed in src/_unknown/tu_004087e0.c 2026-11-09"
   },
+  "W?$Wts0dn$BioScreen$$$nx[]uc": {
+   "va": "0048caa8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0dn$BioScreen$$$nx[]uc",
+   "tu": "src/shell/biomenu.c",
+   "evidence": "own data placed in src/shell/biomenu.c 2026-11-09"
+  },
   "W?$Wts0fn$MenuCaption$$$nx[]uc": {
    "va": "0048cabc",
    "kind": "data",
@@ -24644,6 +24652,14 @@
    "tu": "src/pop/pherc.c",
    "evidence": "own data placed in src/pop/pherc.c 2026-11-09"
   },
+  "W?$Wts0bn$Surface$$$nx[]uc": {
+   "va": "0048dd8c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0bn$Surface$$$nx[]uc",
+   "tu": "src/pop/pdeath.c",
+   "evidence": "own data placed in src/pop/pdeath.c 2026-11-09"
+  },
   "W?$Wts0bn$StrPool$$$nx[]uc": {
    "va": "0048ddc4",
    "kind": "data",
@@ -24923,6 +24939,14 @@
    "status": "hypothesis",
    "mangled": "W?bioLastRegion$ni",
    "evidence": "implied by src/shell/biomenu.c 2026-11-09"
+  },
+  "biomenuFile@shell/biomenu.c": {
+   "va": "0048e6a0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?biomenuFile$n[]a",
+   "tu": "src/shell/biomenu.c",
+   "evidence": "own data placed in src/shell/biomenu.c 2026-11-09"
   },
   "bioControls": {
    "va": "0048e6b0",
@@ -26088,6 +26112,14 @@
    "mangled": "W?reportControls$n[]pn$GuiControl$$",
    "evidence": "implied by src/_unknown/tu_004481c0.c 2026-11-09"
   },
+  "pdeathFile@pop/pdeath.c": {
+   "va": "004a0138",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?pdeathFile$n[]a",
+   "tu": "src/pop/pdeath.c",
+   "evidence": "own data placed in src/pop/pdeath.c 2026-11-09"
+  },
   "popInfoControls": {
    "va": "004a016c",
    "kind": "data",
@@ -26547,6 +26579,14 @@
    "status": "hypothesis",
    "mangled": "W?sigsGameId$ni",
    "evidence": "implied by src/_unknown/tu_00474978.c 2026-11-09"
+  },
+  "sigsGameId#W?sigsGameId$n[]a": {
+   "va": "004a40d0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?sigsGameId$n[]a",
+   "tu": "src/_unknown/tu_00475dc8.c",
+   "evidence": "own data placed in src/_unknown/tu_00475dc8.c 2026-11-09"
   },
   "resourceArchives": {
    "va": "004a4198",

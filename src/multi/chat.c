@@ -1,8 +1,8 @@
 #include <windows.h>
 extern char dialogOpenData[], g4dd0c0[]; int chatLogPending; char chatLogText[256];
 
-extern const char chat_wildcard[];
-extern const char reset_chat_wildcard[];
+inline const char *ChatWildcard() { return "**********"; }
+/* The reset and append sentinels occupy separate original literal slots. */
 extern const char chat_file_path[];
 extern char targetBriefResource[];
 extern const char chat_player_state_table[];
@@ -29,7 +29,7 @@ int reset_chat_history(void *self)
     memset(self, 0, 0x3d7a);
     *(unsigned char *)self = 1;
     chatLogPending = 0;
-    strcpy((char *)self + 0x262 + (*(unsigned int *)((char *)self + 0x3d62)) * 0x64, reset_chat_wildcard);
+    strcpy((char *)self + 0x262 + (*(unsigned int *)((char *)self + 0x3d62)) * 0x64, "**********");
     return 1;
 }
 
@@ -156,7 +156,7 @@ inline void ChatHistoryView::Append(void *name, const char *text)
     ++current;
     if (current >= 0x96)
         current = 0;
-    strcpy(messages[current], chat_wildcard);
+    strcpy(messages[current], ChatWildcard());
 }
 
 int process_chat(void *self)
@@ -230,7 +230,7 @@ void append_chat_history(void *self, void *name, const char *text)
     ++history->current;
     if (history->current >= 0x96)
         history->current = 0;
-    strcpy(history->messages[history->current], chat_wildcard);
+    strcpy(history->messages[history->current], ChatWildcard());
 }
 
 int chat_ready(void)

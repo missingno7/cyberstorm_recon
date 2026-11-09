@@ -1,6 +1,6 @@
 /* pop\pdeath.c: names and partial class layouts inferred from callers. */
 #include <stdio.h>
-typedef unsigned long U32; typedef unsigned char U8;
+static char pdeathFile[] = __FILE__; typedef unsigned long U32; typedef unsigned char U8;
 struct InputReq { U32 mask,state; int LeftPressed(){return (state&0x50)==0x10;} int RightPressed(){return (state&0xa0)==0x20;} int LeftReleased(){return (state&0x50)==0x40;} int RightReleased(){return (state&0xa0)==0x80;} };
 struct Shell { char prefix[8]; InputReq input; InputReq *Input(){return &input;} };
 struct Surface { long width,height;U8 *pixels;U32 flags;Surface(U32=0);~Surface(); };
@@ -48,7 +48,7 @@ void DeathMovie(Shell *shell,void *actor)
         previous=BriefWaitA(0);
         f_cba0(&gShellFont,"font3.fnx");FlicInitBuffers(64000,64000);
         int ok=SurfaceCreate(&surface,112,112);
-        if(!ok) AssertFail(__FILE__,__LINE__,(const char *)ok);
+        if(!ok) AssertFail(pdeathFile,__LINE__,(const char *)ok);
         SurfaceGetFrame(&surface,&frame);
         SendEvent(actor,103,title,0,0);
         SigsStart(&g513888,0);SurfacePresent(&g513888);GuiResetClip(&gMenuClip);
@@ -77,46 +77,6 @@ void DeathMovie(Shell *shell,void *actor)
         f_cbf0(&gShellFont);FlicFreeBuffers();GuiFadeOut();SigsStart(&g513888,0);SurfacePresent(&g513888);
         BriefWaitA(previous);ShellRestore(shell);
     }
-}
-
-
-
-void DeathSummary(Shell *shell)
-{
-    char text[200];ViewState settings;DeathPoint origin;int x,y;int previous;
-    previous=BriefWaitB(31);BriefWaitA(0);SigsStart(&g513888,0);
-    viewportClipLeft=gBriefDrawSource;
-    char *image=(char *)gResMgr.Load("BGGRNHEX.BMX");
-    MenuDrawImage(&g513888,(MenuImage *)(image+4),(g5138ac-640)/2,(g5138b0-480)/2);
-    f_cb80(image);GuiResetClip(&gMenuClip);
-    y=(g5138b0-360)/2;x=(g5138ac-252)/2;
-    origin.x=x;origin.y=y;settings.Set(0,origin,4,*(U32 *)((char *)shell+0xfa5));
-    SetFastView(&gFastTransform,&settings);PrepareDeathMap(&gFastTransform);DrawDeathMap(&gFastTransform,deathMapColor,1);
-    SimGameDrawActors((SimGame *)modeCheckName,4);SetFastView(&gFastTransform,&simTransform);
-    gMenuTextMap=deathTextMap;gMenuTextColor=deathTextColor;
-    y+=270;
-    if(!*(int *)((char *)shell+0x2c2)) {
-        sprintf(text,targetBriefResource.GetString(1100,0),*(int *)((char *)shell+0x2be)+1);
-        f_cba0(&gShellFont,"font3.fnx");
-        int textX=(ReadScreenWidth()-MenuTextWidth((Font *)&gShellFont,text))/2; MenuDrawText((Font *)&gShellFont,textX,y,text);
-        f_cbf0(&gShellFont);
-    }
-    y+=40;
-    sprintf(text,targetBriefResource.GetString(1101,0));
-    int textX=(ReadScreenWidth()-MenuTextWidth(&gDefaultFont,text))/2; MenuDrawText(&gDefaultFont,textX,y,text);
-    y+=20;
-    sprintf(text,(char *)LogicGetScriptData(g4dd0c0));
-    textX=(ReadScreenWidth()-MenuTextWidth(&gDefaultFont,text))/2; MenuDrawText(&gDefaultFont,textX,y,text);
-    SurfacePresent(&g513888);ResetFrameClock();gInDirty=1;InputPoll(&shell->input);
-    for(;;) {
-        DeathTimerDraw(shell,g5138ac-75,20,1,-1);
-        if(SimHotReadTimer((char *)shell)<10000)break;
-        gInDirty=1;InputPoll(&shell->input);DeathInput(shell);
-        if(InputAbort()||shell->input.LeftReleased()||shell->input.RightReleased())break;
-        SurfaceFlush(&g513888);ShellServiceFrame(shell);ShellLimitFrameRate(shell);
-    }
-    GuiFadeOut();SigsStart(&g513888,0);SurfacePresent(&g513888);BriefWaitB(previous);
-    SimSetMenuState((SimGame *)shell,1);ShellRestore(shell);
 }
 
 

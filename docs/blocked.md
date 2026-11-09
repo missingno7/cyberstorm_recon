@@ -58,3 +58,7 @@ The code and CONST discontinuities agree: DeathMovie ends at 00449138, a Surface
 00449138..00449148, and DeathSummary starts after it, so pdeath.c is two objects (candidates/s47/pdeath_movie.c,
 pdeath_summary.c, each COMPLETE by tucheck). Publishing needs an ownership migration of the accepted functions from
 src/pop/pdeath.c to the two new TUs (promote refuses: matched elsewhere). Do it with --accept-loss in one sequence.
+
+Resolved 2026-11-09 (s52): pdeath.c split into src/pop/pdeath.c (movie object, keeps the assert path) and
+src/_unknown/tu_00449148.c (DeathSummary). Data-segment corrections in tu_0040ffb8, tu_00475dc8, biomenu.c, chat.c
+accepted with --accept-loss data:SEG (the recorded segments grew to their complete original extent).

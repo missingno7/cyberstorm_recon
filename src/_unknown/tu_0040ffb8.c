@@ -67,8 +67,8 @@ extern void PilotBriefOpen(void *, void *, void *, unsigned long, int);
 #pragma aux PilotBriefOpen "W?Open$:GuiScreen$n(pn$InputReq$$pn$StrPool$$li)v";
 extern unsigned char gShellStrings;
 #pragma aux gShellStrings "W?gShellStrings$n$StrPool$$";
-static const char gStandbyLayoutName[] = "Standby.box";
-static const char gBioroomResourceName[] = "bioroom";
+inline const char *StandbyLayoutName() { return "Standby.box"; }
+inline const char *BioroomResourceName() { return "bioroom"; }
 extern unsigned long g4ae17f;
 extern unsigned long g4b0dbc;
 extern unsigned char g4b0df3;
@@ -99,7 +99,7 @@ void PilotBriefOpenStandby(void *p, void *input)
 {
     if (!PilotBriefIsOpen(p)) {
         g4b0dbc = 0xffffffffUL;
-        PilotBriefLoadLayout(p, (unsigned long)gStandbyLayoutName);
+        PilotBriefLoadLayout(p, (unsigned long)StandbyLayoutName());
         PilotBriefOpen(p, input, &gShellStrings, 0x641, 1);
         int enabled = 1;
         g4b0df3 = enabled;
@@ -125,7 +125,7 @@ int PilotBriefAcceptProfile(void *p)
         return 0;
     g4b0dbc = (unsigned long)PilotBriefGetHandle(p, &g4bb78c);
     if ((long)g4b0dbc < 0) {
-        int done = PilotBriefDone(gBioroomResourceName);
+        int done = PilotBriefDone(BioroomResourceName());
         f_0040c63e(&g4aff6c, done, 1);
         if (done >= 0)
             g4b0dbc = (unsigned long)(done + 100);
@@ -135,7 +135,7 @@ int PilotBriefAcceptProfile(void *p)
 
 void PilotBriefDoneRoom(void)
 {
-    PilotBriefDone(gBioroomResourceName);
+    PilotBriefDone(BioroomResourceName());
 }
 
 extern unsigned char g4affbc;
