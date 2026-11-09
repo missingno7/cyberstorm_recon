@@ -4215,6 +4215,113 @@
    },
    "data": {},
    "accepted": "2026-11-09"
+  },
+  "src/sim/simhot.c": {
+   "as": "sim\\simhot.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "SimHotResizeFogBuffers": {
+     "va": "00460d10",
+     "size": 96,
+     "mangled": "W?SimHotResizeFogBuffers$n()v"
+    },
+    "SimHotReleaseFogBuffers": {
+     "va": "00460d70",
+     "size": 48,
+     "mangled": "W?SimHotReleaseFogBuffers$n()v"
+    },
+    "SimHotInitializeFog": {
+     "va": "00460e20",
+     "size": 48,
+     "mangled": "W?SimHotInitializeFog$n()v"
+    },
+    "SimHotReadFogStream": {
+     "va": "00460e50",
+     "size": 256,
+     "mangled": "W?SimHotReadFogStream$n(pn$FileRecord$$)v"
+    },
+    "SimHotWriteFogStream": {
+     "va": "00460f50",
+     "size": 160,
+     "mangled": "W?SimHotWriteFogStream$n(pn$FileRecord$$)v"
+    },
+    "SimHotLoadMission": {
+     "va": "00460ff0",
+     "size": 96,
+     "mangled": "W?SimHotLoadMission$n(i)v"
+    },
+    "SimHotbriefRemove": {
+     "va": "00461970",
+     "size": 192,
+     "mangled": "W?SimHotbriefRemove$n(iii)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/sim/hotbrief.c": {
+   "as": "sim\\hotbrief.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "HotbriefResources::$ct": {
+     "va": "00461e40",
+     "size": 32,
+     "mangled": "W?$ct:HotbriefResources$n()_"
+    },
+    "HotbriefRelease": {
+     "va": "00461f50",
+     "size": 96,
+     "mangled": "W?HotbriefRelease$n(pnv)v"
+    },
+    "HotbriefUpdate": {
+     "va": "00461fb0",
+     "size": 64,
+     "mangled": "W?HotbriefUpdate$n(pnv)v"
+    },
+    "HotbriefClearActive": {
+     "va": "004625f0",
+     "size": 16,
+     "mangled": "W?HotbriefClearActive$n(pnv)v"
+    },
+    "HotbriefEmpty": {
+     "va": "00462d30",
+     "size": 1,
+     "mangled": "W?HotbriefEmpty$n()v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/logic/logic.c": {
+   "as": "logic\\logic.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "LogicWriteActorRecord": {
+     "va": "00462d9a",
+     "size": 78,
+     "mangled": "W?LogicWriteActorRecord$n(pnxvpn$FileRecord$$)i"
+    },
+    "LogicLoadActorState": {
+     "va": "00462de8",
+     "size": 75,
+     "mangled": "W?LogicLoadActorState$n(pnulpnxulpnul)v"
+    },
+    "LogicStoreActorLink": {
+     "va": "00462fff",
+     "size": 65,
+     "mangled": "W?LogicStoreActorLink$n(pnvpnv)i"
+    },
+    "LogicResetActorList": {
+     "va": "004634ea",
+     "size": 35,
+     "mangled": "W?LogicResetActorList$n()v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
   }
  },
  "accepted_losses": [
