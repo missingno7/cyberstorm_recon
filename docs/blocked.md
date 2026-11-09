@@ -62,3 +62,10 @@ src/pop/pdeath.c to the two new TUs (promote refuses: matched elsewhere). Do it 
 Resolved 2026-11-09 (s52): pdeath.c split into src/pop/pdeath.c (movie object, keeps the assert path) and
 src/_unknown/tu_00449148.c (DeathSummary). Data-segment corrections in tu_0040ffb8, tu_00475dc8, biomenu.c, chat.c
 accepted with --accept-loss data:SEG (the recorded segments grew to their complete original extent).
+
+## io\memory.c _DATA split (2026-11-09, s53)
+After moving the path string into _DATA (static char array, as the original), memory.c's _DATA items are
+0x120 bytes apart in the oracle: errorText at 004a4a88, path at 004a4ba8, with other objects' data between. One
+object cannot emit that as one segment, so errorText probably belongs to a neighbouring engine object (assert.c or
+file.c); memory.c drops from COMPLETE to partial until the owner is settled. 10 of the 11 path-string TUs now hold
+their path in _DATA at the oracle address; unpack.c is COMPLETE.

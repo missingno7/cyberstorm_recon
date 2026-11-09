@@ -247,7 +247,7 @@
     }
    },
    "data": {
-    "CONST": {
+    "_DATA": {
      "va": "004a4a34",
      "size": 15
     },
@@ -299,16 +299,7 @@
      "mangled": "W?GlobalBlockAlloc$n(ului)pnv"
     }
    },
-   "data": {
-    "CONST": {
-     "va": "004a4ba8",
-     "size": 12
-    },
-    "_DATA": {
-     "va": "004a4a88",
-     "size": 82
-    }
-   },
+   "data": {},
    "accepted": "2026-11-09"
   },
   "src/io/file.c": {
@@ -397,16 +388,7 @@
      "mangled": "W?FileFreeSpace$n(c)l"
     }
    },
-   "data": {
-    "_DATA": {
-     "va": "0048c0b8",
-     "size": 8
-    },
-    "CONST": {
-     "va": "004a4b9c",
-     "size": 10
-    }
-   },
+   "data": {},
    "accepted": "2026-11-09"
   },
   "src/terr/tgrid.c": {
@@ -609,7 +591,7 @@
     }
    },
    "data": {
-    "CONST": {
+    "_DATA": {
      "va": "00490660",
      "size": 13
     }
@@ -1001,9 +983,13 @@
     }
    },
    "data": {
-    "CONST": {
+    "_DATA": {
      "va": "0048eb00",
      "size": 16
+    },
+    "XI": {
+     "va": "004a6ba6",
+     "size": 6
     }
    },
    "accepted": "2026-11-09"
@@ -1667,7 +1653,7 @@
     }
    },
    "data": {
-    "CONST": {
+    "_DATA": {
      "va": "0048f35c",
      "size": 11
     }
@@ -1981,10 +1967,6 @@
     }
    },
    "data": {
-    "CONST": {
-     "va": "0048f3f0",
-     "size": 11
-    },
     "W?$Wvf0dos:MenuLabel$$nx[]pn()v": {
      "va": "0048da90",
      "size": 20
@@ -3181,7 +3163,7 @@
     }
    },
    "data": {
-    "CONST": {
+    "_DATA": {
      "va": "004a3eec",
      "size": 13
     }
@@ -3924,17 +3906,13 @@
     }
    },
    "data": {
-    "CONST": {
-     "va": "0048f1cc",
-     "size": 16
-    },
     "CONST2": {
      "va": "0048d7dc",
      "size": 332
     },
     "_DATA": {
      "va": "0048f1c0",
-     "size": 12
+     "size": 28
     },
     "XI": {
      "va": "004a6bd6",
@@ -6950,7 +6928,7 @@
     }
    },
    "data": {
-    "CONST": {
+    "_DATA": {
      "va": "004a030c",
      "size": 14
     }
@@ -12564,7 +12542,7 @@
     }
    },
    "data": {
-    "CONST": {
+    "_DATA": {
      "va": "004a54c0",
      "size": 14
     }
@@ -13147,6 +13125,86 @@
   },
   {
    "tu": "src/multi/chat.c",
+   "functions": [
+    "data:CONST"
+   ],
+   "date": "2026-11-09"
+  },
+  {
+   "tu": "src/debug/assert.c",
+   "functions": [
+    "data:CONST"
+   ],
+   "date": "2026-11-09"
+  },
+  {
+   "tu": "src/gui/flic.c",
+   "functions": [
+    "data:CONST"
+   ],
+   "date": "2026-11-09"
+  },
+  {
+   "tu": "src/gui/menu.c",
+   "functions": [
+    "data:CONST"
+   ],
+   "date": "2026-11-09"
+  },
+  {
+   "tu": "src/io/file.c",
+   "functions": [
+    "data:_DATA",
+    "data:CONST"
+   ],
+   "date": "2026-11-09"
+  },
+  {
+   "tu": "src/io/memory.c",
+   "functions": [
+    "data:CONST",
+    "data:_DATA"
+   ],
+   "date": "2026-11-09"
+  },
+  {
+   "tu": "src/multi/link.c",
+   "functions": [
+    "data:CONST"
+   ],
+   "date": "2026-11-09"
+  },
+  {
+   "tu": "src/pack/unpack.c",
+   "functions": [
+    "data:CONST"
+   ],
+   "date": "2026-11-09"
+  },
+  {
+   "tu": "src/shell/hercbay.c",
+   "functions": [
+    "data:CONST"
+   ],
+   "date": "2026-11-09"
+  },
+  {
+   "tu": "src/shell/hotseat.c",
+   "functions": [
+    "data:CONST",
+    "data:_DATA"
+   ],
+   "date": "2026-11-09"
+  },
+  {
+   "tu": "src/sim/simturn.c",
+   "functions": [
+    "data:CONST"
+   ],
+   "date": "2026-11-09"
+  },
+  {
+   "tu": "src/terr/tfast.c",
    "functions": [
     "data:CONST"
    ],

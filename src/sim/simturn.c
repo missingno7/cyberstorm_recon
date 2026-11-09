@@ -29,7 +29,7 @@ struct SimGame {
  unsigned char unknownfd5[0x1025-0xfd5]; int preview; long healthTrend,energyTrend; unsigned char unknown1031[0x10f1-0x1031]; int extraSaved;
 };
 #pragma pack(pop)
-extern "C" void AssertFail(const char *,int,const char *);
+extern "C" void AssertFail(const char *,int,const char *); static char simturnSourceFile[] = __FILE__;
 extern "C" void *memset(void *,int,unsigned);
 extern "C" int sprintf(char *,const char *,...);
 extern ActorRecord *ActorFindByOwner(int),*ActorFindOwnerNext(ActorRecord *,int),*ActorFindFree(),*ActorFindNext(ActorRecord *),*ActorListTransfer(int);
@@ -609,7 +609,7 @@ PlayerSlot *GetModePlayer(SimGame *s,int n) {
 // Original checked-slot ASSERT source line follows.
 // Original checked-slot ASSERT source line follows.
 // Original checked-slot ASSERT source line follows.
- if(!(n>0 && n<=s->playerCount)) AssertFail(__FILE__,__LINE__,0);
+ if(!(n>0 && n<=s->playerCount)) AssertFail(simturnSourceFile,__LINE__,0);
  if(n<1 || n>s->playerCount || n!=s->slots[n-1].id)return 0;return &s->slots[n-1];
 }
 inline int TurnMenuMode() {return logicMode==2 || logicMode==3;}

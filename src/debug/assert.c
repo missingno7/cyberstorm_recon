@@ -24,7 +24,7 @@ extern int g_assertMessageActive;
 extern AssertCallback g_assertCallbacks[50];
 extern void *g_mainWindow;
 int sprintf(char *buffer, const char *format, ...);
-
+ static char assertSourceFile[] = __FILE__;
 void DrainAssertCallbacks()
 {
     while (g_assertCallbackCount != 0) {
@@ -42,7 +42,7 @@ void RegisterAssertCallback(AssertCallback callback)
             char buffer[1024];
             g_assertMessageActive = 1;
             sprintf(buffer, assertFormat,
-                (const char *)wasActive, assertProgram, assertVersion, assertDate, __FILE__, 104, assertFooter);
+                (const char *)wasActive, assertProgram, assertVersion, assertDate, assertSourceFile, 104, assertFooter);
             MessageBeep(wasActive);
             MessageBoxA((HWND)g_mainWindow, buffer, assertTitle, 0x2000);
             g_assertMessageActive = wasActive;

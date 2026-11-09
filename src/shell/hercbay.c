@@ -2,7 +2,7 @@ struct GuiControl; struct InputReq; struct StrPool; struct MenuPrefixButton; str
 class GuiScreen { char pad00[0x10]; public: int active; char pad14[0x44]; GuiScreen(GuiControl **, unsigned, U32); void LoadLayout(long); void Open(InputReq *, StrPool *, long, int); };
 struct Flic { char body[0x80]; Flic(); int Open(long source, int priority = 0x64, int sourceMode = 0); };
 class HercBay : public GuiScreen { public: Flic animation; int IsActive() const { return active != 0; } void Start(void *callback); void DrawImage(void *image); void StartVariantA(void *callback); HercBay(); };
-
+ static char hercbaySourceFile[] = __FILE__;
 
 
 int PopLoadResource(int owner, const char *resource, int count, int flags = 0);
@@ -98,7 +98,7 @@ void HercBay::Start(void *callback)
         /* source line pad */
         /* source line pad */
 
-        AssertFail(__FILE__, 101, 0);
+        AssertFail(hercbaySourceFile, 101, 0);
     }
     LoadLayout((long)g48aa48);
     Open((InputReq *)callback, &gShellStrings, 0x709, 1);

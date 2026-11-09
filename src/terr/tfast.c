@@ -9,7 +9,7 @@ void BestLocSetData(void *, void *, void *);
 int ResolveName(const char *, const char *);
 extern void GridConvert(FastCoord *, FastCoord *, FastCoord *);
 extern void *MemoryAllocationRetry(unsigned long);
-
+ static char tfastSourceFile[] = __FILE__;
 FastBuffer *FastBufferClear(FastBuffer *p) { p->items = 0; return p; }
 FastBuffer *FastBufferFree(FastBuffer *p) { FastBuffer *owner = p; if (p->items) MemoryRelease(p->items); owner->items = 0; return p; }
 
@@ -42,7 +42,7 @@ FastBuffer *FastBufferFree(FastBuffer *p) { FastBuffer *owner = p; if (p->items)
 
 
 
-int FastBufferCreate(FastBuffer *p, long count) { FastBuffer *owner = p; p->count = count + 1; if (p->items) MemoryRelease(p->items); owner->items = 0; p->items = (FastItem *)MemoryAllocationRetry(p->count * 8); if (!p->items || !count) AssertFail(__FILE__, __LINE__, 0); p->first = 0; p->current = p->first; memset(p->items, 0, p->count * 8); return 1; }
+int FastBufferCreate(FastBuffer *p, long count) { FastBuffer *owner = p; p->count = count + 1; if (p->items) MemoryRelease(p->items); owner->items = 0; p->items = (FastItem *)MemoryAllocationRetry(p->count * 8); if (!p->items || !count) AssertFail(tfastSourceFile, __LINE__, 0); p->first = 0; p->current = p->first; memset(p->items, 0, p->count * 8); return 1; }
 
 struct TerrainGrid { long fields[17]; void *cells; void *neighbors; };
 struct GridPoint { long x; long y; };

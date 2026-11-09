@@ -84,7 +84,7 @@ UpgradeRange hotRange2(11,0); UpgradeBar hotBar2(&hotRange2,0); UpgradeArrow hot
 UpgradeRange hotRange3(13,0); UpgradeBar hotBar3(&hotRange3,0); UpgradeArrow hotNext3(&hotRange3,1,0x36),hotPrevious3(&hotRange3,-1,0x33);
 MenuPrefixButton hotDone;
 MenuHelpRegion hotHelp;
-
+ static char hotseatSourceFile[] = __FILE__;
 HotseatScreen::HotseatScreen() : GuiScreen(PTR_DAT_0048f1dc, 0x4c, 0)
 {
 }
@@ -553,7 +553,7 @@ void f_004256eb(int param_1, int param_2)
 // Original source-line padding.
 // Original source-line padding.
 // Original source-line padding.
-        if (strlen(gDebugText) >= 500) AssertFail(__FILE__, __LINE__, 0);
+        if (strlen(gDebugText) >= 500) AssertFail(hotseatSourceFile, __LINE__, 0);
         strcpy((char *)(param_1 + 0x218 + param_2 * 0x200), gDebugText);
         struct PlayerInfo { char first; char rest[39]; int value; int unused; } info;
         GetPlayerInfo(&profileManager, &info);

@@ -3,7 +3,7 @@ extern "C" unsigned int UnpackFlicPixels(void *, const void *);
 extern "C" unsigned int UnpackFlicPacked(void *, const void *);
 extern "C" unsigned int UnpackLzw(void *, const void *);
 struct UnpackBuffer { unsigned int size; void *data; };
-extern UnpackBuffer unpackScratch;
+extern UnpackBuffer unpackScratch; static char unpackSourceFile[] = __FILE__;
 extern "C" unsigned int DecodeResourceBlock(int method, const void *input, UnpackBuffer *output)
 {
     unsigned int size = 0;
@@ -60,7 +60,7 @@ extern "C" unsigned int DecodeResourceBlock(int method, const void *input, Unpac
 
 
 
-        AssertFail(__FILE__, __LINE__, 0);
+        AssertFail(unpackSourceFile, __LINE__, 0);
     }
     return size;
 }

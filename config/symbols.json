@@ -25281,6 +25281,14 @@
    "mangled": "W?g48eafc$ni",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
   },
+  "hercbaySourceFile@shell/hercbay.c": {
+   "va": "0048eb00",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hercbaySourceFile$n[]a",
+   "tu": "src/shell/hercbay.c",
+   "evidence": "own data placed in src/shell/hercbay.c 2026-11-09"
+  },
   "g48eb10": {
    "va": "0048eb10",
    "kind": "data",
@@ -25344,6 +25352,14 @@
    "mangled": "W?gLaunchControls$n[]pn$GuiControl$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
+  "hotseatSourceFile@shell/hotseat.c": {
+   "va": "0048f1cc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotseatSourceFile$n[]a",
+   "tu": "src/shell/hotseat.c",
+   "evidence": "own data placed in src/shell/hotseat.c 2026-11-09"
+  },
   "PTR_DAT_0048f1dc": {
    "va": "0048f1dc",
    "kind": "data",
@@ -25364,6 +25380,14 @@
    "status": "hypothesis",
    "mangled": "W?DAT_0048f334$n[]s",
    "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "flicSourceFile@gui/flic.c": {
+   "va": "0048f35c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?flicSourceFile$n[]a",
+   "tu": "src/gui/flic.c",
+   "evidence": "own data placed in src/gui/flic.c 2026-11-09"
   },
   "gMenuFonts": {
    "va": "0048f368",
@@ -25911,6 +25935,14 @@
    "mangled": "W?seasonCounts$n[]i",
    "evidence": "implied by src/terr/tbuild.c 2026-11-09"
   },
+  "tfastSourceFile@terr/tfast.c": {
+   "va": "00490660",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?tfastSourceFile$n[]a",
+   "tu": "src/terr/tfast.c",
+   "evidence": "own data placed in src/terr/tfast.c 2026-11-09"
+  },
   "maskRowStarts": {
    "va": "00490670",
    "kind": "data",
@@ -26368,6 +26400,14 @@
    "mangled": "W?simLastTarget$ni",
    "evidence": "implied by src/sim/simdo.c 2026-11-09"
   },
+  "simturnSourceFile@sim/simturn.c": {
+   "va": "004a030c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?simturnSourceFile$n[]a",
+   "tu": "src/sim/simturn.c",
+   "evidence": "own data placed in src/sim/simturn.c 2026-11-09"
+  },
   "g4a0338": {
    "va": "004a0338",
    "kind": "data",
@@ -26638,6 +26678,14 @@
    "status": "hypothesis",
    "mangled": "W?shieldSoundDefaults$n$SoundSettings$$",
    "evidence": "implied by src/_unknown/tu_0044455c.c 2026-11-09"
+  },
+  "linkSourceFile@multi/link.c": {
+   "va": "004a3eec",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?linkSourceFile$n[]a",
+   "tu": "src/multi/link.c",
+   "evidence": "own data placed in src/multi/link.c 2026-11-09"
   },
   "gLinkDialogParam": {
    "va": "004a3efc",
@@ -27113,6 +27161,14 @@
    "mangled": "W?ResourceSourcePath$n[]xa",
    "evidence": "implied by src/io/resource.c 2026-11-09"
   },
+  "assertSourceFile@debug/assert.c": {
+   "va": "004a4a34",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "assertSourceFile",
+   "tu": "src/debug/assert.c",
+   "evidence": "own data placed in src/debug/assert.c 2026-11-09"
+  },
   "errorText": {
    "va": "004a4a88",
    "kind": "data",
@@ -27134,6 +27190,20 @@
    "mangled": "W?fileSourcePath$n[]xa",
    "evidence": "implied by src/io/file.c 2026-11-09"
   },
+  "fileSourcePath#W?fileSourcePath$n[]a": {
+   "va": "004a4b9c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?fileSourcePath$n[]a",
+   "evidence": "implied by src/io/file.c 2026-11-09"
+  },
+  "memorySourceFile": {
+   "va": "004a4ba8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?memorySourceFile$n[]a",
+   "evidence": "implied by src/io/memory.c 2026-11-09"
+  },
   "packedBlocksLeft": {
    "va": "004a4bb4",
    "kind": "data",
@@ -27154,6 +27224,14 @@
    "status": "hypothesis",
    "mangled": "fixedCosineTable",
    "evidence": "implied by src/_unknown/asm_0047f9a0.asm 2026-11-09"
+  },
+  "unpackSourceFile@pack/unpack.c": {
+   "va": "004a54c0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?unpackSourceFile$n[]a",
+   "tu": "src/pack/unpack.c",
+   "evidence": "own data placed in src/pack/unpack.c 2026-11-09"
   },
   "atanCorrections": {
    "va": "004a54f8",

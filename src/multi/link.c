@@ -77,7 +77,7 @@ public:
  virtual int __stdcall Send(int,int,int,void*,unsigned int) = 0;
 };
 extern IDirectPlay *gDirectPlay;
-
+ static char linkSourceFile[] = __FILE__;
 void reset_link_timer(void)
 {
     TimerSet(&gLinkTimer, 0);
@@ -179,7 +179,7 @@ int initialize_directplay(void)
 // Original source-line padding.
 // Original source-line padding.
 // Original source-line padding.
-            AssertFail(__FILE__, __LINE__, 0);
+            AssertFail(linkSourceFile, __LINE__, 0);
         gLinkEvent = CreateEventA(0, 0, 0, directplay_message);
         sigsActive = 1;
     }

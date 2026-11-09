@@ -110,7 +110,7 @@ public:
 static unsigned char editKeys[9]={28,1,14,71,79,75,77,83,82};
 static unsigned char chatKeys[9]={28,1,14,71,79,75,77,83,82};
 extern int gMenuInsert,gMenuChatInsert;
-
+ static char menuSourceFile[] = __FILE__;
 MenuLabel::MenuLabel(const char *s,long a,unsigned char f,long c,int b):GuiControl(32,0),text(s),align(a),font(f),background(b),color(c) {
 }
 void MenuLabel::SetFont(unsigned char f) {
@@ -258,7 +258,7 @@ int MenuEdit::Event(unsigned,U32) {
 
 
 
-if(length<cursor||length>capacity)AssertFail(__FILE__,__LINE__,0);
+if(length<cursor||length>capacity)AssertFail(menuSourceFile,__LINE__,0);
     if(memchr(editKeys,key,9)) {
         switch(key) {
             case 28:return 1;

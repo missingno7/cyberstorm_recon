@@ -35,11 +35,11 @@ extern U32 gFlicInputSize,gFlicDecodeSize;
 extern unsigned char *gFlicInput,*gFlicDecode;
 extern int gFlicFileCount,gFlicResourceCount;
 void FlicFreeBuffers();
+ static char flicSourceFile[] = __FILE__;
 
 
 
-
-void FlicInitBuffers(U32 inputSize,U32 decodeSize){if(gFlicInput){GlobalBlockFree(gFlicInput);gFlicInput=0;}if(gFlicDecode){GlobalBlockFree(gFlicDecode);gFlicDecode=0;}gFlicInput=(unsigned char *)GlobalBlockAlloc(inputSize,0);gFlicInputSize=inputSize;gFlicDecode=(unsigned char *)GlobalBlockAlloc(decodeSize,0);gFlicDecodeSize=decodeSize;if(!gFlicInputSize||!gFlicDecodeSize||!gFlicInput||!gFlicDecode)AssertFail(__FILE__,__LINE__,0);}
+void FlicInitBuffers(U32 inputSize,U32 decodeSize){if(gFlicInput){GlobalBlockFree(gFlicInput);gFlicInput=0;}if(gFlicDecode){GlobalBlockFree(gFlicDecode);gFlicDecode=0;}gFlicInput=(unsigned char *)GlobalBlockAlloc(inputSize,0);gFlicInputSize=inputSize;gFlicDecode=(unsigned char *)GlobalBlockAlloc(decodeSize,0);gFlicDecodeSize=decodeSize;if(!gFlicInputSize||!gFlicDecodeSize||!gFlicInput||!gFlicDecode)AssertFail(flicSourceFile,__LINE__,0);}
 void FlicFreeBuffers()
 {
     if(gFlicInput){GlobalBlockFree(gFlicInput);gFlicInput=0;}

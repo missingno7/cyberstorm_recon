@@ -1,9 +1,9 @@
 #include <windows.h>
 #include <stdarg.h>
 typedef struct FileRecord { HANDLE handle; unsigned long open, flags, error; signed char direct, counted; unsigned char reserved[2]; unsigned long position, length; } FileRecord; 
-#pragma data_seg("CONST", "DATA")
-static const char fileSourcePath[]=__FILE__;
-#pragma data_seg()
+
+static char fileSourcePath[]=__FILE__;
+
 static char fileRootFormat[] = "\\\\.\\%c:";
 extern unsigned long g_fileOpenCount;
 extern unsigned long g_fileCloseCount;
