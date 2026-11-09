@@ -3,10 +3,10 @@
 One owner per module at a time. Candidates live in `candidates/<lane>/`, reports in `candidates/<lane>/REPORT.md`.
 Model: `luna` = gpt-6-luna xhigh, `sol` = gpt-6.1-sol high (Codex; all new lanes from 2026-11-09 09:10, user decision); `opus` = Claude Opus 5.5 subagent.
 
-| Lane | Model | Modules (start VA: file) | State (2026-11-09 08:55) |
+| Lane | Model | Modules (start VA: file) | State (2026-11-09 midday) |
 |---|---|---|---|
 | w1 | luna | assert.c, strpool.c, memory.c, io\file.c | done; tail handed to b1 |
-| b1 | sol | w1 tail; 00425978 framework; gui\flic.c; gui\menu.c; 0042a5fc/0042a0e0; shell\shell.c | running (shell.c) |
+| b1 | sol | w1 tail; 00425978 framework; gui\flic.c; gui\menu.c; 0042a5fc/0042a0e0; shell\shell.c | running (mplaunch.c) |
 | w2 | luna | io\resource.c | done (19) |
 | w3 | luna | logic\lactor.c, miss.c, bestloc.c | done |
 | w4 | luna | multi\linkapp.c, link.c, chat.c | done; 16 withdrawn (fake array, docs/blocked.md) |
@@ -19,12 +19,16 @@ Model: `luna` = gpt-6-luna xhigh, `sol` = gpt-6.1-sol high (Codex; all new lanes
 | w11 | luna | shell\hotseat.c, pop\pherc.c | done |
 | w12 | luna | sim\simhot.c, logic\logic.c + sim\hotbrief.c | running |
 | w13 | luna | terr\tsurface.c, terr\tarea.c + tdisplay.c | running |
-| w14 | luna | shell\hbupgrad.c | running |
+| w14 | luna | shell\hbupgrad.c | done; continued by s6 |
 | w15 | luna | shell\pilotgui.c | running |
 | s1 | sol | multi\mstart.c | done (39) |
 | s2 | sol | 0044950c sim\sim.c + sim\simdo.c | running |
-| s3 | sol | 0043b7e0 (unnamed, 79 functions) | running |
+| s3 | sol | 0043b7e0 (unnamed, 79 functions) | done (65; 14 parked) |
 | s4 | sol | 00409408, 0043ef34 (unnamed) | running |
+| s5 | sol | 00435dec, 0041d774 | running |
+| s6 | sol | shell\hbupgrad.c (from w14) | done (42; 18 parked) |
+| s7 | sol | 0044688c, 00446848 | running |
+| s8 | sol | 00433640, pop\pdeath.c | running |
 | l1 | luna | shell\hercbuy.c | done (19) |
 | o1 | opus | multi\linkdlg.c, linkq.c, message.c | done |
 | o2 | opus | sim\apply.c, fxout.c, explo.c | done |
