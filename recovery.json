@@ -5279,6 +5279,10 @@
     "_DATA": {
      "va": "004a0154",
      "size": 12
+    },
+    "W?$Wts0en$MenuSpacer$$$nx[]uc": {
+     "va": "0048d964",
+     "size": 17
     }
    },
    "accepted": "2026-11-09"
@@ -5332,6 +5336,10 @@
     "_DATA": {
      "va": "004a0178",
      "size": 12
+    },
+    "W?$Wts0en$MenuSpacer$$$nx[]uc": {
+     "va": "0048d964",
+     "size": 17
     }
    },
    "accepted": "2026-11-09"
@@ -5339,20 +5347,74 @@
   "src/sim/sim.c": {
    "as": "sim\\sim.c",
    "install": "wc106",
-   "profile": "ot",
+   "profile": "ot-oe",
    "functions": {
+    "SimAmbientSound": {
+     "va": "0044a600",
+     "size": 192,
+     "mangled": "W?SimAmbientSound$n(pn$SimGame$$)v"
+    },
+    "SimGame::Update": {
+     "va": "0044a6c0",
+     "size": 1712,
+     "mangled": "W?Update$:SimGame$n()v"
+    },
     "WorldDrawTerrain": {
      "va": "0044ad70",
      "size": 384,
      "mangled": "W?WorldDrawTerrain$n(pn$SimGame$$)v"
     },
-    "SimDraw": {
+    "SimGame::Event": {
      "va": "0044aef0",
-     "size": 248,
-     "mangled": "W?SimDraw$n(pn$SimGame$$)v"
+     "size": 256,
+     "mangled": "W?Event$:SimGame$n(uc)v"
+    },
+    "SimGame::Close": {
+     "va": "0044b470",
+     "size": 928,
+     "mangled": "W?Close$:SimGame$n(i)v"
+    },
+    "ViewState::$ct": {
+     "va": "0044b810",
+     "size": 16,
+     "mangled": "W?$ct:ViewState$n()_"
+    },
+    "SimGame::$dt": {
+     "va": "0044b820",
+     "size": 80,
+     "mangled": "W?$dt:SimGame$n()_"
     }
    },
-   "data": {},
+   "data": {
+    "CONST2": {
+     "va": "0048de1c",
+     "size": 12
+    },
+    "_DATA": {
+     "va": "004a019c",
+     "size": 12
+    },
+    "W?$Wvf0do4:ShellBase$$nx[]pn()v": {
+     "va": "0048c8ac",
+     "size": 20
+    },
+    "W?$Wvf0bo4:SimGame$$nx[]pn()v": {
+     "va": "0048de50",
+     "size": 20
+    },
+    "W?$Wts0bn$SimGame$$$nx[]uc": {
+     "va": "0048de3c",
+     "size": 17
+    },
+    "W?$Wts0en$MenuSpacer$$$nx[]uc": {
+     "va": "0048d964",
+     "size": 17
+    },
+    "W?$Wts0en$MenuNumber$$$nx[]uc": {
+     "va": "0048c988",
+     "size": 17
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/_unknown/tu_0044b8b0.c": {
@@ -5360,6 +5422,11 @@
    "install": "wc106",
    "profile": "ot",
    "functions": {
+    "W?.fn_init$n()v": {
+     "va": "0044b8b0",
+     "size": 272,
+     "mangled": "W?.fn_init$n()v"
+    },
     "f_44bba0": {
      "va": "0044bba0",
      "size": 176,
@@ -5377,11 +5444,20 @@
     },
     "SimShortcutMode": {
      "va": "0044bc90",
-     "size": 64,
+     "size": 51,
      "mangled": "W?SimShortcutMode$n()i"
     }
    },
-   "data": {},
+   "data": {
+    "CONST2": {
+     "va": "0048de64",
+     "size": 52
+    },
+    "_DATA": {
+     "va": "004a01b4",
+     "size": 12
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/_unknown/tu_0044d150.c": {
@@ -5434,6 +5510,14 @@
     "CONST": {
      "va": "0048b480",
      "size": 13
+    },
+    "W?$Wts0in$SimValueGadget$$$nx[]uc": {
+     "va": "0048df88",
+     "size": 17
+    },
+    "W?$Wts0en$MenuSpacer$$$nx[]uc": {
+     "va": "0048d964",
+     "size": 17
     }
    },
    "accepted": "2026-11-09"
@@ -5517,6 +5601,21 @@
      "va": "0044f6a0",
      "size": 48,
      "mangled": "W?SimDelayPhase$n(pn$SimGame$$)v"
+    },
+    "PilotNext": {
+     "va": "0044f6d0",
+     "size": 352,
+     "mangled": "W?PilotNext$n(pn$SimGame$$pn$ActorRecord$$ii)v"
+    },
+    "PilotPrevious": {
+     "va": "0044f830",
+     "size": 352,
+     "mangled": "W?PilotPrevious$n(pn$SimGame$$pn$ActorRecord$$ii)v"
+    },
+    "SimSetUpdate": {
+     "va": "0044ffb0",
+     "size": 370,
+     "mangled": "W?SimSetUpdate$n(pn$SimGame$$i)v"
     }
    },
    "data": {},
@@ -7806,6 +7905,10 @@
      "va": "0048c9ec",
      "size": 17
     },
+    "W?$Wts0en$MenuNumber$$$nx[]uc": {
+     "va": "0048c988",
+     "size": 17
+    },
     "W?$Wts0en$MenuButton$$$nx[]uc": {
      "va": "0048c9d8",
      "size": 17
@@ -8056,6 +8159,20 @@
     }
    },
    "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0044bcd0.c": {
+   "as": "_unknown\\tu_0044bcd0.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "SimHoverObject": {
+     "va": "0044ce10",
+     "size": 560,
+     "mangled": "W?SimHoverObject$n(pn$SimGame$$i)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
   }
  },
  "accepted_losses": [
@@ -8125,6 +8242,20 @@
    "tu": "src/_unknown/tu_00458f20.c",
    "functions": [
     "UnknownIdentityThunk"
+   ],
+   "date": "2026-11-09"
+  },
+  {
+   "tu": "src/sim/sim.c",
+   "functions": [
+    "SimDraw"
+   ],
+   "date": "2026-11-09"
+  },
+  {
+   "tu": "src/_unknown/tu_0044b8b0.c",
+   "functions": [
+    "SimShortcutMode"
    ],
    "date": "2026-11-09"
   }

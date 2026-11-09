@@ -1,3 +1,5 @@
+#pragma aux callback_popinfoevent "W?PopInfoEvent$n()i";
+struct SimGame;int __pragma("callback_popinfoevent") PopInfoEvent(SimGame *);
 // Unknown original TU: POPINFO.BOX screen, 0044950c..00449bb4.
 // Class and function names are working labels. Partial field layout is evidence-based.
 typedef unsigned long U32;
@@ -106,5 +108,5 @@ void PopInfoDraw(PopInfo *p) {
  } p->Draw(); }
 }
 void PopInfoSelect(PopInfo *p,int n) { p->dirty=1; p->index=n; if(SimTypeUnavailable(p->index)) p->index=0; }
-int PopInfoEvent() { if(popInfo.IsActive()) { long n=popInfo.HitTest(&g4bb78c); if(n>=0) targetLimits=n+900; return popInfo.Update(); } return 0; }
+int PopInfoEvent(SimGame *) { if(popInfo.IsActive()) { long n=popInfo.HitTest(&g4bb78c); if(n>=0) targetLimits=n+900; return popInfo.Update(); } return 0; }
 PopInfo::~PopInfo() { input=0; }

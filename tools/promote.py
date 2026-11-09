@@ -222,6 +222,8 @@ def main(argv):
             taken.add(e["va"])
     for n in lost:
         lab = n if n in syms else next((k for k in syms if k == f"{n}@{scope}"), n)
+        if n in rec["functions"]:
+            continue            # accepted size/VA change: still strict under the new extent
         if lab in syms and syms[lab].get("tu") == tu:
             syms[lab]["status"] = "hypothesis"
             syms[lab]["evidence"] = f"lost strict {now}"
