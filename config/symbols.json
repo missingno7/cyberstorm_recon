@@ -4939,10 +4939,10 @@
   "f_0043b7e0": {
    "va": "0043b7e0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "f_0043b7e0",
    "tu": "src/_unknown/tu_0043b7e0.c",
-   "evidence": "placed (at) in src/_unknown/tu_0043b7e0.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "ProfileAdvance": {
    "va": "0043b7e0",

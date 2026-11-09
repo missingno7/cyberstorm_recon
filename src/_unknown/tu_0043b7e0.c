@@ -82,18 +82,18 @@ extern "C" void f_0043c17c(GameSession *);
 extern "C" void f_004773a1(Pilot *, int, int);
 
 inline int IsSpecial(GameSession *s) {return s->mode==2 || s->mode==3;}
+#define Larger(a,b) ((a)>(b)?(a):(b))
 extern "C" void f_0043b7e0(GameSession *s,int level)
 {
-    int v=gLevelInfo[level].hercs;
-    s->hercCapacity=v>s->hercCapacity?v:s->hercCapacity;
-    v=gLevelInfo[level].pilots;
-    s->pilotCapacity=v>s->pilotCapacity?v:s->pilotCapacity;
+    s->hercCapacity=Larger((int)gLevelInfo[level].hercs,s->hercCapacity);
+    s->pilotCapacity=Larger((int)gLevelInfo[level].pilots,s->pilotCapacity);
     int special=IsSpecial(s);
     if(special && s->hercCapacity>12) s->hercCapacity=12;
     s->world=(U8)gLevelInfo[level].world;
     if(level>0 && gLevelInfo[level].world!=gLevelInfo[level-1].world) s->worldStage=1;
     else ++s->worldStage;
     short pilot=gLevelInfo[level].pilot;
-    if(pilot>=0 && pilot<30 && !(s->mode==2 || s->mode==3)) {f_0043bced(s,pilot);f_0043d1a6(s,pilot+51,1);}
+    if(pilot>=0 && pilot<30 && !IsSpecial(s)) {f_0043bced(s,pilot);f_0043d1a6(s,pilot+51,1);}
 }
+
 

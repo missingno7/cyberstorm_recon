@@ -4493,7 +4493,13 @@
    "as": "_unknown\\tu_0043b7e0.c",
    "install": "wc106",
    "profile": "plain",
-   "functions": {},
+   "functions": {
+    "f_0043b7e0": {
+     "va": "0043b7e0",
+     "size": 264,
+     "mangled": "f_0043b7e0"
+    }
+   },
    "data": {},
    "accepted": "2026-11-09"
   },
