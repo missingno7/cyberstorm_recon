@@ -211,13 +211,28 @@ def main(argv):
             syms[lab]["evidence"] = f"lost strict {now}"
     symbols.save(db)
     dump_json(gate.LEDGER, ledger)
-    # post-publish check exactly as verify sees it
-    reports2, _, _ = gate.build_and_compare(dest, rec)
-    ext2 = gate.by_label(gate.extents(reports2))
-    bad = [n for n, e in rec["functions"].items()
-           if (ext2.get(n) or {}).get("status") != "STRICT" or ext2[n]["va"] != e["va"]
-           or ext2[n]["end"] - ext2[n]["off"] != e["size"]]
-    bad += gate.data_losses(reports2, rec.get("data"))
+    # post-publish check exactly as verify sees it. NEW functions that are strict only with --at/search are
+    # withdrawn from the record (kept as hypothesis bindings) and the rest re-checked; previously accepted
+    # functions or recorded data failing the check roll the whole publish back.
+    for _ in range(4):
+        reports2, _, _ = gate.build_and_compare(dest, rec)
+        ext2 = gate.by_label(gate.extents(reports2))
+        bad = [n for n, e in rec["functions"].items()
+               if (ext2.get(n) or {}).get("status") != "STRICT" or ext2[n]["va"] != e["va"]
+               or ext2[n]["end"] - ext2[n]["off"] != e["size"]]
+        bad += gate.data_losses(reports2, rec.get("data"))
+        drop = [n for n in bad if not n.startswith("data:") and n not in old.get("functions", {})]
+        if not bad or len(drop) != len(bad):
+            break
+        print(f"  withdrawn (strict only with --at/search): {drop}")
+        for n in drop:
+            m = rec["functions"].pop(n)["mangled"]
+            for k, v in syms.items():
+                if v.get("mangled") == m and v.get("tu") == tu and v["status"] == "matched":
+                    v["status"] = "hypothesis"
+                    v["evidence"] = f"placed in {tu} {now}; strict only with --at/search"
+        symbols.save(db)
+        dump_json(gate.LEDGER, ledger)
     if bad:
         for p, b in backup.items():
             if b is None:
@@ -226,7 +241,7 @@ def main(argv):
                 p.write_bytes(b)
         print(f"ROLLED BACK: not strict without --at/search: {bad}")
         return 1
-    print("published")
+    print(f"published: {len(rec['functions'])} strict functions")
     return 0
 
 

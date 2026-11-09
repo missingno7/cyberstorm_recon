@@ -1810,47 +1810,145 @@
    "mangled": "W?ShellMultiplayerRender$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "LaunchResetPlayers": {
+   "va": "004203bf",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LaunchResetPlayers$n(pn$Scene$$)v",
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LaunchResetValues": {
+   "va": "00420468",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LaunchResetValues$n(pn$Scene$$)v",
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LaunchInitChoices": {
+   "va": "004204de",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LaunchInitChoices$n(pn$Scene$$)v",
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LaunchSendUpdates": {
+   "va": "004205bc",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LaunchSendUpdates$n(pn$Scene$$)v",
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "ShellNetworkSetupLoaded": {
    "va": "00420678",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ShellNetworkSetupLoaded$n(pn$Scene$$)v",
-   "evidence": "implied by src/shell/shell.c 2026-11-09"
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LaunchShuffleSlots": {
+   "va": "00420695",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LaunchShuffleSlots$n(pn$Scene$$)v",
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LaunchRefreshSlots": {
+   "va": "0042070f",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LaunchRefreshSlots$n(pn$Scene$$)v",
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "placed (at) in src/shell/mplaunch.c 2026-11-09"
+  },
+  "LaunchSetActiveButtons": {
+   "va": "004209ac",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LaunchSetActiveButtons$n(pn$Scene$$)v",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
   "ShellNetworkSetupAction4": {
    "va": "00422484",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ShellNetworkSetupAction4$n(pn$Scene$$)v",
-   "evidence": "implied by src/shell/shell.c 2026-11-09"
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LaunchRefreshBudgetLabels": {
+   "va": "00422538",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LaunchRefreshBudgetLabels$n(pn$Scene$$)v",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "LaunchRefreshCostLabels": {
+   "va": "00422830",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LaunchRefreshCostLabels$n(pn$Scene$$)v",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "LaunchRefreshReadyLabels": {
+   "va": "00422aaa",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LaunchRefreshReadyLabels$n(pn$Scene$$)v",
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LaunchRefreshRules": {
+   "va": "00422b0c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LaunchRefreshRules$n(pn$Scene$$)v",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
   "ShellNetworkSetupAction79": {
    "va": "00422d76",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ShellNetworkSetupAction79$n(pn$Scene$$)v",
-   "evidence": "implied by src/shell/shell.c 2026-11-09"
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ShellNetworkSetupAction105": {
    "va": "00422daf",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ShellNetworkSetupAction105$n(pn$Scene$$)v",
-   "evidence": "implied by src/shell/shell.c 2026-11-09"
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ShellNetworkSetupAction78": {
    "va": "00422de2",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ShellNetworkSetupAction78$n(pn$Scene$$)v",
-   "evidence": "implied by src/shell/shell.c 2026-11-09"
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
   },
   "MultiplayerLaunchClose": {
    "va": "00422e15",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?MultiplayerLaunchClose$n(pn$Scene$$)v",
-   "evidence": "implied by src/shell/shell.c 2026-11-09"
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LaunchConnectionReady": {
+   "va": "00422e57",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LaunchConnectionReady$n()i",
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ShellNetworkSetupExit": {
    "va": "00422e70",
@@ -1862,16 +1960,74 @@
   "MultiplayerLaunchRender": {
    "va": "0042309a",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?MultiplayerLaunchRender$n(pn$Scene$$)v",
-   "evidence": "implied by src/shell/shell.c 2026-11-09"
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LaunchCheckConfiguration": {
+   "va": "0042317c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LaunchCheckConfiguration$n(pn$Scene$$)v",
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LaunchRefreshAffordability": {
+   "va": "0042323d",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LaunchRefreshAffordability$n(pn$Scene$$)v",
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LaunchRefreshEligibility": {
+   "va": "004232a7",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LaunchRefreshEligibility$n(pn$Scene$$)v",
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LaunchRefreshPlayerControls": {
+   "va": "00423330",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LaunchRefreshPlayerControls$n(pn$Scene$$)v",
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LaunchShowMessage": {
+   "va": "0042350a",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LaunchShowMessage$n(pn$Scene$$pnxuc)v",
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LaunchDrawMessage": {
+   "va": "0042358b",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LaunchDrawMessage$n(pn$Scene$$pnxuc)v",
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ShellNetworkSetupAction85": {
    "va": "004235cf",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ShellNetworkSetupAction85$n(pn$Scene$$)v",
-   "evidence": "implied by src/shell/shell.c 2026-11-09"
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LaunchClearPlayerFlags": {
+   "va": "00423646",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LaunchClearPlayerFlags$n(pn$Scene$$)v",
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ShellNetworkSetupRefresh": {
    "va": "00423664",
@@ -1879,6 +2035,29 @@
    "status": "hypothesis",
    "mangled": "W?ShellNetworkSetupRefresh$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "LaunchReadyCount": {
+   "va": "00423961",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LaunchReadyCount$n(pn$Scene$$)c",
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LaunchPlayerCount": {
+   "va": "004239dd",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LaunchPlayerCount$n()uc",
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LaunchRefreshPlayerLabels": {
+   "va": "00423a14",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LaunchRefreshPlayerLabels$n(pn$Scene$$)v",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
   "ShellNetworkSetupSelectPlayer": {
    "va": "00423b84",
@@ -1894,6 +2073,30 @@
    "mangled": "W?ShellNetworkSetupJoinPlayer$n(pn$Scene$$i)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "LaunchCanJoin": {
+   "va": "00423e48",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LaunchCanJoin$n(pn$Scene$$)i",
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LaunchMarkPlayerGone": {
+   "va": "00423e88",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LaunchMarkPlayerGone$n(pn$Scene$$)v",
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LaunchSetPlayerName": {
+   "va": "00423eaa",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LaunchSetPlayerName$n(pn$Scene$$uipnxa)v",
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "placed (at) in src/shell/mplaunch.c 2026-11-09"
+  },
   "ShellNetworkSetupAction70": {
    "va": "00423f14",
    "kind": "func",
@@ -1901,12 +2104,36 @@
    "mangled": "W?ShellNetworkSetupAction70$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "LaunchAdvanceTeam": {
+   "va": "00423fac",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LaunchAdvanceTeam$n(pn$Scene$$i)v",
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "ShellNetworkSetupCanStart": {
    "va": "00424002",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?ShellNetworkSetupCanStart$n(pn$Scene$$)i",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "LaunchDropMissingPlayers": {
+   "va": "004241a4",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LaunchDropMissingPlayers$n(pn$Scene$$)v",
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "placed in src/shell/mplaunch.c 2026-11-09; strict only with --at/search"
+  },
+  "LaunchFindFreeTeamSlot": {
+   "va": "004241fc",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LaunchFindFreeTeamSlot$n(pn$Scene$$i)i",
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
   },
   "MenuEdit::$dt": {
    "va": "004242f4",
@@ -8183,6 +8410,13 @@
    "tu": "src/multi/mstart.c",
    "evidence": "strict match 2026-11-09"
   },
+  "MenuNetwork::BroadcastSlot#W?BroadcastSlot$:MenuNetwork$n(ipn$PlayerState$$)i": {
+   "va": "0046f4ec",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?BroadcastSlot$:MenuNetwork$n(ipn$PlayerState$$)i",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
   "MenuNetwork::Begin": {
    "va": "0046f578",
    "kind": "func",
@@ -9470,6 +9704,13 @@
    "tu": "src/main/WIN/winmain.c",
    "evidence": "strict match 2026-11-09"
   },
+  "Problem#W?Problem$n(li)v": {
+   "va": "00477ff9",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Problem$n(li)v",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
   "RunOptionsDialog": {
    "va": "00478089",
    "kind": "func",
@@ -9821,6 +10062,13 @@
    "status": "hypothesis",
    "mangled": "BriefBlit",
    "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "BriefBlit#W?BriefBlit$n(pnviillllll)v": {
+   "va": "0047bea0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?BriefBlit$n(pnviillllll)v",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
   "PopDrawSurface": {
    "va": "0047bfa0",
@@ -10369,6 +10617,13 @@
    "status": "hypothesis",
    "mangled": "RandomRange",
    "evidence": "implied by src/sim/explo.c (overload-safe migration 2026-11-09)"
+  },
+  "f_0047e200": {
+   "va": "0047e200",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_0047e200$n(pni)v",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
   "FileInit": {
    "va": "0047e450",
@@ -12651,6 +12906,69 @@
    "mangled": "W?g4b82fc$n$Scene$$",
    "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
   },
+  "gLaunchCostNumber": {
+   "va": "004b8fe0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchCostNumber$n$MenuNumber$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchBudgetNumber": {
+   "va": "004b9010",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchBudgetNumber$n$MenuNumber$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchTitleLabel": {
+   "va": "004b9040",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchTitleLabel$n$LaunchReadyLabel$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchSettingNumber": {
+   "va": "004b9070",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchSettingNumber$n$MenuNumber$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchDurationLabel": {
+   "va": "004b90a0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchDurationLabel$n$LaunchReadyLabel$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchReadyLabels": {
+   "va": "004b9b04",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchReadyLabels$n[]$LaunchReadyLabel$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchOption78Button": {
+   "va": "004b9dbb",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchOption78Button$nuc",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchRuleButton": {
+   "va": "004b9de3",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchRuleButton$nuc",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchOption105Button": {
+   "va": "004b9e0b",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchOption105Button$nuc",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
   "g4ba2bc": {
    "va": "004ba2bc",
    "kind": "data",
@@ -14107,6 +14425,48 @@
    "mangled": "W?gameOptions$n$Options$$",
    "evidence": "implied by src/multi/message.c 2026-11-09"
   },
+  "gameOptions#W?gameOptions$na": {
+   "va": "004f65e0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gameOptions$na",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchOption78": {
+   "va": "004f65e4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchOption78$ni",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchOption105": {
+   "va": "004f65e8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchOption105$ni",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchConfig": {
+   "va": "004f65f0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchConfig$nl",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchMap": {
+   "va": "004f65f4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchMap$nl",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchSetting": {
+   "va": "004f65f8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchSetting$nl",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
   "retryTimeout": {
    "va": "004f6600",
    "kind": "data",
@@ -14114,12 +14474,47 @@
    "mangled": "W?retryTimeout$ni",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
   },
+  "gLaunchDurationIndex": {
+   "va": "004f6604",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchDurationIndex$nl",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchBudget": {
+   "va": "004f6608",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchBudget$nul",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchScenario": {
+   "va": "004f660c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchScenario$nl",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchRule": {
+   "va": "004f6610",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchRule$nl",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
   "savedRandom": {
    "va": "004f6614",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?savedRandom$ni",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "gLaunchTeams": {
+   "va": "004f6618",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchTeams$n[]uc",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
   "gMenuNetwork": {
    "va": "004f6624",
@@ -14134,6 +14529,13 @@
    "status": "hypothesis",
    "mangled": "W?chat_player_state_table$n[]xa",
    "evidence": "implied by src/multi/chat.c 2026-11-09"
+  },
+  "chat_player_state_table#W?chat_player_state_table$n[]$PlayerState$$": {
+   "va": "004f6a14",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?chat_player_state_table$n[]$PlayerState$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
   "multiplayerActive": {
    "va": "004faf38",

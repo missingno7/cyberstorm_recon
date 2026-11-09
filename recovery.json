@@ -4066,6 +4066,155 @@
    },
    "data": {},
    "accepted": "2026-11-09"
+  },
+  "src/shell/mplaunch.c": {
+   "as": "shell\\mplaunch.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "LaunchResetPlayers": {
+     "va": "004203bf",
+     "size": 169,
+     "mangled": "W?LaunchResetPlayers$n(pn$Scene$$)v"
+    },
+    "LaunchResetValues": {
+     "va": "00420468",
+     "size": 118,
+     "mangled": "W?LaunchResetValues$n(pn$Scene$$)v"
+    },
+    "LaunchInitChoices": {
+     "va": "004204de",
+     "size": 222,
+     "mangled": "W?LaunchInitChoices$n(pn$Scene$$)v"
+    },
+    "LaunchSendUpdates": {
+     "va": "004205bc",
+     "size": 188,
+     "mangled": "W?LaunchSendUpdates$n(pn$Scene$$)v"
+    },
+    "ShellNetworkSetupLoaded": {
+     "va": "00420678",
+     "size": 29,
+     "mangled": "W?ShellNetworkSetupLoaded$n(pn$Scene$$)v"
+    },
+    "LaunchShuffleSlots": {
+     "va": "00420695",
+     "size": 122,
+     "mangled": "W?LaunchShuffleSlots$n(pn$Scene$$)v"
+    },
+    "ShellNetworkSetupAction4": {
+     "va": "00422484",
+     "size": 180,
+     "mangled": "W?ShellNetworkSetupAction4$n(pn$Scene$$)v"
+    },
+    "LaunchRefreshReadyLabels": {
+     "va": "00422aaa",
+     "size": 98,
+     "mangled": "W?LaunchRefreshReadyLabels$n(pn$Scene$$)v"
+    },
+    "ShellNetworkSetupAction79": {
+     "va": "00422d76",
+     "size": 57,
+     "mangled": "W?ShellNetworkSetupAction79$n(pn$Scene$$)v"
+    },
+    "ShellNetworkSetupAction105": {
+     "va": "00422daf",
+     "size": 51,
+     "mangled": "W?ShellNetworkSetupAction105$n(pn$Scene$$)v"
+    },
+    "ShellNetworkSetupAction78": {
+     "va": "00422de2",
+     "size": 51,
+     "mangled": "W?ShellNetworkSetupAction78$n(pn$Scene$$)v"
+    },
+    "MultiplayerLaunchClose": {
+     "va": "00422e15",
+     "size": 66,
+     "mangled": "W?MultiplayerLaunchClose$n(pn$Scene$$)v"
+    },
+    "LaunchConnectionReady": {
+     "va": "00422e57",
+     "size": 25,
+     "mangled": "W?LaunchConnectionReady$n()i"
+    },
+    "MultiplayerLaunchRender": {
+     "va": "0042309a",
+     "size": 226,
+     "mangled": "W?MultiplayerLaunchRender$n(pn$Scene$$)v"
+    },
+    "LaunchCheckConfiguration": {
+     "va": "0042317c",
+     "size": 193,
+     "mangled": "W?LaunchCheckConfiguration$n(pn$Scene$$)v"
+    },
+    "LaunchRefreshAffordability": {
+     "va": "0042323d",
+     "size": 106,
+     "mangled": "W?LaunchRefreshAffordability$n(pn$Scene$$)v"
+    },
+    "LaunchRefreshEligibility": {
+     "va": "004232a7",
+     "size": 137,
+     "mangled": "W?LaunchRefreshEligibility$n(pn$Scene$$)v"
+    },
+    "LaunchRefreshPlayerControls": {
+     "va": "00423330",
+     "size": 474,
+     "mangled": "W?LaunchRefreshPlayerControls$n(pn$Scene$$)v"
+    },
+    "LaunchShowMessage": {
+     "va": "0042350a",
+     "size": 129,
+     "mangled": "W?LaunchShowMessage$n(pn$Scene$$pnxuc)v"
+    },
+    "LaunchDrawMessage": {
+     "va": "0042358b",
+     "size": 68,
+     "mangled": "W?LaunchDrawMessage$n(pn$Scene$$pnxuc)v"
+    },
+    "ShellNetworkSetupAction85": {
+     "va": "004235cf",
+     "size": 119,
+     "mangled": "W?ShellNetworkSetupAction85$n(pn$Scene$$)v"
+    },
+    "LaunchClearPlayerFlags": {
+     "va": "00423646",
+     "size": 30,
+     "mangled": "W?LaunchClearPlayerFlags$n(pn$Scene$$)v"
+    },
+    "LaunchReadyCount": {
+     "va": "00423961",
+     "size": 124,
+     "mangled": "W?LaunchReadyCount$n(pn$Scene$$)c"
+    },
+    "LaunchPlayerCount": {
+     "va": "004239dd",
+     "size": 55,
+     "mangled": "W?LaunchPlayerCount$n()uc"
+    },
+    "LaunchCanJoin": {
+     "va": "00423e48",
+     "size": 64,
+     "mangled": "W?LaunchCanJoin$n(pn$Scene$$)i"
+    },
+    "LaunchMarkPlayerGone": {
+     "va": "00423e88",
+     "size": 34,
+     "mangled": "W?LaunchMarkPlayerGone$n(pn$Scene$$)v"
+    },
+    "LaunchAdvanceTeam": {
+     "va": "00423fac",
+     "size": 86,
+     "mangled": "W?LaunchAdvanceTeam$n(pn$Scene$$i)v"
+    },
+    "LaunchFindFreeTeamSlot": {
+     "va": "004241fc",
+     "size": 131,
+     "mangled": "W?LaunchFindFreeTeamSlot$n(pn$Scene$$i)i"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
   }
  },
  "accepted_losses": [
