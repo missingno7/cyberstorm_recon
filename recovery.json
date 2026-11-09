@@ -7944,20 +7944,45 @@
    "install": "wc106",
    "profile": "plain-oe",
    "functions": {
+    "QuickStartScreen::$ct": {
+     "va": "0041ce4c",
+     "size": 23,
+     "mangled": "W?$ct:QuickStartScreen$n()_"
+    },
+    "ShellBriefingOpen": {
+     "va": "0041ce63",
+     "size": 541,
+     "mangled": "W?ShellBriefingOpen$n(pn$QuickStartScreen$$pn$InputReq$$)v"
+    },
     "ShellBriefingClose": {
      "va": "0041d080",
      "size": 53,
      "mangled": "W?ShellBriefingClose$n(pn$QuickStartScreen$$)v"
+    },
+    "ShellBriefingExit": {
+     "va": "0041d0b5",
+     "size": 233,
+     "mangled": "W?ShellBriefingExit$n(pn$QuickStartScreen$$)v"
     },
     "ShellBriefingRender": {
      "va": "0041d19e",
      "size": 39,
      "mangled": "W?ShellBriefingRender$n(pn$QuickStartScreen$$)v"
     },
+    "ShellBriefingBack": {
+     "va": "0041d1c5",
+     "size": 174,
+     "mangled": "W?ShellBriefingBack$n(pn$QuickStartScreen$$)v"
+    },
     "QuickDrawOptions": {
      "va": "0041d273",
      "size": 417,
      "mangled": "W?QuickDrawOptions$n(pn$QuickStartScreen$$)v"
+    },
+    "ShellBriefingContinue": {
+     "va": "0041d414",
+     "size": 398,
+     "mangled": "W?ShellBriefingContinue$n(pn$QuickStartScreen$$)v"
     },
     "QuickShowMessage": {
      "va": "0041d5a2",
@@ -7968,6 +7993,11 @@
      "va": "0041d615",
      "size": 8,
      "mangled": "W?QuickDrawText$n(pn$QuickStartScreen$$pnxa)v"
+    },
+    "ShellBriefingAbort": {
+     "va": "0041d61d",
+     "size": 342,
+     "mangled": "W?ShellBriefingAbort$n(pn$QuickStartScreen$$)v"
     }
    },
    "data": {},

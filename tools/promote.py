@@ -191,6 +191,22 @@ def main(argv):
                 isf = img_section(v) == "BEGTEXT"
             syms[lab] = {"va": v, "kind": "func" if isf else "data",
                          "status": "hypothesis", "mangled": k, "evidence": f"implied by {tu} {now}"}
+    # this TU's own data objects whose segment base was placed in this run (BSS or data segments placed through
+    # --at/search anchors): record base+offset as hypothesis bindings, so verify (no --at, no search) can still
+    # reach and prove them. Same evidence class as implied bindings; the item proofs still run in verify.
+    bases = {s["seg"]: int(s["base"], 16) for r in reports for s in r["segments"]
+             if s["class"].upper() != "CODE" and s.get("base")}
+    for m in mods:
+        for pn, psi, po, loc in m.publics:
+            seg = m.segments[psi]
+            if seg.name not in bases or symbols.is_local(pn, loc) or seg.cls.upper() == "CODE":
+                continue
+            lab = symbols.label(pn)
+            if lab in syms and syms[lab].get("mangled") not in (None, pn):
+                lab = f"{lab}#{pn}"
+            if lab not in syms:
+                syms[lab] = {"va": f"{bases[seg.name] + po:08x}", "kind": "data", "status": "hypothesis",
+                             "mangled": pn, "tu": tu, "evidence": f"own data placed in {tu} {now}"}
     # this TU's own non-strict functions placed by --at or unique search: keep the placement as a hypothesis
     # binding, so references to them resolve without --at (as in verify)
     # the owning TU's name wins; other TUs' hypothesis names for the same VA stay as aliases until a naming

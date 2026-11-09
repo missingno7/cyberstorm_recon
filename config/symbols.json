@@ -3711,18 +3711,18 @@
   "QuickStartScreen::$ct": {
    "va": "0041ce4c",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?$ct:QuickStartScreen$n()_",
    "tu": "src/_unknown/tu_0041cb48.c",
-   "evidence": "placed in src/_unknown/tu_0041cb48.c 2026-11-09; strict only with --at/search"
+   "evidence": "strict match 2026-11-09"
   },
   "ShellBriefingOpen": {
    "va": "0041ce63",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ShellBriefingOpen$n(pn$QuickStartScreen$$pn$InputReq$$)v",
    "tu": "src/_unknown/tu_0041cb48.c",
-   "evidence": "placed in src/_unknown/tu_0041cb48.c 2026-11-09; strict only with --at/search"
+   "evidence": "strict match 2026-11-09"
   },
   "ShellBriefingOpen#W?ShellBriefingOpen$n(pn$Scene$$pn$InputReq$$)v": {
    "va": "0041ce63",
@@ -3749,10 +3749,10 @@
   "ShellBriefingExit": {
    "va": "0041d0b5",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ShellBriefingExit$n(pn$QuickStartScreen$$)v",
    "tu": "src/_unknown/tu_0041cb48.c",
-   "evidence": "placed in src/_unknown/tu_0041cb48.c 2026-11-09; strict only with --at/search"
+   "evidence": "strict match 2026-11-09"
   },
   "ShellBriefingExit#W?ShellBriefingExit$n(pn$Scene$$)i": {
    "va": "0041d0b5",
@@ -3779,10 +3779,10 @@
   "ShellBriefingBack": {
    "va": "0041d1c5",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ShellBriefingBack$n(pn$QuickStartScreen$$)v",
    "tu": "src/_unknown/tu_0041cb48.c",
-   "evidence": "placed in src/_unknown/tu_0041cb48.c 2026-11-09; strict only with --at/search"
+   "evidence": "strict match 2026-11-09"
   },
   "ShellBriefingBack#W?ShellBriefingBack$n(pn$Scene$$)v": {
    "va": "0041d1c5",
@@ -3802,10 +3802,10 @@
   "ShellBriefingContinue": {
    "va": "0041d414",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ShellBriefingContinue$n(pn$QuickStartScreen$$)v",
    "tu": "src/_unknown/tu_0041cb48.c",
-   "evidence": "placed in src/_unknown/tu_0041cb48.c 2026-11-09; strict only with --at/search"
+   "evidence": "strict match 2026-11-09"
   },
   "ShellBriefingContinue#W?ShellBriefingContinue$n(pn$Scene$$)v": {
    "va": "0041d414",
@@ -3833,10 +3833,10 @@
   "ShellBriefingAbort": {
    "va": "0041d61d",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ShellBriefingAbort$n(pn$QuickStartScreen$$)v",
    "tu": "src/_unknown/tu_0041cb48.c",
-   "evidence": "placed in src/_unknown/tu_0041cb48.c 2026-11-09; strict only with --at/search"
+   "evidence": "strict match 2026-11-09"
   },
   "ShellBriefingAbort#W?ShellBriefingAbort$n(pn$Scene$$)v": {
    "va": "0041d61d",
@@ -22546,12 +22546,236 @@
    "mangled": "W?g4b74f4$n[]a",
    "evidence": "implied by src/sim/hotbrief.c 2026-11-09"
   },
+  "quickBack": {
+   "va": "004b7508",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?quickBack$n$MenuButton$$",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "own data placed in src/_unknown/tu_0041cb48.c 2026-11-09"
+  },
+  "quickRandom": {
+   "va": "004b7530",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?quickRandom$n$MenuButton$$",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "own data placed in src/_unknown/tu_0041cb48.c 2026-11-09"
+  },
+  "quickLaunch": {
+   "va": "004b7558",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?quickLaunch$n$MenuButton$$",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "own data placed in src/_unknown/tu_0041cb48.c 2026-11-09"
+  },
+  "quickNumber0": {
+   "va": "004b7580",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?quickNumber0$n$MenuNumber$$",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "own data placed in src/_unknown/tu_0041cb48.c 2026-11-09"
+  },
+  "quickNumber1": {
+   "va": "004b75b0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?quickNumber1$n$MenuNumber$$",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "own data placed in src/_unknown/tu_0041cb48.c 2026-11-09"
+  },
+  "quickNumber2": {
+   "va": "004b75e0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?quickNumber2$n$MenuNumber$$",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "own data placed in src/_unknown/tu_0041cb48.c 2026-11-09"
+  },
+  "quickNumber3": {
+   "va": "004b7610",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?quickNumber3$n$MenuNumber$$",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "own data placed in src/_unknown/tu_0041cb48.c 2026-11-09"
+  },
+  "quickNumber4": {
+   "va": "004b7640",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?quickNumber4$n$MenuNumber$$",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "own data placed in src/_unknown/tu_0041cb48.c 2026-11-09"
+  },
+  "quickPanel": {
+   "va": "004b7670",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?quickPanel$n$MenuPanel$$",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "own data placed in src/_unknown/tu_0041cb48.c 2026-11-09"
+  },
+  "quickConfirm": {
+   "va": "004b7694",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?quickConfirm$n$MenuButton$$",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "own data placed in src/_unknown/tu_0041cb48.c 2026-11-09"
+  },
+  "quickHelp": {
+   "va": "004b76bc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?quickHelp$n$MenuHelpRegion$$",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "own data placed in src/_unknown/tu_0041cb48.c 2026-11-09"
+  },
+  "quickChoice0": {
+   "va": "004b76e4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?quickChoice0$n$QuickSelection$$",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "own data placed in src/_unknown/tu_0041cb48.c 2026-11-09"
+  },
+  "quickBar0": {
+   "va": "004b76ec",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?quickBar0$n$UpgradeBar$$",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "own data placed in src/_unknown/tu_0041cb48.c 2026-11-09"
+  },
+  "quickNext0": {
+   "va": "004b7714",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?quickNext0$n$UpgradeArrow$$",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "own data placed in src/_unknown/tu_0041cb48.c 2026-11-09"
+  },
+  "quickPrev0": {
+   "va": "004b7740",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?quickPrev0$n$UpgradeArrow$$",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "own data placed in src/_unknown/tu_0041cb48.c 2026-11-09"
+  },
+  "quickChoice1": {
+   "va": "004b776c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?quickChoice1$n$QuickSelection$$",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "own data placed in src/_unknown/tu_0041cb48.c 2026-11-09"
+  },
+  "quickBar1": {
+   "va": "004b7774",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?quickBar1$n$UpgradeBar$$",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "own data placed in src/_unknown/tu_0041cb48.c 2026-11-09"
+  },
+  "quickNext1": {
+   "va": "004b779c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?quickNext1$n$UpgradeArrow$$",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "own data placed in src/_unknown/tu_0041cb48.c 2026-11-09"
+  },
+  "quickPrev1": {
+   "va": "004b77c8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?quickPrev1$n$UpgradeArrow$$",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "own data placed in src/_unknown/tu_0041cb48.c 2026-11-09"
+  },
+  "quickChoice2": {
+   "va": "004b77f4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?quickChoice2$n$QuickSelection$$",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "own data placed in src/_unknown/tu_0041cb48.c 2026-11-09"
+  },
+  "quickBar2": {
+   "va": "004b77fc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?quickBar2$n$UpgradeBar$$",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "own data placed in src/_unknown/tu_0041cb48.c 2026-11-09"
+  },
+  "quickNext2": {
+   "va": "004b7824",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?quickNext2$n$UpgradeArrow$$",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "own data placed in src/_unknown/tu_0041cb48.c 2026-11-09"
+  },
+  "quickPrev2": {
+   "va": "004b7850",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?quickPrev2$n$UpgradeArrow$$",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "own data placed in src/_unknown/tu_0041cb48.c 2026-11-09"
+  },
+  "quickChoice3": {
+   "va": "004b787c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?quickChoice3$n$QuickSelection$$",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "own data placed in src/_unknown/tu_0041cb48.c 2026-11-09"
+  },
+  "quickBar3": {
+   "va": "004b7884",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?quickBar3$n$UpgradeBar$$",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "own data placed in src/_unknown/tu_0041cb48.c 2026-11-09"
+  },
+  "quickNext3": {
+   "va": "004b78ac",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?quickNext3$n$UpgradeArrow$$",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "own data placed in src/_unknown/tu_0041cb48.c 2026-11-09"
+  },
+  "quickPrev3": {
+   "va": "004b78d8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?quickPrev3$n$UpgradeArrow$$",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "own data placed in src/_unknown/tu_0041cb48.c 2026-11-09"
+  },
   "g4b7904": {
    "va": "004b7904",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4b7904$n$Scene$$",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "g4b7904#W?g4b7904$n$QuickStartScreen$$": {
+   "va": "004b7904",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b7904$n$QuickStartScreen$$",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "own data placed in src/_unknown/tu_0041cb48.c 2026-11-09"
   },
   "gShellBriefingMission": {
    "va": "004b7950",
