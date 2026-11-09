@@ -31,9 +31,9 @@ You reconstruct C++ source that Watcom 10.6 compiles to the exact bytes of `CSTO
 - `x &= ~M; x |= v & M;` (two statements) gives the in-memory `and/or` shape; one expression does not.
 - Pointer-walk loops (`T *e = table; ...; i++, e++`) and indexing (`&table[i]`) compile differently.
 - A 1-byte function (`ret`) cannot be placed by search: use `--at`.
-- C or C++ is per TU. Byte-width tests of `char` fields (`mov dl,[x]; test dl,dl`) mean the C front end
-  (`--profile ot-c|plain-c`, plain C structs and functions); `xor r,r; mov rl,[x]; test r,r` or `movsx` mean
-  C++. Global objects with constructors/destructors, `W?` names and default arguments mean C++.
+- C or C++ is per TU. Prefer C++ (wpp386, profiles ot/plain) unless the bytes need C. Note: a bare truth test
+  of a `char` (`if (!c)`) gives byte-width tests in C++ too; `if (c == 0)` widens in C++. Global objects with
+  constructors/destructors, `W?` names and default arguments mean C++.
 - Asserts: the original macro evaluates the asserted expression into a scalar temporary first
   (`unsigned long v = f->open; if (v == 0) AssertFail(__FILE__, __LINE__, (char *)v);`). Using the member
   expression twice adds ESI/EDI saves to the prologue. Diffs at +1..+3 in assert-bearing functions: try this.
