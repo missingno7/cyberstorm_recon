@@ -37,16 +37,16 @@ struct GuiRect {long x,y,width,height;};
 struct PaletteColor {unsigned char red,green,blue,flags;};
 struct Palette {PaletteColor entries[256];unsigned char unknown[82];};
 struct Timer;extern void TimerSet(Timer *,U32);struct Timer {U32 start,end,duration;Timer(U32 n){TimerSet(this,n);}};
-struct InputReq {U32 mask,state;InputReq(U32 m):mask(m){} int NewPress(){return (state&0x50)==0x10;}int HelpPressed(){return (state&0xa0)==0x20;}};
+struct InputReq {U32 mask,state;InputReq(U32 m):mask(m){} int NewPress(){return (state&0x50)==0x10;}int HelpPressed(){return (state&0xa0)==0x20;}int Released(){return (state&0x50)==0x40;}int HelpReleased(){return (state&0xa0)==0x80;}};
 extern void TimerSet(Timer *,U32);
 extern int TimerExpired(Timer *);
 extern long gGuiEffectPriority;
 extern long gShellCreditStep;
 extern Timer gShellCreditTimer;
-extern char g513888;extern Surface g511948,gMenuSavedSurface;
+struct GuiCanvas;extern GuiCanvas g513888;extern Surface g511948,gMenuSavedSurface;
 extern GuiRect gMenuClip;
 extern Palette gGuiPalette;
-extern unsigned char *gSurfaceColorRemap;
+extern void *gDrawRemap;
 extern int gShellOverlayPaletteActive,gShellTintModeActive;
 extern PaletteColor gShellOverlayColors[];
 extern "C" void AssertFail(const char *,int,const char *);
@@ -54,9 +54,10 @@ extern "C" void AssertFail(const char *,int,const char *);
 static const char ShellSourceFile[]=__FILE__;
 struct ResMgr {void *Load(const char *,int=1,void * =0,U32=0);};
 extern ResMgr gResMgr;
-extern void SigsStart(void *,unsigned char);
+extern void SigsStart(void *,int=0);
 extern void SurfacePresent(void *);
 extern void GuiResetClip(void *);
+struct GuiCanvas {unsigned char unknown00[0x94];GuiRect clip;void ResetClip(){GuiResetClip(&clip);}};
 extern void SurfaceCopyRegion(void *,void *,long,long);
 extern void PaletteCopyRange(Palette *,const PaletteColor *,int,int);
 extern void GuiFilterPalette(Palette *,int);
@@ -93,8 +94,8 @@ extern U32 gInDirty;
 extern void InputPoll(InputReq *);
 extern void SurfaceClear(void *);
 extern void ShellPlayMovie(const char *);
-extern void ShellIntroStart(Scene *,InputReq *,int);
-struct ProfileManager {unsigned char unknown00[0x426];U32 mode;unsigned char unknown42a[0x15];unsigned char ready;unsigned char unknown440[0x6c87];long credits;U32 Mode(){return mode;}long Credits(){return credits;}void SetDifficulty(unsigned char);void RefreshMissions();void UnlockItem(int,int);void RestartCampaign();void ApplyCampaignCheat();void AdvanceCampaign();void PrepareRoster();void SetMissionChoice(unsigned char);int LaunchMission(void *);int IsReady(){return ready;}long PendingCost();void CommitPurchases();int HasContinuation();void SelectScenario(int);int Count();void *Select(int);void Advance(int);long Value(int);};
+extern void ShellIntroStart(Scene *,InputReq *,int=0);
+struct ProfileManager {unsigned char unknown00[0x426];U32 mode;unsigned char unknown42a[0x15];unsigned char ready;unsigned char unknown440[0x6c87];long credits;U32 Mode(){return mode;}long Credits(){return credits;}void SetDifficulty(unsigned char);void RefreshMissions();void UnlockItem(int,int);void RestartCampaign();void ApplyCampaignCheat();void AdvanceCampaign();void PrepareRoster();void SetMissionChoice(unsigned char);int LaunchMission(void *);int IsReady(){return ready;}long PendingCost();void CommitPurchases();int HasContinuation();void SelectScenario(int);void SetMode(U32);int Count();void *Select(int);void Advance(int);long Value(int);};
 extern ProfileManager profileManager;
 extern int g4d030f;
 extern long SendEvent(void *,int,void * =0,int=0,int=0);
@@ -125,20 +126,21 @@ extern void ShellNetworkSetupRender(Scene *);
 extern void MultiplayerLaunchRender(Scene *);
 extern void HotseatRender(Scene *);
 
+extern int gShellExitCode;
 class ShellBase {
 public:
     long active;long IsActive()const{return active;}
     ShellBase():active(0){}
-    virtual ~ShellBase();
-    virtual void Open();
-    virtual void Close(int);
+    virtual ~ShellBase(){Close(0);}
+    virtual void Open(){active=1;}
+    virtual void Close(int reason){active=0;gShellExitCode=reason;}
     virtual void Update()=0;
     virtual void Event(unsigned char)=0;
 };
 class Shell:public ShellBase {
 public:
     Shell():ShellBase(),input(0x8004){}
-    virtual ~Shell();
+    virtual ~Shell(){}
     virtual void Open();
     virtual void Close(int);
     virtual void Update();
@@ -295,11 +297,50 @@ extern void HercBuyCancel(Scene *);
 extern void HercBayReturnFromPurchase(Scene *,InputReq *);
 extern int HercBuyCommit(Scene *);
 extern void HercBuyRefresh(Scene *);
+extern U32 CommsScreenExit(Scene *);
+extern void CommsScreenNext(Scene *);
+extern void CommsScreenPrevious(Scene *);
+extern void CommsScreenConfirm(Scene *);
+extern void MenuHelpOpenTopic(long);
+// Partial views of the child screens; only the observed return flag is exposed.
+struct BiodermPanelState {unsigned char unknown00[0x4c];unsigned short returning;};
+extern unsigned short gBiodermReturnToList,gBiodermSelectionMode;
+inline unsigned short BiodermReturnToList(){return gBiodermReturnToList;}
+extern U32 BiodermDetailsExit(Scene *);
+extern void BiodermDetailsAction1(Scene *);
+extern void BiodermDetailsAction2(Scene *);
+extern void BiodermDetailsAction3(Scene *);
+extern void BiodermDetailsAction4(Scene *);
+extern void BiodermDetailsClose(Scene *);
+extern void BiodermDetailsApply(Scene *);
+extern void ShellSelectionDetails(Scene *,InputReq *,const char *);
+extern long gShellAttractReady,gShellMoviesEnabled,gShellAttractEnabled,gShellEndingScreen;
+extern void ShellIntroNextImage(Scene *);
+extern U32 ShellIntroExit(Scene *);
+extern long ShellIntroTopMenu(Scene *);
+extern void ShellIntroSetMode(Scene *,int);
+extern long MenuHelpSetContext(long);
+extern int LoadMission(const char *,int);
+extern int ShellOpenHotseat(Shell *);
+extern void InputClearEvents();
+extern void GuiPumpMessages();
+extern char gShellBackground;
+extern int MenuLoadBackground(const char *,void *);
+extern void ShellServiceFrame(Shell *);
+extern void ShellLimitFrameRate(Shell *);
+void ShellApplyPalette(Palette *);
+struct SoundSettings;extern int SoundPlay(unsigned,const SoundSettings * =0);
+extern U32 BiodermStatsExit(Scene *);
+extern void BiodermStatsSelect(Scene *,int);
+extern void BiodermStatsClose(Scene *);
+extern void BiodermStatsApply(Scene *);
+extern void BiodermStatsAction(Scene *);
+extern void ShellSelectionStats(Scene *,InputReq *,const char *);
 void ShellClearFrame()
 {
-    SigsStart(&g513888,0);
+    SigsStart(&g513888);
     SurfacePresent(&g513888);
-    GuiResetClip(&gMenuClip);
+    g513888.ResetClip();
 }
 
 void ShellCloseAllScreens()
@@ -499,6 +540,67 @@ void Shell::BeginBriefing(unsigned char number)
     screen=28;
     g4b3390.Begin(&input,number);
 }
+void Shell::UpdateComms()
+{
+    U32 result=CommsScreenExit(&g4b2e30);
+    if(!result&&ShellInputKey()==1)result=14;
+    if(!result)return;
+    switch(result){
+    case 68:
+        auxiliaryState=10;CommsScreenClose(&g4b2e30);screen=32;
+        ShellMapOpen(&g4afbfc,&input,2200);break;
+    case 69:MenuHelpOpenTopic(66);break;
+    case 70:MenuHelpOpenTopic(67);break;
+    case 71:ShellPlayMovie("cst001");gInDirty=1;InputPoll(&input);break;
+    case 72:ShellPlayMovie("cst002");gInDirty=1;InputPoll(&input);break;
+    case 14:CommsScreenClose(&g4b2e30);resumeReason=0;ResumeMenus();break;
+    case 1:BeginBriefing(0);break;
+    case 2:BeginBriefing(1);break;
+    case 3:BeginBriefing(2);break;
+    case 4:BeginBriefing(3);break;
+    case 5:BeginBriefing(4);break;
+    case 6:BeginBriefing(5);break;
+    case 7:BeginBriefing(6);break;
+    case 8:BeginBriefing(7);break;
+    case 9:BeginBriefing(8);break;
+    case 10:CommsScreenConfirm(&g4b2e30);break;
+    case 11:CommsScreenNext(&g4b2e30);break;
+    case 12:CommsScreenPrevious(&g4b2e30);break;
+    case 51:
+        auxiliaryState=10;CommsScreenClose(&g4b2e30);screen=32;
+        gShellMapMode=0;ShellMapOpen(&g4afbfc,&input,0);break;
+    case 52:case 53:case 54:case 55:case 56:case 57:case 58:case 59:case 60:case 61:case 62:case 63:case 64: 
+        auxiliaryState=10;CommsScreenClose(&g4b2e30);screen=32;
+        gShellMapMode=1;ShellMapOpen(&g4afbfc,&input,13-(64-result));break;
+    case 66:CommsScreenConfirm(&g4b2e30);break;
+    }
+}
+int Shell::WithinBudget()
+{
+    long roster=SumRosterResponses();
+    long total=ProfileValueTotal();total+=roster;total+=profileManager.Credits();
+    PlayerInfo player;GetPlayerInfo(&profileManager,&player);
+    U32 limit;
+    switch(player.Kind()){
+    case 0:limit=7000;break;
+    case 1:limit=10000;break;
+    case 2:limit=15000;break;
+    case 3:limit=20000;break;
+    case 4:limit=30000;break;
+    case 5:limit=40000;break;
+    case 6:limit=50000;break;
+    case 7:limit=60000;break;
+    case 8:limit=70000;break;
+    case 9:limit=80000;break;
+    case 10:limit=90000;break;
+    case 11:limit=100000;break;
+    case 12:limit=110000;break;
+    case 13:limit=120000;break;
+    default:return 0;
+    }
+    if((U32)total<limit)return 1;
+    return 0;
+}
 long Shell::SumRosterResponses()
 {
 
@@ -639,6 +741,146 @@ void Shell::UpdateMissionBrief()
     case 21:ShellBriefingAbort(&g4b7904);break;
     }
 }
+void Shell::UpdateCampaignMenu()
+{
+    if(BiodermReturnToList()){
+        BiodermDetailsClose(&g4b0e18);
+        ((BiodermPanelState *)&g4b0e18)->returning=1;
+        ShellSelectionDetails(&g4aff6c,&input,"Bioderm");screen=8;
+        return;
+    }
+    U32 result=BiodermDetailsExit(&g4b0e18);
+    if(!result)return;
+    switch(result){
+    case 1:BiodermDetailsAction1(&g4b0e18);break;
+    case 2:BiodermDetailsAction2(&g4b0e18);break;
+    case 3:BiodermDetailsAction3(&g4b0e18);break;
+    case 4:BiodermDetailsAction4(&g4b0e18);break;
+    case 5:
+        BiodermDetailsApply(&g4b0e18);
+        ((BiodermPanelState *)&g4b0e18)->returning=gBiodermSelectionMode=1;
+        ShellSelectionDetails(&g4aff6c,&input,"Bioderm");screen=8;
+        break;
+    case 6:
+        BiodermDetailsClose(&g4b0e18);
+        ((BiodermPanelState *)&g4b0e18)->returning=gBiodermSelectionMode=1;
+        ShellSelectionDetails(&g4aff6c,&input,"Bioderm");screen=8;
+        break;
+    }
+}
+void Shell::UpdateMainMenu()
+{
+
+    if(TimerExpired(&gShellAnimationTimer)){
+        if(gShellAttractReady){
+            TimerSet(&gShellAnimationTimer,9000);
+            ShellIntroNextImage(&g4afa84);
+        }else{
+            TimerSet(&gShellAnimationTimer,9000);
+            gShellAttractReady=1;
+        }
+    }
+    if(gShellMoviesEnabled&&gShellAttractEnabled&&TimerExpired(&gShellIdleTimer)){
+        ReplayIntro();
+        TimerSet(&gShellAnimationTimer,9000);
+        TimerSet(&gShellIdleTimer,120000);
+    }else{
+        U32 result=ShellIntroExit(&g4afa84);
+        if(!result&&ShellInputKey()==1)result=5;
+        if(result)switch(result){
+        case 1:ShellIntroSetMode(&g4afa84,1);gShellAttractEnabled=0;break;
+        case 2:MenuHelpSetContext(8);ShellIntroSetMode(&g4afa84,2);gShellAttractEnabled=0;break;
+        case 3:ReplayIntro();TimerSet(&gShellAnimationTimer,9000);break;
+        case 4:
+            auxiliaryState=1;screen=32;ShellIntroClose(&g4afa84);
+            ShellMapOpen(&g4afbfc,&input,2000);TimerSet(&gShellAnimationTimer,9000);break;
+        case 5:
+            ShellClearFrame();
+            if(MenuLoadBackground("SEQUEL.ART",&gShellBackground)){
+                gShellEndingScreen=1;
+                ShellApplyPalette((Palette *)&gShellBackground);
+                GuiPumpMessages();SoundPlay(30);SurfacePresent(&g513888);InputClearEvents();
+                while(1){
+                    gInDirty=1;InputPoll(&input);
+                    if(ShellInputKey()||input.Released()||input.HelpReleased())break;
+                    ShellServiceFrame(this);ShellLimitFrameRate(this);
+                }
+                ShellClearFrame();
+            }
+            Close(0);break;
+        case 6:profileManager.SetMode(1);gShellAttractReady=0;LoadMission(0,1);break;
+        case 7:
+            profileManager.SelectScenario(1);profileManager.SetMode(1);gShellAttractReady=0;
+            ShellIntroSetMode(&g4afa84,3);break;
+        case 8:
+            profileManager.SetMode(0);gShellAttractReady=0;ShellIntroClose(&g4afa84);
+            screen=34;ShellBriefingOpen(&g4b7904,&input);break;
+        case 9:
+            MenuHelpSetContext(5);gShellAttractReady=0;ShellIntroSetMode(&g4afa84,0);
+            TimerSet(&gShellIdleTimer,120000);gShellAttractEnabled=1;break;
+        case 13:gShellAttractReady=0;ShellIntroSetMode(&g4afa84,1);break;
+        case 10:
+            difficulty=0;gShellAttractReady=0;ShellIntroClose(&g4afa84);resumeReason=1;ResumeMenus();
+            profileManager.SetDifficulty(0);profileManager.RefreshMissions();break;
+        case 11:
+            gShellAttractReady=0;ShellIntroClose(&g4afa84);resumeReason=1;ResumeMenus();
+            difficulty=1;profileManager.SetDifficulty(1);profileManager.RefreshMissions();break;
+        case 12:
+            gShellAttractReady=0;ShellIntroClose(&g4afa84);resumeReason=1;ResumeMenus();
+            difficulty=2;profileManager.SetDifficulty(2);profileManager.RefreshMissions();break;
+        case 16:
+            profileManager.SetMode(3);
+            if(LoadMission(0,1)){
+                gShellAttractReady=0;ShellIntroClose(&g4afa84);resumeReason=0;RestoreMenu(0);
+            }
+            break;
+        case 17:
+            profileManager.SetMode(3);gShellAttractReady=0;ShellIntroClose(&g4afa84);
+            resumeReason=1;RestoreMenu(resumeReason);break;
+        case 18:ShellOpenHotseat(this);break;
+        case 19:
+            MenuHelpSetContext(5);profileManager.SelectScenario(1);gShellAttractReady=0;
+            ShellIntroSetMode(&g4afa84,0);TimerSet(&gShellIdleTimer,120000);gShellAttractEnabled=1;break;
+        case 14:case 15:default:break;
+        }
+    }
+    long hit=ShellIntroTopMenu(&g4afa84);
+    if(!input.NewPress())hit=-1;
+    if(hit>=0)switch(hit){case 0:
+        TimerSet(&gShellAnimationTimer,9000);ShellIntroNextImage(&g4afa84);break;
+    }
+
+}
+void Shell::UpdateBiodermSkills()
+{
+    if(BiodermReturnToList()){
+        BiodermStatsClose(&g4b07f8);
+        ((BiodermPanelState *)&g4b07f8)->returning=1;
+        ShellSelectionStats(&g4aff6c,&input,"Bioderm");screen=8;
+        return;
+    }
+    U32 result=BiodermStatsExit(&g4b07f8);
+    if(!result)return;
+    switch(result){
+    case 1:BiodermStatsSelect(&g4b07f8,6);break;
+    case 2:BiodermStatsSelect(&g4b07f8,0);break;
+    case 3:BiodermStatsSelect(&g4b07f8,1);break;
+    case 4:BiodermStatsSelect(&g4b07f8,2);break;
+    case 5:BiodermStatsSelect(&g4b07f8,3);break;
+    case 6:BiodermStatsSelect(&g4b07f8,4);break;
+    case 7:BiodermStatsSelect(&g4b07f8,5);break;
+    case 8:BiodermStatsSelect(&g4b07f8,7);break;
+    case 9:
+        BiodermStatsClose(&g4b07f8);
+        ((BiodermPanelState *)&g4b07f8)->returning=gBiodermSelectionMode=1;
+        ShellSelectionStats(&g4aff6c,&input,"Bioderm");screen=8;break;
+    case 10:
+        SoundTrigger(96,0);BiodermStatsApply(&g4b07f8);
+        ((BiodermPanelState *)&g4b07f8)->returning=gBiodermSelectionMode=1;
+        ShellSelectionStats(&g4aff6c,&input,"Bioderm");screen=8;break;
+    case 12:BiodermStatsAction(&g4b07f8);break;
+    }
+}
 void Shell::ShowIntro()
 {
     ShellClearFrame();
@@ -654,254 +896,12 @@ void Shell::ReplayIntro()
     ShowIntro();
     SurfaceClear(&g511948);
     SurfacePresent(&g513888);
-    ShellIntroStart(&g4afa84,&input,0);
+    ShellIntroStart(&g4afa84,&input);
 }
 void ShellLoadPalette(const char *name)
 {
     Palette palette;
     void *loaded=gResMgr.Load(name,1,&palette,sizeof(palette));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3124,14 +3124,14 @@ void ShellLoadPalette(const char *name)
 
 extern void HelpClearTopic();
 extern void ShellSetMenuState(int);
-extern void MenuLoadBackground(const char *,void *);
+extern int MenuLoadBackground(const char *,void *);
 extern char gShellBackground;
 extern void SurfaceFlush(void *);
 extern void ShellServiceFrame(Shell *);
 extern void ShellLimitFrameRate(Shell *);
 extern void GuiFadeOut();
 extern void SoundStop(unsigned);
-struct SoundSettings;extern int SoundPlay(unsigned,const SoundSettings * =0);
+
 
 
 
@@ -3154,10 +3154,10 @@ void ShellShadeRect(long x,long y,long width,long height)
         color.blue=color.blue*6U/10U+24;
         map[i]=PaletteFindColor(&gGuiPalette,&color);
     }
-    gSurfaceColorRemap=map;
+    gDrawRemap=map;
     SurfaceRemapRect(&g513888,x,y,width,height);
     GuiRemapClipRect(&gMenuClip,x,y,width,height);
-    gSurfaceColorRemap=0;
+    gDrawRemap=0;
 }
 
 /* Resource/state setup; remaining differences are recorded in REPORT.md. */
@@ -3516,6 +3516,7 @@ U32 Shell::NextCreditBreakpoint(U32 credits)
     if(credits<=7500000)return 7500000;
     return 15000000;
 }
+
 
 
 

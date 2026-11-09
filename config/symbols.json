@@ -86,6 +86,14 @@
    "tu": "src/shell/shell.c",
    "evidence": "strict match 2026-11-09"
   },
+  "Shell::UpdateComms": {
+   "va": "00402e67",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?UpdateComms$:Shell$n()v",
+   "tu": "src/shell/shell.c",
+   "evidence": "placed (at) in src/shell/shell.c 2026-11-09"
+  },
   "Shell::WithinBudget": {
    "va": "004033cc",
    "kind": "func",
@@ -149,6 +157,30 @@
    "tu": "src/shell/shell.c",
    "evidence": "placed (at) in src/shell/shell.c 2026-11-09"
   },
+  "Shell::UpdateCampaignMenu": {
+   "va": "004051f0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?UpdateCampaignMenu$:Shell$n()v",
+   "tu": "src/shell/shell.c",
+   "evidence": "placed (at) in src/shell/shell.c 2026-11-09"
+  },
+  "Shell::UpdateMainMenu": {
+   "va": "00405338",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?UpdateMainMenu$:Shell$n()v",
+   "tu": "src/shell/shell.c",
+   "evidence": "placed (at) in src/shell/shell.c 2026-11-09"
+  },
+  "Shell::UpdateBiodermSkills": {
+   "va": "00405f4c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?UpdateBiodermSkills$:Shell$n()v",
+   "tu": "src/shell/shell.c",
+   "evidence": "placed (at) in src/shell/shell.c 2026-11-09"
+  },
   "Shell::ShowIntro": {
    "va": "0040605b",
    "kind": "func",
@@ -184,10 +216,10 @@
   "ShellShadeRect": {
    "va": "0040627a",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ShellShadeRect$n(llll)v",
    "tu": "src/shell/shell.c",
-   "evidence": "placed (at) in src/shell/shell.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "Shell::Open": {
    "va": "004063a4",
@@ -199,18 +231,18 @@
   "Shell::BeginComms": {
    "va": "004067b0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?BeginComms$:Shell$n(uc)v",
    "tu": "src/shell/shell.c",
-   "evidence": "placed (at) in src/shell/shell.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "Shell::ResumeMenus": {
    "va": "0040680d",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ResumeMenus$:Shell$n()v",
    "tu": "src/shell/shell.c",
-   "evidence": "placed (at) in src/shell/shell.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "Shell::RestoreMenu": {
    "va": "0040693b",
@@ -263,9 +295,10 @@
   "Shell::$dt": {
    "va": "00407130",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?$dt:Shell$n()_",
-   "evidence": "implied by src/shell/shell.c 2026-11-09"
+   "tu": "src/shell/shell.c",
+   "evidence": "strict match 2026-11-09"
   },
   "Shell::$ct": {
    "va": "0040717c",
@@ -286,23 +319,42 @@
   "ShellBase::Close": {
    "va": "004071b0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?Close$:ShellBase$n(i)v",
-   "evidence": "implied by src/shell/shell.c 2026-11-09"
+   "tu": "src/shell/shell.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ShellBase::Open": {
    "va": "004071c4",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?Open$:ShellBase$n()v",
-   "evidence": "implied by src/shell/shell.c 2026-11-09"
+   "tu": "src/shell/shell.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ShellBase::$dt": {
    "va": "004071d0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?$dt:ShellBase$n()_",
-   "evidence": "implied by src/shell/shell.c 2026-11-09"
+   "tu": "src/shell/shell.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "GuiCanvas::ResetClip": {
+   "va": "004071ec",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ResetClip$:GuiCanvas$n()v",
+   "tu": "src/shell/shell.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "W?$Wdf0jSigsStart$n(pnvi)v1$n()i": {
+   "va": "00407200",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$Wdf0jSigsStart$n(pnvi)v1$n()i",
+   "tu": "src/shell/shell.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ShellMainMenuOpen": {
    "va": "004074f0",
@@ -463,6 +515,13 @@
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?ShellSelectionControlsRender$n(pn$Scene$$)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "CommsScreenOpen": {
+   "va": "00412b26",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?CommsScreenOpen$n(pn$Scene$$pn$InputReq$$uc)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
   "CommsScreenClose": {
@@ -939,6 +998,13 @@
    "status": "hypothesis",
    "mangled": "W?$dt:MenuChat$n()_",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "ShellNetworkSetupOpen": {
+   "va": "004243e4",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ShellNetworkSetupOpen$n(pn$Scene$$pn$InputReq$$uc)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
   "ShellNetworkSetupRender": {
    "va": "004243e7",
@@ -1478,6 +1544,13 @@
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?MenuLoadBackground$n(pnxapnv)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "MenuLoadBackground#W?MenuLoadBackground$n(pnxapnv)i": {
+   "va": "00427d76",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuLoadBackground$n(pnxapnv)i",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
   "MenuLabel::$ct": {
@@ -6429,6 +6502,13 @@
    "mangled": "W?MenuSetClip$n(pn$GuiRect$$llll)v",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
   },
+  "GuiRemapClipRect": {
+   "va": "0047acf0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?GuiRemapClipRect$n(pn$GuiRect$$llll)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
   "GuiResetClip": {
    "va": "0047ae20",
    "kind": "func",
@@ -6471,12 +6551,26 @@
    "mangled": "W?SigsStart$n(pnvuc)v",
    "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
   },
+  "SigsStart#W?SigsStart$n(pnvi)v": {
+   "va": "0047bab0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SigsStart$n(pnvi)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
   "MenuFill": {
    "va": "0047bad0",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?MenuFill$n(pnvllll)v",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "SurfaceRemapRect": {
+   "va": "0047bc10",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SurfaceRemapRect$n(pnvllll)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
   "MenuLine": {
    "va": "0047bc60",
@@ -6871,6 +6965,13 @@
    "status": "hypothesis",
    "mangled": "W?PaletteFade$n(pn$Palette$$iiipnxul)v",
    "evidence": "implied by src/_unknown/tu_0042a0e0.c 2026-11-09"
+  },
+  "PaletteFindColor": {
+   "va": "0047dca0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PaletteFindColor$n(pn$Palette$$pnx$PaletteColor$$)uc",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
   "GuiReadKey": {
    "va": "0047df20",
@@ -9782,6 +9883,13 @@
    "status": "hypothesis",
    "mangled": "W?g513888$n[]a",
    "evidence": "implied by src/sim/explo.c (overload-safe migration 2026-11-09)"
+  },
+  "g513888#W?g513888$n$GuiCanvas$$": {
+   "va": "00513888",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g513888$n$GuiCanvas$$",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
   "gMenuBackground": {
    "va": "005138e0",
