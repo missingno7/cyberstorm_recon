@@ -33,9 +33,10 @@ Model: `luna` = gpt-6-luna xhigh, `sol` = gpt-6.1-sol high (Codex; all new lanes
 | s10 | sol | 00454210, 004556f0 | running |
 | s11 | sol | 00438374, 004394e0, 0043a294 | running |
 | s12 | sol | 004413e0, 004425d4, 00443100 | running |
-| s13 | sol | 00407204..00409408 | running |
+| s13 | sol | 00407204..00409408 | done (40, none parked) |
 | s14 | sol | terr\tdisplay.c, tarea.c, tsurface.c (from w13); 0042cf40, 0042e210 | running |
 | s15 | sol | 0041c7d8..0041d774, 0046b918 | running |
+| s16 | sol | 00417efc..00418ef0, 004481c0 | running |
 | l1 | luna | shell\hercbuy.c | done (19) |
 | o1 | opus | multi\linkdlg.c, linkq.c, message.c | done |
 | o2 | opus | sim\apply.c, fxout.c, explo.c | done |
