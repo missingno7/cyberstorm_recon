@@ -4838,6 +4838,158 @@
     }
    },
    "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_00409408.c": {
+   "as": "_unknown\\tu_00409408.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "00409408",
+     "size": 118,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "PromoScreen::$ct": {
+     "va": "0040947e",
+     "size": 59,
+     "mangled": "W?$ct:PromoScreen$n()_"
+    },
+    "PromoScreen::Open": {
+     "va": "004094b9",
+     "size": 587,
+     "mangled": "W?Open$:PromoScreen$n(pn$InputReq$$i)v"
+    },
+    "PromoScreen::SetPage": {
+     "va": "00409704",
+     "size": 8690,
+     "mangled": "W?SetPage$:PromoScreen$n()v"
+    },
+    "PromoScreen::SetLayout": {
+     "va": "0040b9b2",
+     "size": 135,
+     "mangled": "W?SetLayout$:PromoScreen$n()v"
+    },
+    "PromoScreen::Play": {
+     "va": "0040ba39",
+     "size": 213,
+     "mangled": "W?Play$:PromoScreen$n(pnxa)v"
+    },
+    "PromoScreen::PlayOnce": {
+     "va": "0040bb0e",
+     "size": 280,
+     "mangled": "W?PlayOnce$:PromoScreen$n(pnxapn$FlicSound$$)v"
+    },
+    "PromoScreen::DrawText": {
+     "va": "0040bc26",
+     "size": 333,
+     "mangled": "W?DrawText$:PromoScreen$n()v"
+    },
+    "PromoScreen::Close": {
+     "va": "0040bd73",
+     "size": 66,
+     "mangled": "W?Close$:PromoScreen$n()v"
+    },
+    "PromoScreen::Update": {
+     "va": "0040bdb5",
+     "size": 102,
+     "mangled": "W?Update$:PromoScreen$n()i"
+    },
+    "PromoScreen::Render": {
+     "va": "0040be1b",
+     "size": 113,
+     "mangled": "W?Render$:PromoScreen$n()v"
+    },
+    "PromoScreen::Finish": {
+     "va": "0040be8c",
+     "size": 14,
+     "mangled": "W?Finish$:PromoScreen$n()v"
+    },
+    "PromoScreen::$dt": {
+     "va": "0040be9c",
+     "size": 33,
+     "mangled": "W?$dt:PromoScreen$n()_"
+    }
+   },
+   "data": {
+    "CONST2": {
+     "va": "0048ca44",
+     "size": 36
+    },
+    "_DATA": {
+     "va": "0048e668",
+     "size": 12
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0043ef34.c": {
+   "as": "_unknown\\tu_0043ef34.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "ResetProfileUnits": {
+     "va": "0043ef34",
+     "size": 48,
+     "mangled": "W?ResetProfileUnits$n(pn$ProfileManager$$)v"
+    },
+    "ProfileManager::RefreshMission": {
+     "va": "004404a2",
+     "size": 137,
+     "mangled": "W?RefreshMission$:ProfileManager$n(i)v"
+    },
+    "ProfileManager::SetMissionChoice": {
+     "va": "00440dea",
+     "size": 27,
+     "mangled": "W?SetMissionChoice$:ProfileManager$n(ul)v"
+    },
+    "ProfileManager::SelectMissionNumber": {
+     "va": "00440e05",
+     "size": 161,
+     "mangled": "W?SelectMissionNumber$:ProfileManager$n(irnulrnul)v"
+    },
+    "GetGameInfo": {
+     "va": "00440ea6",
+     "size": 272,
+     "mangled": "W?GetGameInfo$n(pn$ProfileManager$$pn$GameInfo$$pn$MissionRecord$$)v"
+    },
+    "ApplyGameInfo": {
+     "va": "00440fb6",
+     "size": 78,
+     "mangled": "W?ApplyGameInfo$n(pn$ProfileManager$$pn$MissionRecord$$)v"
+    },
+    "ProfileManager::LaunchMission": {
+     "va": "00441004",
+     "size": 420,
+     "mangled": "W?LaunchMission$:ProfileManager$n(pn$GameInfo$$)i"
+    },
+    "ApplyProgress": {
+     "va": "004411a8",
+     "size": 90,
+     "mangled": "W?ApplyProgress$n(pn$ProfileManager$$pn$ProgressInfo$$)v"
+    },
+    "ProfileConstant": {
+     "va": "00441202",
+     "size": 6,
+     "mangled": "W?ProfileConstant$n()i"
+    },
+    "ProfileValue": {
+     "va": "00441331",
+     "size": 11,
+     "mangled": "W?ProfileValue$n(pn$ProfileManager$$)i"
+    },
+    "ProfileManager::HasContinuation": {
+     "va": "00441399",
+     "size": 32,
+     "mangled": "W?HasContinuation$:ProfileManager$n()i"
+    },
+    "ProfileManager::SetProfileMode": {
+     "va": "004413b9",
+     "size": 38,
+     "mangled": "W?SetProfileMode$:ProfileManager$n(uc)pn$1$"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
   }
  },
  "accepted_losses": [

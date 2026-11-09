@@ -558,12 +558,84 @@
    "mangled": "W?ShellIntroRender$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "W?.fn_init$n()v@_unknown/tu_00409408.c": {
+   "va": "00409408",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/_unknown/tu_00409408.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PromoScreen::$ct": {
+   "va": "0040947e",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:PromoScreen$n()_",
+   "tu": "src/_unknown/tu_00409408.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "ShellMapOpen": {
    "va": "004094b9",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?ShellMapOpen$n(pn$Scene$$pn$InputReq$$l)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "PromoScreen::Open": {
+   "va": "004094b9",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Open$:PromoScreen$n(pn$InputReq$$i)v",
+   "tu": "src/_unknown/tu_00409408.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PromoScreen::SetPage": {
+   "va": "00409704",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetPage$:PromoScreen$n()v",
+   "tu": "src/_unknown/tu_00409408.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PromoScreen::NextPage": {
+   "va": "0040b8f6",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?NextPage$:PromoScreen$n()i",
+   "tu": "src/_unknown/tu_00409408.c",
+   "evidence": "placed (at) in src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "PromoScreen::SetLayout": {
+   "va": "0040b9b2",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetLayout$:PromoScreen$n()v",
+   "tu": "src/_unknown/tu_00409408.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PromoScreen::Play": {
+   "va": "0040ba39",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Play$:PromoScreen$n(pnxa)v",
+   "tu": "src/_unknown/tu_00409408.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PromoScreen::PlayOnce": {
+   "va": "0040bb0e",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PlayOnce$:PromoScreen$n(pnxapn$FlicSound$$)v",
+   "tu": "src/_unknown/tu_00409408.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PromoScreen::DrawText": {
+   "va": "0040bc26",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?DrawText$:PromoScreen$n()v",
+   "tu": "src/_unknown/tu_00409408.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ShellMapClose": {
    "va": "0040bd73",
@@ -572,12 +644,52 @@
    "mangled": "W?ShellMapClose$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "PromoScreen::Close": {
+   "va": "0040bd73",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Close$:PromoScreen$n()v",
+   "tu": "src/_unknown/tu_00409408.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PromoScreen::Update": {
+   "va": "0040bdb5",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Update$:PromoScreen$n()i",
+   "tu": "src/_unknown/tu_00409408.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "ShellMapRender": {
    "va": "0040be1b",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?ShellMapRender$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "PromoScreen::Render": {
+   "va": "0040be1b",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Render$:PromoScreen$n()v",
+   "tu": "src/_unknown/tu_00409408.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PromoScreen::Finish": {
+   "va": "0040be8c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Finish$:PromoScreen$n()v",
+   "tu": "src/_unknown/tu_00409408.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PromoScreen::$dt": {
+   "va": "0040be9c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$dt:PromoScreen$n()_",
+   "tu": "src/_unknown/tu_00409408.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ShellSelectionStats": {
    "va": "0040c2a0",
@@ -4649,6 +4761,13 @@
    "mangled": "f_004379ba",
    "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
   },
+  "UnitReset": {
+   "va": "00437a28",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?UnitReset$n(pn$UnitRecord$$)v",
+   "evidence": "implied by src/_unknown/tu_0043ef34.c 2026-11-09"
+  },
   "PilotChecksum": {
    "va": "0043819f",
    "kind": "func",
@@ -4824,6 +4943,13 @@
    "mangled": "f_0043b7e0",
    "tu": "src/_unknown/tu_0043b7e0.c",
    "evidence": "placed (at) in src/_unknown/tu_0043b7e0.c 2026-11-09"
+  },
+  "ProfileAdvance": {
+   "va": "0043b7e0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ProfileAdvance$n(pn$ProfileManager$$ul)v",
+   "evidence": "implied by src/_unknown/tu_0043ef34.c 2026-11-09"
   },
   "W?.fn_init$n()v@_unknown/tu_0043b8e8.c": {
    "va": "0043b8e8",
@@ -5408,6 +5534,13 @@
    "tu": "src/_unknown/tu_0043b8e8.c",
    "evidence": "placed (at) in src/_unknown/tu_0043b8e8.c 2026-11-09"
   },
+  "ProfileRefresh": {
+   "va": "0043dad7",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ProfileRefresh$n(pn$ProfileManager$$)v",
+   "evidence": "implied by src/_unknown/tu_0043ef34.c 2026-11-09"
+  },
   "f_0043dbb2": {
    "va": "0043dbb2",
    "kind": "func",
@@ -5540,12 +5673,28 @@
    "mangled": "W?f_43ee71$n(pnvpn$FileRecord$$)i",
    "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
   },
+  "ResetProfileUnits": {
+   "va": "0043ef34",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ResetProfileUnits$n(pn$ProfileManager$$)v",
+   "tu": "src/_unknown/tu_0043ef34.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "ProfileManager::BeginMissions": {
    "va": "0043ef64",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?BeginMissions$:ProfileManager$n()v",
    "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
+  "ProfileManager::RefreshMission": {
+   "va": "004404a2",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?RefreshMission$:ProfileManager$n(i)v",
+   "tu": "src/_unknown/tu_0043ef34.c",
+   "evidence": "strict match 2026-11-09"
   },
   "f_0044052b": {
    "va": "0044052b",
@@ -5554,14 +5703,47 @@
    "mangled": "f_0044052b",
    "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
   },
+  "GenerateMissions": {
+   "va": "0044052b",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?GenerateMissions$n(pn$ProfileManager$$)v",
+   "tu": "src/_unknown/tu_0043ef34.c",
+   "evidence": "placed (at) in src/_unknown/tu_0043ef34.c 2026-11-09"
+  },
+  "ReplaceMission": {
+   "va": "00440bf5",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ReplaceMission$n(pn$ProfileManager$$)v",
+   "tu": "src/_unknown/tu_0043ef34.c",
+   "evidence": "placed (at) in src/_unknown/tu_0043ef34.c 2026-11-09"
+  },
   "ProfileManager::SetMissionChoice": {
    "va": "00440dea",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?SetMissionChoice$:ProfileManager$n(ul)v",
-   "evidence": "implied by src/shell/shell.c 2026-11-09"
+   "tu": "src/_unknown/tu_0043ef34.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ProfileManager::SelectMissionNumber": {
+   "va": "00440e05",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SelectMissionNumber$:ProfileManager$n(irnulrnul)v",
+   "tu": "src/_unknown/tu_0043ef34.c",
+   "evidence": "strict match 2026-11-09"
   },
   "GetGameInfo": {
+   "va": "00440ea6",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?GetGameInfo$n(pn$ProfileManager$$pn$GameInfo$$pn$MissionRecord$$)v",
+   "tu": "src/_unknown/tu_0043ef34.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "GetGameInfo#W?GetGameInfo$n(pnvpn$Options$$pn$GameInfo$$)v": {
    "va": "00440ea6",
    "kind": "func",
    "status": "hypothesis",
@@ -5571,6 +5753,14 @@
   "ApplyGameInfo": {
    "va": "00440fb6",
    "kind": "func",
+   "status": "matched",
+   "mangled": "W?ApplyGameInfo$n(pn$ProfileManager$$pn$MissionRecord$$)v",
+   "tu": "src/_unknown/tu_0043ef34.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ApplyGameInfo#W?ApplyGameInfo$n(pnvpn$GameInfo$$)v": {
+   "va": "00440fb6",
+   "kind": "func",
    "status": "hypothesis",
    "mangled": "W?ApplyGameInfo$n(pnvpn$GameInfo$$)v",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
@@ -5578,9 +5768,33 @@
   "ProfileManager::LaunchMission": {
    "va": "00441004",
    "kind": "func",
+   "status": "matched",
+   "mangled": "W?LaunchMission$:ProfileManager$n(pn$GameInfo$$)i",
+   "tu": "src/_unknown/tu_0043ef34.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ProfileManager::LaunchMission#W?LaunchMission$:ProfileManager$n(pnv)i": {
+   "va": "00441004",
+   "kind": "func",
    "status": "hypothesis",
    "mangled": "W?LaunchMission$:ProfileManager$n(pnv)i",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "ApplyProgress": {
+   "va": "004411a8",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ApplyProgress$n(pn$ProfileManager$$pn$ProgressInfo$$)v",
+   "tu": "src/_unknown/tu_0043ef34.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ProfileConstant": {
+   "va": "00441202",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ProfileConstant$n()i",
+   "tu": "src/_unknown/tu_0043ef34.c",
+   "evidence": "strict match 2026-11-09"
   },
   "BriefLookup": {
    "va": "00441208",
@@ -5589,12 +5803,37 @@
    "mangled": "BriefLookup",
    "evidence": "implied by src/shell/missbrf.c 2026-11-09"
   },
+  "ProfileValue": {
+   "va": "00441331",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ProfileValue$n(pn$ProfileManager$$)i",
+   "tu": "src/_unknown/tu_0043ef34.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ProfileManager::MissionIsBlocked": {
+   "va": "0044133c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MissionIsBlocked$:ProfileManager$n(rn$MissionInfo$$)i",
+   "tu": "src/_unknown/tu_0043ef34.c",
+   "evidence": "placed (at) in src/_unknown/tu_0043ef34.c 2026-11-09"
+  },
   "ProfileManager::HasContinuation": {
    "va": "00441399",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?HasContinuation$:ProfileManager$n()i",
-   "evidence": "implied by src/shell/shell.c 2026-11-09"
+   "tu": "src/_unknown/tu_0043ef34.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ProfileManager::SetProfileMode": {
+   "va": "004413b9",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetProfileMode$:ProfileManager$n(uc)pn$1$",
+   "tu": "src/_unknown/tu_0043ef34.c",
+   "evidence": "strict match 2026-11-09"
   },
   "f_004418a9": {
    "va": "004418a9",
@@ -8205,6 +8444,13 @@
    "mangled": "W?MissionDataInit$n(pn$MissionRecord$$iiiiii)v",
    "evidence": "implied by src/logic/miss.c 2026-11-09"
   },
+  "DecodeMission": {
+   "va": "00465994",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?DecodeMission$n(pn$MissionRecord$$pn$MissionInfo$$)v",
+   "evidence": "implied by src/_unknown/tu_0043ef34.c 2026-11-09"
+  },
   "MissionRef::Address": {
    "va": "00465bba",
    "kind": "func",
@@ -8220,6 +8466,13 @@
    "mangled": "W?MissionBaseType$n()i",
    "tu": "src/logic/miss.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "MissionCountVariants": {
+   "va": "00465c03",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MissionCountVariants$n()i",
+   "evidence": "implied by src/_unknown/tu_0043ef34.c 2026-11-09"
   },
   "MissionCountForType": {
    "va": "00465c09",
@@ -12956,6 +13209,13 @@
    "mangled": "W?gLinkThreadProc$nxpn(pnv)ui",
    "evidence": "implied by src/multi/linkdlg.c 2026-11-09"
   },
+  "promoControls": {
+   "va": "0048e684",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoControls$n[]pn$GuiControl$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
   "g48e8f4": {
    "va": "0048e8f4",
    "kind": "data",
@@ -13075,6 +13335,251 @@
    "mangled": "W?gGuiFadeLast$nl",
    "evidence": "implied by src/_unknown/tu_0042a0e0.c 2026-11-09"
   },
+  "promoSounds_0048f6a8": {
+   "va": "0048f6a8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoSounds_0048f6a8$n[]$FlicSound$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoSounds_0048f6c8": {
+   "va": "0048f6c8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoSounds_0048f6c8$n[]$FlicSound$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoSounds_0048f6f8": {
+   "va": "0048f6f8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoSounds_0048f6f8$n[]$FlicSound$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoSounds_0048f728": {
+   "va": "0048f728",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoSounds_0048f728$n[]$FlicSound$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoSounds_0048f800": {
+   "va": "0048f800",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoSounds_0048f800$n[]$FlicSound$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoSounds_0048f818": {
+   "va": "0048f818",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoSounds_0048f818$n[]$FlicSound$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoSounds_0048f838": {
+   "va": "0048f838",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoSounds_0048f838$n[]$FlicSound$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoSounds_0048f8a8": {
+   "va": "0048f8a8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoSounds_0048f8a8$n[]$FlicSound$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoSounds_0048f8c8": {
+   "va": "0048f8c8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoSounds_0048f8c8$n[]$FlicSound$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoSounds_0048f8e8": {
+   "va": "0048f8e8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoSounds_0048f8e8$n[]$FlicSound$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoSounds_0048f920": {
+   "va": "0048f920",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoSounds_0048f920$n[]$FlicSound$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoSounds_0048f940": {
+   "va": "0048f940",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoSounds_0048f940$n[]$FlicSound$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoSounds_0048f9a8": {
+   "va": "0048f9a8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoSounds_0048f9a8$n[]$FlicSound$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoSounds_0048f9c8": {
+   "va": "0048f9c8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoSounds_0048f9c8$n[]$FlicSound$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoSounds_0048fa10": {
+   "va": "0048fa10",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoSounds_0048fa10$n[]$FlicSound$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoSounds_0048fa30": {
+   "va": "0048fa30",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoSounds_0048fa30$n[]$FlicSound$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoSounds_0048fa68": {
+   "va": "0048fa68",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoSounds_0048fa68$n[]$FlicSound$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoSounds_0048fa88": {
+   "va": "0048fa88",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoSounds_0048fa88$n[]$FlicSound$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoSounds_0048faa8": {
+   "va": "0048faa8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoSounds_0048faa8$n[]$FlicSound$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoSounds_0048faf0": {
+   "va": "0048faf0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoSounds_0048faf0$n[]$FlicSound$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoSounds_0048fb20": {
+   "va": "0048fb20",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoSounds_0048fb20$n[]$FlicSound$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoSounds_0048fb40": {
+   "va": "0048fb40",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoSounds_0048fb40$n[]$FlicSound$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoSounds_0048fb90": {
+   "va": "0048fb90",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoSounds_0048fb90$n[]$FlicSound$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoSounds_0048fbb0": {
+   "va": "0048fbb0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoSounds_0048fbb0$n[]$FlicSound$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoSounds_0048fbd0": {
+   "va": "0048fbd0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoSounds_0048fbd0$n[]$FlicSound$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoSounds_0048fbf8": {
+   "va": "0048fbf8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoSounds_0048fbf8$n[]$FlicSound$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoSounds_0048fc18": {
+   "va": "0048fc18",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoSounds_0048fc18$n[]$FlicSound$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoSounds_0048fc38": {
+   "va": "0048fc38",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoSounds_0048fc38$n[]$FlicSound$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoSounds_0048fc58": {
+   "va": "0048fc58",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoSounds_0048fc58$n[]$FlicSound$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoSounds_0048fca0": {
+   "va": "0048fca0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoSounds_0048fca0$n[]$FlicSound$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoSounds_0048fcb0": {
+   "va": "0048fcb0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoSounds_0048fcb0$n[]$FlicSound$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoSounds_0048ff68": {
+   "va": "0048ff68",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoSounds_0048ff68$n[]$FlicSound$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoSounds_00490108": {
+   "va": "00490108",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoSounds_00490108$n[]$FlicSound$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoSounds_00490138": {
+   "va": "00490138",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoSounds_00490138$n[]$FlicSound$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoSounds_00490178": {
+   "va": "00490178",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoSounds_00490178$n[]$FlicSound$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
   "GridSourcePath": {
    "va": "00490450",
    "kind": "data",
@@ -13109,6 +13614,13 @@
    "status": "hypothesis",
    "mangled": "W?gLevelInfo$n[]$LevelInfo$$",
    "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "rankCosts": {
+   "va": "00494084",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?rankCosts$n[]$RankCost$$",
+   "evidence": "implied by src/_unknown/tu_0043ef34.c 2026-11-09"
   },
   "g4941d8": {
    "va": "004941d8",
@@ -13642,6 +14154,13 @@
    "mangled": "W?uiSystem$n$Shell$$",
    "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
   },
+  "promoChanged": {
+   "va": "004a7068",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoChanged$ni",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
   "g4a706d": {
    "va": "004a706d",
    "kind": "data",
@@ -13705,12 +14224,61 @@
    "mangled": "W?g4afa84$n$Scene$$",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "promoNumber": {
+   "va": "004afb78",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoNumber$n$MenuButton$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoButton": {
+   "va": "004afba0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoButton$n$MenuPrefixButton$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoHelp": {
+   "va": "004afbcc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoHelp$n$MenuHelpRegion$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoStatus": {
+   "va": "004afbec",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoStatus$ni",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoPlaying": {
+   "va": "004afbf4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoPlaying$ni",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "promoFinished": {
+   "va": "004afbf8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoFinished$nuc",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
   "g4afbfc": {
    "va": "004afbfc",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4afbfc$n$Scene$$",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "g4afbfc#W?g4afbfc$n$PromoScreen$$": {
+   "va": "004afbfc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4afbfc$n$PromoScreen$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
   },
   "gShellMapMode": {
    "va": "004afc48",
@@ -16854,6 +17422,13 @@
    "status": "hypothesis",
    "mangled": "W?missionImageName$n$StrPool$$",
    "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
+  },
+  "promoStrings": {
+   "va": "00511e40",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?promoStrings$n$StrPool$$",
+   "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
   },
   "targetBriefResource": {
    "va": "00511e54",
