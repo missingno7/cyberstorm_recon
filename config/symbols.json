@@ -15692,10 +15692,10 @@
   "SimHotChooseHotseatOwner": {
    "va": "00461a30",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?SimHotChooseHotseatOwner$n(pnv)i",
    "tu": "src/sim/simhot.c",
-   "evidence": "placed (at) in src/sim/simhot.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "SimHotBriefGameOver": {
    "va": "00461b20",
@@ -33853,12 +33853,36 @@
    "mangled": "W?exploRemap$n$ExploRemap$$",
    "evidence": "implied by src/sim/explo.c 2026-11-09"
   },
+  "gFogUpdateCount": {
+   "va": "004dcd8c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gFogUpdateCount$ni",
+   "tu": "src/sim/simhot.c",
+   "evidence": "own data placed in src/sim/simhot.c 2026-11-09"
+  },
+  "gFogBufferObjects": {
+   "va": "004dcd90",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gFogBufferObjects$n[]$FogBuffer$$",
+   "tu": "src/sim/simhot.c",
+   "evidence": "own data placed in src/sim/simhot.c 2026-11-09"
+  },
   "gFogData": {
    "va": "004dce68",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gFogData$n[]$FogData$$",
    "evidence": "implied by src/sim/simhot.c 2026-11-09"
+  },
+  "gViewState": {
+   "va": "004dce68",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gViewState$n[]$ViewState$$",
+   "tu": "src/sim/simhot.c",
+   "evidence": "own data placed in src/sim/simhot.c 2026-11-09"
   },
   "gFogBufferInitialized": {
    "va": "004dcf88",

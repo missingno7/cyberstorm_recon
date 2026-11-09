@@ -65,7 +65,7 @@ Model: `luna` = gpt-6-luna xhigh, `sol` = gpt-6.1-sol high (Codex; all new lanes
 | r2 | sol | research: register/stack allocation cluster | done (+4; no general fix; rows in codegen_rules.md) |
 | s41 | sol | 3rd pass: sim\sim.c region | running |
 | s42 | sol | 3rd pass: shell\hbupgrad.c, pop\pherc.c, 0043b7e0 | running |
-| s43 | sol | big functions: 0043ef34 region, sim\explo.c, apply.c, simhot.c | running |
+| s43 | sol | big functions: 0043ef34 region, sim\explo.c, apply.c, simhot.c | done |
 | s44 | sol | logic\lgen.c + sinterp.c, 00452950, 00454210 | running |
 | s45 | sol | terr\tsurface.c recursive helpers (inline_recursion hypothesis) | running |
 | l1 | luna | shell\hercbuy.c | done (19) |

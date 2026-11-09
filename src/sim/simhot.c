@@ -1,7 +1,7 @@
 #include <string.h>
 struct HotseatInput { int state, bits; int Pressed(int mask, int value) { return (bits & mask) == value; } }; struct ViewRect { int left, top, right, bottom; }; extern ViewRect viewportClipLeft, gBriefDrawSource; extern unsigned long *gMenuTextMap, shellDefaultTextMap[]; extern unsigned long gMenuTextColor, shellDefaultTextColor;
 
-class FileRecord; class ResMgr; class FogBuffer; struct FogSource; int sprintf(char *, const char *, ...);
+extern char gHotbriefStrings[]; class FileRecord; class ResMgr; class FogBuffer; struct FogSource; int sprintf(char *, const char *, ...);
 FogBuffer *FogSetSource(FogBuffer *, FogSource *);
 class FogBuffer { public: long mode; FogSource *source; long count; signed char *lower, *upper; long state; FogBuffer(FogSource *s) { FogSetSource(this, s); } int Resize(); void Initialize(int mode=0, int initialize=1); };
 struct GridPoint { long x,y; GridPoint() {} }; struct ViewState { GridPoint point; long zoom,scale,direction; unsigned long flags,requested; long spare; ViewState(); }; struct FogSource { long unused[10]; long count; }; extern char fallbackName[];
@@ -104,7 +104,7 @@ void SimHotWriteFogStream(FileRecord *stream)
 struct MissionRecord { unsigned char header[16]; char name[172]; }; extern MissionRecord *gMissionRecords;
 void *AllocateMissionImage(void *, int, int); char *BriefFormat(void *, const char *); void f_00477295(char *); void AssertExit(int);void SimHotLoadMission(int index)
 {
-    char *image = (char *)AllocateMissionImage((void *)"", 0x1a2, 1);
+    char *image = (char *)AllocateMissionImage(gHotbriefStrings, 0x1a2, 1);
     char *name = gMissionRecords[index].name;
     char *loaded = BriefFormat(image, name);
     f_00477295(loaded);
@@ -257,7 +257,7 @@ void SimHotStartMission(int *mission)
         }
         if (HasMission(&profileManager) == 0) { char *failure = BriefFormat(f_0047c350(gHotbriefStrings, 0x1a2, 1), (char *)gMissionRecords + recordOffset + 16); f_00477295(failure); AssertExit(0); }
         f_0043ef34(&profileManager); f_0043dcfd(&profileManager, 1); *mission = 1;
-        BestLocSetData((void *)0x004d3594, localPosition, (void *)(*(int *)logicData));
+        BestLocSetData((void *)fallbackName, localPosition, (void *)(*(int *)logicData));
         if (*(int *)((char *)gShellHotseat + 0x12a0) != 0) {
             actor = ActorGetByIndex(slot + 1);
 // Original assertion source-line padding.
@@ -339,11 +339,12 @@ int SimHotChooseHotseatOwner(void *mission)
             int count = 0;
             int lastOwner = 0;
             for (ActorRecord *actor = ActorFindFree(); actor != 0; actor = ActorFindNext(actor)) {
-                if (((int *)actor)[2] > 0 && SimHotbriefCheckActor(actor) != 0 &&
-                    ((signed char *)actor)[0x88] != 0 && seen[((int *)actor)[2]] == 0) {
-                    ++count; ++seen[((int *)actor)[2]]; lastOwner = ((int *)actor)[2];
+                if (((int *)actor)[2] > 0 && SimHotbriefCheckActor(actor) != 0 && ((signed char *)actor)[0x88] != 0) {
+                    int owner = ((int *)actor)[2];
+                    if (seen[owner] == 0) { lastOwner = owner; ++count; ++seen[owner]; }
                 }
             }
+
             if (count == 2 && seen[*(int *)((char *)mission + 0x98a)] != 0)
                 *(int *)((char *)mission + 0x10f5) = 0;
             if (count > 1 && seen[*(int *)((char *)mission + 0x986)] == 0)
@@ -401,6 +402,7 @@ void SimHotBriefGameOver(void *mission)
     BriefWaitB(previousDelay);
     SimSetMenuState(mission, 1);
 }
+
 
 
 

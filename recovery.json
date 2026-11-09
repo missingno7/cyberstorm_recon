@@ -4988,6 +4988,11 @@
      "size": 192,
      "mangled": "W?SimHotbriefRemove$n(iii)v"
     },
+    "SimHotChooseHotseatOwner": {
+     "va": "00461a30",
+     "size": 240,
+     "mangled": "W?SimHotChooseHotseatOwner$n(pnv)i"
+    },
     "ViewState::$dt": {
      "va": "00461d80",
      "size": 5,
