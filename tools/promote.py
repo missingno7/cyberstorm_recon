@@ -112,7 +112,8 @@ def main(argv):
         if cur and (cur["va"] != v or (cur.get("mangled") and cur["mangled"] != k)):
             print(f"implied binding {lab}={v} contradicts symbols.json {cur}; refusing")
             return 1
-        print(f"  new hypothesis binding: {lab} = {v}")
+        other = [n for n, e in syms.items() if e["va"] == v and n != lab]
+        print(f"  new hypothesis binding: {lab} = {v}" + (f"  ALIAS of {other}: use that name" if other else ""))
     gain = sorted({symbols.label(n) for n in strict} - set(old.get("functions", {})))
     sbytes = sum(e["end"] - e["off"] for e in strict.values())
     data_strict = [s for r in reports for s in r["segments"]

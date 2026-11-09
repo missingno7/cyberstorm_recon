@@ -8,7 +8,8 @@ You reconstruct C++ source that Watcom 10.6 compiles to the exact bytes of `CSTO
   `recovery.json`; never commit; never run `promote.py --publish`; never touch `assets/`.
 - No inline asm, `_emit`, `#line`, `#pragma aux` with code bytes, byte arrays for code, copied machine code.
 - Readable source: real types, structs, control flow. Names are labels you choose (prefer what strings,
-  callers and data suggest); say which are guesses.
+  callers and data suggest); say which are guesses. Before naming a callee or global, run
+  `python tools/symbols.py show VA`: if it already has a name, use that name (aliases are refused later).
 - Only STRICT counts. Stop a hypothesis family after ~8 tries without new evidence; write what you tried.
 
 ## Loop

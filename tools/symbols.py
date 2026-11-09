@@ -10,6 +10,7 @@ Imports are not stored: `__imp_*` externs resolve through the oracle's import ta
     python tools/symbols.py show NAME|VA
     python tools/symbols.py bind NAME VA --kind func|data --evidence TEXT     (hypothesis bindings only)
     python tools/symbols.py stats
+    python tools/symbols.py aliases       VAs bound under more than one label (unify names in the sources)
 """
 import json
 import re
@@ -103,6 +104,15 @@ def main(argv):
     if len(argv) < 2 or argv[1] == "stats":
         from collections import Counter
         print(Counter(e["status"] for e in syms.values()), len(syms))
+        return 0
+    if argv[1] == "aliases":
+        by = {}
+        for n, e in syms.items():
+            by.setdefault((e["va"], e["kind"]), []).append(n)
+        for (va, k), ns in sorted(by.items()):
+            if len(ns) > 1:
+                canon = [n for n in ns if syms[n]["status"] == "matched"]
+                print(f"{va} {k}: {', '.join(ns)}" + (f"   (canonical: {canon[0]})" if canon else ""))
         return 0
     if argv[1] == "show":
         q = argv[2]
