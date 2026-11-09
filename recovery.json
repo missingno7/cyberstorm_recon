@@ -10561,6 +10561,542 @@
    },
    "data": {},
    "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0047d400.c": {
+   "as": "_unknown\\tu_0047d400.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "FormatSetBuffer": {
+     "va": "0047d400",
+     "size": 32,
+     "mangled": "FormatSetBuffer"
+    },
+    "BriefFormat": {
+     "va": "0047d420",
+     "size": 82,
+     "mangled": "BriefFormat"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048bff0",
+     "size": 1
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0047d680.c": {
+   "as": "_unknown\\tu_0047d680.c",
+   "install": "wc106",
+   "profile": "ot-oe",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "0047d680",
+     "size": 64,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "MousePresent": {
+     "va": "0047d6c0",
+     "size": 16,
+     "mangled": "MousePresent"
+    },
+    "InputInit": {
+     "va": "0047d6d0",
+     "size": 64,
+     "mangled": "InputInit"
+    },
+    "f_47d710": {
+     "va": "0047d710",
+     "size": 16,
+     "mangled": "f_47d710"
+    },
+    "ClampMousePoint": {
+     "va": "0047d720",
+     "size": 80,
+     "mangled": "ClampMousePoint"
+    },
+    "PlyGetKey": {
+     "va": "0047d770",
+     "size": 96,
+     "mangled": "PlyGetKey"
+    },
+    "ReadMousePosition": {
+     "va": "0047d7d0",
+     "size": 32,
+     "mangled": "ReadMousePosition"
+    },
+    "ReadMouseRelease": {
+     "va": "0047d7f0",
+     "size": 112,
+     "mangled": "ReadMouseRelease"
+    },
+    "ReadMousePress": {
+     "va": "0047d860",
+     "size": 112,
+     "mangled": "ReadMousePress"
+    },
+    "MousePoll": {
+     "va": "0047d8d0",
+     "size": 16,
+     "mangled": "MousePoll"
+    },
+    "MouseButtonDown": {
+     "va": "0047d8e0",
+     "size": 32,
+     "mangled": "MouseButtonDown"
+    },
+    "UpdateMouseState": {
+     "va": "0047d900",
+     "size": 128,
+     "mangled": "UpdateMouseState"
+    },
+    "SetMousePosition": {
+     "va": "0047d980",
+     "size": 19,
+     "mangled": "SetMousePosition"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0047d9d0.c": {
+   "as": "_unknown\\tu_0047d9d0.c",
+   "install": "wc106",
+   "flags": [
+    "-4s",
+    "-s",
+    "-bm",
+    "-oxt",
+    "-oe=50"
+   ],
+   "tool": "wpp386",
+   "functions": {
+    "PaletteGet": {
+     "va": "0047d9d0",
+     "size": 32,
+     "mangled": "PaletteGet"
+    },
+    "PaletteRead": {
+     "va": "0047d9f0",
+     "size": 48,
+     "mangled": "PaletteRead"
+    },
+    "PaletteSet": {
+     "va": "0047da20",
+     "size": 32,
+     "mangled": "PaletteSet"
+    },
+    "PaletteCopyRange": {
+     "va": "0047da40",
+     "size": 48,
+     "mangled": "PaletteCopyRange"
+    },
+    "DecodeLaunchPalette": {
+     "va": "0047da70",
+     "size": 64,
+     "mangled": "DecodeLaunchPalette"
+    },
+    "InterpolateColor": {
+     "va": "0047dab0",
+     "size": 48,
+     "mangled": "InterpolateColor"
+    },
+    "PaletteFade": {
+     "va": "0047dbc0",
+     "size": 224,
+     "mangled": "PaletteFade"
+    },
+    "PaletteFindColor": {
+     "va": "0047dca0",
+     "size": 96,
+     "mangled": "PaletteFindColor"
+    },
+    "ColorDistance": {
+     "va": "0047dd00",
+     "size": 123,
+     "mangled": "ColorDistance"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0047dd80.c": {
+   "as": "_unknown\\tu_0047dd80.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "FrameInputInit": {
+     "va": "0047dd80",
+     "size": 96,
+     "mangled": "FrameInputInit"
+    },
+    "f_47dde0": {
+     "va": "0047dde0",
+     "size": 16,
+     "mangled": "f_47dde0"
+    },
+    "ResetFrameClock": {
+     "va": "0047ddf0",
+     "size": 32,
+     "mangled": "ResetFrameClock"
+    },
+    "KeyQueuePending": {
+     "va": "0047de10",
+     "size": 32,
+     "mangled": "KeyQueuePending"
+    },
+    "ReadKeyEvent": {
+     "va": "0047de30",
+     "size": 64,
+     "mangled": "ReadKeyEvent"
+    },
+    "QueueKeyEvent": {
+     "va": "0047de70",
+     "size": 112,
+     "mangled": "QueueKeyEvent"
+    },
+    "MarkKeyDown": {
+     "va": "0047dee0",
+     "size": 32,
+     "mangled": "MarkKeyDown"
+    },
+    "MarkKeyUp": {
+     "va": "0047df00",
+     "size": 32,
+     "mangled": "MarkKeyUp"
+    },
+    "GuiReadKey": {
+     "va": "0047df20",
+     "size": 32,
+     "mangled": "GuiReadKey"
+    },
+    "ControlKeyDown": {
+     "va": "0047df40",
+     "size": 32,
+     "mangled": "ControlKeyDown"
+    },
+    "AltKeyDown": {
+     "va": "0047df60",
+     "size": 32,
+     "mangled": "AltKeyDown"
+    },
+    "ShiftKeyDown": {
+     "va": "0047df80",
+     "size": 22,
+     "mangled": "ShiftKeyDown"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0047e150.c": {
+   "as": "_unknown\\tu_0047e150.c",
+   "install": "wc106",
+   "profile": "ot-oe",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "0047e150",
+     "size": 16,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "next_link_seed": {
+     "va": "0047e160",
+     "size": 64,
+     "mangled": "next_link_seed"
+    },
+    "RandomRange": {
+     "va": "0047e1a0",
+     "size": 96,
+     "mangled": "RandomRange"
+    },
+    "f_0047e200": {
+     "va": "0047e200",
+     "size": 16,
+     "mangled": "W?f_0047e200$n(pni)v"
+    },
+    "FxStirSeed": {
+     "va": "0047e330",
+     "size": 71,
+     "mangled": "W?FxStirSeed$n(pnui)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0047eec0.c": {
+   "as": "_unknown\\tu_0047eec0.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "ApproachFixed": {
+     "va": "0047eec0",
+     "size": 64,
+     "mangled": "ApproachFixed"
+    },
+    "VectorAngle": {
+     "va": "0047ef00",
+     "size": 32,
+     "mangled": "VectorAngle"
+    },
+    "PointAngle": {
+     "va": "0047ef20",
+     "size": 48,
+     "mangled": "PointAngle"
+    },
+    "PointFromAngle": {
+     "va": "0047ef50",
+     "size": 96,
+     "mangled": "PointFromAngle"
+    },
+    "f_0047efb0": {
+     "va": "0047efb0",
+     "size": 32,
+     "mangled": "W?f_0047efb0$n(pn$Point$$i)pn$1$"
+    },
+    "PointInConvexPolygon": {
+     "va": "0047efd0",
+     "size": 135,
+     "mangled": "PointInConvexPolygon"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0047f060.c": {
+   "as": "_unknown\\tu_0047f060.c",
+   "install": "wc106",
+   "profile": "ot-oe",
+   "functions": {
+    "Crc16Byte": {
+     "va": "0047f060",
+     "size": 80,
+     "mangled": "Crc16Byte"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0047fc80.c": {
+   "as": "_unknown\\tu_0047fc80.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "TimerNow": {
+     "va": "0047fc80",
+     "size": 16,
+     "mangled": "TimerNow"
+    },
+    "GameClockSet": {
+     "va": "0047fc90",
+     "size": 16,
+     "mangled": "GameClockSet"
+    },
+    "GameTimerSet": {
+     "va": "0047fca0",
+     "size": 32,
+     "mangled": "GameTimerSet"
+    },
+    "GameTimerNext": {
+     "va": "0047fcc0",
+     "size": 32,
+     "mangled": "GameTimerNext"
+    },
+    "GameTimerExpired": {
+     "va": "0047fce0",
+     "size": 32,
+     "mangled": "GameTimerExpired"
+    },
+    "GameTimerElapsed": {
+     "va": "0047fd00",
+     "size": 16,
+     "mangled": "GameTimerElapsed"
+    },
+    "GameTimerRemaining": {
+     "va": "0047fd10",
+     "size": 33,
+     "mangled": "GameTimerRemaining"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0047fd40.c": {
+   "as": "_unknown\\tu_0047fd40.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "CriticalSection::$ct": {
+     "va": "0047fd40",
+     "size": 32,
+     "mangled": "W?$ct:CriticalSection$n()_"
+    },
+    "CriticalSection::$dt": {
+     "va": "0047fd60",
+     "size": 17,
+     "mangled": "W?$dt:CriticalSection$n()_"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_00480390.c": {
+   "as": "_unknown\\tu_00480390.c",
+   "install": "wc106",
+   "flags": [
+    "-4s",
+    "-s",
+    "-bm",
+    "-oxt",
+    "-oe=200"
+   ],
+   "tool": "wpp386",
+   "functions": {
+    "IsWin32s": {
+     "va": "00480390",
+     "size": 48,
+     "mangled": "IsWin32s"
+    },
+    "LoadWinG": {
+     "va": "004803c0",
+     "size": 272,
+     "mangled": "LoadWinG"
+    },
+    "_GdiRecommendDIBFormat@4": {
+     "va": "004804d0",
+     "size": 64,
+     "mangled": "_GdiRecommendDIBFormat@4"
+    },
+    "_GdiCreateDC@0": {
+     "va": "00480510",
+     "size": 16,
+     "mangled": "_GdiCreateDC@0"
+    },
+    "_GdiCreateBitmap@12": {
+     "va": "00480520",
+     "size": 48,
+     "mangled": "_GdiCreateBitmap@12"
+    },
+    "_GdiSetDIBColorTable@16": {
+     "va": "00480550",
+     "size": 48,
+     "mangled": "_GdiSetDIBColorTable@16"
+    },
+    "_GdiGetDIBColorTable@16": {
+     "va": "00480580",
+     "size": 48,
+     "mangled": "_GdiGetDIBColorTable@16"
+    },
+    "_GdiBitBlt@32": {
+     "va": "004805b0",
+     "size": 64,
+     "mangled": "_GdiBitBlt@32"
+    },
+    "_GdiStretchBlt@40": {
+     "va": "004805f0",
+     "size": 80,
+     "mangled": "_GdiStretchBlt@40"
+    },
+    "UseGdiFallback": {
+     "va": "00480640",
+     "size": 96,
+     "mangled": "UseGdiFallback"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048c0c0",
+     "size": 132
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/graph/gfx/g_cds.c": {
+   "as": "graph\\gfx\\g_cds.c",
+   "install": "wc106",
+   "profile": "ot-oe",
+   "functions": {
+    "GFXCDSSurface::$ct": {
+     "va": "00480870",
+     "size": 80,
+     "mangled": "W?$ct:GFXCDSSurface$n()_"
+    },
+    "GFXCDSSurface::$dt": {
+     "va": "004808c0",
+     "size": 128,
+     "mangled": "W?$dt:GFXCDSSurface$n()_"
+    },
+    "GFXCDSSurface::SetWindow": {
+     "va": "00480940",
+     "size": 192,
+     "mangled": "W?SetWindow$:GFXCDSSurface$n(pnv)v"
+    },
+    "GFXCDSSurface::create": {
+     "va": "00480a00",
+     "size": 432,
+     "mangled": "W?create$:GFXCDSSurface$n(iipnv)pn$1$"
+    },
+    "GFXCDSSurface::Blit": {
+     "va": "00480bb0",
+     "size": 64,
+     "mangled": "W?Blit$:GFXCDSSurface$n(iiiiii)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/pack/unpack.c": {
+   "as": "pack\\unpack.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "DecodeResourceBlock": {
+     "va": "00481290",
+     "size": 169,
+     "mangled": "DecodeResourceBlock"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "004a54c0",
+     "size": 14
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_00481360.c": {
+   "as": "_unknown\\tu_00481360.c",
+   "install": "wc106",
+   "profile": "ot-oe",
+   "functions": {
+    "ResourceEntryConstruct": {
+     "va": "00481360",
+     "size": 64,
+     "mangled": "ResourceEntryConstruct"
+    },
+    "ResourceEntry::$dt": {
+     "va": "004813a0",
+     "size": 128,
+     "mangled": "W?$dt:ResourceEntry$n()_"
+    },
+    "MakePath": {
+     "va": "00481420",
+     "size": 256,
+     "mangled": "MakePath"
+    },
+    "ResourceEntryClose": {
+     "va": "00481520",
+     "size": 96,
+     "mangled": "ResourceEntryClose"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048c20c",
+     "size": 5
+    }
+   },
+   "accepted": "2026-11-09"
   }
  },
  "accepted_losses": [

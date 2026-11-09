@@ -20959,6 +20959,14 @@
   "FormatSetBuffer": {
    "va": "0047d400",
    "kind": "func",
+   "status": "matched",
+   "mangled": "FormatSetBuffer",
+   "tu": "src/_unknown/tu_0047d400.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "FormatSetBuffer#W?FormatSetBuffer$n(pnvui)v": {
+   "va": "0047d400",
+   "kind": "func",
    "status": "hypothesis",
    "mangled": "W?FormatSetBuffer$n(pnvui)v",
    "evidence": "implied by src/_unknown/tu_00475688.c 2026-11-09"
@@ -20966,9 +20974,10 @@
   "BriefFormat": {
    "va": "0047d420",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "BriefFormat",
-   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+   "tu": "src/_unknown/tu_0047d400.c",
+   "evidence": "strict match 2026-11-09"
   },
   "BriefFormat#W?BriefFormat$n(pnvpnxa)pna": {
    "va": "0047d420",
@@ -21023,7 +21032,31 @@
    "mangled": "W?AssertExit$n(i)v",
    "evidence": "implied by src/sim/simhot.c 2026-11-09"
   },
+  "W?.fn_init$n()v@_unknown/tu_0047d680.c": {
+   "va": "0047d680",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/_unknown/tu_0047d680.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MousePresent": {
+   "va": "0047d6c0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "MousePresent",
+   "tu": "src/_unknown/tu_0047d680.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "InputInit": {
+   "va": "0047d6d0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "InputInit",
+   "tu": "src/_unknown/tu_0047d680.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "InputInit#W?InputInit$n()v": {
    "va": "0047d6d0",
    "kind": "func",
    "status": "hypothesis",
@@ -21033,16 +21066,33 @@
   "f_47d710": {
    "va": "0047d710",
    "kind": "func",
+   "status": "matched",
+   "mangled": "f_47d710",
+   "tu": "src/_unknown/tu_0047d680.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_47d710#W?f_47d710$n()v": {
+   "va": "0047d710",
+   "kind": "func",
    "status": "hypothesis",
    "mangled": "W?f_47d710$n()v",
    "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
   },
+  "ClampMousePoint": {
+   "va": "0047d720",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "ClampMousePoint",
+   "tu": "src/_unknown/tu_0047d680.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "PlyGetKey": {
    "va": "0047d770",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?PlyGetKey$n(pn$PlyKey$$)v",
-   "evidence": "implied by src/_unknown/tu_004297d4.c 2026-11-09"
+   "status": "matched",
+   "mangled": "PlyGetKey",
+   "tu": "src/_unknown/tu_0047d680.c",
+   "evidence": "strict match 2026-11-09"
   },
   "PlyGetKey#PlyGetKey": {
    "va": "0047d770",
@@ -21051,12 +21101,75 @@
    "mangled": "PlyGetKey",
    "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
   },
+  "PlyGetKey#W?PlyGetKey$n(pn$PlyKey$$)v": {
+   "va": "0047d770",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PlyGetKey$n(pn$PlyKey$$)v",
+   "evidence": "implied by src/_unknown/tu_004297d4.c 2026-11-09"
+  },
   "ReadMousePosition": {
+   "va": "0047d7d0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "ReadMousePosition",
+   "tu": "src/_unknown/tu_0047d680.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ReadMousePosition#W?ReadMousePosition$n(pn$tagPOINT$$)v": {
    "va": "0047d7d0",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?ReadMousePosition$n(pn$tagPOINT$$)v",
    "evidence": "implied by src/_unknown/tu_004774b8.c 2026-11-09"
+  },
+  "ReadMouseRelease": {
+   "va": "0047d7f0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "ReadMouseRelease",
+   "tu": "src/_unknown/tu_0047d680.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ReadMousePress": {
+   "va": "0047d860",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "ReadMousePress",
+   "tu": "src/_unknown/tu_0047d680.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MousePoll": {
+   "va": "0047d8d0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "MousePoll",
+   "tu": "src/_unknown/tu_0047d680.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MouseButtonDown": {
+   "va": "0047d8e0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "MouseButtonDown",
+   "tu": "src/_unknown/tu_0047d680.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "UpdateMouseState": {
+   "va": "0047d900",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "UpdateMouseState",
+   "tu": "src/_unknown/tu_0047d680.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SetMousePosition": {
+   "va": "0047d980",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "SetMousePosition",
+   "tu": "src/_unknown/tu_0047d680.c",
+   "evidence": "strict match 2026-11-09"
   },
   "PaletteGetColor": {
    "va": "0047d9d0",
@@ -21065,12 +21178,21 @@
    "mangled": "W?PaletteGetColor$n(pn$Palette$$pn$PaletteColor$$l)v",
    "evidence": "implied by src/_unknown/tu_00429ea4.c 2026-11-09"
   },
+  "PaletteGet": {
+   "va": "0047d9d0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "PaletteGet",
+   "tu": "src/_unknown/tu_0047d9d0.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "PaletteRead": {
    "va": "0047d9f0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "PaletteRead",
-   "evidence": "implied by src/terr/tbuild.c 2026-11-09"
+   "tu": "src/_unknown/tu_0047d9d0.c",
+   "evidence": "strict match 2026-11-09"
   },
   "PaletteSetColor": {
    "va": "0047da20",
@@ -21079,12 +21201,21 @@
    "mangled": "W?PaletteSetColor$n(pn$Palette$$pnx$PaletteColor$$l)v",
    "evidence": "implied by src/_unknown/tu_00429ea4.c 2026-11-09"
   },
+  "PaletteSet": {
+   "va": "0047da20",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "PaletteSet",
+   "tu": "src/_unknown/tu_0047d9d0.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "PaletteCopyRange": {
    "va": "0047da40",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?PaletteCopyRange$n(pn$Palette$$pnx$PaletteColor$$ii)v",
-   "evidence": "implied by src/shell/shell.c 2026-11-09"
+   "status": "matched",
+   "mangled": "PaletteCopyRange",
+   "tu": "src/_unknown/tu_0047d9d0.c",
+   "evidence": "strict match 2026-11-09"
   },
   "PaletteCopyRange#PaletteCopyRange": {
    "va": "0047da40",
@@ -21093,12 +21224,20 @@
    "mangled": "PaletteCopyRange",
    "evidence": "implied by src/terr/tbuild.c 2026-11-09"
   },
+  "PaletteCopyRange#W?PaletteCopyRange$n(pn$Palette$$pnx$PaletteColor$$ii)v": {
+   "va": "0047da40",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PaletteCopyRange$n(pn$Palette$$pnx$PaletteColor$$ii)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
   "DecodeLaunchPalette": {
    "va": "0047da70",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?DecodeLaunchPalette$n(pn$Palette$$pnxv)v",
-   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+   "status": "matched",
+   "mangled": "DecodeLaunchPalette",
+   "tu": "src/_unknown/tu_0047d9d0.c",
+   "evidence": "strict match 2026-11-09"
   },
   "DecodeLaunchPalette#W?DecodeLaunchPalette$n(pnvpnv)v": {
    "va": "0047da70",
@@ -21107,7 +21246,38 @@
    "mangled": "W?DecodeLaunchPalette$n(pnvpnv)v",
    "evidence": "implied by src/_unknown/tu_0041cb48.c 2026-11-09"
   },
+  "DecodeLaunchPalette#W?DecodeLaunchPalette$n(pn$Palette$$pnxv)v": {
+   "va": "0047da70",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?DecodeLaunchPalette$n(pn$Palette$$pnxv)v",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "InterpolateColor": {
+   "va": "0047dab0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "InterpolateColor",
+   "tu": "src/_unknown/tu_0047d9d0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PaletteGradient": {
+   "va": "0047dae0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "PaletteGradient",
+   "tu": "src/_unknown/tu_0047d9d0.c",
+   "evidence": "placed (at) in src/_unknown/tu_0047d9d0.c 2026-11-09"
+  },
   "PaletteFade": {
+   "va": "0047dbc0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "PaletteFade",
+   "tu": "src/_unknown/tu_0047d9d0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PaletteFade#W?PaletteFade$n(pn$Palette$$iiipnxul)v": {
    "va": "0047dbc0",
    "kind": "func",
    "status": "hypothesis",
@@ -21117,9 +21287,10 @@
   "PaletteFindColor": {
    "va": "0047dca0",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?PaletteFindColor$n(pn$Palette$$pnx$PaletteColor$$)uc",
-   "evidence": "implied by src/shell/shell.c 2026-11-09"
+   "status": "matched",
+   "mangled": "PaletteFindColor",
+   "tu": "src/_unknown/tu_0047d9d0.c",
+   "evidence": "strict match 2026-11-09"
   },
   "PaletteFindColor#W?PaletteFindColor$n(pn$Palette$$pnx$PaletteColor$$)i": {
    "va": "0047dca0",
@@ -21128,7 +21299,30 @@
    "mangled": "W?PaletteFindColor$n(pn$Palette$$pnx$PaletteColor$$)i",
    "evidence": "implied by src/_unknown/tu_00429ea4.c 2026-11-09"
   },
+  "PaletteFindColor#W?PaletteFindColor$n(pn$Palette$$pnx$PaletteColor$$)uc": {
+   "va": "0047dca0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PaletteFindColor$n(pn$Palette$$pnx$PaletteColor$$)uc",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "ColorDistance": {
+   "va": "0047dd00",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "ColorDistance",
+   "tu": "src/_unknown/tu_0047d9d0.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "FrameInputInit": {
+   "va": "0047dd80",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "FrameInputInit",
+   "tu": "src/_unknown/tu_0047dd80.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "FrameInputInit#W?FrameInputInit$n()v": {
    "va": "0047dd80",
    "kind": "func",
    "status": "hypothesis",
@@ -21138,6 +21332,14 @@
   "f_47dde0": {
    "va": "0047dde0",
    "kind": "func",
+   "status": "matched",
+   "mangled": "f_47dde0",
+   "tu": "src/_unknown/tu_0047dd80.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_47dde0#W?f_47dde0$n()v": {
+   "va": "0047dde0",
+   "kind": "func",
    "status": "hypothesis",
    "mangled": "W?f_47dde0$n()v",
    "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
@@ -21145,16 +21347,89 @@
   "ResetFrameClock": {
    "va": "0047ddf0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "ResetFrameClock",
-   "evidence": "implied by src/pop/pdeath.c 2026-11-09"
+   "tu": "src/_unknown/tu_0047dd80.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "KeyQueuePending": {
+   "va": "0047de10",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "KeyQueuePending",
+   "tu": "src/_unknown/tu_0047dd80.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ReadKeyEvent": {
+   "va": "0047de30",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "ReadKeyEvent",
+   "tu": "src/_unknown/tu_0047dd80.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "QueueKeyEvent": {
+   "va": "0047de70",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "QueueKeyEvent",
+   "tu": "src/_unknown/tu_0047dd80.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MarkKeyDown": {
+   "va": "0047dee0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "MarkKeyDown",
+   "tu": "src/_unknown/tu_0047dd80.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MarkKeyUp": {
+   "va": "0047df00",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "MarkKeyUp",
+   "tu": "src/_unknown/tu_0047dd80.c",
+   "evidence": "strict match 2026-11-09"
   },
   "GuiReadKey": {
+   "va": "0047df20",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "GuiReadKey",
+   "tu": "src/_unknown/tu_0047dd80.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "GuiReadKey#W?GuiReadKey$n(ui)i": {
    "va": "0047df20",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?GuiReadKey$n(ui)i",
    "evidence": "implied by src/_unknown/tu_00425978.c 2026-11-09"
+  },
+  "ControlKeyDown": {
+   "va": "0047df40",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "ControlKeyDown",
+   "tu": "src/_unknown/tu_0047dd80.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "AltKeyDown": {
+   "va": "0047df60",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "AltKeyDown",
+   "tu": "src/_unknown/tu_0047dd80.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ShiftKeyDown": {
+   "va": "0047df80",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "ShiftKeyDown",
+   "tu": "src/_unknown/tu_0047dd80.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ShellBase::Update": {
    "va": "0047dfc2",
@@ -21219,12 +21494,21 @@
    "mangled": "W?PopConstructorArray$n(pnvipnv)v",
    "evidence": "implied by src/pop/psystem.c 2026-11-09"
   },
+  "W?.fn_init$n()v@_unknown/tu_0047e150.c": {
+   "va": "0047e150",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/_unknown/tu_0047e150.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "next_link_seed": {
    "va": "0047e160",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "next_link_seed",
-   "evidence": "implied by src/multi/linkapp.c 2026-11-09"
+   "tu": "src/_unknown/tu_0047e150.c",
+   "evidence": "strict match 2026-11-09"
   },
   "next_link_seed#W?next_link_seed$n(pnul)i": {
    "va": "0047e160",
@@ -21243,9 +21527,10 @@
   "RandomRange": {
    "va": "0047e1a0",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?RandomRange$n(pniii)i",
-   "evidence": "implied by src/logic/miss.c 2026-11-09"
+   "status": "matched",
+   "mangled": "RandomRange",
+   "tu": "src/_unknown/tu_0047e150.c",
+   "evidence": "strict match 2026-11-09"
   },
   "RandomRange#RandomRange": {
    "va": "0047e1a0",
@@ -21254,19 +21539,36 @@
    "mangled": "RandomRange",
    "evidence": "implied by src/sim/explo.c (overload-safe migration 2026-11-09)"
   },
+  "RandomRange#W?RandomRange$n(pniii)i": {
+   "va": "0047e1a0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?RandomRange$n(pniii)i",
+   "evidence": "implied by src/logic/miss.c 2026-11-09"
+  },
   "f_0047e200": {
    "va": "0047e200",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?f_0047e200$n(pni)v",
-   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+   "tu": "src/_unknown/tu_0047e150.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "RandomBiased": {
+   "va": "0047e210",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "RandomBiased",
+   "tu": "src/_unknown/tu_0047e150.c",
+   "evidence": "placed (at) in src/_unknown/tu_0047e150.c 2026-11-09"
   },
   "FxStirSeed": {
    "va": "0047e330",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?FxStirSeed$n(pnui)v",
-   "evidence": "implied by src/_unknown/tu_00460800.c 2026-11-09"
+   "tu": "src/_unknown/tu_0047e150.c",
+   "evidence": "strict match 2026-11-09"
   },
   "FileInit": {
    "va": "0047e450",
@@ -21275,6 +21577,13 @@
    "mangled": "W?FileInit$n(pn$FileRecord$$)v",
    "tu": "src/io/file.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "FileInit#FileInit": {
+   "va": "0047e450",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "FileInit",
+   "evidence": "implied by src/_unknown/tu_00481360.c 2026-11-09"
   },
   "FileRecord::Release": {
    "va": "0047e470",
@@ -21561,12 +21870,34 @@
    "mangled": "W?UnpackFlicPixels$n(pnucpnxv)i",
    "evidence": "implied by src/gui/flic.c 2026-11-09"
   },
+  "UnpackFlicPixels#UnpackFlicPixels": {
+   "va": "0047ec9c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "UnpackFlicPixels",
+   "evidence": "implied by src/pack/unpack.c 2026-11-09"
+  },
   "UnpackFlicPacked": {
    "va": "0047ed10",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?UnpackFlicPacked$n(pnucpnxv)i",
    "evidence": "implied by src/gui/flic.c 2026-11-09"
+  },
+  "UnpackFlicPacked#UnpackFlicPacked": {
+   "va": "0047ed10",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "UnpackFlicPacked",
+   "evidence": "implied by src/pack/unpack.c 2026-11-09"
+  },
+  "ApproachFixed": {
+   "va": "0047eec0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "ApproachFixed",
+   "tu": "src/_unknown/tu_0047eec0.c",
+   "evidence": "strict match 2026-11-09"
   },
   "f_0047ef00": {
    "va": "0047ef00",
@@ -21575,12 +21906,21 @@
    "mangled": "f_0047ef00",
    "evidence": "implied by src/_unknown/tu_0044455c.c 2026-11-09"
   },
+  "VectorAngle": {
+   "va": "0047ef00",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "VectorAngle",
+   "tu": "src/_unknown/tu_0047eec0.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "PointAngle": {
    "va": "0047ef20",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?PointAngle$n(pn$ApplyPoint$$pn$1$)i",
-   "evidence": "implied by src/sim/apply.c 2026-11-09"
+   "status": "matched",
+   "mangled": "PointAngle",
+   "tu": "src/_unknown/tu_0047eec0.c",
+   "evidence": "strict match 2026-11-09"
   },
   "PointAngle#W?PointAngle$n(pn$ExploPoint$$pn$1$)i": {
    "va": "0047ef20",
@@ -21589,6 +21929,13 @@
    "mangled": "W?PointAngle$n(pn$ExploPoint$$pn$1$)i",
    "evidence": "implied by src/sim/explo.c (overload-safe migration 2026-11-09)"
   },
+  "PointAngle#W?PointAngle$n(pn$ApplyPoint$$pn$1$)i": {
+   "va": "0047ef20",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PointAngle$n(pn$ApplyPoint$$pn$1$)i",
+   "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
   "PointPolar": {
    "va": "0047ef50",
    "kind": "func",
@@ -21596,12 +21943,44 @@
    "mangled": "W?PointPolar$n(pn$DamagePoint$$ii)v",
    "evidence": "implied by src/_unknown/tu_0045b7d0.c 2026-11-09"
   },
+  "PointFromAngle": {
+   "va": "0047ef50",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "PointFromAngle",
+   "tu": "src/_unknown/tu_0047eec0.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "f_0047efb0": {
+   "va": "0047efb0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0047efb0$n(pn$Point$$i)pn$1$",
+   "tu": "src/_unknown/tu_0047eec0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0047efb0#W?f_0047efb0$n(pnvi)v": {
    "va": "0047efb0",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?f_0047efb0$n(pnvi)v",
    "evidence": "implied by src/terr/tdisplay.c 2026-11-09"
+  },
+  "PointInConvexPolygon": {
+   "va": "0047efd0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "PointInConvexPolygon",
+   "tu": "src/_unknown/tu_0047eec0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "Crc16Byte": {
+   "va": "0047f060",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "Crc16Byte",
+   "tu": "src/_unknown/tu_0047f060.c",
+   "evidence": "strict match 2026-11-09"
   },
   "Crc16": {
    "va": "0047f0b0",
@@ -21616,6 +21995,14 @@
    "status": "hypothesis",
    "mangled": "W?Crc16$n(pnuspnxvui)v",
    "evidence": "implied by src/_unknown/tu_00435dec.c 2026-11-09"
+  },
+  "Crc16#Crc16": {
+   "va": "0047f0b0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "Crc16",
+   "tu": "src/_unknown/tu_0047f060.c",
+   "evidence": "placed (at) in src/_unknown/tu_0047f060.c 2026-11-09"
   },
   "RenderImage": {
    "va": "0047f114",
@@ -21645,6 +22032,20 @@
    "mangled": "W?ISqrt$n(ui)ui",
    "evidence": "implied by src/sim/apply.c 2026-11-09"
   },
+  "FixedMultiplyShift": {
+   "va": "0047f94b",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "FixedMultiplyShift",
+   "evidence": "implied by src/_unknown/tu_0047eec0.c 2026-11-09"
+  },
+  "FixedSin#FixedSin": {
+   "va": "0047f9a0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "FixedSin",
+   "evidence": "implied by src/_unknown/tu_0047eec0.c 2026-11-09"
+  },
   "FixedSin": {
    "va": "0047f9d9",
    "kind": "func",
@@ -21652,12 +22053,27 @@
    "mangled": "W?FixedSin$n(i)i",
    "evidence": "implied by src/_unknown/tu_0045ad00.c 2026-11-09"
   },
+  "FixedCos": {
+   "va": "0047f9d9",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "FixedCos",
+   "evidence": "implied by src/_unknown/tu_0047eec0.c 2026-11-09"
+  },
+  "RotatePoint": {
+   "va": "0047fa8e",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "RotatePoint",
+   "evidence": "implied by src/_unknown/tu_0047eec0.c 2026-11-09"
+  },
   "TimerNow": {
    "va": "0047fc80",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?TimerNow$n()ui",
-   "evidence": "implied by src/sim/explo.c 2026-11-09"
+   "status": "matched",
+   "mangled": "TimerNow",
+   "tu": "src/_unknown/tu_0047fc80.c",
+   "evidence": "strict match 2026-11-09"
   },
   "TimerNow#TimerNow": {
    "va": "0047fc80",
@@ -21666,7 +22082,22 @@
    "mangled": "TimerNow",
    "evidence": "implied by src/sim/anim.c 2026-11-09"
   },
+  "TimerNow#W?TimerNow$n()ui": {
+   "va": "0047fc80",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?TimerNow$n()ui",
+   "evidence": "implied by src/sim/explo.c 2026-11-09"
+  },
   "GameClockSet": {
+   "va": "0047fc90",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "GameClockSet",
+   "tu": "src/_unknown/tu_0047fc80.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "GameClockSet#W?GameClockSet$n(ul)v": {
    "va": "0047fc90",
    "kind": "func",
    "status": "hypothesis",
@@ -21676,30 +22107,152 @@
   "GameTimerSet": {
    "va": "0047fca0",
    "kind": "func",
+   "status": "matched",
+   "mangled": "GameTimerSet",
+   "tu": "src/_unknown/tu_0047fc80.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "GameTimerSet#W?GameTimerSet$n(pn$GameTimer$$ul)v": {
+   "va": "0047fca0",
+   "kind": "func",
    "status": "hypothesis",
    "mangled": "W?GameTimerSet$n(pn$GameTimer$$ul)v",
    "evidence": "implied by src/sim/simgame.c 2026-11-09"
   },
+  "GameTimerNext": {
+   "va": "0047fcc0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "GameTimerNext",
+   "tu": "src/_unknown/tu_0047fc80.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "GameTimerExpired": {
+   "va": "0047fce0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "GameTimerExpired",
+   "tu": "src/_unknown/tu_0047fc80.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "GameTimerExpired#W?GameTimerExpired$n(pn$GameTimer$$)i": {
    "va": "0047fce0",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?GameTimerExpired$n(pn$GameTimer$$)i",
    "evidence": "implied by src/sim/simgame.c 2026-11-09"
   },
+  "GameTimerElapsed": {
+   "va": "0047fd00",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "GameTimerElapsed",
+   "tu": "src/_unknown/tu_0047fc80.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "GameTimerRemaining": {
+   "va": "0047fd10",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "GameTimerRemaining",
+   "tu": "src/_unknown/tu_0047fc80.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "CriticalSection::$ct": {
    "va": "0047fd40",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?$ct:CriticalSection$n()_",
-   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+   "tu": "src/_unknown/tu_0047fd40.c",
+   "evidence": "strict match 2026-11-09"
   },
   "CriticalSection::$dt": {
    "va": "0047fd60",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?$dt:CriticalSection$n()_",
-   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+   "tu": "src/_unknown/tu_0047fd40.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "IsWin32s": {
+   "va": "00480390",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "IsWin32s",
+   "tu": "src/_unknown/tu_00480390.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LoadWinG": {
+   "va": "004803c0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "LoadWinG",
+   "tu": "src/_unknown/tu_00480390.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "_GdiRecommendDIBFormat@4": {
+   "va": "004804d0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "_GdiRecommendDIBFormat@4",
+   "tu": "src/_unknown/tu_00480390.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "_GdiCreateDC@0": {
+   "va": "00480510",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "_GdiCreateDC@0",
+   "tu": "src/_unknown/tu_00480390.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "_GdiCreateBitmap@12": {
+   "va": "00480520",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "_GdiCreateBitmap@12",
+   "tu": "src/_unknown/tu_00480390.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "_GdiSetDIBColorTable@16": {
+   "va": "00480550",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "_GdiSetDIBColorTable@16",
+   "tu": "src/_unknown/tu_00480390.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "_GdiGetDIBColorTable@16": {
+   "va": "00480580",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "_GdiGetDIBColorTable@16",
+   "tu": "src/_unknown/tu_00480390.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "_GdiBitBlt@32": {
+   "va": "004805b0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "_GdiBitBlt@32",
+   "tu": "src/_unknown/tu_00480390.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "_GdiStretchBlt@40": {
+   "va": "004805f0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "_GdiStretchBlt@40",
+   "tu": "src/_unknown/tu_00480390.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "UseGdiFallback": {
+   "va": "00480640",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "UseGdiFallback",
+   "tu": "src/_unknown/tu_00480390.c",
+   "evidence": "strict match 2026-11-09"
   },
   "InitializeWinG": {
    "va": "004806a0",
@@ -21708,12 +22261,52 @@
    "mangled": "W?InitializeWinG$n()i",
    "evidence": "implied by src/_unknown/tu_0047b260.c 2026-11-09"
   },
+  "InitializeWinG#InitializeWinG": {
+   "va": "004806a0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "InitializeWinG",
+   "tu": "src/_unknown/tu_00480390.c",
+   "evidence": "placed (at) in src/_unknown/tu_00480390.c 2026-11-09"
+  },
+  "GFXCDSSurface::$ct": {
+   "va": "00480870",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:GFXCDSSurface$n()_",
+   "tu": "src/graph/gfx/g_cds.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "WinGSurface::$dt": {
    "va": "004808c0",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?$dt:WinGSurface$n()_",
    "evidence": "implied by src/_unknown/tu_0047b260.c 2026-11-09"
+  },
+  "GFXCDSSurface::$dt": {
+   "va": "004808c0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$dt:GFXCDSSurface$n()_",
+   "tu": "src/graph/gfx/g_cds.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "GFXCDSSurface::SetWindow": {
+   "va": "00480940",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetWindow$:GFXCDSSurface$n(pnv)v",
+   "tu": "src/graph/gfx/g_cds.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "GFXCDSSurface::create": {
+   "va": "00480a00",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?create$:GFXCDSSurface$n(iipnv)pn$1$",
+   "tu": "src/graph/gfx/g_cds.c",
+   "evidence": "strict match 2026-11-09"
   },
   "BlitWinGSurface": {
    "va": "00480bb0",
@@ -21722,12 +22315,28 @@
    "mangled": "W?BlitWinGSurface$n(pn$WinGSurface$$iiiiii)v",
    "evidence": "implied by src/_unknown/tu_0047b260.c 2026-11-09"
   },
+  "GFXCDSSurface::Blit": {
+   "va": "00480bb0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Blit$:GFXCDSSurface$n(iiiiii)v",
+   "tu": "src/graph/gfx/g_cds.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "SetWinGPalette": {
    "va": "00480bf0",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?SetWinGPalette$n(pn$WinGSurface$$pnxvuiui)v",
    "evidence": "implied by src/_unknown/tu_0047b260.c 2026-11-09"
+  },
+  "GFXCDSSurface::setPalette": {
+   "va": "00480bf0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?setPalette$:GFXCDSSurface$n(pnx$tagPALETTEENTRY$$ii)v",
+   "tu": "src/graph/gfx/g_cds.c",
+   "evidence": "placed (at) in src/graph/gfx/g_cds.c 2026-11-09"
   },
   "RenderCopy": {
    "va": "00480f99",
@@ -21770,6 +22379,89 @@
    "status": "hypothesis",
    "mangled": "W?DecodeImage$n(ucpnxvpn$DecodeBuffer$$)v",
    "evidence": "implied by src/_unknown/tu_0047b720.c 2026-11-09"
+  },
+  "DecodeResourceBlock": {
+   "va": "00481290",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "DecodeResourceBlock",
+   "tu": "src/pack/unpack.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ResourceEntryConstruct": {
+   "va": "00481360",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "ResourceEntryConstruct",
+   "tu": "src/_unknown/tu_00481360.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ResourceEntry::$dt": {
+   "va": "004813a0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$dt:ResourceEntry$n()_",
+   "tu": "src/_unknown/tu_00481360.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MakePath": {
+   "va": "00481420",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "MakePath",
+   "tu": "src/_unknown/tu_00481360.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ResourceEntryClose": {
+   "va": "00481520",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "ResourceEntryClose",
+   "tu": "src/_unknown/tu_00481360.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "FileOpen": {
+   "va": "00481580",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "FileOpen",
+   "tu": "src/_unknown/tu_00481360.c",
+   "evidence": "placed (at) in src/_unknown/tu_00481360.c 2026-11-09"
+  },
+  "VectorAtan": {
+   "va": "004826a8",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "VectorAtan",
+   "evidence": "implied by src/_unknown/tu_0047eec0.c 2026-11-09"
+  },
+  "Palette::$ct": {
+   "va": "00485390",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$ct:Palette$n()_",
+   "evidence": "implied by src/graph/gfx/g_cds.c 2026-11-09"
+  },
+  "Palette::$dt": {
+   "va": "004853c0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:Palette$n()_",
+   "evidence": "implied by src/graph/gfx/g_cds.c 2026-11-09"
+  },
+  "Palette::ToRgb": {
+   "va": "00485490",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ToRgb$:Palette$n(pn$tagRGBQUAD$$)v",
+   "evidence": "implied by src/graph/gfx/g_cds.c 2026-11-09"
+  },
+  "UnpackLzw": {
+   "va": "004854c8",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "UnpackLzw",
+   "evidence": "implied by src/pack/unpack.c 2026-11-09"
   },
   "g48a9d0": {
    "va": "0048a9d0",
@@ -23887,6 +24579,13 @@
    "status": "hypothesis",
    "mangled": "W?imageDecodeBuffer$n$DecodeBuffer$$",
    "evidence": "implied by src/_unknown/tu_0047b720.c 2026-11-09"
+  },
+  "unpackScratch": {
+   "va": "004a40a0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?unpackScratch$n$UnpackBuffer$$",
+   "evidence": "implied by src/pack/unpack.c 2026-11-09"
   },
   "gRichTextFonts": {
    "va": "004a40a8",
@@ -32506,6 +33205,27 @@
    "mangled": "W?gShellResources$n$MciState$$",
    "evidence": "implied by src/_unknown/tu_00475688.c 2026-11-09"
   },
+  "formatBusy": {
+   "va": "0051397c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?formatBusy$ni",
+   "evidence": "implied by src/_unknown/tu_0047d400.c 2026-11-09"
+  },
+  "formatBuffer": {
+   "va": "00513980",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?formatBuffer$npna",
+   "evidence": "implied by src/_unknown/tu_0047d400.c 2026-11-09"
+  },
+  "formatBufferLength": {
+   "va": "00513984",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?formatBufferLength$ni",
+   "evidence": "implied by src/_unknown/tu_0047d400.c 2026-11-09"
+  },
   "g_assertMessageActive": {
    "va": "00513988",
    "kind": "data",
@@ -32548,6 +33268,55 @@
    "mangled": "g_assertCallbacks",
    "evidence": "implied by src/debug/assert.c (overload-safe migration 2026-11-09)"
   },
+  "mousePosition": {
+   "va": "00513a58",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?mousePosition$ny$MousePoint$$",
+   "evidence": "implied by src/_unknown/tu_0047d680.c 2026-11-09"
+  },
+  "pressPosition": {
+   "va": "00513a60",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?pressPosition$ny$MousePoint$$",
+   "evidence": "implied by src/_unknown/tu_0047d680.c 2026-11-09"
+  },
+  "releasePosition": {
+   "va": "00513a68",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?releasePosition$ny$MousePoint$$",
+   "evidence": "implied by src/_unknown/tu_0047d680.c 2026-11-09"
+  },
+  "savedPosition": {
+   "va": "00513a70",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?savedPosition$ny$MousePoint$$",
+   "evidence": "implied by src/_unknown/tu_0047d680.c 2026-11-09"
+  },
+  "mouseButtons": {
+   "va": "00513a78",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?mouseButtons$nyi",
+   "evidence": "implied by src/_unknown/tu_0047d680.c 2026-11-09"
+  },
+  "pressButtons": {
+   "va": "00513a7c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?pressButtons$nyi",
+   "evidence": "implied by src/_unknown/tu_0047d680.c 2026-11-09"
+  },
+  "releaseButtons": {
+   "va": "00513a80",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?releaseButtons$nyi",
+   "evidence": "implied by src/_unknown/tu_0047d680.c 2026-11-09"
+  },
   "gGuiPalette": {
    "va": "00513a88",
    "kind": "data",
@@ -32561,6 +33330,41 @@
    "status": "hypothesis",
    "mangled": "W?gGuiFadePalette$n$Palette$$",
    "evidence": "implied by src/_unknown/tu_0042a0e0.c 2026-11-09"
+  },
+  "keyboardActive": {
+   "va": "00514330",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?keyboardActive$nyi",
+   "evidence": "implied by src/_unknown/tu_0047dd80.c 2026-11-09"
+  },
+  "keyDown": {
+   "va": "00514334",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?keyDown$n[]uc",
+   "evidence": "implied by src/_unknown/tu_0047dd80.c 2026-11-09"
+  },
+  "keyQueue": {
+   "va": "00514434",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?keyQueue$n[]ui",
+   "evidence": "implied by src/_unknown/tu_0047dd80.c 2026-11-09"
+  },
+  "keyRead": {
+   "va": "00514454",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?keyRead$nyui",
+   "evidence": "implied by src/_unknown/tu_0047dd80.c 2026-11-09"
+  },
+  "keyWrite": {
+   "va": "00514458",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?keyWrite$nyui",
+   "evidence": "implied by src/_unknown/tu_0047dd80.c 2026-11-09"
   },
   "MissionRandomTable": {
    "va": "0051445c",
@@ -32583,6 +33387,14 @@
    "mangled": "W?g_fileOpenCount$nul",
    "evidence": "implied by src/io/file.c 2026-11-09"
   },
+  "randomInitializer@_unknown/tu_0047e150.c": {
+   "va": "00514460",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?randomInitializer$n$RandomInitializer$$",
+   "tu": "src/_unknown/tu_0047e150.c",
+   "evidence": "own data placed in src/_unknown/tu_0047e150.c 2026-11-09"
+  },
   "g_fileCloseCount": {
    "va": "00514464",
    "kind": "data",
@@ -32597,12 +33409,68 @@
    "mangled": "W?g_fileDirectCount$nul",
    "evidence": "implied by src/io/file.c 2026-11-09"
   },
+  "gameClock": {
+   "va": "0051446c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gameClock$nui",
+   "evidence": "implied by src/_unknown/tu_0047fc80.c 2026-11-09"
+  },
   "runtimeModuleHead": {
    "va": "0051448c",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?runtimeModuleHead$npnv",
    "evidence": "implied by src/_unknown/tu_0047ab81.c 2026-11-09"
+  },
+  "wingCreateDC": {
+   "va": "0051449c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?wingCreateDC$npn()pnv",
+   "evidence": "implied by src/_unknown/tu_00480390.c 2026-11-09"
+  },
+  "wingCreateBitmap": {
+   "va": "005144a0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?wingCreateBitmap$npn(pnvpn$tagBITMAPINFO$$pnpnv)pnv",
+   "evidence": "implied by src/_unknown/tu_00480390.c 2026-11-09"
+  },
+  "wingRecommendDIBFormat": {
+   "va": "005144a4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?wingRecommendDIBFormat$npn(pn$tagBITMAPINFO$$)i",
+   "evidence": "implied by src/_unknown/tu_00480390.c 2026-11-09"
+  },
+  "wingSetDIBColorTable": {
+   "va": "005144a8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?wingSetDIBColorTable$npn(pnvuiuipnx$tagRGBQUAD$$)ui",
+   "evidence": "implied by src/_unknown/tu_00480390.c 2026-11-09"
+  },
+  "wingGetDIBColorTable": {
+   "va": "005144ac",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?wingGetDIBColorTable$npn(pnvuiuipnx$tagRGBQUAD$$)ui",
+   "evidence": "implied by src/_unknown/tu_00480390.c 2026-11-09"
+  },
+  "wingBitBlt": {
+   "va": "005144b0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?wingBitBlt$npn(pnviiiipnvii)i",
+   "evidence": "implied by src/_unknown/tu_00480390.c 2026-11-09"
+  },
+  "wingStretchBlt": {
+   "va": "005144b4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?wingStretchBlt$npn(pnviiiipnviiii)i",
+   "evidence": "implied by src/_unknown/tu_00480390.c 2026-11-09"
   },
   "W?$Wts0gn$OutlinePoint$$$nx[]uc": {
    "va": "24448d68",
