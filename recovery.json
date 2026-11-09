@@ -8350,6 +8350,783 @@
    },
    "data": {},
    "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_004742bc.c": {
+   "as": "_unknown\\tu_004742bc.c",
+   "install": "wc106",
+   "flags": [
+    "-4s",
+    "-s",
+    "-bm",
+    "-oe=80"
+   ],
+   "tool": "wpp386",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "004742bc",
+     "size": 46,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "PeerQueue::Clear": {
+     "va": "004742ea",
+     "size": 49,
+     "mangled": "W?Clear$:PeerQueue$n()v"
+    },
+    "ResetQueue": {
+     "va": "0047431b",
+     "size": 75,
+     "mangled": "W?ResetQueue$n(pnv)v"
+    },
+    "ValidateSlot": {
+     "va": "00474366",
+     "size": 1,
+     "mangled": "W?ValidateSlot$n(i)v"
+    },
+    "Queue::DiscardThrough": {
+     "va": "00474367",
+     "size": 72,
+     "mangled": "W?DiscardThrough$:Queue$n(i)v"
+    },
+    "QueueRedeliver": {
+     "va": "004744ec",
+     "size": 56,
+     "mangled": "W?QueueRedeliver$n(pnaii)i"
+    },
+    "QueueSequence": {
+     "va": "00474524",
+     "size": 30,
+     "mangled": "W?QueueSequence$n(pnai)i"
+    },
+    "QueueSent": {
+     "va": "00474542",
+     "size": 61,
+     "mangled": "W?QueueSent$n(pnapn$MenuMessage$$)i"
+    },
+    "QueueNode::Key": {
+     "va": "0047469f",
+     "size": 15,
+     "mangled": "W?Key$:QueueNode$n()i"
+    },
+    "Queue::Less": {
+     "va": "004746ae",
+     "size": 36,
+     "mangled": "W?Less$:Queue$n(pnvpnv)i"
+    },
+    "QueueResend": {
+     "va": "004746d2",
+     "size": 81,
+     "mangled": "W?QueueResend$n(pnaiii)i"
+    },
+    "QueueRelease": {
+     "va": "00474723",
+     "size": 53,
+     "mangled": "W?QueueRelease$n(pnaii)i"
+    },
+    "QueueUpdate": {
+     "va": "00474758",
+     "size": 175,
+     "mangled": "W?QueueUpdate$n(pnaiiiii)i"
+    },
+    "QueueStatus": {
+     "va": "00474807",
+     "size": 62,
+     "mangled": "W?QueueStatus$n(pnaipnipnipnipni)v"
+    },
+    "QueueAcks": {
+     "va": "00474845",
+     "size": 78,
+     "mangled": "W?QueueAcks$n(pnaipnipni)v"
+    },
+    "PeerQueue::$dt": {
+     "va": "00474894",
+     "size": 22,
+     "mangled": "W?$dt:PeerQueue$n()_"
+    },
+    "PeerQueue::$ct": {
+     "va": "004748ac",
+     "size": 36,
+     "mangled": "W?$ct:PeerQueue$n()_"
+    },
+    "Transport::$dt": {
+     "va": "004748d0",
+     "size": 23,
+     "mangled": "W?$dt:Transport$n()_"
+    },
+    "Transport::$ct": {
+     "va": "004748e8",
+     "size": 23,
+     "mangled": "W?$ct:Transport$n()_"
+    }
+   },
+   "data": {
+    "CONST2": {
+     "va": "0048e1d4",
+     "size": 12
+    },
+    "_DATA": {
+     "va": "004a4044",
+     "size": 12
+    },
+    "W?$Wts0dn$PeerQueue$$$nx[]uc": {
+     "va": "0048e1e0",
+     "size": 17
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_00474900.c": {
+   "as": "_unknown\\tu_00474900.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "Options::$ct": {
+     "va": "00474900",
+     "size": 96,
+     "mangled": "W?$ct:Options$n()_"
+    },
+    "Options::Reset": {
+     "va": "00474960",
+     "size": 23,
+     "mangled": "W?Reset$:Options$n()v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_00474978.c": {
+   "as": "_unknown\\tu_00474978.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "SigsStop": {
+     "va": "00474978",
+     "size": 164,
+     "mangled": "W?SigsStop$n()i"
+    },
+    "SigsValidate": {
+     "va": "00474a1c",
+     "size": 136,
+     "mangled": "W?SigsValidate$n()i"
+    },
+    "SigsLoad": {
+     "va": "00474aa4",
+     "size": 454,
+     "mangled": "W?SigsLoad$n()i"
+    },
+    "link_is_ready": {
+     "va": "00474c6a",
+     "size": 274,
+     "mangled": "W?link_is_ready$n(pna)i"
+    },
+    "link_force_shutdown": {
+     "va": "00474d7c",
+     "size": 71,
+     "mangled": "W?link_force_shutdown$n()v"
+    },
+    "SigsSend": {
+     "va": "00474dc3",
+     "size": 78,
+     "mangled": "W?SigsSend$n(iiipnvus)i"
+    },
+    "link_alt_receive": {
+     "va": "00474e11",
+     "size": 150,
+     "mangled": "W?link_alt_receive$n(pnvpnvipnvi)i"
+    },
+    "alternate_link_disconnect": {
+     "va": "00474ea7",
+     "size": 1,
+     "mangled": "W?alternate_link_disconnect$n()v"
+    },
+    "link_load_settings": {
+     "va": "00474ea8",
+     "size": 68,
+     "mangled": "W?link_load_settings$n(pnv)v"
+    },
+    "SigsPlayerLeft": {
+     "va": "00474eec",
+     "size": 31,
+     "mangled": "W?SigsPlayerLeft$n(i)v"
+    },
+    "SigsRestart": {
+     "va": "00474f0b",
+     "size": 170,
+     "mangled": "W?SigsRestart$n()i"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048baec",
+     "size": 333
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_00474fb8.c": {
+   "as": "_unknown\\tu_00474fb8.c",
+   "install": "wc106",
+   "flags": [
+    "-4s",
+    "-s",
+    "-bm",
+    "-oe=80"
+   ],
+   "tool": "wpp386",
+   "functions": {
+    "MovieCapture": {
+     "va": "00474fb8",
+     "size": 99,
+     "mangled": "W?MovieCapture$n()v"
+    },
+    "MovieRelease": {
+     "va": "0047501b",
+     "size": 24,
+     "mangled": "W?MovieRelease$n()v"
+    },
+    "MovieNotify": {
+     "va": "00475033",
+     "size": 18,
+     "mangled": "W?MovieNotify$n(i)v"
+    },
+    "MovieCreatePalette": {
+     "va": "00475045",
+     "size": 92,
+     "mangled": "W?MovieCreatePalette$n()v"
+    },
+    "MovieInit": {
+     "va": "004750a1",
+     "size": 41,
+     "mangled": "W?MovieInit$n(i)i"
+    },
+    "MovieClose": {
+     "va": "004750ca",
+     "size": 74,
+     "mangled": "W?MovieClose$n()v"
+    },
+    "MovieTerminate": {
+     "va": "00475114",
+     "size": 55,
+     "mangled": "W?MovieTerminate$n()v"
+    },
+    "MovieResize": {
+     "va": "0047514b",
+     "size": 75,
+     "mangled": "W?MovieResize$n(pnvpn$tagRECT$$)v"
+    },
+    "MovieIsPlaying": {
+     "va": "00475196",
+     "size": 6,
+     "mangled": "W?MovieIsPlaying$n()i"
+    },
+    "MoviePlace": {
+     "va": "0047519c",
+     "size": 111,
+     "mangled": "W?MoviePlace$n()v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_00475688.c": {
+   "as": "_unknown\\tu_00475688.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "ShellShutdown": {
+     "va": "00475688",
+     "size": 76,
+     "mangled": "W?ShellShutdown$n()v"
+    },
+    "ShellIdle": {
+     "va": "004756d4",
+     "size": 1,
+     "mangled": "W?ShellIdle$n()v"
+    },
+    "ShellInit": {
+     "va": "004756d5",
+     "size": 434,
+     "mangled": "W?ShellInit$n()i"
+    },
+    "ShellServiceFrame": {
+     "va": "00475887",
+     "size": 37,
+     "mangled": "W?ShellServiceFrame$n()v"
+    },
+    "ShellLimitFrameRate": {
+     "va": "004758ac",
+     "size": 91,
+     "mangled": "W?ShellLimitFrameRate$n()v"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048bd38",
+     "size": 57
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_00475dc8.c": {
+   "as": "_unknown\\tu_00475dc8.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "00475dc8",
+     "size": 553,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "DebugTextClear": {
+     "va": "00475ff1",
+     "size": 21,
+     "mangled": "W?DebugTextClear$n()v"
+    },
+    "SmallDebugTextClear": {
+     "va": "00476006",
+     "size": 14,
+     "mangled": "W?SmallDebugTextClear$n()v"
+    },
+    "DebugTextAppend": {
+     "va": "00476014",
+     "size": 67,
+     "mangled": "W?DebugTextAppend$n(pnxa)v"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048bd74",
+     "size": 149
+    },
+    "CONST2": {
+     "va": "0048e208",
+     "size": 124
+    },
+    "_DATA": {
+     "va": "004a408c",
+     "size": 12
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_00476058.c": {
+   "as": "_unknown\\tu_00476058.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "FindGameCD": {
+     "va": "00476058",
+     "size": 198,
+     "mangled": "W?FindGameCD$n(i)a"
+    }
+   },
+   "data": {
+    "_DATA": {
+     "va": "004a41e8",
+     "size": 3
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_00476120.c": {
+   "as": "_unknown\\tu_00476120.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "00476120",
+     "size": 128,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "HelpCloseViewer": {
+     "va": "004761a0",
+     "size": 39,
+     "mangled": "W?HelpCloseViewer$n()v"
+    },
+    "HelpInit": {
+     "va": "004761c7",
+     "size": 191,
+     "mangled": "W?HelpInit$n()v"
+    },
+    "HelpShutdown": {
+     "va": "00476286",
+     "size": 47,
+     "mangled": "W?HelpShutdown$n()v"
+    },
+    "HelpGetTopic": {
+     "va": "004762b5",
+     "size": 6,
+     "mangled": "W?HelpGetTopic$n()i"
+    },
+    "MenuHelpSetTopic": {
+     "va": "004762bb",
+     "size": 10,
+     "mangled": "W?MenuHelpSetTopic$n(i)v"
+    },
+    "HelpSetText": {
+     "va": "004762c5",
+     "size": 77,
+     "mangled": "W?HelpSetText$n(pnxa)v"
+    },
+    "HelpClearTopic": {
+     "va": "00476312",
+     "size": 49,
+     "mangled": "W?HelpClearTopic$n()v"
+    },
+    "HelpSetDirty": {
+     "va": "00476343",
+     "size": 10,
+     "mangled": "W?HelpSetDirty$n(i)v"
+    },
+    "HelpUpdate": {
+     "va": "0047634d",
+     "size": 123,
+     "mangled": "W?HelpUpdate$n()v"
+    },
+    "HelpSetTitle": {
+     "va": "004763c8",
+     "size": 63,
+     "mangled": "W?HelpSetTitle$n(pnxa)v"
+    },
+    "HelpOpenDefault": {
+     "va": "00476407",
+     "size": 10,
+     "mangled": "W?HelpOpenDefault$n()v"
+    },
+    "HelpIdle": {
+     "va": "00476411",
+     "size": 1,
+     "mangled": "W?HelpIdle$n()v"
+    },
+    "f_00476412": {
+     "va": "00476412",
+     "size": 243,
+     "mangled": "W?f_00476412$n(i)v"
+    },
+    "OptionsDlgProc": {
+     "va": "00476505",
+     "size": 13,
+     "mangled": "W?OptionsDlgProc$n(i)v"
+    },
+    "BriefWaitB": {
+     "va": "00476512",
+     "size": 16,
+     "mangled": "BriefWaitB"
+    },
+    "HelpManualTopic": {
+     "va": "00476522",
+     "size": 6,
+     "mangled": "W?HelpManualTopic$n()i"
+    },
+    "MenuHelpOpenTopic": {
+     "va": "00476528",
+     "size": 69,
+     "mangled": "W?MenuHelpOpenTopic$n(l)v"
+    }
+   },
+   "data": {
+    "CONST2": {
+     "va": "0048e298",
+     "size": 28
+    },
+    "_DATA": {
+     "va": "004a41ec",
+     "size": 12
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_00476570.c": {
+   "as": "_unknown\\tu_00476570.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "GdiTextInit": {
+     "va": "00476570",
+     "size": 65,
+     "mangled": "W?GdiTextInit$n()i"
+    },
+    "GdiTextReady": {
+     "va": "004765b1",
+     "size": 16,
+     "mangled": "W?GdiTextReady$n()i"
+    },
+    "GdiTextClose": {
+     "va": "004765c1",
+     "size": 27,
+     "mangled": "W?GdiTextClose$n()v"
+    },
+    "GdiTextSetMode": {
+     "va": "004765dc",
+     "size": 10,
+     "mangled": "W?GdiTextSetMode$n(i)v"
+    },
+    "f_4765e6": {
+     "va": "004765e6",
+     "size": 195,
+     "mangled": "W?f_4765e6$n()i"
+    },
+    "HelpTextWindowTitle": {
+     "va": "004767c8",
+     "size": 97,
+     "mangled": "W?HelpTextWindowTitle$n(pnxa)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0047682c.c": {
+   "as": "_unknown\\tu_0047682c.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "ExploIdle": {
+     "va": "0047682c",
+     "size": 1,
+     "mangled": "W?ExploIdle$n()v"
+    },
+    "FormatVersion": {
+     "va": "0047682d",
+     "size": 51,
+     "mangled": "W?FormatVersion$n()v"
+    },
+    "SettingsLoad": {
+     "va": "00476860",
+     "size": 132,
+     "mangled": "W?SettingsLoad$n(pn$Settings$$)i"
+    },
+    "SettingsSave": {
+     "va": "004768e4",
+     "size": 66,
+     "mangled": "W?SettingsSave$n(pn$Settings$$)i"
+    },
+    "SettingsDefaults": {
+     "va": "00476926",
+     "size": 532,
+     "mangled": "W?SettingsDefaults$n(pn$Settings$$)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_00476b3c.c": {
+   "as": "_unknown\\tu_00476b3c.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "CursorInit": {
+     "va": "00476b3c",
+     "size": 413,
+     "mangled": "W?CursorInit$n()v"
+    },
+    "CursorClose": {
+     "va": "00476cd9",
+     "size": 1,
+     "mangled": "W?CursorClose$n()v"
+    },
+    "SimSetCursor": {
+     "va": "00476cda",
+     "size": 53,
+     "mangled": "W?SimSetCursor$n(ii)v"
+    },
+    "CursorUpdate": {
+     "va": "00476d0f",
+     "size": 46,
+     "mangled": "W?CursorUpdate$n()v"
+    },
+    "CursorCurrent": {
+     "va": "00476d3d",
+     "size": 6,
+     "mangled": "W?CursorCurrent$n()i"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048bf40",
+     "size": 54
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_00476d44.c": {
+   "as": "_unknown\\tu_00476d44.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "SaveHeaderWrite": {
+     "va": "00476d44",
+     "size": 52,
+     "mangled": "W?SaveHeaderWrite$n(pn$SaveHeader$$pn$FileRecord$$)i"
+    },
+    "SaveHeaderRead": {
+     "va": "00476d78",
+     "size": 100,
+     "mangled": "W?SaveHeaderRead$n(pn$SaveHeader$$pn$FileRecord$$)i"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_00476ddc.c": {
+   "as": "_unknown\\tu_00476ddc.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "DecodeOption": {
+     "va": "00476ddc",
+     "size": 21,
+     "mangled": "W?DecodeOption$n(pna)pna"
+    },
+    "AddSpecialOption": {
+     "va": "00476df1",
+     "size": 139,
+     "mangled": "W?AddSpecialOption$n(ipna)v"
+    },
+    "SpecialOptionSound": {
+     "va": "00476e7c",
+     "size": 36,
+     "mangled": "W?SpecialOptionSound$n(i)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_004770d0.c": {
+   "as": "_unknown\\tu_004770d0.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "LoadDialogExports": {
+     "va": "004770d0",
+     "size": 218,
+     "mangled": "W?LoadDialogExports$n()v"
+    },
+    "DialogConfirmPaused": {
+     "va": "004771aa",
+     "size": 145,
+     "mangled": "W?DialogConfirmPaused$n(pnxa)i"
+    },
+    "f_0047723b": {
+     "va": "0047723b",
+     "size": 90,
+     "mangled": "W?f_0047723b$n(pnxa)i"
+    },
+    "f_00477295": {
+     "va": "00477295",
+     "size": 111,
+     "mangled": "W?f_00477295$n(pnxa)v"
+    },
+    "DialogTimedMessage": {
+     "va": "00477304",
+     "size": 78,
+     "mangled": "W?DialogTimedMessage$n(pnxa)v"
+    },
+    "f_477352": {
+     "va": "00477352",
+     "size": 79,
+     "mangled": "W?f_477352$n(ipnapnapna)i"
+    },
+    "f_004773a1": {
+     "va": "004773a1",
+     "size": 43,
+     "mangled": "f_004773a1"
+    },
+    "f_004773cc": {
+     "va": "004773cc",
+     "size": 83,
+     "mangled": "W?f_004773cc$n(pnapnaul)i"
+    },
+    "DialogOpen": {
+     "va": "0047741f",
+     "size": 80,
+     "mangled": "W?DialogOpen$n(iiiiiiiii)i"
+    },
+    "LinkSelectDialog": {
+     "va": "0047746f",
+     "size": 41,
+     "mangled": "W?LinkSelectDialog$n(iii)i"
+    },
+    "HelpTextTimed": {
+     "va": "00477498",
+     "size": 29,
+     "mangled": "W?HelpTextTimed$n(pnxaul)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_004774b8.c": {
+   "as": "_unknown\\tu_004774b8.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "MenuTrackContext": {
+     "va": "004776ff",
+     "size": 111,
+     "mangled": "W?MenuTrackContext$n()v"
+    },
+    "MenuShutdown": {
+     "va": "0047776e",
+     "size": 9,
+     "mangled": "W?MenuShutdown$n()v"
+    },
+    "MenuInit": {
+     "va": "00477777",
+     "size": 33,
+     "mangled": "W?MenuInit$n()v"
+    },
+    "create_chat_popup": {
+     "va": "00477a08",
+     "size": 97,
+     "mangled": "W?create_chat_popup$n(pnvi)pnv"
+    },
+    "chat_menu_valid": {
+     "va": "00477a69",
+     "size": 105,
+     "mangled": "W?chat_menu_valid$n(pnv)i"
+    },
+    "MenuClear": {
+     "va": "00477ad2",
+     "size": 49,
+     "mangled": "W?MenuClear$n(pnv)i"
+    },
+    "build_chat_menu_line": {
+     "va": "00477b03",
+     "size": 204,
+     "mangled": "W?build_chat_menu_line$n(pnvuipnxaui)i"
+    },
+    "MenuDeleteLine": {
+     "va": "00477bcf",
+     "size": 167,
+     "mangled": "W?MenuDeleteLine$n(pnvui)i"
+    },
+    "enable_chat_menu": {
+     "va": "00477c76",
+     "size": 85,
+     "mangled": "W?enable_chat_menu$n(pnviii)i"
+    },
+    "check_chat_menu": {
+     "va": "00477ccb",
+     "size": 77,
+     "mangled": "W?check_chat_menu$n(pnv)i"
+    },
+    "chat_menu_state": {
+     "va": "00477d18",
+     "size": 82,
+     "mangled": "W?chat_menu_state$n(pnvii)i"
+    },
+    "set_chat_menu_item": {
+     "va": "00477d6a",
+     "size": 87,
+     "mangled": "W?set_chat_menu_item$n(pnvii)v"
+    },
+    "MenuCount": {
+     "va": "00477dc1",
+     "size": 20,
+     "mangled": "W?MenuCount$n(pnv)i"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
   }
  },
  "accepted_losses": [
