@@ -111,6 +111,118 @@
    "tu": "src/_unknown/tu_0042a598.c",
    "evidence": "strict match 2026-11-09"
   },
+  "GridClear": {
+   "va": "0042ad60",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?GridClear$n(pn$TerrainGrid$$)pn$1$",
+   "tu": "src/terr/tgrid.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "GridClearNeighbors": {
+   "va": "0042af80",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?GridClearNeighbors$n(pn$TerrainGrid$$)v",
+   "tu": "src/terr/tgrid.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "GridClamp": {
+   "va": "0042b3a0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?GridClamp$n(ul)l",
+   "tu": "src/terr/tgrid.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "FogNoOp": {
+   "va": "00432f40",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?FogNoOp$n()v",
+   "tu": "src/terr/tfog.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "FogSetSource": {
+   "va": "00432f50",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?FogSetSource$n(pn$FogBuffer$$pn$FogSource$$)pn$1$",
+   "tu": "src/terr/tfog.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "FogRelease": {
+   "va": "00432f70",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?FogRelease$n(pn$FogBuffer$$)v",
+   "tu": "src/terr/tfog.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "FogCopy": {
+   "va": "00433050",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?FogCopy$n(pn$FogBuffer$$pn$1$)v",
+   "tu": "src/terr/tfog.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "FogMerge": {
+   "va": "004330b0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?FogMerge$n(pn$FogBuffer$$pn$1$)v",
+   "tu": "src/terr/tfog.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "FogResetMode": {
+   "va": "004331a0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?FogResetMode$n(pn$FogBuffer$$)v",
+   "tu": "src/terr/tfog.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "FastBufferClear": {
+   "va": "00434c80",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?FastBufferClear$n(pn$FastBuffer$$)pn$1$",
+   "tu": "src/terr/tfast.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "FastBufferFree": {
+   "va": "00434c90",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?FastBufferFree$n(pn$FastBuffer$$)pn$1$",
+   "tu": "src/terr/tfast.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "FastBufferCreate": {
+   "va": "00434cc0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?FastBufferCreate$n(pn$FastBuffer$$l)i",
+   "tu": "src/terr/tfast.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "FastBufferDestroy": {
+   "va": "00434d50",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?FastBufferDestroy$n(pn$FastBuffer$$)v",
+   "tu": "src/terr/tfast.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "FastBufferReset": {
+   "va": "00434d70",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?FastBufferReset$n(pn$FastBuffer$$)v",
+   "tu": "src/terr/tfast.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "TimeNow": {
    "va": "0047abc0",
    "kind": "func",
@@ -167,11 +279,43 @@
    "tu": "src/_unknown/tu_0047abc0.c",
    "evidence": "strict match 2026-11-09"
   },
+  "StrPool::$ct": {
+   "va": "0047c280",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:StrPool$n(lll)_",
+   "tu": "src/misc/strpool.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "StrPool::Reset": {
+   "va": "0047c2a0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Reset$:StrPool$n()pn$1$",
+   "tu": "src/misc/strpool.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "StrPool::Lock": {
    "va": "0047c2c0",
    "kind": "func",
    "status": "matched",
    "mangled": "W?Lock$:StrPool$n()i",
+   "tu": "src/misc/strpool.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "StrPool::Unlock": {
+   "va": "0047c320",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Unlock$:StrPool$n()v",
+   "tu": "src/misc/strpool.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SetPointer": {
+   "va": "0047c340",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetPointer$n(pnpnvpnv)v",
    "tu": "src/misc/strpool.c",
    "evidence": "strict match 2026-11-09"
   },
@@ -182,6 +326,21 @@
    "mangled": "W?Load$:ResMgr$n(liii)pnv",
    "evidence": "implied by src/misc/strpool.c 2026-11-09"
   },
+  "ReleasePoolData": {
+   "va": "0047cb80",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ReleasePoolData$n(pnv)v",
+   "evidence": "implied by src/misc/strpool.c 2026-11-09"
+  },
+  "DrainAssertCallbacks": {
+   "va": "0047d4c0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?DrainAssertCallbacks$n()v",
+   "tu": "src/debug/assert.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "AssertFail": {
    "va": "0047d5a0",
    "kind": "func",
@@ -189,12 +348,106 @@
    "mangled": "W?AssertFail$n(pnxaipnxa)v",
    "evidence": "implied by src/misc/strpool.c 2026-11-09"
   },
+  "AssertExit": {
+   "va": "0047d640",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?AssertExit$n(ui)v",
+   "tu": "src/debug/assert.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "PlyGetKey": {
    "va": "0047d770",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?PlyGetKey$n(pn$PlyKey$$)v",
    "evidence": "implied by src/_unknown/tu_004297d4.c 2026-11-09"
+  },
+  "MemoryRelease": {
+   "va": "0047e044",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "MemoryRelease",
+   "evidence": "implied by src/terr/tfog.c 2026-11-09"
+  },
+  "FileInit": {
+   "va": "0047e450",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?FileInit$n(pn$FileRecord$$)v",
+   "tu": "src/io/file.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "FileGetAndClearError": {
+   "va": "0047e7f0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?FileGetAndClearError$n(pn$FileRecord$$)i",
+   "tu": "src/io/file.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "FileCopy": {
+   "va": "0047e970",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?FileCopy$n(pnxapnxai)i",
+   "tu": "src/io/file.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "FileMove": {
+   "va": "0047e9c0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?FileMove$n(pnxapnxa)i",
+   "tu": "src/io/file.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "FileDelete": {
+   "va": "0047ea00",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?FileDelete$n(pnxa)i",
+   "tu": "src/io/file.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "DirectoryCreate": {
+   "va": "0047ea30",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?DirectoryCreate$n(pnxa)i",
+   "tu": "src/io/file.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "DirectoryRemove": {
+   "va": "0047ea60",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?DirectoryRemove$n(pnxa)i",
+   "tu": "src/io/file.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MemoryStatusValue": {
+   "va": "0047eb00",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?MemoryStatusValue$n(i)ul",
+   "tu": "src/io/memory.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "GlobalBlockFree": {
+   "va": "0047eb40",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?GlobalBlockFree$n(pnv)pnv",
+   "tu": "src/io/memory.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MemoryAllocationRetry": {
+   "va": "0047eb98",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MemoryAllocationRetry$n(ul)pnv",
+   "evidence": "implied by src/terr/tfast.c 2026-11-09"
   },
   "gIn7c": {
    "va": "004bb77c",
@@ -286,6 +539,34 @@
    "status": "hypothesis",
    "mangled": "W?gResMgr$n$ResMgr$$",
    "evidence": "implied by src/misc/strpool.c 2026-11-09"
+  },
+  "g_mainWindow": {
+   "va": "0051253c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g_mainWindow$npnv",
+   "evidence": "implied by src/debug/assert.c 2026-11-09"
+  },
+  "g_assertMessageActive": {
+   "va": "00513988",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g_assertMessageActive$ni",
+   "evidence": "implied by src/debug/assert.c 2026-11-09"
+  },
+  "g_assertCallbackCount": {
+   "va": "0051398c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g_assertCallbackCount$ni",
+   "evidence": "implied by src/debug/assert.c 2026-11-09"
+  },
+  "g_assertCallbacks": {
+   "va": "00513990",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g_assertCallbacks$n[]pn()v",
+   "evidence": "implied by src/debug/assert.c 2026-11-09"
   }
  }
 }

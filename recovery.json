@@ -51,10 +51,30 @@
    "install": "wc106",
    "profile": "ot",
    "functions": {
+    "StrPool::$ct": {
+     "va": "0047c280",
+     "size": 32,
+     "mangled": "W?$ct:StrPool$n(lll)_"
+    },
+    "StrPool::Reset": {
+     "va": "0047c2a0",
+     "size": 32,
+     "mangled": "W?Reset$:StrPool$n()pn$1$"
+    },
     "StrPool::Lock": {
      "va": "0047c2c0",
-     "size": 86,
+     "size": 96,
      "mangled": "W?Lock$:StrPool$n()i"
+    },
+    "StrPool::Unlock": {
+     "va": "0047c320",
+     "size": 32,
+     "mangled": "W?Unlock$:StrPool$n()v"
+    },
+    "SetPointer": {
+     "va": "0047c340",
+     "size": 11,
+     "mangled": "W?SetPointer$n(pnpnvpnv)v"
     }
    },
    "data": {
@@ -150,6 +170,190 @@
     }
    },
    "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/debug/assert.c": {
+   "as": "debug\\assert.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "DrainAssertCallbacks": {
+     "va": "0047d4c0",
+     "size": 48,
+     "mangled": "W?DrainAssertCallbacks$n()v"
+    },
+    "AssertExit": {
+     "va": "0047d640",
+     "size": 57,
+     "mangled": "W?AssertExit$n(ui)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/io/memory.c": {
+   "as": "io\\memory.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "MemoryStatusValue": {
+     "va": "0047eb00",
+     "size": 64,
+     "mangled": "W?MemoryStatusValue$n(i)ul"
+    },
+    "GlobalBlockFree": {
+     "va": "0047eb40",
+     "size": 16,
+     "mangled": "W?GlobalBlockFree$n(pnv)pnv"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/io/file.c": {
+   "as": "io\\file.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "FileInit": {
+     "va": "0047e450",
+     "size": 32,
+     "mangled": "W?FileInit$n(pn$FileRecord$$)v"
+    },
+    "FileGetAndClearError": {
+     "va": "0047e7f0",
+     "size": 16,
+     "mangled": "W?FileGetAndClearError$n(pn$FileRecord$$)i"
+    },
+    "FileCopy": {
+     "va": "0047e970",
+     "size": 80,
+     "mangled": "W?FileCopy$n(pnxapnxai)i"
+    },
+    "FileMove": {
+     "va": "0047e9c0",
+     "size": 64,
+     "mangled": "W?FileMove$n(pnxapnxa)i"
+    },
+    "FileDelete": {
+     "va": "0047ea00",
+     "size": 48,
+     "mangled": "W?FileDelete$n(pnxa)i"
+    },
+    "DirectoryCreate": {
+     "va": "0047ea30",
+     "size": 48,
+     "mangled": "W?DirectoryCreate$n(pnxa)i"
+    },
+    "DirectoryRemove": {
+     "va": "0047ea60",
+     "size": 48,
+     "mangled": "W?DirectoryRemove$n(pnxa)i"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/terr/tgrid.c": {
+   "as": "terr\\tgrid.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "GridClear": {
+     "va": "0042ad60",
+     "size": 32,
+     "mangled": "W?GridClear$n(pn$TerrainGrid$$)pn$1$"
+    },
+    "GridClearNeighbors": {
+     "va": "0042af80",
+     "size": 48,
+     "mangled": "W?GridClearNeighbors$n(pn$TerrainGrid$$)v"
+    },
+    "GridClamp": {
+     "va": "0042b3a0",
+     "size": 48,
+     "mangled": "W?GridClamp$n(ul)l"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/terr/tfog.c": {
+   "as": "terr\\tfog.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "FogNoOp": {
+     "va": "00432f40",
+     "size": 16,
+     "mangled": "W?FogNoOp$n()v"
+    },
+    "FogSetSource": {
+     "va": "00432f50",
+     "size": 32,
+     "mangled": "W?FogSetSource$n(pn$FogBuffer$$pn$FogSource$$)pn$1$"
+    },
+    "FogRelease": {
+     "va": "00432f70",
+     "size": 64,
+     "mangled": "W?FogRelease$n(pn$FogBuffer$$)v"
+    },
+    "FogCopy": {
+     "va": "00433050",
+     "size": 96,
+     "mangled": "W?FogCopy$n(pn$FogBuffer$$pn$1$)v"
+    },
+    "FogMerge": {
+     "va": "004330b0",
+     "size": 80,
+     "mangled": "W?FogMerge$n(pn$FogBuffer$$pn$1$)v"
+    },
+    "FogResetMode": {
+     "va": "004331a0",
+     "size": 64,
+     "mangled": "W?FogResetMode$n(pn$FogBuffer$$)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/terr/tfast.c": {
+   "as": "terr\\tfast.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "FastBufferClear": {
+     "va": "00434c80",
+     "size": 16,
+     "mangled": "W?FastBufferClear$n(pn$FastBuffer$$)pn$1$"
+    },
+    "FastBufferFree": {
+     "va": "00434c90",
+     "size": 48,
+     "mangled": "W?FastBufferFree$n(pn$FastBuffer$$)pn$1$"
+    },
+    "FastBufferCreate": {
+     "va": "00434cc0",
+     "size": 144,
+     "mangled": "W?FastBufferCreate$n(pn$FastBuffer$$l)i"
+    },
+    "FastBufferDestroy": {
+     "va": "00434d50",
+     "size": 32,
+     "mangled": "W?FastBufferDestroy$n(pn$FastBuffer$$)v"
+    },
+    "FastBufferReset": {
+     "va": "00434d70",
+     "size": 32,
+     "mangled": "W?FastBufferReset$n(pn$FastBuffer$$)v"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "00490660",
+     "size": 13
+    }
+   },
    "accepted": "2026-11-09"
   }
  }
