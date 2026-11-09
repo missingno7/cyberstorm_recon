@@ -1102,7 +1102,12 @@
      "mangled": "W?WorldActionStop$n(pnv)i"
     }
    },
-   "data": {},
+   "data": {
+    "W?$Wts0fn$WorldAction$$$nx[]uc": {
+     "va": "0048dff8",
+     "size": 17
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/_unknown/tu_00425978.c": {
@@ -1955,6 +1960,10 @@
     "CONST": {
      "va": "0048b878",
      "size": 50
+    },
+    "_DATA": {
+     "va": "004a3f1c",
+     "size": 92
     }
    },
    "accepted": "2026-11-09"
@@ -2328,6 +2337,79 @@
      "size": 20
     }
    },
+   "accepted": "2026-11-09"
+  },
+  "src/sim/anim.c": {
+   "as": "sim\\anim.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "AnimActionClear": {
+     "va": "00457390",
+     "size": 16,
+     "mangled": "W?AnimActionClear$n(pnv)v"
+    },
+    "AnimActionIsSet": {
+     "va": "00457420",
+     "size": 16,
+     "mangled": "W?AnimActionIsSet$n(pnv)i"
+    },
+    "AnimActionRelease": {
+     "va": "004575a0",
+     "size": 64,
+     "mangled": "W?AnimActionRelease$n(pnv)ul"
+    },
+    "AnimActionAssign": {
+     "va": "004575e0",
+     "size": 112,
+     "mangled": "W?AnimActionAssign$n(pnvulii)v"
+    },
+    "AnimActionHasMetadata": {
+     "va": "00458c60",
+     "size": 48,
+     "mangled": "W?AnimActionHasMetadata$n(pnv)i"
+    },
+    "AnimActionGetMetadata": {
+     "va": "00458d10",
+     "size": 32,
+     "mangled": "W?AnimActionGetMetadata$n(pnv)i"
+    },
+    "AnimActionMarkReady": {
+     "va": "00458d30",
+     "size": 16,
+     "mangled": "W?AnimActionMarkReady$n(pnv)v"
+    },
+    "AnimActionChecksum": {
+     "va": "00458da0",
+     "size": 80,
+     "mangled": "W?AnimActionChecksum$n(pnvpnus)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_00458f20.c": {
+   "as": "_unknown\\tu_00458f20.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "ResetAnimDrawState": {
+     "va": "00458f20",
+     "size": 64,
+     "mangled": "W?ResetAnimDrawState$n()v"
+    },
+    "AnimSetViewportRect": {
+     "va": "004595a0",
+     "size": 160,
+     "mangled": "W?AnimSetViewportRect$n(pnipniiiii)i"
+    },
+    "UnknownIdentityThunk": {
+     "va": "004599a0",
+     "size": 5,
+     "mangled": "W?UnknownIdentityThunk$n(ul)ul"
+    }
+   },
+   "data": {},
    "accepted": "2026-11-09"
   }
  }

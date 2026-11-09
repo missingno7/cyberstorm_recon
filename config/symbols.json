@@ -2262,6 +2262,13 @@
    "mangled": "W?BestLocInitialize$n(pnvpnxai)i",
    "evidence": "implied by src/sim/worldact.c 2026-11-09"
   },
+  "AnimResourceFind": {
+   "va": "0042caf0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "AnimResourceFind",
+   "evidence": "implied by src/sim/anim.c 2026-11-09"
+  },
   "BestLocSetCandidate": {
    "va": "0042cb50",
    "kind": "func",
@@ -2269,12 +2276,26 @@
    "mangled": "W?BestLocSetCandidate$n(pnvpnv)i",
    "evidence": "implied by src/sim/worldact.c 2026-11-09"
   },
+  "AnimResourceUpdate": {
+   "va": "0042cb50",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "AnimResourceUpdate",
+   "evidence": "implied by src/sim/anim.c 2026-11-09"
+  },
   "BestLocVisit": {
    "va": "0042cf20",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?BestLocVisit$n(pnvpn(pnv)i)v",
    "evidence": "implied by src/logic/bestloc.c 2026-11-09"
+  },
+  "AnimResourceIterate": {
+   "va": "0042cf20",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "AnimResourceIterate",
+   "evidence": "implied by src/sim/anim.c 2026-11-09"
   },
   "BestLocSetup": {
    "va": "0042d080",
@@ -2296,6 +2317,13 @@
    "status": "hypothesis",
    "mangled": "TargetInitAt",
    "evidence": "implied by src/sim/target.c 2026-11-09"
+  },
+  "AnimReleaseResource": {
+   "va": "00432ef0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "AnimReleaseResource",
+   "evidence": "implied by src/sim/anim.c 2026-11-09"
   },
   "FogNoOp": {
    "va": "00432f40",
@@ -2997,12 +3025,59 @@
    "tu": "src/sim/worldact.c",
    "evidence": "strict match 2026-11-09"
   },
+  "WorldAction::$ct": {
+   "va": "00457380",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$ct:WorldAction$n()_",
+   "evidence": "implied by src/sim/worldact.c 2026-11-09"
+  },
+  "AnimActionClear": {
+   "va": "00457390",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?AnimActionClear$n(pnv)v",
+   "tu": "src/sim/anim.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "AnimActionInitialize": {
+   "va": "004573a0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?AnimActionInitialize$n(pnvucusucuc)v",
+   "tu": "src/sim/anim.c",
+   "evidence": "placed (at) in src/sim/anim.c 2026-11-09"
+  },
   "WorldActionNotify": {
    "va": "004573f0",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "WorldActionNotify",
    "evidence": "implied by src/sim/worldact.c 2026-11-09"
+  },
+  "AnimActionIsSet": {
+   "va": "00457420",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?AnimActionIsSet$n(pnv)i",
+   "tu": "src/sim/anim.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "AnimActionAdvance": {
+   "va": "00457430",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?AnimActionAdvance$n(pnv)i",
+   "tu": "src/sim/anim.c",
+   "evidence": "placed (at) in src/sim/anim.c 2026-11-09"
+  },
+  "AnimActionStep": {
+   "va": "00457470",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?AnimActionStep$n(pnuc)i",
+   "tu": "src/sim/anim.c",
+   "evidence": "placed (at) in src/sim/anim.c 2026-11-09"
   },
   "ActorClose": {
    "va": "00457510",
@@ -3018,12 +3093,163 @@
    "mangled": "WorldActorClose",
    "evidence": "implied by src/sim/worldact.c 2026-11-09"
   },
+  "AnimActionRelease": {
+   "va": "004575a0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?AnimActionRelease$n(pnv)ul",
+   "tu": "src/sim/anim.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "AnimActionAssign": {
+   "va": "004575e0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?AnimActionAssign$n(pnvulii)v",
+   "tu": "src/sim/anim.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "WorldActionFinalize": {
    "va": "00457650",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "WorldActionFinalize",
    "evidence": "implied by src/sim/worldact.c 2026-11-09"
+  },
+  "AnimActionClearGroup": {
+   "va": "00457650",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?AnimActionClearGroup$n(pnv)v",
+   "tu": "src/sim/anim.c",
+   "evidence": "placed (at) in src/sim/anim.c 2026-11-09"
+  },
+  "AnimActionReplace": {
+   "va": "004576d0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?AnimActionReplace$n(pnvul)v",
+   "tu": "src/sim/anim.c",
+   "evidence": "placed (at) in src/sim/anim.c 2026-11-09"
+  },
+  "AnimActionFreeBlock": {
+   "va": "00458820",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?AnimActionFreeBlock$n(pnv)v",
+   "tu": "src/sim/anim.c",
+   "evidence": "placed (at) in src/sim/anim.c 2026-11-09"
+  },
+  "AnimActionHasMetadata": {
+   "va": "00458c60",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?AnimActionHasMetadata$n(pnv)i",
+   "tu": "src/sim/anim.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "AnimActionConfigure": {
+   "va": "00458c90",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?AnimActionConfigure$n(pnvii)v",
+   "tu": "src/sim/anim.c",
+   "evidence": "placed (at) in src/sim/anim.c 2026-11-09"
+  },
+  "AnimActionGetMetadata": {
+   "va": "00458d10",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?AnimActionGetMetadata$n(pnv)i",
+   "tu": "src/sim/anim.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "AnimActionMarkReady": {
+   "va": "00458d30",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?AnimActionMarkReady$n(pnv)v",
+   "tu": "src/sim/anim.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "AnimActionPublish": {
+   "va": "00458d40",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?AnimActionPublish$n(pnv)v",
+   "tu": "src/sim/anim.c",
+   "evidence": "placed (at) in src/sim/anim.c 2026-11-09"
+  },
+  "AnimActionChecksum": {
+   "va": "00458da0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?AnimActionChecksum$n(pnvpnus)v",
+   "tu": "src/sim/anim.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "AnimActionCopyState": {
+   "va": "00458df0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?AnimActionCopyState$n(pnvpnv)v",
+   "tu": "src/sim/anim.c",
+   "evidence": "placed (at) in src/sim/anim.c 2026-11-09"
+  },
+  "AnimActionEqual": {
+   "va": "00458e20",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?AnimActionEqual$n(pnvpnv)i",
+   "tu": "src/sim/anim.c",
+   "evidence": "placed (at) in src/sim/anim.c 2026-11-09"
+  },
+  "AnimActionCopyChangedFields": {
+   "va": "00458ea0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?AnimActionCopyChangedFields$n(pnvpnv)v",
+   "tu": "src/sim/anim.c",
+   "evidence": "placed (at) in src/sim/anim.c 2026-11-09"
+  },
+  "ResetAnimDrawState": {
+   "va": "00458f20",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ResetAnimDrawState$n()v",
+   "tu": "src/_unknown/tu_00458f20.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "AnimClearBetweenRows": {
+   "va": "00458f60",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?AnimClearBetweenRows$n()v",
+   "tu": "src/_unknown/tu_00458f20.c",
+   "evidence": "placed (at) in src/_unknown/tu_00458f20.c 2026-11-09"
+  },
+  "AnimDrawBitmap": {
+   "va": "00459450",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "AnimDrawBitmap",
+   "evidence": "implied by src/_unknown/tu_00458f20.c 2026-11-09"
+  },
+  "AnimSetViewportRect": {
+   "va": "004595a0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?AnimSetViewportRect$n(pnipniiiii)i",
+   "tu": "src/_unknown/tu_00458f20.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "UnknownIdentityThunk": {
+   "va": "004599a0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?UnknownIdentityThunk$n(ul)ul",
+   "tu": "src/_unknown/tu_00458f20.c",
+   "evidence": "strict match 2026-11-09"
   },
   "TargetModuleInit": {
    "va": "0045a600",
@@ -5341,6 +5567,13 @@
    "mangled": "W?Event$:ShellBase$n(uc)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "WorldAction::$dt": {
+   "va": "0047e008",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:WorldAction$n()_",
+   "evidence": "implied by src/sim/worldact.c 2026-11-09"
+  },
   "MemoryRelease": {
    "va": "0047e044",
    "kind": "func",
@@ -5927,6 +6160,20 @@
    "status": "hypothesis",
    "mangled": "W?gPopItemName$n[]a",
    "evidence": "implied by src/pop/psystem.c 2026-11-09"
+  },
+  "animationMetaAt0cbc": {
+   "va": "004a0cbc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?animationMetaAt0cbc$n[]i",
+   "evidence": "implied by src/sim/anim.c 2026-11-09"
+  },
+  "animationMetaAt0cc0": {
+   "va": "004a0cc0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?animationMetaAt0cc0$n[]i",
+   "evidence": "implied by src/sim/anim.c 2026-11-09"
   },
   "targetHeader": {
    "va": "004a256c",
@@ -6789,6 +7036,13 @@
    "mangled": "W?targetFallbackName$n[]a",
    "evidence": "implied by src/sim/target.c 2026-11-09"
   },
+  "animFallbackName": {
+   "va": "004d3594",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?animFallbackName$n[]uc",
+   "evidence": "implied by src/sim/anim.c 2026-11-09"
+  },
   "targetDefinitionTable": {
    "va": "004d35d8",
    "kind": "data",
@@ -6802,6 +7056,13 @@
    "status": "hypothesis",
    "mangled": "W?actorIndexTable$npni",
    "evidence": "implied by src/sim/worldact.c 2026-11-09"
+  },
+  "animResourcePointerTable": {
+   "va": "004d35dc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?animResourcePointerTable$npnul",
+   "evidence": "implied by src/sim/anim.c 2026-11-09"
   },
   "gFastTransform": {
    "va": "004d3698",
@@ -6893,6 +7154,48 @@
    "status": "hypothesis",
    "mangled": "W?worldActionFlag$ni",
    "evidence": "implied by src/sim/worldact.c 2026-11-09"
+  },
+  "animReleaseSentinel": {
+   "va": "004d4278",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?animReleaseSentinel$nul",
+   "evidence": "implied by src/sim/anim.c 2026-11-09"
+  },
+  "animViewportX": {
+   "va": "004d4300",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?animViewportX$ni",
+   "evidence": "implied by src/_unknown/tu_00458f20.c 2026-11-09"
+  },
+  "animViewportY": {
+   "va": "004d4304",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?animViewportY$ni",
+   "evidence": "implied by src/_unknown/tu_00458f20.c 2026-11-09"
+  },
+  "animViewportWidth": {
+   "va": "004d4308",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?animViewportWidth$ni",
+   "evidence": "implied by src/_unknown/tu_00458f20.c 2026-11-09"
+  },
+  "animViewportHeight": {
+   "va": "004d430c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?animViewportHeight$ni",
+   "evidence": "implied by src/_unknown/tu_00458f20.c 2026-11-09"
+  },
+  "animDrawState": {
+   "va": "004d4328",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?animDrawState$n[]yul",
+   "evidence": "implied by src/_unknown/tu_00458f20.c 2026-11-09"
   },
   "targetPrompt": {
    "va": "004dca54",
@@ -7230,6 +7533,13 @@
    "mangled": "W?gDebugText$n[]a",
    "evidence": "implied by src/multi/linkdlg.c 2026-11-09"
   },
+  "gSessionTable": {
+   "va": "0050b944",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gSessionTable$n[]ul",
+   "evidence": "implied by src/multi/linkdlg.c 2026-11-09"
+  },
   "g511948": {
    "va": "00511948",
    "kind": "data",
@@ -7369,6 +7679,34 @@
    "status": "hypothesis",
    "mangled": "W?gMenuTextMap$npnul",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "viewportClipLeft": {
+   "va": "005138fc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?viewportClipLeft$ni",
+   "evidence": "implied by src/_unknown/tu_00458f20.c 2026-11-09"
+  },
+  "viewportClipTop": {
+   "va": "00513900",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?viewportClipTop$ni",
+   "evidence": "implied by src/_unknown/tu_00458f20.c 2026-11-09"
+  },
+  "viewportClipRight": {
+   "va": "00513904",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?viewportClipRight$ni",
+   "evidence": "implied by src/_unknown/tu_00458f20.c 2026-11-09"
+  },
+  "viewportClipBottom": {
+   "va": "00513908",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?viewportClipBottom$ni",
+   "evidence": "implied by src/_unknown/tu_00458f20.c 2026-11-09"
   },
   "gMenuClip": {
    "va": "0051391c",
