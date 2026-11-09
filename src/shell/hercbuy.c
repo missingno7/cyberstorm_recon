@@ -387,12 +387,19 @@ void f_004171ac(void *object)
                      0, -1, 0, &totalHeight, &visibleHeight, 0, 0xf);
     }
 }
-
+inline void HercBuyRefreshLabels(void *object,unsigned char baseIndex)
+{
+    HercBuyDataView *screen=(HercBuyDataView*)object;
+    for(char i=0;i<15;i++) {
+        g4b39e4[i].SetText((const char *)((baseIndex+i)*17+(unsigned long)screen->names));
+        g4b3c78[i].SetText(screen->prices[baseIndex+i]);
+    }
+}
 void f_00417219(void *object)
 {
     for(char row=0;row<15;row++) {
         g4b39e4[row].SetColor(2); g4b39e4[row].SetAlign(1);
-        f_00417732(object,0);
+        HercBuyRefreshLabels(object,0);
         g4b3c78[row].SetColor(2); g4b3c78[row].SetFont(1); g4b3c78[row].SetBackground(0); g4b3c78[row].SetAlign(1);
     }
 }
@@ -473,10 +480,10 @@ void f_0041733c(void *object)
 
 void f_004176b1(void *object)
 {
-    char i;
+    unsigned char i;
 
     for (i = 0; i < *((unsigned char *)object + 0xed); ++i) {
-        strncpy((char *)object + 0xf6 + (unsigned long)i * 0x11,
+        strncpy((char *)((unsigned long)i*17+(unsigned long)((HercBuyDataView *)object)->names),
                 *(const char **)(*(int *)((char *)object + 0xfce) +
                                  (unsigned long)i * 0x19), 0x10);
         MenuFormatNumber(*(int *)(*(int *)((char *)object + 0xfce) + 8 +
@@ -508,13 +515,6 @@ void f_004177af(void *object, char amount)
     text = f_004418a9(&g4a70b8, *((unsigned char *)object + 0xfe7));
     *(char **)((char *)object + 0xfe3) = text;
     if (text == 0) {
-// Original source-line padding.
-// Original source-line padding.
-// Original source-line padding.
-// Original source-line padding.
-// Original source-line padding.
-// Original source-line padding.
-// Original source-line padding.
 // Original source-line padding.
 // Original source-line padding.
 // Original source-line padding.

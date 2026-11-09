@@ -459,8 +459,8 @@ void StorageVisibility(StorageScreen *s) {
             storageLeft[i].Visibility(0);
             storageRight[i].Visibility(0);
         }
-        while(1) {
-            if(i>=24)break;
+        while(i<24) {
+
             storageLeft[i].Visibility(5);
             storageRight[i].Visibility(5);
             i++;

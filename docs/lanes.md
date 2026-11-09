@@ -88,3 +88,4 @@ Unassigned large modules: sim\sim.c + simdo.c (0044950c, 30 KB), shell\mplaunch.
 | s49 | sol | near-miss set 1 | done (RenderClipLine asm, hbupgrad +1, worldact +1) |
 | s48 | sol | near-miss set 0 | done (0 new; exact residues in candidates/s48/REPORT.md) |
 | s51 | sol | near-miss set 3 | done (0 new; causes in candidates/s51/REPORT.md) |
+| s50 | sol | near-miss set 2 | done (+8 incl. producers: hercbuy, menu, resource, tu_00417f34) |

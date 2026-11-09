@@ -773,6 +773,11 @@
      "size": 80,
      "mangled": "W?Close$:ResMgr$n()v"
     },
+    "ResMgr::FindPath": {
+     "va": "0047c710",
+     "size": 208,
+     "mangled": "W?FindPath$:ResMgr$n(pnxapnai)i"
+    },
     "ResMgrOpen": {
      "va": "0047c7e0",
      "size": 128,
@@ -1904,6 +1909,11 @@
      "size": 32,
      "mangled": "W?$ct:MenuPanel$n()_"
     },
+    "MenuPanel::Draw": {
+     "va": "00428e5b",
+     "size": 159,
+     "mangled": "W?Draw$:MenuPanel$n(ui)v"
+    },
     "MenuNumber::$ct": {
      "va": "00428efa",
      "size": 57,
@@ -2333,6 +2343,14 @@
     "_DATA": {
      "va": "004a3f98",
      "size": 12
+    },
+    "XI": {
+     "va": "004a6cd2",
+     "size": 6
+    },
+    "W?$Wts0jn$CriticalSection$$$nx[]uc": {
+     "va": "0048e1c0",
+     "size": 17
     }
    },
    "accepted": "2026-11-09"
@@ -2667,6 +2685,10 @@
     "CONST": {
      "va": "0048b9ac",
      "size": 72
+    },
+    "_DATA": {
+     "va": "004a3fbc",
+     "size": 16
     }
    },
    "accepted": "2026-11-09"
@@ -3321,6 +3343,10 @@
     }
    },
    "data": {
+    "XI": {
+     "va": "004a6c90",
+     "size": 6
+    },
     "W?$Wts0an$FxPart$$$nx[]uc": {
      "va": "0048e068",
      "size": 17
@@ -3510,6 +3536,21 @@
      "size": 109,
      "mangled": "W?f_004171ac$n(pnv)v"
     },
+    "f_00417219": {
+     "va": "00417219",
+     "size": 291,
+     "mangled": "W?f_00417219$n(pnv)v"
+    },
+    "f_0041733c": {
+     "va": "0041733c",
+     "size": 885,
+     "mangled": "W?f_0041733c$n(pnv)v"
+    },
+    "f_004176b1": {
+     "va": "004176b1",
+     "size": 129,
+     "mangled": "W?f_004176b1$n(pnv)v"
+    },
     "f_00417732": {
      "va": "00417732",
      "size": 125,
@@ -3544,6 +3585,11 @@
      "va": "00417c72",
      "size": 14,
      "mangled": "W?f_00417c72$n(pn$HercBuyDataView$$)v"
+    },
+    "f_00417c80": {
+     "va": "00417c80",
+     "size": 121,
+     "mangled": "W?f_00417c80$n(pnvpnxuc)v"
     },
     "f_00417cf9": {
      "va": "00417cf9",
@@ -3587,6 +3633,10 @@
     }
    },
    "data": {
+    "XI": {
+     "va": "004a6bac",
+     "size": 6
+    },
     "W?$Wts0kn$MenuPrefixButton$$$nx[]uc": {
      "va": "0048c9ec",
      "size": 17
@@ -4199,6 +4249,10 @@
     "_DATA": {
      "va": "004a3fcc",
      "size": 116
+    },
+    "XI": {
+     "va": "004a6cd8",
+     "size": 6
     }
    },
    "accepted": "2026-11-09"
@@ -4760,7 +4814,16 @@
      "mangled": "W?GuiPumpMessages$n()v"
     }
    },
-   "data": {},
+   "data": {
+    "XI": {
+     "va": "004a6cf0",
+     "size": 6
+    },
+    "W?$Wts0en$FileRecord$$$nx[]uc": {
+     "va": "0048e2b4",
+     "size": 17
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/logic/lactors.c": {
@@ -5160,6 +5223,14 @@
      "va": "0048efec",
      "size": 12
     },
+    "XI": {
+     "va": "004a6bd0",
+     "size": 6
+    },
+    "W?$Wts0dn$MenuPanel$$$nx[]uc": {
+     "va": "0048c99c",
+     "size": 17
+    },
     "W?$Wts0kn$MenuPrefixButton$$$nx[]uc": {
      "va": "0048c9ec",
      "size": 17
@@ -5194,6 +5265,14 @@
     },
     "W?$Wts0cn$MenuEdit$$$nx[]uc": {
      "va": "0048d798",
+     "size": 17
+    },
+    "W?$Wts0in$MenuHelpRegion$$$nx[]uc": {
+     "va": "0048c9c4",
+     "size": 17
+    },
+    "W?$Wts09n$Scene$$$nx[]uc": {
+     "va": "0048d784",
      "size": 17
     }
    },
@@ -6501,6 +6580,10 @@
     "_DATA": {
      "va": "004a019c",
      "size": 12
+    },
+    "XI": {
+     "va": "004a6c4e",
+     "size": 6
     },
     "W?$Wvf0do4:ShellBase$$nx[]pn()v": {
      "va": "0048c8ac",
@@ -9418,10 +9501,25 @@
      "size": 85,
      "mangled": "W?StorageStart$n(pn$StorageScreen$$)v"
     },
+    "StorageAnimate": {
+     "va": "00418776",
+     "size": 206,
+     "mangled": "W?StorageAnimate$n(pn$StorageScreen$$)v"
+    },
     "StorageSetup": {
      "va": "00418ae9",
      "size": 116,
      "mangled": "W?StorageSetup$n()v"
+    },
+    "StorageVisibility": {
+     "va": "00418b5d",
+     "size": 260,
+     "mangled": "W?StorageVisibility$n(pn$StorageScreen$$)v"
+    },
+    "StorageColors": {
+     "va": "00418c61",
+     "size": 140,
+     "mangled": "W?StorageColors$n(pn$StorageScreen$$)v"
     },
     "StorageScreen::Names": {
      "va": "00418ced",
@@ -9488,6 +9586,10 @@
      "va": "0048ec14",
      "size": 12
     },
+    "XI": {
+     "va": "004a6bb2",
+     "size": 6
+    },
     "W?$Wts0kn$MenuPrefixButton$$$nx[]uc": {
      "va": "0048c9ec",
      "size": 17
@@ -9498,6 +9600,22 @@
     },
     "W?$Wts0en$MenuButton$$$nx[]uc": {
      "va": "0048c9d8",
+     "size": 17
+    },
+    "W?$Wts0en$UpgradeBar$$$nx[]uc": {
+     "va": "0048d024",
+     "size": 17
+    },
+    "W?$Wts0gn$UpgradeArrow$$$nx[]uc": {
+     "va": "0048d010",
+     "size": 17
+    },
+    "W?$Wts0dn$MenuPanel$$$nx[]uc": {
+     "va": "0048c99c",
+     "size": 17
+    },
+    "W?$Wts0in$MenuHelpRegion$$$nx[]uc": {
+     "va": "0048c9c4",
      "size": 17
     }
    },

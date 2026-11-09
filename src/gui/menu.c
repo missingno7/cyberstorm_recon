@@ -523,6 +523,7 @@ void MenuPrefixButton::SetFont(signed char f) {
 MenuPanel::MenuPanel():GuiControl(32,0),text(0) {
 }
 void MenuPanel::Draw(unsigned index) {
+    const char *s;
     if(Dirty()) {
         Clean();
         unsigned char font,color;
@@ -530,7 +531,7 @@ void MenuPanel::Draw(unsigned index) {
         font=2;
         MenuDrawPanel(&gMenuImages->images[0],this);
         Clip();
-        const char *s=text;
+        s=text;
         if(!s)s=gGuiStringPool->GetString(gGuiStringBase+index,0);
         if(s)MenuDrawWrapped(s,-1,0,font,color,this);
     }

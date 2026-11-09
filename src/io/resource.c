@@ -104,7 +104,7 @@ extern "C" int FileOpen(char *, const char *, char *, int);
 extern "C" char *StringCopy(char *, const char *);
 extern "C" char *StringAppend(char *, const char *);
 int ResMgr::FindPath(const char *suffix, char * destination, int flags)
-{ char buffer[256]; int i; 
+{ int i; char buffer[256]; 
     for(i=0;i<count;++i) {
         if(types[i]==1) { StringCopy(buffer,paths[i]); StringAppend(buffer,suffix); if(FileExists(destination,buffer,0))return 1; }
         else if(types[i]==2) { if(FileOpen((char*)&entries[i],suffix,destination,flags))return 1; }
