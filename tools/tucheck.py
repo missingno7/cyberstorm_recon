@@ -8,9 +8,11 @@ A TU is COMPLETE when, in verify's view (fresh compile, no --at, no search):
 2. the object occupies the original range exactly: base is an original function start, the byte after the object
    is either the next object's first function start or zero linker fill up to it, and the byte before the object is
    the previous object's end (zero fill or a function end) -- i.e. no original function in [base, end) is missing;
-3. every other code segment (COMDAT inline functions) is STRICT wherever the linker kept it;
-4. every initialized data segment with bytes (CONST, CONST2, _DATA, XI/YI records, COMDAT data) is STRICT as a
-   whole segment at its base (not per item);
+3. COMDAT segments (inline functions, type signatures, vtables) are not required: the linker keeps one copy of
+   each name from whichever object comes first (pick-any), so this object's copy may legitimately differ from or be
+   absent in the image. They are counted separately; the image-level link proves them;
+4. every other initialized data segment with bytes (CONST, CONST2, _DATA, XI/YI records) is STRICT as a whole
+   segment at its base (not per item);
 5. a BSS segment, if any, is placed (its referenced items are proven by the STRICT code's fixups). BSS size and the
    order of unreferenced items are not provable from the oracle bytes and are reported, not claimed.
 """
@@ -26,17 +28,20 @@ from common import BUILD, ROOT  # noqa: E402
 
 def check_tu(tu, ent, img, starts):
     reports, mods, _ = gate.build_and_compare(ROOT / tu, ent)
+    return check_reports(reports, mods, img, starts)
+
+
+def check_reports(reports, mods, img, starts):
+    """(complete, reasons, main code size) for one compiled object in verify's view."""
     why = []
     comdat = {s.name for m in mods for s in m.segments if s and getattr(s, "comdat", None) is not None}
     main = None
     for r in reports:
         for s in r["segments"]:
             name, cls, st = s["seg"], s["class"].upper(), s["status"]
+            if name in comdat:
+                continue                # linker's pick-any copy: proven at image level, not here
             if cls == "CODE":
-                if name in comdat:
-                    if st != "STRICT":
-                        why.append(f"COMDAT {name}: {st}")
-                    continue
                 if main is not None:
                     why.append(f"second main code segment {name}")
                     continue

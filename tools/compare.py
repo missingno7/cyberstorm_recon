@@ -237,7 +237,7 @@ class Comparison:
         implied = {}
         for _ in range(4):
             own_pub = {pn: (psi, po) for pn, psi, po, _ in mod.publics
-                       if not is_code(mod.segments[psi]) and not is_bss(mod.segments[psi])}
+                       if not is_code(mod.segments[psi])}       # BSS too: consistent references place its base
             for si in list(self.extents):
                 seg = mod.segments[si]
                 for f in self.fx_by_seg.get(si, []):
@@ -269,6 +269,62 @@ class Comparison:
                     self.base[d] = (next(iter(bs)), "inferred")
                 else:
                     self.data_conflict.add(d)
+        # 5. initializer records (XI/YI) and COMDAT data (type signatures, vtables) that nothing places otherwise:
+        # their bytes hold pointers (to this TU's initializer, to destructors, ...). With every pointer resolved, the
+        # exact bytes are identity evidence when they occur exactly once in the image's initialized data
+        # (deterministic, also in verify's view). Segments without any pointer are never placed this way.
+        self._place_init_records()
+
+    def _place_init_records(self):
+        """XI/YI records and COMDAT data: exact bytes with resolved pointers; unresolved pointer fields are masked
+        (their targets then come out of the comparison as implied bindings). At least one pointer must be
+        resolved, and the masked pattern must occur exactly once in initialized data."""
+        secs = [(self.img.image_base + sec.rva, self.img.section_bytes(sec.name)) for sec in self.img.sections
+                if sec.rawsize and sec.name.upper() in ("DGROUP", ".DATA")]
+        for si, seg in enumerate(self.m.segments):
+            if not seg or si in self.base or is_code(seg) or is_bss(seg) or not seg.size:
+                continue
+            if seg.name.upper() not in ("XI", "YI") and getattr(seg, "comdat", None) is None:
+                continue
+            fxs = self.fx_by_seg.get(si, [])
+            if not fxs or any(f.size() != 4 or f.self_rel for f in fxs):
+                continue
+            want = bytearray(seg.data)
+            known = bytearray([1]) * seg.size
+            resolved = 0
+            for f in fxs:
+                va, _, _ = self.target(f, None)
+                if va is None:
+                    known[f.off:f.off + 4] = bytes(4)
+                    continue
+                struct.pack_into("<I", want, f.off, (va + self._addend(si, f)) & 0xFFFFFFFF)
+                resolved += 1
+            if not resolved:
+                continue
+            # anchor: the longest run of known bytes
+            best, cur, cs = (0, 0), 0, 0
+            for k in range(seg.size + 1):
+                if k < seg.size and known[k]:
+                    if cur == 0:
+                        cs = k
+                    cur += 1
+                    if cur > best[1]:
+                        best = (cs, cur)
+                else:
+                    cur = 0
+            a0, alen = best
+            needle = bytes(want[a0:a0 + alen])
+            hits = []
+            for base, data in secs:
+                k = data.find(needle)
+                while k >= 0:
+                    o = k - a0
+                    if o >= 0 and o + seg.size <= len(data) and all(
+                            not known[j] or data[o + j] == want[j] for j in range(seg.size)):
+                        hits.append(base + o)
+                    k = data.find(needle, k + 1)
+            if len(hits) == 1:
+                self.base[si] = (hits[0], "init-record")
 
     def _complete_code(self):
         for si, exts in self.extents.items():

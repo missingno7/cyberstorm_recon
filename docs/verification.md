@@ -60,9 +60,21 @@ Dry run by default. Policy check -> fresh compile (pinned toolchain) -> comparis
 no previously accepted function may lose STRICT, VA or size (unless `--accept-loss`, logged) -> no symbol
 or VA conflict. `--publish` (integrator only) writes `src/`, `recovery.json` and `symbols.json`.
 
+## TU COMPLETE (diagnostic level, reported by verify) — `tools/tucheck.py`
+A TU is COMPLETE when, in verify's view: every extent of its main code segment is STRICT and contiguous at
+base + object offset (no tail_fill); the object occupies the original range exactly (base is an original function
+start, every original start inside the range is one of its extents, and the bytes after it up to the next start are
+zero fill); every initialized data segment with bytes (CONST, CONST2, _DATA, XI/YI) is STRICT as a whole segment;
+a BSS segment is placed (base implied consistently by references). Not claimed at this level: COMDAT copies (the
+linker keeps one copy per name, pick-any, so an object's own copy may differ or be discarded; image level proves
+them), BSS size and the order of unreferenced BSS items (zero bytes cannot prove them).
+Placement aids (compare.py, deterministic, also in verify's view): XI/YI records and COMDAT data are placed by
+their exact bytes with resolved pointers (unresolved pointer fields masked; at least one resolved; unique in
+DGROUP); own BSS objects referenced by name imply the BSS base like other data.
+
 ## Not yet built (next proof levels)
-- TU level: whole object incl. CONST/_DATA ownership and BSS order (Watcom BSS order rule is a hypothesis
-  from DOS projects: size rank, groups of 25, `hashpjw % 241`).
+- TU level, remaining: BSS order/size (Watcom BSS order rule is a hypothesis from DOS projects: size rank,
+  groups of 25, `hashpjw % 241`), CONST literal layout for TUs whose CONST is still proven per item.
 - Image level: WLINK of all objects + CLIB3S/PLIB3S/MATH387S, compare full file.
 
 Own data placements (2026-11-09). A TU's own data/BSS objects referenced only from new functions get their

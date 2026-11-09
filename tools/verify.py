@@ -28,15 +28,26 @@ def main(argv):
     syms = symbols.load()["symbols"]
     nfun = nbytes = 0
     sec = {"funcs": 0, "strict": 0}
+    pass
+    import tucheck
+    img = pemod.load(None)
+    fmp = BUILD / "funcmap" / "cs11.json"
+    tu_starts = {int(f["va"], 16) for f in json.loads(fmp.read_text())["functions"]} if fmp.exists() else None
+    tu_done = [0, 0]
     for tu, ent in sorted(ledger["tus"].items()):
         src = ROOT / tu
         try:
-            reports, _, _ = gate.build_and_compare(src, ent)
+            reports, mods, _ = gate.build_and_compare(src, ent)
         except RuntimeError as e:
             print(f"FAIL {tu}: {e}")
             ok = False
             continue
         ext = gate.by_label(gate.extents(reports))
+        if tu_starts is not None:
+            complete, _, csize = tucheck.check_reports(reports, mods, img, tu_starts)
+            if complete:
+                tu_done[0] += 1
+                tu_done[1] += csize
         bad = [n for n, e in ent["functions"].items()
                if (ext.get(n) or {}).get("status") != "STRICT" or ext[n]["va"] != e["va"]
                or ext[n]["end"] - ext[n]["off"] != e["size"]]
@@ -71,6 +82,9 @@ def main(argv):
               f"{len(asm)} functions, {sum(f['size'] for f in asm)} bytes")
     else:
         print(f"strict: {nfun} functions, {nbytes} bytes in {len(ledger['tus'])} TUs")
+    if tu_starts is not None:
+        print(f"TU complete (tools/tucheck.py rules; COMDAT copies and BSS size excluded): {tu_done[0]} of "
+              f"{len(ledger['tus'])} TUs, {tu_done[1]} code bytes")
     if "--secondary" in argv:
         print(f"secondary cs10 (informational): {sec['strict']}/{sec['funcs']} functions strict when located")
     print("VERIFY OK" if ok else "VERIFY FAILED")
