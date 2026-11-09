@@ -8769,10 +8769,10 @@
   "ActorChangeMorale": {
    "va": "004375ab",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ActorChangeMorale$n(pn$ActorState$$i)v",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "placed (at) in src/_unknown/tu_00435dec.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "ActorTrainSkill": {
    "va": "004375f4",
@@ -8785,10 +8785,10 @@
   "ActorGainExperience": {
    "va": "0043764e",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ActorGainExperience$n(pn$ActorState$$i)v",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "placed (at) in src/_unknown/tu_00435dec.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "ActorTrainingCost": {
    "va": "004376ee",
@@ -8848,10 +8848,10 @@
   "ActorRemainingValue": {
    "va": "004379ba",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ActorRemainingValue$n(pn$ActorState$$)i",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "placed (at) in src/_unknown/tu_00435dec.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "UnitReset": {
    "va": "00437a28",
@@ -8911,18 +8911,18 @@
   "ActorAdjustFatigue": {
    "va": "00437eb6",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ActorAdjustFatigue$n(pn$ActorState$$i)v",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "placed (at) in src/_unknown/tu_00435dec.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "ActorAdjustMorale": {
    "va": "00437fbe",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ActorAdjustMorale$n(pn$ActorState$$i)v",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "placed (at) in src/_unknown/tu_00435dec.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "ActorRecoverInjuries": {
    "va": "00438085",
@@ -8935,10 +8935,10 @@
   "ActorAdjustSkills": {
    "va": "00438107",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ActorAdjustSkills$n(pn$ActorState$$i)v",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "placed (at) in src/_unknown/tu_00435dec.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "ActorAdjustSkill": {
    "va": "0043814f",
@@ -10240,10 +10240,10 @@
   "f_0043d3cc": {
    "va": "0043d3cc",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "f_0043d3cc",
    "tu": "src/_unknown/tu_0043b8e8.c",
-   "evidence": "placed (at) in src/_unknown/tu_0043b8e8.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "f_0043d3cc#W?f_0043d3cc$n(pnvpnv)i": {
    "va": "0043d3cc",
@@ -10324,10 +10324,10 @@
   "f_0043dad7": {
    "va": "0043dad7",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "f_0043dad7",
    "tu": "src/_unknown/tu_0043b8e8.c",
-   "evidence": "placed (at) in src/_unknown/tu_0043b8e8.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "ProfileRefresh": {
    "va": "0043dad7",
@@ -23388,6 +23388,14 @@
    "tu": "src/_unknown/tu_00429a44.c",
    "evidence": "own data placed in src/_unknown/tu_00429a44.c 2026-11-09"
   },
+  "W?$Wts0jn$ActorListObject$$$nx[]uc": {
+   "va": "0048db34",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0jn$ActorListObject$$$nx[]uc",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "own data placed in src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
   "W?$Wts0jn$WeaponMapGadget$$$nx[]uc": {
    "va": "0048dbe8",
    "kind": "data",
@@ -24415,6 +24423,13 @@
    "mangled": "W?HercItemTables$n[]$ItemTable$$",
    "evidence": "implied by src/_unknown/tu_00438374.c 2026-11-09"
   },
+  "gItemCatalog": {
+   "va": "00493d94",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gItemCatalog$n[]$ItemCatalog$$",
+   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
   "equipmentCategories": {
    "va": "00493d9c",
    "kind": "data",
@@ -24518,6 +24533,13 @@
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4941e8$ni",
+   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "g4941ec": {
+   "va": "004941ec",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4941ec$n$Columns$$",
    "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
   },
   "missionCategories": {
@@ -30205,6 +30227,13 @@
    "mangled": "W?HercMassScale$ni",
    "evidence": "implied by src/_unknown/tu_00438374.c 2026-11-09"
   },
+  "g4c92b8": {
+   "va": "004c92b8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4c92b8$n[]a",
+   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
   "g4c9338": {
    "va": "004c9338",
    "kind": "data",
@@ -33677,6 +33706,13 @@
    "status": "hypothesis",
    "mangled": "W?dialogExport9$npn()i",
    "evidence": "implied by src/_unknown/tu_004770d0.c 2026-11-09"
+  },
+  "dialogExport9#W?dialogExport9$npn(pnvpnxaiiipnii)i": {
+   "va": "0051251c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?dialogExport9$npn(pnvpnxaiiipnii)i",
+   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
   },
   "gOptionsDialog": {
    "va": "00512520",

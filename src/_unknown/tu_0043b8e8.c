@@ -88,11 +88,14 @@ struct StrPool {char *GetString(long,int);}; extern StrPool g511ddc;
 struct Shell {unsigned long NextCreditBreakpoint(unsigned long);}; extern Shell uiSystem;
 extern int g4d0840;
 extern char g4c929c[],g4c92b8[];
-extern int g4941ec,g4941f0;
+/* Existing adjacent width values are copied as one aggregate. */
+struct Columns { int widths[2]; };
+extern Columns g4941ec;
+extern int g4941f0;
 extern int (*g512500)(HWND,const char *,char *,int,int);
-extern int (*g51251c)(HWND,const char *,int,int,int,int *,int);
+extern int (*dialogExport9)(HWND,const char *,int,int,int,int *,int);
 
-extern "C" const char *f_00439d0c(Herc *);
+extern char *HercChassisName(Herc *);
 extern "C" int f_004379ba(Pilot *);
 extern "C" void f_00435e70(Pilot *,int);
 extern "C" void f_00441c2c(GameSession *,int);
@@ -543,31 +546,32 @@ extern "C" void f_0043d25f(GameSession *s,int value)
 extern "C" int f_0043d2b9(GameSession *s,POINT *point)
 {
     if(s->pilotCount<1) return -1;
-    CONVERT_CLIENT_POINT(point);
+    f_0043b956(point);
     char *list=new char[2048];memset(list,0,2048);
     for(int i=0;i<s->pilotCount;++i) {sprintf(g4c92b8,"%s\n",s->pilots[i].name);strcat(list,g4c92b8);}
-    int result=g51251c(g_mainWindow,list,point->x,point->y,16,0,0);
+    int result=dialogExport9(g_mainWindow,list,point->x,point->y,16,0,0);
     if(result<0 || result>=s->pilotCount) result=-1;
     MemoryRelease(list);return result;
 }
 extern "C" int f_0043d3cc(GameSession *s,POINT *point)
 {
     if(s->hercCount<1) return -1;
-    CONVERT_CLIENT_POINT(point);
+    f_0043b956(point);
     char pilotName[16];
     char *list=new char[2048];memset(list,0,2048);
     for(int i=0;i<s->hercCount;++i) {
         unsigned pilot=s->assignments[i].pilot;
-        strcpy(pilotName,pilot?s->pilots[pilot-1].name:g511ddc.GetString(198,1));
-        sprintf(g4c92b8,"%s\t%s\t%s\n",s->hercs[i].name,f_00439d0c(&s->hercs[i]),pilotName);
+        if(pilot) strcpy(pilotName,s->pilots[pilot-1].name); else strcpy(pilotName,g511ddc.GetString(198,1));
+        sprintf(g4c92b8,"%s\t%s\t%s\n",s->hercs[i].name,HercChassisName(&s->hercs[i]),pilotName);
         strcat(list,g4c92b8);
     }
-    int columns[2];columns[0]=g4941ec;columns[1]=g4941f0;
-    int result=g51251c(g_mainWindow,list,point->x,point->y,60,columns,2);
-    if(result<0 || result>=s->hercCount) result=-1;
-    else f_0043c7eb(s,result+1,s->pilotSelection);
-    MemoryRelease(list);return result;
+    Columns columns = g4941ec;
+    int result=dialogExport9(g_mainWindow,list,point->x,point->y,60,columns.widths,2);
+    if(result>=0 && result<s->hercCount) f_0043c7eb(s,result+1,s->pilotSelection);
+    else result=-1;
+    delete [] list;return result;
 }
+
 extern "C" int f_0043d591(GameSession *s,POINT *point)
 {
     CONVERT_CLIENT_POINT(point);
@@ -710,5 +714,3 @@ extern "C" void f_0043e21a(GameSession *s,int requested)
 
 extern "C" void f_0043e37c(GameSession *s) {s->allPilots=1;f_0043c17c(s);}
 extern "C" void f_0043e38f(GameSession *s) {f_004773a1(s->pilots,s->pilotCount,sizeof(Pilot));}
-
-

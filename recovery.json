@@ -5259,6 +5259,11 @@
      "size": 98,
      "mangled": "f_0043d1fd"
     },
+    "f_0043d3cc": {
+     "va": "0043d3cc",
+     "size": 453,
+     "mangled": "f_0043d3cc"
+    },
     "f_0043d6b1": {
      "va": "0043d6b1",
      "size": 50,
@@ -5283,6 +5288,11 @@
      "va": "0043dab1",
      "size": 38,
      "mangled": "f_0043dab1"
+    },
+    "f_0043dad7": {
+     "va": "0043dad7",
+     "size": 219,
+     "mangled": "f_0043dad7"
     },
     "f_0043dcfd": {
      "va": "0043dcfd",
@@ -6843,6 +6853,16 @@
      "size": 14,
      "mangled": "W?ActorGetName$n(pn$ActorState$$pna)v"
     },
+    "ActorChangeMorale": {
+     "va": "004375ab",
+     "size": 73,
+     "mangled": "W?ActorChangeMorale$n(pn$ActorState$$i)v"
+    },
+    "ActorGainExperience": {
+     "va": "0043764e",
+     "size": 160,
+     "mangled": "W?ActorGainExperience$n(pn$ActorState$$i)v"
+    },
     "ActorTrainingCost": {
      "va": "004376ee",
      "size": 307,
@@ -6862,6 +6882,11 @@
      "va": "00437945",
      "size": 117,
      "mangled": "W?ActorFatigueCost$n(pn$ActorState$$)i"
+    },
+    "ActorRemainingValue": {
+     "va": "004379ba",
+     "size": 110,
+     "mangled": "W?ActorRemainingValue$n(pn$ActorState$$)i"
     },
     "ActorRememberLevel": {
      "va": "00437a28",
@@ -6887,6 +6912,21 @@
      "va": "00437e49",
      "size": 109,
      "mangled": "W?ActorVoice$n(pn$ActorState$$)v"
+    },
+    "ActorAdjustFatigue": {
+     "va": "00437eb6",
+     "size": 264,
+     "mangled": "W?ActorAdjustFatigue$n(pn$ActorState$$i)v"
+    },
+    "ActorAdjustMorale": {
+     "va": "00437fbe",
+     "size": 199,
+     "mangled": "W?ActorAdjustMorale$n(pn$ActorState$$i)v"
+    },
+    "ActorAdjustSkills": {
+     "va": "00438107",
+     "size": 72,
+     "mangled": "W?ActorAdjustSkills$n(pn$ActorState$$i)v"
     },
     "ActorAdjustSkill": {
      "va": "0043814f",

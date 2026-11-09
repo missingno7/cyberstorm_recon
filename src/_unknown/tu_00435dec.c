@@ -21,11 +21,12 @@ void ActorAdjustMorale(ActorState *, int);
 void ActorRecoverInjuries(ActorState *, U32);
 void ActorTick(ActorState *, int,int,int);
 void ActorAdjustSkill(ActorState *, int, int);
+void ActorAdjustSkills(ActorState *, int);
 #pragma pack(push, 1)
 struct ActorDescriptor {
     U8 marker; char name[12]; U8 endurance;
     U32 value; U8 health, morale, threshold, fatigue, skill;
-    U8 baseSkills[0x80]; /* 0x17..0x96: exact fields not yet named */
+    union { U8 baseSkills[0x80]; struct { U8 initialSkills[24]; U32 levelThresholds[26]; }; }; /* 0x17..0x96: exact fields not yet named */
     U8 initialLevel, maximumLevel; U8 unknown99[12]; U8 disabled;
     U8 *rules;
     U32 curves[64];
@@ -175,7 +176,10 @@ void ActorListObject::Fixup() {
     else { descriptor = (ActorDescriptor *)gPilotTypes[descriptorIndex]; PrepareActorDescriptor(descriptor); }
 }
 void ActorAdjustFixed(ActorState *, U32 *value, int delta, U32 maximum) {
-    if (delta < 0) *value -= -delta << 12;
+    if (delta < 0) {
+        delta = -delta;
+        *value -= delta << 12;
+    }
     else *value += delta << 12;
     *value = *value > maximum ? maximum : *value;
 }
@@ -186,15 +190,19 @@ void ActorAdjustScalar(ActorState *, U32 *value, int delta, U32 maximum) {
 }
 int ActorScale(ActorState *s, int value, U32 event) {
     int result;
-    switch(event) {
-    case 201: case 205: case 209:
-        result = s->level + value - 1;
-        if (result >= 100) result = 99;
+    switch (event) {
+    case 201: case 205: case 209: {
+        int adjusted = s->level + value - 1;
+        result = adjusted < 100 ? adjusted : 99;
         break;
-    case 217:
-        result = (value * 10000 - ((s->level * 100) / (int)s->descriptor->maximumLevel) * ((value * 100) / 2)) / 10000;
-        if (result <= 0) result = 1;
+    }
+    case 217: {
+        int adjusted = (value * 10000 -
+            ((s->level * 100) / (int)s->descriptor->maximumLevel) *
+            ((value * 100) / 2)) / 10000;
+        result = adjusted > 0 ? adjusted : 1;
         break;
+    }
     default: result = 0; break;
     }
     return result;
@@ -301,12 +309,14 @@ void ActorTrainSkill(ActorState *s, U32 index, int count) {
 }
 void ActorGainExperience(ActorState *s, int amount) {
     s->experience += ((U32)(amount * 20) / 100) << 12;
-    U32 *levels = (U32 *)(s->descriptor->baseSkills + 24);
-    if ((s->experience >> 12) >= levels[s->level] && s->level <= s->descriptor->maximumLevel) {
+    U32 integral = s->experience >> 12;
+    if (integral >= s->descriptor->levelThresholds[s->level] &&
+        s->level <= s->descriptor->maximumLevel) {
         ++s->level;
-        for (int i = 0; i < 8; ++i) ActorAdjustFixed(s, &s->skills[i].value, 1, s->skills[i].maximum);
+        ActorAdjustSkills(s, 1);
     }
 }
+
 int ActorTrainingCost(ActorState *s, U32 index, int event) {
     if (index <= 8) {
         if (index == 7) {
@@ -372,11 +382,12 @@ int ActorFatigueCost(ActorState *s) {
 }
 int ActorRemainingValue(ActorState *s) {
     float proportion = (float)s->damage / (float)(s->descriptor->endurance * 10);
-    float value = s->descriptor->value;
-    int result = (int)(value - value * proportion);
+    int result = (int)((float)s->descriptor->value -
+        (float)s->descriptor->value * proportion);
     if (result < 0) return 0;
     return result;
 }
+
 void ActorRememberLevel(ActorState *s) { s->originalLevel = s->level; RefreshActorFlags(s); }
 void ActorState::ActorApplyDamage(U8 amount) { ActorState *s = this;
     while (s->health > 0) {
@@ -471,8 +482,8 @@ void ActorAdjustMorale(ActorState *s, int delta) {
 void ActorRecoverInjuries(ActorState *s, U32 step) {
     for (int i = 0; i < 8; ++i) {
         U32 difference = (s->skills[i].maximum >> 12) - (s->skills[i].value >> 12);
-        char increase = (char)(difference < step ? difference : step);
-        s->injuries[i] += increase;
+        if (difference >= step) s->injuries[i] += (char)step;
+        else s->injuries[i] += (char)difference;
         ActorAdjustFixed(s, &s->skills[i].value, step, s->skills[i].maximum);
     }
 }
@@ -504,11 +515,3 @@ void ActorCopyState(ActorState *dest, ActorState *source) {
     memcpy(dest, source, 0x76);
     dest->descriptorIndex = source->descriptorIndex;
 }
-
-
-
-
-
-
-
-
