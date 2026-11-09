@@ -38,92 +38,44 @@ struct PaletteColor {unsigned char red,green,blue,flags;};
 struct Palette {PaletteColor entries[256];unsigned char unknown[82];};
 struct Timer;extern void TimerSet(Timer *,U32);struct Timer {U32 start,end,duration;Timer(U32 n){TimerSet(this,n);}};
 struct InputReq {U32 mask,state;InputReq(U32 m):mask(m){} int NewPress(){return (state&0x50)==0x10;}int HelpPressed(){return (state&0xa0)==0x20;}int Released(){return (state&0x50)==0x40;}int HelpReleased(){return (state&0xa0)==0x80;}};
-extern void TimerSet(Timer *,U32);
-extern int TimerExpired(Timer *);
-extern long gGuiEffectPriority;
-extern long gShellCreditStep;
+extern void TimerSet(Timer *,U32); extern int TimerExpired(Timer *); extern long gGuiEffectPriority; extern long gShellCreditStep;
 extern Timer gShellCreditTimer;
 struct GuiCanvas;extern GuiCanvas g513888;extern Surface g511948,gMenuSavedSurface;
-extern GuiRect gMenuClip;
-extern Palette gGuiPalette;
-extern void *gDrawRemap;
-extern int gShellOverlayPaletteActive,gShellTintModeActive;
-extern PaletteColor gShellOverlayColors[];
-extern "C" void AssertFail(const char *,int,const char *);
+extern GuiRect gMenuClip; extern Palette gGuiPalette; extern void *gDrawRemap; extern int gShellOverlayPaletteActive,gShellTintModeActive;
+extern PaletteColor gShellOverlayColors[]; extern "C" void AssertFail(const char *,int,const char *);
 /* A TU-local filename follows the C++ registration record in original _DATA. */
 static const char ShellSourceFile[]=__FILE__;
 struct ResMgr {void *Load(const char *,int=1,void * =0,U32=0);};
-extern ResMgr gResMgr;
-extern void SigsStart(void *,int=0);
-extern void SurfacePresent(void *);
-extern void GuiResetClip(void *);
+extern ResMgr gResMgr; extern void SigsStart(void *,int=0); extern void SurfacePresent(void *); extern void GuiResetClip(void *);
 struct GuiCanvas {unsigned char unknown00[0x94];GuiRect clip;void ResetClip(){GuiResetClip(&clip);}};
-extern void SurfaceCopyRegion(void *,void *,long,long);
-extern void PaletteCopyRange(Palette *,const PaletteColor *,int,int);
-extern void GuiFilterPalette(Palette *,int);
-extern void ApplyPaletteData(void *,int=0,int=256);
-extern unsigned char PaletteFindColor(Palette *,const PaletteColor *);
-extern void SurfaceRemapRect(void *,long,long,long,long);
+extern void SurfaceCopyRegion(void *,void *,long,long); extern void PaletteCopyRange(Palette *,const PaletteColor *,int,int);
+extern void GuiFilterPalette(Palette *,int); extern void ApplyPaletteData(void *,int=0,int=256);
+extern unsigned char PaletteFindColor(Palette *,const PaletteColor *); extern void SurfaceRemapRect(void *,long,long,long,long);
 extern void GuiRemapClipRect(GuiRect *,long,long,long,long);
 
 /* Opaque screen instances are passed by address only in the close-all routine. */
-struct Scene;struct MissBrief {unsigned char unknown00[0x50];unsigned char choice;void Begin(void *,unsigned char);};extern MissBrief g4b3390;
-extern Scene g4aff6c,g4b2e30,g4b3598,g4b37c4,g4b416c,g4b5b50;
-extern Scene g4b700c,g4aebe0,g4afa84,g4afbfc,g4b7904,g4b82fc,g4ba2bc;
-extern Scene *gShellHotseat;
-extern void ShellSelectionClose(Scene *);
-extern void MissBriefClose(MissBrief *);
-extern void CommsScreenClose(Scene *);
-extern void ShellMissionClose(Scene *);
-extern void HercBayShutdown(Scene *);
-extern void HercBuyClose(Scene *);
-extern void ShellStorageClose(Scene *);
-extern int HercUpgradeClose(Scene *);
-extern void ShellMainMenuClose(Scene *);
-extern void ShellIntroClose(Scene *);
-extern void ShellMapClose(Scene *);
-extern void ShellBriefingClose(Scene *);
-extern void ShellMultiplayerClose(Scene *);
-extern void MultiplayerLaunchClose(Scene *);
-extern void HotseatClose(Scene *);
-extern void SoundClearContext();
+struct Scene;struct MissBrief {unsigned char unknown00[0x50];unsigned char choice;unsigned char Choice(){return choice;}void Begin(void *,unsigned char);};extern MissBrief g4b3390;
+extern Scene g4aff6c,g4b2e30,g4b3598,g4b37c4,g4b416c,g4b5b50; extern Scene g4b700c,g4aebe0,g4afa84,g4afbfc,g4b7904,g4b82fc,g4ba2bc; extern Scene *gShellHotseat;
+extern void ShellSelectionClose(Scene *); extern void MissBriefClose(MissBrief *); extern void CommsScreenClose(Scene *);
+extern void ShellMissionClose(Scene *); extern void HercBayShutdown(Scene *); extern void HercBuyClose(Scene *); extern void ShellStorageClose(Scene *);
+extern int HercUpgradeClose(Scene *); extern void ShellMainMenuClose(Scene *); extern void ShellIntroClose(Scene *); extern void ShellMapClose(Scene *);
+extern void ShellBriefingClose(Scene *); extern void ShellMultiplayerClose(Scene *); extern void MultiplayerLaunchClose(Scene *);
+extern void HotseatClose(Scene *); extern void SoundClearContext();
 
 #pragma pack(push,1)
 
-extern U32 gInDirty;
-extern void InputPoll(InputReq *);
-extern void SurfaceClear(void *);
-extern void ShellPlayMovie(const char *);
+extern U32 gInDirty; extern void InputPoll(InputReq *); extern void SurfaceClear(void *); extern void ShellPlayMovie(const char *);
 extern void ShellIntroStart(Scene *,InputReq *,int=0);
-struct ProfileManager {unsigned char unknown00[0x426];U32 mode;unsigned char unknown42a[0x15];unsigned char ready;unsigned char unknown440[0x6c87];long credits;U32 Mode(){return mode;}long Credits(){return credits;}void SetDifficulty(unsigned char);void RefreshMissions();void UnlockItem(int,int);void RestartCampaign();void ApplyCampaignCheat();void AdvanceCampaign();void PrepareRoster();void SetMissionChoice(unsigned char);int LaunchMission(void *);int IsReady(){return ready;}long PendingCost();void CommitPurchases();int HasContinuation();void SelectScenario(int);void SetMode(U32);int Count();void *Select(int);void Advance(int);long Value(int);};
-extern ProfileManager profileManager;
-extern int g4d030f;
-extern long SendEvent(void *,int,void * =0,int=0,int=0);
-extern void ShellMainMenuOpen(Scene *,InputReq *,int);
-extern void ShellMultiplayerOpen(Scene *,InputReq *,int);
-extern int gGuiPaletteFaded;
-extern void GuiFadeIn();
-extern Scene g4b16a4,g4b07f8,g4b0c50,g4b01c8,g4b0e18,g4ba9a8;
-extern void ShellIntroRender(Scene *);
-extern void ShellMainMenuRender(Scene *);
-extern void ShellSelectionRender(Scene *);
-extern void ShellSelectionControlsRender(Scene *);
-extern void ShellBiodermStatsRender(Scene *);
-extern void ShellBiodermSkillsRender(Scene *);
-extern void ShellBiodermListRender(Scene *);
-extern void ShellBiodermDetailsRender(Scene *);
-extern void MissBriefUpdate(MissBrief *);
-extern void CommsScreenRender(Scene *);
-extern void ShellMissionRender(Scene *);
-extern void HercBayRender(Scene *);
-extern void HercBuyRender(Scene *);
-extern void ShellStorageRender(Scene *);
-extern void HercUpgradeRender(Scene *);
-extern void ShellMapRender(Scene *);
-extern void ShellBriefingRender(Scene *);
-extern void ShellMultiplayerRender(Scene *);
-extern void ShellNetworkSetupRender(Scene *);
-extern void MultiplayerLaunchRender(Scene *);
+struct ProfileManager {unsigned char unknown00[0x426];U32 mode;unsigned char unknown42a[0x15];unsigned char ready;unsigned char unknown440[0x6c87];long credits;U32 Mode(){return mode;}long Credits(){return credits;}void SetDifficulty(unsigned char);void RefreshMissions();void UnlockItem(int,int);void RestartCampaign();void ApplyCampaignCheat();void AdvanceCampaign();void PrepareRoster();void SetMissionChoice(U32);int LaunchMission(void *);int IsReady(){return ready;}long PendingCost();void CommitPurchases();int HasContinuation();void SelectScenario(int);void SetMode(U32);int Count();void *Select(int);void Advance(int);long Value(int);};
+extern ProfileManager profileManager; extern int g4d030f; extern long SendEvent(void *,int,void * =0,int=0,int=0);
+extern void ShellMainMenuOpen(Scene *,InputReq *,int); extern void ShellMultiplayerOpen(Scene *,InputReq *,int); extern int gGuiPaletteFaded;
+extern void GuiFadeIn(); extern Scene g4b16a4,g4b07f8,g4b0c50,g4b01c8,g4b0e18,g4ba9a8; extern void ShellIntroRender(Scene *);
+extern void ShellMainMenuRender(Scene *); extern void ShellSelectionRender(Scene *); extern void ShellSelectionControlsRender(Scene *);
+extern void ShellBiodermStatsRender(Scene *); extern void ShellBiodermSkillsRender(Scene *); extern void ShellBiodermListRender(Scene *);
+extern void ShellBiodermDetailsRender(Scene *); extern void MissBriefUpdate(MissBrief *); extern void CommsScreenRender(Scene *);
+extern void ShellMissionRender(Scene *); extern void HercBayRender(Scene *); extern void HercBuyRender(Scene *); extern void ShellStorageRender(Scene *);
+extern void HercUpgradeRender(Scene *); extern void ShellMapRender(Scene *); extern void ShellBriefingRender(Scene *);
+extern void ShellMultiplayerRender(Scene *); extern void ShellNetworkSetupRender(Scene *); extern void MultiplayerLaunchRender(Scene *);
 extern void HotseatRender(Scene *);
 
 extern int gShellExitCode;
@@ -167,6 +119,7 @@ public:
     void UpdateHercBuy();
     void UpdateStorage();
     void UpdateHercUpgrade();
+    char *DifficultyLabel();
     void UpdateSelection();
     void UpdateMap();
     void UpdateMissionBrief();
@@ -210,67 +163,34 @@ Timer gShellAnimationTimer(0);
 
 
 struct PoolData;struct StrPool {long id;char *buffer;long capacity;PoolData *data;long size;int IsLocked(){return data!=0;}int Lock();void Unlock();char *GetString(long,int);};
-extern StrPool gShellStrings,missionImageName;
-extern void *gShellImages;
-extern char gShellFont,g4b74f4,gShellResources;
-extern void ShellMultiplayerShutdown(void *);
-extern void ShellSoundShutdown();
-extern void FlicFreeBuffers();
-extern void SurfaceFree(void *);
-extern "C" void f_cbf0(void *);
-extern "C" void f_d2c0(void *);
-extern "C" void f_cb80(void *);
+extern StrPool gShellStrings,missionImageName; extern void *gShellImages; extern char gShellFont,g4b74f4,gShellResources;
+extern void ShellMultiplayerShutdown(void *); extern void ShellSoundShutdown(); extern void FlicFreeBuffers(); extern void SurfaceFree(void *);
+extern "C" void f_cbf0(void *); extern "C" void f_d2c0(void *); extern "C" void f_cb80(void *);
 extern int gShellExitCode;inline U32 ShellExitReason(){return gShellExitCode;}
 
 
 
-extern void ShellMultiplayerInit(void *);
-extern void SurfaceAttach(void *,void *,long,long);
-extern void SurfaceCreate(void *,long,long);
+extern void ShellMultiplayerInit(void *); extern void SurfaceAttach(void *,void *,long,long); extern void SurfaceCreate(void *,long,long);
 extern void *gShellSurfacePixels,*gShellDrawPixels;
 extern long gShellWidth,gShellHeight;inline long ShellWidth(){return gShellWidth;}inline long ShellHeight(){return gShellHeight;}
-extern void ShellRefreshResources();
-extern void FlicInitBuffers(U32,U32);
-extern StrPool gShellMiniStrings,gShellParaStrings;
-extern "C" void SetPointer(void *,void *);
-extern void FontLoad(void *,const char *);
+extern void ShellRefreshResources(); extern void FlicInitBuffers(U32,U32); extern StrPool gShellMiniStrings,gShellParaStrings;
+extern "C" void SetPointer(void *,void *); extern void FontLoad(void *,const char *);
 struct MenuImages;extern MenuImages *gMenuImages;
-extern char gShellDefaultName[];
-extern int gShellPlayIntro;
-extern int g4d0413;
-extern signed char gShellContinuationMap;
-extern void ShellMapOpen(Scene *,InputReq *,long);
-extern void ShellMissionBegin(Scene *,InputReq *);
-extern int StopMultiplayer(int,int);
-extern void CommsScreenOpen(Scene *,InputReq *,unsigned char);
-extern void ShellNetworkSetupOpen(Scene *,InputReq *,unsigned char);
-extern Scene g4ba9a8;
+extern char gShellDefaultName[]; extern int gShellPlayIntro; extern int g4d0413; extern signed char gShellContinuationMap;
+extern void ShellMapOpen(Scene *,InputReq *,long); extern void ShellMissionBegin(Scene *,InputReq *); extern int StopMultiplayer(int,int);
+extern void CommsScreenOpen(Scene *,InputReq *,unsigned char); extern void ShellNetworkSetupOpen(Scene *,InputReq *,unsigned char); extern Scene g4ba9a8;
 
 extern long gIn7c;
 inline long ShellInputCommand(){return gIn7c;}
-extern void ShellInputSound(long);
-extern void ShellRefreshDifficulty();
-extern void ShellSelectionOpen(Scene *,InputReq *,const char *);
+extern void ShellInputSound(long); extern void ShellRefreshDifficulty(); extern void ShellSelectionOpen(Scene *,InputReq *,const char *);
 struct HercBay {unsigned char unknown00[0x4c];long ownedCount,buyActive,storageActive;long OwnedCount(){return ownedCount;}long Buying(){return buyActive;}long Storing(){return storageActive;}void Start(void *);};
-extern StrPool gShellMissionStrings;
-extern void ShellMainMenuRefresh(Scene *);
+extern StrPool gShellMissionStrings; extern void ShellMainMenuRefresh(Scene *);
 class GuiScreen:public GuiRect {public:InputReq *input;int IsActive(){return input!=0;}void Invalidate();};
-extern GuiRect gShellCurrentRect,gShellScreenRect;
-extern void MenuSetColors(void *,U32,long);
-extern void MenuFill(void *,long,long,long,long);
-extern void ShellSelectionActivate(Scene *,long);
-extern void MenuHelpSetTopic(long);
-extern void ShellMultiplayerTick(void *);
-extern int MissBriefExit(MissBrief *);
-extern U32 ShellStorageExit(Scene *);
-extern unsigned char ShellStorageSelection(Scene *);
-extern void HercUpgradeOpen(Scene *,InputReq *,unsigned char);
-extern void HercBayOpen(Scene *,InputReq *);
-extern int ShellBriefingExit(Scene *);
-extern void ShellBriefingContinue(Scene *);
-extern void ShellBriefingBack(Scene *);
-extern void ShellBriefingAbort(Scene *);
-extern char gShellBriefingMission;
+extern GuiRect gShellCurrentRect,gShellScreenRect; extern void MenuSetColors(void *,U32,long); extern void MenuFill(void *,long,long,long,long);
+extern void ShellSelectionActivate(Scene *,long); extern void MenuHelpSetTopic(long); extern void ShellMultiplayerTick(void *);
+extern int MissBriefExit(MissBrief *); extern U32 ShellStorageExit(Scene *); extern unsigned char ShellStorageSelection(Scene *);
+extern void HercUpgradeOpen(Scene *,InputReq *,unsigned char); extern void HercBayOpen(Scene *,InputReq *); extern int ShellBriefingExit(Scene *);
+extern void ShellBriefingContinue(Scene *); extern void ShellBriefingBack(Scene *); extern void ShellBriefingAbort(Scene *); extern char gShellBriefingMission;
 extern U32 gIn80;inline U32 ShellInputKey(){return gIn80;}
 struct PlayerInfo {
     int Kind(){return kind;}
@@ -279,154 +199,81 @@ struct PlayerInfo {
     int value;
     char unknown2c[4];
 };
-extern void GetPlayerInfo(void *,PlayerInfo *);
-extern long gShellMapMode;
-extern U32 ShellMissionExit(Scene *);
-extern void ShellBriefingOpen(Scene *,InputReq *);
-extern int SoundTrigger(unsigned,int);
-extern void HercBayClose(HercBay *);
+extern void GetPlayerInfo(void *,PlayerInfo *); extern long gShellMapMode; extern U32 ShellMissionExit(Scene *);
+extern void ShellBriefingOpen(Scene *,InputReq *); extern int SoundTrigger(unsigned,int); extern void HercBayClose(HercBay *);
 extern int HercBaySetStatus(HercBay *);
 struct HercBayActions {void Reactivate();};
-extern void HercBuyOpen(Scene *,InputReq *);
-extern void ShellStorageOpen(Scene *,InputReq *);
-extern void HercBayNoStorage(HercBay *);
-extern U32 HercBuyExit(Scene *);
-extern void HercBuySelect(Scene *,unsigned char);
-extern void HercBuyAccept(Scene *);
-extern void HercBuyCancel(Scene *);
-extern void HercBayReturnFromPurchase(Scene *,InputReq *);
-extern int HercBuyCommit(Scene *);
-extern void HercBuyRefresh(Scene *);
-extern U32 CommsScreenExit(Scene *);
-extern void CommsScreenNext(Scene *);
-extern void CommsScreenPrevious(Scene *);
-extern void CommsScreenConfirm(Scene *);
+extern void HercBuyOpen(Scene *,InputReq *); extern void ShellStorageOpen(Scene *,InputReq *); extern void HercBayNoStorage(HercBay *);
+extern U32 HercBuyExit(Scene *); extern void HercBuySelect(Scene *,unsigned char); extern void HercBuyAccept(Scene *); extern void HercBuyCancel(Scene *);
+extern void HercBayReturnFromPurchase(Scene *,InputReq *); extern int HercBuyCommit(Scene *); extern void HercBuyRefresh(Scene *);
+extern U32 CommsScreenExit(Scene *); extern void CommsScreenNext(Scene *); extern void CommsScreenPrevious(Scene *); extern void CommsScreenConfirm(Scene *);
 extern void MenuHelpOpenTopic(long);
 // Partial views of the child screens; only the observed return flag is exposed.
 struct BiodermPanelState {unsigned char unknown00[0x4c];unsigned short returning;};
 extern unsigned short gBiodermReturnToList,gBiodermSelectionMode;
 inline unsigned short BiodermReturnToList(){return gBiodermReturnToList;}
-extern U32 BiodermDetailsExit(Scene *);
-extern void BiodermDetailsAction1(Scene *);
-extern void BiodermDetailsAction2(Scene *);
-extern void BiodermDetailsAction3(Scene *);
-extern void BiodermDetailsAction4(Scene *);
-extern void BiodermDetailsClose(Scene *);
-extern void BiodermDetailsApply(Scene *);
-extern void ShellSelectionDetails(Scene *,InputReq *,const char *);
-extern long gShellAttractReady,gShellMoviesEnabled,gShellAttractEnabled,gShellEndingScreen;
-extern void ShellIntroNextImage(Scene *);
-extern U32 ShellIntroExit(Scene *);
-extern long ShellIntroTopMenu(Scene *);
-extern void ShellIntroSetMode(Scene *,int);
-extern long MenuHelpSetContext(long);
-extern int LoadMission(const char *,int);
-extern int ShellOpenHotseat(Shell *);
-extern void InputClearEvents();
-extern void GuiPumpMessages();
-extern char gShellBackground;
-extern int MenuLoadBackground(const char *,void *);
-extern void ShellServiceFrame(Shell *);
+extern U32 BiodermDetailsExit(Scene *); extern void BiodermDetailsAction1(Scene *); extern void BiodermDetailsAction2(Scene *);
+extern void BiodermDetailsAction3(Scene *); extern void BiodermDetailsAction4(Scene *); extern void BiodermDetailsClose(Scene *);
+extern void BiodermDetailsApply(Scene *); extern void ShellSelectionDetails(Scene *,InputReq *,const char *);
+extern long gShellAttractReady,gShellMoviesEnabled,gShellAttractEnabled,gShellEndingScreen; extern void ShellIntroNextImage(Scene *);
+extern U32 ShellIntroExit(Scene *); extern long ShellIntroTopMenu(Scene *); extern void ShellIntroSetMode(Scene *,int); extern long MenuHelpSetContext(long);
+extern int LoadMission(const char *,int); extern int ShellOpenHotseat(Shell *); extern void InputClearEvents(); extern void GuiPumpMessages();
+extern char gShellBackground; extern int MenuLoadBackground(const char *,void *); extern void ShellServiceFrame(Shell *);
 extern void ShellLimitFrameRate(Shell *);
 void ShellApplyPalette(Palette *);
 struct SoundSettings;extern int SoundPlay(unsigned,const SoundSettings * =0);
-extern U32 BiodermStatsExit(Scene *);
-extern void BiodermStatsSelect(Scene *,int);
-extern void BiodermStatsClose(Scene *);
-extern void BiodermStatsApply(Scene *);
-extern void BiodermStatsAction(Scene *);
-extern void ShellSelectionStats(Scene *,InputReq *,const char *);
-extern U32 TimeNow();
-extern U32 gHercUpgradeLastClick;
-extern U32 HercUpgradeExit(Scene *);
-extern void HercUpgradeSelectPart(Scene *,U32);
-extern void HercUpgradeSelectInventory(Scene *,U32);
-extern void HercUpgradeSelectCategory(Scene *,U32);
-extern void HercUpgradeAction47(Scene *);
-extern void HercUpgradeAction48(Scene *);
-extern void HercUpgradeAction49(Scene *);
-extern void HercUpgradeAction50(Scene *);
-extern void HercUpgradeAction52(Scene *);
-extern void HercUpgradeAction53(Scene *);
-extern void HercUpgradeRefresh(Scene *);
-extern void HercUpgradeAction57(Scene *);
-extern void HercUpgradeAction58(Scene *);
-extern void HercUpgradeAction64(Scene *);
-extern void HercUpgradeAction65(Scene *);
-extern void HercUpgradeAction85(Scene *);
-extern void ShellStorageReopen(Scene *,InputReq *);
-extern int InputButtonPressed(int);
-extern long ShellMainMenuHitTest(Scene *);
-extern U32 ShellMainMenuExit(Scene *);
-extern int ShellMainMenuCanLaunch(Scene *);
-extern void ShellMainMenuAction9(Scene *);
-extern void ShellMainMenuAction6(Scene *);
-extern void ShellMainMenuAction11(Scene *);
-extern void ShellLeaveSession(int);
-extern U32 BiodermSkillsExit(Scene *);
-extern void BiodermSkillsClose(Scene *);
-extern void BiodermSkillsApply(Scene *);
-extern void BiodermSkillsBatch(Scene *,int,int);
-extern void BiodermSkillsAction6(Scene *);
-extern void BiodermSkillsAction7(Scene *);
-extern void ShellSelectionSkills(Scene *,InputReq *,const char *);
-extern long ShellMultiplayerHitTest(Scene *);
-extern U32 ShellMultiplayerExit(Scene *);
-extern void ExploIdle();
-extern int ShellMultiplayerCanStart(Scene *);
-extern int StartMultiplayer(const char *,int);
-extern void ShellNetworkSetupBegin(Scene *,InputReq *);
-extern char gNetworkPlayerName[13];
-extern void ShellMultiplayerReset(Scene *);
-extern void ShellMultiplayerRefresh(Scene *);
-extern int ShellMultiplayerBusy(Scene *);
-extern int ShellMultiplayerPending(Scene *);
-extern int HasMission(void *);
-extern U32 ShellNetworkSetupExit(Scene *);
-extern int ShellNetworkSetupCanStart(Scene *);
-extern void ShellNetworkSetupLoaded(Scene *);
-extern void ShellNetworkSetupRefresh(Scene *);
-extern void ShellNetworkSetupSelectPlayer(Scene *,int);
-extern void ShellNetworkSetupAction70(Scene *);
-extern void ShellNetworkSetupAction85(Scene *);
-extern void ShellNetworkSetupJoinPlayer(Scene *,int);
-extern void ShellNetworkSetupAction4(Scene *);
-extern void ShellNetworkSetupAction78(Scene *);
-extern void ShellNetworkSetupAction79(Scene *);
+extern U32 BiodermStatsExit(Scene *); extern void BiodermStatsSelect(Scene *,int); extern void BiodermStatsClose(Scene *);
+extern void BiodermStatsApply(Scene *); extern void BiodermStatsAction(Scene *); extern void ShellSelectionStats(Scene *,InputReq *,const char *);
+extern U32 TimeNow(); extern U32 gHercUpgradeLastClick; extern U32 HercUpgradeExit(Scene *); extern void HercUpgradeSelectPart(Scene *,U32);
+extern void HercUpgradeSelectInventory(Scene *,U32); extern void HercUpgradeSelectCategory(Scene *,U32); extern void HercUpgradeAction47(Scene *);
+extern void HercUpgradeAction48(Scene *); extern void HercUpgradeAction49(Scene *); extern void HercUpgradeAction50(Scene *);
+extern void HercUpgradeAction52(Scene *); extern void HercUpgradeAction53(Scene *); extern void HercUpgradeRefresh(Scene *);
+extern void HercUpgradeAction57(Scene *); extern void HercUpgradeAction58(Scene *); extern void HercUpgradeAction64(Scene *);
+extern void HercUpgradeAction65(Scene *); extern void HercUpgradeAction85(Scene *); extern void ShellStorageReopen(Scene *,InputReq *);
+extern int InputButtonPressed(int); extern long ShellMainMenuHitTest(Scene *); extern U32 ShellMainMenuExit(Scene *);
+extern int ShellMainMenuCanLaunch(Scene *); extern void ShellMainMenuAction9(Scene *); extern void ShellMainMenuAction6(Scene *);
+extern void ShellMainMenuAction11(Scene *); extern void ShellLeaveSession(int); extern U32 BiodermSkillsExit(Scene *); extern void BiodermSkillsClose(Scene *);
+extern void BiodermSkillsApply(Scene *); extern void BiodermSkillsBatch(Scene *,int,int); extern void BiodermSkillsAction6(Scene *);
+extern void BiodermSkillsAction7(Scene *); extern void ShellSelectionSkills(Scene *,InputReq *,const char *); extern long ShellMultiplayerHitTest(Scene *);
+extern U32 ShellMultiplayerExit(Scene *); extern void ExploIdle(); extern int ShellMultiplayerCanStart(Scene *); extern int StartMultiplayer(const char *,int);
+extern void ShellNetworkSetupBegin(Scene *,InputReq *); extern char gNetworkPlayerName[13]; extern void ShellMultiplayerReset(Scene *);
+extern void ShellMultiplayerRefresh(Scene *); extern int ShellMultiplayerBusy(Scene *); extern int ShellMultiplayerPending(Scene *);
+extern int HasMission(void *); extern U32 ShellNetworkSetupExit(Scene *); extern int ShellNetworkSetupCanStart(Scene *);
+extern void ShellNetworkSetupLoaded(Scene *); extern void ShellNetworkSetupRefresh(Scene *); extern void ShellNetworkSetupSelectPlayer(Scene *,int);
+extern void ShellNetworkSetupAction70(Scene *); extern void ShellNetworkSetupAction85(Scene *); extern void ShellNetworkSetupJoinPlayer(Scene *,int);
+extern void ShellNetworkSetupAction4(Scene *); extern void ShellNetworkSetupAction78(Scene *); extern void ShellNetworkSetupAction79(Scene *);
 extern void ShellNetworkSetupAction105(Scene *);
 
 extern unsigned char gNetworkPlayerSelection;
 struct MenuNetwork {int Begin();};extern MenuNetwork gMenuNetwork;
-extern int logicMode;inline U32 LogicMode(){return logicMode;}
-extern long HotseatExit(Scene *);
-extern int HotseatCanLaunch(Scene *);
-extern void HotseatSelectTeam(Scene *,long);
-extern void HotseatSelectColor(Scene *,long);
-extern void HotseatSelectPlayer(Scene *,long);
-extern void HotseatRefresh(Scene *);
-extern void HotseatAction2(Scene *);
+extern int logicMode;inline U32 LogicMode(){return logicMode;} extern long HotseatExit(Scene *); extern int HotseatCanLaunch(Scene *);
+extern void HotseatSelectTeam(Scene *,long); extern void HotseatSelectColor(Scene *,long); extern void HotseatSelectPlayer(Scene *,long);
+extern void HotseatRefresh(Scene *); extern void HotseatAction2(Scene *);
 #pragma pack(push,1)
 struct HotseatState {unsigned char unknown00[0x12a0];unsigned char option;unsigned char unknown12a1[3];long difficulty;unsigned char unknown12a8[0x20];unsigned char option2;};
 #pragma pack(pop)
-extern long ShellSelectionTabHitTest(Scene *);
-extern U32 ShellSelectionTabExit(Scene *);
-extern void BiodermListClose(Scene *);
-extern void ShellSelectionList(Scene *,InputReq *,const char *);
-extern void ShellSelectionTabReset(Scene *);
-extern void ShellSelectionChooseTab(Scene *,int);
-extern void ShellSelectionPrevious(Scene *);
-extern void ShellSelectionNext(Scene *);
-extern void ShellSelectionTabAction30(Scene *);
+extern long ShellSelectionTabHitTest(Scene *); extern U32 ShellSelectionTabExit(Scene *); extern void BiodermListClose(Scene *);
+extern void ShellSelectionList(Scene *,InputReq *,const char *); extern void ShellSelectionTabReset(Scene *); extern void ShellSelectionChooseTab(Scene *,int);
+extern void ShellSelectionPrevious(Scene *); extern void ShellSelectionNext(Scene *); extern void ShellSelectionTabAction30(Scene *);
 extern unsigned char gBiodermSelectionDirty;
 #pragma pack(push,1)
-struct BiodermSelectionState {unsigned char unknown00[0x56];U32 command;};
+struct BiodermSelectionState {
+    unsigned char unknown00[0x56];U32 command;unsigned char unknown5a[4];
+    long listRequested,skillsRequested,statsRequested,detailsRequested;
+    int WantsList(){return listRequested;}
+    int WantsSkills(){return skillsRequested;}
+    int WantsStats(){return statsRequested;}
+    int WantsDetails(){return detailsRequested;}
+};
 #pragma pack(pop)
-extern U32 ShellMapExit(Scene *);
-extern int ShellMapBlocked(Scene *);
-extern long ShellMapHitTest(Scene *);
+extern U32 ShellMapExit(Scene *); extern int ShellMapBlocked(Scene *); extern long ShellMapHitTest(Scene *);
 #pragma pack(push,1)
 struct ShellMapState {unsigned char unknown00[0x4c];int inputEnabled;unsigned char zoom;};
 #pragma pack(pop)
+extern U32 BiodermListExit(Scene *); extern void BiodermListAction1(Scene *); extern void BiodermListAction4(Scene *); extern void BiodermListApply(Scene *);
+extern void ShellSelectionRequestList(Scene *); extern void ShellSelectionRequestSkills(Scene *); extern void ShellSelectionRequestStats(Scene *);
+extern void ShellSelectionRequestDetails(Scene *); extern void ShellSelectionFinish(Scene *); extern long ShellSelectionHitTest(Scene *);
+extern U32 ShellSelectionExit(Scene *);
 void ShellClearFrame()
 {
     SigsStart(&g513888);
@@ -613,6 +460,134 @@ void Shell::Update()
     case 38:UpdateLaunch();break;
     }
 }
+/* Watcom places this method's three return fragments before its public entry. */
+char *Shell::DifficultyLabel()
+{
+    switch(difficulty){
+    case 0:return gShellStrings.GetString(501,1);
+    case 1:return gShellStrings.GetString(502,1);
+    case 2:return gShellStrings.GetString(503,1);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    AssertFail(ShellSourceFile,__LINE__,"invalid difficulty value");
+    return " ";
+}
+void Shell::UpdateSelection()
+{
+    if(BiodermReturnToList()){
+        gBiodermSelectionDirty=0;BiodermListClose(&g4b01c8);
+        ((BiodermPanelState *)&g4b01c8)->returning=2;
+        ShellSelectionList(&g4aff6c,&input,"Bioderm");screen=8;return;
+    }
+    U32 result=BiodermListExit(&g4b01c8);
+    if(!result&&ShellInputKey()==1)result=3;
+    if(!result)return;
+    switch(result){
+    case 4:BiodermListAction4(&g4b01c8);break;
+    case 2:
+        gBiodermSelectionDirty=0;BiodermListClose(&g4b01c8);
+        gBiodermSelectionMode=1;((BiodermPanelState *)&g4b01c8)->returning=2;
+        ShellSelectionList(&g4aff6c,&input,"Bioderm");screen=8;break;
+    case 1:BiodermListAction1(&g4b01c8);break;
+    case 3:
+        gBiodermSelectionDirty=0;BiodermListApply(&g4b01c8);
+        gBiodermSelectionMode=1;((BiodermPanelState *)&g4b01c8)->returning=2;
+        ShellSelectionList(&g4aff6c,&input,"Bioderm");screen=8;break;
+    }
+}
+void Shell::UpdateBioderm()
+{
+    switch(BiodermReturnToList()){
+    case 4:ShellSelectionRequestList(&g4aff6c);break;
+    case 1:ShellSelectionRequestSkills(&g4aff6c);break;
+    case 3:ShellSelectionRequestStats(&g4aff6c);break;
+    case 2:ShellSelectionRequestDetails(&g4aff6c);break;
+    case 0:default:break;
+    }
+    if(((BiodermSelectionState *)&g4aff6c)->WantsList()){
+        ShellSelectionFinish(&g4aff6c);screen=12;MenuHelpSetContext(19);return;
+    }
+    if(((BiodermSelectionState *)&g4aff6c)->WantsSkills()){
+        ShellSelectionFinish(&g4aff6c);screen=15;MenuHelpSetContext(20);return;
+    }
+    if(((BiodermSelectionState *)&g4aff6c)->WantsStats()){
+        ShellSelectionFinish(&g4aff6c);screen=17;MenuHelpSetContext(21);return;
+    }
+    if(((BiodermSelectionState *)&g4aff6c)->WantsDetails()){
+        ShellSelectionFinish(&g4aff6c);screen=16;MenuHelpSetContext(22);return;
+    }
+    long hit=ShellSelectionHitTest(&g4aff6c);
+    if(!InputButtonPressed(1))hit=-1;
+    if(hit>=0){
+        SoundPlay(5,0);
+        switch(hit){
+        case 1:ShellSelectionRequestDetails(&g4aff6c);break;
+        case 3:ShellSelectionRequestList(&g4aff6c);break;
+        case 0:ShellSelectionRequestSkills(&g4aff6c);break;
+        case 2:ShellSelectionRequestStats(&g4aff6c);break;
+        }
+    }
+    U32 result=ShellSelectionExit(&g4aff6c);
+    if(!result&&ShellInputKey()==1)result=5;
+    if(!result)return;
+    switch(result){
+    case 1:ShellSelectionRequestSkills(&g4aff6c);break;
+    case 3:ShellSelectionRequestStats(&g4aff6c);break;
+    case 4:ShellSelectionRequestList(&g4aff6c);break;
+    case 2:ShellSelectionRequestDetails(&g4aff6c);break;
+    case 5:ShellSelectionClose(&g4aff6c);resumeReason=0;ResumeMenus();break;
+    }
+}
 void Shell::UpdateBriefing()
 {
     U32 result=MissBriefExit(&g4b3390);
@@ -620,8 +595,8 @@ void Shell::UpdateBriefing()
     switch(result){
     case 1:MissBriefClose(&g4b3390);BeginComms(3);break;
     case 2:
-        MissBriefClose(&g4b3390);unknown1d=g4b3390.choice;
-        profileManager.SetMissionChoice(g4b3390.choice);resumeReason=0;ResumeMenus();
+        MissBriefClose(&g4b3390);unknown1d=g4b3390.Choice();
+        profileManager.SetMissionChoice(unknown1d);resumeReason=0;ResumeMenus();
         break;
     }
 }
@@ -1305,6 +1280,31 @@ void ShellLoadPalette(const char *name)
 {
     Palette palette;
     void *loaded=gResMgr.Load(name,1,&palette,sizeof(palette));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -77,13 +77,37 @@
    "mangled": "W?Update$:Shell$n()v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "Shell::DifficultyLabel": {
+   "va": "00402748",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?DifficultyLabel$:Shell$n()pna",
+   "tu": "src/shell/shell.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "Shell::UpdateSelection": {
+   "va": "0040278c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?UpdateSelection$:Shell$n()v",
+   "tu": "src/shell/shell.c",
+   "evidence": "placed (at) in src/shell/shell.c 2026-11-09"
+  },
+  "Shell::UpdateBioderm": {
+   "va": "004028d0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?UpdateBioderm$:Shell$n()v",
+   "tu": "src/shell/shell.c",
+   "evidence": "placed (at) in src/shell/shell.c 2026-11-09"
+  },
   "Shell::UpdateBriefing": {
    "va": "00402c1c",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?UpdateBriefing$:Shell$n()v",
    "tu": "src/shell/shell.c",
-   "evidence": "placed (at) in src/shell/shell.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "Shell::BeginBriefing": {
    "va": "00402e32",
@@ -995,6 +1019,13 @@
    "mangled": "W?MissBriefExit$n(pn$MissBrief$$)v",
    "tu": "src/shell/missbrf.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "MissBriefExit#W?MissBriefExit$n(pn$MissBrief$$)i": {
+   "va": "00415312",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MissBriefExit$n(pn$MissBrief$$)i",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
   "MissBriefUpdate": {
    "va": "0041534d",
@@ -4294,6 +4325,13 @@
    "status": "hypothesis",
    "mangled": "W?BeginMissions$:ProfileManager$n()v",
    "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
+  "ProfileManager::SetMissionChoice": {
+   "va": "00440dea",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SetMissionChoice$:ProfileManager$n(ul)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
   "GetGameInfo": {
    "va": "00440ea6",

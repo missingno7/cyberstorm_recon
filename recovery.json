@@ -2411,6 +2411,16 @@
      "size": 351,
      "mangled": "W?Close$:Shell$n(i)v"
     },
+    "Shell::DifficultyLabel": {
+     "va": "00402748",
+     "size": 68,
+     "mangled": "W?DifficultyLabel$:Shell$n()pna"
+    },
+    "Shell::UpdateBriefing": {
+     "va": "00402c1c",
+     "size": 534,
+     "mangled": "W?UpdateBriefing$:Shell$n()v"
+    },
     "Shell::BeginBriefing": {
      "va": "00402e32",
      "size": 53,
