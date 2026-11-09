@@ -90,3 +90,5 @@ Unassigned large modules: sim\sim.c + simdo.c (0044950c, 30 KB), shell\mplaunch.
 | s51 | sol | near-miss set 3 | done (0 new; causes in candidates/s51/REPORT.md) |
 | s50 | sol | near-miss set 2 | done (+8 incl. producers: hercbuy, menu, resource, tu_00417f34) |
 | s53 | sol | path strings in _DATA (static char File[] idiom), 11 TUs | done (all 11 at oracle address; memory.c split open) |
+| r3 | sol | research: register allocator model from Open Watcom cg source (build/ref/ow) | running |
+| s54 | sol | non-allocation blockers: switch layout, shared tails, EBP frames, control flow (88 functions, build/prompts/s54_targets.txt) | running |

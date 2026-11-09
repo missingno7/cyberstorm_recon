@@ -1,5 +1,5 @@
 #include <windows.h>
-static const char errorText[] = "Ran out of memory or disk space.  Try clearing more disk space and running again.";
+extern char errorMemory[];
 extern "C" void AssertFail(const char *file, int line, const char *message);
  static char memorySourceFile[] = __FILE__;
 unsigned long MemoryStatusValue(int useTotalVirtual)
@@ -312,7 +312,7 @@ void *GlobalBlockAlloc(unsigned long bytes, unsigned int options)
 
 
 
-        AssertFail(memorySourceFile, __LINE__, errorText);
+        AssertFail(memorySourceFile, __LINE__, errorMemory);
     }
     return block;
 }

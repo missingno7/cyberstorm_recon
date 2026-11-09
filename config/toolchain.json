@@ -148,7 +148,7 @@
     "-oxt",
     "-bm"
    ],
-   "status": "C front end variant of 'ot' (io\file.c byte tests: `mov dl,[x]; test dl,dl` only with wcc386); TU-level choice, under investigation"
+   "status": "C front end variant of 'ot' (io/file.c byte tests: `mov dl,[x]; test dl,dl` only with wcc386); TU-level choice, under investigation"
   },
   "plain-c": {
    "install": "wc106",

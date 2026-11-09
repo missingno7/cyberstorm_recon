@@ -25,7 +25,14 @@ extern AssertCallback g_assertCallbacks[50];
 extern void *g_mainWindow;
 int sprintf(char *buffer, const char *format, ...);
  static char assertSourceFile[] = __FILE__;
-void DrainAssertCallbacks()
+char errorProblem[] = "Problem!";
+char errorInit[] = "Unable to initialize";
+char errorData[] = "Invalid data";
+char errorState[] = "Invalid state";
+char errorMemory[] = "Ran out of memory or disk space.  Try clearing more disk space and running again.";
+char errorMissingFile[] = "Missing file: %s.  Possible cause: Bad installation, or CD removed at bad time.";
+char errorWrite[] = "Unable to write.  Possible cause: Disk was full.  Try clearing more disk space and running again.";
+extern "C" void DrainAssertCallbacks()
 {
     while (g_assertCallbackCount != 0) {
         --g_assertCallbackCount;
@@ -33,7 +40,7 @@ void DrainAssertCallbacks()
     }
 }
 
-void RegisterAssertCallback(AssertCallback callback)
+extern "C" void RegisterAssertCallback(AssertCallback callback)
 {
     int wasActive;
     if (g_assertCallbackCount >= 50) {
@@ -54,7 +61,7 @@ void RegisterAssertCallback(AssertCallback callback)
     *slot = callback;}
 }
 
-void AssertFail(const char *file, int line, const char *message)
+extern "C" void AssertFail(const char *file, int line, const char *message)
 {
     if (g_assertMessageActive == 0) {
         char buffer[1024];
@@ -67,7 +74,7 @@ void AssertFail(const char *file, int line, const char *message)
     }
 }
 
-void AssertExit(unsigned int code)
+extern "C" void AssertExit(unsigned int code)
 {
     while (g_assertCallbackCount != 0) {
         --g_assertCallbackCount;

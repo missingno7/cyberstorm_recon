@@ -2,7 +2,7 @@
 #include <mmsystem.h>
 #include <stdarg.h>
 extern "C" int MakePath(void *, const char *, const char *, int);
-extern "C" void AssertFail(const char *, int, const char *); extern "C" int sprintf(char *, const char *, ...); static const char ResourceSourcePath[] = "io\\resource.c"; static const char MissingResourceFormat[] = "Missing file: %s.  Possible cause: Bad installation, or CD removed at bad time.";
+extern "C" void AssertFail(const char *, int, const char *); extern "C" int sprintf(char *, const char *, ...); static const char ResourceSourcePath[] = "io\\resource.c"; static const char MissingResourceFormat[] = "Missing file: %s.  Possible cause: Bad installation, or CD removed at bad time."; extern char errorData[], errorMemory[];
 extern "C" int vsprintf(char *, const char *, va_list);
 
 struct FileRecord { HANDLE handle; unsigned long open, flags, error; signed char direct, counted; unsigned char reserved[2]; unsigned long position, length; FileRecord(); ~FileRecord(); }; struct ResourceEntry { unsigned long resource, type, size; void *buffer; FileRecord sourceFile, outputFile; ResourceEntry(); ~ResourceEntry(); };
@@ -328,10 +328,10 @@ int *ResMgr::Load(char *name, unsigned int flags, int *buffer, unsigned int buff
                 /* original line padding 56 */
                 /* original line padding 57 */
                 /* original line padding 58 */
-                AssertFail(ResourceSourcePath, __LINE__, "Invalid data");
+                AssertFail(ResourceSourcePath, __LINE__, errorData);
             }
             if (buffer == 0 && (flags & 1)) {
-                AssertFail(ResourceSourcePath, __LINE__, "Ran out of memory or disk space.  Try clearing more disk space and running again.");
+                AssertFail(ResourceSourcePath, __LINE__, errorMemory);
             }
             if (buffer != 0) {
                 StreamRead((char *)this + 0x330, buffer, local.fileSize);
@@ -360,7 +360,7 @@ int *ResMgr::Load(char *name, unsigned int flags, int *buffer, unsigned int buff
                     local.decodedBuffer = (int *)GlobalBlockAlloc(gResourceFileSize, 0);
                     if (local.decodedBuffer == 0 && (flags & 1)) {
                             /* preserve line 363 variant 1 */
-                            AssertFail(ResourceSourcePath, __LINE__, "Ran out of memory or disk space.  Try clearing more disk space and running again.");
+                            AssertFail(ResourceSourcePath, __LINE__, errorMemory);
                     }
                     if (local.decodedBuffer != 0) {
                         DecodeResourceBlock(header[3], (unsigned short *)(buffer + 6), &local.decodedSize);

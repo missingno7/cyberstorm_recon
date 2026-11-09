@@ -88,7 +88,7 @@ range (hercbay 0048eb00, hotseat 0048f1cc, flic 0048f35c, menu 0048f3f0, tfast 0
 004a3eec, assert 004a4a34, file 004a4b9c, memory 004a4ba8, unpack 004a54c0; mostly 10-16 bytes, i.e. path
 strings). Their bytes are proven where the code points, but in the original those bytes belong to the object's
 _DATA (e.g. an initialized char array, not a literal): the source spelling must change before the TU/image level
-can claim them. Two _DATA inversions (tu_0040f4e4 vs tu_0040ffb8, tu_0047d0e0 vs ioile.c) are open.
+can claim them. Two _DATA inversions (tu_0040f4e4 vs tu_0040ffb8, tu_0047d0e0 vs io\file.c) are open.
 
 Own data placements (2026-11-09). A TU's own data/BSS objects referenced only from new functions get their
 address from the segment base placed in the dry run (anchored by --at/search and the code's relocation fields).

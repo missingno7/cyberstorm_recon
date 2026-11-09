@@ -228,7 +228,7 @@
   "src/debug/assert.c": {
    "as": "debug\\assert.c",
    "install": "wc106",
-   "profile": "ot-c",
+   "profile": "ot",
    "functions": {
     "DrainAssertCallbacks": {
      "va": "0047d4c0",
@@ -247,33 +247,33 @@
     }
    },
    "data": {
-    "_DATA": {
-     "va": "004a4a34",
-     "size": 15
-    },
-    "assertTitle": {
-     "va": "0048c02c",
-     "size": 9
-    },
-    "assertFooter": {
-     "va": "004a42c8",
-     "size": 531
-    },
-    "assertDate": {
-     "va": "004a42bc",
-     "size": 12
-    },
-    "assertVersion": {
-     "va": "004a4270",
-     "size": 75
+    "assertFormat": {
+     "va": "0048bff4",
+     "size": 56
     },
     "assertProgram": {
      "va": "004a4264",
      "size": 11
     },
-    "assertFormat": {
-     "va": "0048bff4",
-     "size": 56
+    "assertVersion": {
+     "va": "004a4270",
+     "size": 75
+    },
+    "assertDate": {
+     "va": "004a42bc",
+     "size": 12
+    },
+    "assertFooter": {
+     "va": "004a42c8",
+     "size": 531
+    },
+    "assertTitle": {
+     "va": "0048c02c",
+     "size": 9
+    },
+    "_DATA": {
+     "va": "004a4a34",
+     "size": 346
     }
    },
    "accepted": "2026-11-09"
@@ -299,7 +299,12 @@
      "mangled": "W?GlobalBlockAlloc$n(ului)pnv"
     }
    },
-   "data": {},
+   "data": {
+    "_DATA": {
+     "va": "004a4ba8",
+     "size": 12
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/io/file.c": {
@@ -13207,6 +13212,13 @@
    "tu": "src/terr/tfast.c",
    "functions": [
     "data:CONST"
+   ],
+   "date": "2026-11-09"
+  },
+  {
+   "tu": "src/debug/assert.c",
+   "functions": [
+    "data:_DATA"
    ],
    "date": "2026-11-09"
   }

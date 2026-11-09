@@ -18,7 +18,7 @@ You reconstruct C++ source that Watcom 10.6 compiles to the exact bytes of `CSTO
 2. Write the whole module in order into `candidates/<lane>/<file>.c` (one object = one file; function order =
    address order). If the module has a path string, compile with `--as 'dir\file.c'` and keep every ASSERT on
    its original line (the line number is an immediate in the code).
-3. `python tools/try.py candidates/<lane>/file.c --as 'dirile.c' --profile P [--at Label=VA]` — compile +
+3. `python tools/try.py candidates/<lane>/file.c --as 'dir\file.c' --profile P [--at Label=VA]` — compile +
    compare + an aligned original-vs-candidate instruction diff of every non-strict function in ONE command
    (`--fn Name` to focus, `--context N`, `--all`). Use this instead of cc/compare/objdis/show.
 4. When you have several plausible spellings, test them in one go: put choice points in a copy of the file

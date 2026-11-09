@@ -22751,6 +22751,13 @@
    "mangled": "W?PopConstructorArray$n(pnvipnv)v",
    "evidence": "implied by src/pop/psystem.c 2026-11-09"
   },
+  "sprintf": {
+   "va": "0047e0db",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?sprintf$n(pnapnxae)i",
+   "evidence": "implied by src/debug/assert.c 2026-11-09"
+  },
   "W?.fn_init$n()v@_unknown/tu_0047e150.c": {
    "va": "0047e150",
    "kind": "func",
@@ -24231,6 +24238,14 @@
    "mangled": "assertFormat",
    "evidence": "implied by src/debug/assert.c (overload-safe migration 2026-11-09)"
   },
+  "assertFormat@debug/assert.c": {
+   "va": "0048bff4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?assertFormat$n[]a",
+   "tu": "src/debug/assert.c",
+   "evidence": "own data placed in src/debug/assert.c 2026-11-09"
+  },
   "assertTitle": {
    "va": "0048c02c",
    "kind": "data",
@@ -24244,6 +24259,14 @@
    "status": "hypothesis",
    "mangled": "assertTitle",
    "evidence": "implied by src/debug/assert.c (overload-safe migration 2026-11-09)"
+  },
+  "assertTitle@debug/assert.c": {
+   "va": "0048c02c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?assertTitle$n[]a",
+   "tu": "src/debug/assert.c",
+   "evidence": "own data placed in src/debug/assert.c 2026-11-09"
   },
   "fileRootFormat": {
    "va": "0048c0b8",
@@ -27000,6 +27023,14 @@
    "mangled": "assertProgram",
    "evidence": "implied by src/debug/assert.c (overload-safe migration 2026-11-09)"
   },
+  "assertProgram@debug/assert.c": {
+   "va": "004a4264",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?assertProgram$n[]a",
+   "tu": "src/debug/assert.c",
+   "evidence": "own data placed in src/debug/assert.c 2026-11-09"
+  },
   "assertVersion": {
    "va": "004a4270",
    "kind": "data",
@@ -27013,6 +27044,14 @@
    "status": "hypothesis",
    "mangled": "assertVersion",
    "evidence": "implied by src/debug/assert.c (overload-safe migration 2026-11-09)"
+  },
+  "assertVersion@debug/assert.c": {
+   "va": "004a4270",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?assertVersion$n[]a",
+   "tu": "src/debug/assert.c",
+   "evidence": "own data placed in src/debug/assert.c 2026-11-09"
   },
   "assertDate": {
    "va": "004a42bc",
@@ -27028,6 +27067,14 @@
    "mangled": "assertDate",
    "evidence": "implied by src/debug/assert.c (overload-safe migration 2026-11-09)"
   },
+  "assertDate@debug/assert.c": {
+   "va": "004a42bc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?assertDate$n[]a",
+   "tu": "src/debug/assert.c",
+   "evidence": "own data placed in src/debug/assert.c 2026-11-09"
+  },
   "assertFooter": {
    "va": "004a42c8",
    "kind": "data",
@@ -27041,6 +27088,14 @@
    "status": "hypothesis",
    "mangled": "assertFooter",
    "evidence": "implied by src/debug/assert.c (overload-safe migration 2026-11-09)"
+  },
+  "assertFooter@debug/assert.c": {
+   "va": "004a42c8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?assertFooter$n[]a",
+   "tu": "src/debug/assert.c",
+   "evidence": "own data placed in src/debug/assert.c 2026-11-09"
   },
   "settingsPath": {
    "va": "004a44ec",
@@ -27169,12 +27224,53 @@
    "tu": "src/debug/assert.c",
    "evidence": "own data placed in src/debug/assert.c 2026-11-09"
   },
-  "errorText": {
+  "assertSourceFile@debug/assert.c#W?assertSourceFile$n[]a": {
+   "va": "004a4a34",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?assertSourceFile$n[]a",
+   "tu": "src/debug/assert.c",
+   "evidence": "own data placed in src/debug/assert.c 2026-11-09"
+  },
+  "errorProblem": {
+   "va": "004a4a44",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?errorProblem$n[]a",
+   "tu": "src/debug/assert.c",
+   "evidence": "own data placed in src/debug/assert.c 2026-11-09"
+  },
+  "errorInit": {
+   "va": "004a4a50",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?errorInit$n[]a",
+   "tu": "src/debug/assert.c",
+   "evidence": "own data placed in src/debug/assert.c 2026-11-09"
+  },
+  "errorData": {
+   "va": "004a4a68",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?errorData$n[]a",
+   "tu": "src/debug/assert.c",
+   "evidence": "own data placed in src/debug/assert.c 2026-11-09"
+  },
+  "errorState": {
+   "va": "004a4a78",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?errorState$n[]a",
+   "tu": "src/debug/assert.c",
+   "evidence": "own data placed in src/debug/assert.c 2026-11-09"
+  },
+  "errorMemory": {
    "va": "004a4a88",
    "kind": "data",
    "status": "hypothesis",
-   "mangled": "W?errorText$n[]xa",
-   "evidence": "implied by src/io/memory.c 2026-11-09"
+   "mangled": "W?errorMemory$n[]a",
+   "tu": "src/debug/assert.c",
+   "evidence": "own data placed in src/debug/assert.c 2026-11-09"
   },
   "MissingResourceFormat": {
    "va": "004a4adc",
@@ -27182,6 +27278,22 @@
    "status": "hypothesis",
    "mangled": "W?MissingResourceFormat$n[]xa",
    "evidence": "implied by src/io/resource.c 2026-11-09"
+  },
+  "errorMissingFile": {
+   "va": "004a4adc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?errorMissingFile$n[]a",
+   "tu": "src/debug/assert.c",
+   "evidence": "own data placed in src/debug/assert.c 2026-11-09"
+  },
+  "errorWrite": {
+   "va": "004a4b2c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?errorWrite$n[]a",
+   "tu": "src/debug/assert.c",
+   "evidence": "own data placed in src/debug/assert.c 2026-11-09"
   },
   "fileSourcePath": {
    "va": "004a4b9c",
