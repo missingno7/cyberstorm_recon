@@ -45,6 +45,7 @@ def main(argv):
             s = syms.get(f"{n}@{x.get('scope')}") if x.get("local") else syms.get(n)
             if not s or s["status"] != "matched" or s["va"] != e["va"]:
                 bad.append(f"{n} (symbols.json)")
+        bad += gate.data_losses(reports, ent.get("data"))      # recorded data must stay STRICT (audit v1 F2)
         if bad:
             print(f"FAIL {tu}: {bad}")
             ok = False

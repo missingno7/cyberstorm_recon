@@ -46,7 +46,7 @@ def main():
              "W?Load$:ResMgr$n(liii)pnv": "ResMgr::Load", "W?gResMgr$n$ResMgr$$": "gResMgr"}
     check(all(symbols.label(k) == v for k, v in cases.items()), "symbol labels demangle correctly")
     fcases = {"W?f$n(i)v": True, "W?g$ni": False, "W?x$:.0$:?Event$n(uiul)i:Cls$n[]uc": False,
-              "W?gResMgr$n$ResMgr$$": False, "W?Lock$:StrPool$n()i": True, "cfunc": True,
+              "W?gResMgr$n$ResMgr$$": False, "W?Lock$:StrPool$n()i": True, "cfunc": None,
               "W?spot$:.0$:?ExploPosition$n(pnv)rn$Pt$$": False}
     check(all(symbols.is_function(k) == v for k, v in fcases.items()), "function/data classification")
     st = statuses(TIMER, ["-4s", "-s", "-oxt"])
@@ -87,6 +87,27 @@ def main():
             k = next((n for n in good if "PlayTakeoff" in n), None)
             check(k is not None and good[k] == "STRICT" and bad.get(k) != "STRICT",
                   "changed string literal is not STRICT (item-mode proof)")
+    # audit v1 negatives (candidates/v1/REPORT.md): own initialized data (F1), placed CONST bytes (F2),
+    # interior placement (F4)
+    mem = ROOT / "src" / "io" / "memory.c"
+    mt = mem.read_text(encoding="latin-1")
+    with tempfile.TemporaryDirectory(dir=ROOT / "build") as td:
+        good = statuses(mem, ["-4s", "-s", "-oxt", "-bm"], as_name="io\\memory.c")
+        k = next((n for n in good if "GlobalBlockAlloc" in n), None)
+        if "Ran out of memory" in mt:
+            p4 = Path(td) / "memory.c"
+            p4.write_text(mt.replace("Ran out of memory", "Ran out of memorz"), encoding="latin-1")
+            bad1 = statuses(p4, ["-4s", "-s", "-oxt", "-bm"], as_name="io\\memory.c")
+            check(k and good[k] == "STRICT" and bad1.get(k) != "STRICT", "own initialized data change is not STRICT (F1)")
+        if "__FILE__" in mt:
+            p5 = Path(td) / "memory.c"
+            p5.write_text(mt.replace("__FILE__", '"io\\\\memorx.c"', 1), encoding="latin-1")
+            bad2 = statuses(p5, ["-4s", "-s", "-oxt", "-bm"], as_name="io\\memory.c")
+            check(k and bad2.get(k) != "STRICT", "placed CONST byte change is not STRICT (F2)")
+        p6 = Path(td) / "fog.c"
+        p6.write_text("void FogNoOp() {}\n")
+        st6 = statuses(p6, ["-4s", "-s", "-oxt", "-bm"], at={"FogNoOp": 0x47ac72})
+        check(all(v != "STRICT" for v in st6.values()), "placement at an interior address is not STRICT (F4)")
     print("TEST GATE OK" if not fails else f"TEST GATE FAILED: {fails}")
     return 1 if fails else 0
 

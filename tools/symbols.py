@@ -43,7 +43,7 @@ def is_function(sym):
     (`W?f$n(i)v` function, `W?g$ni` data, a function-local static `W?x$:.0$:?Event$n(uiul)i:Cls$n[]uc` data).
     C names (no `W?`) are treated as functions."""
     if not sym.startswith("W?"):
-        return True
+        return None             # C linkage: no type in the name; callers decide from the target section
     if re.search(r"\$:\.\d+\$:\?", sym):
         return False        # function-local static (`W?x$:.N$:?Func...`) or its guard: always data
     i = sym.rfind("$n")
@@ -124,14 +124,26 @@ class Resolver:
             return (self.imports[imp], "import") if imp in self.imports else (None, None)
         if is_local(sym, local):
             e = self.db.get(key_for(sym, True, scope)) if scope else None
+            if not e and scope:
+                # an unscoped entry recorded by this same TU for exactly this mangled name (older bindings)
+                u = self.db.get(label(sym))
+                same_name = u and (u.get("mangled") == sym or (not sym.startswith("W?") and label(u.get("mangled", "")) == sym))
+                if same_name and (str(u.get("tu", "")).lower().endswith(scope)
+                                                      or f"src/{scope}" in str(u.get("evidence", "")).lower()):
+                    e = u
             return (int(e["va"], 16), e["status"]) if e else (None, None)
         key = self.by_mangled.get(sym) or label(sym)
         e = self.db.get(key)
         if e:
-            # a label match with a different mangled name means our prototypes disagree between TUs: the VA
-            # binding still holds (bytes decide), but the caller is flagged for a type cleanup
-            same = not e.get("mangled") or e["mangled"] == sym
-            return int(e["va"], 16), e["status"] if same else e["status"] + "~mangle"
+            # a label match with a different mangled name is either a prototype disagreement between TUs or a
+            # genuine overload (e.g. a copy constructor): never resolve it by label (audit v1 follow-up). Such a
+            # reference is bound only by byte evidence (--imply) under its own `label#mangled` key.
+            if e.get("mangled") and e["mangled"] != sym:
+                alt = self.db.get(f"{key}#{sym}")
+                if alt:
+                    return int(alt["va"], 16), alt["status"]
+            else:
+                return int(e["va"], 16), e["status"]
         if sym in self.lib:
             return self.lib[sym], "lib"
         if self.extra and sym in self.extra:

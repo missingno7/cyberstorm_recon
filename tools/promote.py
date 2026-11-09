@@ -19,6 +19,13 @@ import symbols  # noqa: E402
 from common import ROOT, dump_json  # noqa: E402
 
 
+def img_section(va_hex):
+    import pe as pemod
+    img = pemod.load(None)
+    sec = img.section_at_rva(int(va_hex, 16) - img.image_base)
+    return sec.name if sec else None
+
+
 def main(argv):
     argv = list(argv[1:])
     opts = {"at": {}, "loss": []}
@@ -77,8 +84,10 @@ def main(argv):
     lost = []
     for n, e in old.get("functions", {}).items():
         now = lab_ext.get(n)
-        if not now or now["status"] != "STRICT" or now["va"] != e["va"]:
+        if (not now or now["status"] != "STRICT" or now["va"] != e["va"]
+                or now["end"] - now["off"] != e["size"]):       # audit v1 F5: size is part of the claim
             lost.append(n)
+    lost += gate.data_losses(reports, old.get("data"))
     if lost and set(lost) - set(opts["loss"]):
         print("LOSS (not accepted):", sorted(set(lost) - set(opts["loss"])))
         return 1
@@ -161,7 +170,10 @@ def main(argv):
     for k, v in implied.items():
         lab = symbols.label(k)
         if lab not in syms:
-            syms[lab] = {"va": v, "kind": "func" if symbols.is_function(k) else "data",
+            isf = symbols.is_function(k)
+            if isf is None:     # C linkage: kind from the target section
+                isf = img_section(v) == "BEGTEXT"
+            syms[lab] = {"va": v, "kind": "func" if isf else "data",
                          "status": "hypothesis", "mangled": k, "evidence": f"implied by {tu} {now}"}
     # this TU's own non-strict functions placed by --at or unique search: keep the placement as a hypothesis
     # binding, so references to them resolve without --at (as in verify)
@@ -189,6 +201,7 @@ def main(argv):
     bad = [n for n, e in rec["functions"].items()
            if (ext2.get(n) or {}).get("status") != "STRICT" or ext2[n]["va"] != e["va"]
            or ext2[n]["end"] - ext2[n]["off"] != e["size"]]
+    bad += gate.data_losses(reports2, rec.get("data"))
     if bad:
         for p, b in backup.items():
             if b is None:

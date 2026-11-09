@@ -670,6 +670,13 @@
    "tu": "src/shell/hercbay.c",
    "evidence": "strict match 2026-11-09"
   },
+  "HercBaySetStatus#W?HercBaySetStatus$n(pn$HercBay$$)i": {
+   "va": "004160b2",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HercBaySetStatus$n(pn$HercBay$$)i",
+   "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
+  },
   "HercBayRender": {
    "va": "004160eb",
    "kind": "func",
@@ -707,6 +714,13 @@
    "mangled": "W?Reactivate$:HercBayActions$n(pn$HercBay$$)v",
    "tu": "src/shell/hercbay.c",
    "evidence": "placed (at) in src/shell/hercbay.c 2026-11-09"
+  },
+  "HercBayActions::Reactivate#W?Reactivate$:HercBayActions$n()v": {
+   "va": "004163a2",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Reactivate$:HercBayActions$n()v",
+   "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
   },
   "HercBayDone": {
    "va": "00416415",
@@ -961,6 +975,13 @@
    "mangled": "W?$ct:GuiScreen$n(pnpn$GuiControl$$uiul)_",
    "tu": "src/_unknown/tu_00425978.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "PopLoadResource#PopLoadResource": {
+   "va": "00425978",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "PopLoadResource",
+   "evidence": "implied by src/sim/target.c (overload-safe migration 2026-11-09)"
   },
   "GuiScreen::Reset": {
    "va": "004259c1",
@@ -1355,12 +1376,26 @@
    "mangled": "W?SurfaceFree$n(pn$Surface$$)v",
    "evidence": "implied by src/gui/flic.c 2026-11-09"
   },
+  "SurfaceFree#W?SurfaceFree$n(pnv)v": {
+   "va": "00427399",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SurfaceFree$n(pnv)v",
+   "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
+  },
   "SurfaceClear": {
    "va": "0042742c",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?SurfaceClear$n(pn$Surface$$)v",
    "evidence": "implied by src/gui/flic.c 2026-11-09"
+  },
+  "SurfaceClear#W?SurfaceClear$n(pnv)v": {
+   "va": "0042742c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SurfaceClear$n(pnv)v",
+   "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
   },
   "MenuRestore": {
    "va": "00427459",
@@ -2337,12 +2372,26 @@
    "tu": "src/terr/tgrid.c",
    "evidence": "placed (at) in src/terr/tgrid.c 2026-11-09"
   },
+  "GridPointToIndex#W?GridPointToIndex$n(pnxapn$ExploPoint$$)l": {
+   "va": "0042afb0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?GridPointToIndex$n(pnxapn$ExploPoint$$)l",
+   "evidence": "implied by src/sim/explo.c (overload-safe migration 2026-11-09)"
+  },
   "TargetObjectInit": {
    "va": "0042b1a0",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "TargetObjectInit",
    "evidence": "implied by src/sim/target.c 2026-11-09"
+  },
+  "TargetObjectInit#W?TargetObjectInit$n(pnapn$ActorPosition$$i)v": {
+   "va": "0042b1a0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?TargetObjectInit$n(pnapn$ActorPosition$$i)v",
+   "evidence": "implied by src/multi/message.c (overload-safe migration 2026-11-09)"
   },
   "ResolveName": {
    "va": "0042b230",
@@ -2351,12 +2400,33 @@
    "mangled": "W?ResolveName$n(pnxapnxa)i",
    "evidence": "implied by src/logic/lactor.c 2026-11-09"
   },
+  "ResolveName#W?ResolveName$n(pnapn$ActorPosition$$)i": {
+   "va": "0042b230",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ResolveName$n(pnapn$ActorPosition$$)i",
+   "evidence": "implied by src/multi/message.c (overload-safe migration 2026-11-09)"
+  },
   "BestLocSetData": {
    "va": "0042b290",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?BestLocSetData$n(pnvpnvpnv)v",
    "evidence": "implied by src/logic/bestloc.c 2026-11-09"
+  },
+  "BestLocSetData#W?BestLocSetData$n(pnapn$ActorPosition$$i)v": {
+   "va": "0042b290",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?BestLocSetData$n(pnapn$ActorPosition$$i)v",
+   "evidence": "implied by src/multi/message.c (overload-safe migration 2026-11-09)"
+  },
+  "BestLocSetData#BestLocSetData": {
+   "va": "0042b290",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "BestLocSetData",
+   "evidence": "implied by src/sim/target.c (overload-safe migration 2026-11-09)"
   },
   "GridFindNeighbor": {
    "va": "0042b2d0",
@@ -2373,6 +2443,13 @@
    "mangled": "W?GridClamp$n(ul)l",
    "tu": "src/terr/tgrid.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "GridClamp#GridClamp": {
+   "va": "0042b3a0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "GridClamp",
+   "evidence": "implied by src/sim/target.c (overload-safe migration 2026-11-09)"
   },
   "GridRotatePoint": {
    "va": "0042b3d0",
@@ -2738,6 +2815,13 @@
    "mangled": "W?SendEvent$n(pnvipnvii)v",
    "evidence": "implied by src/logic/lactor.c 2026-11-09"
   },
+  "SendEvent#W?SendEvent$n(pnvipnvii)l": {
+   "va": "00436138",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SendEvent$n(pnvipnvii)l",
+   "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
+  },
   "ActorListObject::Fixup": {
    "va": "00436be7",
    "kind": "func",
@@ -3073,6 +3157,13 @@
    "tu": "src/sim/actorlst.c",
    "evidence": "strict match 2026-11-09"
   },
+  "CreateState#CreateState": {
+   "va": "00456550",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "CreateState",
+   "evidence": "implied by src/sim/target.c (overload-safe migration 2026-11-09)"
+  },
   "TargetActorById": {
    "va": "00456590",
    "kind": "func",
@@ -3152,6 +3243,13 @@
    "tu": "src/sim/actorlst.c",
    "evidence": "strict match 2026-11-09"
   },
+  "ActorRecord::$ct": {
+   "va": "00456c80",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$ct:ActorRecord$n()_",
+   "evidence": "implied by src/sim/actorlst.c 2026-11-09"
+  },
   "ActorFindAndSet": {
    "va": "00456ca0",
    "kind": "func",
@@ -3183,6 +3281,13 @@
    "mangled": "W?ActorListAdd$n(pnvpnvpnviii)pn$ActorRecord$$",
    "tu": "src/sim/actoradd.c",
    "evidence": "placed (at) in src/sim/actoradd.c 2026-11-09"
+  },
+  "ActorListAdd#W?ActorListAdd$n(ipn$ActorBlock$$pn$ActorListObject$$pn$ActorPosition$$ii)pn$ActorRecord$$": {
+   "va": "00456d80",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ActorListAdd$n(ipn$ActorBlock$$pn$ActorListObject$$pn$ActorPosition$$ii)pn$ActorRecord$$",
+   "evidence": "implied by src/multi/message.c (overload-safe migration 2026-11-09)"
   },
   "WorldActionInitialize": {
    "va": "00456f90",
@@ -3747,6 +3852,13 @@
    "tu": "src/sim/explo.c",
    "evidence": "strict match 2026-11-09"
   },
+  "ExploMessage#W?ExploMessage$n(ipn$ActorRecord$$)v": {
+   "va": "0045f930",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ExploMessage$n(ipn$ActorRecord$$)v",
+   "evidence": "implied by src/sim/apply.c (overload-safe migration 2026-11-09)"
+  },
   "ExploStart": {
    "va": "0045fa20",
    "kind": "func",
@@ -3954,6 +4066,13 @@
    "tu": "src/logic/lactor.c",
    "evidence": "strict match 2026-11-09"
   },
+  "ActorValue#W?ActorValue$n(pnve)i": {
+   "va": "00463c36",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ActorValue$n(pnve)i",
+   "evidence": "implied by src/logic/bestloc.c (overload-safe migration 2026-11-09)"
+  },
   "ActorName": {
    "va": "00463c56",
    "kind": "func",
@@ -3994,6 +4113,13 @@
    "tu": "src/logic/lactor.c",
    "evidence": "strict match 2026-11-09"
   },
+  "ActorArrayGet#ActorArrayGet": {
+   "va": "00463fbf",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "ActorArrayGet",
+   "evidence": "implied by src/logic/lsys.c (overload-safe migration 2026-11-09)"
+  },
   "ActorArraySet": {
    "va": "00463fda",
    "kind": "func",
@@ -4001,6 +4127,13 @@
    "mangled": "W?ActorArraySet$n(pn$LogicActor$$ii)v",
    "tu": "src/logic/lactor.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "ActorArraySet#ActorArraySet": {
+   "va": "00463fda",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "ActorArraySet",
+   "evidence": "implied by src/logic/lsys.c (overload-safe migration 2026-11-09)"
   },
   "ActorIsAvailable": {
    "va": "00464022",
@@ -4100,6 +4233,13 @@
    "mangled": "W?BestLocSubCandidate$n(pnv)i",
    "evidence": "implied by src/logic/bestloc.c 2026-11-09"
   },
+  "BestLocSubCandidate#W?BestLocSubCandidate$n(pn$BestLocEntry$$)i": {
+   "va": "004660cb",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?BestLocSubCandidate$n(pn$BestLocEntry$$)i",
+   "evidence": "implied by src/logic/bestloc.c (overload-safe migration 2026-11-09)"
+  },
   "BestLocBegin": {
    "va": "004661b4",
    "kind": "func",
@@ -4129,14 +4269,6 @@
    "status": "hypothesis",
    "mangled": "LogicActorCommand",
    "evidence": "implied by src/logic/lsys.c 2026-11-09"
-  },
-  "ActorRecord::$ct": {
-   "va": "00467971",
-   "kind": "func",
-   "status": "matched",
-   "mangled": "W?$ct:ActorRecord$n()_",
-   "tu": "src/sim/actorlst.c",
-   "evidence": "strict match 2026-11-09"
   },
   "LogicDeleteActorFromList": {
    "va": "0046ab2e",
@@ -4914,6 +5046,13 @@
    "tu": "src/multi/linkq.c",
    "evidence": "strict match 2026-11-09"
   },
+  "Queue::First#W?First$:Queue$n()pn$LinkEntry$$": {
+   "va": "0046e15b",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?First$:Queue$n()pn$LinkEntry$$",
+   "evidence": "implied by src/multi/linkapp.c (overload-safe migration 2026-11-09)"
+  },
   "Queue::Append": {
    "va": "0046e16b",
    "kind": "func",
@@ -4937,6 +5076,13 @@
    "mangled": "W?Remove$:Queue$n(pn$QueueNode$$)v",
    "tu": "src/multi/linkq.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "Queue::Remove#W?Remove$:Queue$n(pn$LinkEntry$$)v": {
+   "va": "0046e272",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Remove$:Queue$n(pn$LinkEntry$$)v",
+   "evidence": "implied by src/multi/linkapp.c (overload-safe migration 2026-11-09)"
   },
   "Queue::RemoveAll": {
    "va": "0046e2e7",
@@ -5660,6 +5806,13 @@
    "mangled": "W?MenuSend$n(pnx$MenuMessage$$i)v",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
   },
+  "MenuSend#W?MenuSend$n(pn$MenuMessage$$i)i": {
+   "va": "00471789",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuSend$n(pn$MenuMessage$$i)i",
+   "evidence": "implied by src/multi/linkapp.c (overload-safe migration 2026-11-09)"
+  },
   "MessageDeliver": {
    "va": "004718f2",
    "kind": "func",
@@ -5716,6 +5869,13 @@
    "tu": "src/multi/message.c",
    "evidence": "strict match 2026-11-09"
   },
+  "MenuMessageBasic#W?MenuMessageBasic$n(pn$MenuMessage$$i)v": {
+   "va": "00471a1b",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuMessageBasic$n(pn$MenuMessage$$i)v",
+   "evidence": "implied by src/multi/mstart.c (overload-safe migration 2026-11-09)"
+  },
   "MenuMessageStart": {
    "va": "00471aa9",
    "kind": "func",
@@ -5723,6 +5883,13 @@
    "mangled": "W?MenuMessageStart$n(pn$MenuMessage$$ipn$ActorRecord$$)pn$1$",
    "tu": "src/multi/message.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "MenuMessageStart#W?MenuMessageStart$n(pn$MenuMessage$$ipnv)v": {
+   "va": "00471aa9",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuMessageStart$n(pn$MenuMessage$$ipnv)v",
+   "evidence": "implied by src/multi/mstart.c (overload-safe migration 2026-11-09)"
   },
   "MenuMessageData": {
    "va": "00471b2f",
@@ -5732,6 +5899,13 @@
    "tu": "src/multi/message.c",
    "evidence": "strict match 2026-11-09"
   },
+  "MenuMessageData#W?MenuMessageData$n(pn$MenuMessage$$iiii)v": {
+   "va": "00471b2f",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuMessageData$n(pn$MenuMessage$$iiii)v",
+   "evidence": "implied by src/multi/mstart.c (overload-safe migration 2026-11-09)"
+  },
   "MenuMessageInfo": {
    "va": "00471b56",
    "kind": "func",
@@ -5739,6 +5913,13 @@
    "mangled": "W?MenuMessageInfo$n(pn$MenuMessage$$iipn$Options$$)pn$1$",
    "tu": "src/multi/message.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "MenuMessageInfo#W?MenuMessageInfo$n(pn$MenuMessage$$iipnv)v": {
+   "va": "00471b56",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuMessageInfo$n(pn$MenuMessage$$iipnv)v",
+   "evidence": "implied by src/multi/mstart.c (overload-safe migration 2026-11-09)"
   },
   "MenuMessageGame": {
    "va": "00471b91",
@@ -5748,6 +5929,13 @@
    "tu": "src/multi/message.c",
    "evidence": "strict match 2026-11-09"
   },
+  "MenuMessageGame#W?MenuMessageGame$n(pn$MenuMessage$$ipn$GameInfo$$)v": {
+   "va": "00471b91",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuMessageGame$n(pn$MenuMessage$$ipn$GameInfo$$)v",
+   "evidence": "implied by src/multi/mstart.c (overload-safe migration 2026-11-09)"
+  },
   "MenuMessageSlot": {
    "va": "00471bb5",
    "kind": "func",
@@ -5755,6 +5943,13 @@
    "mangled": "W?MenuMessageSlot$n(pn$MenuMessage$$iipn$PlayerSlot$$)pn$1$",
    "tu": "src/multi/message.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "MenuMessageSlot#W?MenuMessageSlot$n(pn$MenuMessage$$iipn$PlayerSlot$$)v": {
+   "va": "00471bb5",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuMessageSlot$n(pn$MenuMessage$$iipn$PlayerSlot$$)v",
+   "evidence": "implied by src/multi/mstart.c (overload-safe migration 2026-11-09)"
   },
   "MenuMessage::$ct": {
    "va": "00471be0",
@@ -5826,6 +6021,13 @@
    "status": "hypothesis",
    "mangled": "W?ResetQueue$n(pnv)v",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "ResetQueue#W?ResetQueue$n(pna)v": {
+   "va": "0047431b",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ResetQueue$n(pna)v",
+   "evidence": "implied by src/multi/linkdlg.c (overload-safe migration 2026-11-09)"
   },
   "ValidateSlot": {
    "va": "00474366",
@@ -6080,6 +6282,13 @@
    "tu": "src/_unknown/tu_0047abc0.c",
    "evidence": "strict match 2026-11-09"
   },
+  "TimeNow#W?TimeNow$n()i": {
+   "va": "0047abc0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?TimeNow$n()i",
+   "evidence": "implied by src/logic/miss.c (overload-safe migration 2026-11-09)"
+  },
   "TimeSleep": {
    "va": "0047abd0",
    "kind": "func",
@@ -6095,6 +6304,13 @@
    "mangled": "W?TimerSet$n(pn$Timer$$ul)v",
    "tu": "src/_unknown/tu_0047abc0.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "TimerSet#W?TimerSet$n(pnvul)v": {
+   "va": "0047abe0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?TimerSet$n(pnvul)v",
+   "evidence": "implied by src/multi/mstart.c (overload-safe migration 2026-11-09)"
   },
   "TimerNext": {
    "va": "0047ac00",
@@ -6169,6 +6385,13 @@
    "status": "hypothesis",
    "mangled": "W?SigsStart$n(pnii)v",
    "evidence": "implied by src/multi/linkdlg.c 2026-11-09"
+  },
+  "SigsStart#W?SigsStart$n(pnvuc)v": {
+   "va": "0047bab0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SigsStart$n(pnvuc)v",
+   "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
   },
   "MenuFill": {
    "va": "0047bad0",
@@ -6267,6 +6490,13 @@
    "tu": "src/misc/strpool.c",
    "evidence": "placed (at) in src/misc/strpool.c 2026-11-09"
   },
+  "AllocateMissionImage#W?AllocateMissionImage$n(pnvii)pnv": {
+   "va": "0047c350",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?AllocateMissionImage$n(pnvii)pnv",
+   "evidence": "implied by src/multi/mstart.c (overload-safe migration 2026-11-09)"
+  },
   "StrPool::GetSecondString": {
    "va": "0047c4f0",
    "kind": "func",
@@ -6289,6 +6519,13 @@
    "status": "hypothesis",
    "mangled": "W?FindPath$:ResMgr$n(pnxapnai)i",
    "evidence": "implied by src/io/resource.c 2026-11-09"
+  },
+  "ResMgr::FindPath#W?FindPath$:ResMgr$n(pnxaypnai)i": {
+   "va": "0047c710",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?FindPath$:ResMgr$n(pnxaypnai)i",
+   "evidence": "implied by src/io/resource.c (overload-safe migration 2026-11-09)"
   },
   "ResMgr::OpenFile": {
    "va": "0047c7e0",
@@ -6359,6 +6596,20 @@
    "status": "hypothesis",
    "mangled": "W?Load$:ResMgr$n(liii)pnv",
    "evidence": "implied by src/misc/strpool.c 2026-11-09"
+  },
+  "ResMgr::Load#W?Load$:ResMgr$n(pnauipniui)pni": {
+   "va": "0047c920",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Load$:ResMgr$n(pnauipniui)pni",
+   "evidence": "implied by src/io/resource.c (overload-safe migration 2026-11-09)"
+  },
+  "ResMgr::Load#W?Load$:ResMgr$n(pnxaipnvul)pnv": {
+   "va": "0047c920",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Load$:ResMgr$n(pnxaipnvul)pnv",
+   "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
   },
   "ReleasePoolData": {
    "va": "0047cb80",
@@ -6507,6 +6758,13 @@
    "tu": "src/debug/assert.c",
    "evidence": "strict match 2026-11-09"
   },
+  "AssertFail#W?AssertFail$n(pnxaipnxa)v": {
+   "va": "0047d5a0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?AssertFail$n(pnxaipnxa)v",
+   "evidence": "implied by src/gui/flic.c (overload-safe migration 2026-11-09)"
+  },
   "AssertExit": {
    "va": "0047d640",
    "kind": "func",
@@ -6564,12 +6822,40 @@
    "mangled": "W?$dt:WorldAction$n()_",
    "evidence": "implied by src/sim/worldact.c 2026-11-09"
   },
+  "ExploRecord::$ct#W?$ct:ExploRecord$n(rnx$0$)_": {
+   "va": "0047e008",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$ct:ExploRecord$n(rnx$0$)_",
+   "evidence": "implied by src/sim/explo.c (overload-safe migration 2026-11-09)"
+  },
+  "ExploRecord::$dt": {
+   "va": "0047e008",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:ExploRecord$n()_",
+   "evidence": "implied by src/sim/explo.c (overload-safe migration 2026-11-09)"
+  },
+  "WorldAction::$ct#W?$ct:WorldAction$n(rnx$0$)_": {
+   "va": "0047e008",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$ct:WorldAction$n(rnx$0$)_",
+   "evidence": "implied by src/sim/worldact.c (overload-safe migration 2026-11-09)"
+  },
   "MemoryRelease": {
    "va": "0047e044",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "MemoryRelease",
    "evidence": "implied by src/terr/tfog.c 2026-11-09"
+  },
+  "MemoryRelease#W?MemoryRelease$n(pnv)v": {
+   "va": "0047e044",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MemoryRelease$n(pnv)v",
+   "evidence": "implied by src/_unknown/tu_00425978.c (overload-safe migration 2026-11-09)"
   },
   "PopConstructorArray": {
    "va": "0047e068",
@@ -6591,6 +6877,13 @@
    "status": "hypothesis",
    "mangled": "W?RandomRange$n(pniii)i",
    "evidence": "implied by src/logic/miss.c 2026-11-09"
+  },
+  "RandomRange#RandomRange": {
+   "va": "0047e1a0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "RandomRange",
+   "evidence": "implied by src/sim/explo.c (overload-safe migration 2026-11-09)"
   },
   "FileInit": {
    "va": "0047e450",
@@ -6624,12 +6917,26 @@
    "tu": "src/io/file.c",
    "evidence": "strict match 2026-11-09"
   },
+  "IORelease#IORelease": {
+   "va": "0047e5a0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "IORelease",
+   "evidence": "implied by src/io/resource.c (overload-safe migration 2026-11-09)"
+  },
   "IoClose": {
    "va": "0047e610",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "IoClose",
    "evidence": "implied by src/io/resource.c 2026-11-09"
+  },
+  "IoClose#W?IoClose$n(pn$FileRecord$$)ul": {
+   "va": "0047e610",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?IoClose$n(pn$FileRecord$$)ul",
+   "evidence": "implied by src/io/resource.c (overload-safe migration 2026-11-09)"
   },
   "StreamRead": {
    "va": "0047e670",
@@ -6646,6 +6953,20 @@
    "mangled": "IoWrite",
    "evidence": "implied by src/io/resource.c 2026-11-09"
   },
+  "StreamRead#StreamRead": {
+   "va": "0047e670",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "StreamRead",
+   "evidence": "implied by src/io/resource.c (overload-safe migration 2026-11-09)"
+  },
+  "StreamRead#W?StreamRead$n(pnvpnvi)i": {
+   "va": "0047e670",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?StreamRead$n(pnvpnvi)i",
+   "evidence": "implied by src/logic/lactor.c (overload-safe migration 2026-11-09)"
+  },
   "StreamWrite": {
    "va": "0047e6f0",
    "kind": "func",
@@ -6653,6 +6974,27 @@
    "mangled": "W?StreamWrite$n(pn$FileRecord$$pnxvul)ul",
    "tu": "src/io/file.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "StreamWrite#W?StreamWrite$n(pnvpnxvi)i": {
+   "va": "0047e6f0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?StreamWrite$n(pnvpnxvi)i",
+   "evidence": "implied by src/logic/lactor.c (overload-safe migration 2026-11-09)"
+  },
+  "StreamWrite#StreamWrite": {
+   "va": "0047e6f0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "StreamWrite",
+   "evidence": "implied by src/sim/actorlst.c (overload-safe migration 2026-11-09)"
+  },
+  "StreamWrite#W?StreamWrite$n(pnvpnxvul)i": {
+   "va": "0047e6f0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?StreamWrite$n(pnvpnxvul)i",
+   "evidence": "implied by src/terr/tfog.c (overload-safe migration 2026-11-09)"
   },
   "IoRead": {
    "va": "0047e780",
@@ -6765,6 +7107,13 @@
    "mangled": "MemFree",
    "evidence": "implied by src/io/resource.c 2026-11-09"
   },
+  "GlobalBlockFree#GlobalBlockFree": {
+   "va": "0047eb40",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "GlobalBlockFree",
+   "evidence": "implied by src/io/resource.c (overload-safe migration 2026-11-09)"
+  },
   "GlobalBlockAlloc": {
    "va": "0047eb50",
    "kind": "func",
@@ -6779,6 +7128,13 @@
    "status": "hypothesis",
    "mangled": "W?MemoryAllocationRetry$n(ul)pnv",
    "evidence": "implied by src/terr/tfast.c 2026-11-09"
+  },
+  "MemoryAllocationRetry#MemoryAllocationRetry": {
+   "va": "0047eb98",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "MemoryAllocationRetry",
+   "evidence": "implied by src/terr/tfog.c (overload-safe migration 2026-11-09)"
   },
   "Allocate": {
    "va": "0047ebcc",
@@ -6807,6 +7163,13 @@
    "status": "hypothesis",
    "mangled": "W?PointAngle$n(pn$ApplyPoint$$pn$1$)i",
    "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
+  "PointAngle#W?PointAngle$n(pn$ExploPoint$$pn$1$)i": {
+   "va": "0047ef20",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PointAngle$n(pn$ExploPoint$$pn$1$)i",
+   "evidence": "implied by src/sim/explo.c (overload-safe migration 2026-11-09)"
   },
   "Crc16": {
    "va": "0047f0b0",
@@ -6955,6 +7318,13 @@
    "mangled": "W?assertFormat$n[]xa",
    "evidence": "implied by src/debug/assert.c 2026-11-09"
   },
+  "assertFormat#assertFormat": {
+   "va": "0048bff4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "assertFormat",
+   "evidence": "implied by src/debug/assert.c (overload-safe migration 2026-11-09)"
+  },
   "assertTitle": {
    "va": "0048c02c",
    "kind": "data",
@@ -6962,12 +7332,33 @@
    "mangled": "W?assertTitle$n[]xa",
    "evidence": "implied by src/debug/assert.c 2026-11-09"
   },
+  "assertTitle#assertTitle": {
+   "va": "0048c02c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "assertTitle",
+   "evidence": "implied by src/debug/assert.c (overload-safe migration 2026-11-09)"
+  },
   "fileRootFormat": {
    "va": "0048c0b8",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?fileRootFormat$n[]xa",
    "evidence": "implied by src/io/file.c 2026-11-09"
+  },
+  "fileRootFormat#W?fileRootFormat$n[]a": {
+   "va": "0048c0b8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?fileRootFormat$n[]a",
+   "evidence": "implied by src/io/file.c (overload-safe migration 2026-11-09)"
+  },
+  "CONST2": {
+   "va": "0048c82c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "CONST2",
+   "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
   },
   "W?$Wvf09o4:Shell$$nx[]pn()v": {
    "va": "0048c898",
@@ -7123,6 +7514,13 @@
    "mangled": "W?startGuid$n[]a",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
   },
+  "startGuid#W?startGuid$nx$_GUID$$": {
+   "va": "0048e134",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?startGuid$nx$_GUID$$",
+   "evidence": "implied by src/multi/linkdlg.c (overload-safe migration 2026-11-09)"
+  },
   "gSigsProviderGuid": {
    "va": "0048e154",
    "kind": "data",
@@ -7143,6 +7541,13 @@
    "status": "hypothesis",
    "mangled": "W?gLinkThreadProc$nxpn(pnv)ui",
    "evidence": "implied by src/multi/linkdlg.c 2026-11-09"
+  },
+  "_DATA": {
+   "va": "0048e4d0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "_DATA",
+   "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
   },
   "g48ea1c": {
    "va": "0048ea1c",
@@ -7466,12 +7871,26 @@
    "mangled": "W?assertProgram$n[]xa",
    "evidence": "implied by src/debug/assert.c 2026-11-09"
   },
+  "assertProgram#assertProgram": {
+   "va": "004a4264",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "assertProgram",
+   "evidence": "implied by src/debug/assert.c (overload-safe migration 2026-11-09)"
+  },
   "assertVersion": {
    "va": "004a4270",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?assertVersion$n[]xa",
    "evidence": "implied by src/debug/assert.c 2026-11-09"
+  },
+  "assertVersion#assertVersion": {
+   "va": "004a4270",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "assertVersion",
+   "evidence": "implied by src/debug/assert.c (overload-safe migration 2026-11-09)"
   },
   "assertDate": {
    "va": "004a42bc",
@@ -7480,12 +7899,26 @@
    "mangled": "W?assertDate$n[]xa",
    "evidence": "implied by src/debug/assert.c 2026-11-09"
   },
+  "assertDate#assertDate": {
+   "va": "004a42bc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "assertDate",
+   "evidence": "implied by src/debug/assert.c (overload-safe migration 2026-11-09)"
+  },
   "assertFooter": {
    "va": "004a42c8",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?assertFooter$n[]xa",
    "evidence": "implied by src/debug/assert.c 2026-11-09"
+  },
+  "assertFooter#assertFooter": {
+   "va": "004a42c8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "assertFooter",
+   "evidence": "implied by src/debug/assert.c (overload-safe migration 2026-11-09)"
   },
   "joiningMessage": {
    "va": "004a4808",
@@ -7522,12 +7955,61 @@
    "mangled": "W?fileSourcePath$n[]xa",
    "evidence": "implied by src/io/file.c 2026-11-09"
   },
+  "gShellCreditStep": {
+   "va": "004a7030",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gShellCreditStep$nl",
+   "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
+  },
+  "gShellRate": {
+   "va": "004a7034",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gShellRate$n$Rate$$",
+   "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
+  },
+  "gShellIdleTimer": {
+   "va": "004a7040",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gShellIdleTimer$n$Timer$$",
+   "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
+  },
+  "gShellCreditTimer": {
+   "va": "004a704c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gShellCreditTimer$n$Timer$$",
+   "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
+  },
   "uiSystem": {
    "va": "004a7058",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?uiSystem$n[]a",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "uiSystem#W?uiSystem$n$Shell$$": {
+   "va": "004a7058",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?uiSystem$n$Shell$$",
+   "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
+  },
+  "gShellGame": {
+   "va": "004a70b8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gShellGame$n$GameSession$$",
+   "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
+  },
+  "gShellAnimationTimer": {
+   "va": "004ae5ac",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gShellAnimationTimer$n$Timer$$",
+   "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
   },
   "g4aebe0": {
    "va": "004aebe0",
@@ -7697,6 +8179,13 @@
    "mangled": "W?g4b3390$ni",
    "evidence": "implied by src/shell/missbrf.c 2026-11-09"
   },
+  "g4b3390#W?g4b3390$n$MissBrief$$": {
+   "va": "004b3390",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b3390$n$MissBrief$$",
+   "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
+  },
   "g4b3598": {
    "va": "004b3598",
    "kind": "data",
@@ -7767,6 +8256,13 @@
    "mangled": "W?g4b37c4$ni",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
   },
+  "g4b37c4#W?g4b37c4$n$Scene$$": {
+   "va": "004b37c4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b37c4$n$Scene$$",
+   "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
+  },
   "g4b416c": {
    "va": "004b416c",
    "kind": "data",
@@ -7808,6 +8304,13 @@
    "status": "hypothesis",
    "mangled": "W?g4b82fc$n[]a",
    "evidence": "implied by src/multi/linkdlg.c 2026-11-09"
+  },
+  "g4b82fc#W?g4b82fc$n$Scene$$": {
+   "va": "004b82fc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b82fc$n$Scene$$",
+   "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
   },
   "g4ba2bc": {
    "va": "004ba2bc",
@@ -7949,6 +8452,13 @@
    "mangled": "W?targetSharedState$ni",
    "evidence": "implied by src/sim/target.c 2026-11-09"
   },
+  "g4bb78c#W?g4bb78c$n$GuiPoint$$": {
+   "va": "004bb78c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4bb78c$n$GuiPoint$$",
+   "evidence": "implied by src/_unknown/tu_00425978.c (overload-safe migration 2026-11-09)"
+  },
   "gInA": {
    "va": "004bb794",
    "kind": "data",
@@ -8089,6 +8599,13 @@
    "mangled": "W?profileManager$n[]a",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
   },
+  "profileManager#W?profileManager$n$ProfileManager$$": {
+   "va": "004c934c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?profileManager$n$ProfileManager$$",
+   "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
+  },
   "g4d030f": {
    "va": "004d030f",
    "kind": "data",
@@ -8221,6 +8738,20 @@
    "status": "hypothesis",
    "mangled": "W?animFallbackName$n[]uc",
    "evidence": "implied by src/sim/anim.c 2026-11-09"
+  },
+  "fallbackName#W?fallbackName$n[]xa": {
+   "va": "004d3594",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?fallbackName$n[]xa",
+   "evidence": "implied by src/sim/apply.c (overload-safe migration 2026-11-09)"
+  },
+  "fallbackName#W?fallbackName$n$FastGrid$$": {
+   "va": "004d3594",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?fallbackName$n$FastGrid$$",
+   "evidence": "implied by src/terr/tfast.c (overload-safe migration 2026-11-09)"
   },
   "targetDefinitionTable": {
    "va": "004d35d8",
@@ -8782,6 +9313,13 @@
    "mangled": "W?localPeer$ni",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
   },
+  "localPeer#W?localPeer$nul": {
+   "va": "004f5cf4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?localPeer$nul",
+   "evidence": "implied by src/multi/linkdlg.c (overload-safe migration 2026-11-09)"
+  },
   "gLinkTimer": {
    "va": "004f5cfc",
    "kind": "data",
@@ -8978,12 +9516,33 @@
    "mangled": "W?g511948$ni",
    "evidence": "implied by src/shell/missbrf.c 2026-11-09"
   },
+  "g511948#W?g511948$na": {
+   "va": "00511948",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g511948$na",
+   "evidence": "implied by src/gui/menu.c (overload-safe migration 2026-11-09)"
+  },
+  "g511948#W?g511948$n$Surface$$": {
+   "va": "00511948",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g511948$n$Surface$$",
+   "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
+  },
   "gMenuSavedSurface": {
    "va": "00511958",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gMenuSavedSurface$na",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "gMenuSavedSurface#W?gMenuSavedSurface$n$Surface$$": {
+   "va": "00511958",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gMenuSavedSurface$n$Surface$$",
+   "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
   },
   "gShellBackground": {
    "va": "00511968",
@@ -9020,6 +9579,13 @@
    "mangled": "W?missionImageName$n[]xa",
    "evidence": "implied by src/logic/miss.c 2026-11-09"
   },
+  "missionImageName#W?missionImageName$n$StrPool$$": {
+   "va": "00511e2c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?missionImageName$n$StrPool$$",
+   "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
+  },
   "targetBriefResource": {
    "va": "00511e54",
    "kind": "data",
@@ -9048,6 +9614,13 @@
    "mangled": "W?gResMgr$n$ResMgr$$",
    "evidence": "implied by src/misc/strpool.c 2026-11-09"
   },
+  "gResMgr#gResMgr": {
+   "va": "00511ecc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "gResMgr",
+   "evidence": "implied by src/io/resource.c (overload-safe migration 2026-11-09)"
+  },
   "gGuiEffectPriority": {
    "va": "00512374",
    "kind": "data",
@@ -9069,12 +9642,33 @@
    "mangled": "W?g_mainWindow$npnv",
    "evidence": "implied by src/debug/assert.c 2026-11-09"
   },
+  "g_mainWindow#g_mainWindow": {
+   "va": "0051253c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "g_mainWindow",
+   "evidence": "implied by src/debug/assert.c (overload-safe migration 2026-11-09)"
+  },
   "g513888": {
    "va": "00513888",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g513888$ni",
    "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "g513888#W?g513888$na": {
+   "va": "00513888",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g513888$na",
+   "evidence": "implied by src/_unknown/tu_0042a0e0.c (overload-safe migration 2026-11-09)"
+  },
+  "g513888#W?g513888$n[]a": {
+   "va": "00513888",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g513888$n[]a",
+   "evidence": "implied by src/sim/explo.c (overload-safe migration 2026-11-09)"
   },
   "gMenuBackground": {
    "va": "005138e0",
@@ -9104,6 +9698,13 @@
    "mangled": "W?gMenuTextMode$nul",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
   },
+  "gMenuTextMode#W?gMenuTextMode$n$TextStyle$$": {
+   "va": "005138ec",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gMenuTextMode$n$TextStyle$$",
+   "evidence": "implied by src/_unknown/tu_0042a5fc.c (overload-safe migration 2026-11-09)"
+  },
   "gMenuTextColor": {
    "va": "005138f4",
    "kind": "data",
@@ -9124,6 +9725,13 @@
    "status": "hypothesis",
    "mangled": "W?viewportClipLeft$ni",
    "evidence": "implied by src/_unknown/tu_00458f20.c 2026-11-09"
+  },
+  "viewportClipLeft#W?viewportClipLeft$n$ViewRect$$": {
+   "va": "005138fc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?viewportClipLeft$n$ViewRect$$",
+   "evidence": "implied by src/sim/fxout.c (overload-safe migration 2026-11-09)"
   },
   "viewportClipTop": {
    "va": "00513900",
@@ -9167,6 +9775,13 @@
    "mangled": "W?g_assertMessageActive$ni",
    "evidence": "implied by src/debug/assert.c 2026-11-09"
   },
+  "g_assertMessageActive#g_assertMessageActive": {
+   "va": "00513988",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "g_assertMessageActive",
+   "evidence": "implied by src/debug/assert.c (overload-safe migration 2026-11-09)"
+  },
   "g_assertCallbackCount": {
    "va": "0051398c",
    "kind": "data",
@@ -9174,12 +9789,26 @@
    "mangled": "W?g_assertCallbackCount$ni",
    "evidence": "implied by src/debug/assert.c 2026-11-09"
   },
+  "g_assertCallbackCount#g_assertCallbackCount": {
+   "va": "0051398c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "g_assertCallbackCount",
+   "evidence": "implied by src/debug/assert.c (overload-safe migration 2026-11-09)"
+  },
   "g_assertCallbacks": {
    "va": "00513990",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g_assertCallbacks$n[]pn()v",
    "evidence": "implied by src/debug/assert.c 2026-11-09"
+  },
+  "g_assertCallbacks#g_assertCallbacks": {
+   "va": "00513990",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "g_assertCallbacks",
+   "evidence": "implied by src/debug/assert.c (overload-safe migration 2026-11-09)"
   },
   "gGuiPalette": {
    "va": "00513a88",

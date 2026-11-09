@@ -64,6 +64,17 @@ def extents(reports):
     return out
 
 
+def data_losses(reports, recorded):
+    """Recorded data segments ({seg: {va, size}}) that are no longer STRICT at the same base and size."""
+    now = {s["seg"]: s for r in reports for s in r["segments"] if s["class"].upper() != "CODE"}
+    bad = []
+    for seg, e in (recorded or {}).items():
+        x = now.get(seg)
+        if not x or x["status"] != "STRICT" or x.get("base") != e["va"] or x["size"] != e["size"]:
+            bad.append(f"data:{seg}")
+    return bad
+
+
 def by_label(ext):
     import symbols
     return {symbols.label(n): e for n, e in ext.items()}

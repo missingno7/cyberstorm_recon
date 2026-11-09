@@ -1023,11 +1023,6 @@
      "va": "00456c80",
      "size": 20,
      "mangled": "W?ActorCloseRecord$n(pn$ActorRecord$$)pn$1$"
-    },
-    "ActorRecord::$ct": {
-     "va": "00467971",
-     "size": 11,
-     "mangled": "W?$ct:ActorRecord$n()_"
     }
    },
    "data": {
@@ -1038,6 +1033,10 @@
     "_DATA": {
      "va": "004a04f8",
      "size": 12
+    },
+    "W?$Wts0fn$ActorRecord$$$nx[]uc": {
+     "va": "0048dfe4",
+     "size": 17
     }
    },
    "accepted": "2026-11-09"
@@ -2801,5 +2800,14 @@
    "data": {},
    "accepted": "2026-11-09"
   }
- }
+ },
+ "accepted_losses": [
+  {
+   "tu": "src/sim/actorlst.c",
+   "functions": [
+    "ActorRecord::$ct"
+   ],
+   "date": "2026-11-09"
+  }
+ ]
 }

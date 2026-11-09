@@ -77,6 +77,7 @@ class Module:
         self.easy = False
         self.records = 0
         self.comdat_index = {}
+        self.weak = {}                 # weak extern index -> default extern index (WKEXT)
 
     def _detect_dialect(self, comments, fixup_records):
         # PROVEN by asm_id/fixup_probe: TASM 2.0 /op emits LOC=5 in
@@ -195,6 +196,11 @@ def parse_module(data: bytes, pos: int = 0):
             m.comments.append(body[:2].hex() + ":" + body[2:].decode("latin-1", "replace"))
             if body[1:2] == b"\xaa":
                 m.easy = True
+            if body[1:2] in (b"\xa8", b"\xa9"):   # WKEXT/LZEXT (cyberstorm addition): weak/lazy extern -> default
+                rr = _R(body[2:], False)
+                while rr.more():
+                    w = rr.idx()
+                    m.weak[w] = rr.idx()
         elif typ in (0x96, 0xCA):
             while r.more():
                 m.lnames.append(r.name())

@@ -111,10 +111,37 @@ def function_starts(img):
     return _STARTS[img.name]
 
 
+_TABLES = {}
+
+
+def oracle_tables(img):
+    """{jump table VA: entry count} from the function map's recorded tables (consecutive relocated entries)."""
+    if img.name not in _TABLES:
+        fm = Path(__file__).resolve().parent.parent / "build" / "funcmap" / f"{img.name}.json"
+        out = {}
+        if fm.exists():
+            rel = img.reloc_sites()
+            t = img.section("BEGTEXT")
+            t0 = img.image_base + t.rva
+            t1 = t0 + len(img.section_bytes("BEGTEXT"))
+            for fn in json.loads(fm.read_text())["functions"]:
+                for tab in fn.get("jumptables", []):
+                    v = int(tab, 16)
+                    n = 0
+                    while v + 4 * n in rel and t0 <= img.u32_va(v + 4 * n) < t1:
+                        n += 1
+                    if n:
+                        out[v] = n
+        _TABLES[img.name] = out
+    return _TABLES[img.name]
+
+
 class Comparison:
     def __init__(self, mod, img, resolver, at=None, find=False):
         self.m, self.img, self.res = mod, img, resolver
         self.starts = function_starts(img)
+        self.start_set = set(self.starts or ())
+        self.tables = oracle_tables(img)
         self.relsites = img.reloc_sites()
         self.conflicts = []
         self.fx_by_seg = {}
@@ -139,6 +166,8 @@ class Comparison:
         self.ext_va = {}        # (si, off) -> (va, how)
         self.base = {}          # data si -> (va, how)
         self.data_conflict = set()  # data segments in per-item mode
+        self._proving = set()       # recursion guard for data proofs (audit v1 F1/F2)
+        self._seg_proven = {}       # data si -> bool (whole initialized segment STRICT at its base)
         at = at or {}
         # 1. bound placement
         for si, exts in self.extents.items():
@@ -163,9 +192,16 @@ class Comparison:
                 if not is_code(seg) or not seg.size or any((si, o) in self.ext_va for o, _, _ in exts):
                     continue
                 hits = masked_search(img, seg.data, seg.covered, self.fx_by_seg.get(si, []), 0, seg.size)
-                if len(hits) == 1:
+                # a whole-segment hit is identity evidence only when the segment is substantial
+                if len(hits) == 1 and seg.size >= 64:
                     for o, _, _ in exts:
                         self.ext_va[(si, o)] = (hits[0] + o, "found")
+            # identity window for single-function search hits: near this object's anchored code (bound/--at/
+            # whole-segment). A unique hit far away is identical code of another function (audit follow-up:
+            # a trivial COMDAT constructor matched another class's constructor 70 KB away).
+            anchors = [va for (si2, o2), (va, how) in self.ext_va.items()]
+            lo_a = min(anchors) - 0x2000 if anchors else None
+            hi_a = max(anchors) + 0x2000 if anchors else None
             for si, exts in self.extents.items():
                 seg = mod.segments[si]
                 if not is_code(seg):
@@ -174,7 +210,10 @@ class Comparison:
                     if (si, o) in self.ext_va or e <= o:
                         continue
                     hits = masked_search(img, seg.data, seg.covered, self.fx_by_seg.get(si, []), o, e)
-                    if len(hits) == 1:
+                    if len(hits) == 1 and (lo_a is None or not (lo_a <= hits[0] <= hi_a)):
+                        self.notes.append(f"{symbols.label(names[0]) if names else seg.name}: unique masked hit "
+                                          f"{hits[0]:08x} outside this object's anchored range; not placed")
+                    elif len(hits) == 1:
                         self._place(si, o, hits[0], "found")
                     elif len(hits) > 1:
                         self.notes.append(f"{symbols.label(names[0]) if names else seg.name}: "
@@ -183,10 +222,21 @@ class Comparison:
         # 4. data bases implied by fixups from placed bytes
         implied = {}
         for _ in range(4):
+            own_pub = {pn: (psi, po) for pn, psi, po, _ in mod.publics
+                       if not is_code(mod.segments[psi]) and not is_bss(mod.segments[psi])}
             for si in list(self.extents):
                 seg = mod.segments[si]
                 for f in self.fx_by_seg.get(si, []):
                     m, d = f.target
+                    if m & 3 == 2 and f.size() == 4 and not f.self_rel and mod.externs[d] in own_pub:
+                        # reference to this TU's own data object through its extern name: implies its segment base
+                        psi, po = own_pub[mod.externs[d]]
+                        site = self.va_of(si, f.off)
+                        val = self._oracle_u32(site) if site is not None else None
+                        if val is not None:
+                            disp = 0 if m & 4 else f.disp
+                            implied.setdefault(psi, set()).add((val - self._addend(si, f) - disp - po) & 0xFFFFFFFF)
+                        continue
                     if m & 3 != 0 or f.size() != 4 or is_code(mod.segments[d]):
                         continue
                     site = self.va_of(si, f.off)
@@ -272,6 +322,47 @@ class Comparison:
             raw = raw[:raw.index(0) + 1]
         return raw
 
+    def _item_end(self, d, off):
+        """End of the data item at segment d + off: next public/referenced offset or segment end; a printable
+        NUL-terminated string ends at its NUL."""
+        seg = self.m.segments[d]
+        bounds = {seg.size} | {o for n, s, o, _ in self.m.publics if s == d}
+        for f in self.m.fixups:
+            if f.target[0] & 3 == 0 and f.target[1] == d and f.size() == 4:
+                bounds.add(((0 if f.target[0] & 4 else f.disp) + self._addend(f.seg, f)) & 0xFFFFFFFF)
+        end = min((b for b in bounds if b > off), default=seg.size)
+        raw = bytes(seg.data[off:end])
+        if 0 in raw and raw.index(0) > 0 and all(32 <= c < 127 or c in (9, 10, 13) for c in raw[:raw.index(0)]):
+            end = off + raw.index(0) + 1
+        return end
+
+    def _prove_data(self, d, lo, hi, va):
+        """Initialized data [lo,hi) of segment d is proven at va: bytes equal after applying its own fixups and
+        relocation sites equal (recursive; cycles are not proven)."""
+        seg = self.m.segments[d]
+        if hi <= lo or not all(seg.covered[lo:hi]) or (d, lo) in self._proving:
+            return False
+        self._proving.add((d, lo))
+        try:
+            return self._evaluate(d, lo, hi, va)["status"] == "STRICT"
+        finally:
+            self._proving.discard((d, lo))
+
+    def _segment_proven(self, d):
+        if d not in self._seg_proven:
+            seg = self.m.segments[d]
+            self._seg_proven[d] = bool(d in self.base and seg.size
+                                       and self._prove_data(d, 0, seg.size, self.base[d][0]))
+        return self._seg_proven[d]
+
+    def _data_ref_ok(self, d, item_off, va):
+        """A reference into initialized data segment d at item_off resolving to va is acceptable only if the
+        whole segment is proven at its base, or the referenced item itself is proven at va (audit v1 F2)."""
+        seg = self.m.segments[d]
+        if is_bss(seg) or self._segment_proven(d):
+            return True
+        return self._prove_data(d, item_off, self._item_end(d, item_off), va)
+
     def target(self, f, site):
         """(va, how, name) for a fixup target; va None if unknown."""
         m, d = f.target
@@ -291,6 +382,14 @@ class Comparison:
             if is_code(seg) or d in self.base:
                 va = self.va_of(d, disp)
                 if va is not None:
+                    if not is_code(seg):
+                        add = self._addend(f.seg, f) if f.size() == 4 else 0
+                        item_off = (disp + add) & 0xFFFFFFFF
+                        if f.self_rel:
+                            if not (is_bss(seg) or self._segment_proven(d)):
+                                return None, None, seg.name
+                        elif not self._data_ref_ok(d, item_off, (va + add) & 0xFFFFFFFF):
+                            return None, None, seg.name
                     how = self.base[d][1] if d in self.base else self.ext_va.get((d, disp), (0, "code"))[1]
                     return va & 0xFFFFFFFF, "seg:" + how, seg.name
                 return None, None, seg.name
@@ -301,14 +400,32 @@ class Comparison:
                 val = self._oracle_u32(site)
                 add = self._addend(f.seg, f) if f.size() == 4 else 0
                 item_off = (disp + add) & 0xFFFFFFFF
-                item = self._item_bytes(d, item_off) if not f.self_rel else None
-                if val is not None and item:
-                    if self.img.read_va(val, len(item)) == item:
-                        return (val - add) & 0xFFFFFFFF, "item", f"{seg.name}+{item_off:x}"
+                if val is not None and not f.self_rel and \
+                        self._prove_data(d, item_off, self._item_end(d, item_off), val):
+                    return (val - add) & 0xFFFFFFFF, "item", f"{seg.name}+{item_off:x}"
             return None, None, seg.name
         if m & 3 == 2:
             name = self.m.externs[d]
             va, how = self.res.resolve(name)
+            own = next(((psi, po) for pn, psi, po, _ in self.m.publics if pn == name
+                        and not is_code(self.m.segments[psi]) and not is_bss(self.m.segments[psi])), None)
+            if own is not None:
+                # audit v1 F1: an object of this TU referenced through its extern name must itself be proven
+                psi, po = own
+                if va is None:
+                    va = self.va_of(psi, po)
+                    how = "self"
+                if va is None:
+                    return None, None, name
+                end = self._item_end(psi, po)
+                if not self._prove_data(psi, po, end, va):
+                    return None, None, name
+                return (va + disp) & 0xFFFFFFFF, how, name
+            if va is None and d in self.m.weak and not any(pn == name for pn, *_ in self.m.publics):
+                # weak extern (WKEXT) that nothing binds: the linker uses its default resolution
+                dva, dhow = self.res.resolve(self.m.externs[self.m.weak[d]])
+                if dva is not None:
+                    return (dva + disp) & 0xFFFFFFFF, f"weak:{dhow}", name
             if va is None:
                 for n, si, off, _ in self.m.publics:
                     if n == name:
@@ -319,8 +436,9 @@ class Comparison:
             return (va + disp) & 0xFFFFFFFF, how, name
         return None, None, f"method{m}"
 
-    def _evaluate(self, si, lo, hi, va0):
-        """Compare segment si bytes [lo,hi) placed at va0. Returns dict."""
+    def _evaluate(self, si, lo, hi, va0, extent_rules=True):
+        """Compare segment si bytes [lo,hi) placed at va0. Returns dict. extent_rules=False for ranges that are
+        not functions (jump tables): no function start/end checks."""
         seg = self.m.segments[si]
         n = hi - lo
         exp = bytearray(seg.data[lo:hi])
@@ -361,7 +479,7 @@ class Comparison:
         diff = [i for i in range(n) if known[i] and exp[i] != orc[i]]
         osites = {s for s in self.relsites if va0 <= s < va0 + n}
         size_bad = None
-        if is_code(seg) and self.starts is not None:
+        if is_code(seg) and self.starts is not None and extent_rules:
             # the extent must end where the original function ends: at the next function start, or (last
             # extent of the segment) where only zero linker fill remains before the next start
             import bisect
@@ -378,6 +496,42 @@ class Comparison:
                     tail_fill = len(gap)      # partial TU: compiler filler of the original, not produced here
                 else:
                     size_bad = f"extent ends {end:08x}, original function ends {nxt:08x}"
+        if is_code(seg) and self.starts is not None and extent_rules and va0 not in self.start_set:
+            size_bad = f"extent starts {va0:08x}, not an original function start"   # audit v1 F4
+        if is_code(seg) and not diff and not size_bad and extent_rules:
+            # audit v1 F3: a jump table referenced from this extent but lying outside it must be proven too
+            for f in self.fx_by_seg.get(si, []):
+                if not (lo <= f.off < hi) or f.size() != 4 or f.self_rel or f.target[0] & 3 != 0:
+                    continue
+                d = f.target[1]
+                if not is_code(self.m.segments[d]):
+                    continue
+                toff = ((0 if f.target[0] & 4 else f.disp) + self._addend(si, f)) & 0xFFFFFFFF
+                if d == si and lo <= toff < hi:
+                    continue
+                tva = self._oracle_u32(va0 + f.off - lo)
+                if tva is None or tva not in self.tables:
+                    continue
+                # table length as compiled: consecutive 4-byte code-target fixups starting at toff (the oracle's
+                # relocated run can continue into an adjacent table)
+                cand = {g.off for g in self.fx_by_seg.get(d, []) if g.size() == 4 and not g.self_rel
+                        and g.target[0] & 3 == 0 and is_code(self.m.segments[g.target[1]])}
+                n_ent = 0
+                while toff + 4 * n_ent in cand:
+                    n_ent += 1
+                if not n_ent:
+                    unbound.setdefault("<external jump table>", set()).add(None)
+                    continue
+                key = ("table", d, toff)
+                ok = False
+                if key not in self._proving:
+                    self._proving.add(key)
+                    try:
+                        ok = self._evaluate(d, toff, toff + 4 * n_ent, tva, extent_rules=False)["status"] == "STRICT"
+                    finally:
+                        self._proving.discard(key)
+                if not ok:
+                    unbound.setdefault("<external jump table>", set()).add(None)
         if diff or abs_sites != osites or size_bad:
             st = "DIFF"
         elif unbound:
@@ -385,7 +539,7 @@ class Comparison:
         else:
             st = "STRICT"
         return {"status": st, "diff_bytes": len(diff), "first_diff": diff[0] if diff else None, "size_bad": size_bad,
-                "tail_fill": tail_fill if is_code(seg) and self.starts is not None else 0,
+                "tail_fill": tail_fill if is_code(seg) and self.starts is not None and extent_rules else 0,
                 "reloc_extra": sorted(f"{s:08x}" for s in osites - abs_sites),
                 "reloc_missing": sorted(f"{s:08x}" for s in abs_sites - osites),
                 "unbound": sorted(unbound), "implied": {k: sorted(f"{v:08x}" for v in vs if v is not None)
@@ -438,6 +592,8 @@ def plausible(img, name, va):
     sec = img.section_at_rva(rva)
     if sec is None:
         return False
+    if is_func is None:      # C linkage: code or data, decided by the target section (audit v1 F6)
+        is_func = sec.name == "BEGTEXT"
     if is_func:
         if sec.name != "BEGTEXT":
             return False

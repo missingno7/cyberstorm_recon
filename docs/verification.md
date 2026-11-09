@@ -29,6 +29,17 @@ fixup's data field. Both the code-segment resolution and the per-item data proof
 addend. An earlier item proof ignored the addend and compared the segment's first item, so a wrong literal could
 pass (found by lane b1 with a negative control; no accepted function was affected; test_gate now covers it).
 
+Audit v1 (2026-11-09, candidates/v1/REPORT.md): six gate defects found with negative controls and fixed:
+F1 own initialized objects referenced through their extern names are proven (bytes + own fixups + relocations);
+F2 every reference into initialized data requires the whole segment proven at its base or the referenced item
+proven at its address, and recorded data segments must stay STRICT (promote, verify, rollback); F3 a jump table
+outside the referencing function's extent is proven as part of that function (length from the candidate's
+consecutive table fixups); F4 an extent must start at an original function start; F5 a size loss is a loss;
+F6 C-linkage names carry no kind (kind comes from the target section). Follow-ups: references whose mangled
+name differs from the bound one (overloads, e.g. copy constructors) are no longer resolved by readable label;
+weak/lazy externs (OMF WKEXT/LZEXT comment classes A8/A9) resolve to their default; single-function search hits
+must lie within the object's anchored address window (identical code elsewhere is not identity).
+
 ## Bindings — `config/symbols.json`
 `matched` (written by promote for strict functions), `lib`, and `hypothesis`: an extern whose VA was implied
 by a byte-equal caller (`--imply`): unique across the TU, plausible (function start / data section), never
