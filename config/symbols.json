@@ -495,6 +495,14 @@
    "tu": "src/shell/commscrn.c",
    "evidence": "strict match 2026-11-09"
   },
+  "W?.tdctor$:MenuButton$n()rn$1$": {
+   "va": "004085c8",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.tdctor$:MenuButton$n()rn$1$",
+   "tu": "src/_unknown/tu_0040f4e4.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "MenuHelpRegion::$dt": {
    "va": "00408610",
    "kind": "func",
@@ -705,6 +713,13 @@
    "mangled": "W?ShellSelectionClose$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "f_0040c63e": {
+   "va": "0040c63e",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_0040c63e",
+   "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
+  },
   "ShellSelectionRender": {
    "va": "0040c8f1",
    "kind": "func",
@@ -727,14 +742,190 @@
    "mangled": "W?$dt:MenuCaption$n()_",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
   },
+  "W?.fn_init$n()v@_unknown/tu_0040d2b0.c": {
+   "va": "0040d2b0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/_unknown/tu_0040d2b0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BiodermListScreen::$ct": {
+   "va": "0040d3ab",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:BiodermListScreen$n()_",
+   "tu": "src/_unknown/tu_0040d2b0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BiodermListScreen::Open": {
+   "va": "0040d3d8",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Open$:BiodermListScreen$n(pn$InputReq$$)v",
+   "tu": "src/_unknown/tu_0040d2b0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BiodermListScreen::Close": {
+   "va": "0040d5c0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Close$:BiodermListScreen$n()v",
+   "tu": "src/_unknown/tu_0040d2b0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BiodermListScreen::Update": {
+   "va": "0040d5e7",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Update$:BiodermListScreen$n()i",
+   "tu": "src/_unknown/tu_0040d2b0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BiodermListScreen::Room": {
+   "va": "0040d653",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Room$:BiodermListScreen$n()i",
+   "tu": "src/_unknown/tu_0040d2b0.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "ShellBiodermListRender": {
+   "va": "0040d6b8",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ShellBiodermListRender$n(pn$BiodermListScreen$$)v",
+   "tu": "src/_unknown/tu_0040d2b0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ShellBiodermListRender#W?ShellBiodermListRender$n(pn$Scene$$)v": {
    "va": "0040d6b8",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?ShellBiodermListRender$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "BiodermListScreen::UpdateText": {
+   "va": "0040dc87",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?UpdateText$:BiodermListScreen$n()v",
+   "tu": "src/_unknown/tu_0040d2b0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BiodermListScreen::UpdateCredits": {
+   "va": "0040dd12",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?UpdateCredits$:BiodermListScreen$n()v",
+   "tu": "src/_unknown/tu_0040d2b0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BiodermListScreen::Buy": {
+   "va": "0040dd64",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Buy$:BiodermListScreen$n()v",
+   "tu": "src/_unknown/tu_0040d2b0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BiodermListScreen::Cancel": {
+   "va": "0040e261",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Cancel$:BiodermListScreen$n()v",
+   "tu": "src/_unknown/tu_0040d2b0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BiodermListScreen::Apply": {
+   "va": "0040e287",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Apply$:BiodermListScreen$n()v",
+   "tu": "src/_unknown/tu_0040d2b0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BiodermListScreen::SetControls": {
+   "va": "0040e334",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetControls$:BiodermListScreen$n()v",
+   "tu": "src/_unknown/tu_0040d2b0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BiodermListScreen::MessageDone": {
+   "va": "0040e42c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?MessageDone$:BiodermListScreen$n()v",
+   "tu": "src/_unknown/tu_0040d2b0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BiodermListScreen::Message": {
+   "va": "0040e580",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Message$:BiodermListScreen$n(pnxa)v",
+   "tu": "src/_unknown/tu_0040d2b0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BiodermListScreen::DrawMessage": {
+   "va": "0040e74e",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?DrawMessage$:BiodermListScreen$n(pnxa)v",
+   "tu": "src/_unknown/tu_0040d2b0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BiodermListScreen::$dt": {
+   "va": "0040e794",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$dt:BiodermListScreen$n()_",
+   "tu": "src/_unknown/tu_0040d2b0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "W?.fn_init$n()v@_unknown/tu_0040e7a0.c": {
+   "va": "0040e7a0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/_unknown/tu_0040e7a0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BiodermStatsScreen::$ct": {
+   "va": "0040e94f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:BiodermStatsScreen$n()_",
+   "tu": "src/_unknown/tu_0040e7a0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BiodermStatsScreen::Open": {
+   "va": "0040e966",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Open$:BiodermStatsScreen$n(pn$InputReq$$)v",
+   "tu": "src/_unknown/tu_0040e7a0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BiodermStatsScreen::Close": {
+   "va": "0040ea5e",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Close$:BiodermStatsScreen$n()v",
+   "tu": "src/_unknown/tu_0040e7a0.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "BiodermStatsExit": {
+   "va": "0040ea78",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?BiodermStatsExit$n(pn$BiodermStatsScreen$$)ul",
+   "tu": "src/_unknown/tu_0040e7a0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BiodermStatsExit#W?BiodermStatsExit$n(pn$Scene$$)ul": {
    "va": "0040ea78",
    "kind": "func",
    "status": "hypothesis",
@@ -744,11 +935,59 @@
   "ShellBiodermStatsRender": {
    "va": "0040eaf8",
    "kind": "func",
+   "status": "matched",
+   "mangled": "W?ShellBiodermStatsRender$n(pn$BiodermStatsScreen$$)v",
+   "tu": "src/_unknown/tu_0040e7a0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ShellBiodermStatsRender#W?ShellBiodermStatsRender$n(pn$Scene$$)v": {
+   "va": "0040eaf8",
+   "kind": "func",
    "status": "hypothesis",
    "mangled": "W?ShellBiodermStatsRender$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "BiodermStatsScreen::UpdateText": {
+   "va": "0040ec9d",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?UpdateText$:BiodermStatsScreen$n()v",
+   "tu": "src/_unknown/tu_0040e7a0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BiodermStatsScreen::SetControls": {
+   "va": "0040ef60",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetControls$:BiodermStatsScreen$n()v",
+   "tu": "src/_unknown/tu_0040e7a0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BiodermStatsScreen::UpdateCredits": {
+   "va": "0040f01e",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?UpdateCredits$:BiodermStatsScreen$n()v",
+   "tu": "src/_unknown/tu_0040e7a0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BiodermStatsScreen::Room": {
+   "va": "0040f046",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Room$:BiodermStatsScreen$n()i",
+   "tu": "src/_unknown/tu_0040e7a0.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "BiodermStatsSelect": {
+   "va": "0040f074",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?BiodermStatsSelect$n(pn$BiodermStatsScreen$$ui)v",
+   "tu": "src/_unknown/tu_0040e7a0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BiodermStatsSelect#W?BiodermStatsSelect$n(pn$Scene$$i)v": {
    "va": "0040f074",
    "kind": "func",
    "status": "hypothesis",
@@ -758,11 +997,43 @@
   "BiodermStatsAction": {
    "va": "0040f26f",
    "kind": "func",
+   "status": "matched",
+   "mangled": "W?BiodermStatsAction$n(pn$BiodermStatsScreen$$)v",
+   "tu": "src/_unknown/tu_0040e7a0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BiodermStatsAction#W?BiodermStatsAction$n(pn$Scene$$)v": {
+   "va": "0040f26f",
+   "kind": "func",
    "status": "hypothesis",
    "mangled": "W?BiodermStatsAction$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "BiodermStatsScreen::Message": {
+   "va": "0040f2d4",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Message$:BiodermStatsScreen$n(pnxa)v",
+   "tu": "src/_unknown/tu_0040e7a0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BiodermStatsScreen::DrawMessage": {
+   "va": "0040f3c7",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?DrawMessage$:BiodermStatsScreen$n(pnxa)v",
+   "tu": "src/_unknown/tu_0040e7a0.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "BiodermStatsClose": {
+   "va": "0040f40b",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?BiodermStatsClose$n(pn$BiodermStatsScreen$$)v",
+   "tu": "src/_unknown/tu_0040e7a0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BiodermStatsClose#W?BiodermStatsClose$n(pn$Scene$$)v": {
    "va": "0040f40b",
    "kind": "func",
    "status": "hypothesis",
@@ -772,16 +1043,184 @@
   "BiodermStatsApply": {
    "va": "0040f431",
    "kind": "func",
+   "status": "matched",
+   "mangled": "W?BiodermStatsApply$n(pn$BiodermStatsScreen$$)v",
+   "tu": "src/_unknown/tu_0040e7a0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BiodermStatsApply#W?BiodermStatsApply$n(pn$Scene$$)v": {
+   "va": "0040f431",
+   "kind": "func",
    "status": "hypothesis",
    "mangled": "W?BiodermStatsApply$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "W?$Wda0221$:MenuButton$n(ui)pnv": {
+   "va": "0040f4c0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$Wda0221$:MenuButton$n(ui)pnv",
+   "tu": "src/_unknown/tu_0040e7a0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BiodermStatsScreen::$dt": {
+   "va": "0040f4d8",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$dt:BiodermStatsScreen$n()_",
+   "tu": "src/_unknown/tu_0040e7a0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "W?.fn_init$n()v@_unknown/tu_0040f4e4.c": {
+   "va": "0040f4e4",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/_unknown/tu_0040f4e4.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MedlabScreen::$ct": {
+   "va": "0040f615",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:MedlabScreen$n()_",
+   "tu": "src/_unknown/tu_0040f4e4.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MedlabScreen::Open": {
+   "va": "0040f62c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Open$:MedlabScreen$n(pn$InputReq$$)v",
+   "tu": "src/_unknown/tu_0040f4e4.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MedlabScreen::Close": {
+   "va": "0040f710",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Close$:MedlabScreen$n()v",
+   "tu": "src/_unknown/tu_0040f4e4.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MedlabScreen::Update": {
+   "va": "0040f72a",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Update$:MedlabScreen$n()i",
+   "tu": "src/_unknown/tu_0040f4e4.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "ShellBiodermSkillsRender": {
+   "va": "0040f7a0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ShellBiodermSkillsRender$n(pn$MedlabScreen$$)v",
+   "tu": "src/_unknown/tu_0040f4e4.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ShellBiodermSkillsRender#W?ShellBiodermSkillsRender$n(pn$Scene$$)v": {
    "va": "0040f7a0",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?ShellBiodermSkillsRender$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "MedlabScreen::Invalidate": {
+   "va": "0040f940",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Invalidate$:MedlabScreen$n()v",
+   "tu": "src/_unknown/tu_0040f4e4.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MedlabScreen::UpdateText": {
+   "va": "0040f94e",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?UpdateText$:MedlabScreen$n()v",
+   "tu": "src/_unknown/tu_0040f4e4.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MedlabScreen::UpdateCredits": {
+   "va": "0040fb25",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?UpdateCredits$:MedlabScreen$n()v",
+   "tu": "src/_unknown/tu_0040f4e4.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MedlabScreen::Room": {
+   "va": "0040fb65",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Room$:MedlabScreen$n()i",
+   "tu": "src/_unknown/tu_0040f4e4.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MedlabScreen::Cancel": {
+   "va": "0040fb73",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Cancel$:MedlabScreen$n()v",
+   "tu": "src/_unknown/tu_0040f4e4.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MedlabScreen::Apply": {
+   "va": "0040fb99",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Apply$:MedlabScreen$n()v",
+   "tu": "src/_unknown/tu_0040f4e4.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MedlabScreen::Treat": {
+   "va": "0040fc1a",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Treat$:MedlabScreen$n(uiui)v",
+   "tu": "src/_unknown/tu_0040f4e4.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MedlabScreen::TotalCost": {
+   "va": "0040fd48",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TotalCost$:MedlabScreen$n()i",
+   "tu": "src/_unknown/tu_0040f4e4.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MedlabScreen::TreatAll": {
+   "va": "0040fde0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TreatAll$:MedlabScreen$n()v",
+   "tu": "src/_unknown/tu_0040f4e4.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MedlabScreen::Dismiss": {
+   "va": "0040fed3",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Dismiss$:MedlabScreen$n()v",
+   "tu": "src/_unknown/tu_0040f4e4.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "W?$Wda0214$:MenuButton$n(ui)pnv": {
+   "va": "0040ff94",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$Wda0214$:MenuButton$n(ui)pnv",
+   "tu": "src/_unknown/tu_0040f4e4.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MedlabScreen::$dt": {
+   "va": "0040ffac",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$dt:MedlabScreen$n()_",
+   "tu": "src/_unknown/tu_0040f4e4.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ShellBiodermDetailsRender": {
    "va": "00410228",
@@ -796,6 +1235,48 @@
    "status": "hypothesis",
    "mangled": "W?ShellSelectionControlsRender$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "f_0041170c": {
+   "va": "0041170c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_0041170c",
+   "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
+  },
+  "f_0041204b": {
+   "va": "0041204b",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_0041204b",
+   "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
+  },
+  "f_00412068": {
+   "va": "00412068",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_00412068",
+   "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
+  },
+  "f_0041207d": {
+   "va": "0041207d",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_0041207d",
+   "evidence": "implied by src/_unknown/tu_0040e7a0.c 2026-11-09"
+  },
+  "f_004120e2": {
+   "va": "004120e2",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_004120e2",
+   "evidence": "implied by src/_unknown/tu_0040f4e4.c 2026-11-09"
+  },
+  "f_004120fe": {
+   "va": "004120fe",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_004120fe",
+   "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
   },
   "W?.tdctor$:MenuLabel$n()rn$1$": {
    "va": "004122e8",
@@ -4570,6 +5051,13 @@
    "status": "hypothesis",
    "mangled": "W?MenuFormatNumber$n(lll)pnxa",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "MenuFormatNumber#W?MenuFormatNumber$n(lpnal)v": {
+   "va": "0042ac40",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuFormatNumber$n(lpnal)v",
+   "evidence": "implied by src/_unknown/tu_0040f4e4.c 2026-11-09"
   },
   "GridInitConfig": {
    "va": "0042acf0",
@@ -14537,6 +15025,13 @@
    "mangled": "W?$Wvf0do4:ShellBase$$nx[]pn()v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "W?$Wts0en$MenuButton$$$nx[]uc": {
+   "va": "0048c9d8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0en$MenuButton$$$nx[]uc",
+   "evidence": "implied by src/_unknown/tu_0040e7a0.c 2026-11-09"
+  },
   "W?$Wts0kn$MenuPrefixButton$$$nx[]uc": {
    "va": "0048c9ec",
    "kind": "data",
@@ -14775,12 +15270,40 @@
    "mangled": "W?gLinkThreadProc$nxpn(pnv)ui",
    "evidence": "implied by src/multi/linkdlg.c 2026-11-09"
   },
+  "screenSlideStep": {
+   "va": "0048e588",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?screenSlideStep$nuc",
+   "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
+  },
   "promoControls": {
    "va": "0048e684",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?promoControls$n[]pn$GuiControl$$",
    "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "biodermListControls": {
+   "va": "0048e6d8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?biodermListControls$n[]pn$GuiControl$$",
+   "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
+  },
+  "statsControls": {
+   "va": "0048e714",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?statsControls$n[]pn$GuiControl$$",
+   "evidence": "implied by src/_unknown/tu_0040e7a0.c 2026-11-09"
+  },
+  "medlabControls": {
+   "va": "0048e788",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?medlabControls$n[]pn$GuiControl$$",
+   "evidence": "implied by src/_unknown/tu_0040f4e4.c 2026-11-09"
   },
   "g48e8f4": {
    "va": "0048e8f4",
@@ -15846,6 +16369,13 @@
    "mangled": "W?gShellGame$n[]a",
    "evidence": "implied by src/shell/commscrn.c 2026-11-09"
   },
+  "biodermListVisible": {
+   "va": "004a83ce",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?biodermListVisible$nuc",
+   "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
+  },
   "g4ae07b": {
    "va": "004ae07b",
    "kind": "data",
@@ -15951,6 +16481,27 @@
    "mangled": "W?g4aff6c$n$Scene$$",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "g4affb8": {
+   "va": "004affb8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4affb8$ni",
+   "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
+  },
+  "g4affbc": {
+   "va": "004affbc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4affbc$nuc",
+   "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
+  },
+  "g4affc2": {
+   "va": "004affc2",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4affc2$ni",
+   "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
+  },
   "gShellTintModeActive": {
    "va": "004affc6",
    "kind": "data",
@@ -15965,12 +16516,243 @@
    "mangled": "W?gBiodermReturnToList$nus",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "biodermListPriceText": {
+   "va": "004b0070",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?biodermListPriceText$n[]a",
+   "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
+  },
+  "biodermListBuy": {
+   "va": "004b0078",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?biodermListBuy$n$MenuButton$$",
+   "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
+  },
+  "biodermListNext": {
+   "va": "004b00a0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?biodermListNext$n$MenuButton$$",
+   "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
+  },
+  "biodermListPrevious": {
+   "va": "004b00c8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?biodermListPrevious$n$MenuButton$$",
+   "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
+  },
+  "biodermListConfirm": {
+   "va": "004b00f0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?biodermListConfirm$n$MenuButton$$",
+   "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
+  },
+  "biodermListHelp": {
+   "va": "004b0118",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?biodermListHelp$n$MenuHelpRegion$$",
+   "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
+  },
+  "biodermListHandle": {
+   "va": "004b0138",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?biodermListHandle$ni",
+   "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
+  },
+  "biodermListPrice": {
+   "va": "004b0140",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?biodermListPrice$n$MenuLabel$$",
+   "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
+  },
+  "biodermListCredits": {
+   "va": "004b0174",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?biodermListCredits$n$MenuNumber$$",
+   "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
+  },
+  "biodermListPanel": {
+   "va": "004b01a4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?biodermListPanel$n$MenuPanel$$",
+   "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
+  },
   "g4b01c8": {
    "va": "004b01c8",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4b01c8$n$Scene$$",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "g4b01c8#W?g4b01c8$n$BiodermListScreen$$": {
+   "va": "004b01c8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b01c8$n$BiodermListScreen$$",
+   "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
+  },
+  "statsText0": {
+   "va": "004b022c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?statsText0$n[]a",
+   "evidence": "implied by src/_unknown/tu_0040e7a0.c 2026-11-09"
+  },
+  "statsText1": {
+   "va": "004b0234",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?statsText1$n[]a",
+   "evidence": "implied by src/_unknown/tu_0040e7a0.c 2026-11-09"
+  },
+  "statsText2": {
+   "va": "004b023c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?statsText2$n[]a",
+   "evidence": "implied by src/_unknown/tu_0040e7a0.c 2026-11-09"
+  },
+  "statsText3": {
+   "va": "004b0244",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?statsText3$n[]a",
+   "evidence": "implied by src/_unknown/tu_0040e7a0.c 2026-11-09"
+  },
+  "statsText4": {
+   "va": "004b024c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?statsText4$n[]a",
+   "evidence": "implied by src/_unknown/tu_0040e7a0.c 2026-11-09"
+  },
+  "statsText5": {
+   "va": "004b0254",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?statsText5$n[]a",
+   "evidence": "implied by src/_unknown/tu_0040e7a0.c 2026-11-09"
+  },
+  "statsText6": {
+   "va": "004b025c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?statsText6$n[]a",
+   "evidence": "implied by src/_unknown/tu_0040e7a0.c 2026-11-09"
+  },
+  "statsText7": {
+   "va": "004b0264",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?statsText7$n[]a",
+   "evidence": "implied by src/_unknown/tu_0040e7a0.c 2026-11-09"
+  },
+  "statsButtons": {
+   "va": "004b026c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?statsButtons$n[]$MenuButton$$",
+   "evidence": "implied by src/_unknown/tu_0040e7a0.c 2026-11-09"
+  },
+  "statsConfirm": {
+   "va": "004b05b4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?statsConfirm$n$MenuButton$$",
+   "evidence": "implied by src/_unknown/tu_0040e7a0.c 2026-11-09"
+  },
+  "statsHelp": {
+   "va": "004b05dc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?statsHelp$n$MenuHelpRegion$$",
+   "evidence": "implied by src/_unknown/tu_0040e7a0.c 2026-11-09"
+  },
+  "statsHandle": {
+   "va": "004b05fc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?statsHandle$ni",
+   "evidence": "implied by src/_unknown/tu_0040e7a0.c 2026-11-09"
+  },
+  "statsLabel0": {
+   "va": "004b0604",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?statsLabel0$n$MenuLabel$$",
+   "evidence": "implied by src/_unknown/tu_0040e7a0.c 2026-11-09"
+  },
+  "statsLabel1": {
+   "va": "004b0638",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?statsLabel1$n$MenuLabel$$",
+   "evidence": "implied by src/_unknown/tu_0040e7a0.c 2026-11-09"
+  },
+  "statsLabel2": {
+   "va": "004b066c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?statsLabel2$n$MenuLabel$$",
+   "evidence": "implied by src/_unknown/tu_0040e7a0.c 2026-11-09"
+  },
+  "statsLabel3": {
+   "va": "004b06a0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?statsLabel3$n$MenuLabel$$",
+   "evidence": "implied by src/_unknown/tu_0040e7a0.c 2026-11-09"
+  },
+  "statsLabel4": {
+   "va": "004b06d4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?statsLabel4$n$MenuLabel$$",
+   "evidence": "implied by src/_unknown/tu_0040e7a0.c 2026-11-09"
+  },
+  "statsLabel5": {
+   "va": "004b0708",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?statsLabel5$n$MenuLabel$$",
+   "evidence": "implied by src/_unknown/tu_0040e7a0.c 2026-11-09"
+  },
+  "statsLabel6": {
+   "va": "004b073c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?statsLabel6$n$MenuLabel$$",
+   "evidence": "implied by src/_unknown/tu_0040e7a0.c 2026-11-09"
+  },
+  "statsLabel7": {
+   "va": "004b0770",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?statsLabel7$n$MenuLabel$$",
+   "evidence": "implied by src/_unknown/tu_0040e7a0.c 2026-11-09"
+  },
+  "statsCredits": {
+   "va": "004b07a4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?statsCredits$n$MenuNumber$$",
+   "evidence": "implied by src/_unknown/tu_0040e7a0.c 2026-11-09"
+  },
+  "statsPanel": {
+   "va": "004b07d4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?statsPanel$n$MenuPanel$$",
+   "evidence": "implied by src/_unknown/tu_0040e7a0.c 2026-11-09"
   },
   "g4b07f8": {
    "va": "004b07f8",
@@ -15979,12 +16761,138 @@
    "mangled": "W?g4b07f8$n$Scene$$",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "g4b07f8#W?g4b07f8$n$BiodermStatsScreen$$": {
+   "va": "004b07f8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b07f8$n$BiodermStatsScreen$$",
+   "evidence": "implied by src/_unknown/tu_0040e7a0.c 2026-11-09"
+  },
+  "medlabCreditText": {
+   "va": "004b0854",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?medlabCreditText$n[]a",
+   "evidence": "implied by src/_unknown/tu_0040f4e4.c 2026-11-09"
+  },
+  "medlabHealthText": {
+   "va": "004b0864",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?medlabHealthText$n[]a",
+   "evidence": "implied by src/_unknown/tu_0040f4e4.c 2026-11-09"
+  },
+  "medlabTrainingText": {
+   "va": "004b0870",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?medlabTrainingText$n[]a",
+   "evidence": "implied by src/_unknown/tu_0040f4e4.c 2026-11-09"
+  },
+  "medlabTotalText": {
+   "va": "004b087c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?medlabTotalText$n[]a",
+   "evidence": "implied by src/_unknown/tu_0040f4e4.c 2026-11-09"
+  },
+  "medlabRepairText": {
+   "va": "004b0888",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?medlabRepairText$n[]a",
+   "evidence": "implied by src/_unknown/tu_0040f4e4.c 2026-11-09"
+  },
+  "medlabValueText": {
+   "va": "004b0894",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?medlabValueText$n[]a",
+   "evidence": "implied by src/_unknown/tu_0040f4e4.c 2026-11-09"
+  },
+  "medlabButtons": {
+   "va": "004b08a0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?medlabButtons$n[]$MenuButton$$",
+   "evidence": "implied by src/_unknown/tu_0040f4e4.c 2026-11-09"
+  },
+  "medlabHelp": {
+   "va": "004b0ad0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?medlabHelp$n$MenuHelpRegion$$",
+   "evidence": "implied by src/_unknown/tu_0040f4e4.c 2026-11-09"
+  },
+  "medlabHandle": {
+   "va": "004b0af0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?medlabHandle$ni",
+   "evidence": "implied by src/_unknown/tu_0040f4e4.c 2026-11-09"
+  },
+  "medlabHealth": {
+   "va": "004b0af8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?medlabHealth$n$MenuLabel$$",
+   "evidence": "implied by src/_unknown/tu_0040f4e4.c 2026-11-09"
+  },
+  "medlabTraining": {
+   "va": "004b0b2c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?medlabTraining$n$MenuLabel$$",
+   "evidence": "implied by src/_unknown/tu_0040f4e4.c 2026-11-09"
+  },
+  "medlabRepair": {
+   "va": "004b0b60",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?medlabRepair$n$MenuLabel$$",
+   "evidence": "implied by src/_unknown/tu_0040f4e4.c 2026-11-09"
+  },
+  "medlabTotal": {
+   "va": "004b0b94",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?medlabTotal$n$MenuLabel$$",
+   "evidence": "implied by src/_unknown/tu_0040f4e4.c 2026-11-09"
+  },
+  "medlabValue": {
+   "va": "004b0bc8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?medlabValue$n$MenuLabel$$",
+   "evidence": "implied by src/_unknown/tu_0040f4e4.c 2026-11-09"
+  },
+  "medlabCredits": {
+   "va": "004b0bfc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?medlabCredits$n$MenuNumber$$",
+   "evidence": "implied by src/_unknown/tu_0040f4e4.c 2026-11-09"
+  },
+  "medlabPanel": {
+   "va": "004b0c2c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?medlabPanel$n$MenuPanel$$",
+   "evidence": "implied by src/_unknown/tu_0040f4e4.c 2026-11-09"
+  },
   "g4b0c50": {
    "va": "004b0c50",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4b0c50$n$Scene$$",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "g4b0c50#W?g4b0c50$n$MedlabScreen$$": {
+   "va": "004b0c50",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b0c50$n$MedlabScreen$$",
+   "evidence": "implied by src/_unknown/tu_0040f4e4.c 2026-11-09"
   },
   "g4b0e18": {
    "va": "004b0e18",
@@ -16020,6 +16928,13 @@
    "status": "hypothesis",
    "mangled": "W?gShellOverlayColors$n[]$PaletteColor$$",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "screenChanged": {
+   "va": "004b1d99",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?screenChanged$ni",
+   "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
   },
   "g4b1db4": {
    "va": "004b1db4",
@@ -19955,12 +20870,26 @@
    "mangled": "W?gShellImages$npna",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
+  "gShellImages#W?gShellImages$npnuc": {
+   "va": "00511dd0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gShellImages$npnuc",
+   "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
+  },
   "g511dd4": {
    "va": "00511dd4",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g511dd4$ni",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "gScreenImages": {
+   "va": "00511dd8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gScreenImages$npnuc",
+   "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
   },
   "g511ddc": {
    "va": "00511ddc",

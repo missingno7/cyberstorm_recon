@@ -5655,6 +5655,348 @@
    },
    "data": {},
    "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0040d2b0.c": {
+   "as": "_unknown\\tu_0040d2b0.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "0040d2b0",
+     "size": 251,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "BiodermListScreen::$ct": {
+     "va": "0040d3ab",
+     "size": 45,
+     "mangled": "W?$ct:BiodermListScreen$n()_"
+    },
+    "BiodermListScreen::Open": {
+     "va": "0040d3d8",
+     "size": 488,
+     "mangled": "W?Open$:BiodermListScreen$n(pn$InputReq$$)v"
+    },
+    "BiodermListScreen::Close": {
+     "va": "0040d5c0",
+     "size": 39,
+     "mangled": "W?Close$:BiodermListScreen$n()v"
+    },
+    "BiodermListScreen::Update": {
+     "va": "0040d5e7",
+     "size": 108,
+     "mangled": "W?Update$:BiodermListScreen$n()i"
+    },
+    "BiodermListScreen::Room": {
+     "va": "0040d653",
+     "size": 101,
+     "mangled": "W?Room$:BiodermListScreen$n()i"
+    },
+    "ShellBiodermListRender": {
+     "va": "0040d6b8",
+     "size": 1487,
+     "mangled": "W?ShellBiodermListRender$n(pn$BiodermListScreen$$)v"
+    },
+    "BiodermListScreen::UpdateText": {
+     "va": "0040dc87",
+     "size": 139,
+     "mangled": "W?UpdateText$:BiodermListScreen$n()v"
+    },
+    "BiodermListScreen::UpdateCredits": {
+     "va": "0040dd12",
+     "size": 82,
+     "mangled": "W?UpdateCredits$:BiodermListScreen$n()v"
+    },
+    "BiodermListScreen::Buy": {
+     "va": "0040dd64",
+     "size": 1277,
+     "mangled": "W?Buy$:BiodermListScreen$n()v"
+    },
+    "BiodermListScreen::Cancel": {
+     "va": "0040e261",
+     "size": 38,
+     "mangled": "W?Cancel$:BiodermListScreen$n()v"
+    },
+    "BiodermListScreen::Apply": {
+     "va": "0040e287",
+     "size": 173,
+     "mangled": "W?Apply$:BiodermListScreen$n()v"
+    },
+    "BiodermListScreen::SetControls": {
+     "va": "0040e334",
+     "size": 248,
+     "mangled": "W?SetControls$:BiodermListScreen$n()v"
+    },
+    "BiodermListScreen::MessageDone": {
+     "va": "0040e42c",
+     "size": 340,
+     "mangled": "W?MessageDone$:BiodermListScreen$n()v"
+    },
+    "BiodermListScreen::Message": {
+     "va": "0040e580",
+     "size": 462,
+     "mangled": "W?Message$:BiodermListScreen$n(pnxa)v"
+    },
+    "BiodermListScreen::DrawMessage": {
+     "va": "0040e74e",
+     "size": 68,
+     "mangled": "W?DrawMessage$:BiodermListScreen$n(pnxa)v"
+    },
+    "BiodermListScreen::$dt": {
+     "va": "0040e794",
+     "size": 12,
+     "mangled": "W?$dt:BiodermListScreen$n()_"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048a778",
+     "size": 25
+    },
+    "CONST2": {
+     "va": "0048cad0",
+     "size": 76
+    },
+    "_DATA": {
+     "va": "0048e6cc",
+     "size": 12
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0040e7a0.c": {
+   "as": "_unknown\\tu_0040e7a0.c",
+   "install": "wc106",
+   "flags": [
+    "-4s",
+    "-s",
+    "-bm",
+    "-oe=80"
+   ],
+   "tool": "wpp386",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "0040e7a0",
+     "size": 431,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "BiodermStatsScreen::$ct": {
+     "va": "0040e94f",
+     "size": 23,
+     "mangled": "W?$ct:BiodermStatsScreen$n()_"
+    },
+    "BiodermStatsScreen::Open": {
+     "va": "0040e966",
+     "size": 248,
+     "mangled": "W?Open$:BiodermStatsScreen$n(pn$InputReq$$)v"
+    },
+    "BiodermStatsScreen::Close": {
+     "va": "0040ea5e",
+     "size": 26,
+     "mangled": "W?Close$:BiodermStatsScreen$n()v"
+    },
+    "BiodermStatsExit": {
+     "va": "0040ea78",
+     "size": 128,
+     "mangled": "W?BiodermStatsExit$n(pn$BiodermStatsScreen$$)ul"
+    },
+    "ShellBiodermStatsRender": {
+     "va": "0040eaf8",
+     "size": 421,
+     "mangled": "W?ShellBiodermStatsRender$n(pn$BiodermStatsScreen$$)v"
+    },
+    "BiodermStatsScreen::UpdateText": {
+     "va": "0040ec9d",
+     "size": 707,
+     "mangled": "W?UpdateText$:BiodermStatsScreen$n()v"
+    },
+    "BiodermStatsScreen::SetControls": {
+     "va": "0040ef60",
+     "size": 190,
+     "mangled": "W?SetControls$:BiodermStatsScreen$n()v"
+    },
+    "BiodermStatsScreen::UpdateCredits": {
+     "va": "0040f01e",
+     "size": 40,
+     "mangled": "W?UpdateCredits$:BiodermStatsScreen$n()v"
+    },
+    "BiodermStatsScreen::Room": {
+     "va": "0040f046",
+     "size": 46,
+     "mangled": "W?Room$:BiodermStatsScreen$n()i"
+    },
+    "BiodermStatsSelect": {
+     "va": "0040f074",
+     "size": 507,
+     "mangled": "W?BiodermStatsSelect$n(pn$BiodermStatsScreen$$ui)v"
+    },
+    "BiodermStatsAction": {
+     "va": "0040f26f",
+     "size": 101,
+     "mangled": "W?BiodermStatsAction$n(pn$BiodermStatsScreen$$)v"
+    },
+    "BiodermStatsScreen::Message": {
+     "va": "0040f2d4",
+     "size": 243,
+     "mangled": "W?Message$:BiodermStatsScreen$n(pnxa)v"
+    },
+    "BiodermStatsScreen::DrawMessage": {
+     "va": "0040f3c7",
+     "size": 68,
+     "mangled": "W?DrawMessage$:BiodermStatsScreen$n(pnxa)v"
+    },
+    "BiodermStatsClose": {
+     "va": "0040f40b",
+     "size": 38,
+     "mangled": "W?BiodermStatsClose$n(pn$BiodermStatsScreen$$)v"
+    },
+    "BiodermStatsApply": {
+     "va": "0040f431",
+     "size": 140,
+     "mangled": "W?BiodermStatsApply$n(pn$BiodermStatsScreen$$)v"
+    },
+    "W?$Wda0221$:MenuButton$n(ui)pnv": {
+     "va": "0040f4c0",
+     "size": 21,
+     "mangled": "W?$Wda0221$:MenuButton$n(ui)pnv"
+    },
+    "BiodermStatsScreen::$dt": {
+     "va": "0040f4d8",
+     "size": 12,
+     "mangled": "W?$dt:BiodermStatsScreen$n()_"
+    }
+   },
+   "data": {
+    "CONST2": {
+     "va": "0048cb30",
+     "size": 116
+    },
+    "_DATA": {
+     "va": "0048e6f8",
+     "size": 12
+    },
+    "W?$Wts0en$MenuButton$$$nx[]uc": {
+     "va": "0048c9d8",
+     "size": 17
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0040f4e4.c": {
+   "as": "_unknown\\tu_0040f4e4.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "W?.tdctor$:MenuButton$n()rn$1$": {
+     "va": "004085c8",
+     "size": 21,
+     "mangled": "W?.tdctor$:MenuButton$n()rn$1$"
+    },
+    "W?.fn_init$n()v": {
+     "va": "0040f4e4",
+     "size": 305,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "MedlabScreen::$ct": {
+     "va": "0040f615",
+     "size": 23,
+     "mangled": "W?$ct:MedlabScreen$n()_"
+    },
+    "MedlabScreen::Open": {
+     "va": "0040f62c",
+     "size": 228,
+     "mangled": "W?Open$:MedlabScreen$n(pn$InputReq$$)v"
+    },
+    "MedlabScreen::Close": {
+     "va": "0040f710",
+     "size": 26,
+     "mangled": "W?Close$:MedlabScreen$n()v"
+    },
+    "MedlabScreen::Update": {
+     "va": "0040f72a",
+     "size": 118,
+     "mangled": "W?Update$:MedlabScreen$n()i"
+    },
+    "ShellBiodermSkillsRender": {
+     "va": "0040f7a0",
+     "size": 416,
+     "mangled": "W?ShellBiodermSkillsRender$n(pn$MedlabScreen$$)v"
+    },
+    "MedlabScreen::Invalidate": {
+     "va": "0040f940",
+     "size": 14,
+     "mangled": "W?Invalidate$:MedlabScreen$n()v"
+    },
+    "MedlabScreen::UpdateText": {
+     "va": "0040f94e",
+     "size": 471,
+     "mangled": "W?UpdateText$:MedlabScreen$n()v"
+    },
+    "MedlabScreen::UpdateCredits": {
+     "va": "0040fb25",
+     "size": 64,
+     "mangled": "W?UpdateCredits$:MedlabScreen$n()v"
+    },
+    "MedlabScreen::Room": {
+     "va": "0040fb65",
+     "size": 14,
+     "mangled": "W?Room$:MedlabScreen$n()i"
+    },
+    "MedlabScreen::Cancel": {
+     "va": "0040fb73",
+     "size": 38,
+     "mangled": "W?Cancel$:MedlabScreen$n()v"
+    },
+    "MedlabScreen::Apply": {
+     "va": "0040fb99",
+     "size": 129,
+     "mangled": "W?Apply$:MedlabScreen$n()v"
+    },
+    "MedlabScreen::Treat": {
+     "va": "0040fc1a",
+     "size": 302,
+     "mangled": "W?Treat$:MedlabScreen$n(uiui)v"
+    },
+    "MedlabScreen::TotalCost": {
+     "va": "0040fd48",
+     "size": 152,
+     "mangled": "W?TotalCost$:MedlabScreen$n()i"
+    },
+    "MedlabScreen::TreatAll": {
+     "va": "0040fde0",
+     "size": 243,
+     "mangled": "W?TreatAll$:MedlabScreen$n()v"
+    },
+    "MedlabScreen::Dismiss": {
+     "va": "0040fed3",
+     "size": 192,
+     "mangled": "W?Dismiss$:MedlabScreen$n()v"
+    },
+    "W?$Wda0214$:MenuButton$n(ui)pnv": {
+     "va": "0040ff94",
+     "size": 21,
+     "mangled": "W?$Wda0214$:MenuButton$n(ui)pnv"
+    },
+    "MedlabScreen::$dt": {
+     "va": "0040ffac",
+     "size": 12,
+     "mangled": "W?$dt:MedlabScreen$n()_"
+    }
+   },
+   "data": {
+    "CONST2": {
+     "va": "0048cbbc",
+     "size": 84
+    },
+    "_DATA": {
+     "va": "0048e76c",
+     "size": 12
+    },
+    "W?$Wts0en$MenuButton$$$nx[]uc": {
+     "va": "0048c9d8",
+     "size": 17
+    }
+   },
+   "accepted": "2026-11-09"
   }
  },
  "accepted_losses": [
