@@ -9173,7 +9173,16 @@
      "mangled": "W?ShellBriefingAbort$n(pn$QuickStartScreen$$)v"
     }
    },
-   "data": {},
+   "data": {
+    "W?$Wts0en$UpgradeBar$$$nx[]uc": {
+     "va": "0048d024",
+     "size": 17
+    },
+    "W?$Wts0gn$UpgradeArrow$$$nx[]uc": {
+     "va": "0048d010",
+     "size": 17
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/_unknown/tu_0046b918.c": {
