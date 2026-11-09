@@ -3566,10 +3566,10 @@
   "f_00419ae3": {
    "va": "00419ae3",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?f_00419ae3$n(pna)v",
    "tu": "src/shell/hbupgrad.c",
-   "evidence": "placed (at) in src/shell/hbupgrad.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "HercUpgradeRender": {
    "va": "00419b3c",
@@ -14352,10 +14352,10 @@
   "WorldActionInitialize": {
    "va": "00456f90",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?WorldActionInitialize$n()i",
    "tu": "src/sim/worldact.c",
-   "evidence": "placed (at) in src/sim/worldact.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "WorldActionShutdown": {
    "va": "00457020",
@@ -23657,9 +23657,10 @@
   "RenderClipLine": {
    "va": "00481194",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?RenderClipLine$n(pnipnipnipnipnx$Rect$$)i",
-   "evidence": "implied by src/_unknown/tu_0047b720.c 2026-11-09"
+   "status": "matched",
+   "mangled": "RenderClipLine",
+   "tu": "src/_unknown/asm_00481194.asm",
+   "evidence": "strict match 2026-11-09"
   },
   "RenderClipLine#RenderClipLine": {
    "va": "00481194",
@@ -23668,6 +23669,13 @@
    "mangled": "RenderClipLine",
    "tu": "src/_unknown/asm_00481194.asm",
    "evidence": "placed (at) in src/_unknown/asm_00481194.asm 2026-11-09"
+  },
+  "RenderClipLine#W?RenderClipLine$n(pnipnipnipnipnx$Rect$$)i": {
+   "va": "00481194",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?RenderClipLine$n(pnipnipnipnipnx$Rect$$)i",
+   "evidence": "implied by src/_unknown/tu_0047b720.c 2026-11-09"
   },
   "DecodeImage": {
    "va": "00481290",
@@ -24300,6 +24308,14 @@
    "tu": "src/pop/ppilot.c",
    "evidence": "own data placed in src/pop/ppilot.c 2026-11-09"
   },
+  "W?$Wts0mn$PilotGuiOpenObject$$$nx[]uc": {
+   "va": "0048cdb8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0mn$PilotGuiOpenObject$$$nx[]uc",
+   "tu": "src/shell/pilotgui.c",
+   "evidence": "own data placed in src/shell/pilotgui.c 2026-11-09"
+  },
   "W?$Wts0gn$CommsLogView$$$nx[]uc": {
    "va": "0048cf84",
    "kind": "data",
@@ -24345,6 +24361,14 @@
    "status": "hypothesis",
    "mangled": "W?g48d394$n[]a",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "W?$Wts0jn$MultiplayerBase$$$nx[]uc": {
+   "va": "0048d5a4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0jn$MultiplayerBase$$$nx[]uc",
+   "tu": "src/_unknown/tu_0041d774.c",
+   "evidence": "own data placed in src/_unknown/tu_0041d774.c 2026-11-09"
   },
   "W?$Wts0cn$MenuEdit$$$nx[]uc": {
    "va": "0048d798",
@@ -24590,6 +24614,14 @@
    "mangled": "W?$Wvf0hos:WeaponControl$$nx[]pn()v",
    "tu": "src/_unknown/tu_0044310c.c",
    "evidence": "own data placed in src/_unknown/tu_0044310c.c 2026-11-09"
+  },
+  "W?$Wts0fn$ShieldPopup$$$nx[]uc": {
+   "va": "0048dc78",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0fn$ShieldPopup$$$nx[]uc",
+   "tu": "src/_unknown/tu_0044455c.c",
+   "evidence": "own data placed in src/_unknown/tu_0044455c.c 2026-11-09"
   },
   "W?$Wts0hn$ShieldControl$$$nx[]uc": {
    "va": "0048dc8c",

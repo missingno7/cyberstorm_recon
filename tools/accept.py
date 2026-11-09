@@ -14,7 +14,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import ROOT  # noqa: E402
 
-LINE = re.compile(r"python(?:\s+-\w+)*\s+(?:\.[\\/])?tools[\\/]promote\.py\s+(candidates/\S+.*?)\s*`?\s*$")
+LINE = re.compile(r"python(?:\s+-\w+)*\s+(?:(?:\.[\\/])?tools[\\/]promote\.py|candidates/[^/\s]+/run_tool\.py\s+promote\.py)"
+                  r"\s+(candidates/\S+.*?)\s*`?\s*$")     # also a lane's scratch wrapper around the same tool
 
 
 def commands(report):

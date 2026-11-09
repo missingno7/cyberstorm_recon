@@ -1437,6 +1437,10 @@
      "va": "004a04f8",
      "size": 12
     },
+    "XI": {
+     "va": "004a6c72",
+     "size": 6
+    },
     "W?$Wts0fn$ActorRecord$$$nx[]uc": {
      "va": "0048dfe4",
      "size": 17
@@ -1473,6 +1477,11 @@
    "install": "wc106",
    "profile": "ot",
    "functions": {
+    "WorldActionInitialize": {
+     "va": "00456f90",
+     "size": 144,
+     "mangled": "W?WorldActionInitialize$n()i"
+    },
     "WorldActionShutdown": {
      "va": "00457020",
      "size": 48,
@@ -3856,6 +3865,14 @@
      "va": "0048f1c0",
      "size": 12
     },
+    "XI": {
+     "va": "004a6bd6",
+     "size": 6
+    },
+    "W?$Wts0dn$MenuPanel$$$nx[]uc": {
+     "va": "0048c99c",
+     "size": 17
+    },
     "W?$Wts0kn$MenuPrefixButton$$$nx[]uc": {
      "va": "0048c9ec",
      "size": 17
@@ -3878,6 +3895,10 @@
     },
     "W?$Wts0dn$MenuLabel$$$nx[]uc": {
      "va": "0048c9b0",
+     "size": 17
+    },
+    "W?$Wts0in$MenuHelpRegion$$$nx[]uc": {
+     "va": "0048c9c4",
      "size": 17
     }
    },
@@ -5416,6 +5437,11 @@
      "size": 26,
      "mangled": "W?f_004198e7$n()v"
     },
+    "f_00419ae3": {
+     "va": "00419ae3",
+     "size": 89,
+     "mangled": "W?f_00419ae3$n(pna)v"
+    },
     "f_00419d21": {
      "va": "00419d21",
      "size": 49,
@@ -5651,6 +5677,10 @@
      "va": "0048ed1c",
      "size": 12
     },
+    "XI": {
+     "va": "004a6bb8",
+     "size": 6
+    },
     "W?$Wts0hn$UpgradeCanvas$$$nx[]uc": {
      "va": "0048d380",
      "size": 17
@@ -5661,6 +5691,14 @@
     },
     "W?$Wts0kn$MenuPrefixButton$$$nx[]uc": {
      "va": "0048c9ec",
+     "size": 17
+    },
+    "W?$Wts0in$MenuHelpRegion$$$nx[]uc": {
+     "va": "0048c9c4",
+     "size": 17
+    },
+    "W?$Wts0dn$MenuPanel$$$nx[]uc": {
+     "va": "0048c99c",
      "size": 17
     },
     "W?$Wts0en$UpgradeBar$$$nx[]uc": {
@@ -7390,6 +7428,10 @@
      "va": "004a00b4",
      "size": 32
     },
+    "XI": {
+     "va": "004a6c36",
+     "size": 6
+    },
     "W?$Wts0kn$PilotImageButton$$$nx[]uc": {
      "va": "0048cdb8",
      "size": 17
@@ -7986,6 +8028,10 @@
      "va": "0048ef50",
      "size": 12
     },
+    "XI": {
+     "va": "004a6bca",
+     "size": 6
+    },
     "W?$Wts0kn$MenuPrefixButton$$$nx[]uc": {
      "va": "0048c9ec",
      "size": 17
@@ -7996,6 +8042,18 @@
     },
     "W?$Wts0gn$UpgradeArrow$$$nx[]uc": {
      "va": "0048d010",
+     "size": 17
+    },
+    "W?$Wts0in$MenuHelpRegion$$$nx[]uc": {
+     "va": "0048c9c4",
+     "size": 17
+    },
+    "W?$Wts0dn$MenuPanel$$$nx[]uc": {
+     "va": "0048c99c",
+     "size": 17
+    },
+    "W?$Wts0jn$MultiplayerBase$$$nx[]uc": {
+     "va": "0048d5a4",
      "size": 17
     },
     "W?$Wts08n$Flic$$$nx[]uc": {
@@ -8695,6 +8753,18 @@
     "_DATA": {
      "va": "0048e804",
      "size": 12
+    },
+    "XI": {
+     "va": "004a6b8e",
+     "size": 6
+    },
+    "W?$Wts0mn$PilotGuiOpenObject$$$nx[]uc": {
+     "va": "0048cdb8",
+     "size": 17
+    },
+    "W?$Wts0in$MenuHelpRegion$$$nx[]uc": {
+     "va": "0048c9c4",
+     "size": 17
     },
     "W?$Wts0dn$MenuLabel$$$nx[]uc": {
      "va": "0048c9b0",
@@ -11233,6 +11303,10 @@
      "va": "004a003c",
      "size": 12
     },
+    "XI": {
+     "va": "004a6c2a",
+     "size": 6
+    },
     "W?$Wvf0hos:ShieldControl$$nx[]pn()v": {
      "va": "0048dca0",
      "size": 20
@@ -11247,6 +11321,10 @@
     },
     "W?$Wts0en$MenuButton$$$nx[]uc": {
      "va": "0048c9d8",
+     "size": 17
+    },
+    "W?$Wts0fn$ShieldPopup$$$nx[]uc": {
+     "va": "0048dc78",
      "size": 17
     }
    },
@@ -12647,7 +12725,13 @@
    "as": "_unknown\\asm_00481194.asm",
    "install": "wc106",
    "profile": "asm-tasm50",
-   "functions": {},
+   "functions": {
+    "RenderClipLine": {
+     "va": "00481194",
+     "size": 238,
+     "mangled": "RenderClipLine"
+    }
+   },
    "data": {},
    "accepted": "2026-11-09"
   },

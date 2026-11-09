@@ -1,5 +1,5 @@
-; Lane s46: readable hand-assembly reconstruction, pinned WASM 10.6 candidate.
-; Names are working labels; see REPORT.md for encoding blockers and object cuts.
+; Lane s49: readable hand-assembly reconstruction, pinned TASM32 candidate.
+; Names are working labels. Operand order preserves the original XCHG encodings.
 .486
 .model flat
 
@@ -35,8 +35,8 @@ RenderClipLine PROC NEAR
     jl clip_top_first
     cmp edi, eax
     jge clip_left
-    xchg esi, ebx
-    xchg edi, ecx
+    xchg ebx, esi
+    xchg ecx, edi
     jmp SHORT intersect_top
 clip_top_first:
     cmp edi, eax
@@ -58,8 +58,8 @@ clip_left:
     jl clip_left_first
     cmp esi, eax
     jge clip_bottom
-    xchg esi, ebx
-    xchg edi, ecx
+    xchg ebx, esi
+    xchg ecx, edi
     jmp SHORT intersect_left
 clip_left_first:
     cmp esi, eax
@@ -80,8 +80,8 @@ clip_bottom:
     jg clip_bottom_first
     cmp edi, eax
     jle clip_right
-    xchg esi, ebx
-    xchg edi, ecx
+    xchg ebx, esi
+    xchg ecx, edi
     jmp SHORT intersect_bottom
 clip_bottom_first:
     cmp edi, eax
@@ -102,8 +102,8 @@ clip_right:
     jg clip_right_first
     cmp esi, eax
     jle clip_accept
-    xchg esi, ebx
-    xchg edi, ecx
+    xchg ebx, esi
+    xchg ecx, edi
     jmp SHORT intersect_right
 clip_right_first:
     cmp esi, eax

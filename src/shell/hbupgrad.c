@@ -1044,12 +1044,12 @@ void f_00419b3c(char *param_1)
             if (uiSystem.UpdateCredits() != 0) g4b6d2c.SetValue(g4a706d, 0);
             g4b6d73 &= 0xfe;
             break;
-        case 3:
-        case 5:
+        case 3: case 4:
+        case 6:
             BriefRenderUpdate(param_1);
             return;
-        case 4:
-        case 6:
+        case 5:
+
             f_00419d52(param_1);
             if (*(int *)(param_1 + 0x4ce) != 0) {
                 *(int *)(param_1 + 0x4ce) = 0;

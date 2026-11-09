@@ -30,7 +30,7 @@ instructions, register idioms a C compiler does not emit). Profile `asm` assembl
 WATCOM 10.6 WASM (`-4s -q`) through tools/cc.py; the comparator and gate are the same as for C. Update (same day):
 WASM is rejected: it encodes register-register instructions in the r/m-destination form (89/01), the original
 uses the register-destination form (8B/03) in 162 places (s46). Borland TASM32 with `-ml -m5` (profiles
-`asm-tasm40`, `asm-tasm50`, pinned) reproduces 11 of the 12 routines byte for byte; `-m5` (multi-pass) is required,
+`asm-tasm40`, `asm-tasm50`, pinned) reproduces all 12 routines byte for byte (RenderClipLine by s49); `-m5` (multi-pass) is required,
 single-pass TASM reserves near jumps for forward references and pads with NOPs. TASM 4.0 and 5.0 give identical
 bytes, so the version stays undecided (5.0 is used: 1996, same year as the game). MASM 6.x is untested. Gate policy for
 `.asm`: no binary inclusion, no data blobs (4+ comma-separated db/dw/dd values) unless a line is labelled

@@ -85,3 +85,4 @@ Unassigned large modules: sim\sim.c + simdo.c (0044950c, 30 KB), shell\mplaunch.
 0043ef34, 00435dec, 0041d774, 0044688c, 00433640, pop\pdeath.c, and the parked tails of finished lanes.
 | s48-s51 | sol | near-miss functions (<= 16 differing bytes), 4 disjoint TU sets (build/prompts/nm*.txt) | running |
 | s52 | sol | TU completion round 2 (5 TUs + linkdlg/chat literals + pdeath migration plan) | done (pdeath split into pdeath.c + tu_00449148.c; 61 TUs complete) |
+| s49 | sol | near-miss set 1 | done (RenderClipLine asm, hbupgrad +1, worldact +1) |
