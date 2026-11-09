@@ -64,3 +64,9 @@ or VA conflict. `--publish` (integrator only) writes `src/`, `recovery.json` and
 - TU level: whole object incl. CONST/_DATA ownership and BSS order (Watcom BSS order rule is a hypothesis
   from DOS projects: size rank, groups of 25, `hashpjw % 241`).
 - Image level: WLINK of all objects + CLIB3S/PLIB3S/MATH387S, compare full file.
+
+Own data placements (2026-11-09). A TU's own data/BSS objects referenced only from new functions get their
+address from the segment base placed in the dry run (anchored by --at/search and the code's relocation fields).
+promote.py --publish records those addresses as `hypothesis` bindings ("own data placed in TU"), so the verify view
+(no --at, no search) can reach the objects; verify still proves every item (BSS zero in the oracle, data bytes and
+relocations equal). Before this, such functions were withdrawn as "strict only with --at/search" (s15 tu_0041cb48).
