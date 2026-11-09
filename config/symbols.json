@@ -511,6 +511,14 @@
    "tu": "src/pop/ppilot.c",
    "evidence": "strict match 2026-11-09"
   },
+  "W?$Wda0211$:MenuPrefixButton$n(ui)pnv": {
+   "va": "004085f8",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$Wda0211$:MenuPrefixButton$n(ui)pnv",
+   "tu": "src/_unknown/tu_0041d774.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "MenuHelpRegion::$dt": {
    "va": "00408610",
    "kind": "func",
@@ -2926,6 +2934,30 @@
    "mangled": "W?ShellBriefingAbort$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "GuiScreen::$dt": {
+   "va": "0041d774",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$dt:GuiScreen$n()_",
+   "tu": "src/_unknown/tu_0041d774.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "W?.fn_init$n()v@_unknown/tu_0041d774.c": {
+   "va": "0041d780",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/_unknown/tu_0041d774.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MultiplayerBase::$ct": {
+   "va": "0041dbe7",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:MultiplayerBase$n()_",
+   "tu": "src/_unknown/tu_0041d774.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "ShellMultiplayerOpen": {
    "va": "0041dc45",
    "kind": "func",
@@ -2933,19 +2965,148 @@
    "mangled": "W?ShellMultiplayerOpen$n(pn$Scene$$pn$InputReq$$i)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "RefreshMultiplayerControls": {
+   "va": "0041dfec",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?RefreshMultiplayerControls$n(pn$MultiplayerBase$$)v",
+   "tu": "src/_unknown/tu_0041d774.c",
+   "evidence": "placed (at) in src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "MultiplayerConfigure": {
+   "va": "0041e527",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?MultiplayerConfigure$n(pn$MultiplayerBase$$)v",
+   "tu": "src/_unknown/tu_0041d774.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MultiplayerRelease": {
+   "va": "0041e688",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?MultiplayerRelease$n(pn$MultiplayerBase$$)v",
+   "tu": "src/_unknown/tu_0041d774.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "ShellMultiplayerClose": {
+   "va": "0041e6e4",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ShellMultiplayerClose$n(pn$MultiplayerBase$$)v",
+   "tu": "src/_unknown/tu_0041d774.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ShellMultiplayerClose#W?ShellMultiplayerClose$n(pn$Scene$$)v": {
    "va": "0041e6e4",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?ShellMultiplayerClose$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "ValidateMultiplayer": {
+   "va": "0041e77a",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ValidateMultiplayer$n(pn$MultiplayerBase$$)v",
+   "tu": "src/_unknown/tu_0041d774.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MultiplayerEnter": {
+   "va": "0041e915",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?MultiplayerEnter$n(pn$MultiplayerBase$$)v",
+   "tu": "src/_unknown/tu_0041d774.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MultiplayerBusy": {
+   "va": "0041e95b",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?MultiplayerBusy$n(pn$MultiplayerBase$$)i",
+   "tu": "src/_unknown/tu_0041d774.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MultiplayerHost": {
+   "va": "0041e966",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MultiplayerHost$n(pn$MultiplayerBase$$)i",
+   "tu": "src/_unknown/tu_0041d774.c",
+   "evidence": "placed (at) in src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "MultiplayerRequest": {
+   "va": "0041ea50",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?MultiplayerRequest$n(pn$MultiplayerBase$$)v",
+   "tu": "src/_unknown/tu_0041d774.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MultiplayerBase::GetName": {
+   "va": "0041ea5f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?GetName$:MultiplayerBase$n()i",
+   "tu": "src/_unknown/tu_0041d774.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MultiplayerWait": {
+   "va": "0041eab4",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MultiplayerWait$n(pn$MultiplayerBase$$)v",
+   "tu": "src/_unknown/tu_0041d774.c",
+   "evidence": "placed (at) in src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "MultiplayerSearch": {
+   "va": "0041eb76",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?MultiplayerSearch$n(pn$MultiplayerBase$$)v",
+   "tu": "src/_unknown/tu_0041d774.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "SigsJoin": {
    "va": "0041ec0c",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?SigsJoin$n(pna)v",
-   "evidence": "implied by src/multi/linkdlg.c 2026-11-09"
+   "tu": "src/_unknown/tu_0041d774.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MultiplayerAttemptStart": {
+   "va": "0041eca2",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MultiplayerAttemptStart$n(pn$MultiplayerBase$$)i",
+   "tu": "src/_unknown/tu_0041d774.c",
+   "evidence": "placed (at) in src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "MultiplayerDrawText": {
+   "va": "0041f020",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?MultiplayerDrawText$n(pn$MultiplayerBase$$pnxa)v",
+   "tu": "src/_unknown/tu_0041d774.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MultiplayerDrawHover": {
+   "va": "0041f08c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MultiplayerDrawHover$n(pn$MultiplayerBase$$ii)v",
+   "tu": "src/_unknown/tu_0041d774.c",
+   "evidence": "placed (at) in src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "MultiplayerUpdate": {
+   "va": "0041f1a0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?MultiplayerUpdate$n(pn$MultiplayerBase$$)v",
+   "tu": "src/_unknown/tu_0041d774.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ShellMultiplayerRender": {
    "va": "0041f306",
@@ -2953,6 +3114,46 @@
    "status": "hypothesis",
    "mangled": "W?ShellMultiplayerRender$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "MultiplayerDone": {
+   "va": "0041f49b",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?MultiplayerDone$n(pn$MultiplayerBase$$)i",
+   "tu": "src/_unknown/tu_0041d774.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MultiplayerSetMoneyValues": {
+   "va": "0041f4bc",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?MultiplayerSetMoneyValues$n(pn$MultiplayerBase$$)v",
+   "tu": "src/_unknown/tu_0041d774.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MultiplayerUpdateValues": {
+   "va": "0041f51f",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MultiplayerUpdateValues$n(pn$MultiplayerBase$$)v",
+   "tu": "src/_unknown/tu_0041d774.c",
+   "evidence": "placed (at) in src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "MultiplayerSaveOptions": {
+   "va": "0041f5cf",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?MultiplayerSaveOptions$n(pn$MultiplayerBase$$)v",
+   "tu": "src/_unknown/tu_0041d774.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MultiplayerBase::$dt": {
+   "va": "0041f610",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$dt:MultiplayerBase$n()_",
+   "tu": "src/_unknown/tu_0041d774.c",
+   "evidence": "strict match 2026-11-09"
   },
   "Scene::$ct": {
    "va": "0041fd2d",
@@ -6308,16 +6509,18 @@
   "ActorListObject::$ct": {
    "va": "00435dec",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?$ct:ActorListObject$n()_",
-   "evidence": "implied by src/multi/message.c 2026-11-09"
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ActorListGlobalObject::$dt": {
    "va": "00435dfd",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?$dt:ActorListGlobalObject$n()_",
-   "evidence": "implied by src/sim/actorlst.c 2026-11-09"
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ActorListObject::$dt": {
    "va": "00435dfd",
@@ -6329,16 +6532,50 @@
   "ActorListGlobalObject::$ct": {
    "va": "00435e02",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?$ct:ActorListGlobalObject$n(pnxv)_",
-   "evidence": "implied by src/sim/actorlst.c 2026-11-09"
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ActorBaseHealth": {
+   "va": "00435e2f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ActorBaseHealth$n(pn$ActorState$$pn$ActorDescriptor$$)i",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "strict match 2026-11-09"
   },
   "f_00435e43": {
    "va": "00435e43",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "f_00435e43",
-   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ActorBindDescriptor": {
+   "va": "00435e70",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ActorBindDescriptor$n(pn$ActorState$$i)v",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "RefreshActorState": {
+   "va": "00435e9c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?RefreshActorState$n(pn$ActorState$$)v",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ActorStateInvalid": {
+   "va": "00436070",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ActorStateInvalid$n(pn$ActorState$$)i",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "placed (at) in src/_unknown/tu_00435dec.c 2026-11-09"
   },
   "SendEvent": {
    "va": "00436138",
@@ -6357,16 +6594,50 @@
   "ActorListObject::Fixup": {
    "va": "00436be7",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?Fixup$:ActorListObject$n()v",
-   "evidence": "implied by src/multi/message.c 2026-11-09"
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ActorAdjustFixed": {
+   "va": "00436c0f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ActorAdjustFixed$n(pn$ActorState$$pnuiiui)v",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ActorAdjustScalar": {
+   "va": "00436c3a",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ActorAdjustScalar$n(pn$ActorState$$pnuiiui)v",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ActorScale": {
+   "va": "00436c65",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ActorScale$n(pn$ActorState$$iui)i",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "placed (at) in src/_unknown/tu_00435dec.c 2026-11-09"
+  },
+  "RefreshActorFlags": {
+   "va": "00436d2c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?RefreshActorFlags$n(pn$ActorState$$)v",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "strict match 2026-11-09"
   },
   "SimLogicFlags": {
    "va": "00436db7",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?SimLogicFlags$n(pnv)ui",
-   "evidence": "implied by src/_unknown/tu_00452950.c 2026-11-09"
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "strict match 2026-11-09"
   },
   "PilotValue": {
    "va": "00436dcc",
@@ -6382,12 +6653,52 @@
    "mangled": "PilotValue",
    "evidence": "implied by src/pop/pdeath.c 2026-11-09"
   },
+  "ActorQuery": {
+   "va": "00436dcc",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ActorQuery$n(pn$ActorState$$ui)i",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "placed (at) in src/_unknown/tu_00435dec.c 2026-11-09"
+  },
   "UnitCapability": {
    "va": "0043718a",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?UnitCapability$n(pnvi)i",
    "evidence": "implied by src/sim/simdo.c 2026-11-09"
+  },
+  "ActorEffectiveSkill": {
+   "va": "0043718a",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ActorEffectiveSkill$n(pn$ActorState$$ui)i",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "placed (at) in src/_unknown/tu_00435dec.c 2026-11-09"
+  },
+  "ActorGetDescriptor": {
+   "va": "0043723d",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ActorGetDescriptor$n(pn$ActorState$$)pn$ActorDescriptor$$",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ActorCondition": {
+   "va": "00437245",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ActorCondition$n(pn$ActorState$$)i",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ActorSetName": {
+   "va": "004372b6",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ActorSetName$n(pn$ActorState$$pnxa)v",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "strict match 2026-11-09"
   },
   "f_004372cd": {
    "va": "004372cd",
@@ -6396,12 +6707,116 @@
    "mangled": "f_004372cd",
    "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
   },
+  "ActorGetName": {
+   "va": "004372cd",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ActorGetName$n(pn$ActorState$$pna)v",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ActorWork": {
+   "va": "004372db",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ActorWork$n(pn$ActorState$$)v",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "placed (at) in src/_unknown/tu_00435dec.c 2026-11-09"
+  },
+  "ActorRest": {
+   "va": "0043743d",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ActorRest$n(pn$ActorState$$)v",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "placed (at) in src/_unknown/tu_00435dec.c 2026-11-09"
+  },
+  "ActorChangeMorale": {
+   "va": "004375ab",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ActorChangeMorale$n(pn$ActorState$$i)v",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "placed (at) in src/_unknown/tu_00435dec.c 2026-11-09"
+  },
+  "ActorTrainSkill": {
+   "va": "004375f4",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ActorTrainSkill$n(pn$ActorState$$uii)v",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "placed (at) in src/_unknown/tu_00435dec.c 2026-11-09"
+  },
+  "ActorGainExperience": {
+   "va": "0043764e",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ActorGainExperience$n(pn$ActorState$$i)v",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "placed (at) in src/_unknown/tu_00435dec.c 2026-11-09"
+  },
+  "ActorTrainingCost": {
+   "va": "004376ee",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ActorTrainingCost$n(pn$ActorState$$uii)i",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ActorRestoreHealth": {
+   "va": "00437821",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ActorRestoreHealth$n(pn$ActorState$$)v",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ActorHealthCost": {
+   "va": "00437848",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ActorHealthCost$n(pn$ActorState$$)i",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "placed (at) in src/_unknown/tu_00435dec.c 2026-11-09"
+  },
+  "ActorRestoreMorale": {
+   "va": "004378be",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ActorRestoreMorale$n(pn$ActorState$$)v",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ActorMoraleCost": {
+   "va": "004378e5",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ActorMoraleCost$n(pn$ActorState$$)i",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "placed (at) in src/_unknown/tu_00435dec.c 2026-11-09"
+  },
+  "ActorFatigueCost": {
+   "va": "00437945",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ActorFatigueCost$n(pn$ActorState$$)i",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "f_004379ba": {
    "va": "004379ba",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "f_004379ba",
    "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "ActorRemainingValue": {
+   "va": "004379ba",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ActorRemainingValue$n(pn$ActorState$$)i",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "placed (at) in src/_unknown/tu_00435dec.c 2026-11-09"
   },
   "UnitReset": {
    "va": "00437a28",
@@ -6410,12 +6825,124 @@
    "mangled": "W?UnitReset$n(pn$UnitRecord$$)v",
    "evidence": "implied by src/_unknown/tu_0043ef34.c 2026-11-09"
   },
+  "ActorRememberLevel": {
+   "va": "00437a28",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ActorRememberLevel$n(pn$ActorState$$)v",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ActorState::ActorApplyDamage": {
+   "va": "00437a3c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ActorApplyDamage$:ActorState$n(uc)v",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ActorTick": {
+   "va": "00437c68",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ActorTick$n(pn$ActorState$$iii)v",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "placed (at) in src/_unknown/tu_00435dec.c 2026-11-09"
+  },
+  "ActorDamageHealth": {
+   "va": "00437dd7",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ActorDamageHealth$n(pn$ActorState$$i)v",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ActorZeroVitals": {
+   "va": "00437e2f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ActorZeroVitals$n(pn$ActorState$$)v",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ActorVoice": {
+   "va": "00437e49",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ActorVoice$n(pn$ActorState$$)v",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ActorAdjustFatigue": {
+   "va": "00437eb6",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ActorAdjustFatigue$n(pn$ActorState$$i)v",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "placed (at) in src/_unknown/tu_00435dec.c 2026-11-09"
+  },
+  "ActorAdjustMorale": {
+   "va": "00437fbe",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ActorAdjustMorale$n(pn$ActorState$$i)v",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "placed (at) in src/_unknown/tu_00435dec.c 2026-11-09"
+  },
+  "ActorRecoverInjuries": {
+   "va": "00438085",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ActorRecoverInjuries$n(pn$ActorState$$ui)v",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "placed (at) in src/_unknown/tu_00435dec.c 2026-11-09"
+  },
+  "ActorAdjustSkills": {
+   "va": "00438107",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ActorAdjustSkills$n(pn$ActorState$$i)v",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "placed (at) in src/_unknown/tu_00435dec.c 2026-11-09"
+  },
+  "ActorAdjustSkill": {
+   "va": "0043814f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ActorAdjustSkill$n(pn$ActorState$$ii)v",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "PilotChecksum": {
    "va": "0043819f",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?PilotChecksum$n(pnv)i",
-   "evidence": "implied by src/multi/minipkt.c 2026-11-09"
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ActorState::Equal": {
+   "va": "004381f7",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Equal$:ActorState$n(pnx$1$)i",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ActorCopyState": {
+   "va": "00438221",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ActorCopyState$n(pn$ActorState$$pn$1$)v",
+   "tu": "src/_unknown/tu_00435dec.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PrepareActorDescriptor": {
+   "va": "00438244",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PrepareActorDescriptor$n(pnv)v",
+   "evidence": "implied by src/_unknown/tu_00435dec.c 2026-11-09"
   },
   "PopFindItem": {
    "va": "00438374",
@@ -6570,6 +7097,20 @@
    "status": "hypothesis",
    "mangled": "W?UnitFogObject$n(pn$UnitState$$ipnv)pn$FogObject$$",
    "evidence": "implied by src/sim/simdo.c 2026-11-09"
+  },
+  "CurveInit": {
+   "va": "0043b3d0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?CurveInit$n(pn$Curve$$iiiiiiii)v",
+   "evidence": "implied by src/_unknown/tu_00435dec.c 2026-11-09"
+  },
+  "CurveForward": {
+   "va": "0043b40c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?CurveForward$n(pn$Curve$$ui)ui",
+   "evidence": "implied by src/_unknown/tu_00435dec.c 2026-11-09"
   },
   "SimLoadPalette": {
    "va": "0043b74c",
@@ -13843,6 +14384,13 @@
    "mangled": "W?ExploIdle$n()v",
    "evidence": "implied by src/sim/explo.c 2026-11-09"
   },
+  "ResetMultiplayerInput": {
+   "va": "00476ea0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ResetMultiplayerInput$n()v",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
   "f_0047723b": {
    "va": "0047723b",
    "kind": "func",
@@ -15364,6 +15912,13 @@
    "mangled": "W?Crc16$n(pnuspnvi)v",
    "evidence": "implied by src/multi/message.c 2026-11-09"
   },
+  "Crc16#W?Crc16$n(pnuspnxvui)v": {
+   "va": "0047f0b0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Crc16$n(pnuspnxvui)v",
+   "evidence": "implied by src/_unknown/tu_00435dec.c 2026-11-09"
+  },
   "SimMarkPosition": {
    "va": "0047f84e",
    "kind": "func",
@@ -16022,6 +16577,13 @@
    "mangled": "W?gHercBuyControls$n[]pn$GuiControl$$",
    "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
   },
+  "multiplayerControlList": {
+   "va": "0048ef70",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?multiplayerControlList$n[]pn$GuiControl$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
   "gLaunchControls": {
    "va": "0048f00c",
    "kind": "data",
@@ -16329,6 +16891,20 @@
    "status": "hypothesis",
    "mangled": "W?seasonCounts$n[]i",
    "evidence": "implied by src/terr/tbuild.c 2026-11-09"
+  },
+  "actorVoices": {
+   "va": "004907d8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?actorVoices$n[]i",
+   "evidence": "implied by src/_unknown/tu_00435dec.c 2026-11-09"
+  },
+  "actorVoices2": {
+   "va": "004907f0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?actorVoices2$n[]i",
+   "evidence": "implied by src/_unknown/tu_00435dec.c 2026-11-09"
   },
   "actorListDescriptor": {
    "va": "00493b2c",
@@ -16980,6 +17556,13 @@
    "status": "hypothesis",
    "mangled": "W?g4a706d$nl",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "multiplayerName": {
+   "va": "004a7079",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?multiplayerName$n[]a",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
   },
   "gShellGame": {
    "va": "004a70b8",
@@ -18647,6 +19230,307 @@
    "mangled": "W?gShellBriefingMission$na",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "multiplayerCountText": {
+   "va": "004b7a14",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?multiplayerCountText$n[]a",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "multiplayerRosterText": {
+   "va": "004b7a1c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?multiplayerRosterText$n[]a",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "multiplayerMissionText": {
+   "va": "004b7a24",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?multiplayerMissionText$n[]a",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "multiplayerPrompt": {
+   "va": "004b7a4c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?multiplayerPrompt$n[]a",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "multiplayerPlayerText": {
+   "va": "004b7ad4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?multiplayerPlayerText$n[]a",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "multiplayerButtons": {
+   "va": "004b7ad8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?multiplayerButtons$n[]$MenuPrefixButton$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "g4b7cbc": {
+   "va": "004b7cbc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b7cbc$n$MenuButton$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "g4b7ce4": {
+   "va": "004b7ce4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b7ce4$n$MenuButton$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "g4b7d0c": {
+   "va": "004b7d0c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b7d0c$n$MenuButton$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "g4b7d34": {
+   "va": "004b7d34",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b7d34$n$MenuButton$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "g4b7d5c": {
+   "va": "004b7d5c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b7d5c$n$MenuButton$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "g4b7d84": {
+   "va": "004b7d84",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b7d84$n$MenuButton$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "g4b7dac": {
+   "va": "004b7dac",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b7dac$n$MenuButton$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "multiplayerMoneySelectorObject": {
+   "va": "004b7dd4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?multiplayerMoneySelectorObject$n$MultiplayerSelection$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "multiplayerMoneyControl": {
+   "va": "004b7ddc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?multiplayerMoneyControl$n$UpgradeBar$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "g4b7e04": {
+   "va": "004b7e04",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b7e04$n$UpgradeArrow$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "g4b7e30": {
+   "va": "004b7e30",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b7e30$n$UpgradeArrow$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "multiplayerPlayerSelectorObject": {
+   "va": "004b7e5c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?multiplayerPlayerSelectorObject$n$MultiplayerSelection$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "multiplayerPlayerControl": {
+   "va": "004b7e64",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?multiplayerPlayerControl$n$UpgradeBar$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "g4b7e8c": {
+   "va": "004b7e8c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b7e8c$n$UpgradeArrow$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "g4b7eb8": {
+   "va": "004b7eb8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b7eb8$n$UpgradeArrow$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "g4b7ee4": {
+   "va": "004b7ee4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b7ee4$n$MenuNumber$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "g4b7f14": {
+   "va": "004b7f14",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b7f14$n$MenuNumber$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "multiplayerHelpRegion": {
+   "va": "004b7f44",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?multiplayerHelpRegion$n$MenuHelpRegion$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "multiplayerHelp": {
+   "va": "004b7f64",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?multiplayerHelp$ni",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "g4b7f6c": {
+   "va": "004b7f6c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b7f6c$n$MenuNumber$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "g4b7f9c": {
+   "va": "004b7f9c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b7f9c$n$MenuLabel$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "g4b7fd0": {
+   "va": "004b7fd0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b7fd0$n$MenuLabel$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "g4b8004": {
+   "va": "004b8004",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b8004$n$MenuLabel$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "g4b8038": {
+   "va": "004b8038",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b8038$n$MenuLabel$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "g4b806c": {
+   "va": "004b806c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b806c$n$MenuLabel$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "g4b80a0": {
+   "va": "004b80a0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b80a0$n$MenuLabel$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "g4b80d4": {
+   "va": "004b80d4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b80d4$n$MenuLabel$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "g4b8108": {
+   "va": "004b8108",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b8108$n$MenuLabel$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "g4b813c": {
+   "va": "004b813c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b813c$n$MenuLabel$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "g4b8170": {
+   "va": "004b8170",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b8170$n$MenuLabel$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "g4b81a4": {
+   "va": "004b81a4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b81a4$n$MenuLabel$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "g4b81d8": {
+   "va": "004b81d8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b81d8$n$MenuLabel$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "g4b820c": {
+   "va": "004b820c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b820c$n$MenuLabel$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "g4b8240": {
+   "va": "004b8240",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b8240$n$MenuLabel$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "g4b8274": {
+   "va": "004b8274",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b8274$n$MenuLabel$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "multiplayerPanel": {
+   "va": "004b82a8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?multiplayerPanel$n$MenuPanel$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
+  "g4b82cc": {
+   "va": "004b82cc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b82cc$n$MenuNumber$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
+  },
   "g4b82fc": {
    "va": "004b82fc",
    "kind": "data",
@@ -18660,6 +19544,13 @@
    "status": "hypothesis",
    "mangled": "W?g4b82fc$n$Scene$$",
    "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
+  },
+  "g4b82fc#W?g4b82fc$n$MultiplayerBase$$": {
+   "va": "004b82fc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b82fc$n$MultiplayerBase$$",
+   "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
   },
   "gLaunchHeadings": {
    "va": "004b8e40",
@@ -19717,6 +20608,20 @@
    "status": "hypothesis",
    "mangled": "W?heightCount$ni",
    "evidence": "implied by src/_unknown/tu_004349c0.c 2026-11-09"
+  },
+  "actorVoiceCycle": {
+   "va": "004c9214",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?actorVoiceCycle$ni",
+   "evidence": "implied by src/_unknown/tu_00435dec.c 2026-11-09"
+  },
+  "actorVoiceCycle2": {
+   "va": "004c9218",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?actorVoiceCycle2$ni",
+   "evidence": "implied by src/_unknown/tu_00435dec.c 2026-11-09"
   },
   "g4c9234": {
    "va": "004c9234",
