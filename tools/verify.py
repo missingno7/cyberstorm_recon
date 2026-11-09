@@ -61,7 +61,7 @@ def main(argv):
         if bad:
             print(f"FAIL {tu}: {bad}")
             ok = False
-        if ent.get("profile") == "asm":       # hand assembly: reported separately from the C/C++ census
+        if str(ent.get("profile", "")).startswith("asm"):       # hand assembly: reported separately from the C/C++ census
             asm_done[0] += len(ent["functions"])
             asm_done[1] += sum(e["size"] for e in ent["functions"].values())
         else:

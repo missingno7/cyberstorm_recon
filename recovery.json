@@ -12387,6 +12387,132 @@
     }
    },
    "accepted": "2026-11-09"
+  },
+  "src/_unknown/asm_00435084.asm": {
+   "as": "_unknown\\asm_00435084.asm",
+   "install": "wc106",
+   "profile": "asm-tasm50",
+   "functions": {
+    "MaskTerrainTile": {
+     "va": "00435084",
+     "size": 164,
+     "mangled": "MaskTerrainTile"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/asm_00435b5c.asm": {
+   "as": "_unknown\\asm_00435b5c.asm",
+   "install": "wc106",
+   "profile": "asm-tasm50",
+   "functions": {
+    "DrawTerrainTile": {
+     "va": "00435b5c",
+     "size": 258,
+     "mangled": "DrawTerrainTile"
+    },
+    "DrawTerrainTileClipped": {
+     "va": "00435c5e",
+     "size": 395,
+     "mangled": "DrawTerrainTileClipped"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/gui/flic_pixels.asm": {
+   "as": "gui\\flic_pixels.asm",
+   "install": "wc106",
+   "profile": "asm-tasm50",
+   "functions": {
+    "UnpackFlicPixels": {
+     "va": "0047ec9c",
+     "size": 114,
+     "mangled": "UnpackFlicPixels"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/gui/flic_packed.asm": {
+   "as": "gui\\flic_packed.asm",
+   "install": "wc106",
+   "profile": "asm-tasm50",
+   "functions": {
+    "UnpackFlicPacked": {
+     "va": "0047ed10",
+     "size": 166,
+     "mangled": "UnpackFlicPacked"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/asm_0047f9a0.asm": {
+   "as": "_unknown\\asm_0047f9a0.asm",
+   "install": "wc106",
+   "profile": "asm-tasm50",
+   "functions": {
+    "FixedSin": {
+     "va": "0047f9a0",
+     "size": 57,
+     "mangled": "FixedSin"
+    },
+    "FixedCos": {
+     "va": "0047f9d9",
+     "size": 62,
+     "mangled": "FixedCos"
+    },
+    "FixedTan": {
+     "va": "0047fa17",
+     "size": 119,
+     "mangled": "FixedTan"
+    },
+    "RotatePoint": {
+     "va": "0047fa8e",
+     "size": 175,
+     "mangled": "RotatePoint"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/asm_00481194.asm": {
+   "as": "_unknown\\asm_00481194.asm",
+   "install": "wc106",
+   "profile": "asm-tasm50",
+   "functions": {},
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/asm_004826a8.asm": {
+   "as": "_unknown\\asm_004826a8.asm",
+   "install": "wc106",
+   "profile": "asm-tasm50",
+   "functions": {
+    "VectorAtan": {
+     "va": "004826a8",
+     "size": 143,
+     "mangled": "VectorAtan"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/pack/unpack.asm": {
+   "as": "pack\\unpack.asm",
+   "install": "wc106",
+   "profile": "asm-tasm50",
+   "functions": {
+    "UnpackLzw": {
+     "va": "004854c8",
+     "size": 156,
+     "mangled": "UnpackLzw"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
   }
  },
  "accepted_losses": [

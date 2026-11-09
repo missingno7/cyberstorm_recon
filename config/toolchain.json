@@ -49,6 +49,30 @@
     "H",
     "H/NT"
    ]
+  },
+  "tasm40": {
+   "product": "Borland Turbo Assembler 4.0 (1993), TASM32.EXE",
+   "dir": "tasm-4.0/expanded",
+   "source": "WinWorld archive, see C:/tools/tasm-README-4-5.md",
+   "tools": {
+    "tasm32": "TASM32.EXE"
+   },
+   "key_files": {
+    "TASM32.EXE": "0307e863a7769d944fd8621c6d9d8b859f72d6c2acea20bd970934d1c406203d"
+   },
+   "include": []
+  },
+  "tasm50": {
+   "product": "Borland Turbo Assembler 5.0 (1996), TASM32.EXE",
+   "dir": "tasm-5.0/expanded",
+   "source": "WinWorld archive, see C:/tools/tasm-README-4-5.md",
+   "tools": {
+    "tasm32": "TASM32.EXE"
+   },
+   "key_files": {
+    "TASM32.EXE": "ba50fe547863b96242d98cff54cdf95ab268a8682395afad172eedbfc46c5b26"
+   },
+   "include": []
   }
  },
  "profiles": {
@@ -124,7 +148,25 @@
     "-4s",
     "-q"
    ],
-   "status": "hypothesis: Watcom WASM 10.6 for hand-assembly objects (config/nongame.json class asm); the original assembler is not yet identified (WASM vs MASM 6.x vs TASM encoding fingerprints)"
+   "status": "REJECTED for the original: WASM 10.6 picks r/m-destination encodings (89/01) for 162 register-register instructions where the original has the register-destination forms (8B/03) (s46). Kept only as a negative control."
+  },
+  "asm-tasm40": {
+   "install": "tasm40",
+   "tool": "tasm32",
+   "flags": [
+    "-ml",
+    "-m5"
+   ],
+   "status": "verified reproducing configuration: Borland TASM32 with -ml (case-sensitive symbols) and -m5 (multi-pass: forward jumps short, no NOP padding) reproduces 11 of 12 hand-assembly routines byte for byte; TASM 4.0 and 5.0 give identical bytes on all of them, so the historical version is undecided (s46 + integrator 2026-11-09)"
+  },
+  "asm-tasm50": {
+   "install": "tasm50",
+   "tool": "tasm32",
+   "flags": [
+    "-ml",
+    "-m5"
+   ],
+   "status": "verified reproducing configuration: Borland TASM32 with -ml (case-sensitive symbols) and -m5 (multi-pass: forward jumps short, no NOP padding) reproduces 11 of 12 hand-assembly routines byte for byte; TASM 4.0 and 5.0 give identical bytes on all of them, so the historical version is undecided (s46 + integrator 2026-11-09)"
   }
  }
 }

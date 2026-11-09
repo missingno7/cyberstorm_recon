@@ -27,8 +27,11 @@ Microsoft linker 2.55, MSVC C++ mangling, static MFC. Points at Visual C++ 2.x (
 ## Hand assembly (2026-11-09)
 `config/nongame.json` classifies 12 ranges (2074 bytes) as hand assembly (ENTER/LEAVE frames, string
 instructions, register idioms a C compiler does not emit). Profile `asm` assembles `.asm` sources with the pinned
-WATCOM 10.6 WASM (`-4s -q`) through tools/cc.py; the comparator and gate are the same as for C. The original
-assembler is NOT identified yet (WASM vs MASM 6.x vs TASM: test encoding fingerprints such as `mov r32,r32`
-89/8B direction, short-jump relaxation, `enter`/`leave`, segment alignment and OMF records). Gate policy for
+WATCOM 10.6 WASM (`-4s -q`) through tools/cc.py; the comparator and gate are the same as for C. Update (same day):
+WASM is rejected: it encodes register-register instructions in the r/m-destination form (89/01), the original
+uses the register-destination form (8B/03) in 162 places (s46). Borland TASM32 with `-ml -m5` (profiles
+`asm-tasm40`, `asm-tasm50`, pinned) reproduces 11 of the 12 routines byte for byte; `-m5` (multi-pass) is required,
+single-pass TASM reserves near jumps for forward references and pads with NOPs. TASM 4.0 and 5.0 give identical
+bytes, so the version stays undecided (5.0 is used: 1996, same year as the game). MASM 6.x is untested. Gate policy for
 `.asm`: no binary inclusion, no data blobs (4+ comma-separated db/dw/dd values) unless a line is labelled
 UNKNOWN debt. verify counts accepted asm TUs separately from the C/C++ census.

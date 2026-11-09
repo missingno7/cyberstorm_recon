@@ -8865,6 +8865,14 @@
   "MaskTerrainTile": {
    "va": "00435084",
    "kind": "func",
+   "status": "matched",
+   "mangled": "MaskTerrainTile",
+   "tu": "src/_unknown/asm_00435084.asm",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MaskTerrainTile#W?MaskTerrainTile$n(pnucpnucpnucii)v": {
+   "va": "00435084",
+   "kind": "func",
    "status": "hypothesis",
    "mangled": "W?MaskTerrainTile$n(pnucpnucpnucii)v",
    "tu": "src/_unknown/tu_00435084.c",
@@ -8959,12 +8967,28 @@
   "DrawTerrainTile": {
    "va": "00435b5c",
    "kind": "func",
+   "status": "matched",
+   "mangled": "DrawTerrainTile",
+   "tu": "src/_unknown/asm_00435b5c.asm",
+   "evidence": "strict match 2026-11-09"
+  },
+  "DrawTerrainTile#W?DrawTerrainTile$n(pn$Image$$iii)v": {
+   "va": "00435b5c",
+   "kind": "func",
    "status": "hypothesis",
    "mangled": "W?DrawTerrainTile$n(pn$Image$$iii)v",
    "tu": "src/_unknown/tu_00435b5c.c",
    "evidence": "placed (at) in src/_unknown/tu_00435b5c.c 2026-11-09"
   },
   "DrawTerrainTileClipped": {
+   "va": "00435c5e",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "DrawTerrainTileClipped",
+   "tu": "src/_unknown/asm_00435b5c.asm",
+   "evidence": "strict match 2026-11-09"
+  },
+  "DrawTerrainTileClipped#W?DrawTerrainTileClipped$n(pn$Image$$iiiii)v": {
    "va": "00435c5e",
    "kind": "func",
    "status": "hypothesis",
@@ -23073,9 +23097,10 @@
   "UnpackFlicPixels": {
    "va": "0047ec9c",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?UnpackFlicPixels$n(pnucpnxv)i",
-   "evidence": "implied by src/gui/flic.c 2026-11-09"
+   "status": "matched",
+   "mangled": "UnpackFlicPixels",
+   "tu": "src/gui/flic_pixels.asm",
+   "evidence": "strict match 2026-11-09"
   },
   "UnpackFlicPixels#UnpackFlicPixels": {
    "va": "0047ec9c",
@@ -23084,12 +23109,20 @@
    "mangled": "UnpackFlicPixels",
    "evidence": "implied by src/pack/unpack.c 2026-11-09"
   },
+  "UnpackFlicPixels#W?UnpackFlicPixels$n(pnucpnxv)i": {
+   "va": "0047ec9c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?UnpackFlicPixels$n(pnucpnxv)i",
+   "evidence": "implied by src/gui/flic.c 2026-11-09"
+  },
   "UnpackFlicPacked": {
    "va": "0047ed10",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?UnpackFlicPacked$n(pnucpnxv)i",
-   "evidence": "implied by src/gui/flic.c 2026-11-09"
+   "status": "matched",
+   "mangled": "UnpackFlicPacked",
+   "tu": "src/gui/flic_packed.asm",
+   "evidence": "strict match 2026-11-09"
   },
   "UnpackFlicPacked#UnpackFlicPacked": {
    "va": "0047ed10",
@@ -23097,6 +23130,13 @@
    "status": "hypothesis",
    "mangled": "UnpackFlicPacked",
    "evidence": "implied by src/pack/unpack.c 2026-11-09"
+  },
+  "UnpackFlicPacked#W?UnpackFlicPacked$n(pnucpnxv)i": {
+   "va": "0047ed10",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?UnpackFlicPacked$n(pnucpnxv)i",
+   "evidence": "implied by src/gui/flic.c 2026-11-09"
   },
   "ApproachFixed": {
    "va": "0047eec0",
@@ -23233,6 +23273,13 @@
    "mangled": "W?RenderImage$n(pnx$MenuImage$$iiiii)v",
    "evidence": "implied by src/_unknown/tu_0047b720.c 2026-11-09"
   },
+  "RenderImage#RenderImage": {
+   "va": "0047f114",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "RenderImage",
+   "evidence": "implied by src/_unknown/asm_00435b5c.asm 2026-11-09"
+  },
   "RenderSpecialImage": {
    "va": "0047f5e0",
    "kind": "func",
@@ -23271,9 +23318,10 @@
   "FixedSin#FixedSin": {
    "va": "0047f9a0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "FixedSin",
-   "evidence": "implied by src/_unknown/tu_0047eec0.c 2026-11-09"
+   "tu": "src/_unknown/asm_0047f9a0.asm",
+   "evidence": "strict match 2026-11-09"
   },
   "FixedSin": {
    "va": "0047f9d9",
@@ -23285,16 +23333,26 @@
   "FixedCos": {
    "va": "0047f9d9",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "FixedCos",
-   "evidence": "implied by src/_unknown/tu_0047eec0.c 2026-11-09"
+   "tu": "src/_unknown/asm_0047f9a0.asm",
+   "evidence": "strict match 2026-11-09"
+  },
+  "FixedTan": {
+   "va": "0047fa17",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "FixedTan",
+   "tu": "src/_unknown/asm_0047f9a0.asm",
+   "evidence": "strict match 2026-11-09"
   },
   "RotatePoint": {
    "va": "0047fa8e",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "RotatePoint",
-   "evidence": "implied by src/_unknown/tu_0047eec0.c 2026-11-09"
+   "tu": "src/_unknown/asm_0047f9a0.asm",
+   "evidence": "strict match 2026-11-09"
   },
   "TimerNow": {
    "va": "0047fc80",
@@ -23602,6 +23660,14 @@
    "mangled": "W?RenderClipLine$n(pnipnipnipnipnx$Rect$$)i",
    "evidence": "implied by src/_unknown/tu_0047b720.c 2026-11-09"
   },
+  "RenderClipLine#RenderClipLine": {
+   "va": "00481194",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "RenderClipLine",
+   "tu": "src/_unknown/asm_00481194.asm",
+   "evidence": "placed (at) in src/_unknown/asm_00481194.asm 2026-11-09"
+  },
   "DecodeImage": {
    "va": "00481290",
    "kind": "func",
@@ -23667,9 +23733,10 @@
   "VectorAtan": {
    "va": "004826a8",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "VectorAtan",
-   "evidence": "implied by src/_unknown/tu_0047eec0.c 2026-11-09"
+   "tu": "src/_unknown/asm_004826a8.asm",
+   "evidence": "strict match 2026-11-09"
   },
   "Palette::$ct": {
    "va": "00485390",
@@ -23695,9 +23762,10 @@
   "UnpackLzw": {
    "va": "004854c8",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "UnpackLzw",
-   "evidence": "implied by src/pack/unpack.c 2026-11-09"
+   "tu": "src/pack/unpack.asm",
+   "evidence": "strict match 2026-11-09"
   },
   "gStandbyLayoutName@_unknown/tu_0040ffb8.c": {
    "va": "0048a80c",
@@ -25575,6 +25643,48 @@
    "mangled": "W?seasonCounts$n[]i",
    "evidence": "implied by src/terr/tbuild.c 2026-11-09"
   },
+  "maskRowStarts": {
+   "va": "00490670",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "maskRowStarts",
+   "evidence": "implied by src/_unknown/asm_00435084.asm 2026-11-09"
+  },
+  "maskRowSteps": {
+   "va": "00490680",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "maskRowSteps",
+   "evidence": "implied by src/_unknown/asm_00435084.asm 2026-11-09"
+  },
+  "terrainSpanRows": {
+   "va": "004906b0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "terrainSpanRows",
+   "evidence": "implied by src/_unknown/asm_00435b5c.asm 2026-11-09"
+  },
+  "terrainSourceStarts": {
+   "va": "004907b4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "terrainSourceStarts",
+   "evidence": "implied by src/_unknown/asm_00435b5c.asm 2026-11-09"
+  },
+  "terrainSourceSteps": {
+   "va": "004907c4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "terrainSourceSteps",
+   "evidence": "implied by src/_unknown/asm_00435b5c.asm 2026-11-09"
+  },
+  "terrainSourceStep": {
+   "va": "004907d4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "terrainSourceStep",
+   "evidence": "implied by src/_unknown/asm_00435b5c.asm 2026-11-09"
+  },
   "actorVoices": {
    "va": "004907d8",
    "kind": "data",
@@ -26609,6 +26719,34 @@
    "status": "hypothesis",
    "mangled": "W?fileSourcePath$n[]xa",
    "evidence": "implied by src/io/file.c 2026-11-09"
+  },
+  "packedBlocksLeft": {
+   "va": "004a4bb4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "packedBlocksLeft",
+   "evidence": "implied by src/gui/flic_packed.asm 2026-11-09"
+  },
+  "packedTailBits": {
+   "va": "004a4bb8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "packedTailBits",
+   "evidence": "implied by src/gui/flic_packed.asm 2026-11-09"
+  },
+  "fixedCosineTable": {
+   "va": "004a4c18",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "fixedCosineTable",
+   "evidence": "implied by src/_unknown/asm_0047f9a0.asm 2026-11-09"
+  },
+  "atanCorrections": {
+   "va": "004a54f8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "atanCorrections",
+   "evidence": "implied by src/_unknown/asm_004826a8.asm 2026-11-09"
   },
   "W?.mod_init$npn()v@logic/lgen.c": {
    "va": "004a6cba",
@@ -36142,6 +36280,20 @@
    "status": "hypothesis",
    "mangled": "W?gShellDrawPixels$nl",
    "evidence": "implied by src/pop/ppilot.c 2026-11-09"
+  },
+  "surfaceRowOffsets": {
+   "va": "005138a4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "surfaceRowOffsets",
+   "evidence": "implied by src/_unknown/asm_00435b5c.asm 2026-11-09"
+  },
+  "surfaceRowStride": {
+   "va": "005138a8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "surfaceRowStride",
+   "evidence": "implied by src/_unknown/asm_00435b5c.asm 2026-11-09"
   },
   "g5138ac": {
    "va": "005138ac",

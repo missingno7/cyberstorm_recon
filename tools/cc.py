@@ -56,7 +56,10 @@ def compile_one(src, out, flags, inst="wc106", tool="wpp386", extra_include=(), 
         env = {"SYSTEMROOT": os.environ.get("SYSTEMROOT", "C:\\Windows"), "WATCOM": str(base),
                "INCLUDE": ";".join(inc), "PATH": str(base / "BINNT"), "TMP": str(td), "TEMP": str(td)}
         exe = base / ent["tools"][tool]
-        cmd = [str(exe), *flags, str(rel).replace("/", "\\"), "-fo=unit.obj"]
+        if tool.startswith("tasm"):
+            cmd = [str(exe), *flags, str(rel).replace("/", "\\"), "unit.obj"]     # TASM: source[,object]
+        else:
+            cmd = [str(exe), *flags, str(rel).replace("/", "\\"), "-fo=unit.obj"]
         r = subprocess.run(cmd, env=env, cwd=td, capture_output=True, text=True, timeout=120)
         text = r.stdout + r.stderr
         if r.returncode == 0 and obj.is_file() and obj.stat().st_size:
