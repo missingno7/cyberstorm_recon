@@ -32,7 +32,7 @@ Model: `luna` = gpt-6-luna xhigh, `sol` = gpt-6.1-sol high (Codex; all new lanes
 | s9 | sol | 0040d2b0, 0040e794, 0040f4d8 | done (54, none parked) |
 | s10 | sol | 00454210, 004556f0 | done (27; 10 parked) |
 | s11 | sol | 00438374, 004394e0, 0043a294 | done (54; 14 parked) |
-| s12 | sol | 004413e0, 004425d4, 00443100 | running |
+| s12 | sol | 004413e0, 004425d4, 00443100 | done (30; 17 parked) |
 | s13 | sol | 00407204..00409408 | done (40, none parked) |
 | s14 | sol | terr\tdisplay.c, tarea.c, tsurface.c (from w13); 0042cf40, 0042e210 | running |
 | s15 | sol | 0041c7d8..0041d774, 0046b918 | running |
@@ -40,6 +40,7 @@ Model: `luna` = gpt-6-luna xhigh, `sol` = gpt-6.1-sol high (Codex; all new lanes
 | s17 | sol | sim\anim.c, animbmp.c, simhot.c (from w10/w12); 00460800 | running |
 | s18 | sol | logic\logic.c + sim\hotbrief.c, logic\lactors.c, intel.c (from w12/w9); 00464d7c | running |
 | s19 | sol | 004742bc..00477dd8 | running |
+| s20 | sol | 0045a050..0045a600, 0045ad00..0045bc50, 0045cc00..0045dbd0 | running |
 | l1 | luna | shell\hercbuy.c | done (19) |
 | o1 | opus | multi\linkdlg.c, linkq.c, message.c | done |
 | o2 | opus | sim\apply.c, fxout.c, explo.c | done |
