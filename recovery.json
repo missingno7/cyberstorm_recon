@@ -2193,6 +2193,102 @@
     }
    },
    "accepted": "2026-11-09"
+  },
+  "src/shell/shell.c": {
+   "as": "shell\\shell.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "00401010",
+     "size": 160,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "ShellClearFrame": {
+     "va": "004010b0",
+     "size": 42,
+     "mangled": "W?ShellClearFrame$n()v"
+    },
+    "ShellCloseAllScreens": {
+     "va": "004010da",
+     "size": 210,
+     "mangled": "W?ShellCloseAllScreens$n()v"
+    },
+    "Shell::Close": {
+     "va": "004011ac",
+     "size": 351,
+     "mangled": "W?Close$:Shell$n(i)v"
+    },
+    "Shell::BeginBriefing": {
+     "va": "00402e32",
+     "size": 53,
+     "mangled": "W?BeginBriefing$:Shell$n(uc)v"
+    },
+    "Shell::SumRosterResponses": {
+     "va": "00403503",
+     "size": 111,
+     "mangled": "W?SumRosterResponses$:Shell$n()l"
+    },
+    "Shell::ProfileValueTotal": {
+     "va": "00403572",
+     "size": 42,
+     "mangled": "W?ProfileValueTotal$:Shell$n()l"
+    },
+    "Shell::ShowIntro": {
+     "va": "0040605b",
+     "size": 81,
+     "mangled": "W?ShowIntro$:Shell$n()v"
+    },
+    "Shell::ReplayIntro": {
+     "va": "004060ac",
+     "size": 164,
+     "mangled": "W?ReplayIntro$:Shell$n()v"
+    },
+    "ShellLoadPalette": {
+     "va": "00406150",
+     "size": 184,
+     "mangled": "W?ShellLoadPalette$n(pnxa)v"
+    },
+    "ShellApplyPalette": {
+     "va": "00406208",
+     "size": 114,
+     "mangled": "W?ShellApplyPalette$n(pn$Palette$$)v"
+    },
+    "Shell::UpdateCredits": {
+     "va": "00406fc9",
+     "size": 230,
+     "mangled": "W?UpdateCredits$:Shell$n()i"
+    },
+    "Shell::NextCreditBreakpoint": {
+     "va": "004070af",
+     "size": 127,
+     "mangled": "W?NextCreditBreakpoint$:Shell$n(ul)ul"
+    },
+    "Shell::$ct": {
+     "va": "0040717c",
+     "size": 37,
+     "mangled": "W?$ct:Shell$n()_"
+    }
+   },
+   "data": {
+    "CONST2": {
+     "va": "0048c82c",
+     "size": 28
+    },
+    "_DATA": {
+     "va": "0048e4d0",
+     "size": 26
+    },
+    "W?$Wvf0do4:ShellBase$$nx[]pn()v": {
+     "va": "0048c8ac",
+     "size": 20
+    },
+    "W?$Wvf09o4:Shell$$nx[]pn()v": {
+     "va": "0048c898",
+     "size": 20
+    }
+   },
+   "accepted": "2026-11-09"
   }
  }
 }

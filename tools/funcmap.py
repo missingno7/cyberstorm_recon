@@ -56,7 +56,14 @@ def pad_len(code, k):
     return n + dl
 
 
-def analyse(img):
+PROLOGUE = (b"\x53", b"\x55", b"\x56", b"\x57", b"\x8b\x44\x24", b"\x8b\x54\x24", b"\x8b\x4c\x24",
+            b"\x83\xec", b"\x2e\xff\x15", b"\x68", b"\x6a", b"\xa1", b"\xc7\x05")
+
+
+def analyse(img, known_data=frozenset()):
+    """known_data: addresses inside BEGTEXT used as memory operands (jump/lookup tables) by a previous pass;
+    they are never function starts, and an uncovered gap that starts with one is skipped to the next
+    prologue-like byte (Watcom puts switch tables in front of the function that uses them)."""
     text = img.section("BEGTEXT")
     t0 = img.image_base + text.rva
     code = img.section_bytes("BEGTEXT")
@@ -87,6 +94,7 @@ def analyse(img):
     for va in libsyms:
         seeds[va] = "lib"
 
+    data_refs = set()       # BEGTEXT addresses used as absolute memory operands (tables)
     insn_owner = {}         # va -> function start
     insn_cover = bytearray(len(code))
     calls = {}              # callee -> callers
@@ -116,6 +124,9 @@ def analyse(img):
                     insn_cover[off + k] = 1
                 insn_owner[pc] = start
                 m = x.mnemonic
+                for op in x.operands:
+                    if op.type == x86.X86_OP_MEM and not op.mem.base and in_text(op.mem.disp):
+                        data_refs.add(op.mem.disp)
                 nxt = pc + x.size
                 if m == "call":
                     op = x.operands[0]
@@ -151,7 +162,7 @@ def analyse(img):
     for tab, (_, n) in jtables.items():
         jt_sites.update(range(tab, tab + 4 * n, 4))
     for v, sites in ptr_refs.items():
-        if all(s in jt_sites for s in sites):
+        if all(s in jt_sites for s in sites) or v in known_data or v in data_refs:
             continue
         if v not in insn_owner and not insn_cover[v - t0]:
             add_func(v, "ptr")
@@ -181,7 +192,15 @@ def analyse(img):
                 if not n or k + n > j:
                     break
                 k += n
-            if k < j and t0 + k not in func_starts and any(code[k:j]):
+            if k < j and t0 + k in known_data:
+                # a table in front of a function: start at the first prologue-like byte after it
+                p = k + 1
+                while p < j and not any(code[p:p + len(pp)] == pp for pp in PROLOGUE[:4] + PROLOGUE[4:7]):
+                    p += 1
+                for q in range(k, p):
+                    insn_cover[q] = 1
+                k = p
+            if k < j and t0 + k not in func_starts and t0 + k not in known_data and any(code[k:j]):
                 add_func(t0 + k, "orphan")
                 orphans.add(t0 + k)
                 new += 1
@@ -206,6 +225,7 @@ def analyse(img):
                       "jumptables": [f"{t:08x}" for t, (o, n) in jtables.items() if o == s]})
     covered = sum(insn_cover)
     return {"oracle": img.name, "text": [f"{t0:08x}", f"{t1:08x}"], "functions": funcs,
+            "data_refs": sorted(f"{v:08x}" for v in data_refs),
             "covered_bytes": covered, "text_bytes": len(code)}, insn_cover, t0
 
 
@@ -216,6 +236,8 @@ def main(argv):
         i = argv.index("--oracle"); name = argv[i + 1]; del argv[i:i + 2]
     img = pemod.load(name)
     res, cover, t0 = analyse(img)
+    # second pass: tables found anywhere in pass 1 are data, never function starts
+    res, cover, t0 = analyse(img, frozenset(int(v, 16) for v in res["data_refs"]))
     if "--gaps" in argv:
         code = img.section_bytes("BEGTEXT")
         i = 0
