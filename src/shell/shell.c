@@ -78,7 +78,7 @@ extern void ShellMissionClose(Scene *);
 extern void HercBayShutdown(Scene *);
 extern void HercBuyClose(Scene *);
 extern void ShellStorageClose(Scene *);
-extern void HercUpgradeClose(Scene *);
+extern int HercUpgradeClose(Scene *);
 extern void ShellMainMenuClose(Scene *);
 extern void ShellIntroClose(Scene *);
 extern void ShellMapClose(Scene *);
@@ -336,6 +336,97 @@ extern void BiodermStatsClose(Scene *);
 extern void BiodermStatsApply(Scene *);
 extern void BiodermStatsAction(Scene *);
 extern void ShellSelectionStats(Scene *,InputReq *,const char *);
+extern U32 TimeNow();
+extern U32 gHercUpgradeLastClick;
+extern U32 HercUpgradeExit(Scene *);
+extern void HercUpgradeSelectPart(Scene *,U32);
+extern void HercUpgradeSelectInventory(Scene *,U32);
+extern void HercUpgradeSelectCategory(Scene *,U32);
+extern void HercUpgradeAction47(Scene *);
+extern void HercUpgradeAction48(Scene *);
+extern void HercUpgradeAction49(Scene *);
+extern void HercUpgradeAction50(Scene *);
+extern void HercUpgradeAction52(Scene *);
+extern void HercUpgradeAction53(Scene *);
+extern void HercUpgradeRefresh(Scene *);
+extern void HercUpgradeAction57(Scene *);
+extern void HercUpgradeAction58(Scene *);
+extern void HercUpgradeAction64(Scene *);
+extern void HercUpgradeAction65(Scene *);
+extern void HercUpgradeAction85(Scene *);
+extern void ShellStorageReopen(Scene *,InputReq *);
+extern int InputButtonPressed(int);
+extern long ShellMainMenuHitTest(Scene *);
+extern U32 ShellMainMenuExit(Scene *);
+extern int ShellMainMenuCanLaunch(Scene *);
+extern void ShellMainMenuAction9(Scene *);
+extern void ShellMainMenuAction6(Scene *);
+extern void ShellMainMenuAction11(Scene *);
+extern void ShellLeaveSession(int);
+extern U32 BiodermSkillsExit(Scene *);
+extern void BiodermSkillsClose(Scene *);
+extern void BiodermSkillsApply(Scene *);
+extern void BiodermSkillsBatch(Scene *,int,int);
+extern void BiodermSkillsAction6(Scene *);
+extern void BiodermSkillsAction7(Scene *);
+extern void ShellSelectionSkills(Scene *,InputReq *,const char *);
+extern long ShellMultiplayerHitTest(Scene *);
+extern U32 ShellMultiplayerExit(Scene *);
+extern void ExploIdle();
+extern int ShellMultiplayerCanStart(Scene *);
+extern int StartMultiplayer(const char *,int);
+extern void ShellNetworkSetupBegin(Scene *,InputReq *);
+extern char gNetworkPlayerName[13];
+extern void ShellMultiplayerReset(Scene *);
+extern void ShellMultiplayerRefresh(Scene *);
+extern int ShellMultiplayerBusy(Scene *);
+extern int ShellMultiplayerPending(Scene *);
+extern int HasMission(void *);
+extern U32 ShellNetworkSetupExit(Scene *);
+extern int ShellNetworkSetupCanStart(Scene *);
+extern void ShellNetworkSetupLoaded(Scene *);
+extern void ShellNetworkSetupRefresh(Scene *);
+extern void ShellNetworkSetupSelectPlayer(Scene *,int);
+extern void ShellNetworkSetupAction70(Scene *);
+extern void ShellNetworkSetupAction85(Scene *);
+extern void ShellNetworkSetupJoinPlayer(Scene *,int);
+extern void ShellNetworkSetupAction4(Scene *);
+extern void ShellNetworkSetupAction78(Scene *);
+extern void ShellNetworkSetupAction79(Scene *);
+extern void ShellNetworkSetupAction105(Scene *);
+
+extern unsigned char gNetworkPlayerSelection;
+struct MenuNetwork {int Begin();};extern MenuNetwork gMenuNetwork;
+extern int logicMode;inline U32 LogicMode(){return logicMode;}
+extern long HotseatExit(Scene *);
+extern int HotseatCanLaunch(Scene *);
+extern void HotseatSelectTeam(Scene *,long);
+extern void HotseatSelectColor(Scene *,long);
+extern void HotseatSelectPlayer(Scene *,long);
+extern void HotseatRefresh(Scene *);
+extern void HotseatAction2(Scene *);
+#pragma pack(push,1)
+struct HotseatState {unsigned char unknown00[0x12a0];unsigned char option;unsigned char unknown12a1[3];long difficulty;unsigned char unknown12a8[0x20];unsigned char option2;};
+#pragma pack(pop)
+extern long ShellSelectionTabHitTest(Scene *);
+extern U32 ShellSelectionTabExit(Scene *);
+extern void BiodermListClose(Scene *);
+extern void ShellSelectionList(Scene *,InputReq *,const char *);
+extern void ShellSelectionTabReset(Scene *);
+extern void ShellSelectionChooseTab(Scene *,int);
+extern void ShellSelectionPrevious(Scene *);
+extern void ShellSelectionNext(Scene *);
+extern void ShellSelectionTabAction30(Scene *);
+extern unsigned char gBiodermSelectionDirty;
+#pragma pack(push,1)
+struct BiodermSelectionState {unsigned char unknown00[0x56];U32 command;};
+#pragma pack(pop)
+extern U32 ShellMapExit(Scene *);
+extern int ShellMapBlocked(Scene *);
+extern long ShellMapHitTest(Scene *);
+#pragma pack(push,1)
+struct ShellMapState {unsigned char unknown00[0x4c];int inputEnabled;unsigned char zoom;};
+#pragma pack(pop)
 void ShellClearFrame()
 {
     SigsStart(&g513888);
@@ -724,6 +815,318 @@ void Shell::UpdateStorage()
         break;
     }
 }
+// Numeric action labels are working names pending reconstruction of hercupgr.
+void Shell::UpdateHercUpgrade()
+{
+    U32 result=HercUpgradeExit(&g4b700c);
+    if(!result)return;
+    if(result>=1&&result<=23){HercUpgradeSelectPart(&g4b700c,result-1);return;}
+    if(result>23&&result<=46){HercUpgradeSelectInventory(&g4b700c,result-24);return;}
+    if(result>=66&&result<=73){
+        HercUpgradeSelectCategory(&g4b700c,result-66);
+        U32 now=TimeNow();
+        if((long)(now-gHercUpgradeLastClick)<333)result=64;
+        gHercUpgradeLastClick=now;
+    }
+    switch(result){
+    case 85:HercUpgradeAction85(&g4b700c);break;
+    case 47:
+        HercUpgradeAction47(&g4b700c);HercUpgradeClose(&g4b700c);
+        ShellStorageReopen(&g4b5b50,&input);screen=27;break;
+    case 50:HercUpgradeAction50(&g4b700c);break;
+    case 49:HercUpgradeAction49(&g4b700c);break;
+    case 54:HercUpgradeRefresh(&g4b700c);break;
+    case 57:HercUpgradeAction57(&g4b700c);break;
+    case 59:HercUpgradeRefresh(&g4b700c);break;
+    case 64:HercUpgradeAction64(&g4b700c);break;
+    case 65:HercUpgradeAction65(&g4b700c);break;
+    case 52:HercUpgradeAction52(&g4b700c);break;
+    case 53:
+        HercUpgradeAction53(&g4b700c);HercUpgradeRefresh(&g4b700c);HercUpgradeAction48(&g4b700c);
+        if(HercUpgradeClose(&g4b700c)){
+            ShellStorageReopen(&g4b5b50,&input);screen=27;
+        }else{
+            ShellStorageClose(&g4b5b50);HercBayOpen(&g4b37c4,&input);screen=9;
+        }
+        break;
+    case 58:HercUpgradeAction58(&g4b700c);break;
+    case 48:
+        HercUpgradeAction48(&g4b700c);HercUpgradeAction48(&g4b700c);HercUpgradeClose(&g4b700c);
+        ShellStorageReopen(&g4b5b50,&input);screen=27;break;
+    }
+}
+void Shell::UpdateMainMenuSelection()
+{
+    long hit=ShellMainMenuHitTest(&g4aebe0);
+    if(!InputButtonPressed(1))hit=-1;
+    if(hit>=0){
+        SoundPlay(5,0);
+        switch(hit){
+        case 3:
+            if(ShellMainMenuCanLaunch(&g4aebe0)){PlayTravel(1);Close(6);return;}
+            break;
+        case 0:
+            ShellMainMenuClose(&g4aebe0);ShellSelectionOpen(&g4aff6c,&input,"Bioderm");screen=8;break;
+        case 1:
+            ShellMainMenuClose(&g4aebe0);((HercBay *)&g4b37c4)->Start(&input);screen=9;break;
+        case 2:ShellMainMenuClose(&g4aebe0);BeginComms(2);break;
+        }
+    }
+    U32 result=ShellMainMenuExit(&g4aebe0);
+    if(!result&&ShellInputKey()==1)result=6;
+    if(!result)return;
+    switch(result){
+    case 2:
+        ShellMainMenuClose(&g4aebe0);ShellSelectionOpen(&g4aff6c,&input,"Bioderm");screen=8;break;
+    case 3:
+        ShellMainMenuClose(&g4aebe0);((HercBay *)&g4b37c4)->Start(&input);screen=9;break;
+    case 4:ShellMainMenuClose(&g4aebe0);BeginComms(2);break;
+    case 9:case 10:case 12:ShellMainMenuAction9(&g4aebe0);break;
+    case 6:ShellMainMenuAction6(&g4aebe0);break;
+    case 11:ShellMainMenuAction11(&g4aebe0);
+    case 5:
+        if(ShellMainMenuCanLaunch(&g4aebe0)){PlayTravel(1);Close(6);}break;
+    case 7:ShellLeaveSession(0);
+    case 8:
+        ShellMainMenuClose(&g4aebe0);TimerSet(&gShellIdleTimer,120000);
+        profileManager.SelectScenario(1);ShellIntroStart(&g4afa84,&input,0);screen=1;break;
+    }
+}
+void Shell::UpdateBiodermPanel()
+{
+    if(BiodermReturnToList()){
+        BiodermSkillsClose(&g4b0c50);
+        ((BiodermPanelState *)&g4b0c50)->returning=1;
+        ShellSelectionSkills(&g4aff6c,&input,"Bioderm");screen=8;return;
+    }
+    U32 result=BiodermSkillsExit(&g4b0c50);
+    if(!result)return;
+    switch(result){
+    case 6:
+        BiodermSkillsClose(&g4b0c50);
+        ((BiodermPanelState *)&g4b0c50)->returning=gBiodermSelectionMode=1;
+        ShellSelectionSkills(&g4aff6c,&input,"Bioderm");screen=8;break;
+    case 7:
+        BiodermSkillsApply(&g4b0c50);
+        ((BiodermPanelState *)&g4b0c50)->returning=gBiodermSelectionMode=1;
+        ShellSelectionSkills(&g4aff6c,&input,"Bioderm");screen=8;break;
+    case 1:BiodermSkillsBatch(&g4b0c50,0x73,0x74);break;
+    case 3:BiodermSkillsBatch(&g4b0c50,0x77,0x78);break;
+    case 2:BiodermSkillsBatch(&g4b0c50,0x75,0x76);break;
+    case 4:BiodermSkillsAction6(&g4b0c50);break;
+    case 5:BiodermSkillsAction7(&g4b0c50);break;
+    }
+}
+void Shell::UpdateMultiplayerMenu()
+{
+    long hit=ShellMultiplayerHitTest(&g4b82fc);
+    if(!InputButtonPressed(1))hit=-1;
+    if(hit>=0){
+        SoundPlay(5,0);
+        switch(hit){
+        case -1:ExploIdle();break;
+        case 3:if(ShellMultiplayerCanStart(&g4b82fc)){
+            if(StartMultiplayer(uiSystem.sessionName,0)){
+                ShellMultiplayerClose(&g4b82fc);ShellNetworkSetupBegin(&g4ba2bc,&input);screen=37;
+                strncpy(gNetworkPlayerName,sessionName,13);gNetworkPlayerName[12]=0;
+            }else{
+                ShellMultiplayerClose(&g4b82fc);ShellMultiplayerOpen(&g4b82fc,&input,0);auxiliaryState=35;
+            }
+        }break;
+        case 0:
+            ShellMultiplayerClose(&g4b82fc);ShellSelectionOpen(&g4aff6c,&input,"Bioderm");screen=8;break;
+        case 1:
+            ShellMultiplayerClose(&g4b82fc);((HercBay *)&g4b37c4)->Start(&input);screen=9;break;
+        }
+        return;
+    }
+    U32 result=ShellMultiplayerExit(&g4b82fc);
+    if(!result&&ShellInputKey()==1)result=6;
+    if(!result)return;
+    switch(result+1){
+    case 1:case 2:case 5:case 12:default:break;
+    case 0:ExploIdle();break;
+    case 3:
+        ShellMultiplayerClose(&g4b82fc);ShellSelectionOpen(&g4aff6c,&input,"Bioderm");screen=8;break;
+    case 4:
+        ShellMultiplayerClose(&g4b82fc);((HercBay *)&g4b37c4)->Start(&input);screen=9;break;
+    case 6:if(ShellMultiplayerCanStart(&g4b82fc)){
+            if(StartMultiplayer(uiSystem.sessionName,0)){
+                ShellMultiplayerClose(&g4b82fc);ShellNetworkSetupBegin(&g4ba2bc,&input);screen=37;
+                strncpy(gNetworkPlayerName,sessionName,13);gNetworkPlayerName[12]=0;
+            }else{
+                ShellMultiplayerClose(&g4b82fc);ShellMultiplayerOpen(&g4b82fc,&input,0);auxiliaryState=35;
+            }
+        }break;
+    case 14:ShellMultiplayerReset(&g4b82fc);ShellMultiplayerRefresh(&g4b82fc);break;
+    case 10:case 11:case 13:ShellMultiplayerReset(&g4b82fc);break;
+    case 7:
+        if(ShellMultiplayerBusy(&g4b82fc)||ShellMultiplayerPending(&g4b82fc))break;
+    case 9:
+show_intro:
+        ShellMultiplayerClose(&g4b82fc);TimerSet(&gShellIdleTimer,120000);
+        profileManager.SelectScenario(1);ShellIntroStart(&g4afa84,&input,0);screen=1;break;
+    case 8:
+        if(!HasMission(&profileManager))profileManager.PrepareRoster();
+        ShellLeaveSession(0);goto show_intro;
+    }
+}
+void Shell::UpdateNetworkSetup()
+{
+    U32 result=ShellNetworkSetupExit(&g4ba2bc);
+    if(!result)return;
+    switch(result){
+    case 2:
+        if(ShellNetworkSetupCanStart(&g4ba2bc)){gMenuNetwork.Begin();MultiplayerLaunchClose(&g4ba2bc);}break;
+    case 100:gMenuNetwork.Begin();MultiplayerLaunchClose(&g4ba2bc);break;
+    case 85:ShellNetworkSetupAction85(&g4ba2bc);break;
+case 87:ShellNetworkSetupAction85(&g4ba2bc);break;
+case 101:ShellNetworkSetupAction85(&g4ba2bc);break;
+case 102:ShellNetworkSetupAction85(&g4ba2bc);break;
+    case 86:ShellNetworkSetupAction85(&g4ba2bc);ShellNetworkSetupJoinPlayer(&g4ba2bc,gNetworkPlayerSelection);break;
+    case 4:ShellNetworkSetupAction4(&g4ba2bc);break;
+    case 5:
+        MultiplayerLaunchClose(&g4ba2bc);
+        switch(LogicMode()){
+        case 1:
+            screen=5;ShellMainMenuClose(&g4aebe0);ShellMainMenuOpen(&g4aebe0,&input,0);auxiliaryState=5;break;
+        case 2:case 3:
+            screen=35;ShellMultiplayerClose(&g4b82fc);ShellMultiplayerOpen(&g4b82fc,&input,0);auxiliaryState=35;break;
+        }
+        StopMultiplayer(0,1);break;
+    case 78:ShellNetworkSetupAction78(&g4ba2bc);break;
+    case 79:ShellNetworkSetupAction79(&g4ba2bc);break;
+    case 105:ShellNetworkSetupAction105(&g4ba2bc);break;
+    case 3:if(LoadMission(0,1))ShellNetworkSetupLoaded(&g4ba2bc);break;
+    }
+    if(result>=62&&result<=69)ShellNetworkSetupRefresh(&g4ba2bc);
+    if(result>=38&&result<=45){gNetworkPlayerSelection=result-38;ShellNetworkSetupSelectPlayer(&g4ba2bc,gNetworkPlayerSelection);}
+    if(result>=70&&result<=77)ShellNetworkSetupAction70(&g4ba2bc);
+}
+void Shell::UpdateLaunch()
+{
+    long result=HotseatExit(gShellHotseat)-1;
+    if(result<0)return;
+    switch(result){
+    case 1:if(HotseatCanLaunch(gShellHotseat)){HotseatClose(gShellHotseat);Close(10);}break;
+    case 3:
+        HotseatClose(gShellHotseat);profileManager.SelectScenario(1);ShellIntroStart(&g4afa84,&input,0);screen=1;break;
+    case 56:((HotseatState *)gShellHotseat)->option^=1;HotseatRefresh(gShellHotseat);break;
+    case 57:
+        ((HotseatState *)gShellHotseat)->difficulty++;
+        if(((HotseatState *)gShellHotseat)->difficulty>=5)((HotseatState *)gShellHotseat)->difficulty=0;
+        HotseatRefresh(gShellHotseat);break;
+    case 75:((HotseatState *)gShellHotseat)->option2^=1;HotseatRefresh(gShellHotseat);break;
+    case 2:HotseatAction2(gShellHotseat);break;
+    }
+    if(result>=32&&result<=39)HotseatSelectTeam(gShellHotseat,result-32);
+    if(result>=40&&result<=47)HotseatSelectColor(gShellHotseat,result-40);
+    if(result>=48&&result<=55)HotseatSelectPlayer(gShellHotseat,result-48);
+}
+/* Bioderm tab strip shared by list, skills, statistics and details screens. */
+void Shell::UpdateMap()
+{
+    if(((BiodermSelectionState *)&g4aff6c)->command==208)return;
+    long hit=ShellSelectionTabHitTest(&g4b16a4);
+    if(!input.NewPress())hit=-1;
+    if(hit<0){
+        switch(ShellInputKey()){
+        case 48:hit=3;break;
+        case 50:hit=0;break;
+        case 47:hit=1;break;
+        case 38:hit=2;break;
+        case 19:hit=5;break;
+        }
+    }
+    if(hit>=0){
+        switch(hit){
+        case 3:
+            if(screen==12){
+                BiodermListClose(&g4b01c8);gBiodermSelectionMode=1;((BiodermPanelState *)&g4b01c8)->returning=2;
+                ShellSelectionList(&g4aff6c,&input,"Bioderm");screen=8;gBiodermSelectionDirty=0;
+            }else{
+                ShellSelectionTabReset(&g4b16a4);ShellSelectionChooseTab(&g4aff6c,4);((BiodermPanelState *)&g4b01c8)->returning=0;
+            }break;
+        case 0:
+            if(screen==15){
+                BiodermSkillsClose(&g4b0c50);((BiodermPanelState *)&g4b0c50)->returning=gBiodermSelectionMode=1;
+                ShellSelectionSkills(&g4aff6c,&input,"Bioderm");screen=8;
+            }else{
+                ShellSelectionTabReset(&g4b16a4);ShellSelectionChooseTab(&g4aff6c,1);((BiodermPanelState *)&g4b0c50)->returning=0;
+            }break;
+        case 1:
+            if(screen==17){
+                BiodermStatsClose(&g4b07f8);((BiodermPanelState *)&g4b07f8)->returning=gBiodermSelectionMode=1;
+                ShellSelectionStats(&g4aff6c,&input,"Bioderm");screen=8;
+            }else{
+                ShellSelectionTabReset(&g4b16a4);ShellSelectionChooseTab(&g4aff6c,2);((BiodermPanelState *)&g4b07f8)->returning=0;
+            }break;
+        case 2:
+            if(screen==16){
+                BiodermDetailsClose(&g4b0e18);((BiodermPanelState *)&g4b0e18)->returning=gBiodermSelectionMode=1;
+                ShellSelectionDetails(&g4aff6c,&input,"Bioderm");screen=8;
+            }else{
+                ShellSelectionTabReset(&g4b16a4);ShellSelectionChooseTab(&g4aff6c,3);((BiodermPanelState *)&g4b0e18)->returning=0;
+            }break;
+        }
+    }
+    U32 result=ShellSelectionTabExit(&g4b16a4);
+    if(!result){switch(ShellInputKey()){case 51:result=2;break;case 52:result=1;break;}}
+    if(!result)return;
+    switch(result){
+    case 1:ShellSelectionPrevious(&g4b16a4);break;
+    case 2:ShellSelectionNext(&g4b16a4);break;
+    case 30:ShellSelectionTabAction30(&g4b16a4);break;
+    }
+}
+/* Star-map exit and click handling; the working method name predates this body. */
+void Shell::UpdateMultiplayer()
+{
+    U32 result=ShellMapExit(&g4afbfc);
+    if(!result&&ShellInputKey()){
+        if(!((ShellMapState *)&g4afbfc)->inputEnabled)((ShellMapState *)&g4afbfc)->zoom=100;
+        else result=1;
+    }
+    if(result){
+    switch(result){
+    case 1:
+        if(ShellMapBlocked(&g4afbfc))break;
+        if(status){
+            status=0;ShellMapClose(&g4afbfc);TimerSet(&gShellIdleTimer,120000);TimerSet(&gShellAnimationTimer,9000);
+            ShellIntroStart(&g4afa84,&input,0);screen=1;
+        }else{
+            ShellMapClose(&g4afbfc);
+            if(auxiliaryState==10){
+                BeginComms(6);
+            }else{
+                if(gShellMapMode){SoundTrigger(141,0);gShellMapMode=0;}
+                RestoreMenu(1);
+            }
+        }break;
+    }
+    }
+    long hit=ShellMapHitTest(&g4afbfc);
+    if(input.NewPress()){
+        if(!((ShellMapState *)&g4afbfc)->inputEnabled){((ShellMapState *)&g4afbfc)->zoom=100;hit=-1;}
+    }else hit=-1;
+    if(hit>=0){
+        switch(hit){
+        case 0:
+            if(ShellMapBlocked(&g4afbfc))break;
+            ShellMapClose(&g4afbfc);
+            if(status){
+                status=0;profileManager.SelectScenario(1);displayedCredits=g4d0413;unknown1d=0;
+                TimerSet(&gShellIdleTimer,120000);TimerSet(&gShellAnimationTimer,9000);
+                screen=1;ShellIntroStart(&g4afa84,&input,0);
+            }else if(auxiliaryState==10){
+                BeginComms(6);
+            }else{
+                if(gShellMapMode){SoundTrigger(141,0);gShellMapMode=0;}
+                RestoreMenu(resumeReason);
+            }break;
+        }
+    }
+}
 void Shell::UpdateMissionBrief()
 {
     U32 result=ShellBriefingExit(&g4b7904);
@@ -756,12 +1159,12 @@ void Shell::UpdateCampaignMenu()
     case 2:BiodermDetailsAction2(&g4b0e18);break;
     case 3:BiodermDetailsAction3(&g4b0e18);break;
     case 4:BiodermDetailsAction4(&g4b0e18);break;
-    case 5:
+    case 6:
         BiodermDetailsApply(&g4b0e18);
         ((BiodermPanelState *)&g4b0e18)->returning=gBiodermSelectionMode=1;
         ShellSelectionDetails(&g4aff6c,&input,"Bioderm");screen=8;
         break;
-    case 6:
+    case 5:
         BiodermDetailsClose(&g4b0e18);
         ((BiodermPanelState *)&g4b0e18)->returning=gBiodermSelectionMode=1;
         ShellSelectionDetails(&g4aff6c,&input,"Bioderm");screen=8;
@@ -902,409 +1305,6 @@ void ShellLoadPalette(const char *name)
 {
     Palette palette;
     void *loaded=gResMgr.Load(name,1,&palette,sizeof(palette));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3417,7 +3417,7 @@ void Shell::Event(unsigned char)
         else SurfaceFlush(&g513888);
     }
 }
-/* Diagnostic: byte-equal, but the inlined palette literal is still UNBOUND. */
+/* Takeoff movie, including its original palette literal, is STRICT. */
 int Shell::PlayTakeoff(int)
 {
     Flic movie;

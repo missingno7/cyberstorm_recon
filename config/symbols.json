@@ -149,13 +149,77 @@
    "tu": "src/shell/shell.c",
    "evidence": "strict match 2026-11-09"
   },
+  "Shell::UpdateHercUpgrade": {
+   "va": "00403cdf",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?UpdateHercUpgrade$:Shell$n()v",
+   "tu": "src/shell/shell.c",
+   "evidence": "placed (at) in src/shell/shell.c 2026-11-09"
+  },
+  "Shell::UpdateMainMenuSelection": {
+   "va": "00403f80",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?UpdateMainMenuSelection$:Shell$n()v",
+   "tu": "src/shell/shell.c",
+   "evidence": "placed (at) in src/shell/shell.c 2026-11-09"
+  },
+  "Shell::UpdateBiodermPanel": {
+   "va": "00404258",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?UpdateBiodermPanel$:Shell$n()v",
+   "tu": "src/shell/shell.c",
+   "evidence": "placed (at) in src/shell/shell.c 2026-11-09"
+  },
+  "Shell::UpdateMultiplayerMenu": {
+   "va": "004043a8",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?UpdateMultiplayerMenu$:Shell$n()v",
+   "tu": "src/shell/shell.c",
+   "evidence": "placed (at) in src/shell/shell.c 2026-11-09"
+  },
+  "Shell::UpdateNetworkSetup": {
+   "va": "0040466f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?UpdateNetworkSetup$:Shell$n()v",
+   "tu": "src/shell/shell.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "Shell::UpdateLaunch": {
+   "va": "004048c8",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?UpdateLaunch$:Shell$n()v",
+   "tu": "src/shell/shell.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "Shell::UpdateMap": {
+   "va": "00404a70",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?UpdateMap$:Shell$n()v",
+   "tu": "src/shell/shell.c",
+   "evidence": "placed (at) in src/shell/shell.c 2026-11-09"
+  },
+  "Shell::UpdateMultiplayer": {
+   "va": "00404d74",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?UpdateMultiplayer$:Shell$n()v",
+   "tu": "src/shell/shell.c",
+   "evidence": "placed (at) in src/shell/shell.c 2026-11-09"
+  },
   "Shell::UpdateMissionBrief": {
    "va": "00405102",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?UpdateMissionBrief$:Shell$n()v",
    "tu": "src/shell/shell.c",
-   "evidence": "placed (at) in src/shell/shell.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "Shell::UpdateCampaignMenu": {
    "va": "004051f0",
@@ -1259,6 +1323,13 @@
    "mangled": "W?HercUpgradeClose$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "HercUpgradeClose#W?HercUpgradeClose$n(pn$Scene$$)i": {
+   "va": "00419875",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HercUpgradeClose$n(pn$Scene$$)i",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
   "HercUpgradeRender": {
    "va": "00419b3c",
    "kind": "func",
@@ -1301,11 +1372,39 @@
    "mangled": "W?ShellBriefingClose$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "ShellBriefingExit": {
+   "va": "0041d0b5",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ShellBriefingExit$n(pn$Scene$$)i",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
   "ShellBriefingRender": {
    "va": "0041d19e",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?ShellBriefingRender$n(pn$Scene$$)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "ShellBriefingBack": {
+   "va": "0041d1c5",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ShellBriefingBack$n(pn$Scene$$)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "ShellBriefingContinue": {
+   "va": "0041d414",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ShellBriefingContinue$n(pn$Scene$$)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "ShellBriefingAbort": {
+   "va": "0041d61d",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ShellBriefingAbort$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
   "ShellMultiplayerOpen": {
@@ -1336,6 +1435,41 @@
    "mangled": "W?ShellMultiplayerRender$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "ShellNetworkSetupLoaded": {
+   "va": "00420678",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ShellNetworkSetupLoaded$n(pn$Scene$$)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "ShellNetworkSetupAction4": {
+   "va": "00422484",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ShellNetworkSetupAction4$n(pn$Scene$$)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "ShellNetworkSetupAction79": {
+   "va": "00422d76",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ShellNetworkSetupAction79$n(pn$Scene$$)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "ShellNetworkSetupAction105": {
+   "va": "00422daf",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ShellNetworkSetupAction105$n(pn$Scene$$)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "ShellNetworkSetupAction78": {
+   "va": "00422de2",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ShellNetworkSetupAction78$n(pn$Scene$$)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
   "MultiplayerLaunchClose": {
    "va": "00422e15",
    "kind": "func",
@@ -1343,11 +1477,60 @@
    "mangled": "W?MultiplayerLaunchClose$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "ShellNetworkSetupExit": {
+   "va": "00422e70",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ShellNetworkSetupExit$n(pn$Scene$$)ul",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
   "MultiplayerLaunchRender": {
    "va": "0042309a",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?MultiplayerLaunchRender$n(pn$Scene$$)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "ShellNetworkSetupAction85": {
+   "va": "004235cf",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ShellNetworkSetupAction85$n(pn$Scene$$)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "ShellNetworkSetupRefresh": {
+   "va": "00423664",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ShellNetworkSetupRefresh$n(pn$Scene$$)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "ShellNetworkSetupSelectPlayer": {
+   "va": "00423b84",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ShellNetworkSetupSelectPlayer$n(pn$Scene$$i)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "ShellNetworkSetupJoinPlayer": {
+   "va": "00423d4f",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ShellNetworkSetupJoinPlayer$n(pn$Scene$$i)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "ShellNetworkSetupAction70": {
+   "va": "00423f14",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ShellNetworkSetupAction70$n(pn$Scene$$)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "ShellNetworkSetupCanStart": {
+   "va": "00424002",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ShellNetworkSetupCanStart$n(pn$Scene$$)i",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
   "MenuEdit::$dt": {
@@ -1385,6 +1568,13 @@
    "mangled": "W?ShellNetworkSetupRender$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "HotseatRefresh": {
+   "va": "0042515a",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HotseatRefresh$n(pn$Scene$$)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
   "HotseatClose": {
    "va": "004251df",
    "kind": "func",
@@ -1392,11 +1582,53 @@
    "mangled": "W?HotseatClose$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "HotseatExit": {
+   "va": "00425222",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HotseatExit$n(pn$Scene$$)l",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
   "HotseatRender": {
    "va": "004252a1",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?HotseatRender$n(pn$Scene$$)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "HotseatCanLaunch": {
+   "va": "00425616",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HotseatCanLaunch$n(pn$Scene$$)i",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "HotseatSelectTeam": {
+   "va": "00425674",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HotseatSelectTeam$n(pn$Scene$$l)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "HotseatSelectColor": {
+   "va": "004256eb",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HotseatSelectColor$n(pn$Scene$$l)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "HotseatSelectPlayer": {
+   "va": "00425815",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HotseatSelectPlayer$n(pn$Scene$$l)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "HotseatAction2": {
+   "va": "00425906",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HotseatAction2$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
   "PopLoadResource": {
@@ -3497,6 +3729,13 @@
    "status": "hypothesis",
    "mangled": "W?ApplyGameInfo$n(pnvpn$GameInfo$$)v",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "ProfileManager::LaunchMission": {
+   "va": "00441004",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LaunchMission$:ProfileManager$n(pnv)i",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
   "BriefLookup": {
    "va": "00441208",
@@ -9033,6 +9272,13 @@
    "mangled": "W?fileSourcePath$n[]xa",
    "evidence": "implied by src/io/file.c 2026-11-09"
   },
+  "gNetworkPlayerSelection": {
+   "va": "004a7024",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gNetworkPlayerSelection$nuc",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
   "gShellCreditStep": {
    "va": "004a7030",
    "kind": "data",
@@ -9451,6 +9697,13 @@
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4b7904$n$Scene$$",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "gShellBriefingMission": {
+   "va": "004b7950",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gShellBriefingMission$na",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
   "g4b82fc": {

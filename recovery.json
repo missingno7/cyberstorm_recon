@@ -2446,6 +2446,21 @@
      "size": 157,
      "mangled": "W?UpdateStorage$:Shell$n()v"
     },
+    "Shell::UpdateNetworkSetup": {
+     "va": "0040466f",
+     "size": 601,
+     "mangled": "W?UpdateNetworkSetup$:Shell$n()v"
+    },
+    "Shell::UpdateLaunch": {
+     "va": "004048c8",
+     "size": 424,
+     "mangled": "W?UpdateLaunch$:Shell$n()v"
+    },
+    "Shell::UpdateMissionBrief": {
+     "va": "00405102",
+     "size": 238,
+     "mangled": "W?UpdateMissionBrief$:Shell$n()v"
+    },
     "Shell::ShowIntro": {
      "va": "0040605b",
      "size": 81,
