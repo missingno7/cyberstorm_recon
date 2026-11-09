@@ -308,6 +308,13 @@
    "tu": "src/shell/shell.c",
    "evidence": "strict match 2026-11-09"
   },
+  "ShellApplyPalette#W?ShellApplyPalette$n(pnv)v": {
+   "va": "00406208",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ShellApplyPalette$n(pnv)v",
+   "evidence": "implied by src/_unknown/tu_0041cb48.c 2026-11-09"
+  },
   "ShellShadeRect": {
    "va": "0040627a",
    "kind": "func",
@@ -3101,6 +3108,13 @@
    "tu": "src/shell/hbupgrad.c",
    "evidence": "strict match 2026-11-09"
   },
+  "W?.tdctor$:UpgradeCanvas$n()rn$1$": {
+   "va": "004193fa",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?.tdctor$:UpgradeCanvas$n()rn$1$",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
   "f_00419412": {
    "va": "00419412",
    "kind": "func",
@@ -3587,25 +3601,52 @@
   "W?$Wda018$:MenuPrefixButton$n(ui)pnv": {
    "va": "0041c7d8",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?$Wda018$:MenuPrefixButton$n(ui)pnv",
-   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
   },
   "UpgradeInitScreen::$dt": {
    "va": "0041c7f0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?$dt:UpgradeInitScreen$n()_",
-   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
   },
   "UpgradeCanvas::$dt": {
    "va": "0041c820",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?$dt:UpgradeCanvas$n()_",
-   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "W?.fn_init$n()v@_unknown/tu_0041c864.c": {
+   "va": "0041c864",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/_unknown/tu_0041c864.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "AudioModule::$dt": {
+   "va": "0041c865",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$dt:AudioModule$n()_",
+   "tu": "src/_unknown/tu_0041c864.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ShellMultiplayerInit": {
+   "va": "0041c86a",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ShellMultiplayerInit$n(pn$AudioSettings$$)v",
+   "tu": "src/_unknown/tu_0041c864.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ShellMultiplayerInit#W?ShellMultiplayerInit$n(pnv)v": {
    "va": "0041c86a",
    "kind": "func",
    "status": "hypothesis",
@@ -3615,18 +3656,28 @@
   "HercSetMissionStart": {
    "va": "0041c891",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "HercSetMissionStart",
-   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+   "tu": "src/_unknown/tu_0041c864.c",
+   "evidence": "strict match 2026-11-09"
   },
   "PilotManagerPoll": {
    "va": "0041c932",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?PilotManagerPoll$n(pnv)v",
-   "evidence": "implied by src/pop/ppilot.c 2026-11-09"
+   "tu": "src/_unknown/tu_0041c864.c",
+   "evidence": "strict match 2026-11-09"
   },
   "f_0041cab0": {
+   "va": "0041cab0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0041cab0$n(pn$AudioSettings$$)v",
+   "tu": "src/_unknown/tu_0041c864.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0041cab0#W?f_0041cab0$n(pnv)v": {
    "va": "0041cab0",
    "kind": "func",
    "status": "hypothesis",
@@ -3636,18 +3687,44 @@
   "HercSetMission": {
    "va": "0041caf9",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "HercSetMission",
-   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+   "tu": "src/_unknown/tu_0041c864.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ShellMultiplayerShutdown": {
    "va": "0041cb39",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ShellMultiplayerShutdown$n(pnv)v",
-   "evidence": "implied by src/shell/shell.c 2026-11-09"
+   "tu": "src/_unknown/tu_0041c864.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "W?.fn_init$n()v@_unknown/tu_0041cb48.c": {
+   "va": "0041cb48",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "placed (at) in src/_unknown/tu_0041cb48.c 2026-11-09"
+  },
+  "QuickStartScreen::$ct": {
+   "va": "0041ce4c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$ct:QuickStartScreen$n()_",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "placed in src/_unknown/tu_0041cb48.c 2026-11-09; strict only with --at/search"
   },
   "ShellBriefingOpen": {
+   "va": "0041ce63",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ShellBriefingOpen$n(pn$QuickStartScreen$$pn$InputReq$$)v",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "placed in src/_unknown/tu_0041cb48.c 2026-11-09; strict only with --at/search"
+  },
+  "ShellBriefingOpen#W?ShellBriefingOpen$n(pn$Scene$$pn$InputReq$$)v": {
    "va": "0041ce63",
    "kind": "func",
    "status": "hypothesis",
@@ -3655,6 +3732,14 @@
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
   "ShellBriefingClose": {
+   "va": "0041d080",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ShellBriefingClose$n(pn$QuickStartScreen$$)v",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ShellBriefingClose#W?ShellBriefingClose$n(pn$Scene$$)v": {
    "va": "0041d080",
    "kind": "func",
    "status": "hypothesis",
@@ -3665,10 +3750,26 @@
    "va": "0041d0b5",
    "kind": "func",
    "status": "hypothesis",
+   "mangled": "W?ShellBriefingExit$n(pn$QuickStartScreen$$)v",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "placed in src/_unknown/tu_0041cb48.c 2026-11-09; strict only with --at/search"
+  },
+  "ShellBriefingExit#W?ShellBriefingExit$n(pn$Scene$$)i": {
+   "va": "0041d0b5",
+   "kind": "func",
+   "status": "hypothesis",
    "mangled": "W?ShellBriefingExit$n(pn$Scene$$)i",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
   "ShellBriefingRender": {
+   "va": "0041d19e",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ShellBriefingRender$n(pn$QuickStartScreen$$)v",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ShellBriefingRender#W?ShellBriefingRender$n(pn$Scene$$)v": {
    "va": "0041d19e",
    "kind": "func",
    "status": "hypothesis",
@@ -3679,17 +3780,65 @@
    "va": "0041d1c5",
    "kind": "func",
    "status": "hypothesis",
+   "mangled": "W?ShellBriefingBack$n(pn$QuickStartScreen$$)v",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "placed in src/_unknown/tu_0041cb48.c 2026-11-09; strict only with --at/search"
+  },
+  "ShellBriefingBack#W?ShellBriefingBack$n(pn$Scene$$)v": {
+   "va": "0041d1c5",
+   "kind": "func",
+   "status": "hypothesis",
    "mangled": "W?ShellBriefingBack$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "QuickDrawOptions": {
+   "va": "0041d273",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?QuickDrawOptions$n(pn$QuickStartScreen$$)v",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "ShellBriefingContinue": {
+   "va": "0041d414",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ShellBriefingContinue$n(pn$QuickStartScreen$$)v",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "placed in src/_unknown/tu_0041cb48.c 2026-11-09; strict only with --at/search"
+  },
+  "ShellBriefingContinue#W?ShellBriefingContinue$n(pn$Scene$$)v": {
    "va": "0041d414",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?ShellBriefingContinue$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "QuickShowMessage": {
+   "va": "0041d5a2",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?QuickShowMessage$n(pn$QuickStartScreen$$pnxa)v",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "QuickDrawText": {
+   "va": "0041d615",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?QuickDrawText$n(pn$QuickStartScreen$$pnxa)v",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "ShellBriefingAbort": {
+   "va": "0041d61d",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ShellBriefingAbort$n(pn$QuickStartScreen$$)v",
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "evidence": "placed in src/_unknown/tu_0041cb48.c 2026-11-09; strict only with --at/search"
+  },
+  "ShellBriefingAbort#W?ShellBriefingAbort$n(pn$Scene$$)v": {
    "va": "0041d61d",
    "kind": "func",
    "status": "hypothesis",
@@ -5055,6 +5204,13 @@
    "status": "hypothesis",
    "mangled": "W?SurfaceCopyRegion$n(pnvpnvll)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "SurfaceCopyRegion#W?SurfaceCopyRegion$n(pnvpnvii)v": {
+   "va": "0042754d",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SurfaceCopyRegion$n(pnvpnvii)v",
+   "evidence": "implied by src/_unknown/tu_0041cb48.c 2026-11-09"
   },
   "SurfaceGetFrame": {
    "va": "0042758a",
@@ -14474,12 +14630,84 @@
    "tu": "src/logic/lsys.c",
    "evidence": "strict match 2026-11-09"
   },
+  "SoundInit": {
+   "va": "0046b918",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SoundInit$n()i",
+   "tu": "src/_unknown/tu_0046b918.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "f_46b9bd": {
    "va": "0046b9bd",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?f_46b9bd$n()v",
-   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+   "tu": "src/_unknown/tu_0046b918.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SoundCreateBuffer": {
+   "va": "0046bb20",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SoundCreateBuffer$n(ipnpn$SoundBuffer$$pn$tWAVEFORMATEX$$)i",
+   "tu": "src/_unknown/tu_0046b918.c",
+   "evidence": "placed (at) in src/_unknown/tu_0046b918.c 2026-11-09"
+  },
+  "SoundDuplicate": {
+   "va": "0046bd7a",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SoundDuplicate$n(ipnpn$SoundBuffer$$pn$tWAVEFORMATEX$$)i",
+   "tu": "src/_unknown/tu_0046b918.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SoundCached": {
+   "va": "0046bdeb",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SoundCached$n(i)i",
+   "tu": "src/_unknown/tu_0046b918.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SoundCache": {
+   "va": "0046be17",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SoundCache$n(i)i",
+   "tu": "src/_unknown/tu_0046b918.c",
+   "evidence": "placed (at) in src/_unknown/tu_0046b918.c 2026-11-09"
+  },
+  "SoundCacheList": {
+   "va": "0046bf44",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SoundCacheList$n(pni)v",
+   "tu": "src/_unknown/tu_0046b918.c",
+   "evidence": "placed (at) in src/_unknown/tu_0046b918.c 2026-11-09"
+  },
+  "SoundRelease": {
+   "va": "0046c071",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SoundRelease$n(ui)v",
+   "tu": "src/_unknown/tu_0046b918.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SoundReleaseList": {
+   "va": "0046c0b6",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SoundReleaseList$n(pni)v",
+   "tu": "src/_unknown/tu_0046b918.c",
+   "evidence": "placed (at) in src/_unknown/tu_0046b918.c 2026-11-09"
+  },
+  "SoundReleaseAll": {
+   "va": "0046c10a",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SoundReleaseAll$n()v",
+   "evidence": "implied by src/_unknown/tu_0041c864.c 2026-11-09"
   },
   "SoundLoad": {
    "va": "0046c15e",
@@ -14495,6 +14723,14 @@
    "mangled": "W?SoundFlush$n(i)v",
    "evidence": "implied by src/gui/flic.c 2026-11-09"
   },
+  "SoundFinished": {
+   "va": "0046c34a",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SoundFinished$n(ui)i",
+   "tu": "src/_unknown/tu_0046b918.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "ShellSoundShutdown": {
    "va": "0046c387",
    "kind": "func",
@@ -14509,6 +14745,14 @@
    "mangled": "W?SoundStop$n(ui)v",
    "evidence": "implied by src/gui/flic.c 2026-11-09"
   },
+  "SoundAllowed": {
+   "va": "0046c3fc",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SoundAllowed$n(i)i",
+   "tu": "src/_unknown/tu_0046b918.c",
+   "evidence": "placed (at) in src/_unknown/tu_0046b918.c 2026-11-09"
+  },
   "LogicCallMode": {
    "va": "0046c461",
    "kind": "func",
@@ -14522,6 +14766,14 @@
    "status": "hypothesis",
    "mangled": "W?SoundPlay$n(uipnx$SoundSettings$$)i",
    "evidence": "implied by src/gui/flic.c 2026-11-09"
+  },
+  "SoundSetSettings": {
+   "va": "0046c89c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SoundSetSettings$n(ipnx$SoundSettings$$)i",
+   "tu": "src/_unknown/tu_0046b918.c",
+   "evidence": "placed (at) in src/_unknown/tu_0046b918.c 2026-11-09"
   },
   "LogicClearMode": {
    "va": "0046c980",
@@ -14540,16 +14792,18 @@
   "SoundClearContext": {
    "va": "0046cbbd",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?SoundClearContext$n()v",
-   "evidence": "implied by src/shell/shell.c 2026-11-09"
+   "tu": "src/_unknown/tu_0046b918.c",
+   "evidence": "strict match 2026-11-09"
   },
   "SoundTrigger": {
    "va": "0046cbc6",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?SoundTrigger$n(uii)i",
-   "evidence": "implied by src/shell/shell.c 2026-11-09"
+   "tu": "src/_unknown/tu_0046b918.c",
+   "evidence": "strict match 2026-11-09"
   },
   "VoicePlay": {
    "va": "0046cbc6",
@@ -17561,6 +17815,13 @@
    "mangled": "W?DecodeLaunchPalette$n(pn$Palette$$pnxv)v",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
+  "DecodeLaunchPalette#W?DecodeLaunchPalette$n(pnvpnv)v": {
+   "va": "0047da70",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?DecodeLaunchPalette$n(pnvpnv)v",
+   "evidence": "implied by src/_unknown/tu_0041cb48.c 2026-11-09"
+  },
   "PaletteFade": {
    "va": "0047dbc0",
    "kind": "func",
@@ -18316,6 +18577,13 @@
    "mangled": "W?$Wts0kn$MenuPrefixButton$$$nx[]uc",
    "evidence": "implied by src/shell/commscrn.c 2026-11-09"
   },
+  "W?$Wts0hn$UpgradeCanvas$$$nx[]uc": {
+   "va": "0048d380",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0hn$UpgradeCanvas$$$nx[]uc",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
   "g48d394": {
    "va": "0048d394",
    "kind": "data",
@@ -18728,6 +18996,13 @@
    "status": "hypothesis",
    "mangled": "W?storageControls$n[]pn$GuiControl$$",
    "evidence": "implied by src/_unknown/tu_00417f34.c 2026-11-09"
+  },
+  "quickControls": {
+   "va": "0048eef8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?quickControls$n[]pn$GuiControl$$",
+   "evidence": "implied by src/_unknown/tu_0041cb48.c 2026-11-09"
   },
   "multiplayerControlList": {
    "va": "0048ef70",
@@ -22236,6 +22511,20 @@
    "mangled": "W?g4b700c$n$Scene$$",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "W?timer$:.0$:?PilotManagerPoll$n(pnv)vn$Timer$$": {
+   "va": "004b74e4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?timer$:.0$:?PilotManagerPoll$n(pnv)vn$Timer$$",
+   "evidence": "implied by src/_unknown/tu_0041c864.c 2026-11-09"
+  },
+  "W?$Wbi00$:.0$:?PilotManagerPoll$n(pnv)vn[]uc": {
+   "va": "004b74f0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wbi00$:.0$:?PilotManagerPoll$n(pnv)vn[]uc",
+   "evidence": "implied by src/_unknown/tu_0041c864.c 2026-11-09"
+  },
   "g4b74f4": {
    "va": "004b74f4",
    "kind": "data",
@@ -25260,6 +25549,104 @@
    "mangled": "W?logicTextBuffer$n[]a",
    "evidence": "implied by src/logic/lsys.c 2026-11-09"
   },
+  "soundDevice": {
+   "va": "004f41c8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?soundDevice$npn$SoundDevice$$",
+   "evidence": "implied by src/_unknown/tu_0046b918.c 2026-11-09"
+  },
+  "soundCache": {
+   "va": "004f41cc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?soundCache$n[]pn$SoundBuffer$$",
+   "evidence": "implied by src/_unknown/tu_0046b918.c 2026-11-09"
+  },
+  "soundTouched": {
+   "va": "004f48ac",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?soundTouched$n[]i",
+   "evidence": "implied by src/_unknown/tu_0046b918.c 2026-11-09"
+  },
+  "soundFrequency": {
+   "va": "004f4f8c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?soundFrequency$n[]i",
+   "evidence": "implied by src/_unknown/tu_0046b918.c 2026-11-09"
+  },
+  "soundPriority": {
+   "va": "004f566c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?soundPriority$n[]$SoundPriority$$",
+   "evidence": "implied by src/_unknown/tu_0046b918.c 2026-11-09"
+  },
+  "soundEnabled": {
+   "va": "004f5b94",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?soundEnabled$ni",
+   "evidence": "implied by src/_unknown/tu_0046b918.c 2026-11-09"
+  },
+  "soundCreated": {
+   "va": "004f5b98",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?soundCreated$ni",
+   "evidence": "implied by src/_unknown/tu_0046b918.c 2026-11-09"
+  },
+  "soundReleased": {
+   "va": "004f5b9c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?soundReleased$ni",
+   "evidence": "implied by src/_unknown/tu_0046b918.c 2026-11-09"
+  },
+  "soundLibrary": {
+   "va": "004f5ba0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?soundLibrary$npnv",
+   "evidence": "implied by src/_unknown/tu_0046b918.c 2026-11-09"
+  },
+  "soundCreate": {
+   "va": "004f5ba4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?soundCreate$npn(pnvpnpn$SoundDevice$$pnv)l",
+   "evidence": "implied by src/_unknown/tu_0046b918.c 2026-11-09"
+  },
+  "soundVoices": {
+   "va": "004f5ba8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?soundVoices$n[]$SoundVoice$$",
+   "evidence": "implied by src/_unknown/tu_0046b918.c 2026-11-09"
+  },
+  "soundCurrent": {
+   "va": "004f5ca8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?soundCurrent$n$SoundQueueItem$$",
+   "evidence": "implied by src/_unknown/tu_0046b918.c 2026-11-09"
+  },
+  "soundQueue": {
+   "va": "004f5cb0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?soundQueue$n[]$SoundQueueItem$$",
+   "evidence": "implied by src/_unknown/tu_0046b918.c 2026-11-09"
+  },
+  "soundQueueCount": {
+   "va": "004f5cd0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?soundQueueCount$ni",
+   "evidence": "implied by src/_unknown/tu_0046b918.c 2026-11-09"
+  },
   "networkEnabled": {
    "va": "004f5cdc",
    "kind": "data",
@@ -25890,6 +26277,13 @@
    "mangled": "W?gHotbriefStrings$n[]a",
    "evidence": "implied by src/sim/simhot.c 2026-11-09"
   },
+  "quickStrings": {
+   "va": "00511e90",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?quickStrings$n$StrPool$$",
+   "evidence": "implied by src/_unknown/tu_0041cb48.c 2026-11-09"
+  },
   "resourcePool": {
    "va": "00511ea4",
    "kind": "data",
@@ -25910,6 +26304,13 @@
    "status": "hypothesis",
    "mangled": "gResMgr",
    "evidence": "implied by src/io/resource.c (overload-safe migration 2026-11-09)"
+  },
+  "audioDisabled": {
+   "va": "00512218",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?audioDisabled$ni",
+   "evidence": "implied by src/_unknown/tu_0041c864.c 2026-11-09"
   },
   "gShellMiniStrings": {
    "va": "00512220",
@@ -25938,6 +26339,13 @@
    "status": "hypothesis",
    "mangled": "W?gGuiEffectPriority$nl",
    "evidence": "implied by src/_unknown/tu_0042a0e0.c 2026-11-09"
+  },
+  "audioVolume": {
+   "va": "00512384",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?audioVolume$ni",
+   "evidence": "implied by src/_unknown/tu_0041c864.c 2026-11-09"
   },
   "turnPortraitMode": {
    "va": "005123ac",
@@ -26344,6 +26752,13 @@
    "status": "hypothesis",
    "mangled": "W?gShellResources$na",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "gShellResources#W?gShellResources$n[]a": {
+   "va": "00513958",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gShellResources$n[]a",
+   "evidence": "implied by src/_unknown/tu_0041c864.c 2026-11-09"
   },
   "g_assertMessageActive": {
    "va": "00513988",

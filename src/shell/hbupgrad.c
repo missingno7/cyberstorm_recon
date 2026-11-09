@@ -279,7 +279,7 @@ public:
     long x, y, width, height;
     unsigned char style[4];
     unsigned long attributes, shortcut;
-    void *vtable;
+    virtual ~GuiControl(); virtual void Reset(unsigned); virtual void Draw(unsigned); virtual int Event(unsigned,unsigned long); virtual int HitTest(const void *);
     void SetMode(unsigned long mode) { attributes = (attributes & 0xff1fffff) + mode; }
 
     GuiControl(unsigned long, unsigned long);
@@ -386,7 +386,7 @@ public:
     unsigned long state;
     signed char font, color, align, prefix;
     MenuPrefixButton(const char * = 0, signed char = 1, signed char = 2, signed char = -1);
-    ~MenuPrefixButton();
+    virtual ~MenuPrefixButton();
     void SetText(const char *);
     void SetColor(signed char);
     void SetAlign(signed char);
@@ -830,8 +830,15 @@ class UpgradeBar { public: char data[0x28]; UpgradeBar(UpgradeRange *range, int 
 class UpgradeArrow { public: char data[0x2c]; UpgradeArrow(UpgradeRange *range, unsigned step, int key) { BriefModulePlace(this, range, step, key); } ~UpgradeArrow(); };
 void f_004193fa(void *);
 int f_004193a2(int);
-class UpgradeCanvas { public: char data[0x20]; UpgradeCanvas(){ f_004193fa(this); } ~UpgradeCanvas(); };
-class UpgradeInitScreen { public: char data[0x4d2]; UpgradeInitScreen(){ f_004193a2((int)this); } ~UpgradeInitScreen(); };
+#pragma aux upgrade_canvas_ctor "W?f_004193fa$n(pnv)v"
+class UpgradeCanvas : public GuiControl { public: __pragma("upgrade_canvas_ctor") UpgradeCanvas(); virtual ~UpgradeCanvas() {} };
+/* The packed screen view below replaces only the storage required for destruction. */
+#pragma aux upgrade_screen_ctor "W?f_004193a2$n(i)i"
+#pragma aux file_release_name "W?Release$:FileRecord$n()pn$1$"
+class FileRecord { public: char bytes[0x1c]; ~FileRecord(); };
+class Flic { public: char bytes[0xa1]; ~Flic(); };
+class UpgradeScreenBase { public: char first[16]; void *input; char rest[0x38]; ~UpgradeScreenBase(){ input=0; } };
+class UpgradeInitScreen : public UpgradeScreenBase { public: FileRecord file; char unknown68[0x3c9]; Flic animation; __pragma("upgrade_screen_ctor") UpgradeInitScreen(); ~UpgradeInitScreen() {} };
 #pragma pack(pop)
 
 
@@ -878,7 +885,7 @@ int f_004193a2(int param_1)
 
 void f_004193fa(void *param_1)
 {
-    GuiControlCtor((GuiControl *)param_1, 8, 0)->vtable = g48d394;
+    *(void **)((char *)GuiControlCtor((GuiControl *)param_1, 8, 0)+0x1c) = g48d394;
 }
 
 void f_00419412(void)
@@ -1940,3 +1947,4 @@ MenuNumber g4b6f7c(-1, 0x12);
 MenuNumber upgradeStat5(-1, 0x12);
 MenuNumber upgradeStat6(-1, 0x12);
 UpgradeInitScreen upgradeScreen;
+

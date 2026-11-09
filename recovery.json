@@ -4661,6 +4661,21 @@
      "va": "0041c7c0",
      "size": 21,
      "mangled": "W?$Wda0223$:MenuPrefixButton$n(ui)pnv"
+    },
+    "W?$Wda018$:MenuPrefixButton$n(ui)pnv": {
+     "va": "0041c7d8",
+     "size": 21,
+     "mangled": "W?$Wda018$:MenuPrefixButton$n(ui)pnv"
+    },
+    "UpgradeInitScreen::$dt": {
+     "va": "0041c7f0",
+     "size": 47,
+     "mangled": "W?$dt:UpgradeInitScreen$n()_"
+    },
+    "UpgradeCanvas::$dt": {
+     "va": "0041c820",
+     "size": 67,
+     "mangled": "W?$dt:UpgradeCanvas$n()_"
     }
    },
    "data": {
@@ -4671,6 +4686,10 @@
     "_DATA": {
      "va": "0048ed1c",
      "size": 12
+    },
+    "W?$Wts0hn$UpgradeCanvas$$$nx[]uc": {
+     "va": "0048d380",
+     "size": 17
     },
     "W?$Wts0dn$MenuLabel$$$nx[]uc": {
      "va": "0048c9b0",
@@ -7867,6 +7886,143 @@
     "W?$Wts0en$MenuSpacer$$$nx[]uc": {
      "va": "0048d964",
      "size": 17
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0041c864.c": {
+   "as": "_unknown\\tu_0041c864.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "0041c864",
+     "size": 1,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "AudioModule::$dt": {
+     "va": "0041c865",
+     "size": 5,
+     "mangled": "W?$dt:AudioModule$n()_"
+    },
+    "ShellMultiplayerInit": {
+     "va": "0041c86a",
+     "size": 39,
+     "mangled": "W?ShellMultiplayerInit$n(pn$AudioSettings$$)v"
+    },
+    "HercSetMissionStart": {
+     "va": "0041c891",
+     "size": 161,
+     "mangled": "HercSetMissionStart"
+    },
+    "PilotManagerPoll": {
+     "va": "0041c932",
+     "size": 382,
+     "mangled": "W?PilotManagerPoll$n(pnv)v"
+    },
+    "f_0041cab0": {
+     "va": "0041cab0",
+     "size": 73,
+     "mangled": "W?f_0041cab0$n(pn$AudioSettings$$)v"
+    },
+    "HercSetMission": {
+     "va": "0041caf9",
+     "size": 64,
+     "mangled": "HercSetMission"
+    },
+    "ShellMultiplayerShutdown": {
+     "va": "0041cb39",
+     "size": 14,
+     "mangled": "W?ShellMultiplayerShutdown$n(pnv)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0041cb48.c": {
+   "as": "_unknown\\tu_0041cb48.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "ShellBriefingClose": {
+     "va": "0041d080",
+     "size": 53,
+     "mangled": "W?ShellBriefingClose$n(pn$QuickStartScreen$$)v"
+    },
+    "ShellBriefingRender": {
+     "va": "0041d19e",
+     "size": 39,
+     "mangled": "W?ShellBriefingRender$n(pn$QuickStartScreen$$)v"
+    },
+    "QuickDrawOptions": {
+     "va": "0041d273",
+     "size": 417,
+     "mangled": "W?QuickDrawOptions$n(pn$QuickStartScreen$$)v"
+    },
+    "QuickShowMessage": {
+     "va": "0041d5a2",
+     "size": 115,
+     "mangled": "W?QuickShowMessage$n(pn$QuickStartScreen$$pnxa)v"
+    },
+    "QuickDrawText": {
+     "va": "0041d615",
+     "size": 8,
+     "mangled": "W?QuickDrawText$n(pn$QuickStartScreen$$pnxa)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0046b918.c": {
+   "as": "_unknown\\tu_0046b918.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "SoundInit": {
+     "va": "0046b918",
+     "size": 165,
+     "mangled": "W?SoundInit$n()i"
+    },
+    "f_46b9bd": {
+     "va": "0046b9bd",
+     "size": 355,
+     "mangled": "W?f_46b9bd$n()v"
+    },
+    "SoundDuplicate": {
+     "va": "0046bd7a",
+     "size": 113,
+     "mangled": "W?SoundDuplicate$n(ipnpn$SoundBuffer$$pn$tWAVEFORMATEX$$)i"
+    },
+    "SoundCached": {
+     "va": "0046bdeb",
+     "size": 44,
+     "mangled": "W?SoundCached$n(i)i"
+    },
+    "SoundRelease": {
+     "va": "0046c071",
+     "size": 69,
+     "mangled": "W?SoundRelease$n(ui)v"
+    },
+    "SoundFinished": {
+     "va": "0046c34a",
+     "size": 61,
+     "mangled": "W?SoundFinished$n(ui)i"
+    },
+    "SoundClearContext": {
+     "va": "0046cbbd",
+     "size": 9,
+     "mangled": "W?SoundClearContext$n()v"
+    },
+    "SoundTrigger": {
+     "va": "0046cbc6",
+     "size": 21,
+     "mangled": "W?SoundTrigger$n(uii)i"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048b7b4",
+     "size": 55
     }
    },
    "accepted": "2026-11-09"
