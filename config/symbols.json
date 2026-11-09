@@ -6764,6 +6764,14 @@
    "tu": "src/terr/tgrid.c",
    "evidence": "placed (at) in src/terr/tgrid.c 2026-11-09"
   },
+  "W?.fn_init$n()v@terr/tgrid.c": {
+   "va": "0042acf0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/terr/tgrid.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "GridClear": {
    "va": "0042ad60",
    "kind": "func",
@@ -6775,10 +6783,10 @@
   "GridRelease": {
    "va": "0042ad80",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?GridRelease$n(pn$TerrainGrid$$)pn$1$",
    "tu": "src/terr/tgrid.c",
-   "evidence": "placed (at) in src/terr/tgrid.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "TerrainGrid::$dt": {
    "va": "0042ad80",
@@ -6790,18 +6798,18 @@
   "GridDestroy": {
    "va": "0042adc0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?GridDestroy$n(pn$TerrainGrid$$)v",
    "tu": "src/terr/tgrid.c",
-   "evidence": "placed (at) in src/terr/tgrid.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "GridInitialize": {
    "va": "0042ae00",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?GridInitialize$n(pn$TerrainGrid$$ll)l",
    "tu": "src/terr/tgrid.c",
-   "evidence": "placed (at) in src/terr/tgrid.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "GridClearNeighbors": {
    "va": "0042af80",
@@ -6829,9 +6837,10 @@
   "TargetObjectInit": {
    "va": "0042b1a0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "TargetObjectInit",
-   "evidence": "implied by src/sim/target.c 2026-11-09"
+   "tu": "src/terr/tgrid.c",
+   "evidence": "strict match 2026-11-09"
   },
   "TargetObjectInit#W?TargetObjectInit$n(pnapn$ActorPosition$$i)v": {
    "va": "0042b1a0",
@@ -6864,9 +6873,10 @@
   "BestLocSetData": {
    "va": "0042b290",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?BestLocSetData$n(pnvpnvpnv)v",
-   "evidence": "implied by src/logic/bestloc.c 2026-11-09"
+   "status": "matched",
+   "mangled": "W?BestLocSetData$n(pn$TerrainGrid$$pnll)pnl",
+   "tu": "src/terr/tgrid.c",
+   "evidence": "strict match 2026-11-09"
   },
   "BestLocSetData#W?BestLocSetData$n(pnapn$ActorPosition$$i)v": {
    "va": "0042b290",
@@ -6888,6 +6898,13 @@
    "status": "hypothesis",
    "mangled": "W?BestLocSetData$n(ipnii)v",
    "evidence": "implied by src/logic/intel.c 2026-11-09"
+  },
+  "BestLocSetData#W?BestLocSetData$n(pnvpnvpnv)v": {
+   "va": "0042b290",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?BestLocSetData$n(pnvpnvpnv)v",
+   "evidence": "implied by src/logic/bestloc.c 2026-11-09"
   },
   "GridFindNeighbor": {
    "va": "0042b2d0",
@@ -6923,9 +6940,10 @@
   "LogicCopyPoint": {
    "va": "0042b420",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "LogicCopyPoint",
-   "evidence": "implied by src/logic/lsys.c 2026-11-09"
+   "tu": "src/terr/tgrid.c",
+   "evidence": "strict match 2026-11-09"
   },
   "LogicCopyPoint#W?LogicCopyPoint$n(pnxapnxa)i": {
    "va": "0042b420",
@@ -6937,10 +6955,10 @@
   "GridVisitBest": {
    "va": "0042b460",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?GridVisitBest$n(pnv)l",
    "tu": "src/terr/tgrid.c",
-   "evidence": "placed (at) in src/terr/tgrid.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "GridFindClosest": {
    "va": "0042b540",
@@ -6983,18 +7001,18 @@
   "GridInvalidIndex": {
    "va": "0042b780",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?GridInvalidIndex$n()l",
    "tu": "src/terr/tgrid.c",
-   "evidence": "placed (at) in src/terr/tgrid.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "GridSerializeStats": {
    "va": "0042b7a0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?GridSerializeStats$n(pn$TerrainGrid$$pnv)l",
    "tu": "src/terr/tgrid.c",
-   "evidence": "placed (at) in src/terr/tgrid.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "DisplayConstructArray": {
    "va": "0042b940",
@@ -13787,6 +13805,13 @@
    "tu": "src/sim/actoradd.c",
    "evidence": "strict match 2026-11-09"
   },
+  "ActorCreate#W?ActorCreate$n(lpn$UnitInfo$$pnvi)pn$GenRecord$$": {
+   "va": "00456d00",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ActorCreate$n(lpn$UnitInfo$$pnvi)pn$GenRecord$$",
+   "evidence": "implied by src/logic/lgen.c 2026-11-09"
+  },
   "ActorListAdd": {
    "va": "00456d80",
    "kind": "func",
@@ -15692,6 +15717,13 @@
    "tu": "src/logic/lactors.c",
    "evidence": "placed (at) in src/logic/lactors.c 2026-11-09"
   },
+  "LogicActorList::CreateActor#W?CreateActor$:LogicActorList$n(ipn$ActorPoint$$ipnxc)pn$LogicActor$$": {
+   "va": "00464218",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?CreateActor$:LogicActorList$n(ipn$ActorPoint$$ipnxc)pn$LogicActor$$",
+   "evidence": "implied by src/logic/lgen.c 2026-11-09"
+  },
   "LogicActorIndexAt": {
    "va": "0046437c",
    "kind": "func",
@@ -16365,6 +16397,14 @@
   "LogicMapPointUpdate": {
    "va": "00469fc9",
    "kind": "func",
+   "status": "matched",
+   "mangled": "W?LogicMapPointUpdate$n(pnvilpn$ScriptPoint$$)l",
+   "tu": "src/logic/lgen.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LogicMapPointUpdate#LogicMapPointUpdate": {
+   "va": "00469fc9",
+   "kind": "func",
    "status": "hypothesis",
    "mangled": "LogicMapPointUpdate",
    "evidence": "implied by src/logic/lsys.c 2026-11-09"
@@ -16388,10 +16428,10 @@
   "LogicGenSpawn": {
    "va": "0046a289",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?LogicGenSpawn$n(pnvipnlpn$ScriptPoint$$ipn$GenActor$$i)pn$2$",
    "tu": "src/logic/lgen.c",
-   "evidence": "placed (at) in src/logic/lgen.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "LogicGenVehicle": {
    "va": "0046a33c",
@@ -16404,18 +16444,18 @@
   "LogicGenSetup": {
    "va": "0046a8df",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?LogicGenSetup$n(pn$GenActor$$)v",
    "tu": "src/logic/lgen.c",
-   "evidence": "placed (at) in src/logic/lgen.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "LogicGenSpawnActor": {
    "va": "0046a97f",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?LogicGenSpawnActor$n(pn$GenActor$$)v",
    "tu": "src/logic/lgen.c",
-   "evidence": "placed (at) in src/logic/lgen.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "LogicGenSpawnActor#W?LogicGenSpawnActor$n(pnv)v": {
    "va": "0046a97f",
@@ -16425,6 +16465,14 @@
    "evidence": "implied by src/logic/logic.c 2026-11-09"
   },
   "LogicDeleteActorFromList": {
+   "va": "0046ab2e",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LogicDeleteActorFromList$n(pnvpn$GenRecord$$)v",
+   "tu": "src/logic/lgen.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LogicDeleteActorFromList#LogicDeleteActorFromList": {
    "va": "0046ab2e",
    "kind": "func",
    "status": "hypothesis",
@@ -17915,6 +17963,13 @@
    "mangled": "W?SendStart$:MenuNetwork$n(pn$1$i)v",
    "tu": "src/multi/mstart.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "MenuNetwork::SendStart#W?SendStart$:MenuNetwork$n(pn$GenRecord$$i)v": {
+   "va": "004701fb",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SendStart$:MenuNetwork$n(pn$GenRecord$$i)v",
+   "evidence": "implied by src/logic/lgen.c 2026-11-09"
   },
   "MenuNetwork::PeerForSlot": {
    "va": "00470265",
@@ -23574,6 +23629,14 @@
    "mangled": "W?$Wts0en$LogicActor$$$nx[]uc",
    "evidence": "implied by src/logic/lactors.c 2026-11-09"
   },
+  "W?$Wts0dn$GenAnchor$$$nx[]uc": {
+   "va": "0048e10c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0dn$GenAnchor$$$nx[]uc",
+   "tu": "src/logic/lgen.c",
+   "evidence": "own data placed in src/logic/lgen.c 2026-11-09"
+  },
   "link_thread_proc_anchor": {
    "va": "0048e120",
    "kind": "data",
@@ -24367,6 +24430,14 @@
    "mangled": "W?GridSourcePath$n[]xa",
    "evidence": "implied by src/terr/tgrid.c 2026-11-09"
   },
+  "GridSourcePath@terr/tgrid.c": {
+   "va": "00490450",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?GridSourcePath$n[]xa",
+   "tu": "src/terr/tgrid.c",
+   "evidence": "own data placed in src/terr/tgrid.c 2026-11-09"
+  },
   "SurfaceScaleValues": {
    "va": "004904d4",
    "kind": "data",
@@ -24556,6 +24627,13 @@
    "mangled": "W?unitTypes$n[]$TypeItem$$",
    "evidence": "implied by src/_unknown/tu_004413e0.c 2026-11-09"
   },
+  "g494aa3": {
+   "va": "00494aa3",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g494aa3$n[]a",
+   "evidence": "implied by src/logic/lgen.c 2026-11-09"
+  },
   "weaponTypes": {
    "va": "0049cb22",
    "kind": "data",
@@ -24583,6 +24661,34 @@
    "status": "hypothesis",
    "mangled": "W?unitTemplates$n[]$UnitTemplate$$",
    "evidence": "implied by src/_unknown/tu_004413e0.c 2026-11-09"
+  },
+  "unitTemplates#W?unitTemplates$n[]$UnitInfo$$": {
+   "va": "0049e9b8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?unitTemplates$n[]$UnitInfo$$",
+   "evidence": "implied by src/logic/lgen.c 2026-11-09"
+  },
+  "gBuildingInfo": {
+   "va": "0049ee20",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gBuildingInfo$n[]$UnitInfo$$",
+   "evidence": "implied by src/logic/lgen.c 2026-11-09"
+  },
+  "gDropInfo": {
+   "va": "0049ef6c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gDropInfo$n[]$UnitInfo$$",
+   "evidence": "implied by src/logic/lgen.c 2026-11-09"
+  },
+  "gHercInfo": {
+   "va": "0049efcc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gHercInfo$n[]$UnitInfo$$",
+   "evidence": "implied by src/logic/lgen.c 2026-11-09"
   },
   "gVehicleInfo": {
    "va": "0049f958",
@@ -29925,6 +30031,13 @@
    "status": "hypothesis",
    "mangled": "W?pathDirections$n[]$Point$$",
    "evidence": "implied by src/_unknown/tu_004323c0.c 2026-11-09"
+  },
+  "gGridSearch": {
+   "va": "004bc5fc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gGridSearch$n$GridSearchState$$",
+   "evidence": "implied by src/terr/tgrid.c 2026-11-09"
   },
   "MapPick": {
    "va": "004c6288",

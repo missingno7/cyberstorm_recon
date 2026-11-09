@@ -23,6 +23,7 @@ struct UnitInfo {                       // unit configuration record (0x2f bytes
     unsigned char chassis;              // + 0x18 herc chassis + 8 / vehicle animation
     char pad19[0x16];
 };
+inline long GenUnitKind(unsigned char *unit) { return unit[0x12]; }
 struct GenRecord { char pad00[8]; long owner; char pad0c[0xc]; unsigned char *unit; char pad1c[0x1e]; ScriptPoint at; char pad42[4]; long angle; };
 struct GenActor {                       // logic actor (logic\lactor.c)
     GenRecord *rec;                     // + 0x00
@@ -45,26 +46,36 @@ struct GenActor {                       // logic actor (logic\lactor.c)
 struct LogicSystem { char pad00[0xc]; long mode; char pad10[0x10]; long campaign; char pad24[0x14]; long level; };
 extern LogicSystem g4dd0c0;                                         // logic\lsys.c system object
 #define gLogic g4dd0c0
-class Script { public: char pad00[0x30]; long time; };
+class Script { public: char pad00[0x30]; long time; long Now(){return time;} };
 extern Script gScript;                                              // logic\sinterp.c
-struct MenuNetwork { char pad00[4]; long active; void SendStart(GenRecord *rec, int drop); };
+struct MenuNetwork { char pad00[4]; long active; long IsActive(){return active;} void SendStart(GenRecord *rec, int drop); };
 extern MenuNetwork gMenuNetwork;
-extern UnitInfo gHercInfo[], gVehicleInfo[], gInfantryInfo[], gBuildingInfo[], gDropInfo[];
+extern UnitInfo gHercInfo[], gVehicleInfo[], unitTemplates[], gBuildingInfo[], gDropInfo[];
 extern long g4c928c;                                                // highest herc chassis available
 extern int modeSwitch, playerCount, gLocalActorKind;
 extern char fallbackName[];                                         // the map
-int ResolveName(char *map, ScriptPoint *at);
-int LogicAddDrop(LogicSystem *logic, int cell);                     // 00462fff
-GenActor *LogicCreateActor(void *list, int type, ScriptPoint *at, int index, int side);  // 00464218
+extern "C" int ResolveName(char *map, ScriptPoint *at);
+int LogicStoreActorLink(void *logic, void *cell);                     // 00462fff
+struct ActorPoint; struct LogicActor;
+struct LogicActorList { LogicActor *CreateActor(int,ActorPoint*,int,const signed char*); };
+inline GenActor *GenCreateActor(void *list,int type,ScriptPoint *at,int index,int side) {
+    return (GenActor*)((LogicActorList*)list)->CreateActor(type,(ActorPoint*)at,index,(const signed char*)side);
+}  // 00464218
 GenRecord *ActorCreate(long owner, UnitInfo *info, void *where, int flag);
-void ActorArraySet(GenActor *actor, int index, long value);
-long ActorArrayGet(GenActor *actor, int index);
+extern "C" void ActorArraySet(GenActor *actor, int index, long value);
+extern "C" long ActorArrayGet(GenActor *actor, int index);
 int PopFindItem(void *unit, int part, int index = -1);             // 00438374 unit part record
-long UnitValue(void *unit, long kind);                              // 0043a670
+inline int GenFindPart(void *unit,int part) { return PopFindItem(unit,part); }
+struct ActorUnit; int HercDamageAtRange(ActorUnit *unit, int kind);                              // 0043a670
 extern ScriptPoint gHexDirection[6];
 extern long *actorIndexTable;
 struct AnimMeta { long radius; char pad[0x38]; };
 extern AnimMeta animationMetaAt0cbc[];
+inline void GenSetSquad(GenActor *actor,int side) { actor->squad=side; }
+inline void GenSetWeight(GenActor *actor,long weight) { actor->weight=weight; }
+inline long GenVehicleCost(int index) { return gVehicleInfo[index].cost; }
+inline long GenVehicleWeight(int index) { return gVehicleInfo[index].weight; }
+inline long GenInfoCost(UnitInfo *info) {return info->cost;}
 inline long Min(long a, long b) { return a < b ? a : b; }
 inline long Max(long a, long b) { return a > b ? a : b; }
 struct GenAnchor { long kind; ScriptPoint at; long radius; GenAnchor(); ~GenAnchor() {} };
@@ -96,11 +107,11 @@ int LogicGenSkill(void *list, int type)
 
 int LogicGenFindType(void *list, int type, long least, long most = 0, int side = 0)
 {
-    int best;
+    // each table has its own selection.
     if (type >= 10 && type <= 16) {
-        int level = gLogic.level;
-        long bestCost = least;
+        int best; int level = gLogic.level;
         int i;
+        long bestCost = least;
         best = -1;
         for (i = 0; gVehicleInfo[i].name; i++) {
             int skill = gVehicleInfo[i].skill;
@@ -113,15 +124,16 @@ int LogicGenFindType(void *list, int type, long least, long most = 0, int side =
                 }
             }
         }
+        return best;
     } else if (type >= 17 && type <= 24)
-        best = type - 17;
+        return type - 17;
     else if (type >= 25 && type <= 29)
-        best = type - 25;
+        return type - 25;
     else if (type == 30)
-        best = 0;
+        return 0;
     else {
-        int chassis = g4c928c;
-        int top, level, i;
+        int best; int chassis = g4c928c;
+        int level, top, i;
         long bestCost;
         if (chassis <= 1) chassis = 1;
         else if (chassis >= 9) chassis = 9;
@@ -158,24 +170,12 @@ int LogicGenFindType(void *list, int type, long least, long most = 0, int side =
             if (gLogic.campaign == 0x19a) best++;
             if (gLogic.campaign == 0x1a2) best += 2;
         }
+        return best;
     }
-    return best;
+    // table branches return directly.
 }
 
 long LogicGenVehicle(void *list, int type, long budget, ScriptPoint *at);
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -262,7 +262,7 @@ long LogicMapPointUpdate(void *list, int type, long most, ScriptPoint *at)
     int index, side;
     GenActor *actor;
 
-    if (type < 1 || type >= 32) AssertFail(__FILE__, __LINE__, "unknown actor type");
+    if (type <= 0 || type >= 32) AssertFail(__FILE__, __LINE__, "unknown actor type");
     if (type >= 10 && type <= 16) return LogicGenVehicle(list, type, most, at);
     if (type == 30 || type == 31) {
 
@@ -273,7 +273,7 @@ long LogicMapPointUpdate(void *list, int type, long most, ScriptPoint *at)
 
 
 
-        if (!LogicAddDrop(&gLogic, ResolveName(fallbackName, at))) AssertFail(__FILE__, __LINE__, "Too many drop locations");
+        if (!LogicStoreActorLink(&gLogic, (void *)ResolveName(fallbackName, at))) AssertFail(__FILE__, __LINE__, "Too many drop locations");
         if (type == 31) return 0;
     }
     index = LogicGenFindType(list, type, 0, most);
@@ -283,13 +283,13 @@ long LogicMapPointUpdate(void *list, int type, long most, ScriptPoint *at)
         side = most;
         if (most < 1 || most > playerCount) side = gLocalActorKind;
     }
-    actor = LogicCreateActor(list, type, at, index, side);
+    actor = GenCreateActor(list, type, at, index, side);
     return actor ? actor->id : 0;
 }
 
 long *LogicMapViewUpdate(void *list, long budget, ScriptPoint *at)
 {
-    long chosen[6], spent[6];
+    long spent[6], chosen[6];
     int i, n;
 
     if (gLogic.campaign == 0x19a || gLogic.campaign == 0x1a2) {
@@ -320,8 +320,8 @@ long *LogicMapViewUpdate(void *list, long budget, ScriptPoint *at)
     n = 0;
     for (i = 0; i < 6; i++) {
         if (chosen[i] != -1) {
-            GenActor *actor = LogicCreateActor(list, gHercInfo[chosen[i]].chassis - 8, at, chosen[i], 0);
-            if (actor) dropList[n++] = actor->id;
+            GenActor *actor = GenCreateActor(list, gHercInfo[chosen[i]].chassis - 8, at, chosen[i], 0);
+            if (actor) { dropList[n] = actor->id; n++; }
         }
     }
     dropList[n] = -1;
@@ -340,10 +340,10 @@ GenActor *LogicGenSpawn(void *list, int type, long *budget, ScriptPoint *at, int
         index = LogicGenFindType(list, type, 0, *budget, side);
         if (index == -1) return 0;
     }
-    actor = LogicCreateActor(list, type, at, index, 0);
-    if (actor) {
-        actor->squad = side;
-        actor->weight = gVehicleInfo[index].weight;
+    actor = GenCreateActor(list, type, at, index, 0);
+    if (!actor) return 0; {
+        GenSetSquad(actor,side);
+        GenSetWeight(actor,gVehicleInfo[index].weight);
         *budget -= gVehicleInfo[index].cost;
         *budget = Max(*budget, 0);
         if (leader) leader->follower = actor->id;
@@ -730,9 +730,9 @@ void LogicGenSetup(GenActor *actor)
 {
     long armor, power, speed;
     ASSERT(actor->rec && actor->rec->unit);
-    armor = *(long *)((char *)PopFindItem(actor->rec->unit, 5) + 0x1b);
-    power = UnitValue(actor->rec->unit, actor->sight);
-    speed = *(long *)((char *)PopFindItem(actor->rec->unit, 1) + 0x3b);
+    armor = *(long *)((char *)GenFindPart(actor->rec->unit, 5) + 0x1b);
+    power = HercDamageAtRange((ActorUnit*)actor->rec->unit, actor->sight);
+    speed = *(long *)((char *)GenFindPart(actor->rec->unit, 1) + 0x3b);
     ActorArraySet(actor, 2, armor);
     ActorArraySet(actor, 3, power);
     ActorArraySet(actor, 4, speed);
@@ -754,14 +754,14 @@ void LogicGenSpawnActor(GenActor *actor)
 {
     UnitInfo *info;
     if (actor->rec) return;
-    if (gScript.time < actor->delay + ActorArrayGet(actor, 1)) return;
-    if (modeSwitch && gScript.time > 2) return;
+    if (gScript.Now() < actor->delay + ActorArrayGet(actor, 1)) return;
+    if (modeSwitch && gScript.Now() > 2) return;
     if (actor->type >= 1 && actor->type <= 9)
         info = &gHercInfo[actor->index];
     else if (actor->type >= 10 && actor->type <= 16)
         info = &gVehicleInfo[actor->index];
     else if (actor->type >= 17 && actor->type <= 24)
-        info = &gInfantryInfo[actor->index];
+        info = &unitTemplates[actor->index];
     else if (actor->type >= 25 && actor->type <= 29)
         info = &gBuildingInfo[actor->index];
     else if (actor->type == 30)
@@ -772,7 +772,7 @@ void LogicGenSpawnActor(GenActor *actor)
 
     ASSERT(actor->rec && actor->rec->owner == actor->owner);
     actor->rec->angle = actor->angle;
-    if (modeSwitch && gMenuNetwork.active) gMenuNetwork.SendStart(actor->rec, actor->type == 30);
+    if (modeSwitch && gMenuNetwork.IsActive()) gMenuNetwork.SendStart(actor->rec, actor->type == 30);
     actor->sight = info->sight;
     actor->speed = info->speed;
     ActorArraySet(actor, 6, info->cost);
@@ -780,7 +780,7 @@ void LogicGenSpawnActor(GenActor *actor)
 }
 
 struct GenUnitInfo { char pad[0x2d5]; };
-extern char g494aa3[];
+extern char g494aa3[]; inline long GenUnitCost(int kind) { return *(long *)(g494aa3+kind*0x2d5); }
 
 
 
@@ -795,7 +795,7 @@ void LogicDeleteActorFromList(void *list, GenRecord *rec)
     int kind, type;
     GenActor *actor;
     ASSERT(rec && rec->unit);
-    kind = rec->unit[0x12];
+    kind = GenUnitKind(rec->unit);
     if (kind == 31)
         type = 30;
     else {
@@ -808,7 +808,7 @@ void LogicDeleteActorFromList(void *list, GenRecord *rec)
         ASSERT(kind >= 1 && kind <= 8);
         type = kind + 16;
     }
-    actor = LogicCreateActor(list, type, &rec->at, 0, rec->owner);
+    actor = (GenActor*)((LogicActorList*)list)->CreateActor(type,(ActorPoint*)&rec->at,0,(const signed char*)rec->owner);
 
 
     ASSERT(actor);
@@ -816,7 +816,13 @@ void LogicDeleteActorFromList(void *list, GenRecord *rec)
     actor->rec = rec;
     actor->sight = 5;
     actor->speed = 5;
-    ActorArraySet(actor, 6, *(long *)(g494aa3 + kind * 0x2d5));
+    ActorArraySet(actor, 6, GenUnitCost(kind));
     ActorArraySet(actor, 7, 0);
     LogicGenSetup(actor);
 }
+
+
+
+
+
+

@@ -361,15 +361,45 @@
    "install": "wc106",
    "profile": "ot",
    "functions": {
+    "W?.fn_init$n()v": {
+     "va": "0042acf0",
+     "size": 112,
+     "mangled": "W?.fn_init$n()v"
+    },
     "GridClear": {
      "va": "0042ad60",
      "size": 32,
      "mangled": "W?GridClear$n(pn$TerrainGrid$$)pn$1$"
     },
+    "GridRelease": {
+     "va": "0042ad80",
+     "size": 64,
+     "mangled": "W?GridRelease$n(pn$TerrainGrid$$)pn$1$"
+    },
+    "GridDestroy": {
+     "va": "0042adc0",
+     "size": 64,
+     "mangled": "W?GridDestroy$n(pn$TerrainGrid$$)v"
+    },
+    "GridInitialize": {
+     "va": "0042ae00",
+     "size": 384,
+     "mangled": "W?GridInitialize$n(pn$TerrainGrid$$ll)l"
+    },
     "GridClearNeighbors": {
      "va": "0042af80",
      "size": 48,
      "mangled": "W?GridClearNeighbors$n(pn$TerrainGrid$$)v"
+    },
+    "TargetObjectInit": {
+     "va": "0042b1a0",
+     "size": 144,
+     "mangled": "TargetObjectInit"
+    },
+    "BestLocSetData": {
+     "va": "0042b290",
+     "size": 64,
+     "mangled": "W?BestLocSetData$n(pn$TerrainGrid$$pnll)pnl"
     },
     "GridClamp": {
      "va": "0042b3a0",
@@ -381,6 +411,16 @@
      "size": 80,
      "mangled": "W?GridRotatePoint$n(pn$GridPoint$$l)v"
     },
+    "LogicCopyPoint": {
+     "va": "0042b420",
+     "size": 64,
+     "mangled": "LogicCopyPoint"
+    },
+    "GridVisitBest": {
+     "va": "0042b460",
+     "size": 224,
+     "mangled": "W?GridVisitBest$n(pnv)l"
+    },
     "GridLoad": {
      "va": "0042b640",
      "size": 176,
@@ -390,9 +430,24 @@
      "va": "0042b6f0",
      "size": 144,
      "mangled": "W?GridSave$n(pn$TerrainGrid$$pnv)l"
+    },
+    "GridInvalidIndex": {
+     "va": "0042b780",
+     "size": 32,
+     "mangled": "W?GridInvalidIndex$n()l"
+    },
+    "GridSerializeStats": {
+     "va": "0042b7a0",
+     "size": 402,
+     "mangled": "W?GridSerializeStats$n(pn$TerrainGrid$$pnv)l"
     }
    },
-   "data": {},
+   "data": {
+    "_DATA": {
+     "va": "00490450",
+     "size": 13
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/terr/tfog.c": {
@@ -3223,10 +3278,35 @@
      "size": 153,
      "mangled": "W?LogicGenSkill$n(pnvi)i"
     },
+    "LogicMapPointUpdate": {
+     "va": "00469fc9",
+     "size": 261,
+     "mangled": "W?LogicMapPointUpdate$n(pnvilpn$ScriptPoint$$)l"
+    },
     "LogicGenVehicleRadius": {
      "va": "0046a262",
      "size": 39,
      "mangled": "W?LogicGenVehicleRadius$n(i)l"
+    },
+    "LogicGenSpawn": {
+     "va": "0046a289",
+     "size": 179,
+     "mangled": "W?LogicGenSpawn$n(pnvipnlpn$ScriptPoint$$ipn$GenActor$$i)pn$2$"
+    },
+    "LogicGenSetup": {
+     "va": "0046a8df",
+     "size": 160,
+     "mangled": "W?LogicGenSetup$n(pn$GenActor$$)v"
+    },
+    "LogicGenSpawnActor": {
+     "va": "0046a97f",
+     "size": 431,
+     "mangled": "W?LogicGenSpawnActor$n(pn$GenActor$$)v"
+    },
+    "LogicDeleteActorFromList": {
+     "va": "0046ab2e",
+     "size": 223,
+     "mangled": "W?LogicDeleteActorFromList$n(pnvpn$GenRecord$$)v"
     },
     "GenAnchor::$dt": {
      "va": "0046ac10",
