@@ -66,8 +66,9 @@ def scope_of_module(module_name):
 
 
 def is_local(sym, local_flag=False):
-    """File-local symbols: LPUBDEF statics and compiler-generated names (`W?.fn_init...`)."""
-    return bool(local_flag) or sym.startswith("W?.")
+    """File-local symbols: LPUBDEF statics and the compiler-generated static initializer `W?.fn_init`. Other
+    generated `W?.` names (`W?.tdctor`, ...) are shared COMDATs and resolve globally."""
+    return bool(local_flag) or sym.startswith("W?.fn_init")
 
 
 def key_for(sym, local_flag, scope):
@@ -137,6 +138,12 @@ class Resolver:
             return (int(e["va"], 16), e["status"]) if e else (None, None)
         key = self.by_mangled.get(sym) or label(sym)
         e = self.db.get(key)
+        if e is None and sym.startswith("W?."):
+            # a shared generated COMDAT recorded TU-scoped by an earlier promotion: exact mangled name, one VA
+            vas = {(v["va"], v["status"]) for k, v in self.db.items() if v.get("mangled") == sym}
+            if len({va for va, _ in vas}) == 1:
+                va, st = sorted(vas)[0]
+                return int(va, 16), st
         if e:
             # a label match with a different mangled name is either a prototype disagreement between TUs or a
             # genuine overload (e.g. a copy constructor): never resolve it by label (audit v1 follow-up). Such a
@@ -172,6 +179,8 @@ def main(argv):
         return 0
     if argv[1] == "show":
         q = argv[2]
+        if all(c in "0123456789abcdefABCDEF" for c in q) and len(q) < 8:
+            q = q.lower().rjust(8, "0")      # accept short hex VAs
         for n, e in syms.items():
             if q in (n, e["va"], e.get("mangled")):
                 print(n, json.dumps(e))

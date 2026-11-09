@@ -462,12 +462,12 @@
    "mangled": "W?ShellMainMenuRender$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
-  "W?.tdctor$:MenuPrefixButton$n()rn$1$@shell/hercbuy.c": {
+  "W?.tdctor$:MenuPrefixButton$n()rn$1$": {
    "va": "004085ac",
    "kind": "func",
    "status": "matched",
    "mangled": "W?.tdctor$:MenuPrefixButton$n()rn$1$",
-   "tu": "src/shell/hercbuy.c",
+   "tu": "src/shell/commscrn.c",
    "evidence": "strict match 2026-11-09"
   },
   "MenuHelpRegion::$dt": {
@@ -568,6 +568,14 @@
    "mangled": "W?ShellSelectionRender$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "W?$Wda015$:MenuPrefixButton$n(ui)pnv": {
+   "va": "0040d234",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$Wda015$:MenuPrefixButton$n(ui)pnv",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "MenuCaption::$dt": {
    "va": "0040d24c",
    "kind": "func",
@@ -610,13 +618,53 @@
    "mangled": "W?ShellSelectionControlsRender$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
-  "W?.tdctor$:MenuLabel$n()rn$1$@shell/hercbuy.c": {
+  "W?.tdctor$:MenuLabel$n()rn$1$": {
    "va": "004122e8",
    "kind": "func",
    "status": "matched",
    "mangled": "W?.tdctor$:MenuLabel$n()rn$1$",
    "tu": "src/shell/hercbuy.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "W?.fn_init$n()v@shell/commscrn.c": {
+   "va": "004123a0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "CommsScreen::$ct": {
+   "va": "004129f5",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:CommsScreen$n()_",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "CommsLogView::$ct": {
+   "va": "00412a5c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:CommsLogView$n()_",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "CommsLogView::Draw": {
+   "va": "00412a74",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Draw$:CommsLogView$n(ui)v",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "CommsLogView::Event": {
+   "va": "00412a75",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Event$:CommsLogView$n(uiul)i",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "placed (at) in src/shell/commscrn.c 2026-11-09"
   },
   "CommsScreenOpen": {
    "va": "00412b26",
@@ -628,9 +676,97 @@
   "CommsScreenClose": {
    "va": "00412df8",
    "kind": "func",
+   "status": "matched",
+   "mangled": "W?CommsScreenClose$n(pn$CommsScreen$$)v",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "CommsScreenClose#W?CommsScreenClose$n(pn$Scene$$)v": {
+   "va": "00412df8",
+   "kind": "func",
    "status": "hypothesis",
    "mangled": "W?CommsScreenClose$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "CommsScreenExit": {
+   "va": "00412e91",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?CommsScreenExit$n(pn$CommsScreen$$)v",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "CommsSetupText": {
+   "va": "00412edd",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?CommsSetupText$n(pn$CommsScreen$$)v",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "CommsSetupFonts": {
+   "va": "00413043",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?CommsSetupFonts$n(pn$CommsScreen$$)v",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "CommsSetupColors": {
+   "va": "004131e7",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?CommsSetupColors$n(pn$CommsScreen$$)v",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "CommsShowSystem": {
+   "va": "004133e6",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?CommsShowSystem$n(pn$CommsScreen$$)v",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "CommsShowGalaxy": {
+   "va": "0041350a",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?CommsShowGalaxy$n(pn$CommsScreen$$)v",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "CommsScreenRefresh": {
+   "va": "00413630",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?CommsScreenRefresh$n(pn$CommsScreen$$)v",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "CommsScreenUpdate": {
+   "va": "00413685",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?CommsScreenUpdate$n(pn$CommsScreen$$)v",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "CommsOpenLog": {
+   "va": "00414149",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?CommsOpenLog$n(pn$CommsScreen$$)v",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "CommsFreeLog": {
+   "va": "004141b6",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?CommsFreeLog$n(pn$CommsScreen$$)v",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "placed (at) in src/shell/commscrn.c 2026-11-09"
   },
   "CommsScreenRender": {
    "va": "00414204",
@@ -639,12 +775,156 @@
    "mangled": "W?CommsScreenRender$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "CommsMissionTypeName": {
+   "va": "00414468",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?CommsMissionTypeName$n(pn$CommsScreen$$uc)pna",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "CommsLoadContacts": {
+   "va": "004144a6",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?CommsLoadContacts$n(pn$CommsScreen$$)v",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "CommsSetupLabels": {
+   "va": "00414597",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?CommsSetupLabels$n(pn$CommsScreen$$)v",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "CommsShowContact": {
+   "va": "00414774",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?CommsShowContact$n(pn$CommsScreen$$)v",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "CommsShowPlayer": {
+   "va": "00414933",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?CommsShowPlayer$n(pn$CommsScreen$$)v",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "CommsDrawSelected": {
+   "va": "00414b41",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?CommsDrawSelected$n(pn$CommsScreen$$)v",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "CommsReadChunk": {
+   "va": "00414ba2",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?CommsReadChunk$n(pn$CommsScreen$$)v",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "CommsAnimate": {
+   "va": "00414beb",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?CommsAnimate$n(pn$CommsScreen$$)v",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "CommsDone": {
+   "va": "00414d4e",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?CommsDone$n()v",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "CommsSaveA": {
+   "va": "00414d5c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?CommsSaveA$n(pn$CommsScreen$$)v",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "CommsSaveB": {
+   "va": "00414d86",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?CommsSaveB$n(pn$CommsScreen$$)v",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "CommsDrawLog": {
+   "va": "00414db0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?CommsDrawLog$n(pn$CommsScreen$$)v",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "placed (at) in src/shell/commscrn.c 2026-11-09"
+  },
+  "CommsDrawLogB": {
+   "va": "00414e6b",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?CommsDrawLogB$n(pn$CommsScreen$$)v",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "placed (at) in src/shell/commscrn.c 2026-11-09"
+  },
+  "CommsDispatch": {
+   "va": "00414efe",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?CommsDispatch$n(pn$CommsScreen$$)v",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "W?$Wda0214$:MenuPrefixButton$n(ui)pnv": {
+   "va": "00414f2c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$Wda0214$:MenuPrefixButton$n(ui)pnv",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "W?$Wda019$:MenuPrefixButton$n(ui)pnv": {
+   "va": "00414f44",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$Wda019$:MenuPrefixButton$n(ui)pnv",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "MenuListButton::$dt": {
    "va": "00414f5c",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?$dt:MenuListButton$n()_",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "CommsLogView::$dt": {
+   "va": "00414fa0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$dt:CommsLogView$n()_",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "CommsScreen::$dt": {
+   "va": "00414fe4",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$dt:CommsScreen$n()_",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "strict match 2026-11-09"
   },
   "GuiControl::HitTest": {
    "va": "00415024",
@@ -8816,6 +9096,13 @@
    "mangled": "W?SurfacePresent$n(pnv)v",
    "evidence": "implied by src/_unknown/tu_0042a0e0.c 2026-11-09"
   },
+  "SurfacePresent#SurfacePresent": {
+   "va": "0047b3a0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "SurfacePresent",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
   "ApplyPaletteData": {
    "va": "0047b430",
    "kind": "func",
@@ -9026,6 +9313,13 @@
    "status": "hypothesis",
    "mangled": "W?FindPath$:ResMgr$n(pnxaypnai)i",
    "evidence": "implied by src/io/resource.c (overload-safe migration 2026-11-09)"
+  },
+  "ResMgr::FindPath#W?FindPath$:ResMgr$n(pnxapn$FileRecord$$i)i": {
+   "va": "0047c710",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?FindPath$:ResMgr$n(pnxapn$FileRecord$$i)i",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
   },
   "ResMgr::OpenFile": {
    "va": "0047c7e0",
@@ -9422,6 +9716,13 @@
    "tu": "src/io/file.c",
    "evidence": "strict match 2026-11-09"
   },
+  "FileRecord::$dt": {
+   "va": "0047e470",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:FileRecord$n()_",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
   "FileRecord::Open": {
    "va": "0047e4d0",
    "kind": "func",
@@ -9642,6 +9943,13 @@
    "mangled": "W?GlobalBlockAlloc$n(ului)pnv",
    "tu": "src/io/memory.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "GlobalBlockAlloc#GlobalBlockAlloc": {
+   "va": "0047eb50",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "GlobalBlockAlloc",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
   },
   "MemoryAllocationRetry": {
    "va": "0047eb98",
@@ -9951,6 +10259,13 @@
    "mangled": "W?$Wvf0do4:ShellBase$$nx[]pn()v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "W?$Wts0kn$MenuPrefixButton$$$nx[]uc": {
+   "va": "0048c9ec",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0kn$MenuPrefixButton$$$nx[]uc",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
   "W?$Wvf0cos:MenuChat$$nx[]pn()v": {
    "va": "0048d98c",
    "kind": "data",
@@ -10160,6 +10475,13 @@
    "status": "hypothesis",
    "mangled": "W?gLinkThreadProc$nxpn(pnv)ui",
    "evidence": "implied by src/multi/linkdlg.c 2026-11-09"
+  },
+  "g48e8f4": {
+   "va": "0048e8f4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g48e8f4$n[]pn$GuiControl$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
   },
   "g48ea1c": {
    "va": "0048ea1c",
@@ -10749,6 +11071,13 @@
    "mangled": "W?g4a70b8$ni",
    "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
   },
+  "gShellGame#W?gShellGame$n[]a": {
+   "va": "004a70b8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gShellGame$n[]a",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
   "gShellAnimationTimer": {
    "va": "004ae5ac",
    "kind": "data",
@@ -10847,12 +11176,488 @@
    "mangled": "W?gShellOverlayColors$n[]$PaletteColor$$",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "g4b1db4": {
+   "va": "004b1db4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b1db4$n[]a",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b1e7c": {
+   "va": "004b1e7c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b1e7c$n[]a",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b1ee0": {
+   "va": "004b1ee0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b1ee0$n[]a",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b1f44": {
+   "va": "004b1f44",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b1f44$n[]a",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b1fa8": {
+   "va": "004b1fa8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b1fa8$n[]a",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b1fb4": {
+   "va": "004b1fb4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b1fb4$n[]a",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b1fc0": {
+   "va": "004b1fc0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b1fc0$n[]a",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b1fcc": {
+   "va": "004b1fcc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b1fcc$n[]a",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b1fd8": {
+   "va": "004b1fd8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b1fd8$n[]a",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b1fe4": {
+   "va": "004b1fe4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b1fe4$n[]a",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b1ff0": {
+   "va": "004b1ff0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b1ff0$n[]a",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b1ffc": {
+   "va": "004b1ffc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b1ffc$n[]a",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b2008": {
+   "va": "004b2008",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b2008$n[]a",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b2014": {
+   "va": "004b2014",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b2014$n[]a",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b2020": {
+   "va": "004b2020",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b2020$n$MenuButton$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b2048": {
+   "va": "004b2048",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b2048$n$MenuButton$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b2070": {
+   "va": "004b2070",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b2070$n$MenuPrefixButton$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b209c": {
+   "va": "004b209c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b209c$n$MenuPrefixButton$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b20c8": {
+   "va": "004b20c8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b20c8$n$MenuListButton$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b20ec": {
+   "va": "004b20ec",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b20ec$n$MenuPrefixButton$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b2118": {
+   "va": "004b2118",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b2118$n$MenuNumber$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b2148": {
+   "va": "004b2148",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b2148$n$CommsLogView$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b2168": {
+   "va": "004b2168",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b2168$n$MenuPanel$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b218c": {
+   "va": "004b218c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b218c$n$MenuNumber$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b21bc": {
+   "va": "004b21bc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b21bc$n$MenuNumber$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b21ec": {
+   "va": "004b21ec",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b21ec$n$MenuNumber$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b221c": {
+   "va": "004b221c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b221c$n$MenuLabel$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b2250": {
+   "va": "004b2250",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b2250$n$MenuLabel$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b2284": {
+   "va": "004b2284",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b2284$n$MenuLabel$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b22b8": {
+   "va": "004b22b8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b22b8$n$MenuLabel$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b22ec": {
+   "va": "004b22ec",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b22ec$n$MenuLabel$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b2320": {
+   "va": "004b2320",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b2320$n$MenuLabel$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b2354": {
+   "va": "004b2354",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b2354$n$MenuLabel$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b2388": {
+   "va": "004b2388",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b2388$n$MenuLabel$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b23bc": {
+   "va": "004b23bc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b23bc$n$MenuLabel$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b23f0": {
+   "va": "004b23f0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b23f0$n$MenuLabel$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b2424": {
+   "va": "004b2424",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b2424$n$MenuLabel$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b2458": {
+   "va": "004b2458",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b2458$n$MenuLabel$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b248c": {
+   "va": "004b248c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b248c$n$MenuLabel$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b24c0": {
+   "va": "004b24c0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b24c0$n$MenuLabel$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b24f4": {
+   "va": "004b24f4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b24f4$n$MenuLabel$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b2528": {
+   "va": "004b2528",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b2528$n$MenuLabel$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b255c": {
+   "va": "004b255c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b255c$n$MenuLabel$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b2590": {
+   "va": "004b2590",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b2590$n$MenuLabel$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b25c4": {
+   "va": "004b25c4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b25c4$n$MenuLabel$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b25f8": {
+   "va": "004b25f8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b25f8$n$MenuLabel$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b262c": {
+   "va": "004b262c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b262c$n$MenuLabel$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b2660": {
+   "va": "004b2660",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b2660$n$MenuLabel$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b2694": {
+   "va": "004b2694",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b2694$n$MenuLabel$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b26c8": {
+   "va": "004b26c8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b26c8$n$MenuLabel$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b26fc": {
+   "va": "004b26fc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b26fc$n$MenuLabel$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b2730": {
+   "va": "004b2730",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b2730$n$MenuLabel$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "gCommsSystems": {
+   "va": "004b2764",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gCommsSystems$n[]$MenuPrefixButton$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "gCommsOptions": {
+   "va": "004b29cc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gCommsOptions$n[]$MenuPrefixButton$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b2aa8": {
+   "va": "004b2aa8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b2aa8$n$MenuHelpRegion$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b2ac8": {
+   "va": "004b2ac8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b2ac8$ni",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b2ad0": {
+   "va": "004b2ad0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b2ad0$n$MenuLabel$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b2b04": {
+   "va": "004b2b04",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b2b04$n$MenuNumber$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b2b34": {
+   "va": "004b2b34",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b2b34$n$MenuLabel$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b2b68": {
+   "va": "004b2b68",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b2b68$n$MenuLabel$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b2b9c": {
+   "va": "004b2b9c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b2b9c$n$MenuLabel$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b2bd0": {
+   "va": "004b2bd0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b2bd0$n$MenuLabel$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b2c04": {
+   "va": "004b2c04",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b2c04$n$MenuLabel$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b2c38": {
+   "va": "004b2c38",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b2c38$n$MenuLabel$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4b2c6c": {
+   "va": "004b2c6c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b2c6c$n$MenuLabel$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "gCommsButtons": {
+   "va": "004b2ca0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gCommsButtons$n[]$MenuPrefixButton$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "gCommsLogs": {
+   "va": "004b2e2c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gCommsLogs$npn$CommsLog$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
   "g4b2e30": {
    "va": "004b2e30",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4b2e30$n$Scene$$",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "g4b2e30#W?g4b2e30$n$CommsScreen$$": {
+   "va": "004b2e30",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b2e30$n$CommsScreen$$",
+   "evidence": "implied by src/shell/commscrn.c 2026-11-09"
   },
   "g4b3290": {
    "va": "004b3290",

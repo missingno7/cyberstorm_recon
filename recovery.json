@@ -3680,6 +3680,200 @@
     }
    },
    "accepted": "2026-11-09"
+  },
+  "src/shell/commscrn.c": {
+   "as": "shell\\commscrn.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "W?.tdctor$:MenuPrefixButton$n()rn$1$": {
+     "va": "004085ac",
+     "size": 25,
+     "mangled": "W?.tdctor$:MenuPrefixButton$n()rn$1$"
+    },
+    "W?$Wda015$:MenuPrefixButton$n(ui)pnv": {
+     "va": "0040d234",
+     "size": 21,
+     "mangled": "W?$Wda015$:MenuPrefixButton$n(ui)pnv"
+    },
+    "W?.fn_init$n()v": {
+     "va": "004123a0",
+     "size": 1621,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "CommsScreen::$ct": {
+     "va": "004129f5",
+     "size": 103,
+     "mangled": "W?$ct:CommsScreen$n()_"
+    },
+    "CommsLogView::$ct": {
+     "va": "00412a5c",
+     "size": 24,
+     "mangled": "W?$ct:CommsLogView$n()_"
+    },
+    "CommsLogView::Draw": {
+     "va": "00412a74",
+     "size": 1,
+     "mangled": "W?Draw$:CommsLogView$n(ui)v"
+    },
+    "CommsScreenClose": {
+     "va": "00412df8",
+     "size": 153,
+     "mangled": "W?CommsScreenClose$n(pn$CommsScreen$$)v"
+    },
+    "CommsScreenExit": {
+     "va": "00412e91",
+     "size": 76,
+     "mangled": "W?CommsScreenExit$n(pn$CommsScreen$$)v"
+    },
+    "CommsSetupText": {
+     "va": "00412edd",
+     "size": 358,
+     "mangled": "W?CommsSetupText$n(pn$CommsScreen$$)v"
+    },
+    "CommsSetupFonts": {
+     "va": "00413043",
+     "size": 420,
+     "mangled": "W?CommsSetupFonts$n(pn$CommsScreen$$)v"
+    },
+    "CommsSetupColors": {
+     "va": "004131e7",
+     "size": 511,
+     "mangled": "W?CommsSetupColors$n(pn$CommsScreen$$)v"
+    },
+    "CommsShowSystem": {
+     "va": "004133e6",
+     "size": 292,
+     "mangled": "W?CommsShowSystem$n(pn$CommsScreen$$)v"
+    },
+    "CommsShowGalaxy": {
+     "va": "0041350a",
+     "size": 294,
+     "mangled": "W?CommsShowGalaxy$n(pn$CommsScreen$$)v"
+    },
+    "CommsScreenRefresh": {
+     "va": "00413630",
+     "size": 85,
+     "mangled": "W?CommsScreenRefresh$n(pn$CommsScreen$$)v"
+    },
+    "CommsScreenUpdate": {
+     "va": "00413685",
+     "size": 2756,
+     "mangled": "W?CommsScreenUpdate$n(pn$CommsScreen$$)v"
+    },
+    "CommsOpenLog": {
+     "va": "00414149",
+     "size": 109,
+     "mangled": "W?CommsOpenLog$n(pn$CommsScreen$$)v"
+    },
+    "CommsMissionTypeName": {
+     "va": "00414468",
+     "size": 62,
+     "mangled": "W?CommsMissionTypeName$n(pn$CommsScreen$$uc)pna"
+    },
+    "CommsLoadContacts": {
+     "va": "004144a6",
+     "size": 241,
+     "mangled": "W?CommsLoadContacts$n(pn$CommsScreen$$)v"
+    },
+    "CommsSetupLabels": {
+     "va": "00414597",
+     "size": 477,
+     "mangled": "W?CommsSetupLabels$n(pn$CommsScreen$$)v"
+    },
+    "CommsShowContact": {
+     "va": "00414774",
+     "size": 447,
+     "mangled": "W?CommsShowContact$n(pn$CommsScreen$$)v"
+    },
+    "CommsShowPlayer": {
+     "va": "00414933",
+     "size": 526,
+     "mangled": "W?CommsShowPlayer$n(pn$CommsScreen$$)v"
+    },
+    "CommsDrawSelected": {
+     "va": "00414b41",
+     "size": 97,
+     "mangled": "W?CommsDrawSelected$n(pn$CommsScreen$$)v"
+    },
+    "CommsReadChunk": {
+     "va": "00414ba2",
+     "size": 73,
+     "mangled": "W?CommsReadChunk$n(pn$CommsScreen$$)v"
+    },
+    "CommsAnimate": {
+     "va": "00414beb",
+     "size": 355,
+     "mangled": "W?CommsAnimate$n(pn$CommsScreen$$)v"
+    },
+    "CommsDone": {
+     "va": "00414d4e",
+     "size": 14,
+     "mangled": "W?CommsDone$n()v"
+    },
+    "CommsSaveA": {
+     "va": "00414d5c",
+     "size": 42,
+     "mangled": "W?CommsSaveA$n(pn$CommsScreen$$)v"
+    },
+    "CommsSaveB": {
+     "va": "00414d86",
+     "size": 42,
+     "mangled": "W?CommsSaveB$n(pn$CommsScreen$$)v"
+    },
+    "CommsDispatch": {
+     "va": "00414efe",
+     "size": 43,
+     "mangled": "W?CommsDispatch$n(pn$CommsScreen$$)v"
+    },
+    "W?$Wda0214$:MenuPrefixButton$n(ui)pnv": {
+     "va": "00414f2c",
+     "size": 21,
+     "mangled": "W?$Wda0214$:MenuPrefixButton$n(ui)pnv"
+    },
+    "W?$Wda019$:MenuPrefixButton$n(ui)pnv": {
+     "va": "00414f44",
+     "size": 21,
+     "mangled": "W?$Wda019$:MenuPrefixButton$n(ui)pnv"
+    },
+    "CommsLogView::$dt": {
+     "va": "00414fa0",
+     "size": 67,
+     "mangled": "W?$dt:CommsLogView$n()_"
+    },
+    "CommsScreen::$dt": {
+     "va": "00414fe4",
+     "size": 63,
+     "mangled": "W?$dt:CommsScreen$n()_"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048a8f4",
+     "size": 219
+    },
+    "CONST2": {
+     "va": "0048cdcc",
+     "size": 420
+    },
+    "_DATA": {
+     "va": "0048e8d4",
+     "size": 328
+    },
+    "W?$Wvf0gos:CommsLogView$$nx[]pn()v": {
+     "va": "0048cfac",
+     "size": 20
+    },
+    "W?$Wts0kn$MenuPrefixButton$$$nx[]uc": {
+     "va": "0048c9ec",
+     "size": 17
+    },
+    "W?$Wts0gn$CommsLogView$$$nx[]uc": {
+     "va": "0048cf84",
+     "size": 17
+    }
+   },
+   "accepted": "2026-11-09"
   }
  },
  "accepted_losses": [

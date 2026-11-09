@@ -112,6 +112,13 @@ def main(argv):
         if cur and cur.get("mangled") and cur["mangled"] != n and cur["va"] != e.get("va"):
             return f"{k}#{n}"
         return k
+    # a shared COMDAT (own segment named after its symbol) already matched at this VA by another TU under the
+    # same mangled name is one linked copy: it stays counted once, by its first owner
+    for n in [n for n, e in strict.items() if e["seg"] == n and any(
+            v.get("mangled") == n and v["va"] == e["va"] and v["status"] == "matched" and v.get("tu") != tu
+            for v in syms.values())]:
+        print(f"  shared COMDAT {symbols.label(n)} already counted by another TU")
+        del strict[n]
     for n, e in strict.items():
         lab = skey(n, e)
         cur = syms.get(lab)
