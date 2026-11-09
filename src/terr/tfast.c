@@ -1,11 +1,12 @@
 struct FastItem { unsigned char raw[8]; };
-struct FastBuffer { long count; FastItem *items; long current; long first; void Update(long width, long offset); };
+struct FastBuffer { long count; FastItem *items; long current; long first; void Update(long width, long offset); void BuildFlags(); FastBuffer *BuildPixels(); };
 struct FastCoord { long x; long y; };
 struct FastGrid { unsigned long placeholder; };
 extern "C" void AssertFail(const char *, int, const char *); extern "C" void *memset(void *, int, unsigned long); extern "C" void MemoryRelease(void *);
-extern FastGrid gFastGrid;
+extern FastGrid fallbackName;
 extern FastCoord gFastTransform;
-extern void GridGet(FastGrid *, FastCoord *, long);
+void BestLocSetData(void *, void *, void *);
+int ResolveName(const char *, const char *);
 extern void GridConvert(FastCoord *, FastCoord *, FastCoord *);
 extern void *MemoryAllocationRetry(unsigned long);
 
@@ -41,17 +42,89 @@ FastBuffer *FastBufferFree(FastBuffer *p) { FastBuffer *owner = p; if (p->items)
 
 
 
-
 int FastBufferCreate(FastBuffer *p, long count) { FastBuffer *owner = p; p->count = count + 1; if (p->items) MemoryRelease(p->items); owner->items = 0; p->items = (FastItem *)MemoryAllocationRetry(p->count * 8); if (!p->items || !count) AssertFail(__FILE__, __LINE__, 0); p->first = 0; p->current = p->first; memset(p->items, 0, p->count * 8); return 1; }
+
+struct TerrainGrid { long fields[17]; void *cells; void *neighbors; };
+struct GridPoint { long x; long y; };
+struct GridOffset { long x; long y; };
+struct FastPalette { unsigned char raw[256]; };
+extern GridOffset gGridOffsets[6];
+extern FastPalette gFastPalette;
 
 void FastBufferDestroy(FastBuffer *p) { if (p->items) MemoryRelease(p->items); p->items = 0; }
 
 void FastBufferReset(FastBuffer *p) { p->first = -1; p->current = p->first; }
 
 
-void FastBufferBuildFlags(FastBuffer *p);
-void FastBufferBuildPixels(FastBuffer *p);
+void FastBuffer::Update(long width, long offset) { int changed = (width != current); current = width; first = offset; if (changed) { BuildFlags(); FastBuffer *owner = this; FastItem *item; register long i = 1; BuildPixels(); item = owner->items + 1; for (; i < owner->count; ++i, ++item) { FastCoord source; FastCoord result; BestLocSetData(&fallbackName, &source, (void *)i); GridConvert(&gFastTransform, &result, &source); item->raw[4] = (unsigned char)result.x; item->raw[5] = (unsigned char)result.y; } } }
 
-void FastBuffer::Update(long width, long offset) { int changed = (width != current); current = width; first = offset; if (changed) { FastBufferBuildFlags(this); FastBufferBuildPixels(this); FastItem *item = items + 1; for (long i = 1; i < count; ++i, ++item) { FastCoord source; FastCoord result; GridGet(&gFastGrid, &source, i); GridConvert(&gFastTransform, &result, &source); item->raw[4] = (unsigned char)result.x; item->raw[5] = (unsigned char)result.y; } } }
+struct FastCell { unsigned char raw[12]; };
+extern unsigned char *gFastCellData;
+extern long GridColorLookup(FastPalette *, FastCoord *, unsigned long, int);
+
+void FastBuffer::BuildFlags() {
+    long sourceOffset;
+    register FastItem *item = items + 1;
+    register long index = 1;
+    if (index < count) {
+        sourceOffset = 12;
+        do {
+            FastCoord base;
+            BestLocSetData(&fallbackName, &base, (void *)index);
+            unsigned long currentColor = gFastCellData[sourceOffset + 1];
+            unsigned char flags = 0;
+            for (long side = 0; side < 6; ++side) {
+                long neighborSide = (this->current + side) % 6;
+                FastCoord neighbor;
+                neighbor.x = base.x + gGridOffsets[neighborSide].x;
+                neighbor.y = base.y + gGridOffsets[neighborSide].y;
+                long cell = ResolveName((const char *)&fallbackName, (const char *)&neighbor);
+                if (cell && gFastCellData[cell * 12 + 1] < currentColor) flags |= (unsigned char)(1 << side);
+            }
+            item->raw[6] = flags;
+            ++item;
+            ++index;
+            sourceOffset += 12;
+        } while (index < count);
+    }
+}
+
+FastBuffer *FastBuffer::BuildPixels() {
+    register FastItem *item = items + 1;
+    register long index = 1;
+    if (index < count) {
+        long sourceOffset = 12;
+        do {
+            FastCoord coordinate;
+            BestLocSetData(&fallbackName, &coordinate, (void *)index);
+            unsigned long currentColor = gFastCellData[sourceOffset + 1];
+            long a = GridColorLookup(&gFastPalette, &coordinate, currentColor, 4);
+            long b = GridColorLookup(&gFastPalette, &coordinate, currentColor, 3);
+            long c = GridColorLookup(&gFastPalette, &coordinate, currentColor, 2);
+            item->raw[0] = (unsigned char)a;
+            item->raw[1] = (unsigned char)b;
+            item->raw[2] = (unsigned char)c;
+            sourceOffset += 12;
+            ++index;
+            ++item;
+        } while (index < count);
+    }
+    return this;
+}
+
+void FastBufferMakeCoords(FastBuffer *p) {
+    register FastItem *item = p->items + 1;
+    register long index = 1;
+    if (index < p->count) do {
+        FastCoord source;
+        FastCoord result;
+        BestLocSetData(&fallbackName, &source, (void *)index);
+        GridConvert(&gFastTransform, &result, &source);
+        item->raw[4] = (unsigned char)result.x;
+        item->raw[5] = (unsigned char)result.y;
+        ++index;
+        ++item;
+    } while (index < p->count);
+}
 
 

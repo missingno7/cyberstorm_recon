@@ -512,6 +512,14 @@
    "tu": "src/terr/tgrid.c",
    "evidence": "strict match 2026-11-09"
   },
+  "GridRotatePoint": {
+   "va": "0042b3d0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?GridRotatePoint$n(pn$GridPoint$$l)v",
+   "tu": "src/terr/tgrid.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "BestLocVisit": {
    "va": "0042cf20",
    "kind": "func",
@@ -525,6 +533,13 @@
    "status": "hypothesis",
    "mangled": "W?BestLocSetup$n(pnvii)i",
    "evidence": "implied by src/logic/bestloc.c 2026-11-09"
+  },
+  "GridConvert": {
+   "va": "0042e450",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?GridConvert$n(pn$FastCoord$$pn$1$pn$1$)v",
+   "evidence": "implied by src/terr/tfast.c 2026-11-09"
   },
   "FogNoOp": {
    "va": "00432f40",
@@ -550,6 +565,14 @@
    "tu": "src/terr/tfog.c",
    "evidence": "strict match 2026-11-09"
   },
+  "FogBuffer::Resize": {
+   "va": "00432fb0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Resize$:FogBuffer$n()i",
+   "tu": "src/terr/tfog.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "FogCopy": {
    "va": "00433050",
    "kind": "func",
@@ -566,11 +589,49 @@
    "tu": "src/terr/tfog.c",
    "evidence": "strict match 2026-11-09"
   },
+  "FogBuffer::Initialize": {
+   "va": "00433100",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Initialize$:FogBuffer$n(ii)v",
+   "evidence": "implied by src/terr/tfog.c 2026-11-09"
+  },
   "FogResetMode": {
    "va": "004331a0",
    "kind": "func",
    "status": "matched",
    "mangled": "W?FogResetMode$n(pn$FogBuffer$$)v",
+   "tu": "src/terr/tfog.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "FogCast": {
+   "va": "004333a0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?FogCast$n(pn$FogBuffer$$lpn$FogObject$$)l",
+   "evidence": "implied by src/terr/tfog.c 2026-11-09"
+  },
+  "FogCastAlternate": {
+   "va": "00433510",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?FogCastAlternate$n(pn$FogBuffer$$lpn$FogObject$$)v",
+   "tu": "src/terr/tfog.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "FogRead": {
+   "va": "00433550",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?FogRead$n(pn$FogBuffer$$pnv)i",
+   "tu": "src/terr/tfog.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "FogWrite": {
+   "va": "004335d0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?FogWrite$n(pn$FogBuffer$$pnv)i",
    "tu": "src/terr/tfog.c",
    "evidence": "strict match 2026-11-09"
   },
@@ -611,6 +672,14 @@
    "kind": "func",
    "status": "matched",
    "mangled": "W?FastBufferReset$n(pn$FastBuffer$$)v",
+   "tu": "src/terr/tfast.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "FastBufferMakeCoords": {
+   "va": "00435020",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?FastBufferMakeCoords$n(pn$FastBuffer$$)v",
    "tu": "src/terr/tfast.c",
    "evidence": "strict match 2026-11-09"
   },
@@ -1456,6 +1525,13 @@
    "mangled": "W?g48eafc$ni",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
   },
+  "FogSourcePath": {
+   "va": "004905ec",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?FogSourcePath$n[]xa",
+   "evidence": "implied by src/terr/tfog.c 2026-11-09"
+  },
   "g4a0010": {
    "va": "004a0010",
    "kind": "data",
@@ -1750,6 +1826,13 @@
    "mangled": "W?gPlyKey$n$PlyKey$$",
    "evidence": "implied by src/_unknown/tu_004297d4.c 2026-11-09"
   },
+  "gFogGlobalMode": {
+   "va": "004c6890",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gFogGlobalMode$nl",
+   "evidence": "implied by src/terr/tfog.c 2026-11-09"
+  },
   "g4d030f": {
    "va": "004d030f",
    "kind": "data",
@@ -1798,6 +1881,13 @@
    "status": "hypothesis",
    "mangled": "W?bestLocSortKey$n[]uc",
    "evidence": "implied by src/logic/bestloc.c 2026-11-09"
+  },
+  "gFastTransform": {
+   "va": "004d3698",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gFastTransform$n$FastCoord$$",
+   "evidence": "implied by src/terr/tfast.c 2026-11-09"
   },
   "bestLocEntries": {
    "va": "004d3704",

@@ -327,6 +327,11 @@
      "va": "0042b3a0",
      "size": 48,
      "mangled": "W?GridClamp$n(ul)l"
+    },
+    "GridRotatePoint": {
+     "va": "0042b3d0",
+     "size": 80,
+     "mangled": "W?GridRotatePoint$n(pn$GridPoint$$l)v"
     }
    },
    "data": {},
@@ -352,6 +357,11 @@
      "size": 64,
      "mangled": "W?FogRelease$n(pn$FogBuffer$$)v"
     },
+    "FogBuffer::Resize": {
+     "va": "00432fb0",
+     "size": 160,
+     "mangled": "W?Resize$:FogBuffer$n()i"
+    },
     "FogCopy": {
      "va": "00433050",
      "size": 96,
@@ -366,6 +376,21 @@
      "va": "004331a0",
      "size": 64,
      "mangled": "W?FogResetMode$n(pn$FogBuffer$$)v"
+    },
+    "FogCastAlternate": {
+     "va": "00433510",
+     "size": 64,
+     "mangled": "W?FogCastAlternate$n(pn$FogBuffer$$lpn$FogObject$$)v"
+    },
+    "FogRead": {
+     "va": "00433550",
+     "size": 128,
+     "mangled": "W?FogRead$n(pn$FogBuffer$$pnv)i"
+    },
+    "FogWrite": {
+     "va": "004335d0",
+     "size": 98,
+     "mangled": "W?FogWrite$n(pn$FogBuffer$$pnv)i"
     }
    },
    "data": {},
@@ -400,6 +425,11 @@
      "va": "00434d70",
      "size": 32,
      "mangled": "W?FastBufferReset$n(pn$FastBuffer$$)v"
+    },
+    "FastBufferMakeCoords": {
+     "va": "00435020",
+     "size": 98,
+     "mangled": "W?FastBufferMakeCoords$n(pn$FastBuffer$$)v"
     }
    },
    "data": {
