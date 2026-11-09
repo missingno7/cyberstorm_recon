@@ -635,6 +635,16 @@
    "install": "wc106",
    "profile": "ot",
    "functions": {
+    "ResMgr::Close": {
+     "va": "0047c6c0",
+     "size": 80,
+     "mangled": "W?Close$:ResMgr$n()v"
+    },
+    "ResMgrOpen": {
+     "va": "0047c7e0",
+     "size": 128,
+     "mangled": "ResMgrOpen"
+    },
     "ResMgr::CloseFile": {
      "va": "0047c860",
      "size": 48,
@@ -670,10 +680,25 @@
      "size": 32,
      "mangled": "f_cb80"
     },
+    "f_cba0": {
+     "va": "0047cba0",
+     "size": 80,
+     "mangled": "f_cba0"
+    },
     "f_cbf0": {
      "va": "0047cbf0",
      "size": 32,
      "mangled": "f_cbf0"
+    },
+    "MeasureResourceTextWidth": {
+     "va": "0047cc10",
+     "size": 64,
+     "mangled": "MeasureResourceTextWidth"
+    },
+    "RenderFormattedResourceText": {
+     "va": "0047d080",
+     "size": 96,
+     "mangled": "RenderFormattedResourceText"
     },
     "f_d110": {
      "va": "0047d110",

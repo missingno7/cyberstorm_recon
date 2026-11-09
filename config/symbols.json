@@ -4864,6 +4864,14 @@
    "tu": "src/misc/strpool.c",
    "evidence": "strict match 2026-11-09"
   },
+  "ResMgr::Close": {
+   "va": "0047c6c0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Close$:ResMgr$n()v",
+   "tu": "src/io/resource.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "ResMgr::FindPath": {
    "va": "0047c710",
    "kind": "func",
@@ -4877,6 +4885,14 @@
    "status": "hypothesis",
    "mangled": "W?OpenFile$:ResMgr$n(li)i",
    "evidence": "implied by src/_unknown/tu_00425978.c 2026-11-09"
+  },
+  "ResMgrOpen": {
+   "va": "0047c7e0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "ResMgrOpen",
+   "tu": "src/io/resource.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ResMgr::CloseFile": {
    "va": "0047c860",
@@ -4948,6 +4964,14 @@
    "tu": "src/io/resource.c",
    "evidence": "strict match 2026-11-09"
   },
+  "f_cba0": {
+   "va": "0047cba0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_cba0",
+   "tu": "src/io/resource.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "f_cbf0": {
    "va": "0047cbf0",
    "kind": "func",
@@ -4963,12 +4987,35 @@
    "mangled": "W?MenuTextWidth$n(pn$Font$$pnxa)l",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
   },
+  "MeasureResourceTextWidth": {
+   "va": "0047cc10",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "MeasureResourceTextWidth",
+   "tu": "src/io/resource.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "RenderResourceGlyph": {
+   "va": "0047cc50",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "RenderResourceGlyph",
+   "evidence": "implied by src/io/resource.c 2026-11-09"
+  },
   "MenuDrawText": {
    "va": "0047cf80",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?MenuDrawText$n(pn$Font$$llpnxa)v",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "RenderFormattedResourceText": {
+   "va": "0047d080",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "RenderFormattedResourceText",
+   "tu": "src/io/resource.c",
+   "evidence": "strict match 2026-11-09"
   },
   "f_d110": {
    "va": "0047d110",
@@ -5017,6 +5064,13 @@
    "mangled": "f_d2f0",
    "tu": "src/io/resource.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "MciState::PlayTimeRange": {
+   "va": "0047d310",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PlayTimeRange$:MciState$n(iiuii)i",
+   "evidence": "implied by src/io/resource.c 2026-11-09"
   },
   "DrainAssertCallbacks": {
    "va": "0047d4c0",
@@ -5847,12 +5901,26 @@
    "mangled": "W?joiningMessage$n[]xa",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
   },
+  "ResourceSourcePath": {
+   "va": "004a49f8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?ResourceSourcePath$n[]xa",
+   "evidence": "implied by src/io/resource.c 2026-11-09"
+  },
   "errorText": {
    "va": "004a4a88",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?errorText$n[]xa",
    "evidence": "implied by src/io/memory.c 2026-11-09"
+  },
+  "MissingResourceFormat": {
+   "va": "004a4adc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?MissingResourceFormat$n[]xa",
+   "evidence": "implied by src/io/resource.c 2026-11-09"
   },
   "fileSourcePath": {
    "va": "004a4b9c",

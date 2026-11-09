@@ -1,75 +1,75 @@
 #include <windows.h>
 #include <mmsystem.h>
-extern "C" char *FindChar(const char *, int);
-
+#include <stdarg.h>
 extern "C" int MakePath(void *, const char *, const char *, int);
-extern "C" void AssertFail(const char *, int, const char *); extern "C" int sprintf(char *, const char *, ...);
+extern "C" void AssertFail(const char *, int, const char *); extern "C" int sprintf(char *, const char *, ...); static const char ResourceSourcePath[] = "io\\resource.c"; static const char MissingResourceFormat[] = "Missing file: %s.  Possible cause: Bad installation, or CD removed at bad time.";
+extern "C" int vsprintf(char *, const char *, va_list);
 
+struct FileRecord { HANDLE handle; unsigned long open, flags, error; signed char direct, counted; unsigned char reserved[2]; unsigned long position, length; }; extern "C" FileRecord *FileRecordRelease(FileRecord *, int); struct ResourceEntry { unsigned long resource, type, size; void *buffer; unsigned char sourceFile[0x1c], outputFile[0x1c]; ~ResourceEntry(); };
 struct ResMgr {
     int count;
     int types[10];
     const char *paths[10];
-    char entries[10][0x48];
+    ResourceEntry entries[10];
     int loaded;
     int opened;
     char pad2[4];
-    char file[1];
+    FileRecord file;
     int IsOpen();
     int Init(const char ** volatile, const char *);
     void Close();
-    int FindPath(const char *, char *, int);
-    int CloseFile();
+    int FindPath(const char *, char * volatile, int);
+    int CloseFile(); int *Load(char *, unsigned int = 0, int * = 0, unsigned int = 0); ~ResMgr();
 };
 
 struct MciState {
     unsigned int device;
     unsigned int pending;
-    unsigned char pad[8];
+    unsigned int openType;
+    unsigned int element;
     unsigned int state;
     MciState *StopClose();
-    void Close();
+    void Close(); int PlayTimeRange(int, int, unsigned int, int);
 };
+unsigned long IoRead(FileRecord *, long, long); unsigned long IoClose(FileRecord *); extern "C" void ResetMciState(MciState *);
 
-extern "C" int f_c530() { return 0x530; }
-extern "C" int f_c580() { return 0x580; }
-int ResMgr::Init(const char ** volatile paths, const char *outDir)
+extern "C" void *PopConstructorArray(void *, int, unsigned int);
+#pragma aux FileRecordRelease "W?Release$:FileRecord$n()pn$1$";
+extern "C" void *FileInit(void *);
+
+extern "C" void *IORelease(void *);
+extern "C" char *FindChar(const char *, int);
+extern "C" ResMgr *ResMgrConstruct(ResMgr *self)
 {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    if (this == 0 || loaded != 0 || opened != 0)
-        AssertFail(__FILE__, __LINE__, 0);
-    register const char **source = paths;
-    register int i = 0;
-    register char *entry = (char *)entries;
+    register ResMgr *owner = self; register void *entryArray = (char *)owner + 0x54; void *firstEntry = PopConstructorArray(entryArray, 10, 0x48e2e8);
+    void *file = FileInit((char *)firstEntry + 0x2dc);
+    ResMgr *initializedOwner = (ResMgr *)((char *)file - 0x330);
+    initializedOwner->opened = 0;
+    int wasOpened = initializedOwner->opened;
+    initializedOwner->count = 0;
+    initializedOwner->loaded = wasOpened;
+    return initializedOwner;
+}
+ResMgr::~ResMgr()
+{
+    register ResMgr *owner = this; register ResMgr *openedOwner = this; register ResMgr *loadedOwner = this;
+    if (owner->opened) {
+        if (owner->opened)
+            IORelease((char *)owner + 0x330);
+        openedOwner->opened = 0;
+    }
+    if (loadedOwner->loaded)
+        loadedOwner->loaded = 0;
+    FileRecordRelease((FileRecord *)((char *)loadedOwner + 0x330), 0);
+    /* ResourceEntry[10] is destroyed by the compiler-generated array destructor. */
+}
+/* Keep this source line aligned with the original assertion immediates. */
+int ResMgr::Init(const char ** volatile paths, const char *outDir)
+{ if (this == 0 || loaded != 0 || opened != 0)
+        AssertFail(ResourceSourcePath, __LINE__, 0);
+    const char **source = paths;
+    int i = 0;
+    char *entry = (char *)entries;
     count = 0;
     while (*source) {
         count = i + 1;
@@ -78,10 +78,9 @@ int ResMgr::Init(const char ** volatile paths, const char *outDir)
         if (FindChar(*source, '.')) {
             types[i] = 2;
             if (!MakePath(entry, *source, outDir, 1))
-                AssertFail(__FILE__, __LINE__, "Unable to open game data file!");
+                AssertFail(ResourceSourcePath, __LINE__, "Unable to open game data file!");
         }
-        ++source;
-        ++i;
+        ++source; ++i;
         entry += 0x48;
         if (i >= 10)
             break;
@@ -89,50 +88,118 @@ int ResMgr::Init(const char ** volatile paths, const char *outDir)
     loaded = 1;
     return loaded;
 }
-extern "C" void IORelease(void *);
 void ResMgr::Close()
 {
     if (opened) {
         ResMgr *owner = this;
         if (opened)
             IORelease((char *)owner + 0x330);
-        opened = 0;
+        owner->opened = 0;
     }
     if (loaded)
         loaded = 0;
 }
-extern "C" char *StringCopy(char *, const char *);
-extern "C" char *StringAppend(char *, const char *);
 extern "C" int FileExists(char *, char *, int);
 extern "C" int FileOpen(char *, const char *, char *, int);
-int ResMgr::FindPath(const char *suffix, char *destination, int flags)
+extern "C" char *StringCopy(char *, const char *);
+extern "C" char *StringAppend(char *, const char *);
+int ResMgr::FindPath(const char *suffix, char * volatile destination, int flags)
 {
     char buffer[256];
     register char *data;
     register char *dest = destination;
-    register int i = 0;
-    int n = count;
+    int i = 0; register int n = count;
     if (n <= 0)
         return 0;
     int *entry = (int *)this;
     data = (char *)entries;
     do {
-        if (entry[1] == 1) {
-            StringCopy(buffer, *(const char **)((char *)entry + 0x2c));
-            StringAppend(buffer, suffix);
-            if (FileExists(dest, buffer, 0))
-                return 1;
-        } else if (entry[1] == 2) {
-            if (FileOpen(data, suffix, dest, flags))
-                return 1;
-        }
-        ++entry;
-        ++i;
-        data += 0x48;
+            if (entry[1] == 1) {
+                StringCopy(buffer, *(const char **)((char *)entry + 0x2c));
+                StringAppend(buffer, suffix);
+                if (FileExists(dest, buffer, 0))
+                    return 1;
+            } else if (entry[1] == 2) {
+                if (FileOpen(data, suffix, dest, flags))
+                    return 1;
+            }
+            ++entry;
+            ++i;
+            data += 0x48;
     } while (i < count);
     return 0;
 }
-extern "C" int f_c7e0(ResMgr *self, const char *name, int required)
+/* Preserve the original AssertFail source line after reconstruction. */
+/* Keep the missing-resource assertion at its original line as declarations evolve. */
+inline void MissingResource(const char *name)
+{
+    char buffer[128];
+    sprintf(buffer, MissingResourceFormat, name);
+    /* original line padding 1 */
+    /* original line padding 2 */
+    /* original line padding 3 */
+    /* original line padding 4 */
+    /* original line padding 5 */
+    /* original line padding 6 */
+    /* original line padding 7 */
+    /* original line padding 8 */
+    /* original line padding 9 */
+    /* original line padding 10 */
+    /* original line padding 11 */
+    /* original line padding 12 */
+    /* original line padding 13 */
+    /* original line padding 14 */
+    /* original line padding 15 */
+    /* original line padding 16 */
+    /* original line padding 17 */
+    /* original line padding 18 */
+    /* original line padding 19 */
+    /* original line padding 20 */
+    /* original line padding 21 */
+    /* original line padding 22 */
+    /* original line padding 23 */
+    /* original line padding 24 */
+    /* original line padding 25 */
+    /* original line padding 26 */
+    /* original line padding 27 */
+    /* original line padding 28 */
+    /* original line padding 29 */
+    /* original line padding 30 */
+    /* original line padding 31 */
+    /* original line padding 32 */
+    /* original line padding 33 */
+    /* original line padding 34 */
+    /* original line padding 35 */
+    /* original line padding 36 */
+    /* original line padding 37 */
+    /* original line padding 38 */
+    /* original line padding 39 */
+    /* original line padding 40 */
+    /* original line padding 41 */
+    /* original line padding 42 */
+    /* original line padding 43 */
+    /* original line padding 44 */
+    /* original line padding 45 */
+    /* original line padding 46 */
+    /* original line padding 47 */
+    /* original line padding 48 */
+    /* original line padding 49 */
+    /* original line padding 50 */
+    /* original line padding 51 */
+    /* original line padding 52 */
+    /* original line padding 53 */
+    /* original line padding 54 */
+    /* original line padding 55 */
+    /* original line padding 56 */
+    /* original line padding 57 */
+    /* original line padding 58 */
+    /* original line padding 59 */
+    /* original line padding 60 */
+    /* original line padding 61 */
+    /* Preserve the original assertion line after loop-form experiments. */
+    AssertFail(ResourceSourcePath, __LINE__, buffer);
+}
+extern "C" int ResMgrOpen(ResMgr *self, const char *name, int required)
 {
     char path[128];
     if (self->FindPath(name, (char *)self + 0x330, 0)) {
@@ -140,64 +207,7 @@ extern "C" int f_c7e0(ResMgr *self, const char *name, int required)
         return 1;
     }
     if (required) {
-        char message[128];
-        sprintf(message, "Unable to open %s", name);
-        /* source line padding 1 */
-        /* source line padding 2 */
-        /* source line padding 3 */
-        /* source line padding 4 */
-        /* source line padding 5 */
-        /* source line padding 6 */
-        /* source line padding 7 */
-        /* source line padding 8 */
-        /* source line padding 9 */
-        /* source line padding 10 */
-        /* source line padding 11 */
-        /* source line padding 12 */
-        /* source line padding 13 */
-        /* source line padding 14 */
-        /* source line padding 15 */
-        /* source line padding 16 */
-        /* source line padding 17 */
-        /* source line padding 18 */
-        /* source line padding 19 */
-        /* source line padding 20 */
-        /* source line padding 21 */
-        /* source line padding 22 */
-        /* source line padding 23 */
-        /* source line padding 24 */
-        /* source line padding 25 */
-        /* source line padding 26 */
-        /* source line padding 27 */
-        /* source line padding 28 */
-        /* source line padding 29 */
-        /* source line padding 30 */
-        /* source line padding 31 */
-        /* source line padding 32 */
-        /* source line padding 33 */
-        /* source line padding 34 */
-        /* source line padding 35 */
-        /* source line padding 36 */
-        /* source line padding 37 */
-        /* source line padding 38 */
-        /* source line padding 39 */
-        /* source line padding 40 */
-        /* source line padding 41 */
-        /* source line padding 42 */
-        /* source line padding 43 */
-        /* source line padding 44 */
-        /* source line padding 45 */
-        /* source line padding 46 */
-        /* source line padding 47 */
-        /* source line padding 48 */
-        /* source line padding 49 */
-        /* source line padding 50 */
-        /* source line padding 51 */
-        /* source line padding 52 */
-        /* source line padding 53 */
-        /* source line padding 54 */
-        /* source line padding 55 */
-        AssertFail(__FILE__, __LINE__, message);
+        MissingResource(name);
     }
     return 0;
 }
@@ -209,69 +219,408 @@ int ResMgr::CloseFile()
     return 1;
 }
 int ResMgr::IsOpen() { return opened; }
-extern "C" int IoRead(void *, int, int);
-extern "C" int IoClose(void *);
-extern "C" int IoWrite(void *, int, int);
-extern "C" int f_c8a0(void *self, int offset, int size)
+extern "C" int StreamRead(void *, void *, int);
+extern "C" int ResMgrReadAt(void *, int, int);
+#pragma aux ResMgrReadAt "f_c8a0";
+extern "C" int ResMgrReadAt(void *self, int offset, int size)
 {
-    return IoRead((char *)self + 0x330, offset, size);
+    return IoRead((FileRecord *)((char *)self + 0x330), offset, size);
 }
-extern "C" int f_c8c0(void *self)
+extern "C" int ResMgrReadFirstByte(void *);
+#pragma aux ResMgrReadFirstByte "f_c8c0";
+extern "C" int ResMgrReadFirstByte(void *self)
 {
-    return IoRead((char *)self + 0x330, 0, 1);
+    return IoRead((FileRecord *)((char *)self + 0x330), 0, 1);
 }
-extern "C" int f_c8e0(void *self)
+extern "C" int ResMgrGetFileLength(void *);
+#pragma aux ResMgrGetFileLength "f_c8e0";
+extern "C" int ResMgrGetFileLength(void *self)
 {
-    return IoClose((char *)self + 0x330);
+    return IoClose((FileRecord *)((char *)self + 0x330));
 }
-extern "C" int f_c900(void *self, int offset, int size)
+extern "C" int ResMgrReadStream(void *, void *, int);
+#pragma aux ResMgrReadStream "f_c900";
+extern "C" int ResMgrReadStream(void *self, void *buffer, int size)
 {
-    return IoWrite((char *)self + 0x330, offset, size);
+    return StreamRead((char *)self + 0x330, buffer, size);
 }
-extern "C" int ResMgr_Load(ResMgr *self) { return 0x920; }
-extern "C" void MemFree(void *);
-extern "C" void f_cb80(void *p)
+extern "C" void *GlobalBlockAlloc(unsigned int, unsigned int);
+extern "C" unsigned int DecodeResourceBlock(unsigned int, unsigned short *, unsigned int *);
+extern "C" unsigned int gResourceFileSize;
+extern "C" void GlobalBlockFree(void *);
+/* Preserve the original line numbers for resource validation assertions. */
+/* Keep this source spacing after relocating FileRecord helper declarations. */
+int *ResMgr::Load(char *name, unsigned int flags, int *buffer, unsigned int bufferSize)
+{
+    struct LoadTemporaries {
+        unsigned int decodedSize;
+        int *decodedBuffer;
+        int *originalBuffer;
+        unsigned int fileSize;
+    } local;
+    int *header;
+    int *result = 0;
+    int found;
+    int requiredFlag = flags & 1;
+    local.originalBuffer = buffer;
+    if (FindPath(name, (char *)this + 0x330, 0)) {
+        opened = 1;
+        found = 1;
+    } else {
+        if (requiredFlag)
+            MissingResource(name);
+        found = 0;
+    }
+    if (found) {
+        local.fileSize = IoClose((FileRecord *)((char *)this + 0x330));
+        gResourceFileSize = local.fileSize;
+        if (local.fileSize != 0) {
+            if (buffer == 0) {
+                buffer = (int *)GlobalBlockAlloc(local.fileSize, 0);
+            } else if (bufferSize < local.fileSize) {
+                /* original line padding 9 */
+                /* original line padding 10 */
+                /* original line padding 11 */
+                /* original line padding 12 */
+                /* original line padding 13 */
+                /* original line padding 14 */
+                /* original line padding 15 */
+                /* original line padding 16 */
+                /* original line padding 17 */
+                /* original line padding 18 */
+                /* original line padding 19 */
+                /* original line padding 20 */
+                /* original line padding 21 */
+                /* original line padding 22 */
+                /* original line padding 23 */
+                /* original line padding 24 */
+                /* original line padding 25 */
+                /* original line padding 26 */
+                /* original line padding 27 */
+                /* original line padding 28 */
+                /* original line padding 29 */
+                /* original line padding 30 */
+                /* original line padding 31 */
+                /* original line padding 32 */
+                /* original line padding 33 */
+                /* original line padding 34 */
+                /* original line padding 35 */
+                /* original line padding 36 */
+                /* original line padding 37 */
+                /* original line padding 38 */
+                /* original line padding 39 */
+                /* original line padding 40 */
+                /* original line padding 41 */
+                /* original line padding 42 */
+                /* original line padding 43 */
+                /* original line padding 44 */
+                /* original line padding 45 */
+                /* original line padding 46 */
+                /* original line padding 47 */
+                /* original line padding 48 */
+                /* original line padding 49 */
+                /* original line padding 50 */
+                /* original line padding 51 */
+                /* original line padding 52 */
+                /* original line padding 53 */
+                /* original line padding 54 */
+                /* original line padding 55 */
+                /* original line padding 56 */
+                /* original line padding 57 */
+                /* original line padding 58 */
+                AssertFail(ResourceSourcePath, __LINE__, "Invalid data");
+            }
+            if (buffer == 0 && (flags & 1)) {
+                AssertFail(ResourceSourcePath, __LINE__, "Ran out of memory or disk space.  Try clearing more disk space and running again.");
+            }
+            if (buffer != 0) {
+                StreamRead((char *)this + 0x330, buffer, local.fileSize);
+                result = buffer;
+                header = (int *)buffer;
+                if (header[0] == 0x3a584b50 && header[1] == 0x10011966 && header[2] == 0x9baebacf) {
+                    if (header[3] <= 0 || header[3] >= 15 || local.fileSize - 0x18 != header[4] || header[5] <= 0 || header[5] >= 10000000 || local.originalBuffer != 0) {
+                                                                                        /* original line padding 9 */
+                        /* original line padding 10 */
+                        /* original line padding 11 */
+                        /* original line padding 12 */
+                        /* original line padding 13 */
+            /* preserve line 355 variant 1 */
+            /* preserve line 355 variant 2 */
+            /* preserve line 355 variant 3 */
+            /* preserve line 355 variant 4 */
+            /* preserve line 355 variant 5 */
+            /* preserve line 355 variant 6 */
+            /* preserve line 355 variant 7 */
+            /* preserve line 355 variant 8 */
+            AssertFail(ResourceSourcePath, __LINE__, 0);
+                    }
+                    gResourceFileSize = header[5];
+                    local.decodedSize = gResourceFileSize;
+                    local.decodedBuffer = (int *)GlobalBlockAlloc(gResourceFileSize, 0);
+                    if (local.decodedBuffer == 0 && (flags & 1)) {
+                            /* preserve line 363 variant 1 */
+                            /* preserve line 363 variant 2 */
+                            AssertFail(ResourceSourcePath, __LINE__, "Ran out of memory or disk space.  Try clearing more disk space and running again.");
+                    }
+                    result = 0;
+                    if (local.decodedBuffer != 0) {
+                        DecodeResourceBlock(header[3], (unsigned short *)(header + 6), &local.decodedSize);
+                        result = local.decodedBuffer;
+                    }
+                    if (buffer != 0)
+                        GlobalBlockFree(buffer);
+                }
+            }
+        }
+        if (opened)
+            IORelease((char *)this + 0x330);
+        opened = 0;
+    }
+    return result;
+}
+extern "C" void ReleasePoolData(void *);
+#pragma aux ReleasePoolData "f_cb80";
+extern "C" void ReleasePoolData(void *p)
 {
     if (p)
-        MemFree(p);
+        GlobalBlockFree(p);
 }
-extern "C" int f_cba0() { return 0xba0; }
-extern "C" void f_cbf0(void **p)
+extern "C" ResMgr gResMgr;
+extern "C" int LoadResourceData(int **, char *);
+#pragma aux LoadResourceData "f_cba0";
+extern "C" int LoadResourceData(int **out, char *name)
+{
+    int *resource = gResMgr.Load(name);
+    *out = resource;
+    if (resource != 0) {
+        int field = resource[7];
+        resource[7] = field + (int)resource;
+        resource = *out;
+        field = resource[8];
+        resource[8] = field + (int)resource;
+        resource = *out;
+        field = resource[9];
+        resource[9] = field + (int)resource;
+    }
+    return *out != 0;
+}
+extern "C" void ReleaseLoadedResource(void **);
+#pragma aux ReleaseLoadedResource "f_cbf0";
+extern "C" void ReleaseLoadedResource(void **p)
 {
     if (*p) {
-        f_cb80(*p);
+        ReleasePoolData(*p);
         *p = 0;
     }
 }
 struct ResourceHandle { void *resource; };
-extern "C" unsigned int f_cc10(ResourceHandle *p, const unsigned char *name)
+extern "C" unsigned int MeasureResourceTextWidth(ResourceHandle *p, const unsigned char *name)
 {
     unsigned int sum;
     unsigned char ch;
     unsigned char *table;
-    if (p->resource == 0)
-        goto empty;
-    if (name == 0)
-        goto empty;
-    sum = 0;
-    ch = *name;
-    table = *(unsigned char **)((char *)p->resource + 0x20);
-    if (ch) {
-        do {
-            sum += table[*name++];
-        } while (*name);
+    if (p->resource != 0 && name != 0) {
+        sum = 0;
+        ch = *name;
+        table = *(unsigned char **)((char *)p->resource + 0x20);
+        if (ch) {
+            do {
+                sum += table[*name++];
+            } while (*name);
+            return sum;
+        }
+        return sum;
     }
-    return sum;
-empty:
     sum = 0;
     return sum;
 }
-extern "C" int f_cc50() { return 0xc50; }
-extern "C" int f_cf80() { return 0xf80; }
-extern "C" int f_cfc0() { return 0xfc0; }
-extern "C" int f_d080() { return 0x1080; }
-extern "C" int f_d0e0() { return 0x10e0; }
-extern "C" void f_d110(MciState *s)
+extern "C" unsigned int gCurrentGlyphColor;
+extern "C" int gGlyphRenderFlags;
+extern "C" int gGlyphClipLeft;
+extern "C" int gGlyphClipTop;
+extern "C" int gGlyphClipRight;
+extern "C" int gGlyphClipBottom;
+extern "C" unsigned char *gGlyphColorTable;
+extern "C" unsigned int gGlyphBackgroundColor;
+extern "C" unsigned int gGlyphCurrentBackground;
+extern "C" unsigned char gGlyphSurface;
+extern "C" void DrawGlyphPixel(void *, int, int, char);
+extern "C" void DrawGlyphBackground(void *, int, int, int, int);
+extern "C" void BlitGlyphRows(int, int, unsigned int, int, unsigned char *, unsigned char *);
+extern "C" unsigned int RenderResourceGlyph(ResourceHandle *handle, int x, int y, signed char character)
+{
+    unsigned int code = (unsigned char)character;
+    register int *font = (int *)handle->resource;
+    unsigned int width;
+    register unsigned char *bits;
+    register int height;
+    register int opaque;
+    register int index;
+    register int right;
+    register unsigned int row;
+
+    if (font == 0)
+        return 0;
+    index = (int)code - font[5];
+    if (index < 0 || font[6] <= index)
+        return 0;
+    width = *(unsigned char *)(code + (unsigned int)font[8]);
+    if (width != 0 && code != 0x20) {
+        register unsigned int savedColor;
+        height = font[3];
+        bits = (unsigned char *)(font[9] + *(int *)(font[7] + index * 4));
+        opaque = *(char *)((char *)font + 6) != 1;
+        if (opaque && gGlyphRenderFlags == 1) {
+            int bottom = y + height - 1;
+            if (gGlyphClipLeft <= x && (int)(x + width - 1) <= gGlyphClipRight) {
+                if (y < gGlyphClipTop) {
+                    int clipped = gGlyphClipTop - y;
+                    height -= clipped;
+                    bits += clipped * width;
+                    y = gGlyphClipTop;
+                }
+                if (gGlyphClipBottom < bottom)
+                    height -= bottom - gGlyphClipBottom;
+                if (height < 1)
+                    return width;
+                BlitGlyphRows(x, y, width, height, bits, gGlyphColorTable);
+                return width;
+            }
+        }
+
+        savedColor = gCurrentGlyphColor;
+        if (gGlyphRenderFlags & 4)
+            x += font[3] >> 1;
+        right = x + width;
+        for (row = 0; row < (unsigned int)font[3]; ++row) {
+            if ((gGlyphRenderFlags & 1) == 0) {
+                gGlyphCurrentBackground = gGlyphBackgroundColor;
+                DrawGlyphBackground(&gGlyphSurface, x, y, right, y);
+            }
+            unsigned int column = 0;
+            unsigned char mask = 0x80;
+            int pixelX = x;
+            if (width != 0) {
+                do {
+                    unsigned char bit;
+                if (opaque) {
+                    bit = *bits;
+                    if (bit != 0) {
+                        if (gGlyphColorTable != 0)
+                            bit = gGlyphColorTable[bit];
+                        gCurrentGlyphColor = bit;
+                    }
+                    if (column < width - 1)
+                        ++bits;
+                } else {
+                    if (mask == 0) {
+                        ++bits;
+                        mask = 0x80;
+                    }
+                    bit = *bits & mask;
+                    mask >>= 1;
+                }
+                if (bit == 0) {
+                    if ((gGlyphRenderFlags & 8) && row == (unsigned int)font[4])
+                        DrawGlyphPixel(&gGlyphSurface, pixelX, y, (char)savedColor);
+                } else {
+                    char color = (char)gCurrentGlyphColor;
+                    if ((gGlyphRenderFlags & 0x10) == 0) {
+                        DrawGlyphPixel(&gGlyphSurface, pixelX, y, color);
+                        if (gGlyphRenderFlags & 2)
+                            DrawGlyphPixel(&gGlyphSurface, pixelX + 1, y, (char)gCurrentGlyphColor);
+                    } else if (((pixelX + y) & 1) == 0) {
+                        if (gGlyphRenderFlags & 2)
+                            DrawGlyphPixel(&gGlyphSurface, pixelX + 1, y, color);
+                    } else {
+                        DrawGlyphPixel(&gGlyphSurface, pixelX, y, color);
+                    }
+                }
+                ++column;
+                ++pixelX;
+                } while (column < width);
+            }
+            if ((gGlyphRenderFlags & 4) && (row & 1)) {
+                --right;
+                --x;
+            }
+            ++y;
+            ++bits;
+        }
+        if (gGlyphRenderFlags & 2)
+            ++width;
+        gCurrentGlyphColor = savedColor;
+    }
+    return width;
+}
+extern "C" void RenderResourceText(ResourceHandle *font, int x, int y, const signed char *text)
+{
+    if (text) {
+        while (*text) {
+            x += RenderResourceGlyph(font, x, y, *text);
+            ++text;
+        }
+    }
+}
+extern "C" void RenderPositionedResourceText(ResourceHandle *font, int x, int y, int alignment, const signed char *text)
+{
+    if (alignment < 0) {
+        if (text) {
+            while (*text) {
+                x += RenderResourceGlyph(font, x, y, *text);
+                ++text;
+            }
+        }
+    } else {
+        register unsigned int width = 0;
+        if (font->resource && text) {
+            const unsigned char *p = (const unsigned char *)text;
+            register unsigned char *table = *(unsigned char **)((char *)font->resource + 0x20);
+            while (*p)
+                width += table[*p++];
+        }
+        int drawX = x - (int)width / ((alignment == 0) + 1);
+        if (text) {
+            while (*text) {
+                drawX += RenderResourceGlyph(font, drawX, y, *text);
+                ++text;
+            }
+        }
+    }
+}
+extern "C" void RenderFormattedResourceText(ResourceHandle *font, int x, int y, const char *format, ...)
+{
+    char buffer[84];
+    va_list arguments;
+    va_start(arguments, format);
+    vsprintf(buffer, format, arguments);
+    va_end(arguments);
+    register int drawY;
+    register int drawX;
+    register int *drawFont;
+    drawFont = (int *)font;
+    drawX = x;
+    drawY = y;
+    char *text = buffer;
+    if (text) {
+        while (*text) {
+            drawX += RenderResourceGlyph((ResourceHandle *)drawFont, drawX, drawY, *text);
+            ++text;
+        }
+    }
+}
+void PopObjectConstruct(void *);
+extern "C" MciState gMciState;
+extern "C" int gMciInitialized;
+extern "C" void InitializeMciState()
+{
+    PopObjectConstruct((void *)((char *)&gMciInitialized - 8));
+    ResetMciState(&gMciState);
+    gMciInitialized = 1;
+}
+extern "C" void ResetMciState(MciState *);
+#pragma aux ResetMciState "f_d110";
+extern "C" void ResetMciState(MciState *s)
 {
     s->device = 0;
     s->pending = 0;
@@ -290,7 +639,27 @@ MciState *MciState::StopClose()
     }
     return this;
 }
-extern "C" int f_d180() { return 0x1180; }
+extern "C" int OpenMciDevice(MciState *s, unsigned int openType, unsigned int element)
+{
+    s->openType = openType;
+    s->element = element;
+    if (s->device == 0) {
+        MCI_OPEN_PARMSA open;
+        open.wDeviceID = s->device;
+        open.lpstrDeviceType = (LPCSTR)MCI_DEVTYPE_CD_AUDIO;
+        if (mciSendCommandA(0, MCI_OPEN, MCI_OPEN_TYPE | MCI_OPEN_TYPE_ID, (unsigned long)&open) != 0)
+            return 0;
+        s->device = open.wDeviceID;
+    }
+    if (s->pending == 0) {
+        MCI_STATUS_PARMS status;
+        status.dwItem = 5;
+        mciSendCommandA(s->device, MCI_STATUS, MCI_STATUS_ITEM | MCI_WAIT, (unsigned long)&status);
+        if (status.dwReturn == 0)
+            return 0;
+    }
+    return 1;
+}
 void MciState::Close()
 {
     if (device) {
@@ -302,7 +671,9 @@ void MciState::Close()
         device = 0;
     }
 }
-extern "C" int f_d270(MciState *s)
+extern "C" int MciStateNotPlaying(MciState *);
+#pragma aux MciStateNotPlaying "f_d270";
+extern "C" int MciStateNotPlaying(MciState *s)
 {
     if (!s->device)
         return 0;
@@ -313,15 +684,37 @@ extern "C" int f_d270(MciState *s)
         return 0;
     return 1;
 }
-extern "C" int f_d310(MciState *, int, int, int, int);
-extern "C" void f_d2c0(MciState *s)
+extern "C" void StopMciState(MciState *);
+#pragma aux StopMciState "f_d2c0";
+extern "C" void StopMciState(MciState *s)
 {
     if (s->device)
         mciSendCommandA(s->device, MCI_STOP, 0, 0);
     s->state = 0;
 }
-extern "C" int f_d2f0(MciState *s, int start)
+extern "C" void PlayNextMciTrack(MciState *, int);
+#pragma aux PlayNextMciTrack "f_d2f0";
+extern "C" void PlayNextMciTrack(MciState *s, int start)
 {
-    return f_d310(s, start, 0, start + 1, 0);
+    s->PlayTimeRange(start, 0, start + 1, 0);
 }
-extern "C" int f_d310(MciState *s, int from, int flags, int to, int volume) { return 0x1310; }
+int MciState::PlayTimeRange(int from, int fromSeconds, unsigned int to, int toSeconds)
+{
+    register MciState *state = this;
+    struct LocalParameters {
+        MCI_PLAY_PARMS play;
+        MCI_SET_PARMS setTime;
+    } local;
+    local.setTime.dwTimeFormat = 10;
+    mciSendCommandA(state->device, MCI_SET, MCI_SET_TIME_FORMAT, (unsigned long)&local.setTime);
+    DWORD flags;
+    if (to)
+        flags = MCI_FROM | MCI_TO;
+    else
+        flags = MCI_FROM;
+    state->state = 1;
+    DWORD packedFrom = (DWORD)(unsigned char)from | ((fromSeconds / 60 & 0xffff) << 8);
+    local.play.dwFrom = packedFrom | ((unsigned char)(fromSeconds % 60) << 16);
+    local.play.dwTo = (to & 0xff) | ((toSeconds / 60 & 0xffff) << 8) | ((unsigned char)(toSeconds % 60) << 16);
+    return mciSendCommandA(state->device, MCI_PLAY, flags, (unsigned long)&local.play) == 0;
+}
