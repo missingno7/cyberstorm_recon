@@ -197,8 +197,11 @@ def main(argv):
     # this TU's own data objects whose segment base was placed in this run (BSS or data segments placed through
     # --at/search anchors): record base+offset as hypothesis bindings, so verify (no --at, no search) can still
     # reach and prove them. Same evidence class as implied bindings; the item proofs still run in verify.
+    # only proven placements: a STRICT data segment or a placed BSS segment (a DIFF segment's base can be a
+    # misinference, e.g. string bytes read as an address)
     bases = {s["seg"]: int(s["base"], 16) for r in reports for s in r["segments"]
-             if s["class"].upper() != "CODE" and s.get("base")}
+             if s["class"].upper() != "CODE" and s.get("base") and s["status"] in ("STRICT", "BSS")
+             and img_section(s["base"]) is not None}
     for m in mods:
         for pn, psi, po, loc in m.publics:
             seg = m.segments[psi]

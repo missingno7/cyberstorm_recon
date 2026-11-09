@@ -39,3 +39,10 @@ file (e.g. 00452570, asserts on simgame.c lines 113/189) stay open.
 0042c9d0, which `src/terr/tdisplay.c` already counts under the working label `DisplayIdentityA`. Promotion refuses
 the second name. Fix: make tdisplay.c use the real inline `GuiPoint` constructor (same mangled name), then promote
 tu_004297d4 (its shared COMDAT is then skipped as already counted). 7 STRICT functions of s21 wait on this.
+
+## logic\sinterp.c second pass (2026-11-09, s28): publish rolls back
+`candidates/s28/logic/sinterp.c` passes its dry run (18 STRICT, +3) but the post-publish verify view reports the
+previously accepted `ScriptLoad` (9 bytes) and `ScriptString` (3 bytes) as DIFF with the same hypothesis bindings
+(MissionRandomTable#$nui, ScriptFormat, scriptText, ...), so promote rolls back. Not yet explained: placement of
+non-strict own callees (ScriptFormat 00469a95) or an alias-key binding differs between the --at view and verify.
+Debug helper used: a wrapper around gate.build_and_compare printing both views' bindings. src/ keeps the old file.
