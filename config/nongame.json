@@ -1,0 +1,250 @@
+{
+ "note": "Code ranges that are not game C/C++ (lane s39 classification, candidates/s39/REPORT.md, proof build/s39/proof.py). runtime = Watcom library members libscan misses; thunk = WLINK import glue and fill; data = data misread as code; asm = hand-written assembly (game code, needs an assembler path later). Excluded from the C/C++ census; never counted as STRICT.",
+ "ranges": [
+  {
+   "start": "00435084",
+   "end": "00435130",
+   "class": "asm",
+   "member": "",
+   "evidence": "Terrain masked blit: ENTER/LEAVE, BH/CL/CH independently hold nested counts, raw MOVSB/MOVSD and shift/carry bit tests."
+  },
+  {
+   "start": "00435b5c",
+   "end": "00435dec",
+   "class": "asm",
+   "member": "",
+   "evidence": "Terrain blitters: ENTER/LEAVE, mirrored BSWAP path, explicit DS\u2192ES, packed CH/CL loop state, ROL-based transparent dword copies."
+  },
+  {
+   "start": "0047dfc2",
+   "end": "0047e008",
+   "class": "runtime",
+   "member": "PLIBMT3S:pure_err + vfun_err",
+   "evidence": "G1: two identical 35-byte CODE patterns distinguished by complete CONST strings and consistent guard references."
+  },
+  {
+   "start": "0047e0c4",
+   "end": "0047e0db",
+   "class": "runtime",
+   "member": "NT/CLIB3S:sprintf",
+   "evidence": "G2: complete 74-byte sprintf member; 23-byte callback public mem_putc overwritten by vsprintf local of same name."
+  },
+  {
+   "start": "0047ec9c",
+   "end": "0047ed10",
+   "class": "asm",
+   "member": "",
+   "evidence": "Unpacker: ENTER, CLD, PUSH DS/POP ES, LODS/LOOP and REP MOVSB; explicit string-register ABI."
+  },
+  {
+   "start": "0047ed10",
+   "end": "0047edb6",
+   "class": "asm",
+   "member": "",
+   "evidence": "Unpacker: ENTER/LEAVE and manual register/string-copy loops, same assembly style as preceding unpacker."
+  },
+  {
+   "start": "0047f97a",
+   "end": "0047f97c",
+   "class": "runtime",
+   "member": "NOEMU387:386inite",
+   "evidence": "G3: two RETs at public offsets 0/1; paired priority-1 XI/YI callbacks at 004a6d1a/004a6d4a prove placement."
+  },
+  {
+   "start": "0047f9a0",
+   "end": "0047fb3d",
+   "class": "asm",
+   "member": "",
+   "evidence": "Fixed-point cosine/sine/rotation helpers: ENTER/LEAVE, XCHG, SHRD and paired EDX:EAX products, ADC rounding."
+  },
+  {
+   "start": "0047fea7",
+   "end": "0047ff16",
+   "class": "data",
+   "member": "NT/CLIB3S:cstrtwwt or byte-identical cstrtww2",
+   "evidence": "G4: four-byte startup pointer + 107-byte WATCOM runtime banner. Whole 126-byte cstrtwwt member matches from 0047fe98."
+  },
+  {
+   "start": "00481194",
+   "end": "00481290",
+   "class": "asm",
+   "member": "",
+   "evidence": "Line clipping: ENTER then saves EBP again and repurposes it as clip-rectangle pointer; XCHG endpoints and full-width IMUL/IDIV."
+  },
+  {
+   "start": "004826a8",
+   "end": "00482737",
+   "class": "asm",
+   "member": "",
+   "evidence": "VectorAtan hand assembly (s39)"
+  },
+  {
+   "start": "00482737",
+   "end": "00482750",
+   "class": "runtime",
+   "member": "NT/CLIB3S:setefg",
+   "evidence": "VectorAtan is hand assembly through 00482737 (ENTER, CDQ/SHLD/DIV, XCHG, angle lookup 004a54f8); following 25 bytes are G5 setefg."
+  },
+  {
+   "start": "004827e4",
+   "end": "004827e5",
+   "class": "runtime",
+   "member": "NT/CLIB3S:crwd386",
+   "evidence": "G6: one-byte FPE default; full 71-byte crwd386 DATA at 004a56fc, five independent mainwnt anchors and __FPE_handler pointer."
+  },
+  {
+   "start": "0048480c",
+   "end": "0048481c",
+   "class": "runtime",
+   "member": "PLIBMT3S:thrddata",
+   "evidence": "G7: 16-byte initializer calls newly identified __RegisterThreadDataSize; max anchor 4."
+  },
+  {
+   "start": "00484bc4",
+   "end": "00484be8",
+   "class": "runtime",
+   "member": "PLIBMT3S:stabthrw",
+   "evidence": "G8: private entry inside complete 2503-byte member 004849bc..00485383; existing public-range omission."
+  },
+  {
+   "start": "00484c2a",
+   "end": "00484d2a",
+   "class": "runtime",
+   "member": "PLIBMT3S:stabthrw",
+   "evidence": "G8: seven private/internal entries inside same complete matched member."
+  },
+  {
+   "start": "004854c8",
+   "end": "00485564",
+   "class": "asm",
+   "member": "",
+   "evidence": "Byte-run unpacker: ENTER/LEAVE, CLD, manual alignment to REP STOSD/MOVSB, BL/BH + ROL dword assembly. Existing UnpackLzw name is a hypothesis; algorithm is byte-run/literal decoding."
+  },
+  {
+   "start": "0048557b",
+   "end": "0048558f",
+   "class": "runtime",
+   "member": "NT/CLIB3S:enterdb",
+   "evidence": "G8: internal debugger helpers inside 43-byte __EnterWVIDEO member 00485564..0048558f."
+  },
+  {
+   "start": "0048584a",
+   "end": "0048586f",
+   "class": "data",
+   "member": "NT/CLIB3S:itoa",
+   "evidence": "G2: 37-byte Alphabet table, exact itoa member prefix: digit alphabet + NUL; local name overwritten by ltoa Alphabet. Not an instruction entry."
+  },
+  {
+   "start": "00485b49",
+   "end": "00485b4c",
+   "class": "runtime",
+   "member": "NT/CLIB3S:nmemneed",
+   "evidence": "G9: XOR EAX,EAX; RET. Anchored nmalloc member explicitly calls extern __nmemneed at 00482667."
+  },
+  {
+   "start": "00485cd4",
+   "end": "00485cd6",
+   "class": "runtime",
+   "member": "NT/CLIB3S:save8087",
+   "evidence": "G10: RET + one fill byte. chk8087 anchors __Save8087 and __Rest8087, both initialized to this address."
+  },
+  {
+   "start": "00485cfd",
+   "end": "00485d0f",
+   "class": "runtime",
+   "member": "NT/CLIB3S:regdata",
+   "evidence": "G11: 18 bytes, absolute-only fixups, consistent __ThreadDataSize references and initial dword 0xe2."
+  },
+  {
+   "start": "00485f77",
+   "end": "00485fc3",
+   "class": "runtime",
+   "member": "NT/CLIB3S:cinit + exit",
+   "evidence": "G12: 11-byte cinit plus complete 65-byte exit member; __CommonInit stores 0x8000 through anchored _amblksiz. exit has segment-relative call."
+  },
+  {
+   "start": "0048633d",
+   "end": "00486344",
+   "class": "runtime",
+   "member": "NT/CLIB3S:trdalloc",
+   "evidence": "G13: five-byte jump + 2 fill bytes; target is established __FreeThreadDataList at 004862ea."
+  },
+  {
+   "start": "0048643f",
+   "end": "004864c8",
+   "class": "runtime",
+   "member": "NT/CLIB3S:stjmp386 + PLIBMT3S:allocexc",
+   "evidence": "G8: first 101 bytes are interior stjmp386 (004863de..004864a4), remaining 36 bytes private prefix of allocexc (004864a4..00486695)."
+  },
+  {
+   "start": "00486695",
+   "end": "00486696",
+   "class": "runtime",
+   "member": "NT/CLIB3S:ljmphdl",
+   "evidence": "G14: RET; stjmp386/stabthrw independently anchor __longjmp_handler at 004a5a7c, initialized here."
+  },
+  {
+   "start": "00487b6b",
+   "end": "00487bbc",
+   "class": "runtime",
+   "member": "NT/CLIB3S:amodf386",
+   "evidence": "G8: private interior of exact 300-byte __ModF member 00487a90..00487bbc."
+  },
+  {
+   "start": "00487fb1",
+   "end": "00488066",
+   "class": "runtime",
+   "member": "NT/CLIB3S:thredwnt",
+   "evidence": "G2: complete 443-byte member matches; local _begin_thread_helper overwritten by thrdxwnt same-name local."
+  },
+  {
+   "start": "004882f5",
+   "end": "004883ac",
+   "class": "runtime",
+   "member": "MATH387S/MATH3S:i64ts386 (identical copies)",
+   "evidence": "G8: internal entries inside exact 454-byte integer/string arithmetic member 004881e6..004883ac."
+  },
+  {
+   "start": "004884cd",
+   "end": "0048895f",
+   "class": "runtime",
+   "member": "NT/CLIB3S:chipd32",
+   "evidence": "G8: 64 census entries are x87 FDIV dispatch/repair paths inside 1820-byte matched member 004883ac..00488ac8; real runtime assembly, not 64 game functions."
+  },
+  {
+   "start": "00488b43",
+   "end": "00488b48",
+   "class": "runtime",
+   "member": "NT/CLIB3S:gtpidwnt",
+   "evidence": "G15: five-byte jump to 00489386; verified FF25 IAT thunk is KERNEL32.GetCurrentProcessId."
+  },
+  {
+   "start": "00488c32",
+   "end": "00488c40",
+   "class": "runtime",
+   "member": "NT/CLIB3S:remove",
+   "evidence": "G16: 14-byte remove wrapper calls newly identified unlink; both complete members match."
+  },
+  {
+   "start": "00488e22",
+   "end": "00488e37",
+   "class": "runtime",
+   "member": "NT/CLIB3S:unlnkwnt",
+   "evidence": "G16: 21-byte unlink wrapper, DeleteFileA thunk + established __set_errno_nt disambiguate six same-shape NT file wrappers."
+  },
+  {
+   "start": "00488ee2",
+   "end": "00488ee7",
+   "class": "runtime",
+   "member": "MATH387S/MATH3S:__mtherr",
+   "evidence": "G17: five-byte __matherr jump, _matherr initialized DATA callback anchors wrapper; target 004890ad matches matherr leaf."
+  },
+  {
+   "start": "004890b0",
+   "end": "00489600",
+   "class": "thunk",
+   "member": "WLINK Win32 import glue: KERNEL32, USER32, GDI32, WINMM",
+   "evidence": "G18: 162 consecutive FF25 absolute-IAT jumps (972 bytes), each IAT target and HIGHLOW site checked; census seeds 161; final 388 bytes zero fill."
+  }
+ ]
+}

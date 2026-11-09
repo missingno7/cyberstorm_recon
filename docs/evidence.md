@@ -69,3 +69,13 @@ Full list: extract with `strings` and `grep -E '\.(c|cpp|asm|h)$'`.
 
 Not searched yet: CyberStorm 2 executable (sibling code, maybe same compiler), Hunter Hunted /
 Earthsiege 2 (same studio and era, possible shared `gfx`/`io` libraries), Sierra/Dynamix SDK drops.
+
+## Non-game code ranges (2026-11-09, lane s39)
+`config/nongame.json` lists 35 code ranges that are not game C/C++: Watcom runtime members that libscan misses
+(pure_err/vfun_err, sprintf callback, setefg, thrddata, stabthrw/chipd32/i64ts386 interiors, cinit/exit, ...),
+WLINK import glue (162 FF25 thunks + 388 fill bytes), data misread as code (startup banner, itoa alphabet), and 12
+hand-assembly routines (terrain blitters, unpackers, fixed-point trig, line clipping, VectorAtan; 2074 bytes).
+Evidence: candidates/s39/REPORT.md, reproducible with build/s39/proof.py (32 member matches, 306 contextual checks).
+funcmap marks them `lib` (runtime/glue/data) or `asm`; the C/C++ census and verify's denominator exclude them
+(2693 -> 2417 game functions). Hand assembly stays future work (assembler path) and is reported separately.
+Open: fold s39's libscan gap proposals (G1-G18) into tools/libscan.py so the identities come from the scanner.

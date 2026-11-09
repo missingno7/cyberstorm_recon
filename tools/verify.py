@@ -63,10 +63,12 @@ def main(argv):
                 pass
     fm = json.loads((BUILD / "funcmap" / "cs11.json").read_text()) if (BUILD / "funcmap" / "cs11.json").exists() else None
     if fm:
-        game = [f for f in fm["functions"] if f["kind"] != "lib"]
+        game = [f for f in fm["functions"] if f["kind"] not in ("lib", "asm")]
+        asm = [f for f in fm["functions"] if f["kind"] == "asm"]
         gbytes = sum(f["size"] for f in game)
         print(f"strict: {nfun} functions / ~{len(game)} game functions; {nbytes} / ~{gbytes} bytes "
-              f"({100 * nbytes / gbytes:.2f}%) in {len(ledger['tus'])} TUs")
+              f"({100 * nbytes / gbytes:.2f}%) in {len(ledger['tus'])} TUs; hand assembly (not counted): "
+              f"{len(asm)} functions, {sum(f['size'] for f in asm)} bytes")
     else:
         print(f"strict: {nfun} functions, {nbytes} bytes in {len(ledger['tus'])} TUs")
     if "--secondary" in argv:

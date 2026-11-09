@@ -22,7 +22,7 @@ from capstone import x86
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import pe as pemod  # noqa: E402
-from common import BUILD, dump_json  # noqa: E402
+from common import BUILD, ROOT, dump_json  # noqa: E402
 
 
 def pad_len(code, k):
@@ -218,6 +218,19 @@ def analyse(img, known_data=frozenset(), known_jt_sites=frozenset()):
             descend(work.pop())
 
     starts = sorted(func_starts)
+    # config/nongame.json: classified non-C ranges (runtime members libscan misses, import glue, data, hand asm)
+    ng = []
+    ngp = ROOT / "config" / "nongame.json"
+    if img.name == "cs11" and ngp.exists():
+        ng = [(int(r["start"], 16), int(r["end"], 16), r["class"]) for r in json.loads(ngp.read_text())["ranges"]]
+
+    def kind_of(s):
+        if s in libsyms:
+            return "lib"
+        for a, b, c in ng:
+            if a <= s < b:
+                return "asm" if c == "asm" else "lib"
+        return "orphan" if s in orphans else "code"
     funcs = []
     for i, s in enumerate(starts):
         e = starts[i + 1] if i + 1 < len(starts) else t1
@@ -225,7 +238,7 @@ def analyse(img, known_data=frozenset(), known_jt_sites=frozenset()):
         while ce > s and not insn_cover[ce - 1 - t0]:
             ce -= 1
         funcs.append({"va": f"{s:08x}", "end": f"{e:08x}", "size": e - s, "code_end": f"{ce:08x}",
-                      "kind": "lib" if s in libsyms else ("orphan" if s in orphans else "code"),
+                      "kind": kind_of(s),
                       **({"name": libsyms[s]} if s in libsyms else {}),
                       "callers": len(calls.get(s, [])),
                       "ptr_refs": len([x for x in ptr_refs.get(s, []) if x not in jt_sites]),

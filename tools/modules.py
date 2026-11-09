@@ -41,10 +41,11 @@ def main(argv):
             gap = img.read_va(ce, va - ce)
         prevf = f
         # linker fill is zero bytes; compiler fill is no-op instructions (never a 00 byte first)
-        boundary = (cur is None or f["kind"] == "lib" or cur["kind"] == "lib"
+        fk = f["kind"] if f["kind"] in ("lib", "asm") else "game"       # asm: hand assembly (config/nongame.json)
+        boundary = (cur is None or fk != "game" or cur["kind"] != "game"
                     or (len(gap) > 0 and not any(gap)))
         if boundary:
-            cur = {"start": f["va"], "kind": "lib" if f["kind"] == "lib" else "game", "funcs": [], "paths": set()}
+            cur = {"start": f["va"], "kind": fk, "funcs": [], "paths": set()}
             mods.append(cur)
         cur["funcs"].append(f["va"])
         cur["end"] = f["end"]
@@ -65,6 +66,9 @@ def main(argv):
               f"{m['matched']:3d} ok  {' '.join(m['paths'])}")
     print(f"{len(game)} game modules, {sum(1 for m in game if m['align16'])} all-16-aligned, "
           f"{sum(1 for m in game if m['paths'])} with path names")
+    asm = [m for m in out if m["kind"] == "asm"]
+    print(f"hand assembly (config/nongame.json, not in the C/C++ work list): {len(asm)} ranges, "
+          f"{sum(m['size'] for m in asm)} bytes")
     return 0
 
 
