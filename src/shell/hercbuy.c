@@ -19,7 +19,7 @@ public:
 };
 class Flic {
 public:
-    Flic();
+    Flic(); ~Flic();
     unsigned long Update(Surface *surface);
     void Close();
     int Open(long source, int priority, int mode);
@@ -45,7 +45,7 @@ struct MenuLabel {
 #pragma pack(pop)
 class GuiScreen {
 public:
-    char opaque[0x50];
+    char opaque[0x50]; ~GuiScreen(){ *(int *)(opaque+0x10)=0; }
     GuiScreen(GuiControl **controls, unsigned length, unsigned long flags);
     void LoadLayout(long resource);
     void Open(InputReq *input, StrPool *strings, long base, int navigate);
@@ -62,7 +62,7 @@ class HercBuyCtor : public GuiScreen {
     char gap[0x0d];
     Flic animation;
 public:
-    HercBuyCtor();
+    HercBuyCtor(); ~HercBuyCtor();
 };
 extern int g511948; extern int gShellStrings;
 extern int gMenuSavedSurface; extern int g513888;
@@ -1052,4 +1052,8 @@ MenuNumber initNumber3(-1, 0x12);
 MenuNumber initNumber4(-1, 0x12);
 MenuNumber initNumber5(-1, 0x12);
 HercBuyInitScreen initScreen;
+
+
+HercBuyCtor::~HercBuyCtor() {} 
+
 

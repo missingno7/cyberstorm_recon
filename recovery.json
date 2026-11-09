@@ -2988,11 +2988,6 @@
    "install": "wc106",
    "profile": "plain",
    "functions": {
-    "W?.tdctor$:MenuPrefixButton$n()rn$1$": {
-     "va": "004085ac",
-     "size": 25,
-     "mangled": "W?.tdctor$:MenuPrefixButton$n()rn$1$"
-    },
     "W?.tdctor$:MenuLabel$n()rn$1$": {
      "va": "004122e8",
      "size": 27,
@@ -3082,6 +3077,16 @@
      "va": "00417ee4",
      "size": 21,
      "mangled": "W?$Wda0215$:MenuPrefixButton$n(ui)pnv"
+    },
+    "W?$Wda0215$:MenuLabel$n(ui)pnv": {
+     "va": "00417efc",
+     "size": 21,
+     "mangled": "W?$Wda0215$:MenuLabel$n(ui)pnv"
+    },
+    "HercBuyCtor::$dt": {
+     "va": "00417f14",
+     "size": 29,
+     "mangled": "W?$dt:HercBuyCtor$n()_"
     }
    },
    "data": {
@@ -7663,6 +7668,204 @@
     },
     "W?$Wts0jn$MenuImageButton$$$nx[]uc": {
      "va": "0048d978",
+     "size": 17
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_00417f34.c": {
+   "as": "_unknown\\tu_00417f34.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "00417f34",
+     "size": 389,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "StorageScreen::$ct": {
+     "va": "004180b9",
+     "size": 42,
+     "mangled": "W?$ct:StorageScreen$n()_"
+    },
+    "StorageClose": {
+     "va": "00418536",
+     "size": 97,
+     "mangled": "W?StorageClose$n(pn$StorageScreen$$)v"
+    },
+    "StorageInput": {
+     "va": "00418597",
+     "size": 107,
+     "mangled": "W?StorageInput$n(pn$StorageScreen$$)v"
+    },
+    "StorageImage": {
+     "va": "00418602",
+     "size": 31,
+     "mangled": "W?StorageImage$n(pn$StorageScreen$$)uc"
+    },
+    "StorageDetails": {
+     "va": "00418621",
+     "size": 256,
+     "mangled": "W?StorageDetails$n(pn$StorageScreen$$)v"
+    },
+    "StorageStart": {
+     "va": "00418721",
+     "size": 85,
+     "mangled": "W?StorageStart$n(pn$StorageScreen$$)v"
+    },
+    "StorageSetup": {
+     "va": "00418ae9",
+     "size": 116,
+     "mangled": "W?StorageSetup$n()v"
+    },
+    "StorageScreen::Names": {
+     "va": "00418ced",
+     "size": 111,
+     "mangled": "W?Names$:StorageScreen$n(uc)v"
+    },
+    "StorageVisibleNames": {
+     "va": "00418d5c",
+     "size": 115,
+     "mangled": "W?StorageVisibleNames$n(pn$StorageScreen$$uc)v"
+    },
+    "StorageRedraw": {
+     "va": "00418dcf",
+     "size": 32,
+     "mangled": "W?StorageRedraw$n(pn$StorageScreen$$)v"
+    },
+    "StorageCredits": {
+     "va": "00418def",
+     "size": 23,
+     "mangled": "W?StorageCredits$n()v"
+    },
+    "StorageSave": {
+     "va": "00418e06",
+     "size": 42,
+     "mangled": "W?StorageSave$n(pn$StorageScreen$$)v"
+    },
+    "StorageRestore": {
+     "va": "00418e30",
+     "size": 42,
+     "mangled": "W?StorageRestore$n(pn$StorageScreen$$)v"
+    },
+    "StorageScreen::Ramp": {
+     "va": "00418e5a",
+     "size": 67,
+     "mangled": "W?Ramp$:StorageScreen$n()v"
+    },
+    "StorageSelected": {
+     "va": "00418e9d",
+     "size": 8,
+     "mangled": "W?StorageSelected$n(pn$StorageScreen$$)uc"
+    },
+    "StorageDone": {
+     "va": "00418ea5",
+     "size": 14,
+     "mangled": "W?StorageDone$n()v"
+    },
+    "W?$Wda0224$:MenuPrefixButton$n(ui)pnv": {
+     "va": "00418eb4",
+     "size": 21,
+     "mangled": "W?$Wda0224$:MenuPrefixButton$n(ui)pnv"
+    },
+    "StorageScreen::$dt": {
+     "va": "00418ecc",
+     "size": 33,
+     "mangled": "W?$dt:StorageScreen$n()_"
+    }
+   },
+   "data": {
+    "CONST2": {
+     "va": "0048d1a0",
+     "size": 108
+    },
+    "_DATA": {
+     "va": "0048ec14",
+     "size": 12
+    },
+    "W?$Wts0kn$MenuPrefixButton$$$nx[]uc": {
+     "va": "0048c9ec",
+     "size": 17
+    },
+    "W?$Wts0en$MenuButton$$$nx[]uc": {
+     "va": "0048c9d8",
+     "size": 17
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_004481c0.c": {
+   "as": "_unknown\\tu_004481c0.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "004481c0",
+     "size": 187,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "ReportScreen::$ct": {
+     "va": "0044827b",
+     "size": 42,
+     "mangled": "W?$ct:ReportScreen$n()_"
+    },
+    "ReportOpen": {
+     "va": "004482a5",
+     "size": 223,
+     "mangled": "W?ReportOpen$n(pn$ReportScreen$$pn$InputReq$$)v"
+    },
+    "ReportMission": {
+     "va": "00448384",
+     "size": 104,
+     "mangled": "W?ReportMission$n(pn$ReportScreen$$i)v"
+    },
+    "ReportClose": {
+     "va": "004483ec",
+     "size": 58,
+     "mangled": "W?ReportClose$n(pn$ReportScreen$$)v"
+    },
+    "ReportInput": {
+     "va": "00448426",
+     "size": 58,
+     "mangled": "W?ReportInput$n(pn$ReportScreen$$)v"
+    },
+    "SimPilotDraw": {
+     "va": "00448460",
+     "size": 165,
+     "mangled": "W?SimPilotDraw$n(pn$ReportScreen$$)v"
+    },
+    "ReportDirty": {
+     "va": "00448505",
+     "size": 12,
+     "mangled": "W?ReportDirty$n(pn$ReportScreen$$)v"
+    },
+    "ReportSelect": {
+     "va": "00448511",
+     "size": 395,
+     "mangled": "W?ReportSelect$n(pn$ReportScreen$$pn$ActorRecord$$)v"
+    },
+    "ReportScreen::SetOther": {
+     "va": "0044869c",
+     "size": 61,
+     "mangled": "W?SetOther$:ReportScreen$n(pn$ActorRecord$$ii)v"
+    },
+    "ReportGlobalInput": {
+     "va": "00448d34",
+     "size": 63,
+     "mangled": "W?ReportGlobalInput$n()v"
+    }
+   },
+   "data": {
+    "CONST2": {
+     "va": "0048dd3c",
+     "size": 60
+    },
+    "_DATA": {
+     "va": "004a00e4",
+     "size": 12
+    },
+    "W?$Wts0en$MenuSpacer$$$nx[]uc": {
+     "va": "0048d964",
      "size": 17
     }
    },

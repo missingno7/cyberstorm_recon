@@ -2842,12 +2842,52 @@
    "tu": "src/shell/hercbuy.c",
    "evidence": "strict match 2026-11-09"
   },
+  "W?$Wda0215$:MenuLabel$n(ui)pnv": {
+   "va": "00417efc",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$Wda0215$:MenuLabel$n(ui)pnv",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercBuyCtor::$dt": {
+   "va": "00417f14",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$dt:HercBuyCtor$n()_",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "W?.fn_init$n()v@_unknown/tu_00417f34.c": {
+   "va": "00417f34",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/_unknown/tu_00417f34.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "StorageScreen::$ct": {
+   "va": "004180b9",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:StorageScreen$n()_",
+   "tu": "src/_unknown/tu_00417f34.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "ShellStorageOpen": {
    "va": "004180e3",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?ShellStorageOpen$n(pn$Scene$$pn$InputReq$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "StorageReopen": {
+   "va": "00418392",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?StorageReopen$n(pn$StorageScreen$$pn$InputReq$$)v",
+   "tu": "src/_unknown/tu_00417f34.c",
+   "evidence": "placed (at) in src/_unknown/tu_00417f34.c 2026-11-09"
   },
   "ShellStorageClose": {
    "va": "00418536",
@@ -2856,12 +2896,28 @@
    "mangled": "W?ShellStorageClose$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "StorageClose": {
+   "va": "00418536",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?StorageClose$n(pn$StorageScreen$$)v",
+   "tu": "src/_unknown/tu_00417f34.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "ShellStorageExit": {
    "va": "00418597",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?ShellStorageExit$n(pn$Scene$$)ul",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "StorageInput": {
+   "va": "00418597",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?StorageInput$n(pn$StorageScreen$$)v",
+   "tu": "src/_unknown/tu_00417f34.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ShellStorageSelection": {
    "va": "00418602",
@@ -2870,12 +2926,156 @@
    "mangled": "W?ShellStorageSelection$n(pn$Scene$$)uc",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "StorageImage": {
+   "va": "00418602",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?StorageImage$n(pn$StorageScreen$$)uc",
+   "tu": "src/_unknown/tu_00417f34.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "StorageDetails": {
+   "va": "00418621",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?StorageDetails$n(pn$StorageScreen$$)v",
+   "tu": "src/_unknown/tu_00417f34.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "StorageStart": {
+   "va": "00418721",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?StorageStart$n(pn$StorageScreen$$)v",
+   "tu": "src/_unknown/tu_00417f34.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "StorageAnimate": {
+   "va": "00418776",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?StorageAnimate$n(pn$StorageScreen$$)v",
+   "tu": "src/_unknown/tu_00417f34.c",
+   "evidence": "placed in src/_unknown/tu_00417f34.c 2026-11-09; strict only with --at/search"
+  },
   "ShellStorageRender": {
    "va": "00418844",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?ShellStorageRender$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "StorageSetup": {
+   "va": "00418ae9",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?StorageSetup$n()v",
+   "tu": "src/_unknown/tu_00417f34.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "StorageVisibility": {
+   "va": "00418b5d",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?StorageVisibility$n(pn$StorageScreen$$)v",
+   "tu": "src/_unknown/tu_00417f34.c",
+   "evidence": "placed (at) in src/_unknown/tu_00417f34.c 2026-11-09"
+  },
+  "StorageColors": {
+   "va": "00418c61",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?StorageColors$n(pn$StorageScreen$$)v",
+   "tu": "src/_unknown/tu_00417f34.c",
+   "evidence": "placed (at) in src/_unknown/tu_00417f34.c 2026-11-09"
+  },
+  "StorageScreen::Names": {
+   "va": "00418ced",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Names$:StorageScreen$n(uc)v",
+   "tu": "src/_unknown/tu_00417f34.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "StorageVisibleNames": {
+   "va": "00418d5c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?StorageVisibleNames$n(pn$StorageScreen$$uc)v",
+   "tu": "src/_unknown/tu_00417f34.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "StorageRedraw": {
+   "va": "00418dcf",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?StorageRedraw$n(pn$StorageScreen$$)v",
+   "tu": "src/_unknown/tu_00417f34.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "StorageCredits": {
+   "va": "00418def",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?StorageCredits$n()v",
+   "tu": "src/_unknown/tu_00417f34.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "StorageSave": {
+   "va": "00418e06",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?StorageSave$n(pn$StorageScreen$$)v",
+   "tu": "src/_unknown/tu_00417f34.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "StorageRestore": {
+   "va": "00418e30",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?StorageRestore$n(pn$StorageScreen$$)v",
+   "tu": "src/_unknown/tu_00417f34.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "StorageScreen::Ramp": {
+   "va": "00418e5a",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Ramp$:StorageScreen$n()v",
+   "tu": "src/_unknown/tu_00417f34.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "StorageSelected": {
+   "va": "00418e9d",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?StorageSelected$n(pn$StorageScreen$$)uc",
+   "tu": "src/_unknown/tu_00417f34.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "StorageDone": {
+   "va": "00418ea5",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?StorageDone$n()v",
+   "tu": "src/_unknown/tu_00417f34.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "W?$Wda0224$:MenuPrefixButton$n(ui)pnv": {
+   "va": "00418eb4",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$Wda0224$:MenuPrefixButton$n(ui)pnv",
+   "tu": "src/_unknown/tu_00417f34.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "StorageScreen::$dt": {
+   "va": "00418ecc",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$dt:StorageScreen$n()_",
+   "tu": "src/_unknown/tu_00417f34.c",
+   "evidence": "strict match 2026-11-09"
   },
   "W?.fn_init$n()v@shell/hbupgrad.c": {
    "va": "00418ef0",
@@ -6676,6 +6876,13 @@
    "mangled": "W?GridSetSelection$n(pn$TerrainGrid$$pn$UnitModel$$)v",
    "evidence": "implied by src/sim/simdo.c 2026-11-09"
   },
+  "ReportSelectMission": {
+   "va": "00432900",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ReportSelectMission$n(pn$TerrainGrid$$ii)v",
+   "evidence": "implied by src/_unknown/tu_004481c0.c 2026-11-09"
+  },
   "TargetInitAt": {
    "va": "00432c40",
    "kind": "func",
@@ -9970,12 +10177,116 @@
    "tu": "src/pop/ppilot.c",
    "evidence": "strict match 2026-11-09"
   },
+  "W?.fn_init$n()v@_unknown/tu_004481c0.c": {
+   "va": "004481c0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/_unknown/tu_004481c0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ReportScreen::$ct": {
+   "va": "0044827b",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:ReportScreen$n()_",
+   "tu": "src/_unknown/tu_004481c0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ReportOpen": {
+   "va": "004482a5",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ReportOpen$n(pn$ReportScreen$$pn$InputReq$$)v",
+   "tu": "src/_unknown/tu_004481c0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ReportMission": {
+   "va": "00448384",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ReportMission$n(pn$ReportScreen$$i)v",
+   "tu": "src/_unknown/tu_004481c0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ReportClose": {
+   "va": "004483ec",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ReportClose$n(pn$ReportScreen$$)v",
+   "tu": "src/_unknown/tu_004481c0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ReportInput": {
+   "va": "00448426",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ReportInput$n(pn$ReportScreen$$)v",
+   "tu": "src/_unknown/tu_004481c0.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "SimPilotDraw": {
+   "va": "00448460",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SimPilotDraw$n(pn$ReportScreen$$)v",
+   "tu": "src/_unknown/tu_004481c0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimPilotDraw#W?SimPilotDraw$n(pnv)v": {
    "va": "00448460",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?SimPilotDraw$n(pnv)v",
    "evidence": "implied by src/sim/sim.c 2026-11-09"
+  },
+  "ReportDirty": {
+   "va": "00448505",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ReportDirty$n(pn$ReportScreen$$)v",
+   "tu": "src/_unknown/tu_004481c0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ReportSelect": {
+   "va": "00448511",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ReportSelect$n(pn$ReportScreen$$pn$ActorRecord$$)v",
+   "tu": "src/_unknown/tu_004481c0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ReportScreen::SetOther": {
+   "va": "0044869c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetOther$:ReportScreen$n(pn$ActorRecord$$ii)v",
+   "tu": "src/_unknown/tu_004481c0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ReportDrawUnit": {
+   "va": "004486d9",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ReportDrawUnit$n(pn$ReportScreen$$)v",
+   "tu": "src/_unknown/tu_004481c0.c",
+   "evidence": "placed (at) in src/_unknown/tu_004481c0.c 2026-11-09"
+  },
+  "ReportDrawOther": {
+   "va": "00448b2d",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ReportDrawOther$n(pn$ReportScreen$$)v",
+   "tu": "src/_unknown/tu_004481c0.c",
+   "evidence": "placed (at) in src/_unknown/tu_004481c0.c 2026-11-09"
+  },
+  "ReportGlobalInput": {
+   "va": "00448d34",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ReportGlobalInput$n()v",
+   "tu": "src/_unknown/tu_004481c0.c",
+   "evidence": "strict match 2026-11-09"
   },
   "DeathScreenClose": {
    "va": "00448d74",
@@ -9984,6 +10295,13 @@
    "mangled": "W?DeathScreenClose$n(pn$DeathScreen$$)v",
    "tu": "src/pop/pdeath.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "ReportScreen::$dt": {
+   "va": "00448d74",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:ReportScreen$n()_",
+   "evidence": "implied by src/_unknown/tu_004481c0.c 2026-11-09"
   },
   "DeathMovie": {
    "va": "00448d80",
@@ -12113,6 +12431,13 @@
    "status": "hypothesis",
    "mangled": "W?SimAnimFrame$n(pn$SimAnim$$i)pn$MenuImage$$",
    "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
+  "ReportAnimClose": {
+   "va": "0045a260",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ReportAnimClose$n(pn$SimAnim$$)v",
+   "evidence": "implied by src/_unknown/tu_004481c0.c 2026-11-09"
   },
   "TargetModuleInit": {
    "va": "0045a600",
@@ -18397,6 +18722,13 @@
    "mangled": "W?gHercBuyControls$n[]pn$GuiControl$$",
    "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
   },
+  "storageControls": {
+   "va": "0048ec34",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?storageControls$n[]pn$GuiControl$$",
+   "evidence": "implied by src/_unknown/tu_00417f34.c 2026-11-09"
+  },
   "multiplayerControlList": {
    "va": "0048ef70",
    "kind": "data",
@@ -19012,6 +19344,13 @@
    "status": "hypothesis",
    "mangled": "W?_DAT_004a00a4$ni",
    "evidence": "implied by src/pop/pherc.c 2026-11-09"
+  },
+  "reportControls": {
+   "va": "004a0120",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?reportControls$n[]pn$GuiControl$$",
+   "evidence": "implied by src/_unknown/tu_004481c0.c 2026-11-09"
   },
   "popInfoControls": {
    "va": "004a016c",
@@ -21456,12 +21795,110 @@
    "mangled": "W?g4b416c$n$Scene$$",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "storageLeft": {
+   "va": "004b5154",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?storageLeft$n[]$MenuPrefixButton$$",
+   "evidence": "implied by src/_unknown/tu_00417f34.c 2026-11-09"
+  },
+  "storageRight": {
+   "va": "004b5574",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?storageRight$n[]$MenuPrefixButton$$",
+   "evidence": "implied by src/_unknown/tu_00417f34.c 2026-11-09"
+  },
+  "storageNumber": {
+   "va": "004b5994",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?storageNumber$n$MenuNumber$$",
+   "evidence": "implied by src/_unknown/tu_00417f34.c 2026-11-09"
+  },
+  "storageButton": {
+   "va": "004b59c4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?storageButton$n$MenuButton$$",
+   "evidence": "implied by src/_unknown/tu_00417f34.c 2026-11-09"
+  },
+  "storageRange": {
+   "va": "004b59ec",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?storageRange$n$UpgradeRange$$",
+   "evidence": "implied by src/_unknown/tu_00417f34.c 2026-11-09"
+  },
+  "storageBar": {
+   "va": "004b59f4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?storageBar$n$UpgradeBar$$",
+   "evidence": "implied by src/_unknown/tu_00417f34.c 2026-11-09"
+  },
+  "storageNext": {
+   "va": "004b5a1c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?storageNext$n$UpgradeArrow$$",
+   "evidence": "implied by src/_unknown/tu_00417f34.c 2026-11-09"
+  },
+  "storagePrevious": {
+   "va": "004b5a48",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?storagePrevious$n$UpgradeArrow$$",
+   "evidence": "implied by src/_unknown/tu_00417f34.c 2026-11-09"
+  },
+  "storagePanel": {
+   "va": "004b5a74",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?storagePanel$n$MenuPanel$$",
+   "evidence": "implied by src/_unknown/tu_00417f34.c 2026-11-09"
+  },
+  "storageNumberA": {
+   "va": "004b5a98",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?storageNumberA$n$MenuNumber$$",
+   "evidence": "implied by src/_unknown/tu_00417f34.c 2026-11-09"
+  },
+  "storageNumberB": {
+   "va": "004b5ac8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?storageNumberB$n$MenuNumber$$",
+   "evidence": "implied by src/_unknown/tu_00417f34.c 2026-11-09"
+  },
+  "storageNumberC": {
+   "va": "004b5af8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?storageNumberC$n$MenuNumber$$",
+   "evidence": "implied by src/_unknown/tu_00417f34.c 2026-11-09"
+  },
+  "storageHelp": {
+   "va": "004b5b28",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?storageHelp$n$MenuHelpRegion$$",
+   "evidence": "implied by src/_unknown/tu_00417f34.c 2026-11-09"
+  },
   "g4b5b50": {
    "va": "004b5b50",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4b5b50$n$Scene$$",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "g4b5b50#W?g4b5b50$n$StorageScreen$$": {
+   "va": "004b5b50",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b5b50$n$StorageScreen$$",
+   "evidence": "implied by src/_unknown/tu_00417f34.c 2026-11-09"
   },
   "g4b5ba1": {
    "va": "004b5ba1",
@@ -23556,12 +23993,61 @@
    "mangled": "W?gPilotScreen$npn$PilotScreen$$",
    "evidence": "implied by src/pop/ppilot.c 2026-11-09"
   },
+  "reportNumber": {
+   "va": "004d205c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?reportNumber$n$MenuNumber$$",
+   "evidence": "implied by src/_unknown/tu_004481c0.c 2026-11-09"
+  },
+  "reportUnit": {
+   "va": "004d208c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?reportUnit$n$MenuNumber$$",
+   "evidence": "implied by src/_unknown/tu_004481c0.c 2026-11-09"
+  },
+  "reportPilot": {
+   "va": "004d20bc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?reportPilot$n$MenuNumber$$",
+   "evidence": "implied by src/_unknown/tu_004481c0.c 2026-11-09"
+  },
+  "reportHeading": {
+   "va": "004d20ec",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?reportHeading$n$MenuSpacer$$",
+   "evidence": "implied by src/_unknown/tu_004481c0.c 2026-11-09"
+  },
+  "reportDiagram": {
+   "va": "004d210c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?reportDiagram$n$MenuSpacer$$",
+   "evidence": "implied by src/_unknown/tu_004481c0.c 2026-11-09"
+  },
+  "reportStats": {
+   "va": "004d212c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?reportStats$n$MenuSpacer$$",
+   "evidence": "implied by src/_unknown/tu_004481c0.c 2026-11-09"
+  },
   "simPilot": {
    "va": "004d214c",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?simPilot$na",
    "evidence": "implied by src/sim/sim.c 2026-11-09"
+  },
+  "simPilot#W?simPilot$n$ReportScreen$$": {
+   "va": "004d214c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?simPilot$n$ReportScreen$$",
+   "evidence": "implied by src/_unknown/tu_004481c0.c 2026-11-09"
   },
   "popInfoNumber": {
    "va": "004d22ec",
@@ -25291,6 +25777,13 @@
    "status": "hypothesis",
    "mangled": "W?g511dd4$ni",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "g511dd4#W?g511dd4$npn$MenuImages$$": {
+   "va": "00511dd4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g511dd4$npn$MenuImages$$",
+   "evidence": "implied by src/_unknown/tu_00417f34.c 2026-11-09"
   },
   "gScreenImages": {
    "va": "00511dd8",
