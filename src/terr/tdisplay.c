@@ -32,13 +32,13 @@ void DisplaySetRect(void *object, const DisplayRect *source)
 
 static const char DisplaySourcePath[] = "terr\\tdisplay.c";
 extern "C" void AssertFail(const char *, int, const char *);
-struct TerrainGrid; struct GridPoint { int x, y; };
+struct TerrainGrid; struct GridPoint { int x, y; GridPoint &operator+=(const GridPoint &p) { x += p.x; y += p.y; return *this; } GridPoint &operator-=(const GridPoint &p) { x -= p.x; y -= p.y; return *this; } };
 extern long GridPointToIndex(TerrainGrid *, GridPoint *);
 extern void GridRotatePoint(GridPoint *, long);
 struct FastBuffer { void Update(long, long); };
 extern void f_00435140(int); extern int f_0047d474(void *, int); extern void f_0047efb0(void *, int);
 extern "C" void TargetObjectInit(const char *, void *, int);
-extern "C" int abs(int);
+extern "C" int abs(int); extern int heightStep; extern void *TerrainVisibility;
 void DisplayGetBounds(int *, unsigned int *, unsigned int *);
 
 void DisplayConfigure(int *view, int *settings, int reset)
@@ -49,7 +49,7 @@ void DisplayConfigure(int *view, int *settings, int reset)
     int scale = settings[3]; view[0x1a] = scale; if (scale < 2) scale = 1; view[0x1a] = scale;
     view[0x1b] = scale * 2; view[0x1c] = scale + view[0x1b]; view[0x1d] = view[0x1b] * 2;
     f_00435140(scale);
-    int resolution = (*(int *)0x4c7e50 * scale * settings[7]) / 50000; view[0x1e] = resolution;
+    int resolution = (heightStep * scale * settings[7]) / 50000; view[0x1e] = resolution;
     if (resolution == 0) ((unsigned char *)(view + 0x21))[0] &= 0xfe;
     int estimate = (view[0x0c] + view[0x1c] - 1) / view[0x1c] + 1;
     int radius = (estimate >> 1) + (estimate >> 3) + 2; view[0x1f] = radius;
@@ -191,10 +191,10 @@ int DisplayZoomArea(int *view, unsigned int *result, int position, int candidate
 
 int DisplayScale(int *object)
 {
-    int numerator = object[0x1c] + object[0x0c] - 1;
+    int numerator = object[0x1c] - 1 + object[0x0c];
     int value = (numerator / object[0x1c] + 1) >> 1;
-    if (value < 2) return 1;
-    if (object[5] <= value) value = object[5];
+    int limit = object[5]; if (value <= 1) return 1;
+    if (value >= limit) value = limit;
     return value;
 }
 
@@ -208,58 +208,55 @@ int DisplayPointScale(int *object, int value)
 
 void DisplayGetBounds(int *view, unsigned int *output, unsigned int *point)
 {
-    output[0] = point[0];
-    output[1] = point[1];
+    *(GridPoint *)output = *(GridPoint *)point;
     f_0047efb0(output, view[0x20]);
-    output[0] = (int)(output[0] * 0x128) >> 8;
-    output[1] *= -2;
-    output[0] *= view[0x1c];
-    output[1] *= view[0x1b];
+    ((int *)output)[0] = (int)(((int *)output)[0] * 0x128) >> 8;
+    ((int *)output)[1] = -((int *)output)[1] * 2;
+    ((int *)output)[0] *= view[0x1c];
+    ((int *)output)[1] *= view[0x1b];
     int tileSize = *(int *)(*view + 4);
-    output[0] = (int)output[0] / tileSize;
-    output[1] = (int)output[1] / tileSize;
+    ((int *)output)[0] = (int)((int *)output)[0] / tileSize;
+    ((int *)output)[1] = (int)((int *)output)[1] / tileSize;
     if ((((unsigned char *)(view + 0x21))[0] & 1) != 0) {
         int index = GridPointToIndex((TerrainGrid *)*view, (GridPoint *)point);
-        unsigned int list = *(unsigned int *)0x4c6274;
+        unsigned int list = (unsigned int)TerrainVisibility;
         if (index != 0 && (list == 0 || *(char *)(*(int *)(list + 0xc) + index) != 0)) {
-            output[1] -= *(unsigned char *)(*(int *)(*view + 0x44) + 1 + index * 0xc) * view[0x1e];
+            ((int *)output)[1] -= *(unsigned char *)(*(int *)(*view + 0x44) + 1 + index * 0xc) * view[0x1e];
         }
     }
-    output[0] += view[0x0e];
-    output[1] += view[0x0f];
-    output[0] -= view[0x15];
-    output[1] -= view[0x16];
+    *(GridPoint *)output += *(GridPoint *)(view + 0x0e);
+    *(GridPoint *)output -= *(GridPoint *)(view + 0x15);
 }
 
 void DisplayPointToScreen(int *view, int *output, int *point, int index)
 {
-    output[0] = point[0]; output[1] = point[1];
-    output[0] -= *(int *)(*view + 0x10); output[1] -= *(int *)(*view + 0x14);
+    *(GridPoint *)output = *(GridPoint *)point;
+    GridPoint *origin = (GridPoint *)(*view + 0x10); ((int *)output)[0] -= origin->x; ((int *)output)[1] -= origin->y;
     GridRotatePoint((GridPoint *)output, view[0x14]);
-    output[0] *= view[0x1c];
-    int height = output[1] * view[0x1b]; output[1] = height;
+    ((int *)output)[0] *= view[0x1c];
+    int height = ((int *)output)[1] * view[0x1b]; ((int *)output)[1] = height;
     if ((((unsigned char *)(view + 0x21))[0] & 1) != 0) {
         *(int *)0x4c6284 = height;
-        unsigned int list = *(unsigned int *)0x4c6274;
+        unsigned int list = (unsigned int)TerrainVisibility;
         if (index != 0 && (list == 0 || *(char *)(*(int *)(list + 0xc) + index) != 0)) {
-            output[1] -= *(unsigned char *)(index * 0xc + 1 + *(int *)(*view + 0x44)) * view[0x1e];
+            ((int *)output)[1] -= *(unsigned char *)(index * 0xc + 1 + *(int *)(*view + 0x44)) * view[0x1e];
         }
     }
-    output[0] += view[0x0e]; output[1] += view[0x0f];
-    output[0] -= view[0x15]; output[1] -= view[0x16];
+    *(GridPoint *)output += *(GridPoint *)(view + 0x0e);
+    *(GridPoint *)output -= *(GridPoint *)(view + 0x15);
 }
 
 int DisplayPointToScreenScaled(int *view, unsigned int *output, unsigned int *point)
 {
-    output[0] = point[0]; output[1] = point[1];
+    *(GridPoint *)output = *(GridPoint *)point;
     f_0047efb0(output, view[0x20]);
-    output[0] = (int)(output[0] * 0x128) >> 8;
-    output[1] *= -2;
-    output[0] *= view[0x1c]; output[1] *= view[0x1b];
+    ((int *)output)[0] = (int)(((int *)output)[0] * 0x128) >> 8;
+    ((int *)output)[1] = -((int *)output)[1] * 2;
+    ((int *)output)[0] *= view[0x1c]; ((int *)output)[1] *= view[0x1b];
     int tileSize = *(int *)(*view + 4);
-    output[0] = (int)output[0] / tileSize; output[1] = (int)output[1] / tileSize;
-    output[0] += view[0x0e]; output[1] += view[0x0f];
-    output[0] -= view[0x15]; output[1] -= view[0x16];
+    ((int *)output)[0] = (int)((int *)output)[0] / tileSize; ((int *)output)[1] = (int)((int *)output)[1] / tileSize;
+    *(GridPoint *)output += *(GridPoint *)(view + 0x0e);
+    *(GridPoint *)output -= *(GridPoint *)(view + 0x15);
     return view[0x1e];
 }
 
@@ -437,7 +434,7 @@ int DisplayConsiderElement(int *item)
     int index = item[3];
     if (index != 0 && DisplayResolveCandidate((int *)*(int *)0x4c6270, item + 1, index) != 0) {
         unsigned int height = 0;
-        unsigned int list = *(unsigned int *)0x4c6274;
+        unsigned int list = (unsigned int)TerrainVisibility;
         if (list == 0 || *(char *)(*(int *)(list + 0xc) + index) != 0) {
             height = *(unsigned char *)(*(int *)(*item + 0x44) + 1 + index * 0xc);
         }
@@ -456,11 +453,11 @@ int DisplayPickAt(int *view, int *point)
         point[1] >= view[11] && point[1] < view[11] + view[13]) {
         *(int *)0x4c6270 = (int)view;
         *(int *)0x4bc624 = point[0]; *(int *)0x4bc628 = point[1];
-        int y = point[1] + view[0x16] - view[0x0f];
+        GridPoint gridPoint; int &y = gridPoint.y; int &x = gridPoint.x; y = point[1] + view[0x16] - view[0x0f];
         if ((((unsigned char *)(view + 0x21))[0] & 1) != 0) y = view[0x1e] * 3 + y;
         y /= view[0x1b];
-        int x = (point[0] + view[0x15] - view[0x0e]) / view[0x1c];
-        GridRotatePoint((GridPoint *)&x, -view[0x14]);
+        x = (point[0] + view[0x15] - view[0x0e]) / view[0x1c];
+        GridRotatePoint(&gridPoint, -view[0x14]);
         x += *(int *)(*view + 0x10); y += *(int *)(*view + 0x14);
         int index = ResolveName((const char *)*view, (const char *)&x);
         if (index != 0) {
@@ -487,51 +484,36 @@ void DisplayWalkInit(AreaWalk *walk, unsigned int step)
 
 extern "C" void DisplayStep(AreaWalk *walk)
 {
-    unsigned int phase = walk->phase;
-    if (phase < 2) {
-        if (phase == 1) {
-            walk->phase = 2;
-            if (walk->x) { walk->x = -walk->x; return; }
-        } else goto transition;
-    } else if (phase < 3) goto phase_two;
-    else if (phase != 3) goto transition;
-    walk->phase = 0;
-    if (walk->x && walk->y) { walk->x = -walk->x; return; }
-    goto transition;
-phase_two:
-    ++walk->phase;
-    if (walk->y) { walk->y = -walk->y; return; }
-transition:
-    {
-        int y = walk->y;
-        int opposite = -y;
-        walk->y = opposite;
-        if (y == -1 || opposite <= 0) {
-            int edge = walk->edge;
-            walk->x = 0;
-            walk->edge = edge + 2;
-            walk->y = edge + 2;
-            ++walk->step;
-        } else {
-            int x = walk->x;
-            if (x + y != 0 && x <= opposite) {
-                ++walk->x;
-                --walk->y;
-                ++walk->phase;
-                return;
-            }
-            walk->y = opposite - 2;
-        }
+    switch ((unsigned int)walk->phase) {
+    case 1:
+        walk->phase *= 2;
+        if (walk->x) { walk->x = -walk->x; return; }
+    case 2:
         ++walk->phase;
+        if (walk->y) { walk->y = -walk->y; return; }
+    case 3:
+        walk->phase = 0;
+        if (walk->x && walk->y) { walk->x = -walk->x; return; }
     }
+    walk->y = -walk->y;
+    if (walk->y <= 1) {
+        walk->x = 0;
+        walk->edge += 2;
+        walk->y = walk->edge;
+        ++walk->step;
+    } else if (walk->y > walk->x) {
+        ++walk->x; --walk->y; ++walk->phase; return;
+    } else walk->y -= 2;
+    ++walk->phase;
 }
 
+
+int DisplayCount(int);
 int BestLocInitialize(void *object, const char *name, int radius)
 {
-    int count = 0;
-    if (radius >= 0) count = ((radius + 1) * radius >> 1) * 6 + 1;
     *(const char **)object = name;
     ((int *)object)[5] = radius;
+    int count = radius < 0 ? 0 : ((radius + 1) * radius >> 1) * 6 + 1;
     ((int *)object)[6] = count;
     return (int)object;
 }
@@ -545,9 +527,7 @@ int DisplayCount(int value)
 void DisplaySetCandidate(int *object, int value)
 {
     object[7] = value;
-    BestLocSetData((void *)*object, object + 8, (void *)value);
+    BestLocSetData((void *)*object, object + 8, (void *)object[7]);
 }
 
 void DisplaySetRadius(int *object, int value) { object[5] = value; if (value < 0) { object[6] = 0; return; } object[6] = ((value + 1) * value >> 1) * 6 + 1; }
-
-

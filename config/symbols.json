@@ -6499,10 +6499,10 @@
   "DisplayScale": {
    "va": "0042bed0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?DisplayScale$n(pni)i",
    "tu": "src/terr/tdisplay.c",
-   "evidence": "placed (at) in src/terr/tdisplay.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "ViewScale": {
    "va": "0042bf10",
@@ -6545,10 +6545,10 @@
   "DisplayPointToScreenScaled": {
    "va": "0042c130",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?DisplayPointToScreenScaled$n(pnipnuipnui)i",
    "tu": "src/terr/tdisplay.c",
-   "evidence": "placed (at) in src/terr/tdisplay.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "DisplayRectOutside": {
    "va": "0042c1f0",
@@ -6692,10 +6692,10 @@
   "DisplaySetCandidate": {
    "va": "0042cb50",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?DisplaySetCandidate$n(pnii)v",
    "tu": "src/terr/tdisplay.c",
-   "evidence": "placed (at) in src/terr/tdisplay.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "DisplaySetRadius": {
    "va": "0042cb70",
@@ -6766,12 +6766,36 @@
    "mangled": "W?$ct:BestLocState$n(pn$TerrainGrid$$i)_",
    "evidence": "implied by src/_unknown/tu_0044b8b0.c 2026-11-09"
   },
+  "SearchInitialize": {
+   "va": "0042cf40",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SearchInitialize$n(pn$SearchWorkspace$$pnxai)v",
+   "tu": "src/_unknown/tu_0042cf40.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "BestLocState::$dt": {
    "va": "0042cf80",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?$dt:BestLocState$n()_",
    "evidence": "implied by src/_unknown/tu_0044b8b0.c 2026-11-09"
+  },
+  "SearchDestroy": {
+   "va": "0042cf80",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SearchDestroy$n(pn$SearchWorkspace$$)pn$1$",
+   "tu": "src/_unknown/tu_0042cf40.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SearchAllocate": {
+   "va": "0042cfc0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SearchAllocate$n(pn$SearchWorkspace$$)i",
+   "tu": "src/_unknown/tu_0042cf40.c",
+   "evidence": "strict match 2026-11-09"
   },
   "SimBestLocClose": {
    "va": "0042d040",
@@ -6780,12 +6804,76 @@
    "mangled": "W?SimBestLocClose$n(pnv)v",
    "evidence": "implied by src/sim/sim.c 2026-11-09"
   },
+  "SearchRelease": {
+   "va": "0042d040",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SearchRelease$n(pn$SearchWorkspace$$)v",
+   "tu": "src/_unknown/tu_0042cf40.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "BestLocSetup": {
    "va": "0042d080",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?BestLocSetup$n(pnvii)i",
    "evidence": "implied by src/logic/bestloc.c 2026-11-09"
+  },
+  "SearchGetPath": {
+   "va": "0042d2b0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SearchGetPath$n(pn$SearchWorkspace$$ipnii)i",
+   "tu": "src/_unknown/tu_0042cf40.c",
+   "evidence": "placed (at) in src/_unknown/tu_0042cf40.c 2026-11-09"
+  },
+  "SearchGetCost": {
+   "va": "0042d370",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SearchGetCost$n(pn$SearchWorkspace$$i)i",
+   "tu": "src/_unknown/tu_0042cf40.c",
+   "evidence": "placed (at) in src/_unknown/tu_0042cf40.c 2026-11-09"
+  },
+  "TerrainDrawOverlay": {
+   "va": "0042d3f0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?TerrainDrawOverlay$n(pniuiiiiii)v",
+   "tu": "src/_unknown/tu_0042d3d0.c",
+   "evidence": "placed (at) in src/_unknown/tu_0042d3d0.c 2026-11-09"
+  },
+  "TerrainDrawTile": {
+   "va": "0042d640",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?TerrainDrawTile$n(pniuipn$DrawPoint$$ui)v",
+   "tu": "src/_unknown/tu_0042d3d0.c",
+   "evidence": "placed (at) in src/_unknown/tu_0042d3d0.c 2026-11-09"
+  },
+  "TerrainVisibleDrop": {
+   "va": "0042dd70",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?TerrainVisibleDrop$n(pnipn$DrawPoint$$ii)i",
+   "tu": "src/_unknown/tu_0042d3d0.c",
+   "evidence": "placed (at) in src/_unknown/tu_0042d3d0.c 2026-11-09"
+  },
+  "TerrainDrawCliff": {
+   "va": "0042de30",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?TerrainDrawCliff$n(pniipn$DrawPoint$$i)v",
+   "tu": "src/_unknown/tu_0042d3d0.c",
+   "evidence": "placed (at) in src/_unknown/tu_0042d3d0.c 2026-11-09"
+  },
+  "MapStaticInitialize": {
+   "va": "0042e210",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?MapStaticInitialize$n()v",
+   "tu": "src/_unknown/tu_0042e210.c",
+   "evidence": "strict match 2026-11-09"
   },
   "FastCoord::$ct": {
    "va": "0042e220",
@@ -6794,12 +6882,44 @@
    "mangled": "W?$ct:FastCoord$n(pn$TerrainGrid$$ui)_",
    "evidence": "implied by src/_unknown/tu_0044b8b0.c 2026-11-09"
   },
+  "MapInitialize": {
+   "va": "0042e220",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?MapInitialize$n(pn$FastCoord$$pnxai)pn$1$",
+   "tu": "src/_unknown/tu_0042e210.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "FastCoord::$dt": {
    "va": "0042e280",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?$dt:FastCoord$n()_",
    "evidence": "implied by src/_unknown/tu_0044b8b0.c 2026-11-09"
+  },
+  "MapIdentity": {
+   "va": "0042e280",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?MapIdentity$n(pnv)pnv",
+   "tu": "src/_unknown/tu_0042e210.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MapSetVisibility": {
+   "va": "0042e290",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?MapSetVisibility$n(pn$FastCoord$$pnv)v",
+   "tu": "src/_unknown/tu_0042e210.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MapGetView": {
+   "va": "0042e2a0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?MapGetView$n(pn$FastCoord$$pn$ViewState$$)v",
+   "tu": "src/_unknown/tu_0042e210.c",
+   "evidence": "strict match 2026-11-09"
   },
   "SetFastView": {
    "va": "0042e2d0",
@@ -6815,6 +6935,22 @@
    "mangled": "SetFastView",
    "evidence": "implied by src/pop/pdeath.c 2026-11-09"
   },
+  "MapPointScale": {
+   "va": "0042e390",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?MapPointScale$n(pn$FastCoord$$i)i",
+   "tu": "src/_unknown/tu_0042e210.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MapPointToScreen": {
+   "va": "0042e3b0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?MapPointToScreen$n(pn$FastCoord$$pn$GridPoint$$pn$2$)v",
+   "tu": "src/_unknown/tu_0042e210.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "GridConvert": {
    "va": "0042e450",
    "kind": "func",
@@ -6822,12 +6958,21 @@
    "mangled": "W?GridConvert$n(pn$FastCoord$$pn$1$pn$1$)v",
    "evidence": "implied by src/terr/tfast.c 2026-11-09"
   },
+  "MapDrawPoint": {
+   "va": "0042e4d0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MapDrawPoint$n(pnv)i",
+   "tu": "src/_unknown/tu_0042e210.c",
+   "evidence": "placed (at) in src/_unknown/tu_0042e210.c 2026-11-09"
+  },
   "PrepareDeathMap": {
    "va": "0042e760",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "PrepareDeathMap",
-   "evidence": "implied by src/pop/pdeath.c 2026-11-09"
+   "tu": "src/_unknown/tu_0042e210.c",
+   "evidence": "strict match 2026-11-09"
   },
   "DrawDeathMap": {
    "va": "0042e7a0",
@@ -6835,6 +6980,86 @@
    "status": "hypothesis",
    "mangled": "DrawDeathMap",
    "evidence": "implied by src/pop/pdeath.c 2026-11-09"
+  },
+  "MapContainsPoint": {
+   "va": "0042e900",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?MapContainsPoint$n(pn$FastCoord$$pn$GridPoint$$i)i",
+   "tu": "src/_unknown/tu_0042e210.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MapPickVisit": {
+   "va": "0042e9f0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?MapPickVisit$n(pnv)i",
+   "tu": "src/_unknown/tu_0042e210.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MapPickAt": {
+   "va": "0042eaf0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?MapPickAt$n(pn$FastCoord$$pn$GridPoint$$)i",
+   "tu": "src/_unknown/tu_0042e210.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MapNearestVisit": {
+   "va": "0042eb80",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?MapNearestVisit$n(pnv)i",
+   "tu": "src/_unknown/tu_0042e210.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MapNearestAt": {
+   "va": "0042ec40",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?MapNearestAt$n(pn$FastCoord$$pn$GridPoint$$)i",
+   "tu": "src/_unknown/tu_0042e210.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "W?.fn_init$n()v@_unknown/tu_0042eca0.c": {
+   "va": "0042eca0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/_unknown/tu_0042eca0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "RayWalk": {
+   "va": "0042ecb0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?RayWalk$n(pn$RayPoint$$pn$1$pn(pn$1$)v)v",
+   "tu": "src/_unknown/tu_0042eca0.c",
+   "evidence": "placed (at) in src/_unknown/tu_0042eca0.c 2026-11-09"
+  },
+  "RayCollect": {
+   "va": "0042ee30",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?RayCollect$n(pn$RayPoint$$)v",
+   "tu": "src/_unknown/tu_0042eca0.c",
+   "evidence": "placed (at) in src/_unknown/tu_0042eca0.c 2026-11-09"
+  },
+  "RayOcclusion": {
+   "va": "0042ef10",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?RayOcclusion$n(pniiiipn$RayPoint$$)i",
+   "tu": "src/_unknown/tu_0042eca0.c",
+   "evidence": "placed (at) in src/_unknown/tu_0042eca0.c 2026-11-09"
+  },
+  "RayDrawSamples": {
+   "va": "0042f490",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?RayDrawSamples$n(pnviii)v",
+   "tu": "src/_unknown/tu_0042eca0.c",
+   "evidence": "placed (at) in src/_unknown/tu_0042eca0.c 2026-11-09"
   },
   "f_0042f540": {
    "va": "0042f540",
@@ -6863,12 +7088,28 @@
   "SurfaceMidpoint": {
    "va": "004319b0",
    "kind": "func",
+   "status": "matched",
+   "mangled": "W?SurfaceMidpoint$n(usus)us",
+   "tu": "src/terr/tsurface.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SurfaceMidpoint#W?SurfaceMidpoint$n(usus)i": {
+   "va": "004319b0",
+   "kind": "func",
    "status": "hypothesis",
    "mangled": "W?SurfaceMidpoint$n(usus)i",
    "tu": "src/terr/tsurface.c",
    "evidence": "placed (at) in src/terr/tsurface.c 2026-11-09"
   },
   "SurfaceAverage": {
+   "va": "004319d0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SurfaceAverage$n(usususus)us",
+   "tu": "src/terr/tsurface.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SurfaceAverage#W?SurfaceAverage$n(usususus)i": {
    "va": "004319d0",
    "kind": "func",
    "status": "hypothesis",
@@ -6911,18 +7152,18 @@
   "SurfaceStaticValue": {
    "va": "00431b80",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?SurfaceStaticValue$n(i)i",
    "tu": "src/terr/tsurface.c",
-   "evidence": "placed (at) in src/terr/tsurface.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "SurfaceLoadDefinition": {
    "va": "00431ba0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?SurfaceLoadDefinition$n(pnapnxa)i",
    "tu": "src/terr/tsurface.c",
-   "evidence": "placed (at) in src/terr/tsurface.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "Noise::$ct": {
    "va": "00431d70",
@@ -7015,6 +7256,14 @@
    "evidence": "implied by src/terr/tbuild.c 2026-11-09"
   },
   "SurfaceGridValue": {
+   "va": "00432050",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SurfaceGridValue$n(pn$SurfaceGridLayout$$pnui)uc",
+   "tu": "src/terr/tsurface.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SurfaceGridValue#W?SurfaceGridValue$n(pnipnui)uc": {
    "va": "00432050",
    "kind": "func",
    "status": "hypothesis",
@@ -18569,6 +18818,13 @@
    "mangled": "W?PointAngle$n(pn$ExploPoint$$pn$1$)i",
    "evidence": "implied by src/sim/explo.c (overload-safe migration 2026-11-09)"
   },
+  "f_0047efb0": {
+   "va": "0047efb0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_0047efb0$n(pnvi)v",
+   "evidence": "implied by src/terr/tdisplay.c 2026-11-09"
+  },
   "Crc16": {
    "va": "0047f0b0",
    "kind": "func",
@@ -19823,6 +20079,13 @@
    "status": "hypothesis",
    "mangled": "W?GridSourcePath$n[]xa",
    "evidence": "implied by src/terr/tgrid.c 2026-11-09"
+  },
+  "SurfaceScaleValues": {
+   "va": "004904d4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?SurfaceScaleValues$n[]us",
+   "evidence": "implied by src/terr/tsurface.c 2026-11-09"
   },
   "FogSourcePath": {
    "va": "004905ec",
@@ -24451,6 +24714,48 @@
    "mangled": "W?gGuiFadeColor$nul",
    "evidence": "implied by src/_unknown/tu_0042a0e0.c 2026-11-09"
   },
+  "MapPick": {
+   "va": "004c6288",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?MapPick$ni",
+   "evidence": "implied by src/_unknown/tu_0042e210.c 2026-11-09"
+  },
+  "MapBestDistance": {
+   "va": "004c628c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?MapBestDistance$ni",
+   "evidence": "implied by src/_unknown/tu_0042e210.c 2026-11-09"
+  },
+  "MapPickPoint": {
+   "va": "004c6290",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?MapPickPoint$n$GridPoint$$",
+   "evidence": "implied by src/_unknown/tu_0042e210.c 2026-11-09"
+  },
+  "MapView": {
+   "va": "004c6298",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?MapView$npn$FastCoord$$",
+   "evidence": "implied by src/_unknown/tu_0042e210.c 2026-11-09"
+  },
+  "MapVisibility": {
+   "va": "004c629c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?MapVisibility$npnv",
+   "evidence": "implied by src/_unknown/tu_0042e210.c 2026-11-09"
+  },
+  "MapDrawScale": {
+   "va": "004c62a0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?MapDrawScale$ni",
+   "evidence": "implied by src/_unknown/tu_0042e210.c 2026-11-09"
+  },
   "gFogGlobalMode": {
    "va": "004c6890",
    "kind": "data",
@@ -27810,6 +28115,14 @@
    "status": "hypothesis",
    "mangled": "W?g_fileDirectCount$nul",
    "evidence": "implied by src/io/file.c 2026-11-09"
+  },
+  "W?$Wts0gn$OutlinePoint$$$nx[]uc": {
+   "va": "24448d68",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0gn$OutlinePoint$$$nx[]uc",
+   "tu": "src/_unknown/tu_0042e210.c",
+   "evidence": "own data placed in src/_unknown/tu_0042e210.c 2026-11-09"
   }
  }
 }

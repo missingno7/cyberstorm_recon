@@ -1,11 +1,11 @@
-typedef unsigned int uint;
+typedef unsigned int uint; typedef int SurfaceDepth; extern signed char SurfaceNoiseTable[491]; extern unsigned short SurfaceScaleValues[];
 
 extern "C" int RandomRange(unsigned int *, int, int);
 extern "C" void MemoryRelease(void *);
 extern void *MemoryAllocationRetry(unsigned long);
 extern int MissionRandomTable[];
-extern int SurfaceAverage(unsigned short, unsigned short, unsigned short, unsigned short);
-extern int SurfaceMidpoint(unsigned short, unsigned short);
+extern unsigned short SurfaceAverage(unsigned short, unsigned short, unsigned short, unsigned short);
+extern unsigned short SurfaceMidpoint(unsigned short, unsigned short);
 extern int SurfaceNoiseAt(int, int, int, int, int, int, unsigned char);
 extern "C" void f_0042fc90(char *, int, int, int, unsigned char,
                              unsigned char, unsigned char, unsigned char,
@@ -95,9 +95,9 @@ extern "C" void f_0042f540(char *object)
         int sample = 12;
         while (sample-- > 0)
             total += RandomRange((unsigned int *)MissionRandomTable, -32, 32);
-        ((signed char *)0x4c64a8)[index] = (signed char)((short)total / 12);
+        SurfaceNoiseTable[index] = (signed char)((short)total / 12);
     }
-    *(unsigned int *)0x4c6694 = *(unsigned short *)(0x4904d4 + *(int *)(object + 0x60) * 2);
+    *(unsigned int *)0x4c6694 = SurfaceScaleValues[*(int *)(object + 0x60)];
     unsigned int amplitude = (unsigned int)(*(int *)(object + 0x5c) * *(int *)(object + 0x5c) *
                                              *(int *)(object + 0x64)) /
                              *(unsigned int *)0x4c6694;
@@ -186,7 +186,7 @@ extern "C" void f_0042fc90(char *object, int x, int y, int amplitude,
     if (*(int *)(object + 0x54) != 0)
         rightCenter = SurfaceAdjust(object, rightTop, rightCenter, rightBottom);
     unsigned int smoothCenter = center & 0xff;
-    if (object[0x54 / 4] != 0)
+    if (*(int *)(object + 0x54) != 0)
         smoothCenter = SurfaceAdjust(object, topMiddle, center, lowerMiddle);
 
     int nTopLeft = SurfaceNoiseAt(x + (int)half * 2, y + (int)half, 0, 0, 0, delta,
@@ -241,32 +241,29 @@ extern "C" void f_0042fc90(char *object, int x, int y, int amplitude,
                lowerMiddle, (unsigned char)nLowerRight, p14);
 }
 
-int SurfaceMidpoint(unsigned short first, unsigned short second)
+unsigned short SurfaceMidpoint(unsigned short first, unsigned short second)
 {
-    return (int)((uint)first + (uint)second) >> 1;
+    return (first + second) >> 1;
 }
 
-int SurfaceAverage(unsigned short first, unsigned short second,
+unsigned short SurfaceAverage(unsigned short first, unsigned short second,
                    unsigned short third, unsigned short fourth)
 {
-    int total = (int)((uint)first + (uint)second);
-    total = (int)third + total;
-    total = (int)fourth + total;
-    return total >> 2;
+    return (first + second + third + fourth) >> 2;
 }
 
 extern "C" int RandomRange(unsigned int *seed, int low, int high);
 extern "C" void MemoryRelease(void *memory);
 extern void *MemoryAllocationRetry(unsigned long bytes);
 extern int MissionRandomTable[];
-struct ResMgr { int *Load(const char *, int, int *, unsigned int); };
+struct ResMgr { int *Load(char *, unsigned int = 1, int * = 0, unsigned int = 0); };
 extern ResMgr gResMgr;
 extern "C" void AssertFail(const char *, int, const char *);
 extern "C" unsigned int strlen(const char *);
 extern "C" char *strcpy(char *, const char *);
 extern "C" void *memcpy(void *, const void *, unsigned int);
 extern void ReleasePoolData(void *);
-static const char SurfaceSourcePath[] = "terr\\surface.c";
+static const char SurfaceSourcePath[] = "terr\\tsurface.c";
 
 void SurfaceBuildNoiseTable()
 {
@@ -278,7 +275,7 @@ void SurfaceBuildNoiseTable()
             total += RandomRange((unsigned int *)MissionRandomTable, -32, 32);
             ++sample;
         }
-        ((signed char *)0x4c64a8)[index] = (signed char)((short)total / 12);
+        SurfaceNoiseTable[index] = (signed char)((short)total / 12);
         ++index;
     }
 }
@@ -289,7 +286,7 @@ int SurfaceNoiseAt(int x, int y, int xStep, int yStep, int scale,
     x = xStep * scale + x;
     y = yStep * scale + y;
     unsigned int index = (unsigned int)(x * 0x29 + y * 0x2f + x * 0xb * x + y * 0x11 * y) % 0x1ea;
-    int value = (unsigned int)base + ((int)((signed char *)0x4c64a8)[index] * amplitude >> 7);
+    int value = (unsigned int)base + ((int)SurfaceNoiseTable[index] * amplitude >> 7);
     if (value > 0xff) value = 0xff;
     if (value < 0) value = 0;
     return value;
@@ -318,529 +315,533 @@ void SurfaceReleaseGrid(void * volatile *rows)
 
 int SurfaceStaticValue(int index)
 {
-    return *(unsigned short *)(0x4904d4 + index * 2);
+    return SurfaceScaleValues[index];
 }
 
 int SurfaceLoadDefinition(char *object, const char *name)
 {
-    int *resource = gResMgr.Load(name, 1, 0, 0);
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    if (resource == 0) AssertFail(SurfaceSourcePath, __LINE__, 0);
-    int *header = resource;
-    // Source-line padding.
-    // Source-line padding.
-    if (*header != (int)0x88888888) AssertFail(SurfaceSourcePath, __LINE__, 0);
-    char *text = (char *)(header + 1);
-    unsigned int textLength = strlen(text);
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
+    int *resource = gResMgr.Load((char *)name);
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    if (!resource) AssertFail(SurfaceSourcePath, __LINE__, (const char *)resource);
+    unsigned int *header = (unsigned int *)resource;
+    // Original source line padding.
+    // Original source line padding.
+    if (*header != 0x88888888U) AssertFail(SurfaceSourcePath, __LINE__, 0);
+    char *cursor = (char *)(header + 1);
+    int textLength = strlen(cursor);
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
     if (textLength >= 0x50) AssertFail(SurfaceSourcePath, __LINE__, 0);
-    strcpy(object, text);
-    ++textLength;
-    text += textLength;
-    unsigned int *fields = (unsigned int *)text;
-    *(unsigned int *)(object + 0x54) = fields[0];
-    *(unsigned int *)(object + 0x58) = fields[1];
-    *(unsigned int *)(object + 0x5c) = fields[2];
-    *(unsigned int *)(object + 0x60) = fields[3];
-    *(unsigned int *)(object + 0x64) = fields[4];
-    *(unsigned int *)(object + 0x68) = fields[5];
-    unsigned int width = fields[6];
-    *(unsigned int *)(object + 0x94) = width;
+    strcpy(object, cursor);
+    cursor += textLength + 1;
+    *(unsigned int *)(object + 0x54) = ((unsigned int *)cursor)[0];
+    *(unsigned int *)(object + 0x58) = ((unsigned int *)cursor)[1];
+    *(unsigned int *)(object + 0x5c) = ((unsigned int *)cursor)[2];
+    *(unsigned int *)(object + 0x60) = ((unsigned int *)cursor)[3];
+    *(unsigned int *)(object + 0x64) = ((unsigned int *)cursor)[4];
+    *(SurfaceDepth *)(object + 0x68) = ((unsigned int *)cursor)[5];
+    *(unsigned int *)(object + 0x94) = ((unsigned int *)cursor)[6];
+    cursor += 28;
+    int level = *(unsigned int *)(object + 0x94) >> 6;
     *(int *)(object + 0x50) = 0;
-    int level = (int)width >> 6;
-    while (level > 1) {
-        ++*(int *)(object + 0x50);
-        level >>= 1;
-    }
-    unsigned int depth = *(unsigned int *)(object + 0x68);
-    char *allocation = new char[depth * depth * 3 + width * width];
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    // Source-line padding.
-    if (allocation == 0) AssertFail(SurfaceSourcePath, __LINE__, 0);
-    char *payload = (char *)(fields + 7);
+    while (level > 1) { ++*(int *)(object + 0x50); level >>= 1; }
+    char *allocation = new char[*(unsigned int *)(object + 0x94) * *(unsigned int *)(object + 0x94) + *(SurfaceDepth *)(object + 0x68) * *(SurfaceDepth *)(object + 0x68) * 3];
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    // Original source line padding.
+    if (!allocation) AssertFail(SurfaceSourcePath, __LINE__, (const char *)allocation);
     *(char **)(object + 0x98) = allocation;
-    *(char **)(object + 0x6c) = allocation + width * width;
-    *(char **)(object + 0x70) = allocation + width * width + depth * depth;
-    memcpy(*(void **)(object + 0x6c), payload, depth * depth);
-    payload += depth * depth;
-    memcpy(*(void **)(object + 0x70), payload, depth * depth * 2);
-    payload += depth * depth * 2;
-    memcpy(object + 0xbc, payload, 0x100);
-    memcpy(object + 0x74, payload + 0x100, 0x20);
-    memcpy(object + 0x9c, payload + 0x120, 0x20);
+    allocation += *(unsigned int *)(object + 0x94) * *(unsigned int *)(object + 0x94);
+    *(char **)(object + 0x6c) = allocation;
+    allocation += *(SurfaceDepth *)(object + 0x68) * *(SurfaceDepth *)(object + 0x68);
+    *(char **)(object + 0x70) = allocation;
+    memcpy(*(void **)(object + 0x6c), cursor, *(SurfaceDepth *)(object + 0x68) * *(SurfaceDepth *)(object + 0x68));
+    cursor += *(SurfaceDepth *)(object + 0x68) * *(SurfaceDepth *)(object + 0x68);
+    memcpy(*(void **)(object + 0x70), cursor, (*(SurfaceDepth *)(object + 0x68) * *(SurfaceDepth *)(object + 0x68)) * 2);
+    cursor += (*(SurfaceDepth *)(object + 0x68) * *(SurfaceDepth *)(object + 0x68)) * 2;
+    memcpy(object + 0xbc, cursor, 0x100); cursor += 0x100;
+    memcpy(object + 0x74, cursor, 0x20); cursor += 0x20;
+    memcpy(object + 0x9c, cursor, 0x20);
     ReleasePoolData(resource);
     return 1;
 }
@@ -951,23 +952,26 @@ void SurfaceClearAllocationAndRelease(int *object)
     }
 }
 
-unsigned char SurfaceGridValue(int *object, unsigned int *point)
+struct SurfaceGridLayout { char prefix[0x50]; int shift; char middle[0x40]; unsigned int width; unsigned char *data; };
+unsigned char SurfaceGridValue(SurfaceGridLayout *object, unsigned int *point)
 {
-    unsigned int x = (point[0] & 0x3f) << *(unsigned char *)((char *)object + 0x50);
-    unsigned int y = (point[1] & 0x3f) << *(unsigned char *)((char *)object + 0x50);
-    if (x >= (unsigned int)object[0x25]) x = object[0x25] - 1;
-    if (y >= (unsigned int)object[0x25]) y = object[0x25] - 1;
-    return *(unsigned char *)(object[0x26] + x * object[0x25] + y);
+    int x = point[0] & 63;
+    int y = point[1] & 63;
+    x <<= object->shift; y <<= object->shift;
+    if ((unsigned int)x >= object->width) x = object->width - 1;
+    if ((unsigned int)y >= object->width) y = object->width - 1;
+    return object->data[x * object->width + y];
 }
 
-void SurfaceGridSetValue(int *object, unsigned int *point, unsigned char value)
+void SurfaceGridSetValue(SurfaceGridLayout *object, unsigned int *point, unsigned char value)
 {
-    if (object[0x26] != 0) {
-        unsigned int x = (point[0] & 0x3f) << *(unsigned char *)((char *)object + 0x50);
-        unsigned int y = (point[1] & 0x3f) << *(unsigned char *)((char *)object + 0x50);
-        if (x >= (unsigned int)object[0x25]) x = object[0x25] - 1;
-        if (y >= (unsigned int)object[0x25]) y = object[0x25] - 1;
-        *(unsigned char *)(object[0x26] + x * object[0x25] + y) = value;
+    if (object->data) {
+        unsigned int x = point[0] & 63;
+        unsigned int y = point[1] & 63;
+        x <<= object->shift; y <<= object->shift;
+        if (x >= object->width) x = object->width - 1;
+        if (y >= object->width) y = object->width - 1;
+        object->data[y + x * object->width] = value;
     }
 }
 
@@ -979,11 +983,11 @@ void SurfaceApplyColorMap(int *object)
             *data = ((unsigned char *)object)[0xbc + *data];
 }
 
-unsigned int SurfaceRandomize(int *object, void *unused, int fillGrid)
+unsigned int SurfaceRandomize(int *object, int fileNumber, int fillGrid)
 {
     unsigned int result = 0;
     char filename[32];
-    sprintf(filename, "scape_d.dat", unused);
+    sprintf(filename, "scape%d.dat", fileNumber);
     if ((unsigned int)object[0x26] != 0) {
         delete[] (char *)object[0x26];
         ((char *)object)[0x98] = 0;
@@ -994,16 +998,15 @@ unsigned int SurfaceRandomize(int *object, void *unused, int fillGrid)
     SurfaceLoadDefinition((char *)object, filename);
     unsigned char *grid = (unsigned char *)object[0x1b];
     unsigned char lowGrid = grid[0];
-    unsigned char highGrid = grid[3];
+    unsigned char highGrid = grid[1];
     unsigned char noiseLow = grid[2];
-    unsigned char noiseHigh = grid[1];
+    unsigned char noiseHigh = grid[3];
     unsigned char scatterLow = grid[4];
     unsigned char scatterHigh = grid[5];
-    unsigned int count = object[0x1a] * object[0x1a];
-    for (unsigned int cell = 0; cell < count; ++cell)
-        grid[cell] = (unsigned char)RandomRange((unsigned int *)MissionRandomTable, noiseLow, noiseHigh);
+    int count = object[0x1a] * object[0x1a];
+    unsigned char *cell = grid; for (int cellNumber = 0; cellNumber < count; ++cellNumber, ++cell) *cell = (unsigned char)RandomRange((unsigned int *)MissionRandomTable, noiseLow, noiseHigh);
     unsigned char scatterCount = (unsigned char)RandomRange((unsigned int *)MissionRandomTable, lowGrid, highGrid);
-    for (unsigned int i = 0; i < scatterCount; ++i) {
+    for (int i = 0; i < scatterCount; ++i) {
         unsigned int index = next_link_seed((unsigned int *)MissionRandomTable) % count;
         int value = RandomRange((unsigned int *)MissionRandomTable, scatterLow, scatterHigh);
         grid[index] = (unsigned char)value;
@@ -1012,8 +1015,8 @@ unsigned int SurfaceRandomize(int *object, void *unused, int fillGrid)
     unsigned char *descriptor = (unsigned char *)(object + 0x27);
     unsigned int width = object[0x25];
     for (int descriptorIndex = 0; descriptorIndex != 8; ++descriptorIndex, descriptor += 4) {
-        unsigned char number = descriptor[0];
-        int value = RandomRange((unsigned int *)MissionRandomTable, descriptor[2], descriptor[3]);
+        int number = descriptor[0];
+        unsigned char value = (unsigned char)RandomRange((unsigned int *)MissionRandomTable, descriptor[2], descriptor[3]);
         while (number > 0) {
             unsigned int index = next_link_seed((unsigned int *)MissionRandomTable) % (width * width);
             ((unsigned char *)object[0x26])[index] = (unsigned char)value;
@@ -1021,18 +1024,23 @@ unsigned int SurfaceRandomize(int *object, void *unused, int fillGrid)
         }
     }
     if (fillGrid != 0) {
-        unsigned int cells = width * width;
+        unsigned int cells = object[0x25] * object[0x25]; unsigned char *target = (unsigned char *)object[0x26];
         unsigned char base = (unsigned char)RandomRange((unsigned int *)MissionRandomTable, noiseLow, noiseHigh);
-        memset((void *)object[0x26], base, cells);
-        for (unsigned int fillIndex = 0; fillIndex < scatterCount; ++fillIndex) {
+        memset(target, base, cells);
+        for (int fillIndex = 0; fillIndex < scatterCount; ++fillIndex) {
             unsigned int index = next_link_seed((unsigned int *)MissionRandomTable) % cells;
             int value = RandomRange((unsigned int *)MissionRandomTable, scatterLow, scatterHigh);
-            ((unsigned char *)object[0x26])[index] = (unsigned char)value;
+            target[index] = (unsigned char)value;
         }
         result = base;
     }
     return result;
 }
+
+
+
+
+
 
 
 

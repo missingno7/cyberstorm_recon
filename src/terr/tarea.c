@@ -146,7 +146,7 @@ int AreaFind(int *grid, int position)
     return 0;
 }
 
-void AreaIndexToPoint(int *grid, int index)
+int AreaIndexToPoint(int *grid, int index)
 {
     int savedIndex = index;
     AreaPoint point = *(AreaPoint *)(grid + 8);
@@ -176,7 +176,7 @@ void AreaIndexToPoint(int *grid, int index)
             } while (walk.step <= (unsigned int)grid[5]);
         }
     }
-    ResolveName((const char *)grid[0], (const char *)&point);
+    return ResolveName((const char *)grid[0], (const char *)&point);
 }
 
 int *AreaGetPoint(int *grid, int *point, int index)

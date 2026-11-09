@@ -6278,10 +6278,20 @@
      "size": 16,
      "mangled": "W?DisplayIdentity$n(pnv)pnv"
     },
+    "DisplayScale": {
+     "va": "0042bed0",
+     "size": 64,
+     "mangled": "W?DisplayScale$n(pni)i"
+    },
     "DisplayPointScale": {
      "va": "0042bf10",
      "size": 32,
      "mangled": "W?DisplayPointScale$n(pnii)i"
+    },
+    "DisplayPointToScreenScaled": {
+     "va": "0042c130",
+     "size": 192,
+     "mangled": "W?DisplayPointToScreenScaled$n(pnipnuipnui)i"
     },
     "DisplayIdentityA": {
      "va": "0042c9d0",
@@ -6307,6 +6317,11 @@
      "va": "0042cb30",
      "size": 32,
      "mangled": "W?DisplayCount$n(i)i"
+    },
+    "DisplaySetCandidate": {
+     "va": "0042cb50",
+     "size": 32,
+     "mangled": "W?DisplaySetCandidate$n(pnii)v"
     }
    },
    "data": {},
@@ -6317,6 +6332,16 @@
    "install": "wc106",
    "profile": "ot-oe",
    "functions": {
+    "SurfaceMidpoint": {
+     "va": "004319b0",
+     "size": 32,
+     "mangled": "W?SurfaceMidpoint$n(usus)us"
+    },
+    "SurfaceAverage": {
+     "va": "004319d0",
+     "size": 48,
+     "mangled": "W?SurfaceAverage$n(usususus)us"
+    },
     "SurfaceAllocateGrid": {
      "va": "00431b00",
      "size": 96,
@@ -6326,6 +6351,16 @@
      "va": "00431b60",
      "size": 32,
      "mangled": "W?SurfaceReleaseGrid$n(pnypnv)v"
+    },
+    "SurfaceStaticValue": {
+     "va": "00431b80",
+     "size": 32,
+     "mangled": "W?SurfaceStaticValue$n(i)i"
+    },
+    "SurfaceLoadDefinition": {
+     "va": "00431ba0",
+     "size": 464,
+     "mangled": "W?SurfaceLoadDefinition$n(pnapnxa)i"
     },
     "SurfaceClearAllocation": {
      "va": "00431d70",
@@ -6341,9 +6376,19 @@
      "va": "00432020",
      "size": 48,
      "mangled": "W?SurfaceClearAllocationAndRelease$n(pni)v"
+    },
+    "SurfaceGridValue": {
+     "va": "00432050",
+     "size": 80,
+     "mangled": "W?SurfaceGridValue$n(pn$SurfaceGridLayout$$pnui)uc"
     }
    },
-   "data": {},
+   "data": {
+    "_DATA": {
+     "va": "004905a0",
+     "size": 16
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/_unknown/tu_00435dec.c": {
@@ -8169,6 +8214,138 @@
      "va": "0044ce10",
      "size": 560,
      "mangled": "W?SimHoverObject$n(pn$SimGame$$i)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0042cf40.c": {
+   "as": "_unknown\\tu_0042cf40.c",
+   "install": "wc106",
+   "profile": "ot-oe",
+   "functions": {
+    "SearchInitialize": {
+     "va": "0042cf40",
+     "size": 64,
+     "mangled": "W?SearchInitialize$n(pn$SearchWorkspace$$pnxai)v"
+    },
+    "SearchDestroy": {
+     "va": "0042cf80",
+     "size": 64,
+     "mangled": "W?SearchDestroy$n(pn$SearchWorkspace$$)pn$1$"
+    },
+    "SearchAllocate": {
+     "va": "0042cfc0",
+     "size": 128,
+     "mangled": "W?SearchAllocate$n(pn$SearchWorkspace$$)i"
+    },
+    "SearchRelease": {
+     "va": "0042d040",
+     "size": 64,
+     "mangled": "W?SearchRelease$n(pn$SearchWorkspace$$)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0042d3d0.c": {
+   "as": "_unknown\\tu_0042d3d0.c",
+   "install": "wc106",
+   "profile": "ot-oe",
+   "functions": {},
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0042e210.c": {
+   "as": "_unknown\\tu_0042e210.c",
+   "install": "wc106",
+   "flags": [
+    "-4s",
+    "-s",
+    "-bm",
+    "-oxt",
+    "-oe=150"
+   ],
+   "tool": "wpp386",
+   "functions": {
+    "MapStaticInitialize": {
+     "va": "0042e210",
+     "size": 16,
+     "mangled": "W?MapStaticInitialize$n()v"
+    },
+    "MapInitialize": {
+     "va": "0042e220",
+     "size": 96,
+     "mangled": "W?MapInitialize$n(pn$FastCoord$$pnxai)pn$1$"
+    },
+    "MapIdentity": {
+     "va": "0042e280",
+     "size": 16,
+     "mangled": "W?MapIdentity$n(pnv)pnv"
+    },
+    "MapSetVisibility": {
+     "va": "0042e290",
+     "size": 16,
+     "mangled": "W?MapSetVisibility$n(pn$FastCoord$$pnv)v"
+    },
+    "MapGetView": {
+     "va": "0042e2a0",
+     "size": 48,
+     "mangled": "W?MapGetView$n(pn$FastCoord$$pn$ViewState$$)v"
+    },
+    "MapPointScale": {
+     "va": "0042e390",
+     "size": 32,
+     "mangled": "W?MapPointScale$n(pn$FastCoord$$i)i"
+    },
+    "MapPointToScreen": {
+     "va": "0042e3b0",
+     "size": 160,
+     "mangled": "W?MapPointToScreen$n(pn$FastCoord$$pn$GridPoint$$pn$2$)v"
+    },
+    "PrepareDeathMap": {
+     "va": "0042e760",
+     "size": 64,
+     "mangled": "PrepareDeathMap"
+    },
+    "MapContainsPoint": {
+     "va": "0042e900",
+     "size": 240,
+     "mangled": "W?MapContainsPoint$n(pn$FastCoord$$pn$GridPoint$$i)i"
+    },
+    "MapPickVisit": {
+     "va": "0042e9f0",
+     "size": 256,
+     "mangled": "W?MapPickVisit$n(pnv)i"
+    },
+    "MapPickAt": {
+     "va": "0042eaf0",
+     "size": 144,
+     "mangled": "W?MapPickAt$n(pn$FastCoord$$pn$GridPoint$$)i"
+    },
+    "MapNearestVisit": {
+     "va": "0042eb80",
+     "size": 192,
+     "mangled": "W?MapNearestVisit$n(pnv)i"
+    },
+    "MapNearestAt": {
+     "va": "0042ec40",
+     "size": 96,
+     "mangled": "W?MapNearestAt$n(pn$FastCoord$$pn$GridPoint$$)i"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0042eca0.c": {
+   "as": "_unknown\\tu_0042eca0.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "0042eca0",
+     "size": 16,
+     "mangled": "W?.fn_init$n()v"
     }
    },
    "data": {},
