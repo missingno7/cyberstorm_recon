@@ -39,7 +39,14 @@ def main(argv):
     if len(argv) != 1 or "tu" not in opts:
         print(__doc__)
         return 2
-    cand = Path(argv[0]).resolve()
+    orig_cand = Path(argv[0]).resolve()
+    # canonical form = LF line endings (what git stores); compile and publish exactly that
+    norm_dir = ROOT / "build" / "promote"
+    norm_dir.mkdir(parents=True, exist_ok=True)
+    cand = norm_dir / orig_cand.name
+    cand.write_bytes(orig_cand.read_bytes().replace(b"
+", b"
+"))
     tu = opts["tu"].replace("\\", "/")
     ledger = gate.load_ledger()
     old = ledger["tus"].get(tu, {})
@@ -125,8 +132,7 @@ def main(argv):
         return 0
     dest = ROOT / tu
     dest.parent.mkdir(parents=True, exist_ok=True)
-    if cand != dest.resolve():
-        shutil.copyfile(cand, dest)
+    shutil.copyfile(cand, dest)
     now = datetime.date.today().isoformat()
     rec = {k: v for k, v in entry.items() if v is not None}
     rec["functions"] = {symbols.label(n): {"va": e["va"], "size": e["end"] - e["off"], "mangled": n}
