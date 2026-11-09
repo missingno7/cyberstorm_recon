@@ -6507,6 +6507,285 @@
     }
    },
    "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_00407204.c": {
+   "as": "_unknown\\tu_00407204.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "00407204",
+     "size": 662,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "MainMenuScreen::$ct": {
+     "va": "0040749a",
+     "size": 86,
+     "mangled": "W?$ct:MainMenuScreen$n()_"
+    },
+    "MainMenuScreen::Open": {
+     "va": "004074f0",
+     "size": 979,
+     "mangled": "W?Open$:MainMenuScreen$n(pn$InputReq$$i)v"
+    },
+    "MainMenuScreen::CloseResources": {
+     "va": "004078c3",
+     "size": 92,
+     "mangled": "W?CloseResources$:MainMenuScreen$n()v"
+    },
+    "MainMenuScreen::Close": {
+     "va": "0040791f",
+     "size": 150,
+     "mangled": "W?Close$:MainMenuScreen$n()v"
+    },
+    "MainMenuScreen::SetText": {
+     "va": "004079b5",
+     "size": 760,
+     "mangled": "W?SetText$:MainMenuScreen$n()v"
+    },
+    "MainMenuScreen::Dismiss": {
+     "va": "00407cad",
+     "size": 211,
+     "mangled": "W?Dismiss$:MainMenuScreen$n()v"
+    },
+    "MainMenuScreen::ShowExit": {
+     "va": "00407d80",
+     "size": 222,
+     "mangled": "W?ShowExit$:MainMenuScreen$n()v"
+    },
+    "MainMenuScreen::ForceStart": {
+     "va": "00407e5e",
+     "size": 12,
+     "mangled": "W?ForceStart$:MainMenuScreen$n()v"
+    },
+    "MainMenuScreen::ShowRestart": {
+     "va": "00407e6a",
+     "size": 131,
+     "mangled": "W?ShowRestart$:MainMenuScreen$n()v"
+    },
+    "MainMenuScreen::Start": {
+     "va": "00407eed",
+     "size": 779,
+     "mangled": "W?Start$:MainMenuScreen$n()i"
+    },
+    "MainMenuScreen::DrawMessage": {
+     "va": "004081f8",
+     "size": 68,
+     "mangled": "W?DrawMessage$:MainMenuScreen$n(pnxa)v"
+    },
+    "MainMenuScreen::Highlight": {
+     "va": "0040823c",
+     "size": 292,
+     "mangled": "W?Highlight$:MainMenuScreen$n(ii)v"
+    },
+    "MainMenuScreen::Update": {
+     "va": "00408360",
+     "size": 295,
+     "mangled": "W?Update$:MainMenuScreen$n()v"
+    },
+    "MainMenuScreen::Render": {
+     "va": "00408487",
+     "size": 258,
+     "mangled": "W?Render$:MainMenuScreen$n()v"
+    },
+    "MainMenuScreen::Hover": {
+     "va": "00408589",
+     "size": 33,
+     "mangled": "W?Hover$:MainMenuScreen$n()i"
+    },
+    "MenuHelpRegion::$dt": {
+     "va": "00408610",
+     "size": 67,
+     "mangled": "W?$dt:MenuHelpRegion$n()_"
+    },
+    "MenuLabel::$dt": {
+     "va": "00408654",
+     "size": 67,
+     "mangled": "W?$dt:MenuLabel$n()_"
+    },
+    "MenuPrefixButton::$dt": {
+     "va": "00408698",
+     "size": 67,
+     "mangled": "W?$dt:MenuPrefixButton$n()_"
+    },
+    "MenuPanel::$dt": {
+     "va": "004086dc",
+     "size": 67,
+     "mangled": "W?$dt:MenuPanel$n()_"
+    },
+    "MenuNumber::$dt": {
+     "va": "00408720",
+     "size": 67,
+     "mangled": "W?$dt:MenuNumber$n()_"
+    },
+    "MenuButton::$dt": {
+     "va": "00408764",
+     "size": 67,
+     "mangled": "W?$dt:MenuButton$n()_"
+    },
+    "MainMenuScreen::$dt": {
+     "va": "004087a8",
+     "size": 54,
+     "mangled": "W?$dt:MainMenuScreen$n()_"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048a170",
+     "size": 143
+    },
+    "CONST2": {
+     "va": "0048c8c0",
+     "size": 180
+    },
+    "_DATA": {
+     "va": "0048e594",
+     "size": 12
+    },
+    "W?$Wts0dn$MenuLabel$$$nx[]uc": {
+     "va": "0048c9b0",
+     "size": 17
+    },
+    "W?$Wts0in$MenuHelpRegion$$$nx[]uc": {
+     "va": "0048c9c4",
+     "size": 17
+    },
+    "W?$Wts0en$MenuButton$$$nx[]uc": {
+     "va": "0048c9d8",
+     "size": 17
+    },
+    "W?$Wts0kn$MenuPrefixButton$$$nx[]uc": {
+     "va": "0048c9ec",
+     "size": 17
+    },
+    "W?$Wts0dn$MenuPanel$$$nx[]uc": {
+     "va": "0048c99c",
+     "size": 17
+    },
+    "W?$Wts0en$MenuNumber$$$nx[]uc": {
+     "va": "0048c988",
+     "size": 17
+    },
+    "W?$Wts08n$Flic$$$nx[]uc": {
+     "va": "0048c848",
+     "size": 17
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_004087e0.c": {
+   "as": "_unknown\\tu_004087e0.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "GuiScreen::ResetInput": {
+     "va": "004087e0",
+     "size": 12,
+     "mangled": "W?ResetInput$:GuiScreen$n()v"
+    },
+    "W?.fn_init$n()v": {
+     "va": "004087ec",
+     "size": 146,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "TopMenuScreen::$ct": {
+     "va": "0040887e",
+     "size": 70,
+     "mangled": "W?$ct:TopMenuScreen$n()_"
+    },
+    "TopMenuScreen::SetControls": {
+     "va": "004088c4",
+     "size": 582,
+     "mangled": "W?SetControls$:TopMenuScreen$n()v"
+    },
+    "TopMenuScreen::ClearPanel": {
+     "va": "00408b0a",
+     "size": 55,
+     "mangled": "W?ClearPanel$:TopMenuScreen$n()v"
+    },
+    "TopMenuScreen::Open": {
+     "va": "00408b41",
+     "size": 318,
+     "mangled": "W?Open$:TopMenuScreen$n(pn$InputReq$$uc)v"
+    },
+    "TopMenuScreen::Select": {
+     "va": "00408c7f",
+     "size": 75,
+     "mangled": "W?Select$:TopMenuScreen$n(uc)v"
+    },
+    "TopMenuScreen::Close": {
+     "va": "00408cca",
+     "size": 78,
+     "mangled": "W?Close$:TopMenuScreen$n()v"
+    },
+    "TopMenuScreen::Update": {
+     "va": "00408d18",
+     "size": 78,
+     "mangled": "W?Update$:TopMenuScreen$n()v"
+    },
+    "TopMenuScreen::Render": {
+     "va": "00408d66",
+     "size": 65,
+     "mangled": "W?Render$:TopMenuScreen$n()v"
+    },
+    "TopMenuScreen::AdvanceFrame": {
+     "va": "00408da7",
+     "size": 105,
+     "mangled": "W?AdvanceFrame$:TopMenuScreen$n()v"
+    },
+    "TopMenuScreen::NextAnimation": {
+     "va": "00408e10",
+     "size": 1350,
+     "mangled": "W?NextAnimation$:TopMenuScreen$n()v"
+    },
+    "TopMenuScreen::Reset": {
+     "va": "00409356",
+     "size": 90,
+     "mangled": "W?Reset$:TopMenuScreen$n()v"
+    },
+    "TopMenuScreen::Finish": {
+     "va": "004093b0",
+     "size": 14,
+     "mangled": "W?Finish$:TopMenuScreen$n()v"
+    },
+    "W?$Wda0219$:MenuPrefixButton$n(ui)pnv": {
+     "va": "004093c0",
+     "size": 21,
+     "mangled": "W?$Wda0219$:MenuPrefixButton$n(ui)pnv"
+    },
+    "TopMenuScreen::$dt": {
+     "va": "004093d8",
+     "size": 47,
+     "mangled": "W?$dt:TopMenuScreen$n()_"
+    }
+   },
+   "data": {
+    "CONST2": {
+     "va": "0048ca04",
+     "size": 44
+    },
+    "_DATA": {
+     "va": "0048e604",
+     "size": 12
+    },
+    "W?$Wts0dn$MenuLabel$$$nx[]uc": {
+     "va": "0048c9b0",
+     "size": 17
+    },
+    "W?$Wts0in$MenuHelpRegion$$$nx[]uc": {
+     "va": "0048c9c4",
+     "size": 17
+    },
+    "W?$Wts0kn$MenuPrefixButton$$$nx[]uc": {
+     "va": "0048c9ec",
+     "size": 17
+    },
+    "W?$Wts0dn$MenuPanel$$$nx[]uc": {
+     "va": "0048c99c",
+     "size": 17
+    }
+   },
+   "accepted": "2026-11-09"
   }
  },
  "accepted_losses": [
