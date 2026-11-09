@@ -24,12 +24,13 @@ Model: `luna` = gpt-6-luna xhigh, `sol` = gpt-6.1-sol high (Codex; all new lanes
 | s1 | sol | multi\mstart.c | done (39) |
 | s2 | sol | 0044950c sim\sim.c + sim\simdo.c | running |
 | s3 | sol | 0043b7e0 (unnamed, 79 functions) | done (65; 14 parked) |
-| s4 | sol | 00409408, 0043ef34 (unnamed) | running |
+| s4 | sol | 00409408, 0043ef34 (unnamed) | done (27; 4 parked) |
 | s5 | sol | 00435dec, 0041d774 | running |
 | s6 | sol | shell\hbupgrad.c (from w14) | done (42; 18 parked) |
 | s7 | sol | 0044688c, 00446848 | running |
 | s8 | sol | 00433640, pop\pdeath.c | running |
 | s9 | sol | 0040d2b0, 0040e794, 0040f4d8 | running |
+| s10 | sol | 00454210, 004556f0 | running |
 | l1 | luna | shell\hercbuy.c | done (19) |
 | o1 | opus | multi\linkdlg.c, linkq.c, message.c | done |
 | o2 | opus | sim\apply.c, fxout.c, explo.c | done |
