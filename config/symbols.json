@@ -861,27 +861,6 @@
    "tu": "src/logic/bestloc.c",
    "evidence": "strict match 2026-11-09"
   },
-  "BriefModuleConstruct": {
-   "va": "0047ab8c",
-   "kind": "func",
-   "status": "hypothesis",
-   "mangled": "BriefModuleConstruct",
-   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
-  },
-  "HercModuleConstruct": {
-   "va": "0047ab8c",
-   "kind": "func",
-   "status": "hypothesis",
-   "mangled": "HercModuleConstruct",
-   "evidence": "implied by src/shell/hercbay.c 2026-11-09"
-  },
-  "PopObjectConstruct": {
-   "va": "0047ab8c",
-   "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?PopObjectConstruct$n(pnv)v",
-   "evidence": "implied by src/pop/psystem.c 2026-11-09"
-  },
   "TimeNow": {
    "va": "0047abc0",
    "kind": "func",
@@ -1164,20 +1143,6 @@
    "mangled": "W?PlyGetKey$n(pn$PlyKey$$)v",
    "evidence": "implied by src/_unknown/tu_004297d4.c 2026-11-09"
   },
-  "MemoryRelease": {
-   "va": "0047e044",
-   "kind": "func",
-   "status": "hypothesis",
-   "mangled": "MemoryRelease",
-   "evidence": "implied by src/terr/tfog.c 2026-11-09"
-  },
-  "PopConstructorArray": {
-   "va": "0047e068",
-   "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?PopConstructorArray$n(pnvipnv)v",
-   "evidence": "implied by src/pop/psystem.c 2026-11-09"
-  },
   "FileInit": {
    "va": "0047e450",
    "kind": "func",
@@ -1354,13 +1319,6 @@
    "mangled": "W?GlobalBlockAlloc$n(ului)pnv",
    "tu": "src/io/memory.c",
    "evidence": "strict match 2026-11-09"
-  },
-  "MemoryAllocationRetry": {
-   "va": "0047eb98",
-   "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?MemoryAllocationRetry$n(ul)pnv",
-   "evidence": "implied by src/terr/tfast.c 2026-11-09"
   },
   "g48a9df": {
    "va": "0048a9fb",
