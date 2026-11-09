@@ -1201,7 +1201,7 @@ void CommsDrawLog(CommsScreen *screen)
                 for (i = 0; i < 8; i++) screen->colors[(row + 1) * 8 + i] = i + 0x18;
         }
     } else {
-        for (row = 0; row < 0x12; row++)
+        for (int row = 0; row < 0x12; row++)
             for (i = 0; i < 8; i++) screen->colors[row * 8 + i] = i + 0x10;
     }
     if (screen->system < 2)
@@ -1217,7 +1217,7 @@ void CommsDrawLogB(CommsScreen *screen)
             for (i = 0; i < 8; i++) screen->colors[row * 8 + i] = i + 0x18;
         for (i = 0; i < 8; i++) screen->colors[(selected + 1) * 8 + i] = i + 0x20;
     } else {
-        for (row = 0; row < 5; row++)
+        for (int row = 0; row < 5; row++)
             for (i = 0; i < 8; i++) screen->colors[row * 8 + i] = i + 0x20;
     }
 }
@@ -1227,4 +1227,5 @@ void CommsDispatch(CommsScreen *screen)
     if (screen->mode == 3) CommsDrawLog(screen);
     else if (screen->mode == 2) CommsDrawLogB(screen);
 }
+
 

@@ -4,89 +4,21 @@
 #pragma aux pilot_gui_surface_ctor "W?$ct:Surface$n(ul)_";
 #pragma aux pilot_gui_surface_dtor "W?$dt:Surface$n()_";
 extern unsigned char gPilotGuiResourceTemplate;
-struct GuiRect { long x, y, width, height; };
-struct GuiControlData : GuiRect { unsigned char style[4]; unsigned long attributes, shortcut; };
-class GuiControl : public GuiControlData
-{
-public:
-    virtual ~GuiControl();
-    virtual void Reset(unsigned);
-    virtual void Draw(unsigned);
-    virtual int Event(unsigned, unsigned long);
-    virtual int HitTest(const void *);
-};
-struct GuiScreen
-{
-    char data[0x4c];
-    __pragma("pilot_gui_screen_ctor") GuiScreen(GuiControl *, unsigned long, unsigned long);
-    ~GuiScreen() { *(long *)((char *)this + 0x10) = 0; }
-};
-struct Flic
-{
-    char data[0x8c];
-    __pragma("pilot_gui_flic_ctor") Flic();
-    __pragma("pilot_gui_flic_dtor") ~Flic();
-};
+struct GuiRect { long x, y, width, height; }; struct GuiControlData : GuiRect { unsigned char style[4]; unsigned long attributes, shortcut; }; class GuiControl : public GuiControlData { public:     virtual ~GuiControl();     virtual void Reset(unsigned);     virtual void Draw(unsigned);     virtual int Event(unsigned, unsigned long);     virtual int HitTest(const void *); };
+struct GuiScreen {     char data[0x4c];     __pragma("pilot_gui_screen_ctor") GuiScreen(GuiControl *, unsigned long, unsigned long);     int IsActive() {return *(long *)((char *)this+0x10)!=0;}     ~GuiScreen() { *(long *)((char *)this + 0x10) = 0; } };
+struct Flic {     char data[0x90];     __pragma("pilot_gui_flic_ctor") Flic();     __pragma("pilot_gui_flic_dtor") ~Flic(); };
 extern void FlicClose(void *);
 #pragma aux FlicClose "W?Close$:Flic$n()v";
-struct Surface
-{
-    char data[0x10];
-    __pragma("pilot_gui_surface_ctor") Surface(unsigned long);
-    __pragma("pilot_gui_surface_dtor") ~Surface();
-};
-struct PilotGuiModule : GuiScreen
-{
-    Flic first_flic;
-    char gap1[0x16];
-    Flic second_flic;
-    char gap2[4];
-    Surface palette_surface;
-    PilotGuiModule();
-};
-
+struct Surface {     char data[0x10];     __pragma("pilot_gui_surface_ctor") Surface(unsigned long);     __pragma("pilot_gui_surface_dtor") ~Surface(); };
+struct PilotGuiModule : GuiScreen {     Flic first_flic;     char gap1[0x12];     Flic second_flic;      Surface palette_surface;     PilotGuiModule(); };
 #pragma aux pilot_gui_open_ctor "BriefModuleOpen";
 #pragma aux pilot_gui_open_dtor "W?$dt:BriefModule$n()_";
-
-struct PilotGuiOpenObject
-{
-    char data[0x2c];
-    __pragma("pilot_gui_open_ctor") PilotGuiOpenObject(int, unsigned long, int);
-    __pragma("pilot_gui_open_dtor") ~PilotGuiOpenObject();
-};
-
-class MenuHelpRegion : public GuiControl
-{
-public:
-    long id;
-    int activated;
-    MenuHelpRegion();
-    virtual ~MenuHelpRegion();
-};
-
+struct PilotGuiOpenObject {     char data[0x2c];     __pragma("pilot_gui_open_ctor") PilotGuiOpenObject(int, unsigned long, int);     __pragma("pilot_gui_open_dtor") ~PilotGuiOpenObject(); };
+class MenuHelpRegion : public GuiControl { public:     long id;     int activated;     MenuHelpRegion();     virtual ~MenuHelpRegion(); };
 #pragma pack(push, 1)
-class MenuLabel : public GuiControl
-{
-public:
-    const char *text;
-    long align;
-    unsigned char font;
-    int background;
-    long color;
-    MenuLabel(const char * = 0, long = -1, unsigned char = 1, long = 0xb, int = 1);
-    virtual ~MenuLabel();
-};
-class MenuPrefixButton : public GuiControl
-{
-public:
-    const char *text;
-    unsigned long state;
-    signed char font, color, align, prefix;
-    MenuPrefixButton(const char * = 0, signed char = 1, signed char = 2, signed char = -1);
-    virtual ~MenuPrefixButton();
-};
+class MenuLabel : public GuiControl { public:     const char *text;     long align;     unsigned char font;     int background;     long color;     MenuLabel(const char * = 0, long = -1, unsigned char = 1, long = 0xb, int = 1);     virtual ~MenuLabel();     void SetFont(unsigned char); void SetText(const char *); void SetColor(long); void SetAlign(long); void SetBackground(int); };
+class MenuPrefixButton : public GuiControl { public:     const char *text;     unsigned long state;     signed char font, color, align, prefix;     MenuPrefixButton(const char * = 0, signed char = 1, signed char = 2, signed char = -1);     virtual ~MenuPrefixButton();     void SetColor(signed char); void SetFont(signed char); void SetAlign(signed char); };
 #pragma pack(pop)
-
 PilotGuiOpenObject gPilotGuiOpenA(0x33, 1000, 0);
 PilotGuiOpenObject gPilotGuiOpenB(0x36, 1000, 0);
 MenuHelpRegion gPilotGuiHelpRegion;
@@ -121,14 +53,12 @@ MenuPrefixButton gPilotGuiLabel27(0, 1, 2, -1);
 MenuPrefixButton gPilotGuiLabel28(0, 1, 2, -1);
 MenuPrefixButton gPilotGuiLabel29(0, 1, 2, -1);
 PilotGuiModule g4b16a4;
-
 extern unsigned char gPilotGuiLabel30;
 extern unsigned char gPilotGuiLabel31;
 extern unsigned char gPilotGuiLabel32;
 extern unsigned char gPilotGuiLabel33;
 extern int gPilotGuiBarImageIds[];
 extern int g4affc2;
-
 extern "C" void BriefModuleConstruct(void *);
 extern "C" void BriefModuleOpen(void *, int, unsigned long, int);
 extern void PilotMenuHelpRegionCtor(void *);
@@ -141,22 +71,102 @@ extern void PilotGuiCtorArray(void *, int, void *);
 #pragma aux PilotGuiCtorArray "W?PopConstructorArray$n(pnvipnv)v";
 extern void PilotGuiModuleConstructor(void *);
 #pragma aux PilotGuiModuleConstructor "W?$ct:PilotGuiModule$n()_";
-
 void PilotGuiBriefReset(char *p)
 {
     *(long *)(p + 0x10) = 0;
 }
-
 PilotGuiModule::PilotGuiModule()
     : GuiScreen((GuiControl *)&gPilotGuiResourceTemplate, 0x28, 0), first_flic(), second_flic(), palette_surface(0)
 {
 }
-
 extern void ReleasePoolData(void *);
 extern void SurfaceFree(void *);
 extern int chat_menu_valid(void *);
 extern unsigned long gPilotChatMenu;
 
+struct StrPool { char *GetString(long,int=0); }; extern StrPool gShellStrings;
+struct ResMgr {void *Load(long,int=1,int=0,int=0);}; extern ResMgr gResMgr;
+struct MenuImages; extern MenuImages *gMenuImages;
+extern int SurfaceCreate(Surface *,long,long);
+extern "C" void SurfaceGetFrame(Surface *,void *);
+extern "C" void BriefObjectOpen(void *,const char *);
+extern "C" void BriefObjectLoadResource(void *,void *,StrPool *,long,int);
+extern "C" void AssertFail(const char *,int,const char *);
+extern int PilotProfileCount(void *); extern void *PilotProfileSelect(void *,int);
+extern void f_0041170c(void *); extern "C" void f_004120fe(void *,int);
+extern char gShellGame; extern long gPilotGuiSelection;
+extern unsigned char *gScreenImages; extern void *gShellImages;
+void PilotGuiOpen(void *p, void *input)
+{
+    GuiScreen *screen=(GuiScreen *)p;
+    if (screen->IsActive()) return;
+    *(long *)((char *)p+0x701)=0;
+    *(long *)((char *)p+0xea)=1;
+    int made=SurfaceCreate((Surface *)((char *)p+0x17e),0x70,0x70);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    if(!made) AssertFail(__FILE__,__LINE__,(const char *)made);
+    SurfaceGetFrame((Surface *)((char *)p+0x17e),(char *)p+0x18e);
+    *(void **)((char *)p+0x5ec)=gResMgr.Load((long)"BGMPALS.PLX");
+    *(long *)((char *)p+0x6f0)=-1;
+    BriefObjectOpen(p,"pilotgui.box");
+    BriefObjectLoadResource(p,input,&gShellStrings,0x961,1);
+    gPilotGuiSelection=-1;
+    gPilotGuiLabel04.SetFont(1); gPilotGuiLabel22.SetAlign(1);
+    gPilotGuiLabel21.SetText(gShellStrings.GetString(0x980,1));
+    gPilotGuiLabel15.SetText(gShellStrings.GetString(0x971,1));
+    gPilotGuiLabel16.SetText(gShellStrings.GetString(0x972,1));
+    gPilotGuiLabel17.SetText(gShellStrings.GetString(0x973,1));
+    gPilotGuiLabel18.SetText(gShellStrings.GetString(0x974,1));
+    gPilotGuiLabel19.SetText(gShellStrings.GetString(0x975,1));
+    gPilotGuiLabel20.SetText(gShellStrings.GetString(0x97f,1));
+    gPilotGuiLabel17.SetFont(0); gPilotGuiLabel18.SetFont(0); gPilotGuiLabel19.SetFont(0);
+    gPilotGuiLabel17.SetBackground(0); gPilotGuiLabel18.SetBackground(0); gPilotGuiLabel19.SetBackground(0);
+    gPilotGuiLabel13.SetBackground(0); gPilotGuiLabel14.SetBackground(0); gPilotGuiLabel04.SetBackground(0);
+    gPilotGuiLabel21.SetBackground(0); gPilotGuiLabel15.SetBackground(0); gPilotGuiLabel16.SetBackground(0);
+    gPilotGuiLabel20.SetBackground(0); gPilotGuiLabel01.SetBackground(0); gPilotGuiLabel02.SetBackground(0); gPilotGuiLabel03.SetBackground(0);
+    for(int i=0;i<8;i++) {gPilotGuiLabelArray[i].SetFont(0);gPilotGuiLabelArray[i].SetText(gShellStrings.GetString(0x976+i,1));}
+    gPilotGuiLabel21.SetAlign(0); gPilotGuiLabel15.SetAlign(0); gPilotGuiLabel16.SetAlign(0); gPilotGuiLabel22.SetFont(0);
+    gPilotGuiLabel20.SetAlign(0); gPilotGuiLabel17.SetAlign(0); gPilotGuiLabel18.SetAlign(0); gPilotGuiLabel19.SetAlign(0); gPilotGuiLabel22.SetColor(0xb);
+    GuiRect *prev=(GuiRect *)&gPilotGuiOpenA; prev->x=0x171; prev->y=0x8b;prev->width=0x14;prev->height=0x19;
+    gMenuImages=(MenuImages *)gShellImages;
+    GuiRect *next=(GuiRect *)&gPilotGuiOpenB; next->x=0x208; next->y=0x8b;next->width=0x14;next->height=0x19;
+    *(short *)((char *)p+0x6f9)=0;*(void **)((char *)p+0x705)=0;
+    if(PilotProfileCount(&gShellGame)>0) *(void **)((char *)p+0x705)=PilotProfileSelect(&gShellGame,-1);
+    f_0041170c(p);
+    *(long *)((char *)p+0x6f5)=1;*(short *)((char *)p+0xe4)=3;*(short *)((char *)p+0x6fb)=-150;
+    *(long *)((char *)p+0xe0)=9;*(long *)((char *)p+0xdc)=1;
+    f_004120fe(p,0);
+}
 void PilotGuiCloseResources(void *p)
 {
     if ((*(long *)((char *)p + 0x10) != 0) == 1) {
@@ -176,6 +186,7 @@ void PilotGuiCloseResources(void *p)
 
 struct ViewRect { int left, top, right, bottom; };
 struct MenuImage { unsigned long offset; unsigned short width, height; unsigned long flags; };
+struct MenuImages { unsigned count; MenuImage images[1]; };
 struct PaletteColor { unsigned char red, green, blue, flags; };
 struct Palette { PaletteColor entries[256]; unsigned char unknown[82]; };
 extern GuiRect gMenuClip;
@@ -203,9 +214,9 @@ extern int PilotProfileCount(void *);
 extern void *PilotProfileSelect(void *, int);
 #pragma aux PilotProfileSelect "W?Select$:ProfileManager$n(i)pnv";
 extern "C" int PilotValue(unsigned int, int);
-extern int f_0043718a(unsigned int, int);
+extern int UnitCapability(void *, int);
 extern char *f_0043c73a(void *, unsigned int);
-extern int FlicOpen(void *, long, int, int);
+extern int FlicOpen(void *, long, int = 100, int = 0);
 #pragma aux FlicOpen "W?Open$:Flic$n(lii)i";
 extern unsigned long FlicUpdate(void *, Surface *);
 #pragma aux FlicUpdate "W?Update$:Flic$n(pn$Surface$$)ul";
@@ -219,7 +230,7 @@ extern char gPilotGuiFormat05[], gPilotGuiFormat06[], gPilotGuiFormat07[], gPilo
 extern char gPilotGuiFormat09[], gPilotGuiFormat10[], gPilotGuiFormat11[], gPilotGuiFormat12[];
 extern char gPilotGuiFormat13[], gPilotGuiNameBuffer[];
 extern char gPilotGuiNoPilots[], gPilotGuiUnlinked[];
-extern "C" void SendEvent(void *, int, void *, int, int);
+extern void SendEvent(void *, int, void *, int = 0, int = 0);
 extern "C" int sprintf(char *, const char *, ...);
 extern "C" void BriefStatus(void *);
 extern "C" void BriefRenderUpdate(void *);
@@ -268,7 +279,7 @@ void PilotGuiSelectionControlsRender(void *p)
     }
 }
 
-void PilotGuiDrawSelectionFrame(void)
+void PilotGuiDrawSelectionFrame(void *p)
 {
     MenuSetClip(&gMenuClip, 0x18e, 0x15, 0x70, 0x70);
     viewportClipLeft = gBriefDrawSource;
@@ -293,25 +304,22 @@ void PilotGuiDrawSelectionFrame(void)
 
 void PilotGuiUpdateDetails(void *p)
 {
-    unsigned long color;
     void *selected = PilotProfileSelect(&gShellGame, -1);
     *(void **)((char *)p + 0x705) = selected;
     if (PilotProfileCount(&gShellGame) == 0 && gPilotGuiProfileMode != 2) {
-        PilotGuiDrawSelectionFrame();
+        PilotGuiDrawSelectionFrame(p);
         f_0041170c(p);
-    } else if (*(void **)((char *)p + 0x705) == 0 || *(long *)((char *)p + 0x6fd) == 0) {
-        PilotGuiDrawSelectionFrame();
-    } else {
+    } else if (*(void **)((char *)p + 0x705) != 0 && *(long *)((char *)p + 0x6fd) != 0) {
         unsigned int rank = PilotValue((unsigned int)*(void **)((char *)p + 0x705), 0xca);
         *(short *)((char *)p + 0x6f9) = (short)rank;
-        unsigned int wing = PilotValue((unsigned int)*(void **)((char *)p + 0x705), 0xd7);
-        int paletteIndex = *(short *)((char *)p + 0x6f9) * 100 + (wing - 0x41);
+        int wing = PilotValue((unsigned int)*(void **)((char *)p + 0x705), 0xd7) - 0x41;
+        int paletteIndex = *(short *)((char *)p + 0x6f9) * 100 + wing;
         if (paletteIndex != *(long *)((char *)p + 0x6f0)) {
             f_0041170c(p);
             *(long *)((char *)p + 0x6f0) = paletteIndex;
             char *path = BriefFormat("BGMSH%02d%c.FLX", *(short *)((char *)p + 0x6f9) + 1,
-                                     (char)(wing - 0x41 + 0x41));
-            FlicOpen((char *)p + 0xee, (long)path, 100, 0);
+                                     wing + 0x41);
+            FlicOpen((char *)p + 0xee, (long)path);
             MenuSetClip(&gMenuClip, 0x18e, 0x15, 0x70, 0x70);
             viewportClipLeft = gBriefDrawSource;
             MenuDrawImage(&g513888, (const MenuImage *)((char *)gScreenImages + 0xd0), 0xb9, 9);
@@ -319,14 +327,12 @@ void PilotGuiUpdateDetails(void *p)
             *(Palette *)((char *)p + 0x19a) = gGuiPalette;
             PaletteCopyRange((Palette *)((char *)p + 0x19a),
                 (const PaletteColor *)(*(long *)((char *)p + 0x5ec) +
-                    (*(short *)((char *)p + 0x6f9) * 3 + (wing - 0x41)) * 0x94), 0xab, 0x25);
+                    (*(short *)((char *)p + 0x6f9) * 3 + wing) * 0x94), 0xab, 0x25);
             if (*(long *)((char *)p + 0x701) != 0) {
                 for (int i = 0; i < 0x25; ++i) {
                     int shade = (i * 0xff) / 0x24;
                     PaletteColor *color = (PaletteColor *)((char *)p + 0x19a + 0x2ac + i * 4);
-                    color->red = (unsigned char)shade;
-                    color->green = (unsigned char)shade;
-                    color->blue = (unsigned char)shade;
+                    color->red = color->green = color->blue = (unsigned char)shade;
                     PaletteSetColor((Palette *)((char *)p + 0x19a), color, i + 0xab);
                 }
             }
@@ -334,28 +340,24 @@ void PilotGuiUpdateDetails(void *p)
         }
         if (FlicUpdate((char *)p + 0xee, (Surface *)((char *)p + 0x17e)) & 0x20) {
             unsigned long *pixels = *(unsigned long **)((char *)p + 0x12a);
-            if (*(long *)((char *)p + 0x701) == 0) {
-                for (int i = 0; i < 0x100; ++i)
-                    *((unsigned char *)p + 0x5f0 + i) = PaletteFindColor(
-                        (Palette *)((char *)p + 0x19a), (const PaletteColor *)(pixels + i));
-            } else {
+            if (*(long *)((char *)p + 0x701) != 0) {
                 for (int i = 0; i < 0x100; ++i) {
-                    color = pixels[i];
-                    unsigned char shade = (unsigned char)(((color >> 16) & 0xff) + (color & 0xff) +
-                                                          ((color >> 8) & 0xff)) / 3;
-                    ((unsigned char *)&color)[0] = shade;
-                    ((unsigned char *)&color)[1] = shade;
-                    ((unsigned char *)&color)[2] = shade;
+                    PaletteColor color = *(PaletteColor *)(pixels+i);
+                    color.red = color.green = color.blue = (color.red + color.green + color.blue) / 3;
                     *((unsigned char *)p + 0x5f0 + i) = PaletteFindColor(
                         (Palette *)((char *)p + 0x19a), (const PaletteColor *)&color);
                 }
+            } else {
+                for (int i = 0; i < 0x100; ++i)
+                    *((unsigned char *)p + 0x5f0 + i) = PaletteFindColor(
+                        (Palette *)((char *)p + 0x19a), (const PaletteColor *)(pixels + i));
             }
         }
         gDrawRemap = (char *)p + 0x5f0;
         MenuDrawImage(&g513888, (const MenuImage *)((char *)p + 0x18e), 0x18e, 0x15);
         MenuSetClip(&gMenuClip, 0x18e, 0x15, 0x70, 0x70);
         gDrawRemap = 0;
-    }
+    } else { PilotGuiDrawSelectionFrame(p); }
 }
 
 void f_0041170c(void *p)
@@ -363,14 +365,12 @@ void f_0041170c(void *p)
     const char *lastText;
     if (PilotProfileCount(&gShellGame) > 0) {
         *(void **)((char *)p + 0x705) = PilotProfileSelect(&gShellGame, -1);
-        SendEvent(*(void **)((char *)p + 0x705), 0x67, gPilotGuiNameBuffer, 0, 0);
+        SendEvent(*(void **)((char *)p + 0x705), 0x67, gPilotGuiNameBuffer);
         if (*(long *)((char *)p + 0x701) != 0)
             PilotGuiLabelSetText(&gPilotGuiLabel04, " ");
         else {
             char *link = f_0043c73a(&gShellGame, (unsigned int)*(void **)((char *)p + 0x705));
-            if (link == 0)
-                link = gPilotGuiUnlinked;
-            PilotGuiLabelSetText(&gPilotGuiLabel04, link);
+            if (!link) PilotGuiLabelSetText(&gPilotGuiLabel04, gPilotGuiUnlinked); else PilotGuiLabelSetText(&gPilotGuiLabel04, link);
         }
         sprintf(gPilotGuiFormat01, "%2d/%2d",
                 PilotValue((unsigned int)*(void **)((char *)p + 0x705), 0xc8),
@@ -381,18 +381,19 @@ void f_0041170c(void *p)
         sprintf(gPilotGuiFormat03, "%2d/%2d",
                 PilotValue((unsigned int)*(void **)((char *)p + 0x705), 0xcf),
                 PilotValue((unsigned int)*(void **)((char *)p + 0x705), 0xd0));
-        sprintf(gPilotGuiFormat04, "%2d", f_0043718a((unsigned int)*(void **)((char *)p + 0x705), 6));
-        sprintf(gPilotGuiFormat05, "%2d", f_0043718a((unsigned int)*(void **)((char *)p + 0x705), 0));
-        sprintf(gPilotGuiFormat06, "%2d", f_0043718a((unsigned int)*(void **)((char *)p + 0x705), 1));
-        sprintf(gPilotGuiFormat07, "%2d", f_0043718a((unsigned int)*(void **)((char *)p + 0x705), 2));
-        sprintf(gPilotGuiFormat08, "%2d", f_0043718a((unsigned int)*(void **)((char *)p + 0x705), 3));
-        sprintf(gPilotGuiFormat09, "%2d", f_0043718a((unsigned int)*(void **)((char *)p + 0x705), 4));
-        sprintf(gPilotGuiFormat10, "%2d", f_0043718a((unsigned int)*(void **)((char *)p + 0x705), 5));
-        sprintf(gPilotGuiFormat11, "%2d", f_0043718a((unsigned int)*(void **)((char *)p + 0x705), 7));
+        sprintf(gPilotGuiFormat04, "%2d", UnitCapability(*(void **)((char *)p + 0x705), 6));
+        sprintf(gPilotGuiFormat05, "%2d", UnitCapability(*(void **)((char *)p + 0x705), 0));
+        sprintf(gPilotGuiFormat06, "%2d", UnitCapability(*(void **)((char *)p + 0x705), 1));
+        sprintf(gPilotGuiFormat07, "%2d", UnitCapability(*(void **)((char *)p + 0x705), 2));
+        sprintf(gPilotGuiFormat08, "%2d", UnitCapability(*(void **)((char *)p + 0x705), 3));
+        sprintf(gPilotGuiFormat09, "%2d", UnitCapability(*(void **)((char *)p + 0x705), 4));
+        sprintf(gPilotGuiFormat10, "%2d", UnitCapability(*(void **)((char *)p + 0x705), 5));
+        sprintf(gPilotGuiFormat11, "%2d", UnitCapability(*(void **)((char *)p + 0x705), 7));
         sprintf(gPilotGuiFormat12, "%2d/%2d",
                 PilotValue((unsigned int)*(void **)((char *)p + 0x705), 0xd3),
                 PilotValue((unsigned int)*(void **)((char *)p + 0x705), 0xd4));
-        sprintf(gPilotGuiFormat13, "%2d", PilotValue((unsigned int)*(void **)((char *)p + 0x705), 0xd6));
+        int rating = PilotValue((unsigned int)*(void **)((char *)p + 0x705), 0xd6) - 1;
+        sprintf(gPilotGuiFormat13, "%c%d", rating / 5 + 0x41, rating % 5 + 1);
         PilotGuiLabelSetText(&gPilotGuiLabel01, gPilotGuiFormat01);
         PilotGuiLabelSetText(&gPilotGuiLabel02, gPilotGuiFormat02);
         PilotGuiLabelSetText(&gPilotGuiLabel03, gPilotGuiFormat03);
@@ -406,7 +407,7 @@ void f_0041170c(void *p)
         PilotGuiLabelSetText(&gPilotGuiLabel09, gPilotGuiFormat08);
         PilotGuiLabelSetText(&gPilotGuiLabel10, gPilotGuiFormat09);
         PilotGuiLabelSetText(&gPilotGuiLabel11, gPilotGuiFormat10);
-        lastText = gPilotGuiFormat11;
+        PilotGuiLabelSetText(&gPilotGuiLabel12, gPilotGuiFormat11);
     } else {
         *(long *)((char *)p + 0x705) = 0;
         PilotGuiLabelSetText(&gPilotGuiLabel01, " ");
@@ -423,9 +424,9 @@ void f_0041170c(void *p)
         PilotGuiLabelSetText(&gPilotGuiLabel09, " ");
         PilotGuiLabelSetText(&gPilotGuiLabel10, " ");
         PilotGuiLabelSetText(&gPilotGuiLabel11, " ");
-        lastText = " ";
+        PilotGuiLabelSetText(&gPilotGuiLabel12, " ");
     }
-    PilotGuiLabelSetText(&gPilotGuiLabel12, lastText);
+    // Branches can own their final label update.
 }
 
 void PilotGuiDrawBars(void *p, int row, int value, int maximum)
@@ -434,20 +435,17 @@ void PilotGuiDrawBars(void *p, int row, int value, int maximum)
     if (maximum != 0) {
         bars = ((value * 120) / 4 + maximum / 2) / maximum;
     }
-    if (bars <= 1)
-        bars = 1;
-    else if (bars >= 30)
-        bars = 0x1e;
-    int image = gPilotGuiBarImageIds[row];
+    bars = bars <= 1 ? 1 : bars >= 30 ? 30 : bars;
+    int x = 0x1fe; int image = gPilotGuiBarImageIds[row]; int imageIndex = row * 2 + 9;
     int i;
     for (i = 0; i < bars; ++i)
         MenuDrawImage(&g513888,
-            (const MenuImage *)((char *)gScreenImages + (row * 2 + 9) * 0xc + 4),
-            i * 4 + 0x1fe, image);
+            &((MenuImages *)gScreenImages)->images[imageIndex],
+            i * 4 + x, image);
     for (i = bars; i < 0x1e; ++i)
         MenuDrawImage(&g513888,
-            (const MenuImage *)((char *)gScreenImages + (row * 2 + 10) * 0xc + 4),
-            i * 4 + 0x1fe, image);
+            &((MenuImages *)gScreenImages)->images[imageIndex+1],
+            i * 4 + x, image);
 }
 
 void PilotGuiRenderControls(void *p)
@@ -485,12 +483,12 @@ struct PilotKey { unsigned long first, second; };
 extern "C" void PlyGetKey(PilotKey *);
 extern int f_0043d2b9(void *, const PilotKey *);
 extern int f_0043d591(void *, const PilotKey *);
-extern void PilotGuiContextMenu(void *, int);
+extern "C" void f_004120fe(void *, int);
 extern char gPilotGuiPromptBuffer[], gPilotGuiSpecialKey[];
 extern "C" int strcmp(const char *, const char *);
-extern void f_0046c461(int, void *);
+extern int LogicCallMode(int, void *);
 extern long gPilotGuiSelection;
-extern unsigned long gPilotGuiModified;
+extern unsigned long g4affb8;
 struct GuiPoint { long x, y; };
 extern GuiPoint g4bb78c;
 
@@ -568,17 +566,17 @@ void PilotGuiSelectProfileByKey(void *p)
         search.first = key.first;
         search.second = key.second;
         if (f_0043d591(&gShellGame, &search)) {
-            PilotGuiContextMenu(p, 1);
+            f_004120fe(p, 1);
             f_0041170c(p);
             char *profile = (char *)PilotProfileSelect(&gShellGame, -1);
             *(char **)((char *)p + 0x705) = profile;
             if (profile != 0) {
-                SendEvent(profile, 0x67, gPilotGuiPromptBuffer, 0, 0);
+                SendEvent(profile, 0x67, gPilotGuiPromptBuffer);
                 if (strcmp(gPilotGuiPromptBuffer, gPilotGuiSpecialKey) == 0)
-                    f_0046c461(0x15d, 0);
+                    LogicCallMode(0x15d, 0);
             }
         }
-        gPilotGuiModified = 1;
+        g4affb8 = 1;
     }
 }
 
@@ -632,7 +630,7 @@ void PilotGuiReleaseChatMenu(void)
     }
 }
 
-void PilotGuiContextMenu(void *p, int menu)
+extern "C" void f_004120fe(void *p, int menu)
 {
     char item[128];
     char profileName[64];
@@ -662,7 +660,7 @@ void PilotGuiContextMenu(void *p, int menu)
             int i = 0;
             while (i < PilotProfileCount(&gShellGame)) {
                 char *current = (char *)PilotProfileSelect(&gShellGame, -1);
-                SendEvent(current, 0x67, profileName, 0, 0);
+                SendEvent(current, 0x67, profileName);
                 if (*(char *)((char *)p + 0x6f4) == 1) {
                     sprintf(item, "%s", profileName);
                 }
@@ -692,6 +690,8 @@ void PilotGuiSetProfileModified(void *p)
 {
     *(long *)((char *)p + 0x6fd) = 1;
 }
+
+
 
 
 

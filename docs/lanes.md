@@ -55,7 +55,7 @@ Model: `luna` = gpt-6-luna xhigh, `sol` = gpt-6.1-sol high (Codex; all new lanes
 | s32 | sol | 2nd pass: sim\sim.c region (0044950c) | done (+4; 30 parked) |
 | s33 | sol | 2nd pass: terr\tdisplay.c, tarea.c, tsurface.c and neighbours | done (+14 in candidates; 32 parked) |
 | s34 | sol | 2nd pass: sim\anim.c, logic\logic.c + hotbrief.c, lactors.c, intel.c | done |
-| s35 | sol | 2nd pass: shell\mplaunch.c, main\WIN\winmain.c, shell\pilotgui.c, shell\commscrn.c | running |
+| s35 | sol | 2nd pass: shell\mplaunch.c, main\WIN\winmain.c, shell\pilotgui.c, shell\commscrn.c | done |
 | s36 | sol | 2nd pass: sim\actorlst.c, simgame.c, explo.c, 0045cc00 | done |
 | s37 | sol | 2nd pass: logic\miss.c, lsys.c, multi\linkapp.c, chat.c | running |
 | s38 | sol | 2nd pass: unnamed 0041d774, 004413e0, 00433640, 00435130, 0047f060/0047f5e0, 00480ee0 | done (+5) |

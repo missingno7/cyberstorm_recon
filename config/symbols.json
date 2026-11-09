@@ -1835,6 +1835,14 @@
    "tu": "src/_unknown/tu_0040ffb8.c",
    "evidence": "strict match 2026-11-09"
   },
+  "PilotGuiBriefReset": {
+   "va": "0041072c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PilotGuiBriefReset$n(pna)v",
+   "tu": "src/shell/pilotgui.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "W?.fn_init$n()v@shell/pilotgui.c": {
    "va": "00410738",
    "kind": "func",
@@ -1854,9 +1862,10 @@
   "PilotGuiOpen": {
    "va": "00410bc2",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?PilotGuiOpen$n(pnvpnv)v",
-   "evidence": "implied by src/shell/biomenu.c 2026-11-09"
+   "tu": "src/shell/pilotgui.c",
+   "evidence": "strict match 2026-11-09"
   },
   "PilotGuiCloseResources": {
    "va": "00411027",
@@ -1885,6 +1894,14 @@
    "va": "0041124c",
    "kind": "func",
    "status": "matched",
+   "mangled": "W?PilotGuiDrawSelectionFrame$n(pnv)v",
+   "tu": "src/shell/pilotgui.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PilotGuiDrawSelectionFrame#W?PilotGuiDrawSelectionFrame$n()v": {
+   "va": "0041124c",
+   "kind": "func",
+   "status": "hypothesis",
    "mangled": "W?PilotGuiDrawSelectionFrame$n()v",
    "tu": "src/shell/pilotgui.c",
    "evidence": "strict match 2026-11-09"
@@ -1899,9 +1916,10 @@
   "f_0041170c": {
    "va": "0041170c",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "f_0041170c",
-   "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
+   "status": "matched",
+   "mangled": "W?f_0041170c$n(pnv)v",
+   "tu": "src/shell/pilotgui.c",
+   "evidence": "strict match 2026-11-09"
   },
   "f_0041170c#W?f_0041170c$n(pnv)v": {
    "va": "0041170c",
@@ -1910,12 +1928,20 @@
    "mangled": "W?f_0041170c$n(pnv)v",
    "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
   },
+  "f_0041170c#f_0041170c": {
+   "va": "0041170c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_0041170c",
+   "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
+  },
   "PilotGuiDrawBars": {
    "va": "00411bf7",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?PilotGuiDrawBars$n(pnviii)v",
-   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+   "tu": "src/shell/pilotgui.c",
+   "evidence": "strict match 2026-11-09"
   },
   "PilotGuiRenderControls": {
    "va": "00411cf3",
@@ -1930,6 +1956,14 @@
    "kind": "func",
    "status": "matched",
    "mangled": "W?PilotGuiHandleInput$n(pnv)v",
+   "tu": "src/shell/pilotgui.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PilotGuiDone": {
+   "va": "00411e7c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PilotGuiDone$n()v",
    "tu": "src/shell/pilotgui.c",
    "evidence": "strict match 2026-11-09"
   },
@@ -1954,6 +1988,14 @@
    "kind": "func",
    "status": "matched",
    "mangled": "W?PilotGuiPreviousProfileByKey$n(pnv)v",
+   "tu": "src/shell/pilotgui.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PilotGuiSelectProfileByKey": {
+   "va": "00411f75",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PilotGuiSelectProfileByKey$n(pnv)v",
    "tu": "src/shell/pilotgui.c",
    "evidence": "strict match 2026-11-09"
   },
@@ -2141,6 +2183,14 @@
    "mangled": "W?CommsScreenOpen$n(pn$Scene$$pn$InputReq$$uc)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "CommsScreenOpen#W?CommsScreenOpen$n(pn$CommsScreen$$pn$InputReq$$uc)v": {
+   "va": "00412b26",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?CommsScreenOpen$n(pn$CommsScreen$$pn$InputReq$$uc)v",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "placed (at) in src/shell/commscrn.c 2026-11-09"
+  },
   "CommsScreenClose": {
    "va": "00412df8",
    "kind": "func",
@@ -2243,6 +2293,14 @@
    "mangled": "W?CommsScreenRender$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "CommsScreenRender#W?CommsScreenRender$n(pn$CommsScreen$$)v": {
+   "va": "00414204",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?CommsScreenRender$n(pn$CommsScreen$$)v",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "placed (at) in src/shell/commscrn.c 2026-11-09"
+  },
   "CommsMissionTypeName": {
    "va": "00414468",
    "kind": "func",
@@ -2334,18 +2392,18 @@
   "CommsDrawLog": {
    "va": "00414db0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?CommsDrawLog$n(pn$CommsScreen$$)v",
    "tu": "src/shell/commscrn.c",
-   "evidence": "placed (at) in src/shell/commscrn.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "CommsDrawLogB": {
    "va": "00414e6b",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?CommsDrawLogB$n(pn$CommsScreen$$)v",
    "tu": "src/shell/commscrn.c",
-   "evidence": "placed (at) in src/shell/commscrn.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "CommsDispatch": {
    "va": "00414efe",
@@ -4388,6 +4446,14 @@
    "tu": "src/_unknown/tu_0041d774.c",
    "evidence": "strict match 2026-11-09"
   },
+  "W?.fn_init$n()v@shell/mplaunch.c": {
+   "va": "0041f648",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "Scene::$ct": {
    "va": "0041fd2d",
    "kind": "func",
@@ -4750,33 +4816,77 @@
    "tu": "src/shell/mplaunch.c",
    "evidence": "strict match 2026-11-09"
   },
+  "W?.tdctor$:MenuTextButton$n()rn$1$": {
+   "va": "00424280",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.tdctor$:MenuTextButton$n()rn$1$",
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "W?.tdctor$:MenuChat$n()rn$1$": {
+   "va": "0042429c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.tdctor$:MenuChat$n()rn$1$",
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "W?$Wda018$:MenuTextButton$n(ui)pnv": {
+   "va": "004242ac",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$Wda018$:MenuTextButton$n(ui)pnv",
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "W?$Wda018$:MenuChat$n(ui)pnv": {
+   "va": "004242c4",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$Wda018$:MenuChat$n(ui)pnv",
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "W?$Wda018$:MenuButton$n(ui)pnv": {
    "va": "004242dc",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?$Wda018$:MenuButton$n(ui)pnv",
-   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
   },
   "MenuEdit::$dt": {
    "va": "004242f4",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?$dt:MenuEdit$n()_",
-   "evidence": "implied by src/gui/menu.c 2026-11-09"
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
   },
   "MenuTextButton::$dt": {
    "va": "00424338",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?$dt:MenuTextButton$n()_",
-   "evidence": "implied by src/gui/menu.c 2026-11-09"
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
   },
   "MenuChat::$dt": {
    "va": "0042437c",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?$dt:MenuChat$n()_",
-   "evidence": "implied by src/gui/menu.c 2026-11-09"
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "Scene::$dt": {
+   "va": "004243c0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$dt:Scene$n()_",
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ShellNetworkSetupOpen": {
    "va": "004243e4",
@@ -10243,6 +10353,13 @@
    "tu": "src/_unknown/tu_0043b8e8.c",
    "evidence": "strict match 2026-11-09"
   },
+  "f_0043c73a#W?f_0043c73a$n(pnvui)pna": {
+   "va": "0043c73a",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_0043c73a$n(pnvui)pna",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
   "f_0043c7eb": {
    "va": "0043c7eb",
    "kind": "func",
@@ -10485,6 +10602,13 @@
    "mangled": "f_0043d591",
    "tu": "src/_unknown/tu_0043b8e8.c",
    "evidence": "placed (at) in src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "f_0043d591#W?f_0043d591$n(pnvpnx$PilotKey$$)i": {
+   "va": "0043d591",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_0043d591$n(pnvpnx$PilotKey$$)i",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
   },
   "f_0043d6b1": {
    "va": "0043d6b1",
@@ -20318,10 +20442,10 @@
   "CenterWindow": {
    "va": "00477dee",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?CenterWindow$n(pnvui)v",
    "tu": "src/main/WIN/winmain.c",
-   "evidence": "placed (at) in src/main/WIN/winmain.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "ActivateMainWindow": {
    "va": "00477ef3",
@@ -23286,6 +23410,29 @@
    "mangled": "UnpackLzw",
    "evidence": "implied by src/pack/unpack.c 2026-11-09"
   },
+  "gStandbyLayoutName@_unknown/tu_0040ffb8.c": {
+   "va": "0048a80c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gStandbyLayoutName$n[]xa",
+   "tu": "src/_unknown/tu_0040ffb8.c",
+   "evidence": "own data placed in src/_unknown/tu_0040ffb8.c 2026-11-09"
+  },
+  "gBioroomResourceName@_unknown/tu_0040ffb8.c": {
+   "va": "0048a818",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gBioroomResourceName$n[]xa",
+   "tu": "src/_unknown/tu_0040ffb8.c",
+   "evidence": "own data placed in src/_unknown/tu_0040ffb8.c 2026-11-09"
+  },
+  "gPilotGuiSpecialKey": {
+   "va": "0048a8d2",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiSpecialKey$n[]a",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
   "g48a9d0": {
    "va": "0048a9d0",
    "kind": "data",
@@ -23741,6 +23888,22 @@
    "tu": "src/pop/ppilot.c",
    "evidence": "own data placed in src/pop/ppilot.c 2026-11-09"
   },
+  "W?$Wts0gn$CommsLogView$$$nx[]uc": {
+   "va": "0048cf84",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0gn$CommsLogView$$$nx[]uc",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "own data placed in src/shell/commscrn.c 2026-11-09"
+  },
+  "W?$Wvf0gos:CommsLogView$$nx[]pn()v": {
+   "va": "0048cfac",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wvf0gos:CommsLogView$$nx[]pn()v",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "own data placed in src/shell/commscrn.c 2026-11-09"
+  },
   "W?$Wts0gn$UpgradeArrow$$$nx[]uc": {
    "va": "0048d010",
    "kind": "data",
@@ -23770,6 +23933,30 @@
    "status": "hypothesis",
    "mangled": "W?g48d394$n[]a",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "W?$Wts0cn$MenuEdit$$$nx[]uc": {
+   "va": "0048d798",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0cn$MenuEdit$$$nx[]uc",
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "own data placed in src/shell/mplaunch.c 2026-11-09"
+  },
+  "W?$Wts0cn$MenuChat$$$nx[]uc": {
+   "va": "0048d7ac",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0cn$MenuChat$$$nx[]uc",
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "own data placed in src/shell/mplaunch.c 2026-11-09"
+  },
+  "W?$Wts0in$MenuTextButton$$$nx[]uc": {
+   "va": "0048d7c4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0in$MenuTextButton$$$nx[]uc",
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "own data placed in src/shell/mplaunch.c 2026-11-09"
   },
   "W?$Wts0en$GuiControl$$$nx[]uc": {
    "va": "0048d928",
@@ -24310,12 +24497,27 @@
    "mangled": "W?gBriefResourceDesc$nuc",
    "evidence": "implied by src/_unknown/tu_0040ffb8.c 2026-11-09"
   },
+  "gPilotGuiBarImageIds": {
+   "va": "0048e810",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiBarImageIds$n[]i",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
   "gPilotGuiResourceTemplate": {
    "va": "0048e834",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gPilotGuiResourceTemplate$nuc",
    "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "SourceFile@shell/commscrn.c": {
+   "va": "0048e8e0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?SourceFile$n[]a",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "own data placed in src/shell/commscrn.c 2026-11-09"
   },
   "g48e8f4": {
    "va": "0048e8f4",
@@ -25945,6 +26147,20 @@
    "mangled": "W?settingsPath$n[]a",
    "evidence": "implied by src/_unknown/tu_0047682c.c 2026-11-09"
   },
+  "gPilotGuiUnlinked": {
+   "va": "004a4784",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiUnlinked$n[]a",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiNoPilots": {
+   "va": "004a4790",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiNoPilots$n[]a",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
   "joiningMessage": {
    "va": "004a4808",
    "kind": "data",
@@ -26584,6 +26800,13 @@
    "mangled": "W?g4affb8$ni",
    "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
   },
+  "g4affb8#W?g4affb8$nul": {
+   "va": "004affb8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4affb8$nul",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
   "g4affbc": {
    "va": "004affbc",
    "kind": "data",
@@ -27108,6 +27331,111 @@
    "status": "hypothesis",
    "mangled": "W?bioStandbyState$nus",
    "evidence": "implied by src/shell/biomenu.c 2026-11-09"
+  },
+  "gPilotGuiFormat01": {
+   "va": "004b0e70",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiFormat01$n[]a",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiFormat02": {
+   "va": "004b0e78",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiFormat02$n[]a",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiFormat03": {
+   "va": "004b0e80",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiFormat03$n[]a",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiFormat04": {
+   "va": "004b0e88",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiFormat04$n[]a",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiFormat05": {
+   "va": "004b0e8c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiFormat05$n[]a",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiFormat06": {
+   "va": "004b0e90",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiFormat06$n[]a",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiFormat07": {
+   "va": "004b0e94",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiFormat07$n[]a",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiFormat08": {
+   "va": "004b0e98",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiFormat08$n[]a",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiFormat09": {
+   "va": "004b0e9c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiFormat09$n[]a",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiFormat10": {
+   "va": "004b0ea0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiFormat10$n[]a",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiFormat11": {
+   "va": "004b0ea4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiFormat11$n[]a",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiFormat12": {
+   "va": "004b0ea8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiFormat12$n[]a",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiFormat13": {
+   "va": "004b0eb4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiFormat13$n[]a",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiNameBuffer": {
+   "va": "004b0eb8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiNameBuffer$n[]a",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiPromptBuffer": {
+   "va": "004b0ed8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiPromptBuffer$n[]a",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
   },
   "gPilotGuiOpenA": {
    "va": "004b0ef8",
@@ -29653,11 +29981,46 @@
    "mangled": "W?g4b82fc$n$MultiplayerBase$$",
    "evidence": "implied by src/_unknown/tu_0041d774.c 2026-11-09"
   },
+  "gLaunchPanel": {
+   "va": "004b8e1c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchPanel$n$MenuPanel$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
   "gLaunchHeadings": {
    "va": "004b8e40",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gLaunchHeadings$n[]$MenuPrefixButton$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchHeadings#W?gLaunchHeadings$n$MenuPrefixButton$$": {
+   "va": "004b8e40",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchHeadings$n$MenuPrefixButton$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchHeading1": {
+   "va": "004b8e6c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchHeading1$n$MenuPrefixButton$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchHeading2": {
+   "va": "004b8e98",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchHeading2$n$MenuPrefixButton$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchHeading3": {
+   "va": "004b8ec4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchHeading3$n$MenuPrefixButton$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
   "gLaunchSummaryNumbers": {
@@ -29667,11 +30030,32 @@
    "mangled": "W?gLaunchSummaryNumbers$n[]$MenuNumber$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
+  "gLaunchSummaryNumbers#W?gLaunchSummaryNumbers$n$MenuNumber$$": {
+   "va": "004b8ef0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchSummaryNumbers$n$MenuNumber$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
   "gLaunchSummary0Style": {
    "va": "004b8f04",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gLaunchSummary0Style$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchSummary1": {
+   "va": "004b8f20",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchSummary1$n$MenuNumber$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchSummary2": {
+   "va": "004b8f50",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchSummary2$n$MenuNumber$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
   "gLaunchSummary1Style": {
@@ -29681,11 +30065,25 @@
    "mangled": "W?gLaunchSummary1Style$n$LaunchControlStyle$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
+  "gLaunchSummary3": {
+   "va": "004b8f80",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchSummary3$n$MenuNumber$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
   "gLaunchSummary2Style": {
    "va": "004b8f94",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gLaunchSummary2Style$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchSummary4": {
+   "va": "004b8fb0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchSummary4$n$MenuNumber$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
   "gLaunchSummary3Style": {
@@ -29730,6 +30128,13 @@
    "mangled": "W?gLaunchTitleLabel$n$LaunchReadyLabel$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
+  "gLaunchTitleLabel#W?gLaunchTitleLabel$n$MenuNumber$$": {
+   "va": "004b9040",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchTitleLabel$n$MenuNumber$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
   "gLaunchTitleLabelStyle": {
    "va": "004b9054",
    "kind": "data",
@@ -29756,6 +30161,13 @@
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gLaunchDurationLabel$n$LaunchReadyLabel$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchDurationLabel#W?gLaunchDurationLabel$n$MenuNumber$$": {
+   "va": "004b90a0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchDurationLabel$n$MenuNumber$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
   "gLaunchDurationSummaryStyle": {
@@ -29821,6 +30233,20 @@
    "mangled": "W?gLaunchScenarioChoice$n$LaunchChoice$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
+  "gLaunchScenarioChoice#W?gLaunchScenarioChoice$n$UpgradeRange$$": {
+   "va": "004b9474",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchScenarioChoice$n$UpgradeRange$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchScenarioBar": {
+   "va": "004b947c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchScenarioBar$n$UpgradeBar$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
   "gLaunchScenarioPreviousStyle": {
    "va": "004b9490",
    "kind": "data",
@@ -29828,11 +30254,25 @@
    "mangled": "W?gLaunchScenarioPreviousStyle$n$LaunchControlStyle$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
+  "gLaunchScenarioNext": {
+   "va": "004b94a4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchScenarioNext$n$UpgradeArrow$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
   "gLaunchScenarioRandomStyle": {
    "va": "004b94b8",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gLaunchScenarioRandomStyle$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchScenarioPrevious": {
+   "va": "004b94d0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchScenarioPrevious$n$UpgradeArrow$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
   "gLaunchScenarioNextStyle": {
@@ -29870,11 +30310,25 @@
    "mangled": "W?gLaunchReadyLabels$n[]$LaunchReadyLabel$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
+  "gLaunchReadyLabels#W?gLaunchReadyLabels$n[]$MenuButton$$": {
+   "va": "004b9b04",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchReadyLabels$n[]$MenuButton$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
   "gLaunchTeamLabels": {
    "va": "004b9c44",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gLaunchTeamLabels$n[]$MenuPrefixButton$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchAloneCancelButton": {
+   "va": "004b9da4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchAloneCancelButton$n$MenuButton$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
   "gLaunchOption78Style": {
@@ -29898,6 +30352,13 @@
    "mangled": "W?gLaunchOption78Text$npnxa",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
+  "gLaunchAloneAcceptButton": {
+   "va": "004b9dcc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchAloneAcceptButton$n$MenuButton$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
   "gLaunchRuleStyle": {
    "va": "004b9de0",
    "kind": "data",
@@ -29917,6 +30378,13 @@
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gLaunchRuleText$npnxa",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchNotReadyCancelButton": {
+   "va": "004b9df4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchNotReadyCancelButton$n$MenuButton$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
   "gLaunchOption105Style": {
@@ -29996,11 +30464,32 @@
    "mangled": "W?gLaunchOptionLabel3Style$n$LaunchControlStyle$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
+  "gLaunchOwnedNameInput": {
+   "va": "004b9f00",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchOwnedNameInput$n[]a",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchPlayerNameEdit": {
+   "va": "004b9f28",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchPlayerNameEdit$n$MenuEdit$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
   "gLaunchPlayerNameEditStyle": {
    "va": "004b9f3c",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gLaunchPlayerNameEditStyle$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchReadyErrorCancelButton": {
+   "va": "004b9f58",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchReadyErrorCancelButton$n$MenuButton$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
   "gLaunchReadyErrorCancelStyle": {
@@ -30010,11 +30499,25 @@
    "mangled": "W?gLaunchReadyErrorCancelStyle$n$LaunchControlStyle$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
+  "gLaunchPlayerCancelButton": {
+   "va": "004b9f80",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchPlayerCancelButton$n$MenuButton$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
   "gLaunchPlayerCancelStyle": {
    "va": "004b9f94",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gLaunchPlayerCancelStyle$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchPlayerAcceptButton": {
+   "va": "004b9fa8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchPlayerAcceptButton$n$MenuButton$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
   "gLaunchPlayerAcceptStyle": {
@@ -30031,6 +30534,20 @@
    "mangled": "W?gLaunchCostChoice$n$LaunchChoice$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
+  "gLaunchCostChoice#W?gLaunchCostChoice$n$UpgradeRange$$": {
+   "va": "004b9fd0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchCostChoice$n$UpgradeRange$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchCostBar": {
+   "va": "004b9fd8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchCostBar$n$UpgradeBar$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
   "gLaunchCostPreviousStyle": {
    "va": "004b9fec",
    "kind": "data",
@@ -30038,11 +30555,25 @@
    "mangled": "W?gLaunchCostPreviousStyle$n$LaunchControlStyle$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
+  "gLaunchCostNext": {
+   "va": "004ba000",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchCostNext$n$UpgradeArrow$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
   "gLaunchCostNextStyle": {
    "va": "004ba014",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gLaunchCostNextStyle$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchCostPrevious": {
+   "va": "004ba02c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchCostPrevious$n$UpgradeArrow$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
   "gLaunchCostLabelStyle": {
@@ -30059,6 +30590,20 @@
    "mangled": "W?gLaunchLimitChoice$n$LaunchChoice$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
+  "gLaunchLimitChoice#W?gLaunchLimitChoice$n$UpgradeRange$$": {
+   "va": "004ba058",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchLimitChoice$n$UpgradeRange$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchLimitBar": {
+   "va": "004ba060",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchLimitBar$n$UpgradeBar$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
   "gLaunchLimitPreviousStyle": {
    "va": "004ba074",
    "kind": "data",
@@ -30066,11 +30611,25 @@
    "mangled": "W?gLaunchLimitPreviousStyle$n$LaunchControlStyle$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
+  "gLaunchLimitNext": {
+   "va": "004ba088",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchLimitNext$n$UpgradeArrow$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
   "gLaunchLimitNextStyle": {
    "va": "004ba09c",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gLaunchLimitNextStyle$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchLimitPrevious": {
+   "va": "004ba0b4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchLimitPrevious$n$UpgradeArrow$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
   "gLaunchLimitLabelStyle": {
@@ -30087,6 +30646,20 @@
    "mangled": "W?gLaunchSettingChoice$n$LaunchChoice$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
+  "gLaunchSettingChoice#W?gLaunchSettingChoice$n$UpgradeRange$$": {
+   "va": "004ba0e0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchSettingChoice$n$UpgradeRange$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchSettingBar": {
+   "va": "004ba0e8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchSettingBar$n$UpgradeBar$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
   "gLaunchSettingPreviousStyle": {
    "va": "004ba0fc",
    "kind": "data",
@@ -30094,11 +30667,25 @@
    "mangled": "W?gLaunchSettingPreviousStyle$n$LaunchControlStyle$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
+  "gLaunchSettingNext": {
+   "va": "004ba110",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchSettingNext$n$UpgradeArrow$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
   "gLaunchSettingNextStyle": {
    "va": "004ba124",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gLaunchSettingNextStyle$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchSettingPrevious": {
+   "va": "004ba13c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchSettingPrevious$n$UpgradeArrow$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
   "gLaunchSettingLabelStyle": {
@@ -30115,11 +30702,32 @@
    "mangled": "W?gLaunchDurationChoice$n$LaunchChoice$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
+  "gLaunchDurationChoice#W?gLaunchDurationChoice$n$UpgradeRange$$": {
+   "va": "004ba168",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchDurationChoice$n$UpgradeRange$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchDurationBar": {
+   "va": "004ba170",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchDurationBar$n$UpgradeBar$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
   "gLaunchDurationPreviousStyle": {
    "va": "004ba184",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gLaunchDurationPreviousStyle$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchDurationNext": {
+   "va": "004ba198",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchDurationNext$n$UpgradeArrow$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
   "gLaunchDurationNextStyle": {
@@ -30129,11 +30737,25 @@
    "mangled": "W?gLaunchDurationNextStyle$n$LaunchControlStyle$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
+  "gLaunchDurationPrevious": {
+   "va": "004ba1c4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchDurationPrevious$n$UpgradeArrow$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
   "gLaunchDurationLabelStyle": {
    "va": "004ba1d8",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gLaunchDurationLabelStyle$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchOption105Control": {
+   "va": "004ba1f0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchOption105Control$n$MenuButton$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
   "gLaunchAloneCancelStyle": {
@@ -30150,6 +30772,13 @@
    "mangled": "W?gLaunchAloneCancel$nuc",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
+  "gLaunchOption78Control": {
+   "va": "004ba218",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchOption78Control$n$MenuButton$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
   "gLaunchAloneAcceptStyle": {
    "va": "004ba22c",
    "kind": "data",
@@ -30162,6 +30791,13 @@
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gLaunchAloneAccept$nuc",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchRuleControl": {
+   "va": "004ba240",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchRuleControl$n$MenuButton$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
   "gLaunchNotReadyCancelStyle": {
@@ -30178,11 +30814,25 @@
    "mangled": "W?gLaunchNotReadyCancel$nuc",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
+  "gLaunchExitControl": {
+   "va": "004ba268",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchExitControl$n$MenuPrefixButton$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
   "gLaunchStatusHeadingStyle": {
    "va": "004ba27c",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gLaunchStatusHeadingStyle$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchHelpRegion": {
+   "va": "004ba294",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchHelpRegion$n$MenuHelpRegion$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
   "gLaunchHoveredControl": {

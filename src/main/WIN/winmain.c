@@ -178,8 +178,9 @@ WinConfig gWinConfig = gConfigDefault;
 void __stdcall CenterWindow(HWND hwnd, UINT flags)
 {
     RECT r;
-    int screenW = GetSystemMetrics(SM_CXSCREEN);
-    int screenH = GetSystemMetrics(SM_CYSCREEN);
+    SIZE screen;
+    screen.cx = GetSystemMetrics(SM_CXSCREEN);
+    screen.cy = GetSystemMetrics(SM_CYSCREEN);
     GetWindowRect(hwnd, &r);
     int w = r.right - r.left;
     int h = r.bottom - r.top;
@@ -187,21 +188,23 @@ void __stdcall CenterWindow(HWND hwnd, UINT flags)
     int x, y;
     if (parent && (flags & 1)) {
         GetWindowRect(parent, &r);
-        int ph = r.bottom - r.top;
-        x = r.left + ((r.right - r.left) - w) / 2;
-        if (x + w > screenW) x = screenW - w;
+        SIZE area;
+        area.cx = r.right - r.left;
+        area.cy = r.bottom - r.top;
+        x = r.left + (area.cx - w) / 2;
+        if (x + w > screen.cx) x = screen.cx - w;
         if (flags & 2) {
             y = r.top;
         } else {
-            y = r.top + (ph - h) / 2;
-            if (y + h > screenH) y = screenH - h;
+            y = r.top + (area.cy - h) / 2;
+            if (y + h > screen.cy) y = screen.cy - h;
         }
     } else {
-        x = (screenW - w) / 2;
+        x = (screen.cx - w) / 2;
         if (flags & 2) {
             y = r.top;
         } else {
-            y = (screenH - h) / 2;
+            y = (screen.cy - h) / 2;
         }
     }
     SetWindowPos(hwnd, 0, x, y, w, h, SWP_NOZORDER | SWP_NOACTIVATE);
@@ -819,75 +822,6 @@ int LoadHercConfig(void *herc)
 // source-line padding before the line-867 ASSERT
 // source-line padding before the line-867 ASSERT
 // source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
 void SaveGame(const char *path)
 {
     SaveHeader header;
@@ -929,10 +863,10 @@ void SaveGame(const char *path)
     if (uiSystem.IsActive()) {
         header.network = 0;
         header.f10 = g48e4ec[uiSystem.mode];
-    } else {
-        ASSERT(modeCheckName.IsActive());
-        header.network = 1;
-        header.f10 = 0;
+    } else { int active=modeCheckName.IsActive();
+        if(active) {header.network=1;header.f10=0;} else AssertFail(__FILE__,__LINE__,(const char *)active);
+
+
     }
     header.type = (IsMultiplayer() != 0) + 2;
     strncpy(header.description, "No default description", sizeof header.description);
@@ -945,6 +879,72 @@ void SaveGame(const char *path)
     if (FileGetAndClearError(&file)) Problem(300, 0);
 }
 
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
+// source-line padding before the line-984 ASSERT
 // source-line padding before the line-984 ASSERT
 // source-line padding before the line-984 ASSERT
 // source-line padding before the line-984 ASSERT
