@@ -46,7 +46,7 @@ Model: `luna` = gpt-6-luna xhigh, `sol` = gpt-6.1-sol high (Codex; all new lanes
 | s23 | sol | 00443e88..004451e8 (around pop\psystem.c) | done (22; 4 parked) |
 | s24 | sol | 0047ab81..0047c280 | done (50; 5 parked) |
 | s25 | sol | 0047d400..004816cc | done (77 in 13 TUs; 6 parked; runtime/asm exceptions listed in its report) |
-| s26 | sol | 0040bec0..0040d2b0, pop\pherc.c (2nd pass) | running |
+| s26 | sol | 0040bec0..0040d2b0, pop\pherc.c (2nd pass) | done (29: shell\biomenu.c, pherc +4; 11 parked) |
 | s27 | sol | 2nd pass: shell\hercbuy.c, shell\hotseat.c, multi\link.c | running |
 | s28 | sol | 2nd pass: logic\lgen.c + sinterp.c, terr\tgrid.c | running |
 | s29 | sol | 2nd pass: shell\shell.c, io\resource.c | running |
@@ -54,6 +54,7 @@ Model: `luna` = gpt-6-luna xhigh, `sol` = gpt-6.1-sol high (Codex; all new lanes
 | s31 | sol | 2nd pass: shell\hbupgrad.c, 0046b918 | running |
 | s32 | sol | 2nd pass: sim\sim.c region (0044950c) | running |
 | s33 | sol | 2nd pass: terr\tdisplay.c, tarea.c, tsurface.c and neighbours | running |
+| s34 | sol | 2nd pass: sim\anim.c, logic\logic.c + hotbrief.c, lactors.c, intel.c | running |
 | l1 | luna | shell\hercbuy.c | done (19) |
 | o1 | opus | multi\linkdlg.c, linkq.c, message.c | done |
 | o2 | opus | sim\apply.c, fxout.c, explo.c | done |
