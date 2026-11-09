@@ -4600,6 +4600,13 @@
    "mangled": "W?$ct:ActorListGlobalObject$n(pnxv)_",
    "evidence": "implied by src/sim/actorlst.c 2026-11-09"
   },
+  "f_00435e43": {
+   "va": "00435e43",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_00435e43",
+   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
   "SendEvent": {
    "va": "00436138",
    "kind": "func",
@@ -4627,6 +4634,20 @@
    "status": "hypothesis",
    "mangled": "W?SimLogicFlags$n(pnv)ui",
    "evidence": "implied by src/_unknown/tu_00452950.c 2026-11-09"
+  },
+  "f_004372cd": {
+   "va": "004372cd",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_004372cd",
+   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "f_004379ba": {
+   "va": "004379ba",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_004379ba",
+   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
   },
   "PilotChecksum": {
    "va": "0043819f",
@@ -4691,12 +4712,61 @@
    "mangled": "W?BlockChecksum$n(pnv)i",
    "evidence": "implied by src/multi/minipkt.c 2026-11-09"
   },
+  "f_004394e0": {
+   "va": "004394e0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_004394e0",
+   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "f_00439706": {
+   "va": "00439706",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_00439706",
+   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "f_00439736": {
+   "va": "00439736",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_00439736",
+   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "f_004397d3": {
+   "va": "004397d3",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_004397d3",
+   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
   "f_00439d2c": {
    "va": "00439d2c",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "f_00439d2c",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "f_00439d31": {
+   "va": "00439d31",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_00439d31",
+   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "f_00439d48": {
+   "va": "00439d48",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_00439d48",
+   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "f_00439daf": {
+   "va": "00439daf",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_00439daf",
+   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
   },
   "LoadActorData": {
    "va": "00439df6",
@@ -4747,33 +4817,132 @@
    "mangled": "W?HercPrepareAssets$n()v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "f_0043b7e0": {
+   "va": "0043b7e0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_0043b7e0",
+   "tu": "src/_unknown/tu_0043b7e0.c",
+   "evidence": "placed (at) in src/_unknown/tu_0043b7e0.c 2026-11-09"
+  },
+  "W?.fn_init$n()v@_unknown/tu_0043b8e8.c": {
+   "va": "0043b8e8",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "Snapshot::$ct": {
+   "va": "0043b90d",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:Snapshot$n()_",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043b912": {
+   "va": "0043b912",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043b912",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043b956": {
+   "va": "0043b956",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043b956",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "GameSession::$ct": {
    "va": "0043b9ae",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?$ct:GameSession$n()_",
-   "evidence": "implied by src/shell/shell.c 2026-11-09"
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
   },
   "GameSession::$dt": {
    "va": "0043b9fe",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?$dt:GameSession$n()_",
-   "evidence": "implied by src/shell/shell.c 2026-11-09"
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
   },
   "f_0043ba3e": {
    "va": "0043ba3e",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "f_0043ba3e",
-   "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043bac3": {
+   "va": "0043bac3",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043bac3",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043bbcc": {
+   "va": "0043bbcc",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_0043bbcc",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "placed (at) in src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "f_0043bced": {
+   "va": "0043bced",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043bced",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043bd5f": {
+   "va": "0043bd5f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043bd5f",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043bd78": {
+   "va": "0043bd78",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043bd78",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ProfileManager::Select": {
+   "va": "0043be65",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Select$:ProfileManager$n(i)pn$ActorListObject$$",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ProfileManager::Select#W?Select$:ProfileManager$n(i)pnv": {
    "va": "0043be65",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?Select$:ProfileManager$n(i)pnv",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "f_0043bed7": {
+   "va": "0043bed7",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043bed7",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ProfileManager::Advance": {
    "va": "0043befa",
@@ -4782,6 +4951,22 @@
    "mangled": "W?Advance$:ProfileManager$n(i)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "f_0043befa": {
+   "va": "0043befa",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043befa",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043bf81": {
+   "va": "0043bf81",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043bf81",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "ProfileManager::Count": {
    "va": "0043bfe1",
    "kind": "func",
@@ -4789,12 +4974,172 @@
    "mangled": "W?Count$:ProfileManager$n()i",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "f_0043bfe1": {
+   "va": "0043bfe1",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043bfe1",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043bffc": {
+   "va": "0043bffc",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043bffc",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043c036": {
+   "va": "0043c036",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043c036",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043c05b": {
+   "va": "0043c05b",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043c05b",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043c167": {
+   "va": "0043c167",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043c167",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043c17c": {
+   "va": "0043c17c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043c17c",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043c2ba": {
+   "va": "0043c2ba",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043c2ba",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043c327": {
+   "va": "0043c327",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043c327",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043c33c": {
+   "va": "0043c33c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043c33c",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "ProfileManager::Mission": {
+   "va": "0043c40e",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Mission$:ProfileManager$n(i)pn$ActorUnit$$",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ProfileManager::Mission#W?Mission$:ProfileManager$n(i)pnv": {
    "va": "0043c40e",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?Mission$:ProfileManager$n(i)pnv",
    "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
+  "f_0043c441": {
+   "va": "0043c441",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043c441",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043c450": {
+   "va": "0043c450",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043c450",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043c490": {
+   "va": "0043c490",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043c490",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043c4bf": {
+   "va": "0043c4bf",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043c4bf",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043c5d6": {
+   "va": "0043c5d6",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_0043c5d6",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "placed (at) in src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "f_0043c6ed": {
+   "va": "0043c6ed",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043c6ed",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043c73a": {
+   "va": "0043c73a",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043c73a",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043c7eb": {
+   "va": "0043c7eb",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043c7eb",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043c844": {
+   "va": "0043c844",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_0043c844",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "placed (at) in src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "f_0043ca71": {
+   "va": "0043ca71",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043ca71",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
   },
   "HasMission": {
    "va": "0043cab9",
@@ -4802,6 +5147,70 @@
    "status": "hypothesis",
    "mangled": "W?HasMission$n(pnv)i",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "f_0043cab9": {
+   "va": "0043cab9",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_0043cab9",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "placed (at) in src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "f_0043cb47": {
+   "va": "0043cb47",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_0043cb47",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "placed (at) in src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "f_0043ccc6": {
+   "va": "0043ccc6",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043ccc6",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043cce3": {
+   "va": "0043cce3",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043cce3",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043ccff": {
+   "va": "0043ccff",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043ccff",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043cd28": {
+   "va": "0043cd28",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043cd28",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043cd6c": {
+   "va": "0043cd6c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043cd6c",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043cd92": {
+   "va": "0043cd92",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043cd92",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ProfileManager::Value": {
    "va": "0043cdcc",
@@ -4813,30 +5222,130 @@
   "f_0043cdcc": {
    "va": "0043cdcc",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "f_0043cdcc",
-   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043ce5d": {
+   "va": "0043ce5d",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043ce5d",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
   },
   "f_0043cec6": {
    "va": "0043cec6",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "f_0043cec6",
-   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
   },
   "f_0043cef6": {
    "va": "0043cef6",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "f_0043cef6",
-   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
   },
   "f_0043cf2d": {
    "va": "0043cf2d",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "f_0043cf2d",
-   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043cffc": {
+   "va": "0043cffc",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043cffc",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043d066": {
+   "va": "0043d066",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043d066",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043d0c8": {
+   "va": "0043d0c8",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043d0c8",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043d152": {
+   "va": "0043d152",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043d152",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043d1a6": {
+   "va": "0043d1a6",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043d1a6",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043d1fd": {
+   "va": "0043d1fd",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043d1fd",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043d25f": {
+   "va": "0043d25f",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_0043d25f",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "placed (at) in src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "f_0043d2b9": {
+   "va": "0043d2b9",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_0043d2b9",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "placed (at) in src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "f_0043d3cc": {
+   "va": "0043d3cc",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_0043d3cc",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "placed (at) in src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "f_0043d591": {
+   "va": "0043d591",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_0043d591",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "placed (at) in src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "f_0043d6b1": {
+   "va": "0043d6b1",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043d6b1",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ProfileManager::SelectScenario": {
    "va": "0043d6e3",
@@ -4844,6 +5353,22 @@
    "status": "hypothesis",
    "mangled": "W?SelectScenario$:ProfileManager$n(i)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "f_0043d6e3": {
+   "va": "0043d6e3",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043d6e3",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043d846": {
+   "va": "0043d846",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043d846",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
   },
   "GetPlayerInfo": {
    "va": "0043d9e8",
@@ -4859,12 +5384,140 @@
    "mangled": "W?GetPlayerInfo$n(pnvpnv)v",
    "evidence": "implied by src/shell/hotseat.c 2026-11-09"
   },
+  "f_0043d9e8": {
+   "va": "0043d9e8",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043d9e8",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043dab1": {
+   "va": "0043dab1",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043dab1",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043dad7": {
+   "va": "0043dad7",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_0043dad7",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "placed (at) in src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "f_0043dbb2": {
+   "va": "0043dbb2",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_0043dbb2",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "placed (at) in src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
   "f_0043dcfd": {
+   "va": "0043dcfd",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043dcfd",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043dcfd#W?f_0043dcfd$n(ii)i": {
    "va": "0043dcfd",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?f_0043dcfd$n(ii)i",
    "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "f_0043deeb": {
+   "va": "0043deeb",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043deeb",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043df40": {
+   "va": "0043df40",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043df40",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043e007": {
+   "va": "0043e007",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043e007",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043e04d": {
+   "va": "0043e04d",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_0043e04d",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "placed (at) in src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "f_0043e1dd": {
+   "va": "0043e1dd",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043e1dd",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043e1e8": {
+   "va": "0043e1e8",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043e1e8",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043e1f4": {
+   "va": "0043e1f4",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043e1f4",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043e211": {
+   "va": "0043e211",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043e211",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043e21a": {
+   "va": "0043e21a",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_0043e21a",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "placed (at) in src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "f_0043e37c": {
+   "va": "0043e37c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_0043e37c",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "placed (at) in src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "f_0043e38f": {
+   "va": "0043e38f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0043e38f",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "strict match 2026-11-09"
   },
   "BriefMissionFile": {
    "va": "0043e3ac",
@@ -4893,6 +5546,13 @@
    "status": "hypothesis",
    "mangled": "W?BeginMissions$:ProfileManager$n()v",
    "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
+  "f_0044052b": {
+   "va": "0044052b",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_0044052b",
+   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
   },
   "ProfileManager::SetMissionChoice": {
    "va": "00440dea",
@@ -4942,6 +5602,20 @@
    "status": "hypothesis",
    "mangled": "f_004418a9",
    "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
+  },
+  "f_00441c2c": {
+   "va": "00441c2c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_00441c2c",
+   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "f_00441ca7": {
+   "va": "00441ca7",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_00441ca7",
+   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
   },
   "ActorActivate": {
    "va": "004424d4",
@@ -10376,6 +11050,13 @@
    "mangled": "W?f_477352$n(ipnapnapna)i",
    "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
   },
+  "f_004773a1": {
+   "va": "004773a1",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_004773a1",
+   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
   "f_004773cc": {
    "va": "004773cc",
    "kind": "func",
@@ -12414,6 +13095,55 @@
    "status": "hypothesis",
    "mangled": "W?actorListDescriptor$n[]xa",
    "evidence": "implied by src/sim/actorlst.c 2026-11-09"
+  },
+  "gPilotTypes": {
+   "va": "00493cd8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotTypes$n[]pn$PilotType$$",
+   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "gLevelInfo": {
+   "va": "00494074",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLevelInfo$n[]$LevelInfo$$",
+   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "g4941d8": {
+   "va": "004941d8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4941d8$ni",
+   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "g4941dc": {
+   "va": "004941dc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4941dc$ni",
+   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "g4941e0": {
+   "va": "004941e0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4941e0$ni",
+   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "g4941e4": {
+   "va": "004941e4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4941e4$ni",
+   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "g4941e8": {
+   "va": "004941e8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4941e8$ni",
+   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
   },
   "weaponInfoTable": {
    "va": "0049cb38",
@@ -14522,6 +15252,41 @@
    "mangled": "W?g4c9234$na",
    "evidence": "implied by src/sim/simgame.c 2026-11-09"
   },
+  "g4c9338": {
+   "va": "004c9338",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4c9338$npnv",
+   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "g4c933c": {
+   "va": "004c933c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4c933c$npnv",
+   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "g4c9340": {
+   "va": "004c9340",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4c9340$npnv",
+   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "g4c9344": {
+   "va": "004c9344",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4c9344$npnv",
+   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "g4c9348": {
+   "va": "004c9348",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4c9348$npnv",
+   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
   "profileManager": {
    "va": "004c934c",
    "kind": "data",
@@ -14550,6 +15315,13 @@
    "mangled": "W?profileManager$na",
    "evidence": "implied by src/shell/hotseat.c 2026-11-09"
   },
+  "profileManager#W?profileManager$n$GameSession$$": {
+   "va": "004c934c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?profileManager$n$GameSession$$",
+   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
   "logicMode": {
    "va": "004c9772",
    "kind": "data",
@@ -14577,6 +15349,13 @@
    "status": "hypothesis",
    "mangled": "W?gShellContinuationMap$nc",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "g4d0840": {
+   "va": "004d0840",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4d0840$ni",
+   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
   },
   "g4d1cfc": {
    "va": "004d1cfc",
@@ -16040,6 +16819,13 @@
    "status": "hypothesis",
    "mangled": "W?g511dd4$ni",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "g511ddc": {
+   "va": "00511ddc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g511ddc$n$StrPool$$",
+   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
   },
   "gMenuPrefixStrings": {
    "va": "00511df0",

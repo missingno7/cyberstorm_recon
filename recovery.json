@@ -4488,6 +4488,356 @@
    },
    "data": {},
    "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0043b7e0.c": {
+   "as": "_unknown\\tu_0043b7e0.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {},
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0043b8e8.c": {
+   "as": "_unknown\\tu_0043b8e8.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "0043b8e8",
+     "size": 37,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "Snapshot::$ct": {
+     "va": "0043b90d",
+     "size": 5,
+     "mangled": "W?$ct:Snapshot$n()_"
+    },
+    "f_0043b912": {
+     "va": "0043b912",
+     "size": 68,
+     "mangled": "f_0043b912"
+    },
+    "f_0043b956": {
+     "va": "0043b956",
+     "size": 88,
+     "mangled": "f_0043b956"
+    },
+    "GameSession::$ct": {
+     "va": "0043b9ae",
+     "size": 80,
+     "mangled": "W?$ct:GameSession$n()_"
+    },
+    "GameSession::$dt": {
+     "va": "0043b9fe",
+     "size": 64,
+     "mangled": "W?$dt:GameSession$n()_"
+    },
+    "f_0043ba3e": {
+     "va": "0043ba3e",
+     "size": 133,
+     "mangled": "f_0043ba3e"
+    },
+    "f_0043bac3": {
+     "va": "0043bac3",
+     "size": 265,
+     "mangled": "f_0043bac3"
+    },
+    "f_0043bced": {
+     "va": "0043bced",
+     "size": 114,
+     "mangled": "f_0043bced"
+    },
+    "f_0043bd5f": {
+     "va": "0043bd5f",
+     "size": 25,
+     "mangled": "f_0043bd5f"
+    },
+    "f_0043bd78": {
+     "va": "0043bd78",
+     "size": 237,
+     "mangled": "f_0043bd78"
+    },
+    "ProfileManager::Select": {
+     "va": "0043be65",
+     "size": 114,
+     "mangled": "W?Select$:ProfileManager$n(i)pn$ActorListObject$$"
+    },
+    "f_0043bed7": {
+     "va": "0043bed7",
+     "size": 35,
+     "mangled": "f_0043bed7"
+    },
+    "f_0043befa": {
+     "va": "0043befa",
+     "size": 135,
+     "mangled": "f_0043befa"
+    },
+    "f_0043bf81": {
+     "va": "0043bf81",
+     "size": 96,
+     "mangled": "f_0043bf81"
+    },
+    "f_0043bfe1": {
+     "va": "0043bfe1",
+     "size": 27,
+     "mangled": "f_0043bfe1"
+    },
+    "f_0043bffc": {
+     "va": "0043bffc",
+     "size": 58,
+     "mangled": "f_0043bffc"
+    },
+    "f_0043c036": {
+     "va": "0043c036",
+     "size": 37,
+     "mangled": "f_0043c036"
+    },
+    "f_0043c05b": {
+     "va": "0043c05b",
+     "size": 268,
+     "mangled": "f_0043c05b"
+    },
+    "f_0043c167": {
+     "va": "0043c167",
+     "size": 21,
+     "mangled": "f_0043c167"
+    },
+    "f_0043c17c": {
+     "va": "0043c17c",
+     "size": 318,
+     "mangled": "f_0043c17c"
+    },
+    "f_0043c2ba": {
+     "va": "0043c2ba",
+     "size": 109,
+     "mangled": "f_0043c2ba"
+    },
+    "f_0043c327": {
+     "va": "0043c327",
+     "size": 21,
+     "mangled": "f_0043c327"
+    },
+    "f_0043c33c": {
+     "va": "0043c33c",
+     "size": 210,
+     "mangled": "f_0043c33c"
+    },
+    "ProfileManager::Mission": {
+     "va": "0043c40e",
+     "size": 51,
+     "mangled": "W?Mission$:ProfileManager$n(i)pn$ActorUnit$$"
+    },
+    "f_0043c441": {
+     "va": "0043c441",
+     "size": 15,
+     "mangled": "f_0043c441"
+    },
+    "f_0043c450": {
+     "va": "0043c450",
+     "size": 64,
+     "mangled": "f_0043c450"
+    },
+    "f_0043c490": {
+     "va": "0043c490",
+     "size": 47,
+     "mangled": "f_0043c490"
+    },
+    "f_0043c4bf": {
+     "va": "0043c4bf",
+     "size": 279,
+     "mangled": "f_0043c4bf"
+    },
+    "f_0043c6ed": {
+     "va": "0043c6ed",
+     "size": 77,
+     "mangled": "f_0043c6ed"
+    },
+    "f_0043c73a": {
+     "va": "0043c73a",
+     "size": 177,
+     "mangled": "f_0043c73a"
+    },
+    "f_0043c7eb": {
+     "va": "0043c7eb",
+     "size": 89,
+     "mangled": "f_0043c7eb"
+    },
+    "f_0043ca71": {
+     "va": "0043ca71",
+     "size": 72,
+     "mangled": "f_0043ca71"
+    },
+    "f_0043ccc6": {
+     "va": "0043ccc6",
+     "size": 29,
+     "mangled": "f_0043ccc6"
+    },
+    "f_0043cce3": {
+     "va": "0043cce3",
+     "size": 28,
+     "mangled": "f_0043cce3"
+    },
+    "f_0043ccff": {
+     "va": "0043ccff",
+     "size": 41,
+     "mangled": "f_0043ccff"
+    },
+    "f_0043cd28": {
+     "va": "0043cd28",
+     "size": 68,
+     "mangled": "f_0043cd28"
+    },
+    "f_0043cd6c": {
+     "va": "0043cd6c",
+     "size": 38,
+     "mangled": "f_0043cd6c"
+    },
+    "f_0043cd92": {
+     "va": "0043cd92",
+     "size": 58,
+     "mangled": "f_0043cd92"
+    },
+    "f_0043cdcc": {
+     "va": "0043cdcc",
+     "size": 145,
+     "mangled": "f_0043cdcc"
+    },
+    "f_0043ce5d": {
+     "va": "0043ce5d",
+     "size": 105,
+     "mangled": "f_0043ce5d"
+    },
+    "f_0043cec6": {
+     "va": "0043cec6",
+     "size": 48,
+     "mangled": "f_0043cec6"
+    },
+    "f_0043cef6": {
+     "va": "0043cef6",
+     "size": 55,
+     "mangled": "f_0043cef6"
+    },
+    "f_0043cf2d": {
+     "va": "0043cf2d",
+     "size": 207,
+     "mangled": "f_0043cf2d"
+    },
+    "f_0043cffc": {
+     "va": "0043cffc",
+     "size": 106,
+     "mangled": "f_0043cffc"
+    },
+    "f_0043d066": {
+     "va": "0043d066",
+     "size": 98,
+     "mangled": "f_0043d066"
+    },
+    "f_0043d0c8": {
+     "va": "0043d0c8",
+     "size": 138,
+     "mangled": "f_0043d0c8"
+    },
+    "f_0043d152": {
+     "va": "0043d152",
+     "size": 84,
+     "mangled": "f_0043d152"
+    },
+    "f_0043d1a6": {
+     "va": "0043d1a6",
+     "size": 87,
+     "mangled": "f_0043d1a6"
+    },
+    "f_0043d1fd": {
+     "va": "0043d1fd",
+     "size": 98,
+     "mangled": "f_0043d1fd"
+    },
+    "f_0043d6b1": {
+     "va": "0043d6b1",
+     "size": 50,
+     "mangled": "f_0043d6b1"
+    },
+    "f_0043d6e3": {
+     "va": "0043d6e3",
+     "size": 355,
+     "mangled": "f_0043d6e3"
+    },
+    "f_0043d846": {
+     "va": "0043d846",
+     "size": 418,
+     "mangled": "f_0043d846"
+    },
+    "f_0043d9e8": {
+     "va": "0043d9e8",
+     "size": 201,
+     "mangled": "f_0043d9e8"
+    },
+    "f_0043dab1": {
+     "va": "0043dab1",
+     "size": 38,
+     "mangled": "f_0043dab1"
+    },
+    "f_0043dcfd": {
+     "va": "0043dcfd",
+     "size": 494,
+     "mangled": "f_0043dcfd"
+    },
+    "f_0043deeb": {
+     "va": "0043deeb",
+     "size": 85,
+     "mangled": "f_0043deeb"
+    },
+    "f_0043df40": {
+     "va": "0043df40",
+     "size": 199,
+     "mangled": "f_0043df40"
+    },
+    "f_0043e007": {
+     "va": "0043e007",
+     "size": 70,
+     "mangled": "f_0043e007"
+    },
+    "f_0043e1dd": {
+     "va": "0043e1dd",
+     "size": 11,
+     "mangled": "f_0043e1dd"
+    },
+    "f_0043e1e8": {
+     "va": "0043e1e8",
+     "size": 12,
+     "mangled": "f_0043e1e8"
+    },
+    "f_0043e1f4": {
+     "va": "0043e1f4",
+     "size": 29,
+     "mangled": "f_0043e1f4"
+    },
+    "f_0043e211": {
+     "va": "0043e211",
+     "size": 9,
+     "mangled": "f_0043e211"
+    },
+    "f_0043e38f": {
+     "va": "0043e38f",
+     "size": 28,
+     "mangled": "f_0043e38f"
+    }
+   },
+   "data": {
+    "CONST2": {
+     "va": "0048db28",
+     "size": 12
+    },
+    "_DATA": {
+     "va": "00494164",
+     "size": 12
+    },
+    "W?$Wts0jn$ActorListObject$$$nx[]uc": {
+     "va": "0048db34",
+     "size": 17
+    }
+   },
+   "accepted": "2026-11-09"
   }
  },
  "accepted_losses": [
