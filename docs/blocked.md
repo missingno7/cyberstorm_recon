@@ -12,7 +12,7 @@ with the C++ construct, then drop the alias): `BriefModuleConstruct`/`HercModule
 Affected TUs: src/shell/missbrf.c, src/shell/hercbay.c, src/pop/psystem.c, src/terr/tfog.c, src/terr/tfast.c.
 
 ## Identity correction (integrator, 2026-11-09)
-simctorlst.c: the oracle typesig of ActorRecord gives its default constructor at 00456c80 (constructs a member
+sim\actorlst.c: the oracle typesig of ActorRecord gives its default constructor at 00456c80 (constructs a member
 object at +0x20 via 00457510, returns this). src currently has `ActorRecord() : id(0) {}` (wrong) and a separate
 `ActorCloseRecord` function with the right bytes at 00456c80. Rewrite as the real constructor (member object with
 its own constructor) so the COMDAT matches; the old `ActorRecord::$ct`@00467971 identity was removed (identical
@@ -70,4 +70,4 @@ object cannot emit that as one segment, so errorText probably belongs to a neigh
 file.c); memory.c drops from COMPLETE to partial until the owner is settled. 10 of the 11 path-string TUs now hold
 their path in _DATA at the oracle address; unpack.c is COMPLETE.
 
-Resolved 2026-11-09 (integrator): the text belongs to debugssert.c, which defines seven global error messages after its path string (004a4a44..004a4b8b: Problem!, Unable to initialize, Invalid data, Invalid state, Ran out of memory..., Missing file: %s..., Unable to write...); io\memory.c and ioesource.c reference errorMemory/errorData as extern. Their 4-byte spacing is reproduced only by wpp386, so assert.c moved from ot-c to ot with extern "C" definitions. memory.c is COMPLETE again; assert.c _DATA is STRICT as one segment.
+Resolved 2026-11-09 (integrator): the text belongs to debug\assert.c, which defines seven global error messages after its path string (004a4a44..004a4b8b: Problem!, Unable to initialize, Invalid data, Invalid state, Ran out of memory..., Missing file: %s..., Unable to write...); io\memory.c and io\resource.c reference errorMemory/errorData as extern. Their 4-byte spacing is reproduced only by wpp386, so assert.c moved from ot-c to ot with extern "C" definitions. memory.c is COMPLETE again; assert.c _DATA is STRICT as one segment.
