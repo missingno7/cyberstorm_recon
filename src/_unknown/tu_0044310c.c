@@ -89,11 +89,16 @@ class MenuImageButton:public GuiControl {
     virtual void Draw(unsigned);
     virtual int Event(unsigned,U32);
 };
-class SimMapGadget:public GuiControl {
+/* The old SimMapGadget typesig hypothesis names the 0x28-byte value
+ * gadget at 0048df88. This 0x2c-byte map gadget owns 0048dbe8. Reuse
+ * the independently bound constructor/destructor linkage explicitly. */
+#pragma aux weapon_map_constructor "W?$ct:SimMapGadget$n(ulllul)_";
+#pragma aux weapon_map_destructor "W?$dt:SimMapGadget$n()_";
+class WeaponMapGadget:public GuiControl {
     public:U32 state;
     long kind,data;
-    SimMapGadget(U32,long,long,U32);
-    virtual ~SimMapGadget() {
+    __pragma("weapon_map_constructor") WeaponMapGadget(U32,long,long,U32);
+    virtual __pragma("weapon_map_destructor") ~WeaponMapGadget() {
     }
     virtual void Reset(unsigned);
     virtual void Draw(unsigned);
@@ -258,13 +263,15 @@ extern char simInventory[];
 extern "C" int f_00444f8f(void *);
 extern "C" int f_0044f290(SimGame *,int=-1,int=1);
 extern void SimSetReturnFire(SimGame *,int,int,int);
+struct PopNode;
+#pragma aux weapon_screen_destructor "W?PopNodeReset$n(pn$PopNode$$)v";
 class WeaponPopup:public GuiScreen {
     public:int changed;
     Timer detailTimer,previewTimer;
     int mode,a,b,top;
     char labels[8][60];
     WeaponPopup();
-    ~WeaponPopup();
+    __pragma("weapon_screen_destructor") ~WeaponPopup() { input=0; }
     void OpenWeapons(InputReq *);
     void Close();
     void UpdateWeapons();
@@ -275,7 +282,7 @@ class WeaponPopup:public GuiScreen {
 };
 WeaponControl weaponRows[8];
 MenuImageButton weaponButtons[8];
-SimMapGadget weaponMap(16,0,0,0);
+WeaponMapGadget weaponMap(16,0,0,0);
 WeaponPopup simActions;
 WeaponControl::WeaponControl():GuiControl(16,0),state(0),text(0) {
 }
@@ -517,6 +524,4 @@ void WeaponCommand(SimGame *s) {
         break;
     }
 }
-WeaponPopup::~WeaponPopup() {
-    input=0;
-}
+

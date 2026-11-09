@@ -887,10 +887,10 @@
      "size": 12,
      "mangled": "W?PopNodeReset$n(pn$PopNode$$)v"
     },
-    "PopModuleInit": {
+    "W?.fn_init$n()v": {
      "va": "00443f64",
      "size": 67,
-     "mangled": "W?PopModuleInit$n()v"
+     "mangled": "W?.fn_init$n()v"
     },
     "PopLoadItem": {
      "va": "00443fa7",
@@ -907,6 +907,11 @@
      "size": 26,
      "mangled": "W?PopNodeClear$n(pn$PopNode$$)v"
     },
+    "PopNodeHandleSelection": {
+     "va": "004440ca",
+     "size": 186,
+     "mangled": "W?PopNodeHandleSelection$n(pn$PopNode$$)i"
+    },
     "PopNodeUpdate": {
      "va": "00444184",
      "size": 95,
@@ -916,12 +921,44 @@
      "va": "004441e3",
      "size": 21,
      "mangled": "W?PopNodeChanged$n(pn$PopNode$$)v"
+    },
+    "PopNode::GetValue": {
+     "va": "004443e4",
+     "size": 233,
+     "mangled": "W?GetValue$:PopNode$n(i)i"
+    },
+    "PopSystemCallback": {
+     "va": "004444cd",
+     "size": 105,
+     "mangled": "W?PopSystemCallback$n(pn$SimGame$$)v"
+    },
+    "W?$Wda014$:WeaponControl$n(ui)pnv": {
+     "va": "00444538",
+     "size": 21,
+     "mangled": "W?$Wda014$:WeaponControl$n(ui)pnv"
+    },
+    "PopNode::$dt": {
+     "va": "00444550",
+     "size": 12,
+     "mangled": "W?$dt:PopNode$n()_"
     }
    },
    "data": {
     "CONST": {
      "va": "0048b2cc",
      "size": 11
+    },
+    "CONST2": {
+     "va": "0048dc2c",
+     "size": 20
+    },
+    "_DATA": {
+     "va": "004a0010",
+     "size": 12
+    },
+    "W?$Wts0hn$WeaponControl$$$nx[]uc": {
+     "va": "0048dc00",
+     "size": 17
     }
    },
    "accepted": "2026-11-09"
@@ -8000,6 +8037,11 @@
      "size": 21,
      "mangled": "W?$Wda018$:MenuImageButton$n(ui)pnv"
     },
+    "SimMapGadget::$dt": {
+     "va": "00443ed0",
+     "size": 67,
+     "mangled": "W?$dt:SimMapGadget$n()_"
+    },
     "WeaponControl::$dt": {
      "va": "00443f14",
      "size": 67,
@@ -8018,6 +8060,10 @@
     "W?$Wvf0hos:WeaponControl$$nx[]pn()v": {
      "va": "0048dc18",
      "size": 20
+    },
+    "W?$Wts0jn$WeaponMapGadget$$$nx[]uc": {
+     "va": "0048dbe8",
+     "size": 17
     },
     "W?$Wts0hn$WeaponControl$$$nx[]uc": {
      "va": "0048dc00",
@@ -9838,6 +9884,120 @@
    },
    "data": {},
    "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0044455c.c": {
+   "as": "_unknown\\tu_0044455c.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "0044455c",
+     "size": 114,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "ShieldControl::$ct": {
+     "va": "004445ce",
+     "size": 69,
+     "mangled": "W?$ct:ShieldControl$n()_"
+    },
+    "ShieldControl::Reset": {
+     "va": "00444613",
+     "size": 25,
+     "mangled": "W?Reset$:ShieldControl$n(ui)v"
+    },
+    "ShieldControl::Draw": {
+     "va": "0044462c",
+     "size": 314,
+     "mangled": "W?Draw$:ShieldControl$n(ui)v"
+    },
+    "ShieldControl::Commit": {
+     "va": "0044495a",
+     "size": 92,
+     "mangled": "W?Commit$:ShieldControl$n()v"
+    },
+    "ShieldControl::IsPressed": {
+     "va": "004449b6",
+     "size": 17,
+     "mangled": "W?IsPressed$:ShieldControl$n()i"
+    },
+    "ShieldPopup::$ct": {
+     "va": "004449c7",
+     "size": 23,
+     "mangled": "W?$ct:ShieldPopup$n()_"
+    },
+    "ShieldPopup::OpenShield": {
+     "va": "004449de",
+     "size": 166,
+     "mangled": "W?OpenShield$:ShieldPopup$n(pn$InputReq$$)v"
+    },
+    "SimInventoryClose": {
+     "va": "00444a84",
+     "size": 156,
+     "mangled": "W?SimInventoryClose$n(pn$ShieldPopup$$)v"
+    },
+    "ShieldPopup::SetAim": {
+     "va": "00444dc6",
+     "size": 155,
+     "mangled": "W?SetAim$:ShieldPopup$n(ii)v"
+    },
+    "ShieldPopup::Process": {
+     "va": "00444e61",
+     "size": 201,
+     "mangled": "W?Process$:ShieldPopup$n()i"
+    },
+    "SimInventoryDraw": {
+     "va": "00444f2a",
+     "size": 28,
+     "mangled": "W?SimInventoryDraw$n(pn$ShieldPopup$$)v"
+    },
+    "ShieldPopup::Commit": {
+     "va": "00444f46",
+     "size": 73,
+     "mangled": "W?Commit$:ShieldPopup$n()v"
+    },
+    "ShieldPopup::AllowsWeapons": {
+     "va": "00444f8f",
+     "size": 44,
+     "mangled": "W?AllowsWeapons$:ShieldPopup$n()i"
+    },
+    "ShieldPopup::$dt": {
+     "va": "004451e8",
+     "size": 12,
+     "mangled": "W?$dt:ShieldPopup$n()_"
+    },
+    "ShieldControl::$dt": {
+     "va": "004451f4",
+     "size": 67,
+     "mangled": "W?$dt:ShieldControl$n()_"
+    }
+   },
+   "data": {
+    "CONST2": {
+     "va": "0048dc54",
+     "size": 36
+    },
+    "_DATA": {
+     "va": "004a003c",
+     "size": 12
+    },
+    "W?$Wvf0hos:ShieldControl$$nx[]pn()v": {
+     "va": "0048dca0",
+     "size": 20
+    },
+    "W?$Wts0hn$ShieldControl$$$nx[]uc": {
+     "va": "0048dc8c",
+     "size": 17
+    },
+    "W?$Wts0en$MenuNumber$$$nx[]uc": {
+     "va": "0048c988",
+     "size": 17
+    },
+    "W?$Wts0en$MenuButton$$$nx[]uc": {
+     "va": "0048c9d8",
+     "size": 17
+    }
+   },
+   "accepted": "2026-11-09"
   }
  },
  "accepted_losses": [
@@ -9928,6 +10088,13 @@
    "tu": "src/sim/anim.c",
    "functions": [
     "AnimActionCreateBlock"
+   ],
+   "date": "2026-11-09"
+  },
+  {
+   "tu": "src/pop/psystem.c",
+   "functions": [
+    "PopModuleInit"
    ],
    "date": "2026-11-09"
   }
