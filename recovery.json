@@ -2876,6 +2876,10 @@
      "va": "0048e4d0",
      "size": 26
     },
+    "XI": {
+     "va": "004a6b58",
+     "size": 6
+    },
     "W?$Wvf0do4:ShellBase$$nx[]pn()v": {
      "va": "0048c8ac",
      "size": 20
@@ -2886,6 +2890,14 @@
     },
     "W?$Wts09n$Shell$$$nx[]uc": {
      "va": "0048c870",
+     "size": 17
+    },
+    "W?$Wts08n$Rate$$$nx[]uc": {
+     "va": "0048c884",
+     "size": 17
+    },
+    "W?$Wts0fn$GameSession$$$nx[]uc": {
+     "va": "0048c85c",
      "size": 17
     },
     "W?$Wts08n$Flic$$$nx[]uc": {
@@ -3436,6 +3448,10 @@
     "_DATA": {
      "va": "004a34b4",
      "size": 12
+    },
+    "XI": {
+     "va": "004a6c96",
+     "size": 6
     },
     "W?$Wts0fn$ExploRecord$$$nx[]uc": {
      "va": "0048e07c",
@@ -9286,6 +9302,10 @@
      "va": "0049ffa4",
      "size": 12
     },
+    "XI": {
+     "va": "004a6c1e",
+     "size": 6
+    },
     "W?$Wvf0hos:WeaponControl$$nx[]pn()v": {
      "va": "0048dc18",
      "size": 20
@@ -9861,7 +9881,12 @@
      "mangled": "W?.fn_init$n()v"
     }
    },
-   "data": {},
+   "data": {
+    "XI": {
+     "va": "004a6bfa",
+     "size": 6
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/_unknown/tu_004742bc.c": {
@@ -10541,7 +10566,12 @@
      "mangled": "W?SpecialOptionSound$n(i)v"
     }
    },
-   "data": {},
+   "data": {
+    "W?$Wts0bn$StrPool$$$nx[]uc": {
+     "va": "0048ddc4",
+     "size": 17
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/_unknown/tu_004770d0.c": {
@@ -12343,7 +12373,12 @@
      "mangled": "W?Blit$:GFXCDSSurface$n(iiiiii)v"
     }
    },
-   "data": {},
+   "data": {
+    "W?$Wts0bn$Palette$$$nx[]uc": {
+     "va": "0048e31c",
+     "size": 17
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/pack/unpack.c": {

@@ -86,3 +86,4 @@ Unassigned large modules: sim\sim.c + simdo.c (0044950c, 30 KB), shell\mplaunch.
 | s48-s51 | sol | near-miss functions (<= 16 differing bytes), 4 disjoint TU sets (build/prompts/nm*.txt) | running |
 | s52 | sol | TU completion round 2 (5 TUs + linkdlg/chat literals + pdeath migration plan) | done (pdeath split into pdeath.c + tu_00449148.c; 61 TUs complete) |
 | s49 | sol | near-miss set 1 | done (RenderClipLine asm, hbupgrad +1, worldact +1) |
+| s48 | sol | near-miss set 0 | done (0 new; exact residues in candidates/s48/REPORT.md) |

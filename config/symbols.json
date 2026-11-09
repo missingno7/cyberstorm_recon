@@ -13994,6 +13994,14 @@
    "mangled": "W?ReleaseState$n(pnv)v",
    "evidence": "implied by src/logic/lactor.c 2026-11-09"
   },
+  "ReleaseState#W?ReleaseState$n(pn$ActorRecord$$)v": {
+   "va": "00455ac0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ReleaseState$n(pn$ActorRecord$$)v",
+   "tu": "src/_unknown/tu_004556f0.c",
+   "evidence": "placed (at) in src/_unknown/tu_004556f0.c 2026-11-09"
+  },
   "SimHotbriefClearActor": {
    "va": "00455bf0",
    "kind": "func",
@@ -24200,11 +24208,27 @@
    "tu": "src/_unknown/tu_0041d774.c",
    "evidence": "own data placed in src/_unknown/tu_0041d774.c 2026-11-09"
   },
+  "W?$Wts0fn$GameSession$$$nx[]uc": {
+   "va": "0048c85c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0fn$GameSession$$$nx[]uc",
+   "tu": "src/shell/shell.c",
+   "evidence": "own data placed in src/shell/shell.c 2026-11-09"
+  },
   "W?$Wts09n$Shell$$$nx[]uc": {
    "va": "0048c870",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?$Wts09n$Shell$$$nx[]uc",
+   "tu": "src/shell/shell.c",
+   "evidence": "own data placed in src/shell/shell.c 2026-11-09"
+  },
+  "W?$Wts08n$Rate$$$nx[]uc": {
+   "va": "0048c884",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts08n$Rate$$$nx[]uc",
    "tu": "src/shell/shell.c",
    "evidence": "own data placed in src/shell/shell.c 2026-11-09"
   },
@@ -24907,6 +24931,14 @@
    "status": "hypothesis",
    "mangled": "W?$Wts0hn$ResourceEntry$$$nx[]uc",
    "evidence": "implied by src/io/resource.c 2026-11-09"
+  },
+  "W?$Wts0bn$Palette$$$nx[]uc": {
+   "va": "0048e31c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0bn$Palette$$$nx[]uc",
+   "tu": "src/graph/gfx/g_cds.c",
+   "evidence": "own data placed in src/graph/gfx/g_cds.c 2026-11-09"
   },
   "ShellSourceFile@shell/shell.c": {
    "va": "0048e4dc",
@@ -32995,6 +33027,14 @@
    "status": "hypothesis",
    "mangled": "W?weaponMap$n$SimMapGadget$$",
    "evidence": "implied by src/_unknown/tu_0044310c.c 2026-11-09"
+  },
+  "weaponMap#W?weaponMap$n$WeaponMapGadget$$": {
+   "va": "004d1a70",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?weaponMap$n$WeaponMapGadget$$",
+   "tu": "src/_unknown/tu_0044310c.c",
+   "evidence": "own data placed in src/_unknown/tu_0044310c.c 2026-11-09"
   },
   "simActions": {
    "va": "004d1a9c",
