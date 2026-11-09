@@ -50,7 +50,7 @@ Model: `luna` = gpt-6-luna xhigh, `sol` = gpt-6.1-sol high (Codex; all new lanes
 | s27 | sol | 2nd pass: shell\hercbuy.c, shell\hotseat.c, multi\link.c | running |
 | s28 | sol | 2nd pass: logic\lgen.c + sinterp.c, terr\tgrid.c | running |
 | s29 | sol | 2nd pass: shell\shell.c, io\resource.c | resource +3; resumed on shell.c big functions |
-| s30 | sol | 2nd pass: 00435dec, 0043b7e0 | running |
+| s30 | sol | 2nd pass: 00435dec, 0043b7e0 | done (+8; 24 parked) |
 | s31 | sol | 2nd pass: shell\hbupgrad.c, 0046b918 | done (+9; 23 parked) |
 | s32 | sol | 2nd pass: sim\sim.c region (0044950c) | done (+4; 30 parked) |
 | s33 | sol | 2nd pass: terr\tdisplay.c, tarea.c, tsurface.c and neighbours | running |
