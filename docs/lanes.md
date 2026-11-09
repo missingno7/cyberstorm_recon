@@ -61,6 +61,9 @@ Model: `luna` = gpt-6-luna xhigh, `sol` = gpt-6.1-sol high (Codex; all new lanes
 | s38 | sol | 2nd pass: unnamed 0041d774, 004413e0, 00433640, 00435130, 0047f060/0047f5e0, 00480ee0 | done (+5) |
 | r1 | sol | research: systemic blockers of parked functions | done (nested-default rule; inventory in codegen_rules.md) |
 | s39 | sol | classify unmatched non-game code (runtime library, assembly) | done (config/nongame.json) |
+| s40 | sol | integration debt: GuiPoint COMDAT, MCI owner, sinterp verify divergence, aliases | running |
+| r2 | sol | research: register/stack allocation cluster | running |
+| s41 | sol | 3rd pass: sim\sim.c region | running |
 | l1 | luna | shell\hercbuy.c | done (19) |
 | o1 | opus | multi\linkdlg.c, linkq.c, message.c | done |
 | o2 | opus | sim\apply.c, fxout.c, explo.c | done |
