@@ -3187,6 +3187,109 @@
     }
    },
    "accepted": "2026-11-09"
+  },
+  "src/shell/hotseat.c": {
+   "as": "shell\\hotseat.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "f_004243e4": {
+     "va": "004243e4",
+     "size": 1,
+     "mangled": "f_004243e4"
+    },
+    "f_004243e5": {
+     "va": "004243e5",
+     "size": 2,
+     "mangled": "f_004243e5"
+    },
+    "f_004243e7": {
+     "va": "004243e7",
+     "size": 1,
+     "mangled": "f_004243e7"
+    },
+    "HotseatScreen::$ct": {
+     "va": "004248f7",
+     "size": 23,
+     "mangled": "W?$ct:HotseatScreen$n()_"
+    },
+    "f_0042490e": {
+     "va": "0042490e",
+     "size": 249,
+     "mangled": "W?f_0042490e$n(i)i"
+    },
+    "f_0042515a": {
+     "va": "0042515a",
+     "size": 133,
+     "mangled": "W?f_0042515a$n(i)v"
+    },
+    "f_004251df": {
+     "va": "004251df",
+     "size": 67,
+     "mangled": "W?f_004251df$n(i)v"
+    },
+    "f_00425222": {
+     "va": "00425222",
+     "size": 127,
+     "mangled": "W?f_00425222$n(i)i"
+    },
+    "f_00425616": {
+     "va": "00425616",
+     "size": 94,
+     "mangled": "W?f_00425616$n(i)i"
+    },
+    "f_004256eb": {
+     "va": "004256eb",
+     "size": 298,
+     "mangled": "W?f_004256eb$n(ii)v"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048f1cc",
+     "size": 16
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/pop/pherc.c": {
+   "as": "pop\\pherc.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "f_00445238": {
+     "va": "00445238",
+     "size": 81,
+     "mangled": "W?f_00445238$n()v"
+    },
+    "HercControl::$ct": {
+     "va": "004453dd",
+     "size": 32,
+     "mangled": "W?$ct:HercControl$n()_"
+    },
+    "f_004453fd": {
+     "va": "004453fd",
+     "size": 18,
+     "mangled": "W?f_004453fd$n(pnv)v"
+    },
+    "f_00445633": {
+     "va": "00445633",
+     "size": 168,
+     "mangled": "W?f_00445633$n(pnviuc)ul"
+    },
+    "HercDetailControl::$ct": {
+     "va": "004456db",
+     "size": 24,
+     "mangled": "W?$ct:HercDetailControl$n()_"
+    },
+    "f_004456f3": {
+     "va": "004456f3",
+     "size": 1,
+     "mangled": "W?f_004456f3$n()v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
   }
  },
  "accepted_losses": [
