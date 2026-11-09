@@ -202,10 +202,25 @@ def main(argv):
     bases = {s["seg"]: int(s["base"], 16) for r in reports for s in r["segments"]
              if s["class"].upper() != "CODE" and s.get("base") and s["status"] in ("STRICT", "BSS")
              and img_section(s["base"]) is not None}
+    # A STRICT data segment proves its whole layout. A BSS segment does not (zero bytes prove no offsets): its items
+    # are recorded only when STRICT code references them by name, i.e. an equal oracle field fixed their address
+    # (s40: base+offset of an item whose BSS order differs from the original gave a wrong binding).
+    bound_mangled = {v.get("mangled") for v in syms.values()}
+    strict_ranges = {}
+    for e in strict.values():
+        strict_ranges.setdefault(e["seg"], []).append((e["off"], e["end"]))
+    seg_status = {s["seg"]: s["status"] for r in reports for s in r["segments"]}
     for m in mods:
+        named_refs = set()
+        for f in m.fixups:
+            sname = m.segments[f.seg].name if f.seg < len(m.segments) else None
+            if f.target[0] & 3 == 2 and any(a <= f.off < b for a, b in strict_ranges.get(sname, [])):
+                named_refs.add(m.externs[f.target[1]])
         for pn, psi, po, loc in m.publics:
             seg = m.segments[psi]
-            if seg.name not in bases or seg.cls.upper() == "CODE":
+            if seg.name not in bases or seg.cls.upper() == "CODE" or pn in bound_mangled:
+                continue
+            if seg_status.get(seg.name) != "STRICT" and pn not in named_refs:
                 continue
             lab = symbols.key_for(pn, loc, scope)        # statics: TU-scoped key, as the resolver looks them up
             if lab in syms and syms[lab].get("mangled") not in (None, pn):

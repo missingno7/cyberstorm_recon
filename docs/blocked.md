@@ -46,3 +46,9 @@ previously accepted `ScriptLoad` (9 bytes) and `ScriptString` (3 bytes) as DIFF 
 (MissionRandomTable#$nui, ScriptFormat, scriptText, ...), so promote rolls back. Not yet explained: placement of
 non-strict own callees (ScriptFormat 00469a95) or an alias-key binding differs between the --at view and verify.
 Debug helper used: a wrapper around gate.build_and_compare printing both views' bindings. src/ keeps the old file.
+
+Resolved 2026-11-09 (lane s40): GuiPoint identities come from the oracle descriptor at 0048daa4 (ctor 00429a3c,
+copy ctor 00429a04, dtor 0042c9d0); tdisplay.c now uses the real GuiPoint and DisplayRenderItem constructs
+(DisplayIdentityA/B/C retired; C's extent shrinks by 11 filler bytes, accepted). MCI moved from io\resource.c to its
+own object tu_0047d0e0 (6 functions migrated). sinterp.c published after the promote.py fix: BSS items are recorded
+only when STRICT code references them by name (a placed BSS base does not prove item offsets).

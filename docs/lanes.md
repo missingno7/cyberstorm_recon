@@ -61,7 +61,7 @@ Model: `luna` = gpt-6-luna xhigh, `sol` = gpt-6.1-sol high (Codex; all new lanes
 | s38 | sol | 2nd pass: unnamed 0041d774, 004413e0, 00433640, 00435130, 0047f060/0047f5e0, 00480ee0 | done (+5) |
 | r1 | sol | research: systemic blockers of parked functions | done (nested-default rule; inventory in codegen_rules.md) |
 | s39 | sol | classify unmatched non-game code (runtime library, assembly) | done (config/nongame.json) |
-| s40 | sol | integration debt: GuiPoint COMDAT, MCI owner, sinterp verify divergence, aliases | running |
+| s40 | sol | integration debt: GuiPoint COMDAT, MCI owner, sinterp verify divergence, aliases | done (all three resolved; alias census candidates/s40/ALIASES.md) |
 | r2 | sol | research: register/stack allocation cluster | running |
 | s41 | sol | 3rd pass: sim\sim.c region | running |
 | s42 | sol | 3rd pass: shell\hbupgrad.c, pop\pherc.c, 0043b7e0 | running |

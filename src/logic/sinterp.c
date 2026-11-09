@@ -354,29 +354,29 @@ unsigned short *ScriptStep(Script *s, unsigned short *ip, unsigned short *stop)
 {
     unsigned short op;
     int count;
-    unsigned short *next, *end, *start, *targets, *values;
-    int flag, run, loops, cases, otherwise, i, index, set;
-    long value, kind, side, actor, best, bestDistance, distance, a, b, c;
-    long *slot, *list;
-    ScriptGroup *group;
-    ScriptPoint *p, *at;
-    ScriptPoint here, from, to;
+    unsigned short * next;
+    
+    
+    
+    
+    
+    
 
     op = *ip;
     count = op & 0x0f;
     ip++;
     next = ip + count;
     switch (op) {
-    case 0x1060:                        // next state
+    case 0x1060:                        {  // next state
         if (s->state != 2) s->state++;
-        return 0;
-    case 0x1070:                        // end script
+        return 0; }
+    case 0x1070:                        {  // end script
         if (s->state != 3) {
             s->state = 3;
             return 0;
         }
-        break;
-    case 0x1013:                        // once (cond, flag, end)
+        break; }
+    case 0x1013:                        { unsigned short * end; int flag; int run; // once (cond, flag, end)
         flag = ip[1];
         run = ScriptEval(s, ip[0]) && s->flags[flag] == 0;
         end = ScriptCode(s, ip[2]);
@@ -385,8 +385,8 @@ unsigned short *ScriptStep(Script *s, unsigned short *ip, unsigned short *stop)
             s->flags[flag] = 1;
         } else
             next = end;
-        break;
-    case 0x1023:                        // if (cond, else, end)
+        break; }
+    case 0x1023:                        { unsigned short * end; // if (cond, else, end)
         if (ScriptEval(s, ip[0])) {
             end = ScriptCode(s, ip[1]);
             while (next && next != end) next = ScriptStep(s, next, stop);
@@ -396,8 +396,8 @@ unsigned short *ScriptStep(Script *s, unsigned short *ip, unsigned short *stop)
             end = ScriptCode(s, ip[2]);
             while (next && next != end) next = ScriptStep(s, next, stop);
         }
-        break;
-    case 0x1042:                        // while (cond, end)
+        break; }
+    case 0x1042:                        { unsigned short * start; int loops; // while (cond, end)
         stop = ScriptCode(s, ip[1]);
         loops = 0;
         for (;;) {
@@ -410,14 +410,14 @@ unsigned short *ScriptStep(Script *s, unsigned short *ip, unsigned short *stop)
             }
         }
         next = stop;
-        break;
-    case 0x1080:                        // break
+        break; }
+    case 0x1080:                        {  // break
         next = stop;
-        break;
-    case 0x1051:                        // goto
+        break; }
+    case 0x1051:                        {  // goto
         next = ScriptCode(s, ip[0]);
-        break;
-    case 0x1032:                        // switch (value, table)
+        break; }
+    case 0x1032:                        { unsigned short * targets; unsigned short * values; int cases; int otherwise; int i; long value; // switch (value, table)
         value = ScriptEval(s, ip[0]);
         stop = ScriptCode(s, ip[1]);
         cases = *stop++;
@@ -433,74 +433,74 @@ unsigned short *ScriptStep(Script *s, unsigned short *ip, unsigned short *stop)
         }
         if (i == cases) next = ScriptCode(s, otherwise);
         while (next && next != stop) next = ScriptStep(s, next, stop);
-        break;
-    case 0x1092:
+        break; }
+    case 0x1092: { long actor;
         actor = ScriptEval(s, ip[0]);
         LogicSetActorMode(gLogic, actor, ScriptEval(s, ip[1]));
-        break;
-    case 0x10a2:
+        break; }
+    case 0x10a2: { int index;
         index = ip[0];
         s->vars[index] = ScriptEval(s, ip[1]);
-        break;
-    case 0x10b2:
+        break; }
+    case 0x10b2: { 
         ((long *)(s->base + s->table[SecStrIndex]))[ip[0]] = ip[1];
-        break;
-    case 0x2031:
+        break; }
+    case 0x2031: { 
         LogicRedraw(gLogic, ScriptEval(s, ip[0]));
-        break;
-    case 0x2041:
+        break; }
+    case 0x2041: { 
         LogicOtherRedraw(gLogic, ScriptEval(s, ip[0]));
-        break;
-    case 0x3012:                        // start timer
+        break; }
+    case 0x3012:                        { int index; // start timer
         index = ip[0];
         s->timers[index] = s->time + ScriptEval(s, ip[1]);
-        break;
-    case 0x3021:                        // clear timer
+        break; }
+    case 0x3021:                        {  // clear timer
         s->timers[ip[0]] = 0;
-        break;
-    case 0x4014:                        // create actor
+        break; }
+    case 0x4014:                        { int index; long kind; long side; // create actor
         index = ip[0];
         kind = ScriptEval(s, ip[1]);
         side = ScriptEval(s, ip[2]);
         s->actors[index] = LogicMapUpdate(gLogic, kind, side, ScriptRef(s, ip[3]));
-        break;
-    case 0x5013:                        // create group
+        break; }
+    case 0x5013:                        { long kind; long * list; ScriptGroup * group; ScriptPoint * at; // create group
         group = &s->groups[ip[0]];
         kind = ScriptEval(s, ip[1]);
         at = ScriptRef(s, ip[2]);
         group->count = 0;
         for (list = LogicMapViewPoint(gLogic, kind, at); *list != -1; list++)
             group->actors[group->count++] = *list;
-        break;
-    case 0x4024:                        // command actor
+        break; }
+    case 0x4024:                        {  // command actor
         ScriptCommandTarget(s, 4, ip);
-        break;
-    case 0x5024:                        // command group
+        break; }
+    case 0x5024:                        {  // command group
         ScriptCommandTarget(s, 5, ip);
-        break;
-    case 0x4032:
+        break; }
+    case 0x4032: { int index;
         index = ip[0];
         LogicActorArraySet(gLogic, s->actors[index], 1, ScriptEval(s, ip[1]));
-        break;
-    case 0x5032:
+        break; }
+    case 0x5032: { int i; int index; long value; ScriptGroup * group;
         index = ip[0];
         value = ScriptEval(s, ip[1]);
         group = &s->groups[index];
         for (i = 0; i < group->count; i++)
             LogicActorArraySet(gLogic, group->actors[i], 1, value);
-        break;
-    case 0x4042:
+        break; }
+    case 0x4042: { int index;
         index = ip[0];
         LogicActorArraySet(gLogic, s->actors[index], 8, ScriptEval(s, ip[1]));
-        break;
-    case 0x5042:
+        break; }
+    case 0x5042: { int i; int index; long value; ScriptGroup * group;
         index = ip[0];
         value = ScriptEval(s, ip[1]);
         group = &s->groups[index];
         for (i = 0; i < group->count; i++)
             LogicActorArraySet(gLogic, group->actors[i], 8, value);
-        break;
-    case 0x4052:                        // first actor of a set
+        break; }
+    case 0x4052:                        { int set; long * slot; ScriptGroup * group; // first actor of a set
         slot = &s->actors[ip[0]];
         set = ip[1];
         if (set == 1)
@@ -511,8 +511,8 @@ unsigned short *ScriptStep(Script *s, unsigned short *ip, unsigned short *stop)
             group = &s->groups[set];
             *slot = group->count > 0 ? group->actors[0] : 0;
         }
-        break;
-    case 0x4062:                        // next actor of a set
+        break; }
+    case 0x4062:                        { int i; int set; long actor; long * slot; ScriptGroup * group; // next actor of a set
         slot = &s->actors[ip[0]];
         if (*slot == 0) break;
         actor = *slot;
@@ -529,8 +529,8 @@ unsigned short *ScriptStep(Script *s, unsigned short *ip, unsigned short *stop)
             actor = i < group->count ? group->actors[i] : 0;
         }
         *slot = actor;
-        break;
-    case 0x4073:                        // nearest actor of a set
+        break; }
+    case 0x4073:                        { int i; int set; long actor; long best; long bestDistance; long distance; long * slot; ScriptGroup * group; ScriptPoint * at; ScriptPoint here; // nearest actor of a set
         slot = &s->actors[ip[0]];
         set = ip[1];
         at = ScriptRef(s, ip[2]);
@@ -567,61 +567,61 @@ unsigned short *ScriptStep(Script *s, unsigned short *ip, unsigned short *stop)
             }
         }
         *slot = best;
-        break;
-    case 0x4082:
+        break; }
+    case 0x4082: { int index;
         index = ip[0];
         s->actors[index] = ScriptEval(s, ip[1]);
-        break;
-    case 0x6013:                        // set point
+        break; }
+    case 0x6013:                        { ScriptPoint * p; // set point
         p = &s->points[ip[0]];
         p->x = ScriptEval(s, ip[1]);
         p->y = ScriptEval(s, ip[2]);
-        break;
-    case 0x6022:
+        break; }
+    case 0x6022: { int index;
         index = ip[0];
         s->points[index] = *ScriptRef(s, ip[1]);
-        break;
-    case 0x6032:
+        break; }
+    case 0x6032: { int index; ScriptPoint * p;
         index = ip[0];
         p = ScriptRef(s, ip[1]);
         s->points[index].x += p->x;
         s->points[index].y += p->y;
-        break;
-    case 0x6042:
+        break; }
+    case 0x6042: { int index; ScriptPoint * p;
         index = ip[0];
         p = ScriptRef(s, ip[1]);
         s->points[index].x -= p->x;
         s->points[index].y -= p->y;
-        break;
-    case 0x6053:
+        break; }
+    case 0x6053: { int index; long kind;
         index = ip[0];
         kind = ScriptEval(s, ip[1]);
         LogicFindObject(gLogic, &s->points[index], kind, ScriptEval(s, ip[2]));
-        break;
-    case 0x7013:                        // set target
+        break; }
+    case 0x7013:                        {  // set target
         s->targets[ip[0]].ref = ip[1];
         s->targets[ip[0]].value = ip[2];
-        break;
-    case 0x8015:
+        break; }
+    case 0x8015: { long a; long b; long c; ScriptPoint * p;
         p = ScriptRef(s, ip[0]);
         a = ScriptEval(s, ip[1]);
         b = ScriptEval(s, ip[2]);
         c = ScriptEval(s, ip[3]);
         LogicDrawFromPoint(gLogic, p, a, b, c, ScriptEval(s, ip[4]));
-        break;
-    case 0x8024:
+        break; }
+    case 0x8024: { long a; ScriptPoint from; ScriptPoint to;
         from = *ScriptRef(s, ip[0]);
         to = *ScriptRef(s, ip[1]);
         a = ScriptEval(s, ip[2]);
         LogicConnectPoints(gLogic, &from, &to, a, ScriptEval(s, ip[3]));
-        break;
-    case 0x8034:
+        break; }
+    case 0x8034: { long a; long b; ScriptPoint here;
         here = *ScriptRef(s, ip[0]);
         a = ScriptEval(s, ip[1]);
         b = ScriptEval(s, ip[2]);
         LogicDrawPoint(gLogic, &here, a, b, ScriptEval(s, ip[3]));
-        break;
-    default:
+        break; }
+    default: { 
         switch (op & 0xfff0) {
         case 0x2060:                    // fail mission with a message
             LogicFail(gLogic, ScriptFormatArgs(s, ip, count));
@@ -1041,7 +1041,7 @@ unsigned short *ScriptStep(Script *s, unsigned short *ip, unsigned short *stop)
 
 
             AssertFail(__FILE__, __LINE__, BriefFormat("Unknown opcode 0x%04x", op));
-        }
+        } }
     }
     return next;
 }
@@ -1478,49 +1478,45 @@ long ScriptEval(Script *s, int expr)
 
 
 
+
+
+
 int ScriptFormat(Script *s, char *dst, int max, const char *src)
 {
     char number[20];
-    int len = 0;
-    int part;
-
+    int len=0, part;
+    long *strIndex; long index; ScriptList *lists, *list;
+    long count, pick; const char *text; int remaining; const char *next;
     while (*src) {
-        if (*src == -1) {
-            long index = *(long *)(src + 1);
-            src += 5;
-            part = ScriptFormat(s, dst, max - len, MissionAllocateFromData(gLogic, ScriptEval(s, index)));
-        } else if (*src == -4) {
-            long index = *(long *)(src + 1);
-            src += 5;
-            sprintf(number, "%d", ScriptEval(s, index));
-            part = ScriptFormat(s, dst, max - len, number);
-        } else if (*src == -2) {
-            long *strIndex = (long *)(s->base + s->table[SecStrIndex]);
-            long index = *(long *)(src + 1);
-            src += 5;
-            part = ScriptFormat(s, dst, max - len, s->base + s->table[SecStrings] + strIndex[index]);
-        } else if (*src == -3) {
-            ScriptList *lists = (ScriptList *)(s->base + s->table[SecStrLists]);
-            long index = *(long *)(src + 1);
-            long pick = ScriptEval(s, *(long *)(src + 5));
-            ScriptList *list;
-            const char *text;
-            src += 9;
-            list = &lists[index];
-            text = s->base + s->table[SecStrings] + list->offset;
-            if (pick >= 0 && pick < list->count)
-                while (pick-- > 0) text += strlen(text) + 1;
-            part = ScriptFormat(s, dst, max - len, text);
-        } else {
-            if (len < max) {
-                *dst++ = *src++;
-                len++;
-            } else
-                AssertFail(__FILE__, __LINE__, "string overflow");
-            continue;
-        }
-        dst += part;
-        len += part;
+        int code=(signed char)*src;
+        const long *args=(const long *)(src+1);
+        remaining=max-len; next=src+5;
+        if (code==-1) {
+            index=*args; src=next;
+            part=ScriptFormat(s,dst,remaining,MissionAllocateFromData(gLogic,ScriptEval(s,index)));
+            dst+=part; len+=part;
+        } else if (code==-4) {
+            index=*args; src=next;
+            sprintf(number,"%d",ScriptEval(s,index));
+            part=ScriptFormat(s,dst,remaining,number);
+            dst+=part; len+=part;
+        } else if (code==-2) {
+            strIndex=(long *)(s->base+s->table[SecStrIndex]);
+            index=*args; src=next;
+            part=ScriptFormat(s,dst,remaining,s->base+s->table[SecStrings]+strIndex[index]);
+            dst+=part; len+=part;
+        } else if (code==-3) {
+            lists=(ScriptList *)(s->base+s->table[SecStrLists]);
+            index=*args; pick=ScriptEval(s,*(long *)next); src=next+4;
+            list=&lists[index]; count=list->count;
+            text=s->base+s->table[SecStrings]+list->offset;
+            if (pick>=0 && pick<count)
+                while(pick-- >0)text+=strlen(text)+1;
+            part=ScriptFormat(s,dst,max-len,text);
+            dst+=part; len+=part;
+        } else if (len<max) {
+            *dst++=*src++; ++len;
+        } else AssertFail(__FILE__,__LINE__,"string overflow");
     }
     return len;
 }

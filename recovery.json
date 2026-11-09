@@ -117,8 +117,18 @@
   "src/_unknown/tu_004297d4.c": {
    "as": "tu_004297d4.c",
    "install": "wc106",
-   "profile": "plain",
+   "profile": "plain-oe",
    "functions": {
+    "W?.fn_init$n()v": {
+     "va": "004297d4",
+     "size": 41,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "PlyLoad": {
+     "va": "004297fd",
+     "size": 102,
+     "mangled": "W?PlyLoad$n(pnxa)v"
+    },
     "PlyFind": {
      "va": "00429863",
      "size": 69,
@@ -128,9 +138,42 @@
      "va": "004298a8",
      "size": 82,
      "mangled": "W?PlyFindCurrent$n()i"
+    },
+    "BriefDone": {
+     "va": "004298fa",
+     "size": 264,
+     "mangled": "W?BriefDone$n(pnxa)i"
+    },
+    "GuiPoint::$ct#W?$ct:GuiPoint$n(rnx$0$)_": {
+     "va": "00429a04",
+     "size": 21,
+     "mangled": "W?$ct:GuiPoint$n(rnx$0$)_"
+    },
+    "PlyEntry::$dt": {
+     "va": "00429a1c",
+     "size": 5,
+     "mangled": "W?$dt:PlyEntry$n()_"
+    },
+    "PlyEntry::$ct": {
+     "va": "00429a24",
+     "size": 21,
+     "mangled": "W?$ct:PlyEntry$n()_"
     }
    },
-   "data": {},
+   "data": {
+    "CONST": {
+     "va": "0048ad00",
+     "size": 7
+    },
+    "W?$Wts0cn$GuiPoint$$$nx[]uc": {
+     "va": "0048daa4",
+     "size": 17
+    },
+    "W?$Wts0cn$PlyEntry$$$nx[]uc": {
+     "va": "0048dab8",
+     "size": 17
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/_unknown/tu_004279fc.c": {
@@ -769,36 +812,6 @@
      "va": "0047d080",
      "size": 96,
      "mangled": "RenderFormattedResourceText"
-    },
-    "f_d110": {
-     "va": "0047d110",
-     "size": 32,
-     "mangled": "f_d110"
-    },
-    "MciState::StopClose": {
-     "va": "0047d130",
-     "size": 80,
-     "mangled": "W?StopClose$:MciState$n()pn$1$"
-    },
-    "MciState::Close": {
-     "va": "0047d220",
-     "size": 80,
-     "mangled": "W?Close$:MciState$n()v"
-    },
-    "f_d270": {
-     "va": "0047d270",
-     "size": 80,
-     "mangled": "f_d270"
-    },
-    "f_d2c0": {
-     "va": "0047d2c0",
-     "size": 48,
-     "mangled": "f_d2c0"
-    },
-    "f_d2f0": {
-     "va": "0047d2f0",
-     "size": 32,
-     "mangled": "f_d2f0"
     }
    },
    "data": {
@@ -3480,6 +3493,11 @@
      "size": 30,
      "mangled": "W?$dt:Script$n()_"
     },
+    "ScriptFree": {
+     "va": "0046799a",
+     "size": 28,
+     "mangled": "W?ScriptFree$n(pn$Script$$)v"
+    },
     "ScriptSetup": {
      "va": "004679b6",
      "size": 150,
@@ -3539,6 +3557,16 @@
      "va": "004690b8",
      "size": 165,
      "mangled": "W?ScriptRun$n(pn$Script$$)i"
+    },
+    "ScriptEval": {
+     "va": "004699be",
+     "size": 215,
+     "mangled": "W?ScriptEval$n(pn$Script$$i)l"
+    },
+    "ScriptString": {
+     "va": "00469c41",
+     "size": 55,
+     "mangled": "W?ScriptString$n(pn$Script$$l)pna"
     }
    },
    "data": {
@@ -7077,6 +7105,11 @@
    "install": "wc106",
    "profile": "ot",
    "functions": {
+    "GuiPoint::$ct": {
+     "va": "00429a3c",
+     "size": 5,
+     "mangled": "W?$ct:GuiPoint$n()_"
+    },
     "W?.fn_init$n()v": {
      "va": "0042b940",
      "size": 32,
@@ -7152,20 +7185,20 @@
      "size": 336,
      "mangled": "W?DisplayPickAt$n(pnipni)i"
     },
-    "DisplayIdentityA": {
+    "GuiPoint::$dt": {
      "va": "0042c9d0",
      "size": 16,
-     "mangled": "W?DisplayIdentityA$n(pnv)pnv"
+     "mangled": "W?$dt:GuiPoint$n()_"
     },
-    "DisplayIdentityB": {
+    "DisplayRenderItem::$dt": {
      "va": "0042c9e0",
      "size": 16,
-     "mangled": "W?DisplayIdentityB$n(pnv)pnv"
+     "mangled": "W?$dt:DisplayRenderItem$n()_"
     },
-    "DisplayIdentityC": {
+    "DisplayRenderItem::$ct": {
      "va": "0042c9f0",
-     "size": 16,
-     "mangled": "W?DisplayIdentityC$n(pnv)pnv"
+     "size": 5,
+     "mangled": "W?$ct:DisplayRenderItem$n()_"
     },
     "DisplayWalkInit": {
      "va": "0042ca00",
@@ -7192,12 +7225,12 @@
      "va": "00490470",
      "size": 20
     },
-    "W?$Wts0ln$DisplayRenderItem$$$nx[]uc": {
-     "va": "0048daf4",
+    "W?$Wts0cn$GuiPoint$$$nx[]uc": {
+     "va": "0048daa4",
      "size": 17
     },
-    "W?$Wts0dn$GridPoint$$$nx[]uc": {
-     "va": "0048daa4",
+    "W?$Wts0ln$DisplayRenderItem$$$nx[]uc": {
+     "va": "0048daf4",
      "size": 17
     }
    },
@@ -12003,6 +12036,59 @@
    "functions": {},
    "data": {},
    "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0047d0e0.c": {
+   "as": "_unknown\\tu_0047d0e0.c",
+   "install": "wc106",
+   "profile": "ot-oe",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "0047d0e0",
+     "size": 48,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "MciState::$ct": {
+     "va": "0047d110",
+     "size": 32,
+     "mangled": "W?$ct:MciState$n()_"
+    },
+    "MciState::$dt": {
+     "va": "0047d130",
+     "size": 80,
+     "mangled": "W?$dt:MciState$n()_"
+    },
+    "MciState::Close": {
+     "va": "0047d220",
+     "size": 80,
+     "mangled": "W?Close$:MciState$n()v"
+    },
+    "f_d270": {
+     "va": "0047d270",
+     "size": 80,
+     "mangled": "f_d270"
+    },
+    "f_d2c0": {
+     "va": "0047d2c0",
+     "size": 48,
+     "mangled": "f_d2c0"
+    },
+    "f_d2f0": {
+     "va": "0047d2f0",
+     "size": 32,
+     "mangled": "f_d2f0"
+    }
+   },
+   "data": {
+    "CONST2": {
+     "va": "0048e2fc",
+     "size": 12
+    },
+    "_DATA": {
+     "va": "004a4a18",
+     "size": 12
+    }
+   },
+   "accepted": "2026-11-09"
   }
  },
  "accepted_losses": [
@@ -12100,6 +12186,28 @@
    "tu": "src/pop/psystem.c",
    "functions": [
     "PopModuleInit"
+   ],
+   "date": "2026-11-09"
+  },
+  {
+   "tu": "src/terr/tdisplay.c",
+   "functions": [
+    "DisplayIdentityA",
+    "DisplayIdentityB",
+    "DisplayIdentityC",
+    "data:W?$Wts0dn$GridPoint$$$nx[]uc"
+   ],
+   "date": "2026-11-09"
+  },
+  {
+   "tu": "src/io/resource.c",
+   "functions": [
+    "f_d110",
+    "MciState::StopClose",
+    "MciState::Close",
+    "f_d270",
+    "f_d2c0",
+    "f_d2f0"
    ],
    "date": "2026-11-09"
   }

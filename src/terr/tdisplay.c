@@ -36,44 +36,44 @@ void DisplaySetRect(void *object, const DisplayRect *source)
 
 static const char DisplaySourcePath[] = "terr\\tdisplay.c";
 extern "C" void AssertFail(const char *, int, const char *);
-struct GridPoint;
+struct GuiPoint;
 struct DisplayTile { unsigned char type, height; unsigned char reserved[10]; };
 struct TerrainGrid {
     char reserved[0x10]; int origin[2]; char unknown18[0x2c]; DisplayTile *tiles;
-    GridPoint *Origin() { return (GridPoint *)origin; }
+    GuiPoint *Origin() { return (GuiPoint *)origin; }
     DisplayTile *Tile(int index) { return tiles+index; }
 };
-struct GridPoint {
-    int x, y;
-    GridPoint();
-    GridPoint(int a,int b) { x=a; y=b; }
-    GridPoint(const GridPoint &p) { x=p.x; y=p.y; }
-    int &Y() { return y; }
-    GridPoint &operator+=(const GridPoint &p) { x+=p.x; y+=p.y; return *this; }
-    GridPoint &operator-=(const GridPoint &p) { x-=p.x; y-=p.y; return *this; }
+struct GuiPoint {
+    long x, y;
+    GuiPoint(); ~GuiPoint() {}
+    GuiPoint(int a,int b) { x=a; y=b; }
+    GuiPoint(const GuiPoint &p) { x=p.x; y=p.y; }
+    long &Y() { return y; }
+    GuiPoint &operator+=(const GuiPoint &p) { x+=p.x; y+=p.y; return *this; }
+    GuiPoint &operator-=(const GuiPoint &p) { x-=p.x; y-=p.y; return *this; }
 };
-inline GridPoint::GridPoint() {}
-extern long GridPointToIndex(TerrainGrid *, GridPoint *);
-extern void GridRotatePoint(GridPoint *, long);
+inline GuiPoint::GuiPoint() {}
+extern long GridPointToIndex(TerrainGrid *, GuiPoint *);
+extern void GridRotatePoint(GuiPoint *, long);
 struct FastBuffer { void Update(long, long); };
 extern void SetTerrainSpanSize(int); extern void f_0047efb0(void *, int);
 extern "C" void TargetObjectInit(const char *, void *, int);
-extern "C" int abs(int); extern GridPoint DisplayPickPoint; extern int *DisplayCurrentView; extern int DisplayPickedIndex, DisplayPickedHeight; extern int DisplayUnraisedY; extern int heightStep; struct DisplayVisibilityState { char reserved[12]; char *values; int Hidden(int index) { return !values[index]; } }; extern DisplayVisibilityState *TerrainVisibility;
+extern "C" int abs(int); extern GuiPoint DisplayPickPoint; extern int *DisplayCurrentView; extern int DisplayPickedIndex, DisplayPickedHeight; extern int DisplayUnraisedY; extern int heightStep; struct DisplayVisibilityState { char reserved[12]; char *values; int Hidden(int index) { return !values[index]; } }; extern DisplayVisibilityState *TerrainVisibility;
 void DisplayGetBounds(int *, unsigned int *, unsigned int *);
 
 struct WorldView {
     TerrainGrid *grid;
     int reserved[4], radius, count, origin;
-    GridPoint center;
+    GuiPoint center;
     DisplayRect rect;
-    GridPoint screenCenter;
+    GuiPoint screenCenter;
     int right, bottom;
-    GridPoint focus;
+    GuiPoint focus;
     int rotation;
-    GridPoint offset, aligned;
+    GuiPoint offset, aligned;
     int index, scale, twice, triple, quad, heightScale, range, angle, flags, special;
 };
-struct DisplaySettings {GridPoint point;int detail,scale,rotation,flags,unknown18,height;};
+struct DisplaySettings {GuiPoint point;int detail,scale,rotation,flags,unknown18,height;};
 inline int DisplayClamp(int n,int low,int high){if(n<=low)return low;if(n>=high)return high;return n;} extern FastBuffer g4d35e4;
 inline int DisplayMaxRef(int a,const int &b){return a>b?a:b;}
 void DisplayConfigure(WorldView *view, DisplaySettings *settings, int reset)
@@ -111,16 +111,16 @@ void DisplayConfigure(WorldView *view, DisplaySettings *settings, int reset)
 
 
     unsigned int assertedIndex=view->index;if(!assertedIndex)AssertFail(DisplaySourcePath,__LINE__,(const char *)assertedIndex);
-    GridPoint bounds;
-    view->offset=GridPoint(0,0);
+    GuiPoint bounds;
+    view->offset=GuiPoint(0,0);
     DisplayGetBounds((int *)view,(unsigned int *)&bounds,(unsigned int *)&view->focus);
     view->offset=bounds;view->offset-=view->screenCenter;
     if(view->flags&1) {
-        GridPoint saved=view->offset;view->offset=GridPoint(0,0);
+        GuiPoint saved=view->offset;view->offset=GuiPoint(0,0);
         int flags=view->flags;view->flags=flags&~1;
         DisplayGetBounds((int *)view,(unsigned int *)&bounds,(unsigned int *)&view->focus);
         view->flags=flags;view->offset=bounds;view->offset-=view->screenCenter;
-        static GridPoint shift(0,0);
+        static GuiPoint shift(0,0);
         if(reset)view->offset+=shift;
         else {shift=saved;shift-=view->offset;view->offset=saved;}
     }
@@ -132,19 +132,19 @@ void DisplayConfigure(WorldView *view, DisplaySettings *settings, int reset)
 int DisplayZoomArea(int *view, unsigned int *result, int position, int candidate, int adjust)
 {
     if (position == 0) return 0;
-    GridPoint origin;
-    GridPoint originPoint;
+    GuiPoint origin;
+    GuiPoint originPoint;
     BestLocSetData((void *)*view, &origin, (void *)position);
     TargetObjectInit((const char *)*view, &originPoint, position);
     int scaleCount = view[0x0d] / view[0x1d] + 1;
     int halfScale = scaleCount >> 1;
-    GridPoint target;
-    GridPoint targetPoint;
+    GuiPoint target;
+    GuiPoint targetPoint;
     int targetIndex;
     if(!candidate) {BestLocSetData((void *)*view,&target,(void *)view[0x19]);targetIndex=view[0x19];}
     else {BestLocSetData((void *)*view,&target,(void *)candidate);targetIndex=candidate;}
     TargetObjectInit((const char *)*view,&targetPoint,targetIndex);
-    GridPoint delta;delta.x=targetPoint.x-originPoint.x;delta.y=targetPoint.y-originPoint.y;
+    GuiPoint delta;delta.x=targetPoint.x-originPoint.x;delta.y=targetPoint.y-originPoint.y;
     f_0047efb0(&delta, view[0x20]);
     delta.x = (int)(delta.x * view[0x0d]) / view[0x0c];
     int vertical = abs(delta.y);
@@ -204,7 +204,7 @@ int DisplayPointScale(int *object, int value)
 
 void DisplayGetBounds(int *view, unsigned int *output, unsigned int *point)
 {
-    *(GridPoint *)output = *(GridPoint *)point;
+    *(GuiPoint *)output = *(GuiPoint *)point;
     f_0047efb0(output, view[0x20]);
     ((int *)output)[0] = (int)(((int *)output)[0] * 0x128) >> 8;
     ((int *)output)[1] = -((int *)output)[1] * 2;
@@ -214,43 +214,43 @@ void DisplayGetBounds(int *view, unsigned int *output, unsigned int *point)
     ((int *)output)[0] = (int)((int *)output)[0] / tileSize;
     ((int *)output)[1] = (int)((int *)output)[1] / tileSize;
     if ((((unsigned char *)(view + 0x21))[0] & 1) != 0) {
-        int index = GridPointToIndex((TerrainGrid *)*view, (GridPoint *)point);
+        int index = GridPointToIndex((TerrainGrid *)*view, (GuiPoint *)point);
         if (index != 0 && (TerrainVisibility == 0 || !TerrainVisibility->Hidden(index))) {
-            ((GridPoint *)output)->Y() -= ((TerrainGrid *)*view)->tiles[index].height * view[0x1e];
+            ((GuiPoint *)output)->Y() -= ((TerrainGrid *)*view)->tiles[index].height * view[0x1e];
         }
     }
-    *(GridPoint *)output += *(GridPoint *)(view + 0x0e);
-    *(GridPoint *)output -= *(GridPoint *)(view + 0x15);
+    *(GuiPoint *)output += *(GuiPoint *)(view + 0x0e);
+    *(GuiPoint *)output -= *(GuiPoint *)(view + 0x15);
 }
 
 void DisplayPointToScreen(int *view, int *output, int *point, int index)
 {
-    *(GridPoint *)output = *(GridPoint *)point;
-    GridPoint *origin = (GridPoint *)(*view + 0x10); ((int *)output)[0] -= origin->x; ((int *)output)[1] -= origin->y;
-    GridRotatePoint((GridPoint *)output, view[0x14]);
+    *(GuiPoint *)output = *(GuiPoint *)point;
+    GuiPoint *origin = (GuiPoint *)(*view + 0x10); ((int *)output)[0] -= origin->x; ((int *)output)[1] -= origin->y;
+    GridRotatePoint((GuiPoint *)output, view[0x14]);
     ((int *)output)[0] *= view[0x1c];
     output[1] *= view[0x1b];
     if ((((unsigned char *)(view + 0x21))[0] & 1) != 0) {
         DisplayUnraisedY = output[1];
         if (index != 0 && (TerrainVisibility == 0 || !TerrainVisibility->Hidden(index))) {
-            ((GridPoint *)output)->Y() -= ((TerrainGrid *)*view)->tiles[index].height * view[0x1e];
+            ((GuiPoint *)output)->Y() -= ((TerrainGrid *)*view)->tiles[index].height * view[0x1e];
         }
     }
-    *(GridPoint *)output += *(GridPoint *)(view + 0x0e);
-    *(GridPoint *)output -= *(GridPoint *)(view + 0x15);
+    *(GuiPoint *)output += *(GuiPoint *)(view + 0x0e);
+    *(GuiPoint *)output -= *(GuiPoint *)(view + 0x15);
 }
 
 int DisplayPointToScreenScaled(int *view, unsigned int *output, unsigned int *point)
 {
-    *(GridPoint *)output = *(GridPoint *)point;
+    *(GuiPoint *)output = *(GuiPoint *)point;
     f_0047efb0(output, view[0x20]);
     ((int *)output)[0] = (int)(((int *)output)[0] * 0x128) >> 8;
     ((int *)output)[1] = -((int *)output)[1] * 2;
     ((int *)output)[0] *= view[0x1c]; ((int *)output)[1] *= view[0x1b];
     int tileSize = *(int *)(*view + 4);
     ((int *)output)[0] = (int)((int *)output)[0] / tileSize; ((int *)output)[1] = (int)((int *)output)[1] / tileSize;
-    *(GridPoint *)output += *(GridPoint *)(view + 0x0e);
-    *(GridPoint *)output -= *(GridPoint *)(view + 0x15);
+    *(GuiPoint *)output += *(GuiPoint *)(view + 0x0e);
+    *(GuiPoint *)output -= *(GuiPoint *)(view + 0x15);
     return view[0x1e];
 }
 
@@ -263,7 +263,7 @@ int DisplayRectOutside(int viewAddress, int *rect)
 extern void f_0042d640(int *, unsigned int, int *, unsigned int);
 extern int f_0042b3d0(int *, int);
 
-struct DisplayRenderItem { GridPoint point; int key; unsigned int index; DisplayRenderItem(); }; inline DisplayRenderItem::DisplayRenderItem() {}
+struct DisplayRenderItem { GuiPoint point; int key; unsigned int index; DisplayRenderItem(); };
 DisplayRenderItem DisplayItems[2000]; extern DisplayRenderItem *DisplaySorted[2000];
 extern int DisplayItemCount; extern void *DisplayDrawArg1,*DisplayDrawArg2,*DisplayDrawArg3;
 extern char g513888[]; extern void MenuSetColors(void *,unsigned long,long); extern void MenuFill(void *,long,long,long,long);
@@ -275,7 +275,7 @@ int DisplaySubmitElement(int *element)
 {
     unsigned int objectId=element[3];
     unsigned int height=DisplayMainHeight(objectId);
-    GridPoint point=*(GridPoint *)(element+1);
+    GuiPoint point=*(GuiPoint *)(element+1);
     point.x-=logicWorldOffsetX;point.y-=logicWorldOffsetY;
     GridRotatePoint(&point,gView.rotation);
     point.x*=gView.triple;point.y*=gView.twice;
@@ -349,18 +349,18 @@ void DisplayProcess(int *view,void *argument1,void *argument2,void *argument3)
 int DisplayResolveCandidate(int *view, int *point, int index)
 {
     if(index) {
-        GridPoint screen;
+        GuiPoint screen;
         DisplayPointToScreen(view,(int *)&screen,point,index);
         int left=screen.x-view[0x1b],top=screen.y-view[0x1b];
         DisplayRect rect(left,top,view[0x1d],view[0x1d]);
         if(rect.Contains((int *)&DisplayPickPoint)) {
-            GridPoint corners[6]; GridPoint *out=corners;
-            { GridPoint &dst=*out; dst=GridPoint(left+view[0x1a],top); ++out; }
-            { GridPoint &dst=*out; dst=GridPoint(left+view[0x1c],top); ++out; }
-            { GridPoint &dst=*out; dst=GridPoint(left+view[0x1d],top+view[0x1b]); ++out; }
-            { GridPoint &dst=*out; dst=GridPoint(left+view[0x1c],top+view[0x1d]); ++out; }
-            { GridPoint &dst=*out; dst=GridPoint(left+view[0x1a],top+view[0x1d]); ++out; }
-            { GridPoint &dst=*out; dst=GridPoint(left,top+view[0x1b]); ++out; }
+            GuiPoint corners[6]; GuiPoint *out=corners;
+            { GuiPoint &dst=*out; dst=GuiPoint(left+view[0x1a],top); ++out; }
+            { GuiPoint &dst=*out; dst=GuiPoint(left+view[0x1c],top); ++out; }
+            { GuiPoint &dst=*out; dst=GuiPoint(left+view[0x1d],top+view[0x1b]); ++out; }
+            { GuiPoint &dst=*out; dst=GuiPoint(left+view[0x1c],top+view[0x1d]); ++out; }
+            { GuiPoint &dst=*out; dst=GuiPoint(left+view[0x1a],top+view[0x1d]); ++out; }
+            { GuiPoint &dst=*out; dst=GuiPoint(left,top+view[0x1b]); ++out; }
             return PointInConvexPolygon((int *)&DisplayPickPoint,corners,6);
         }
     }
@@ -389,15 +389,15 @@ int DisplayPickAt(int *view, int *point)
     DisplayRect *rect=(DisplayRect *)(view+10);
     if (rect->Contains(point)) {
         DisplayCurrentView=view;
-        DisplayPickPoint=*(GridPoint *)point;
-        GridPoint gridPoint=*(GridPoint *)point;
-        gridPoint += *(GridPoint *)(view+0x15);
-        gridPoint -= *(GridPoint *)(view+0x0e);
+        DisplayPickPoint=*(GuiPoint *)point;
+        GuiPoint gridPoint=*(GuiPoint *)point;
+        gridPoint += *(GuiPoint *)(view+0x15);
+        gridPoint -= *(GuiPoint *)(view+0x0e);
         if (((unsigned char *)(view+0x21))[0]&1) gridPoint.y += view[0x1e]*3;
         gridPoint.y /= view[0x1b];
         gridPoint.x /= view[0x1c];
         GridRotatePoint(&gridPoint,-view[0x14]);
-        GridPoint *origin=((TerrainGrid *)*view)->Origin(); gridPoint += *origin;
+        GuiPoint *origin=((TerrainGrid *)*view)->Origin(); gridPoint += *origin;
         int index=ResolveName((const char *)*view,(const char *)&gridPoint);
         if (index) {
             DisplaySetCandidate(view,index);
@@ -407,9 +407,9 @@ int DisplayPickAt(int *view, int *point)
     return DisplayPickedIndex;
 }
 
-void *DisplayIdentityA(void *value) { return value; }
-void *DisplayIdentityB(void *value) { return value; }
-void *DisplayIdentityC(void *value) { return value; }
+/* GuiPoint destructor is the shared COMDAT at 0042c9d0. */
+/* DisplayRenderItem destructor is compiler generated. */
+inline DisplayRenderItem::DisplayRenderItem() {}
 
 void DisplayWalkInit(AreaWalk *walk, unsigned int step)
 {

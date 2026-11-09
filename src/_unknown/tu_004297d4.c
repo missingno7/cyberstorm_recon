@@ -1,16 +1,34 @@
-/* TU at 004297d4..00429a04 (cs11). Original file name unknown (no __FILE__ evidence). PARTIAL: 2 of 5 functions.
- * Names and layouts are working labels; the code is evidence. Profile 'plain' (-4s -s). */
+/* Polygon-resource TU. Native C++ with plain-oe; names are working labels.
+ * 00429a04/1c/24/3c are shared constructor/destructor COMDATs.
+ * unknownPlyState preserves the observed eight-byte BSS gap at 004bc418.
+ * Shared GuiPoint constructors/destructor use their descriptor-backed identities. */
+#include <stdio.h>
+#include <string.h>
+typedef unsigned long U32;
+struct GuiPoint {long x,y;GuiPoint();GuiPoint(const GuiPoint &);};
+inline GuiPoint::GuiPoint(){}
+inline GuiPoint::GuiPoint(const GuiPoint &p):x(p.x),y(p.y){}
+struct PlyEntry {GuiPoint points[16];long count;PlyEntry();};
+inline PlyEntry::PlyEntry(){}
 
-struct PlyEntry { char data[0x84]; };
+struct ResMgr {int OpenFile(long,int=0);int CloseFile();};extern ResMgr gResMgr;
+extern "C" U32 f_c8e0(ResMgr *);extern "C" U32 f_c900(ResMgr *,void *,U32);
+const char *currentPlyName;
+
 struct PlyKey { long a; long b; };
 
 int PlyMatch(PlyEntry *e, long a, long b);
 void PlyGetKey(PlyKey *k);
 
-extern PlyEntry gPly[8];
-extern int gPlyCount;
-extern PlyKey gPlyKey;
+PlyEntry gPly[8];
+int gPlyCount;U32 unknownPlyState[2];PlyKey gPlyKey;GuiPoint plyScratch[16];
 
+void PlyLoad(const char *name){
+ if(name&&gResMgr.OpenFile((long)name,0)){
+  U32 bytes=f_c8e0(&gResMgr);gPlyCount=bytes/sizeof(PlyEntry);
+  f_c900(&gResMgr,gPly,bytes);gResMgr.CloseFile();
+ }else gPlyCount=0;
+}
 int PlyFind(PlyKey *k)
 {
     int i;
@@ -33,4 +51,17 @@ int PlyFindCurrent()
             return i;
     }
     return -1;
+}
+
+int BriefDone(const char *name){
+ char path[64];
+ if(name!=currentPlyName){
+  if(name){
+   if(!currentPlyName||strcmp(name,currentPlyName)){
+    sprintf(path,"%s.ply",name);PlyLoad(path);
+   }
+  }else gPlyCount=0;
+  currentPlyName=name;
+ }
+ return PlyFindCurrent();
 }

@@ -6569,12 +6569,28 @@
    "tu": "src/gui/menu.c",
    "evidence": "strict match 2026-11-09"
   },
+  "W?.fn_init$n()v@tu_004297d4.c": {
+   "va": "004297d4",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/_unknown/tu_004297d4.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "BioLoadRegions": {
    "va": "004297fd",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?BioLoadRegions$n(pnxa)v",
    "evidence": "implied by src/shell/biomenu.c 2026-11-09"
+  },
+  "PlyLoad": {
+   "va": "004297fd",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PlyLoad$n(pnxa)v",
+   "tu": "src/_unknown/tu_004297d4.c",
+   "evidence": "strict match 2026-11-09"
   },
   "PlyFind": {
    "va": "00429863",
@@ -6595,9 +6611,10 @@
   "BriefDone": {
    "va": "004298fa",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "BriefDone",
-   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+   "status": "matched",
+   "mangled": "W?BriefDone$n(pnxa)i",
+   "tu": "src/_unknown/tu_004297d4.c",
+   "evidence": "strict match 2026-11-09"
   },
   "HercDone": {
    "va": "004298fa",
@@ -6606,6 +6623,13 @@
    "mangled": "HercDone",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
   },
+  "BriefDone#BriefDone": {
+   "va": "004298fa",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "BriefDone",
+   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
   "GridPoint::$ct#W?$ct:GridPoint$n(rnx$0$)_": {
    "va": "00429a04",
    "kind": "func",
@@ -6613,12 +6637,44 @@
    "mangled": "W?$ct:GridPoint$n(rnx$0$)_",
    "evidence": "implied by src/terr/tdisplay.c 2026-11-09"
   },
+  "GuiPoint::$ct#W?$ct:GuiPoint$n(rnx$0$)_": {
+   "va": "00429a04",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:GuiPoint$n(rnx$0$)_",
+   "tu": "src/_unknown/tu_004297d4.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PlyEntry::$dt": {
+   "va": "00429a1c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$dt:PlyEntry$n()_",
+   "tu": "src/_unknown/tu_004297d4.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PlyEntry::$ct": {
+   "va": "00429a24",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:PlyEntry$n()_",
+   "tu": "src/_unknown/tu_004297d4.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "GridPoint::$ct": {
    "va": "00429a3c",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?$ct:GridPoint$n()_",
    "evidence": "implied by src/terr/tdisplay.c 2026-11-09"
+  },
+  "GuiPoint::$ct": {
+   "va": "00429a3c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:GuiPoint$n()_",
+   "tu": "src/terr/tdisplay.c",
+   "evidence": "strict match 2026-11-09"
   },
   "BriefModuleInitC": {
    "va": "00429a44",
@@ -7020,6 +7076,13 @@
    "mangled": "W?GridPointToIndex$n(pnxapn$ExploPoint$$)l",
    "evidence": "implied by src/sim/explo.c (overload-safe migration 2026-11-09)"
   },
+  "GridPointToIndex#W?GridPointToIndex$n(pn$TerrainGrid$$pn$GuiPoint$$)l": {
+   "va": "0042afb0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?GridPointToIndex$n(pn$TerrainGrid$$pn$GuiPoint$$)l",
+   "evidence": "implied by src/terr/tdisplay.c 2026-11-09"
+  },
   "TargetObjectInit": {
    "va": "0042b1a0",
    "kind": "func",
@@ -7129,6 +7192,13 @@
    "mangled": "W?GridRotatePoint$n(pn$GridPoint$$l)v",
    "tu": "src/terr/tgrid.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "GridRotatePoint#W?GridRotatePoint$n(pn$GuiPoint$$l)v": {
+   "va": "0042b3d0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?GridRotatePoint$n(pn$GuiPoint$$l)v",
+   "evidence": "implied by src/terr/tdisplay.c 2026-11-09"
   },
   "LogicCopyPoint": {
    "va": "0042b420",
@@ -7426,10 +7496,10 @@
   "DisplayIdentityA": {
    "va": "0042c9d0",
    "kind": "func",
-   "status": "matched",
+   "status": "hypothesis",
    "mangled": "W?DisplayIdentityA$n(pnv)pnv",
    "tu": "src/terr/tdisplay.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "lost strict 2026-11-09"
   },
   "GridPoint::$dt": {
    "va": "0042c9d0",
@@ -7438,35 +7508,45 @@
    "mangled": "W?$dt:GridPoint$n()_",
    "evidence": "implied by src/terr/tdisplay.c 2026-11-09"
   },
+  "GuiPoint::$dt": {
+   "va": "0042c9d0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$dt:GuiPoint$n()_",
+   "tu": "src/terr/tdisplay.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "DisplayIdentityB": {
    "va": "0042c9e0",
    "kind": "func",
-   "status": "matched",
+   "status": "hypothesis",
    "mangled": "W?DisplayIdentityB$n(pnv)pnv",
    "tu": "src/terr/tdisplay.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "lost strict 2026-11-09"
   },
   "DisplayRenderItem::$dt": {
    "va": "0042c9e0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?$dt:DisplayRenderItem$n()_",
-   "evidence": "implied by src/terr/tdisplay.c 2026-11-09"
+   "tu": "src/terr/tdisplay.c",
+   "evidence": "strict match 2026-11-09"
   },
   "DisplayIdentityC": {
    "va": "0042c9f0",
    "kind": "func",
-   "status": "matched",
+   "status": "hypothesis",
    "mangled": "W?DisplayIdentityC$n(pnv)pnv",
    "tu": "src/terr/tdisplay.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "lost strict 2026-11-09"
   },
   "DisplayRenderItem::$ct": {
    "va": "0042c9f0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?$ct:DisplayRenderItem$n()_",
-   "evidence": "implied by src/terr/tdisplay.c 2026-11-09"
+   "tu": "src/terr/tdisplay.c",
+   "evidence": "strict match 2026-11-09"
   },
   "DisplayWalkInit": {
    "va": "0042ca00",
@@ -16652,6 +16732,14 @@
    "mangled": "W?f_0046799a$n(pnul)v",
    "evidence": "implied by src/logic/logic.c 2026-11-09"
   },
+  "ScriptFree": {
+   "va": "0046799a",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ScriptFree$n(pn$Script$$)v",
+   "tu": "src/logic/sinterp.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "ScriptSetup": {
    "va": "004679b6",
    "kind": "func",
@@ -16824,9 +16912,10 @@
   "ScriptEval": {
    "va": "004699be",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ScriptEval$n(pn$Script$$i)l",
-   "evidence": "implied by src/logic/sinterp.c 2026-11-09"
+   "tu": "src/logic/sinterp.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ScriptFormat": {
    "va": "00469a95",
@@ -16834,6 +16923,14 @@
    "status": "hypothesis",
    "mangled": "W?ScriptFormat$n(pn$Script$$pnaipnxa)i",
    "evidence": "implied by src/logic/sinterp.c 2026-11-09"
+  },
+  "ScriptString": {
+   "va": "00469c41",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ScriptString$n(pn$Script$$l)pna",
+   "tu": "src/logic/sinterp.c",
+   "evidence": "strict match 2026-11-09"
   },
   "W?.fn_init$n()v@logic/lgen.c": {
    "va": "00469c78",
@@ -21791,20 +21888,44 @@
    "tu": "src/io/resource.c",
    "evidence": "placed (at) in src/io/resource.c 2026-11-09"
   },
+  "W?.fn_init$n()v@_unknown/tu_0047d0e0.c": {
+   "va": "0047d0e0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/_unknown/tu_0047d0e0.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "f_d110": {
    "va": "0047d110",
    "kind": "func",
-   "status": "matched",
+   "status": "hypothesis",
    "mangled": "f_d110",
    "tu": "src/io/resource.c",
+   "evidence": "lost strict 2026-11-09"
+  },
+  "MciState::$ct": {
+   "va": "0047d110",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:MciState$n()_",
+   "tu": "src/_unknown/tu_0047d0e0.c",
    "evidence": "strict match 2026-11-09"
   },
   "MciState::StopClose": {
    "va": "0047d130",
    "kind": "func",
-   "status": "matched",
+   "status": "hypothesis",
    "mangled": "W?StopClose$:MciState$n()pn$1$",
    "tu": "src/io/resource.c",
+   "evidence": "lost strict 2026-11-09"
+  },
+  "MciState::$dt": {
+   "va": "0047d130",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$dt:MciState$n()_",
+   "tu": "src/_unknown/tu_0047d0e0.c",
    "evidence": "strict match 2026-11-09"
   },
   "MciState::Open": {
@@ -21819,7 +21940,7 @@
    "kind": "func",
    "status": "matched",
    "mangled": "W?Close$:MciState$n()v",
-   "tu": "src/io/resource.c",
+   "tu": "src/_unknown/tu_0047d0e0.c",
    "evidence": "strict match 2026-11-09"
   },
   "f_d270": {
@@ -21827,7 +21948,7 @@
    "kind": "func",
    "status": "matched",
    "mangled": "f_d270",
-   "tu": "src/io/resource.c",
+   "tu": "src/_unknown/tu_0047d0e0.c",
    "evidence": "strict match 2026-11-09"
   },
   "f_d2c0": {
@@ -21835,7 +21956,7 @@
    "kind": "func",
    "status": "matched",
    "mangled": "f_d2c0",
-   "tu": "src/io/resource.c",
+   "tu": "src/_unknown/tu_0047d0e0.c",
    "evidence": "strict match 2026-11-09"
   },
   "f_d2c0#W?f_d2c0$n(pnv)v": {
@@ -21850,7 +21971,7 @@
    "kind": "func",
    "status": "matched",
    "mangled": "f_d2f0",
-   "tu": "src/io/resource.c",
+   "tu": "src/_unknown/tu_0047d0e0.c",
    "evidence": "strict match 2026-11-09"
   },
   "MciState::PlayTimeRange": {
@@ -24101,6 +24222,22 @@
    "mangled": "W?$Wts0dn$GridPoint$$$nx[]uc",
    "tu": "src/terr/tdisplay.c",
    "evidence": "own data placed in src/terr/tdisplay.c 2026-11-09"
+  },
+  "W?$Wts0cn$GuiPoint$$$nx[]uc": {
+   "va": "0048daa4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0cn$GuiPoint$$$nx[]uc",
+   "tu": "src/terr/tdisplay.c",
+   "evidence": "own data placed in src/terr/tdisplay.c 2026-11-09"
+  },
+  "W?$Wts0cn$PlyEntry$$$nx[]uc": {
+   "va": "0048dab8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0cn$PlyEntry$$$nx[]uc",
+   "tu": "src/_unknown/tu_004297d4.c",
+   "evidence": "own data placed in src/_unknown/tu_004297d4.c 2026-11-09"
   },
   "W?$Wvf0gos:UpgradeArrow$$nx[]pn()v": {
    "va": "0048dacc",
@@ -31514,6 +31651,14 @@
    "mangled": "W?gMenuVisible$n[]a",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
   },
+  "currentPlyName": {
+   "va": "004bbff0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?currentPlyName$npnxa",
+   "tu": "src/_unknown/tu_004297d4.c",
+   "evidence": "own data placed in src/_unknown/tu_004297d4.c 2026-11-09"
+  },
   "gPly": {
    "va": "004bbff4",
    "kind": "data",
@@ -31534,6 +31679,14 @@
    "status": "hypothesis",
    "mangled": "W?gPlyKey$n$PlyKey$$",
    "evidence": "implied by src/_unknown/tu_004297d4.c 2026-11-09"
+  },
+  "plyScratch": {
+   "va": "004bc428",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?plyScratch$n[]$GuiPoint$$",
+   "tu": "src/_unknown/tu_004297d4.c",
+   "evidence": "own data placed in src/_unknown/tu_004297d4.c 2026-11-09"
   },
   "W?repeatTimer$:.0$:?Event$n(uiul)i:UpgradeArrow$n$Timer$$": {
    "va": "004bc4ac",
@@ -31659,6 +31812,13 @@
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?DisplayPickPoint$n$GridPoint$$",
+   "evidence": "implied by src/terr/tdisplay.c 2026-11-09"
+  },
+  "DisplayPickPoint#W?DisplayPickPoint$n$GuiPoint$$": {
+   "va": "004bc624",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?DisplayPickPoint$n$GuiPoint$$",
    "evidence": "implied by src/terr/tdisplay.c 2026-11-09"
   },
   "DisplayItems": {
