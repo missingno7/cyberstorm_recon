@@ -271,10 +271,10 @@
   "Shell::UpdateBiodermSkills": {
    "va": "00405f4c",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?UpdateBiodermSkills$:Shell$n()v",
    "tu": "src/shell/shell.c",
-   "evidence": "placed (at) in src/shell/shell.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "Shell::ShowIntro": {
    "va": "0040605b",
@@ -326,9 +326,10 @@
   "Shell::Open": {
    "va": "004063a4",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?Open$:Shell$n()v",
-   "evidence": "implied by src/shell/shell.c 2026-11-09"
+   "tu": "src/shell/shell.c",
+   "evidence": "strict match 2026-11-09"
   },
   "Shell::BeginComms": {
    "va": "004067b0",
@@ -578,6 +579,13 @@
    "mangled": "W?ShellMapRender$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "ShellSelectionStats": {
+   "va": "0040c2a0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ShellSelectionStats$n(pn$Scene$$pn$InputReq$$pnxa)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
   "ShellSelectionClose": {
    "va": "0040c544",
    "kind": "func",
@@ -614,11 +622,46 @@
    "mangled": "W?ShellBiodermListRender$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "BiodermStatsExit": {
+   "va": "0040ea78",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?BiodermStatsExit$n(pn$Scene$$)ul",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
   "ShellBiodermStatsRender": {
    "va": "0040eaf8",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?ShellBiodermStatsRender$n(pn$Scene$$)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "BiodermStatsSelect": {
+   "va": "0040f074",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?BiodermStatsSelect$n(pn$Scene$$i)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "BiodermStatsAction": {
+   "va": "0040f26f",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?BiodermStatsAction$n(pn$Scene$$)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "BiodermStatsClose": {
+   "va": "0040f40b",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?BiodermStatsClose$n(pn$Scene$$)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "BiodermStatsApply": {
+   "va": "0040f431",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?BiodermStatsApply$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
   "ShellBiodermSkillsRender": {
@@ -1066,6 +1109,13 @@
    "mangled": "W?LoadBackground$:MissBrief$n()v",
    "tu": "src/shell/missbrf.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "ShellMissionBegin": {
+   "va": "004156f8",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ShellMissionBegin$n(pn$Scene$$pn$InputReq$$)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
   "ShellMissionClose": {
    "va": "004157eb",
@@ -1653,6 +1703,13 @@
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?HercUpgradeRender$n(pn$Scene$$)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "ShellMultiplayerInit": {
+   "va": "0041c86a",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ShellMultiplayerInit$n(pnv)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
   "HercSetMissionStart": {
@@ -2529,6 +2586,20 @@
    "status": "hypothesis",
    "mangled": "W?$ct:Surface$n(ul)_",
    "evidence": "implied by src/gui/flic.c 2026-11-09"
+  },
+  "SurfaceAttach": {
+   "va": "004272cd",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SurfaceAttach$n(pnvpnvll)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "SurfaceCreate": {
+   "va": "0042732e",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SurfaceCreate$n(pnvll)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
   "SurfaceFree": {
    "va": "00427399",
@@ -4206,6 +4277,13 @@
    "status": "hypothesis",
    "mangled": "HercPrepareAssets",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "HercPrepareAssets#W?HercPrepareAssets$n()v": {
+   "va": "0043b7a4",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HercPrepareAssets$n()v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
   "GameSession::$ct": {
    "va": "0043b9ae",
@@ -9826,6 +9904,13 @@
    "tu": "src/misc/strpool.c",
    "evidence": "strict match 2026-11-09"
   },
+  "SetPointer#SetPointer": {
+   "va": "0047c340",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "SetPointer",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
   "AllocateMissionImage": {
    "va": "0047c350",
    "kind": "func",
@@ -11747,6 +11832,13 @@
    "mangled": "W?gShellTintModeActive$ni",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "gBiodermReturnToList": {
+   "va": "004affda",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gBiodermReturnToList$nus",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
   "g4b01c8": {
    "va": "004b01c8",
    "kind": "data",
@@ -11780,6 +11872,13 @@
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4b16a4$n$Scene$$",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "gBiodermSelectionMode": {
+   "va": "004b1788",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gBiodermSelectionMode$nus",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
   "gShellOverlayPaletteActive": {
@@ -14295,6 +14394,20 @@
    "mangled": "gResMgr",
    "evidence": "implied by src/io/resource.c (overload-safe migration 2026-11-09)"
   },
+  "gShellMiniStrings": {
+   "va": "00512220",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gShellMiniStrings$n$StrPool$$",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "gShellParaStrings": {
+   "va": "00512234",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gShellParaStrings$n$StrPool$$",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
   "gGameSettings": {
    "va": "00512370",
    "kind": "data",
@@ -14308,6 +14421,13 @@
    "status": "hypothesis",
    "mangled": "W?gGuiEffectPriority$nl",
    "evidence": "implied by src/_unknown/tu_0042a0e0.c 2026-11-09"
+  },
+  "gShellDefaultName": {
+   "va": "00512436",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gShellDefaultName$n[]a",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
   "ShowStatus": {
    "va": "00512514",
@@ -14470,6 +14590,20 @@
    "mangled": "W?g513888$n$GuiCanvas$$",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "gShellSurfacePixels": {
+   "va": "00513890",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gShellSurfacePixels$npnv",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "gShellDrawPixels": {
+   "va": "00513898",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gShellDrawPixels$npnv",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
   "g5138ac": {
    "va": "005138ac",
    "kind": "data",
@@ -14477,12 +14611,26 @@
    "mangled": "W?g5138ac$ni",
    "evidence": "implied by src/shell/missbrf.c 2026-11-09"
   },
+  "g5138ac#W?g5138ac$nl": {
+   "va": "005138ac",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g5138ac$nl",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
   "g5138b0": {
    "va": "005138b0",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g5138b0$ni",
    "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "g5138b0#W?g5138b0$nl": {
+   "va": "005138b0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g5138b0$nl",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
   "gViewX": {
    "va": "005138c8",

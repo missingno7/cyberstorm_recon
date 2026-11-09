@@ -2471,6 +2471,11 @@
      "size": 238,
      "mangled": "W?UpdateMissionBrief$:Shell$n()v"
     },
+    "Shell::UpdateBiodermSkills": {
+     "va": "00405f4c",
+     "size": 271,
+     "mangled": "W?UpdateBiodermSkills$:Shell$n()v"
+    },
     "Shell::ShowIntro": {
      "va": "0040605b",
      "size": 81,
@@ -2495,6 +2500,11 @@
      "va": "0040627a",
      "size": 298,
      "mangled": "W?ShellShadeRect$n(llll)v"
+    },
+    "Shell::Open": {
+     "va": "004063a4",
+     "size": 1036,
+     "mangled": "W?Open$:Shell$n()v"
     },
     "Shell::BeginComms": {
      "va": "004067b0",

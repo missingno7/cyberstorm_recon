@@ -69,7 +69,7 @@ extern void ShellIntroStart(Scene *,InputReq *,int=0);
 struct ProfileManager {unsigned char unknown00[0x426];U32 mode;unsigned char unknown42a[0x15];unsigned char ready;unsigned char unknown440[0x6c87];long credits;U32 Mode(){return mode;}long Credits(){return credits;}void SetDifficulty(unsigned char);void RefreshMissions();void UnlockItem(int,int);void RestartCampaign();void ApplyCampaignCheat();void AdvanceCampaign();void PrepareRoster();void SetMissionChoice(U32);int LaunchMission(void *);int IsReady(){return ready;}long PendingCost();void CommitPurchases();int HasContinuation();void SelectScenario(int);void SetMode(U32);int Count();void *Select(int);void Advance(int);long Value(int);};
 extern ProfileManager profileManager; extern int g4d030f; extern long SendEvent(void *,int,void * =0,int=0,int=0);
 extern void ShellMainMenuOpen(Scene *,InputReq *,int); extern void ShellMultiplayerOpen(Scene *,InputReq *,int); extern int gGuiPaletteFaded;
-extern void GuiFadeIn(); extern Scene g4b16a4,g4b07f8,g4b0c50,g4b01c8,g4b0e18,g4ba9a8; extern void ShellIntroRender(Scene *);
+extern void GuiFadeIn();extern void GuiFadeOut(); extern Scene g4b16a4,g4b07f8,g4b0c50,g4b01c8,g4b0e18,g4ba9a8; extern void ShellIntroRender(Scene *);
 extern void ShellMainMenuRender(Scene *); extern void ShellSelectionRender(Scene *); extern void ShellSelectionControlsRender(Scene *);
 extern void ShellBiodermStatsRender(Scene *); extern void ShellBiodermSkillsRender(Scene *); extern void ShellBiodermListRender(Scene *);
 extern void ShellBiodermDetailsRender(Scene *); extern void MissBriefUpdate(MissBrief *); extern void CommsScreenRender(Scene *);
@@ -172,11 +172,11 @@ extern int gShellExitCode;inline U32 ShellExitReason(){return gShellExitCode;}
 
 extern void ShellMultiplayerInit(void *); extern void SurfaceAttach(void *,void *,long,long); extern void SurfaceCreate(void *,long,long);
 extern void *gShellSurfacePixels,*gShellDrawPixels;
-extern long gShellWidth,gShellHeight;inline long ShellWidth(){return gShellWidth;}inline long ShellHeight(){return gShellHeight;}
-extern void ShellRefreshResources(); extern void FlicInitBuffers(U32,U32); extern StrPool gShellMiniStrings,gShellParaStrings;
-extern "C" void SetPointer(void *,void *); extern void FontLoad(void *,const char *);
+extern long g5138ac,g5138b0;inline long ShellWidth(){return g5138ac;}inline long ShellHeight(){return g5138b0;}
+extern void HercPrepareAssets(); extern void FlicInitBuffers(U32,U32); extern StrPool gShellMiniStrings,gShellParaStrings;
+extern "C" void SetPointer(void *,void *); extern "C" int f_cba0(void *,const char *);
 struct MenuImages;extern MenuImages *gMenuImages;
-extern char gShellDefaultName[]; extern int gShellPlayIntro; extern int g4d0413; extern signed char gShellContinuationMap;
+extern char gShellDefaultName[]; struct GameSettings {int moviesEnabled;};extern GameSettings gGameSettings; extern int g4d0413; extern signed char gShellContinuationMap;
 extern void ShellMapOpen(Scene *,InputReq *,long); extern void ShellMissionBegin(Scene *,InputReq *); extern int StopMultiplayer(int,int);
 extern void CommsScreenOpen(Scene *,InputReq *,unsigned char); extern void ShellNetworkSetupOpen(Scene *,InputReq *,unsigned char); extern Scene g4ba9a8;
 
@@ -215,7 +215,7 @@ inline unsigned short BiodermReturnToList(){return gBiodermReturnToList;}
 extern U32 BiodermDetailsExit(Scene *); extern void BiodermDetailsAction1(Scene *); extern void BiodermDetailsAction2(Scene *);
 extern void BiodermDetailsAction3(Scene *); extern void BiodermDetailsAction4(Scene *); extern void BiodermDetailsClose(Scene *);
 extern void BiodermDetailsApply(Scene *); extern void ShellSelectionDetails(Scene *,InputReq *,const char *);
-extern long gShellAttractReady,gShellMoviesEnabled,gShellAttractEnabled,gShellEndingScreen; extern void ShellIntroNextImage(Scene *);
+extern long gShellAttractReady,gShellAttractEnabled,gShellEndingScreen; extern void ShellIntroNextImage(Scene *);
 extern U32 ShellIntroExit(Scene *); extern long ShellIntroTopMenu(Scene *); extern void ShellIntroSetMode(Scene *,int); extern long MenuHelpSetContext(long);
 extern int LoadMission(const char *,int); extern int ShellOpenHotseat(Shell *); extern void InputClearEvents(); extern void GuiPumpMessages();
 extern char gShellBackground; extern int MenuLoadBackground(const char *,void *); extern void ShellServiceFrame(Shell *);
@@ -1158,7 +1158,7 @@ void Shell::UpdateMainMenu()
             gShellAttractReady=1;
         }
     }
-    if(gShellMoviesEnabled&&gShellAttractEnabled&&TimerExpired(&gShellIdleTimer)){
+    if(gGameSettings.moviesEnabled&&gShellAttractEnabled&&TimerExpired(&gShellIdleTimer)){
         ReplayIntro();
         TimerSet(&gShellAnimationTimer,9000);
         TimerSet(&gShellIdleTimer,120000);
@@ -1173,6 +1173,7 @@ void Shell::UpdateMainMenu()
             auxiliaryState=1;screen=32;ShellIntroClose(&g4afa84);
             ShellMapOpen(&g4afbfc,&input,2000);TimerSet(&gShellAnimationTimer,9000);break;
         case 5:
+            GuiFadeOut();
             ShellClearFrame();
             if(MenuLoadBackground("SEQUEL.ART",&gShellBackground)){
                 gShellEndingScreen=1;
@@ -1183,6 +1184,7 @@ void Shell::UpdateMainMenu()
                     if(ShellInputKey()||input.Released()||input.HelpReleased())break;
                     ShellServiceFrame(this);ShellLimitFrameRate(this);
                 }
+                GuiFadeOut();
                 ShellClearFrame();
             }
             Close(0);break;
@@ -3112,8 +3114,6 @@ void ShellLoadPalette(const char *name)
 
 
 
-
-
     if(!loaded)AssertFail(ShellSourceFile,__LINE__,0);
     SurfaceCopyRegion(&gMenuSavedSurface,&g511948,0,0);
     if(gShellOverlayPaletteActive)PaletteCopyRange(&palette,gShellOverlayColors,171,37);
@@ -3129,7 +3129,7 @@ extern char gShellBackground;
 extern void SurfaceFlush(void *);
 extern void ShellServiceFrame(Shell *);
 extern void ShellLimitFrameRate(Shell *);
-extern void GuiFadeOut();
+
 extern void SoundStop(unsigned);
 
 
@@ -3173,7 +3173,7 @@ void Shell::Open()
     SurfaceCreate(&gMenuSavedSurface,ShellWidth(),ShellHeight());
     gShellDrawPixels=gMenuSavedSurface.pixels;
     FlicInitBuffers(0x4baf0,0x4baf0);
-    ShellRefreshResources();
+    HercPrepareAssets();
     gShellStrings.Lock();missionImageName.Lock();
     SurfaceClear(&gMenuSavedSurface);GuiFadeOut();
     gShellMiniStrings.Unlock();gShellParaStrings.Unlock();
@@ -3181,12 +3181,12 @@ void Shell::Open()
     SetPointer(&gShellParaStrings,(void *)"parash.bin");
     gShellMiniStrings.Lock();
     gShellImages=gResMgr.Load("shellgui.bmx");gMenuImages=(MenuImages *)gShellImages;
-    FontLoad(&gShellFont,"Font3.fnx");GuiResetClip(&gMenuClip);
+    f_cba0(&gShellFont,"Font3.fnx");GuiResetClip(&gMenuClip);
     memset(sessionName,0,30);strncpy(sessionName,gShellDefaultName,13);
     U32 mode=profileManager.Mode();
     switch(reason){
     case 0:case 2:
-        if(gShellPlayIntro)ShowIntro();
+        if(gGameSettings.moviesEnabled)ShowIntro();
     case 5:
         screen=1;auxiliaryState=1;
         ShellIntroStart(&g4afa84,&input,0);
