@@ -1,31 +1,31 @@
 struct TargetTriple { int x, y, z; };
 struct TargetRecord { unsigned char bytes[0xb4]; };
 struct TargetBriefObject { char pad[0x10]; int active; int IsActive() const { return active != 0; } };
-extern "C" void BriefModuleConstruct(void *); extern "C" void BriefModuleSetup(void *, int, int, int, int);
-extern "C" void BriefModuleOpen(void *, int, int, int); extern "C" void PopLoadResource(void *, void **, int, int);
-extern "C" void BriefObjectOpen(void *, const char *); extern "C" void BriefObjectLoadResource(void *, int, void *, int, int);
-extern "C" int BriefGetHandle(void *, void *); extern "C" int BriefStateSet(void *);
-extern "C" void BriefRenderUpdate(void *); extern "C" void BriefTargetAction(int, int); extern "C" void LogicRedraw(int, void *);
-extern "C" int TargetLookup(void *, void *); extern "C" int TargetLookupFallback(void *, void *); extern "C" void TargetDisplay(void *, int, int);
-extern "C" void TargetEventUp(void *, int); extern "C" void TargetEventDown(void *, int);
-extern "C" void TargetObjectInit(const char *, void *, int); extern "C" void TargetInitAt(const char *, void *, int, int);
-extern "C" void BestLocSetData(void *, void *, void *); extern "C" int CreateState(int); extern "C" int GridClamp(int);
-extern "C" int TargetActorById(int); extern "C" int TargetDistance(void *, void *); extern "C" int TargetSqrt(int);
-extern "C" int TargetCompute(const char *, int, int, int, void *); extern "C" int TargetObjectData(int);
-extern "C" void *memset(void *, int, unsigned int); extern "C" void AssertFail(const char *, int, const char *);
+struct TargetModuleState { int mode; int IsOpen() const { return mode != 0; } };
+extern "C" void BriefModuleSetup(void *, int, int, int, int); extern "C" void BriefModuleOpen(void *, int, int, int); extern "C" void PopLoadResource(void *, void **, int, int);
+extern "C" void BriefObjectOpen(void *, const char *); extern "C" void BriefObjectLoadResource(void *, int, void *, int, int); extern "C" int BriefGetHandle(void *, void *); extern "C" int BriefStateSet(void *);
+extern "C" void BriefRenderUpdate(void *); extern "C" void BriefTargetAction(int, int); extern "C" void LogicRedraw(int, void *); extern "C" int TargetLookup(void *, void *); extern "C" int TargetLookupFallback(void *, void *); extern "C" void TargetDisplay(void *, int, int);
+extern "C" void TargetEventUp(void *, int); extern "C" void TargetEventDown(void *, int); extern "C" void TargetObjectInit(const char *, void *, int); extern "C" void TargetInitAt(const char *, void *, int, int);
+extern "C" void BestLocSetData(void *, void *, void *); extern "C" int CreateState(int); extern "C" int GridClamp(int); extern "C" int TargetActorById(int); extern "C" int TargetDistance(void *, void *); extern "C" int TargetSqrt(int);
+extern "C" int TargetCompute(const char *, int, int, int, void *); extern "C" int TargetObjectData(int); extern "C" void *memset(void *, int, unsigned int); extern "C" void AssertFail(const char *, int, const char *);
 extern int targetModuleState, targetHeader, targetPrompt, targetPrompt1, targetPrompt2, targetPrompt3, targetPrompt4;
-extern int targetPrompt5, targetPrompt6, targetObject, targetSavedObject, targetFlag, targetTable, targetFallback, targetLimits, targetInA4, targetInA0, targetSharedState;
-extern int targetMode;
+extern int targetPrompt5, targetPrompt6, targetObject, targetSavedObject, targetTable, targetFallback, targetLimits, gInA4, gInA0, targetSharedState;
+extern unsigned char targetFlag;
+extern TargetModuleState targetMode;
 extern TargetTriple *targetDefinitionTable;
 extern char targetFallbackName[], targetMenuResource[], targetBriefResource[];
 void TargetLoadResource(void *resource);
-void TargetModuleInit()
+void TargetEmpty(void);
+class TargetModuleStartup
 {
-    BriefModuleConstruct(&targetHeader); BriefModuleSetup(&targetPrompt, 0xd, 1, 0, 0); targetModuleState = 1;
-    BriefModuleOpen(&targetPrompt1, 0x85, 500, 0); targetModuleState = 2; BriefModuleOpen(&targetPrompt2, 0x88, 500, 0); targetModuleState = 3;
-    BriefModuleOpen(&targetPrompt3, 0x8b, 500, 0); targetModuleState = 4; BriefModuleOpen(&targetPrompt4, 0x8e, 500, 0); targetModuleState = 5;
-    TargetLoadResource(&targetPrompt5); targetModuleState = 6;
-}
+public:
+    TargetModuleStartup()
+    {
+        BriefModuleSetup(&targetPrompt, 0xd, 1, 0, 0); targetModuleState = 1; BriefModuleOpen(&targetPrompt1, 0x85, 500, 0); targetModuleState = 2; BriefModuleOpen(&targetPrompt2, 0x88, 500, 0); targetModuleState = 3; BriefModuleOpen(&targetPrompt3, 0x8b, 500, 0); targetModuleState = 4; BriefModuleOpen(&targetPrompt4, 0x8e, 500, 0); targetModuleState = 5; TargetLoadResource(&targetPrompt5); targetModuleState = 6;
+    }
+    ~TargetModuleStartup() { TargetEmpty(); }
+};
+TargetModuleStartup targetModuleStartup;
 void TargetLoadResource(void *resource) { PopLoadResource(resource, (void **)&targetSavedObject, 5, 0); }
 void TargetMapAlert(void *object, int callback)
 {
@@ -36,12 +36,11 @@ void TargetClose(void *object) { if (((TargetBriefObject *)object)->IsActive()) 
 void TargetUpdate(void *object) { if (((TargetBriefObject *)object)->IsActive()) BriefRenderUpdate(object); }
 void TargetHandleEvent(void *object)
 {
-    int state = 0; if (targetMode != 0) { int handle = BriefGetHandle(&targetPrompt5, &targetSharedState); if (handle >= 0) targetLimits = handle + 100; state = BriefStateSet(&targetPrompt5); }
+    int state; if (targetMode.IsOpen()) { int handle = BriefGetHandle(&targetPrompt5, &targetSharedState); if (handle >= 0) targetLimits = handle + 100; state = BriefStateSet(&targetPrompt5); } else state = 0;
     switch (state) {
     case 1:
-        if ((targetFlag & 0x10) != 0) { int target = TargetLookup((void *)&targetTable, &targetSharedState); if (target == 0) target = TargetLookupFallback((void *)&targetTable, &targetSharedState); TargetDisplay(object, target, 0xb); }
-        else { int mode = targetInA4 != 0 ? 6 : targetInA0 != 0 ? 7 : 0xb; BriefTargetAction(mode, 0); targetLimits = mode + 0xf; }
-        return;
+        if ((targetFlag & 0x10) == 0) { int mode = 0xb; if (gInA4 != 0) mode = 6; else if (gInA0 != 0) mode = 7; BriefTargetAction(mode, 0); targetLimits = mode + 0xf; return; }
+        { int target = TargetLookup((void *)&targetTable, &targetSharedState); if (target == 0) target = TargetLookupFallback((void *)&targetTable, &targetSharedState); TargetDisplay(object, target, 0xb); return; }
     case 2: TargetEventUp(object, 1); LogicRedraw(9, (void *)0); return;
     case 3: TargetEventUp(object, -1); LogicRedraw(9, (void *)0); return;
     case 4: TargetEventDown(object, -1); return;
@@ -49,7 +48,7 @@ void TargetHandleEvent(void *object)
     default: return;
     }
 }
-void TargetSetInactive(void *object) { *(int *)((char *)object + 0x10) = 0; }
+void TargetSetInactive(void *object) { ((TargetBriefObject *)object)->active = 0; }
 void TargetEmpty(void) { }
 int TargetFillRecord(void *unused, TargetRecord *record, int index)
 {
@@ -71,7 +70,8 @@ int TargetSetupState(void *unused, TargetRecord *record, int index)
     return 0;
 }
 // The encoded line values are evidence from sim\target.c.
-void TargetInitializeRecord(void *unused, TargetRecord *record, int source, int destination)
+void TargetInitializeRecord(void *unused, register TargetRecord *record,
+                           register int source, register int destination)
 {
     memset(record, 0, 0xb4);
     if (destination == 0) return;

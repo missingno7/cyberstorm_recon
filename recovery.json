@@ -861,11 +861,6 @@
    "install": "wc106",
    "profile": "ot",
    "functions": {
-    "TargetModuleInit": {
-     "va": "0045a600",
-     "size": 224,
-     "mangled": "W?TargetModuleInit$n()v"
-    },
     "TargetLoadResource": {
      "va": "0045a6e0",
      "size": 32,
@@ -920,10 +915,50 @@
      "size": 1,
      "mangled": "W?LogicNoop$n()v"
     },
+    "MissionAllocateFromData": {
+     "va": "0046ae4b",
+     "size": 59,
+     "mangled": "W?MissionAllocateFromData$n(pniui)pnv"
+    },
+    "LogicActorSearch": {
+     "va": "0046ae86",
+     "size": 150,
+     "mangled": "W?LogicActorSearch$n(pnviiipni)i"
+    },
+    "LogicActorUpdate": {
+     "va": "0046af1c",
+     "size": 135,
+     "mangled": "W?LogicActorUpdate$n(pnviiipni)v"
+    },
+    "LogicCheckMode": {
+     "va": "0046b03a",
+     "size": 35,
+     "mangled": "W?LogicCheckMode$n()v"
+    },
+    "LogicTextAppend": {
+     "va": "0046b05d",
+     "size": 227,
+     "mangled": "W?LogicTextAppend$n(pnvpnxa)v"
+    },
+    "LogicTextPrevious": {
+     "va": "0046b140",
+     "size": 90,
+     "mangled": "W?LogicTextPrevious$n()v"
+    },
     "LogicTextNext": {
      "va": "0046b19a",
      "size": 68,
      "mangled": "W?LogicTextNext$n()v"
+    },
+    "LogicTextClear": {
+     "va": "0046b1de",
+     "size": 156,
+     "mangled": "W?LogicTextClear$n()v"
+    },
+    "LogicTextMark": {
+     "va": "0046b27a",
+     "size": 50,
+     "mangled": "W?LogicTextMark$n()v"
     },
     "LogicTextBegin": {
      "va": "0046b2ac",
@@ -934,6 +969,11 @@
      "va": "0046b2e6",
      "size": 6,
      "mangled": "W?LogicTextPointer$n()pna"
+    },
+    "LogicTextHasCurrent": {
+     "va": "0046b2ec",
+     "size": 24,
+     "mangled": "W?LogicTextHasCurrent$n()i"
     },
     "LogicEmpty": {
      "va": "0046b304",
@@ -955,10 +995,45 @@
      "size": 16,
      "mangled": "W?LogicOtherRedraw$n(ii)v"
     },
+    "LogicDrawAtPoint": {
+     "va": "0046b3d4",
+     "size": 115,
+     "mangled": "W?LogicDrawAtPoint$n(pnvpnii)v"
+    },
+    "LogicDrawFromPoint": {
+     "va": "0046b447",
+     "size": 132,
+     "mangled": "W?LogicDrawFromPoint$n(pnvpniiiii)v"
+    },
+    "LogicConnectPoints": {
+     "va": "0046b4cb",
+     "size": 218,
+     "mangled": "W?LogicConnectPoints$n(pnvpnipniii)v"
+    },
+    "LogicDrawPoint": {
+     "va": "0046b5a5",
+     "size": 125,
+     "mangled": "W?LogicDrawPoint$n(pnvpniiii)v"
+    },
+    "LogicFindObject": {
+     "va": "0046b622",
+     "size": 68,
+     "mangled": "W?LogicFindObject$n(pnvpnuiuii)v"
+    },
     "LogicCopyActor": {
      "va": "0046b666",
      "size": 21,
      "mangled": "W?LogicCopyActor$n(pnvpnipni)v"
+    },
+    "LogicTransformPoint": {
+     "va": "0046b67b",
+     "size": 83,
+     "mangled": "W?LogicTransformPoint$n(pnvpni)pni"
+    },
+    "LogicActorPosition": {
+     "va": "0046b6ce",
+     "size": 84,
+     "mangled": "W?LogicActorPosition$n(pnvipni)v"
     },
     "LogicActorArrayGet": {
      "va": "0046b722",
@@ -980,6 +1055,11 @@
      "size": 68,
      "mangled": "W?LogicSetActorLinkAt$n(pnviipnii)v"
     },
+    "LogicMapUpdate": {
+     "va": "0046b821",
+     "size": 106,
+     "mangled": "W?LogicMapUpdate$n(pnviipni)v"
+    },
     "LogicRemoveActor": {
      "va": "0046b8ef",
      "size": 19,
@@ -991,7 +1071,16 @@
      "mangled": "W?LogicRefreshActor$n(pnvi)v"
     }
    },
-   "data": {},
+   "data": {
+    "CONST": {
+     "va": "0048b79c",
+     "size": 21
+    },
+    "_DATA": {
+     "va": "004a3cfc",
+     "size": 13
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/sim/actorlst.c": {
@@ -2806,6 +2895,13 @@
    "tu": "src/sim/actorlst.c",
    "functions": [
     "ActorRecord::$ct"
+   ],
+   "date": "2026-11-09"
+  },
+  {
+   "tu": "src/sim/target.c",
+   "functions": [
+    "TargetModuleInit"
    ],
    "date": "2026-11-09"
   }

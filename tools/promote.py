@@ -130,8 +130,9 @@ def main(argv):
     for k, v in implied.items():
         lab = symbols.label(k)
         cur = syms.get(lab)
-        if cur and (cur["va"] != v or (cur.get("mangled") and cur["mangled"] != k)):
-            print(f"implied binding {lab}={v} contradicts symbols.json {cur}; refusing")
+        alt = syms.get(f"{lab}#{k}")
+        if (cur and cur.get("mangled") == k and cur["va"] != v) or (alt and alt["va"] != v):
+            print(f"implied binding {lab}={v} contradicts symbols.json {cur or alt}; refusing")
             return 1
         other = [n for n, e in syms.items() if e["va"] == v and n != lab]
         print(f"  new hypothesis binding: {lab} = {v}" + (f"  ALIAS of {other}: use that name" if other else ""))
@@ -169,6 +170,8 @@ def main(argv):
                                   "evidence": f"strict match {now}"}
     for k, v in implied.items():
         lab = symbols.label(k)
+        if lab in syms and syms[lab].get("mangled") not in (None, k):
+            lab = f"{lab}#{k}"          # prototype disagreement or overload: its own key (resolver finds it)
         if lab not in syms:
             isf = symbols.is_function(k)
             if isf is None:     # C linkage: kind from the target section
