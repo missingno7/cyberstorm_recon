@@ -87,6 +87,7 @@ def main(argv):
         print(f"strict: {nfun} functions, {nbytes} bytes in {len(ledger['tus'])} TUs")
     if tu_starts is not None:
         outl = {tu for tu, _ in tucheck.order_outliers([(tu, pl) for tu, _, _, pl in tu_rows])}
+        outl |= tucheck.data_gaps([(tu, pl) for tu, _, _, pl in tu_rows], img, tu_starts)
         tu_done = [sum(1 for tu, c, _, _ in tu_rows if c and tu not in outl),
                    sum(sz for tu, c, sz, _ in tu_rows if c and tu not in outl)]
         print(f"TU complete (tools/tucheck.py rules; COMDAT copies and BSS size excluded): {tu_done[0]} of "

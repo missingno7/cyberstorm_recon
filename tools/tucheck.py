@@ -29,6 +29,25 @@ import pe as pemod  # noqa: E402
 from common import BUILD, ROOT  # noqa: E402
 
 
+def data_gaps(rows, img, starts):
+    """Objects adjacent in code (only zero fill, no original start between) are adjacent in every segment class
+    too, unless a data-only object sits between them. For each such pair and each initialized segment name both
+    place, the bytes between the first object's segment end and the second's start must be alignment zeros;
+    non-zero bytes there belong to one of the two (a literal neither reproduces). Returns {tu} of both members."""
+    out = set()
+    rows = sorted((r for r in rows if "code" in r[1]), key=lambda r: r[1]["code"])
+    for (ta, pa), (tb, pb) in zip(rows, rows[1:]):
+        end = pa.get("code_end", pa["code"])
+        if not (0 <= pb["code"] - end < 16) or any(img.read_va(end, pb["code"] - end)) or                 any(end <= x < pb["code"] for x in starts):
+            continue
+        for seg in ("CONST", "CONST2", "_DATA"):
+            if seg in pa and seg in pb and pa[seg + "_end"] <= pb[seg]:
+                gap = img.read_va(pa[seg + "_end"], pb[seg] - pa[seg + "_end"])
+                if any(gap):
+                    out |= {ta, tb}
+    return out
+
+
 def check_tu(tu, ent, img, starts, src=None):
     reports, mods, _ = gate.build_and_compare(Path(src) if src else ROOT / tu, ent)
     return check_reports(reports, mods, img, starts)
@@ -92,6 +111,7 @@ def check_reports(reports, mods, img, starts):
                 why.append(f"data {name}: {st}")
             elif name in ORDERED and s.get("base"):
                 place[name] = int(s["base"], 16)
+                place[name + "_end"] = int(s["base"], 16) + s["size"]
     if main is None:
         return False, why + ["no code segment"], 0, place
     ext = main["extents"]
@@ -103,6 +123,7 @@ def check_reports(reports, mods, img, starts):
     if base is None:
         return False, why + ["code unplaced"], main["size"], place
     place["code"] = base
+    place["code_end"] = base + main["size"]
     for e in ext:
         if int(e["va"], 16) != base + e["off"]:
             why.append(f"extent {e['names'][0]} not contiguous")
@@ -136,11 +157,15 @@ def main(argv):
             ok, why, size, place = False, [f"compile: {e}"], 0, {}
         rows.append([tu, ok, why, size, place])
     outl = order_outliers([(r[0], r[4]) for r in rows])
+    gaps = data_gaps([(r[0], r[4]) for r in rows], img, starts)
     for r in rows:
         bad = sorted(seg for tu, seg in outl if tu == r[0])
         if bad:
             r[1] = False
             r[2] = r[2] + [f"{', '.join(bad)} outside the segment's object order (another segment's region)"]
+        if r[0] in gaps:
+            r[1] = False
+            r[2] = r[2] + ["unclaimed data bytes between this object and its code-adjacent neighbour"]
     only = argv[argv.index("--tu") + 1] if "--tu" in argv else None
     ok_n = ok_b = 0
     for tu, ok, why, size, _ in rows:

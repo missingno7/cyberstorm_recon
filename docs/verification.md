@@ -67,7 +67,9 @@ start, every original start inside the range is one of its extents, and the byte
 zero fill); every initialized data segment with bytes (CONST, CONST2, _DATA, XI/YI) is STRICT as a whole segment;
 a BSS segment is placed (base implied consistently by references); and every placed CONST/CONST2/_DATA/_BSS/XI
 segment lies on the longest increasing sequence of that segment name over objects sorted by code base (WLINK
-concatenates same-named segments in object order, so an outlier sits in another segment's region). Not claimed at this level: COMDAT copies (the
+concatenates same-named segments in object order, so an outlier sits in another segment's region); and for two
+objects adjacent in code, the bytes between their CONST/CONST2/_DATA segments are only alignment zeros (found by
+the link probe: literals between two objects belong to one of them). Not claimed at this level: COMDAT copies (the
 linker keeps one copy per name, pick-any, so an object's own copy may differ or be discarded; image level proves
 them), BSS size and the order of unreferenced BSS items (zero bytes cannot prove them).
 Placement aids (compare.py, deterministic, also in verify's view): XI/YI records and COMDAT data are placed by
@@ -107,6 +109,6 @@ differences are explained:
 - 4 CONST offsets (runs 3 and 5): the original has literal bytes between two adjacent objects' CONST that neither
   reproduced object emits ("**********" x2 after linkdlg.c; "#:\CSTORM\", "CYBDATA1..4.RBX" after tu_00475dc8.c).
   They belong to one of the neighbours (unused or differently spelled literals), so those TUs are not truly
-  complete: the TU check does not yet test that consecutive objects' data segments abut. Open item.
+  complete; the TU check now tests that code-adjacent objects' data segments abut (57 -> 55 complete).
 Confirmed: inter-object code fill/alignment and segment concatenation of CONST/_DATA follow object order as WLINK
 does it; no unexplained linker behaviour in the probed runs.
