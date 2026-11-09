@@ -2685,15 +2685,15 @@
      "size": 64,
      "mangled": "W?ResetAnimDrawState$n()v"
     },
+    "AnimClearBetweenRows": {
+     "va": "00458f60",
+     "size": 192,
+     "mangled": "W?AnimClearBetweenRows$n()v"
+    },
     "AnimSetViewportRect": {
      "va": "004595a0",
      "size": 160,
      "mangled": "W?AnimSetViewportRect$n(pnipniiiii)i"
-    },
-    "UnknownIdentityThunk": {
-     "va": "004599a0",
-     "size": 5,
-     "mangled": "W?UnknownIdentityThunk$n(ul)ul"
     }
    },
    "data": {},
@@ -4342,6 +4342,20 @@
    },
    "data": {},
    "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_004599a0.c": {
+   "as": "_unknown\\tu_004599a0.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "UnknownIdentityThunk": {
+     "va": "004599a0",
+     "size": 5,
+     "mangled": "W?UnknownIdentityThunk$n(ul)ul"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
   }
  },
  "accepted_losses": [
@@ -4404,6 +4418,13 @@
     "retry_link_timer",
     "set_link_timer",
     "save_link_tick"
+   ],
+   "date": "2026-11-09"
+  },
+  {
+   "tu": "src/_unknown/tu_00458f20.c",
+   "functions": [
+    "UnknownIdentityThunk"
    ],
    "date": "2026-11-09"
   }

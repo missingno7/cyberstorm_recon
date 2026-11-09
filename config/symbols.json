@@ -6052,8 +6052,16 @@
   "AnimClearBetweenRows": {
    "va": "00458f60",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?AnimClearBetweenRows$n()v",
+   "tu": "src/_unknown/tu_00458f20.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_00459020": {
+   "va": "00459020",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_00459020$n(pnii)v",
    "tu": "src/_unknown/tu_00458f20.c",
    "evidence": "placed (at) in src/_unknown/tu_00458f20.c 2026-11-09"
   },
@@ -6072,12 +6080,20 @@
    "tu": "src/_unknown/tu_00458f20.c",
    "evidence": "strict match 2026-11-09"
   },
+  "f_00459640": {
+   "va": "00459640",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_00459640$n(pnuc)v",
+   "tu": "src/_unknown/tu_00458f20.c",
+   "evidence": "placed (at) in src/_unknown/tu_00458f20.c 2026-11-09"
+  },
   "UnknownIdentityThunk": {
    "va": "004599a0",
    "kind": "func",
    "status": "matched",
    "mangled": "W?UnknownIdentityThunk$n(ul)ul",
-   "tu": "src/_unknown/tu_00458f20.c",
+   "tu": "src/_unknown/tu_004599a0.c",
    "evidence": "strict match 2026-11-09"
   },
   "AnimFrames": {
@@ -14463,6 +14479,13 @@
    "mangled": "W?animReleaseSentinel$nul",
    "evidence": "implied by src/sim/anim.c 2026-11-09"
   },
+  "animDrawBuffer": {
+   "va": "004d42fc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?animDrawBuffer$npnuc",
+   "evidence": "implied by src/_unknown/tu_00458f20.c 2026-11-09"
+  },
   "animViewportX": {
    "va": "004d4300",
    "kind": "data",
@@ -14491,11 +14514,60 @@
    "mangled": "W?animViewportHeight$ni",
    "evidence": "implied by src/_unknown/tu_00458f20.c 2026-11-09"
   },
+  "animDrawWidth": {
+   "va": "004d4318",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?animDrawWidth$ni",
+   "evidence": "implied by src/_unknown/tu_00458f20.c 2026-11-09"
+  },
+  "animDrawRowLimit": {
+   "va": "004d431c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?animDrawRowLimit$ni",
+   "evidence": "implied by src/_unknown/tu_00458f20.c 2026-11-09"
+  },
   "animDrawState": {
    "va": "004d4328",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?animDrawState$n[]yul",
+   "evidence": "implied by src/_unknown/tu_00458f20.c 2026-11-09"
+  },
+  "animDrawX0": {
+   "va": "004d4330",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?animDrawX0$ni",
+   "evidence": "implied by src/_unknown/tu_00458f20.c 2026-11-09"
+  },
+  "animDrawRowStart": {
+   "va": "004d4334",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?animDrawRowStart$ni",
+   "evidence": "implied by src/_unknown/tu_00458f20.c 2026-11-09"
+  },
+  "animDrawRowLast": {
+   "va": "004d433c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?animDrawRowLast$ni",
+   "evidence": "implied by src/_unknown/tu_00458f20.c 2026-11-09"
+  },
+  "animDrawX1": {
+   "va": "004d4340",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?animDrawX1$ni",
+   "evidence": "implied by src/_unknown/tu_00458f20.c 2026-11-09"
+  },
+  "animDrawX1End": {
+   "va": "004d4348",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?animDrawX1End$ni",
    "evidence": "implied by src/_unknown/tu_00458f20.c 2026-11-09"
   },
   "targetPrompt": {
