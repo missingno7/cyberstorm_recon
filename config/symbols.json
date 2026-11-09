@@ -1206,15 +1206,23 @@
    "va": "0047d4c0",
    "kind": "func",
    "status": "matched",
-   "mangled": "W?DrainAssertCallbacks$n()v",
+   "mangled": "DrainAssertCallbacks",
    "tu": "src/debug/assert.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "RegisterAssertCallback": {
+   "va": "0047d4f0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "RegisterAssertCallback",
+   "tu": "src/debug/assert.c",
+   "evidence": "placed (at) in src/debug/assert.c 2026-11-09"
   },
   "AssertFail": {
    "va": "0047d5a0",
    "kind": "func",
    "status": "matched",
-   "mangled": "W?AssertFail$n(pnxaipnxa)v",
+   "mangled": "AssertFail",
    "tu": "src/debug/assert.c",
    "evidence": "strict match 2026-11-09"
   },
@@ -1222,7 +1230,7 @@
    "va": "0047d640",
    "kind": "func",
    "status": "matched",
-   "mangled": "W?AssertExit$n(ui)v",
+   "mangled": "AssertExit",
    "tu": "src/debug/assert.c",
    "evidence": "strict match 2026-11-09"
   },
@@ -1251,17 +1259,17 @@
    "va": "0047e450",
    "kind": "func",
    "status": "matched",
-   "mangled": "FileInit",
+   "mangled": "W?FileInit$n(pn$FileRecord$$)v",
    "tu": "src/io/file.c",
    "evidence": "strict match 2026-11-09"
   },
   "FileRecord::Release": {
    "va": "0047e470",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?Release$:FileRecord$n()pn$1$",
    "tu": "src/io/file.c",
-   "evidence": "placed (at) in src/io/file.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "FileRecord::Open": {
    "va": "0047e4d0",
@@ -1275,7 +1283,7 @@
    "va": "0047e5a0",
    "kind": "func",
    "status": "matched",
-   "mangled": "IORelease",
+   "mangled": "W?IORelease$n(pn$FileRecord$$)i",
    "tu": "src/io/file.c",
    "evidence": "strict match 2026-11-09"
   },
@@ -1290,7 +1298,7 @@
    "va": "0047e670",
    "kind": "func",
    "status": "matched",
-   "mangled": "StreamRead",
+   "mangled": "W?StreamRead$n(pn$FileRecord$$pnvul)ul",
    "tu": "src/io/file.c",
    "evidence": "strict match 2026-11-09"
   },
@@ -1305,38 +1313,39 @@
    "va": "0047e6f0",
    "kind": "func",
    "status": "matched",
-   "mangled": "StreamWrite",
+   "mangled": "W?StreamWrite$n(pn$FileRecord$$pnxvul)ul",
    "tu": "src/io/file.c",
    "evidence": "strict match 2026-11-09"
   },
   "IoRead": {
    "va": "0047e780",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "IoRead",
-   "evidence": "implied by src/io/resource.c 2026-11-09"
+   "status": "matched",
+   "mangled": "W?IoRead$n(pn$FileRecord$$ll)ul",
+   "tu": "src/io/file.c",
+   "evidence": "strict match 2026-11-09"
   },
   "FileGetAndClearError": {
    "va": "0047e7f0",
    "kind": "func",
    "status": "matched",
-   "mangled": "FileGetAndClearError",
+   "mangled": "W?FileGetAndClearError$n(pn$FileRecord$$)i",
    "tu": "src/io/file.c",
    "evidence": "strict match 2026-11-09"
   },
   "FileRecord::Printf": {
    "va": "0047e800",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?Printf$:FileRecord$n(pnxae)v",
    "tu": "src/io/file.c",
-   "evidence": "placed (at) in src/io/file.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "SetRange": {
    "va": "0047e8d0",
    "kind": "func",
    "status": "matched",
-   "mangled": "SetRange",
+   "mangled": "W?SetRange$n(pn$FileRecord$$ill)v",
    "tu": "src/io/file.c",
    "evidence": "strict match 2026-11-09"
   },
@@ -1352,7 +1361,7 @@
    "va": "0047e970",
    "kind": "func",
    "status": "matched",
-   "mangled": "FileCopy",
+   "mangled": "W?FileCopy$n(pnxapnxai)i",
    "tu": "src/io/file.c",
    "evidence": "strict match 2026-11-09"
   },
@@ -1360,7 +1369,7 @@
    "va": "0047e9c0",
    "kind": "func",
    "status": "matched",
-   "mangled": "FileMove",
+   "mangled": "W?FileMove$n(pnxapnxa)i",
    "tu": "src/io/file.c",
    "evidence": "strict match 2026-11-09"
   },
@@ -1368,7 +1377,7 @@
    "va": "0047ea00",
    "kind": "func",
    "status": "matched",
-   "mangled": "FileDelete",
+   "mangled": "W?FileDelete$n(pnxa)i",
    "tu": "src/io/file.c",
    "evidence": "strict match 2026-11-09"
   },
@@ -1376,7 +1385,7 @@
    "va": "0047ea30",
    "kind": "func",
    "status": "matched",
-   "mangled": "DirectoryCreate",
+   "mangled": "W?DirectoryCreate$n(pnxa)i",
    "tu": "src/io/file.c",
    "evidence": "strict match 2026-11-09"
   },
@@ -1384,7 +1393,7 @@
    "va": "0047ea60",
    "kind": "func",
    "status": "matched",
-   "mangled": "DirectoryRemove",
+   "mangled": "W?DirectoryRemove$n(pnxa)i",
    "tu": "src/io/file.c",
    "evidence": "strict match 2026-11-09"
   },
@@ -1392,7 +1401,7 @@
    "va": "0047ea90",
    "kind": "func",
    "status": "matched",
-   "mangled": "FileFreeSpace",
+   "mangled": "W?FileFreeSpace$n(c)l",
    "tu": "src/io/file.c",
    "evidence": "strict match 2026-11-09"
   },
@@ -1601,6 +1610,13 @@
    "status": "hypothesis",
    "mangled": "W?errorText$n[]xa",
    "evidence": "implied by src/io/memory.c 2026-11-09"
+  },
+  "fileSourcePath": {
+   "va": "004a4b9c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?fileSourcePath$n[]xa",
+   "evidence": "implied by src/io/file.c 2026-11-09"
   },
   "g4b3290": {
    "va": "004b3290",

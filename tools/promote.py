@@ -41,8 +41,9 @@ def main(argv):
         return 2
     orig_cand = Path(argv[0]).resolve()
     # canonical form = LF line endings (what git stores); compile and publish exactly that
-    norm_dir = ROOT / "build" / "promote"
-    norm_dir.mkdir(parents=True, exist_ok=True)
+    import tempfile
+    (ROOT / "build").mkdir(exist_ok=True)
+    norm_dir = Path(tempfile.mkdtemp(prefix="promote", dir=ROOT / "build"))  # private: lanes run in parallel
     cand = norm_dir / orig_cand.name
     cand.write_bytes(orig_cand.read_bytes().replace(b"\r\n", b"\n"))
     tu = opts["tu"].replace("\\", "/")

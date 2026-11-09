@@ -1,17 +1,15 @@
-struct MemoryStatus { unsigned long length; unsigned long load; unsigned long totalPhysical; unsigned long availablePhysical; unsigned long totalPageFile; unsigned long availablePageFile; unsigned long totalVirtual; unsigned long availableVirtual; }; static const char errorText[] = "Ran out of memory or disk space.  Try clearing more disk space and running again.";
-extern "C" __declspec(dllimport) void __stdcall GlobalMemoryStatus(MemoryStatus *status);
-extern "C" __declspec(dllimport) void * __stdcall GlobalFree(void *block);
-extern "C" __declspec(dllimport) void * __stdcall GlobalAlloc(unsigned int flags, unsigned long bytes);
+#include <windows.h>
+static const char errorText[] = "Ran out of memory or disk space.  Try clearing more disk space and running again.";
 extern "C" void AssertFail(const char *file, int line, const char *message);
 
 unsigned long MemoryStatusValue(int useTotalVirtual)
 {
-    MemoryStatus status;
-    status.length = sizeof(status);
+    MEMORYSTATUS status;
+    status.dwLength = sizeof(status);
     GlobalMemoryStatus(&status);
     if (useTotalVirtual)
-        return status.totalVirtual;
-    return status.availablePhysical;
+        return status.dwTotalVirtual;
+    return status.dwAvailPhys;
 }
 
 void *GlobalBlockFree(void *block)
@@ -28,6 +26,8 @@ void *GlobalBlockAlloc(unsigned long bytes, unsigned int options)
         block = GlobalAlloc((unsigned int)block, bytes);
     }
     if (block == 0 && (options & 4)) {
+
+
 
 
 

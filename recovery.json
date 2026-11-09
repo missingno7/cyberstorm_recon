@@ -170,28 +170,52 @@
   "src/debug/assert.c": {
    "as": "debug\\assert.c",
    "install": "wc106",
-   "profile": "ot",
+   "profile": "ot-c",
    "functions": {
     "DrainAssertCallbacks": {
      "va": "0047d4c0",
      "size": 48,
-     "mangled": "W?DrainAssertCallbacks$n()v"
+     "mangled": "DrainAssertCallbacks"
     },
     "AssertFail": {
      "va": "0047d5a0",
      "size": 160,
-     "mangled": "W?AssertFail$n(pnxaipnxa)v"
+     "mangled": "AssertFail"
     },
     "AssertExit": {
      "va": "0047d640",
      "size": 57,
-     "mangled": "W?AssertExit$n(ui)v"
+     "mangled": "AssertExit"
     }
    },
    "data": {
     "CONST": {
      "va": "004a4a34",
      "size": 15
+    },
+    "assertTitle": {
+     "va": "0048c02c",
+     "size": 9
+    },
+    "assertFooter": {
+     "va": "004a42c8",
+     "size": 531
+    },
+    "assertDate": {
+     "va": "004a42bc",
+     "size": 12
+    },
+    "assertVersion": {
+     "va": "004a4270",
+     "size": 75
+    },
+    "assertProgram": {
+     "va": "004a4264",
+     "size": 11
+    },
+    "assertFormat": {
+     "va": "0048bff4",
+     "size": 56
     }
    },
    "accepted": "2026-11-09"
@@ -221,6 +245,10 @@
     "CONST": {
      "va": "004a4ba8",
      "size": 12
+    },
+    "_DATA": {
+     "va": "004a4a88",
+     "size": 82
     }
    },
    "accepted": "2026-11-09"
@@ -228,12 +256,17 @@
   "src/io/file.c": {
    "as": "io\\file.c",
    "install": "wc106",
-   "profile": "ot-c",
+   "profile": "ot",
    "functions": {
     "FileInit": {
      "va": "0047e450",
      "size": 32,
-     "mangled": "FileInit"
+     "mangled": "W?FileInit$n(pn$FileRecord$$)v"
+    },
+    "FileRecord::Release": {
+     "va": "0047e470",
+     "size": 96,
+     "mangled": "W?Release$:FileRecord$n()pn$1$"
     },
     "FileRecord::Open": {
      "va": "0047e4d0",
@@ -243,64 +276,70 @@
     "IORelease": {
      "va": "0047e5a0",
      "size": 112,
-     "mangled": "IORelease"
+     "mangled": "W?IORelease$n(pn$FileRecord$$)i"
     },
     "StreamRead": {
      "va": "0047e670",
      "size": 128,
-     "mangled": "StreamRead"
+     "mangled": "W?StreamRead$n(pn$FileRecord$$pnvul)ul"
     },
     "StreamWrite": {
      "va": "0047e6f0",
      "size": 144,
-     "mangled": "StreamWrite"
+     "mangled": "W?StreamWrite$n(pn$FileRecord$$pnxvul)ul"
+    },
+    "IoRead": {
+     "va": "0047e780",
+     "size": 112,
+     "mangled": "W?IoRead$n(pn$FileRecord$$ll)ul"
     },
     "FileGetAndClearError": {
      "va": "0047e7f0",
      "size": 16,
-     "mangled": "FileGetAndClearError"
+     "mangled": "W?FileGetAndClearError$n(pn$FileRecord$$)i"
+    },
+    "FileRecord::Printf": {
+     "va": "0047e800",
+     "size": 208,
+     "mangled": "W?Printf$:FileRecord$n(pnxae)v"
     },
     "SetRange": {
      "va": "0047e8d0",
      "size": 80,
-     "mangled": "SetRange"
+     "mangled": "W?SetRange$n(pn$FileRecord$$ill)v"
     },
     "FileCopy": {
      "va": "0047e970",
      "size": 80,
-     "mangled": "FileCopy"
+     "mangled": "W?FileCopy$n(pnxapnxai)i"
     },
     "FileMove": {
      "va": "0047e9c0",
      "size": 64,
-     "mangled": "FileMove"
+     "mangled": "W?FileMove$n(pnxapnxa)i"
     },
     "FileDelete": {
      "va": "0047ea00",
      "size": 48,
-     "mangled": "FileDelete"
+     "mangled": "W?FileDelete$n(pnxa)i"
     },
     "DirectoryCreate": {
      "va": "0047ea30",
      "size": 48,
-     "mangled": "DirectoryCreate"
+     "mangled": "W?DirectoryCreate$n(pnxa)i"
     },
     "DirectoryRemove": {
      "va": "0047ea60",
      "size": 48,
-     "mangled": "DirectoryRemove"
+     "mangled": "W?DirectoryRemove$n(pnxa)i"
     },
     "FileFreeSpace": {
      "va": "0047ea90",
      "size": 105,
-     "mangled": "FileFreeSpace"
+     "mangled": "W?FileFreeSpace$n(c)l"
     }
    },
    "data": {
-    "CONST": {
-     "va": "004a4b9c",
-     "size": 10
-    },
     "_DATA": {
      "va": "0048c0b8",
      "size": 8
