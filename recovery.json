@@ -5032,6 +5032,11 @@
      "size": 8690,
      "mangled": "W?SetPage$:PromoScreen$n()v"
     },
+    "PromoScreen::NextPage": {
+     "va": "0040b8f6",
+     "size": 188,
+     "mangled": "W?NextPage$:PromoScreen$n()i"
+    },
     "PromoScreen::SetLayout": {
      "va": "0040b9b2",
      "size": 135,
@@ -5144,6 +5149,11 @@
      "va": "00441331",
      "size": 11,
      "mangled": "W?ProfileValue$n(pn$ProfileManager$$)i"
+    },
+    "ProfileManager::MissionIsBlocked": {
+     "va": "0044133c",
+     "size": 93,
+     "mangled": "W?MissionIsBlocked$:ProfileManager$n(rn$MissionInfo$$)i"
     },
     "ProfileManager::HasContinuation": {
      "va": "00441399",

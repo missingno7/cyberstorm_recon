@@ -22,11 +22,12 @@ public:
     byte rank; byte unknown43f[2],previousRank; int progress, continuation;
     byte unknown44a[0xed9]; UnitRecord units[60]; PilotRecord pilots[60]; ushort pilotUnits[64]; int unitCount,pilotCount;
     byte unknown6fc7[256]; int money, oldMoney;
-    void BeginMissions(); int IsSpecial(){return field426==2 || field426==3;} void SetMissionChoice(unsigned long); void RefreshMission(int);
-    int HasContinuation(); int MissionIsBlocked(MissionInfo &); ProfileManager *SetProfileMode(byte); void SelectMissionNumber(int,unsigned long &,unsigned long &); int LaunchMission(GameInfo *);
+    UnitRecord *GetUnit(unsigned slot){return &units[slot-1];} void BeginMissions(); int IsSpecial(){return field426==2 || field426==3;} void SetMissionChoice(unsigned long); void RefreshMission(int);
+    int GetProgress(){return progress;} int HasContinuation(); int MissionIsBlocked(MissionInfo &); ProfileManager *SetProfileMode(byte); void SelectMissionNumber(int,unsigned long &,unsigned long &); int LaunchMission(GameInfo *);
 };
 #pragma pack(pop)
 extern RankCost rankCosts[];
+inline ushort RankThreshold(int rank){return rankCosts[rank].cost;}
 extern int MissionRandomTable[];
 extern "C" unsigned long next_link_seed(int *);
 int MissionBaseType();
@@ -74,13 +75,13 @@ extern "C" char *LogicTextPointer(void *);
 byte PilotHealth(void *); byte UnitGrade(UnitRecord *);
 unsigned UnitStat(UnitRecord *,unsigned);
 void ProfileCleanup(ProfileManager *);
-extern "C" void MemoryRelease(void *);
-void *MemoryAllocationRetry(U32);
+
+
 void GenerateMissions(ProfileManager *); void ReplaceMission(ProfileManager *);
 
 void ProfileManager::BeginMissions() {
-    DebriefStats stats;
     MissionInfo initial;
+    DebriefStats stats;
     int regenerate=0, promote=0;
     LogicGetMissionSummary((byte *)g4dd0c0,(U32 *)&stats);
     specialMission=missions[choice];
@@ -180,18 +181,19 @@ void ProfileManager::BeginMissions() {
     DebugTextAppend(BriefFormat("%s%s%s:\n",reportToken_004941c8,reportToken_004941a4,reportStrings.GetString(0xb3)));
     DebugTextAppend(BriefFormat("%s\n",reportToken_004941c8));
     for(i=0;i<pilotCount;++i) {
+        PilotRecord *pilot=&pilots[i];
         unsigned index=pilotUnits[i]&255;
         if(index) {
-            UnitRecord *unit=&units[index-1];
-            unsigned flags=SimLogicFlags(unit);
-            DebugTextAppend(BriefFormat("%s%s%s  %s%s\n",reportToken_00494184,(char *)&pilots[i],reportToken_0049417c,reportToken_004941c0,reportStrings.GetString(0xa5)));
+            
+            unsigned flags=SimLogicFlags(GetUnit(index));
+            DebugTextAppend(BriefFormat("%s%s%s  %s%s\n",reportToken_00494184,(char *)pilot,reportToken_0049417c,reportToken_004941c0,reportStrings.GetString(0xa5)));
             DebugTextAppend(BriefFormat("%s%s%s: %s%s",reportToken_0049417c,reportToken_004941a8,reportStrings.GetString(0xa8),reportToken_00494184,reportToken_004941b0));
-            byte health=PilotHealth(&pilots[i]);
+            byte health=PilotHealth(pilot);
             if(health) DebugTextAppend(BriefFormat("%d%%\n",health));
             else DebugTextAppend(BriefFormat("%s%s\n",reportToken_00494194,reportStrings.GetString(0xaa)));
-            DebugTextAppend(BriefFormat("%s%s%s  %s%s\n",reportToken_00494184,(char *)unit,reportToken_0049417c,reportToken_004941c0,reportStrings.GetString(0xa6)));
+            DebugTextAppend(BriefFormat("%s%s%s  %s%s\n",reportToken_00494184,(char *)GetUnit(index),reportToken_0049417c,reportToken_004941c0,reportStrings.GetString(0xa6)));
             DebugTextAppend(BriefFormat("%s%s%s: %s",reportToken_0049417c,reportToken_004941a8,reportStrings.GetString(0x79),reportToken_004941b0));
-            byte grade=UnitGrade(unit);
+            byte grade=UnitGrade(GetUnit(index));
             if(grade=='D') {
                 if(flags&1) DebugTextAppend(BriefFormat("%s%s\n",reportToken_00494194,reportStrings.GetString(0xaf)));
                 else DebugTextAppend(BriefFormat("%s%s\n",reportToken_00494194,reportStrings.GetString(0xc6)));
@@ -204,7 +206,7 @@ void ProfileManager::BeginMissions() {
                 else DebugTextAppend(BriefFormat("%s%s%s\n",reportToken_00494194,reportToken_004941a8,reportStrings.GetString(0x77)));
             } else {
                 DebugTextAppend(BriefFormat("%s%s%s: %s",reportToken_0049417c,reportToken_004941a8,reportStrings.GetString(0x66),reportToken_004941b0));
-                int damage=UnitStat(unit,0xd4)*10-unit->wounds;
+                int damage=UnitStat(GetUnit(index),0xd4)*10-GetUnit(index)->wounds;
                 char *description=reportStrings.GetString(damage==1 ? 0x71 : 0x72);
                 if(flags&0x40000) {
                     DebugTextAppend(BriefFormat("%s%d %s\n",reportToken_00494194,damage,description));
@@ -214,7 +216,7 @@ void ProfileManager::BeginMissions() {
                     DebugTextAppend(BriefFormat("%s%s%s\n",reportToken_004941b0,reportToken_00494184,reportStrings.GetString(0x73)));
                 } else DebugTextAppend(BriefFormat("%s%d %s\n",reportToken_00494184,damage,description));
             }
-            if(unit->bytes26 != unit->bytes27) DebugTextAppend(BriefFormat("%s%s%s\n",reportToken_004941a8,reportToken_00494184,reportStrings.GetString(0xab)));
+            if(GetUnit(index)->bytes26 != GetUnit(index)->bytes27) DebugTextAppend(BriefFormat("%s%s%s\n",reportToken_004941a8,reportToken_00494184,reportStrings.GetString(0xab)));
             DebugTextAppend("\n\n");
         }
     }
@@ -223,8 +225,9 @@ void ProfileManager::BeginMissions() {
     DebugTextAppend(BriefFormat("%s\n",reportToken_004941c8));
     int any=0;
     for(i=0;i<unitCount;++i) {
-        if(!ProfileUnitIsAssigned(this,i+1)) {
-            any=1; UnitRecord *unit=&units[i];
+        unsigned number=i+1;
+        if(!ProfileUnitIsAssigned(this,number)) {
+            any=1; UnitRecord *base=units; UnitRecord *unit=&base[i];
             DebugTextAppend(BriefFormat("%s%s%s  %s%s\n",reportToken_00494184,(char *)unit,reportToken_0049417c,reportToken_004941c0,reportStrings.GetString(0xa6)));
             unsigned flags=SimLogicFlags(unit);
             if(!(flags&1)) {
@@ -233,7 +236,7 @@ void ProfileManager::BeginMissions() {
                 else DebugTextAppend(BriefFormat("%s%s%s\n",reportToken_00494194,reportToken_004941a8,reportStrings.GetString(0x77)));
             } else {
                 DebugTextAppend(BriefFormat("%s%s%s: %s",reportToken_0049417c,reportToken_004941a8,reportStrings.GetString(0x66),reportToken_004941b0));
-                int damage=UnitStat(unit,0xd4)*10-unit->wounds;
+                int damage=UnitStat(unit,0xd4)*10-base[number-1].wounds;
                 char *description=reportStrings.GetString(damage==1 ? 0x71 : 0x72);
                 if(flags&0x40000) {
                     DebugTextAppend(BriefFormat("%s%d %s\n",reportToken_00494194,damage,description));
@@ -246,6 +249,7 @@ void ProfileManager::BeginMissions() {
             DebugTextAppend("\n\n");
         }
     }
+
     if(!any) DebugTextAppend(BriefFormat("%s%s\n",reportToken_004941c8,reportStrings.GetString(0xc6)));
     ProfileCleanup(this);
     if(promote) {
@@ -255,12 +259,13 @@ void ProfileManager::BeginMissions() {
     }
     ProfileRefresh(this);
     if(regenerate==2) GenerateMissions(this); else if(regenerate==1) ReplaceMission(this);
-    if(!reportStatic) MemoryRelease(savedReport); else reportStatic=0;
+    if(!reportStatic) delete [] savedReport; else reportStatic=0;
     unsigned length=strlen(gDebugText)+1;
-    savedReport=(char *)MemoryAllocationRetry(length);
+    savedReport=new char[length];
     memset(savedReport,0,length);strcpy(savedReport,gDebugText);
     field43a=(int)savedReport;choice=-1;
 }
+
 
 /* 004404a2 */
 void ProfileManager::RefreshMission(int slot) {
@@ -434,13 +439,14 @@ int ProfileValue(ProfileManager *p) { return p->field43a; }
 
 /* 0044133c */
 int ProfileManager::MissionIsBlocked(MissionInfo &info) {
-    if (rank != 14) {
-        if (info.category == 3) return 1;
-        byte cost=1;
-        if (info.category == 2) cost=3;
-        int threshold=rankCosts[rank].cost;
-        if (progress+cost >= threshold && threshold != 0) return 1;
-    }
+    if (rank==14) return 0;
+    if (info.category==3) return 1;
+    byte cost=1;
+    if (info.category==2) cost=3;
+    int threshold=RankThreshold(rank);
+    int increment=cost;
+    int next=progress;
+    if (next+increment>=threshold && threshold) return 1;
     return 0;
 }
 /* 00441399 */
@@ -453,6 +459,10 @@ int ProfileManager::HasContinuation() {
 ProfileManager *ProfileManager::SetProfileMode(byte mode) {
     if (mode == 2) this->mode=mode; else if (mode == 1) this->mode=mode; else this->mode=0; return this;
 }
+
+
+
+
 
 
 

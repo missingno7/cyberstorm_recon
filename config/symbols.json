@@ -600,10 +600,10 @@
   "PromoScreen::NextPage": {
    "va": "0040b8f6",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?NextPage$:PromoScreen$n()i",
    "tu": "src/_unknown/tu_00409408.c",
-   "evidence": "placed (at) in src/_unknown/tu_00409408.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "PromoScreen::SetLayout": {
    "va": "0040b9b2",
@@ -6249,10 +6249,10 @@
   "ProfileManager::MissionIsBlocked": {
    "va": "0044133c",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?MissionIsBlocked$:ProfileManager$n(rn$MissionInfo$$)i",
    "tu": "src/_unknown/tu_0043ef34.c",
-   "evidence": "placed (at) in src/_unknown/tu_0043ef34.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "ProfileManager::HasContinuation": {
    "va": "00441399",

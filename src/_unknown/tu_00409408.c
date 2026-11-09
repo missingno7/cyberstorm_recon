@@ -1088,10 +1088,10 @@ int PromoScreen::NextPage() {
     if (done) {
         if (advance) {
             if (rank <= page) return 0;
-            field14d=0;field139=0;done=0;++page; SetPage();
+            field14d=0;field139=0;done=0;++page; SetPage(); return 1;
         } else {
             if (!field55) return 0;
-            field14d=0;field139=0;done=0;field55=0;page=2000; SetPage();
+            field14d=0;field139=0;done=0;field55=0;page=2000; SetPage(); return 1;
         }
     }
     return 1;
@@ -1189,6 +1189,7 @@ MenuButton promoNumber(0,0);
 MenuPrefixButton promoButton(0,1,2,-1);
 MenuHelpRegion promoHelp;
 PromoScreen g4afbfc;
+
 
 
 
