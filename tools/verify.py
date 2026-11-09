@@ -34,7 +34,7 @@ def main(argv):
     img = pemod.load(None)
     fmp = BUILD / "funcmap" / "cs11.json"
     tu_starts = {int(f["va"], 16) for f in json.loads(fmp.read_text())["functions"]} if fmp.exists() else None
-    tu_done = [0, 0]
+    tu_rows = []
     for tu, ent in sorted(ledger["tus"].items()):
         src = ROOT / tu
         try:
@@ -45,10 +45,8 @@ def main(argv):
             continue
         ext = gate.by_label(gate.extents(reports))
         if tu_starts is not None:
-            complete, _, csize = tucheck.check_reports(reports, mods, img, tu_starts)
-            if complete:
-                tu_done[0] += 1
-                tu_done[1] += csize
+            complete, _, csize, place = tucheck.check_reports(reports, mods, img, tu_starts)
+            tu_rows.append((tu, complete, csize, place))
         bad = [n for n, e in ent["functions"].items()
                if (ext.get(n) or {}).get("status") != "STRICT" or ext[n]["va"] != e["va"]
                or ext[n]["end"] - ext[n]["off"] != e["size"]]
@@ -88,6 +86,9 @@ def main(argv):
     else:
         print(f"strict: {nfun} functions, {nbytes} bytes in {len(ledger['tus'])} TUs")
     if tu_starts is not None:
+        outl = {tu for tu, _ in tucheck.order_outliers([(tu, pl) for tu, _, _, pl in tu_rows])}
+        tu_done = [sum(1 for tu, c, _, _ in tu_rows if c and tu not in outl),
+                   sum(sz for tu, c, sz, _ in tu_rows if c and tu not in outl)]
         print(f"TU complete (tools/tucheck.py rules; COMDAT copies and BSS size excluded): {tu_done[0]} of "
               f"{len(ledger['tus'])} TUs, {tu_done[1]} code bytes")
     if "--secondary" in argv:

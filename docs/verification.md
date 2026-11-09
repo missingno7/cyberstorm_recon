@@ -65,7 +65,9 @@ A TU is COMPLETE when, in verify's view: every extent of its main code segment i
 base + object offset (no tail_fill); the object occupies the original range exactly (base is an original function
 start, every original start inside the range is one of its extents, and the bytes after it up to the next start are
 zero fill); every initialized data segment with bytes (CONST, CONST2, _DATA, XI/YI) is STRICT as a whole segment;
-a BSS segment is placed (base implied consistently by references). Not claimed at this level: COMDAT copies (the
+a BSS segment is placed (base implied consistently by references); and every placed CONST/CONST2/_DATA/_BSS/XI
+segment lies on the longest increasing sequence of that segment name over objects sorted by code base (WLINK
+concatenates same-named segments in object order, so an outlier sits in another segment's region). Not claimed at this level: COMDAT copies (the
 linker keeps one copy per name, pick-any, so an object's own copy may differ or be discarded; image level proves
 them), BSS size and the order of unreferenced BSS items (zero bytes cannot prove them).
 Placement aids (compare.py, deterministic, also in verify's view): XI/YI records and COMDAT data are placed by
