@@ -175,12 +175,52 @@
    "mangled": "W?PopLoadResource$n(ipnxaii)i",
    "evidence": "implied by src/pop/psystem.c 2026-11-09"
   },
+  "GuiScreen::$ct": {
+   "va": "00425978",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:GuiScreen$n(pnpn$GuiControl$$uiul)_",
+   "tu": "src/_unknown/tu_00425978.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "GuiScreen::Reset": {
+   "va": "004259c1",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Reset$:GuiScreen$n(pnpn$GuiControl$$uiul)pn$1$",
+   "tu": "src/_unknown/tu_00425978.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "BriefObjectOpen": {
    "va": "004259f7",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "BriefObjectOpen",
    "evidence": "implied by src/sim/target.c 2026-11-09"
+  },
+  "GuiScreen::LoadLayout": {
+   "va": "004259f7",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LoadLayout$:GuiScreen$n(l)v",
+   "tu": "src/_unknown/tu_00425978.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "GuiScreen::SetLayout": {
+   "va": "00425ada",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetLayout$:GuiScreen$n(iipnx$GuiRect$$pnx$2$)v",
+   "tu": "src/_unknown/tu_00425978.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "GuiScreen::Activate": {
+   "va": "00425b48",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Activate$:GuiScreen$n(ui)i",
+   "tu": "src/_unknown/tu_00425978.c",
+   "evidence": "strict match 2026-11-09"
   },
   "BriefStateSet": {
    "va": "00425ba1",
@@ -196,6 +236,14 @@
    "mangled": "HercRefresh",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
   },
+  "GuiScreen::Update": {
+   "va": "00425ba1",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Update$:GuiScreen$n()i",
+   "tu": "src/_unknown/tu_00425978.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "BriefRenderUpdate": {
    "va": "00425e1a",
    "kind": "func",
@@ -209,6 +257,22 @@
    "status": "hypothesis",
    "mangled": "W?PopRefreshNode$n(pn$PopNode$$)v",
    "evidence": "implied by src/pop/psystem.c 2026-11-09"
+  },
+  "GuiScreen::Draw": {
+   "va": "00425e1a",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Draw$:GuiScreen$n()v",
+   "tu": "src/_unknown/tu_00425978.c",
+   "evidence": "placed (at) in src/_unknown/tu_00425978.c 2026-11-09"
+  },
+  "GuiScreen::SetStrings": {
+   "va": "00425ec6",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetStrings$:GuiScreen$n(l)v",
+   "tu": "src/_unknown/tu_00425978.c",
+   "evidence": "strict match 2026-11-09"
   },
   "BriefStatus": {
    "va": "00425f1c",
@@ -224,12 +288,36 @@
    "mangled": "W?PopNotifyChanged$n(pn$PopNode$$)v",
    "evidence": "implied by src/pop/psystem.c 2026-11-09"
   },
+  "GuiScreen::Invalidate": {
+   "va": "00425f1c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Invalidate$:GuiScreen$n()v",
+   "tu": "src/_unknown/tu_00425978.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "GuiScreen::ResetControls": {
+   "va": "00425f47",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ResetControls$:GuiScreen$n()v",
+   "tu": "src/_unknown/tu_00425978.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "BriefObjectLoadResource": {
    "va": "00425f87",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "BriefObjectLoadResource",
    "evidence": "implied by src/sim/target.c 2026-11-09"
+  },
+  "GuiScreen::Open": {
+   "va": "00425f87",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Open$:GuiScreen$n(pn$InputReq$$pn$StrPool$$li)v",
+   "tu": "src/_unknown/tu_00425978.c",
+   "evidence": "strict match 2026-11-09"
   },
   "BriefGetHandle": {
    "va": "0042604d",
@@ -245,6 +333,62 @@
    "mangled": "HercGetHandle",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
   },
+  "GuiScreen::HitTest": {
+   "va": "0042604d",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HitTest$:GuiScreen$n(pnx$GuiPoint$$)l",
+   "tu": "src/_unknown/tu_00425978.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "FlicInitBuffers": {
+   "va": "004260c4",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?FlicInitBuffers$n(ulul)v",
+   "tu": "src/gui/flic.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "FlicFreeBuffers": {
+   "va": "00426165",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?FlicFreeBuffers$n()v",
+   "tu": "src/gui/flic.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "Flic::$ct": {
+   "va": "004261a0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:Flic$n()_",
+   "tu": "src/gui/flic.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "Flic::$dt": {
+   "va": "004261e5",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:Flic$n()_",
+   "tu": "src/gui/flic.c",
+   "evidence": "placed (at) in src/gui/flic.c 2026-11-09"
+  },
+  "Flic::Rewind": {
+   "va": "004262b0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Rewind$:Flic$n()v",
+   "tu": "src/gui/flic.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "Flic::Open": {
+   "va": "00426313",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Open$:Flic$n(lii)i",
+   "tu": "src/gui/flic.c",
+   "evidence": "placed (at) in src/gui/flic.c 2026-11-09"
+  },
   "BriefCloseScreen": {
    "va": "00426642",
    "kind": "func",
@@ -259,12 +403,150 @@
    "mangled": "HercCloseScreen",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
   },
+  "Flic::Close": {
+   "va": "00426642",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Close$:Flic$n()v",
+   "tu": "src/gui/flic.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "Flic::ApplyPalette": {
+   "va": "004266ea",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ApplyPalette$:Flic$n()v",
+   "tu": "src/gui/flic.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "Flic::SetSounds": {
+   "va": "0042670d",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetSounds$:Flic$n(pn$FlicSound$$)v",
+   "tu": "src/gui/flic.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "Flic::StopSounds": {
+   "va": "0042673f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?StopSounds$:Flic$n()v",
+   "tu": "src/gui/flic.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "Flic::PlaySounds": {
+   "va": "00426781",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PlaySounds$:Flic$n()v",
+   "tu": "src/gui/flic.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "Flic::DecodeFrame": {
+   "va": "00426814",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?DecodeFrame$:Flic$n()ul",
+   "tu": "src/gui/flic.c",
+   "evidence": "placed (at) in src/gui/flic.c 2026-11-09"
+  },
   "BriefSwitch": {
    "va": "00426b21",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "BriefSwitch",
    "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "Flic::Update": {
+   "va": "00426b21",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Update$:Flic$n(pn$Surface$$)ul",
+   "tu": "src/gui/flic.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "Flic::DecodePalette": {
+   "va": "00426b8c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?DecodePalette$:Flic$n(pnuc)i",
+   "tu": "src/gui/flic.c",
+   "evidence": "placed (at) in src/gui/flic.c 2026-11-09"
+  },
+  "Flic::UnpackPixels": {
+   "va": "00426c45",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?UnpackPixels$:Flic$n(pnucpnxv)i",
+   "tu": "src/gui/flic.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "Flic::DecodePixels": {
+   "va": "00426c5a",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?DecodePixels$:Flic$n(pnxv)i",
+   "tu": "src/gui/flic.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "Flic::DecodeRegion": {
+   "va": "00426c72",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?DecodeRegion$:Flic$n(pnxv)i",
+   "tu": "src/gui/flic.c",
+   "evidence": "placed (at) in src/gui/flic.c 2026-11-09"
+  },
+  "Flic::DecodePackedPixels": {
+   "va": "00426caf",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?DecodePackedPixels$:Flic$n(pnxv)i",
+   "tu": "src/gui/flic.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "GuiControlStyle": {
+   "va": "00426d33",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?GuiControlStyle$n(pn$GuiControl$$uiul)i",
+   "evidence": "implied by src/_unknown/tu_00425978.c 2026-11-09"
+  },
+  "GuiControlShortcut": {
+   "va": "00426de7",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?GuiControlShortcut$n(pn$GuiControl$$)i",
+   "evidence": "implied by src/_unknown/tu_00425978.c 2026-11-09"
+  },
+  "GuiControlSetShortcut": {
+   "va": "00426e37",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?GuiControlSetShortcut$n(pn$GuiControl$$pnxa)v",
+   "evidence": "implied by src/_unknown/tu_00425978.c 2026-11-09"
+  },
+  "Surface::$ct": {
+   "va": "0042726c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$ct:Surface$n(ul)_",
+   "evidence": "implied by src/gui/flic.c 2026-11-09"
+  },
+  "SurfaceFree": {
+   "va": "00427399",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SurfaceFree$n(pn$Surface$$)v",
+   "evidence": "implied by src/gui/flic.c 2026-11-09"
+  },
+  "SurfaceClear": {
+   "va": "0042742c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SurfaceClear$n(pn$Surface$$)v",
+   "evidence": "implied by src/gui/flic.c 2026-11-09"
   },
   "PlyMatch": {
    "va": "004275dc",
@@ -1799,6 +2081,27 @@
    "tu": "src/logic/lsys.c",
    "evidence": "strict match 2026-11-09"
   },
+  "SoundLoad": {
+   "va": "0046c15e",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SoundLoad$n(ui)v",
+   "evidence": "implied by src/gui/flic.c 2026-11-09"
+  },
+  "SoundFlush": {
+   "va": "0046c2d4",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SoundFlush$n(i)v",
+   "evidence": "implied by src/gui/flic.c 2026-11-09"
+  },
+  "SoundStop": {
+   "va": "0046c3af",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SoundStop$n(ui)v",
+   "evidence": "implied by src/gui/flic.c 2026-11-09"
+  },
   "LogicCallMode": {
    "va": "0046c461",
    "kind": "func",
@@ -1806,12 +2109,26 @@
    "mangled": "LogicCallMode",
    "evidence": "implied by src/logic/lsys.c 2026-11-09"
   },
+  "SoundPlay": {
+   "va": "0046c461",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SoundPlay$n(uipnx$SoundSettings$$)i",
+   "evidence": "implied by src/gui/flic.c 2026-11-09"
+  },
   "LogicClearMode": {
    "va": "0046c980",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "LogicClearMode",
    "evidence": "implied by src/logic/lsys.c 2026-11-09"
+  },
+  "SoundPlayDefault": {
+   "va": "0046c980",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SoundPlayDefault$n(uii)i",
+   "evidence": "implied by src/gui/flic.c 2026-11-09"
   },
   "LogMode": {
    "va": "00472cc3",
@@ -1897,6 +2214,13 @@
    "tu": "src/_unknown/tu_0047abc0.c",
    "evidence": "strict match 2026-11-09"
   },
+  "ApplyPaletteData": {
+   "va": "0047b430",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ApplyPaletteData$n(pnvii)v",
+   "evidence": "implied by src/gui/flic.c 2026-11-09"
+  },
   "BriefBlit": {
    "va": "0047bea0",
    "kind": "func",
@@ -1973,6 +2297,13 @@
    "status": "hypothesis",
    "mangled": "W?FindPath$:ResMgr$n(pnxapnai)i",
    "evidence": "implied by src/io/resource.c 2026-11-09"
+  },
+  "ResMgr::OpenFile": {
+   "va": "0047c7e0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?OpenFile$:ResMgr$n(li)i",
+   "evidence": "implied by src/_unknown/tu_00425978.c 2026-11-09"
   },
   "ResMgr::CloseFile": {
    "va": "0047c860",
@@ -2138,6 +2469,13 @@
    "status": "hypothesis",
    "mangled": "W?PlyGetKey$n(pn$PlyKey$$)v",
    "evidence": "implied by src/_unknown/tu_004297d4.c 2026-11-09"
+  },
+  "GuiReadKey": {
+   "va": "0047df20",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?GuiReadKey$n(ui)i",
+   "evidence": "implied by src/_unknown/tu_00425978.c 2026-11-09"
   },
   "MemoryRelease": {
    "va": "0047e044",
@@ -2354,6 +2692,20 @@
    "status": "hypothesis",
    "mangled": "Allocate",
    "evidence": "implied by src/sim/actoradd.c 2026-11-09"
+  },
+  "UnpackFlicPixels": {
+   "va": "0047ec9c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?UnpackFlicPixels$n(pnucpnxv)i",
+   "evidence": "implied by src/gui/flic.c 2026-11-09"
+  },
+  "UnpackFlicPacked": {
+   "va": "0047ed10",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?UnpackFlicPacked$n(pnucpnxv)i",
+   "evidence": "implied by src/gui/flic.c 2026-11-09"
   },
   "g48a9df": {
    "va": "0048a9fb",
@@ -2718,6 +3070,62 @@
    "status": "hypothesis",
    "mangled": "W?g4b37c4$ni",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "gFlicInput": {
+   "va": "004bb720",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gFlicInput$npnuc",
+   "evidence": "implied by src/gui/flic.c 2026-11-09"
+  },
+  "gFlicInputSize": {
+   "va": "004bb724",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gFlicInputSize$nul",
+   "evidence": "implied by src/gui/flic.c 2026-11-09"
+  },
+  "gFlicDecode": {
+   "va": "004bb728",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gFlicDecode$npnuc",
+   "evidence": "implied by src/gui/flic.c 2026-11-09"
+  },
+  "gFlicDecodeSize": {
+   "va": "004bb72c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gFlicDecodeSize$nul",
+   "evidence": "implied by src/gui/flic.c 2026-11-09"
+  },
+  "gFlicFileCount": {
+   "va": "004bb730",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gFlicFileCount$ni",
+   "evidence": "implied by src/gui/flic.c 2026-11-09"
+  },
+  "gFlicResourceCount": {
+   "va": "004bb734",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gFlicResourceCount$ni",
+   "evidence": "implied by src/gui/flic.c 2026-11-09"
+  },
+  "gFlicSoundDefaults": {
+   "va": "004bb738",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gFlicSoundDefaults$n$SoundSettings$$",
+   "evidence": "implied by src/gui/flic.c 2026-11-09"
+  },
+  "gGuiCurrentInput": {
+   "va": "004bb74c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gGuiCurrentInput$npn$InputReq$$",
+   "evidence": "implied by src/_unknown/tu_00425978.c 2026-11-09"
   },
   "gIn7c": {
    "va": "004bb77c",

@@ -348,6 +348,10 @@
     "_DATA": {
      "va": "0048c0b8",
      "size": 8
+    },
+    "CONST": {
+     "va": "004a4b9c",
+     "size": 10
     }
    },
    "accepted": "2026-11-09"
@@ -1054,6 +1058,149 @@
     }
    },
    "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_00425978.c": {
+   "as": "_unknown\\tu_00425978.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "GuiScreen::$ct": {
+     "va": "00425978",
+     "size": 73,
+     "mangled": "W?$ct:GuiScreen$n(pnpn$GuiControl$$uiul)_"
+    },
+    "GuiScreen::Reset": {
+     "va": "004259c1",
+     "size": 54,
+     "mangled": "W?Reset$:GuiScreen$n(pnpn$GuiControl$$uiul)pn$1$"
+    },
+    "GuiScreen::LoadLayout": {
+     "va": "004259f7",
+     "size": 227,
+     "mangled": "W?LoadLayout$:GuiScreen$n(l)v"
+    },
+    "GuiScreen::SetLayout": {
+     "va": "00425ada",
+     "size": 110,
+     "mangled": "W?SetLayout$:GuiScreen$n(iipnx$GuiRect$$pnx$2$)v"
+    },
+    "GuiScreen::Activate": {
+     "va": "00425b48",
+     "size": 89,
+     "mangled": "W?Activate$:GuiScreen$n(ui)i"
+    },
+    "GuiScreen::Update": {
+     "va": "00425ba1",
+     "size": 633,
+     "mangled": "W?Update$:GuiScreen$n()i"
+    },
+    "GuiScreen::SetStrings": {
+     "va": "00425ec6",
+     "size": 86,
+     "mangled": "W?SetStrings$:GuiScreen$n(l)v"
+    },
+    "GuiScreen::Invalidate": {
+     "va": "00425f1c",
+     "size": 43,
+     "mangled": "W?Invalidate$:GuiScreen$n()v"
+    },
+    "GuiScreen::ResetControls": {
+     "va": "00425f47",
+     "size": 64,
+     "mangled": "W?ResetControls$:GuiScreen$n()v"
+    },
+    "GuiScreen::Open": {
+     "va": "00425f87",
+     "size": 198,
+     "mangled": "W?Open$:GuiScreen$n(pn$InputReq$$pn$StrPool$$li)v"
+    },
+    "GuiScreen::HitTest": {
+     "va": "0042604d",
+     "size": 117,
+     "mangled": "W?HitTest$:GuiScreen$n(pnx$GuiPoint$$)l"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/gui/flic.c": {
+   "as": "gui\\flic.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "FlicInitBuffers": {
+     "va": "004260c4",
+     "size": 161,
+     "mangled": "W?FlicInitBuffers$n(ulul)v"
+    },
+    "FlicFreeBuffers": {
+     "va": "00426165",
+     "size": 59,
+     "mangled": "W?FlicFreeBuffers$n()v"
+    },
+    "Flic::$ct": {
+     "va": "004261a0",
+     "size": 69,
+     "mangled": "W?$ct:Flic$n()_"
+    },
+    "Flic::Rewind": {
+     "va": "004262b0",
+     "size": 99,
+     "mangled": "W?Rewind$:Flic$n()v"
+    },
+    "Flic::Close": {
+     "va": "00426642",
+     "size": 168,
+     "mangled": "W?Close$:Flic$n()v"
+    },
+    "Flic::ApplyPalette": {
+     "va": "004266ea",
+     "size": 35,
+     "mangled": "W?ApplyPalette$:Flic$n()v"
+    },
+    "Flic::SetSounds": {
+     "va": "0042670d",
+     "size": 50,
+     "mangled": "W?SetSounds$:Flic$n(pn$FlicSound$$)v"
+    },
+    "Flic::StopSounds": {
+     "va": "0042673f",
+     "size": 66,
+     "mangled": "W?StopSounds$:Flic$n()v"
+    },
+    "Flic::PlaySounds": {
+     "va": "00426781",
+     "size": 147,
+     "mangled": "W?PlaySounds$:Flic$n()v"
+    },
+    "Flic::Update": {
+     "va": "00426b21",
+     "size": 107,
+     "mangled": "W?Update$:Flic$n(pn$Surface$$)ul"
+    },
+    "Flic::UnpackPixels": {
+     "va": "00426c45",
+     "size": 21,
+     "mangled": "W?UnpackPixels$:Flic$n(pnucpnxv)i"
+    },
+    "Flic::DecodePixels": {
+     "va": "00426c5a",
+     "size": 24,
+     "mangled": "W?DecodePixels$:Flic$n(pnxv)i"
+    },
+    "Flic::DecodePackedPixels": {
+     "va": "00426caf",
+     "size": 43,
+     "mangled": "W?DecodePackedPixels$:Flic$n(pnxv)i"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048f35c",
+     "size": 11
+    }
+   },
    "accepted": "2026-11-09"
   }
  }
