@@ -14,13 +14,13 @@ Model: `luna` = gpt-6-luna xhigh, `sol` = gpt-6.1-sol high (Codex; all new lanes
 | w6 | luna | shell\missbrf.c, hercbay.c, pop\psystem.c | done |
 | w7 | luna | sim\actorlst.c, actoradd.c, worldact.c | done |
 | w8 | luna | sim\target.c, logic\lsys.c | done |
-| w9 | luna | logic\lactors.c, logic\intel.c | running |
-| w10 | luna | sim\anim.c, sim\animbmp.c | running |
+| w9 | luna | logic\lactors.c, logic\intel.c | done; continued by s18 |
+| w10 | luna | sim\anim.c, sim\animbmp.c | done; continued by s17 |
 | w11 | luna | shell\hotseat.c, pop\pherc.c | done |
-| w12 | luna | sim\simhot.c, logic\logic.c + sim\hotbrief.c | running |
+| w12 | luna | sim\simhot.c, logic\logic.c + sim\hotbrief.c | done; continued by s17/s18 |
 | w13 | luna | terr\tsurface.c, terr\tarea.c + tdisplay.c | done (14; 39 parked); continued by s14 |
 | w14 | luna | shell\hbupgrad.c | done; continued by s6 |
-| w15 | luna | shell\pilotgui.c | running |
+| w15 | luna | shell\pilotgui.c | done (33: tu_0040ffb8 14, pilotgui 19; 6 parked) |
 | s1 | sol | multi\mstart.c | done (39) |
 | s2 | sol | 0044950c sim\sim.c + sim\simdo.c | running |
 | s3 | sol | 0043b7e0 (unnamed, 79 functions) | done (65; 14 parked) |
@@ -30,13 +30,16 @@ Model: `luna` = gpt-6-luna xhigh, `sol` = gpt-6.1-sol high (Codex; all new lanes
 | s7 | sol | 0044688c, 00446848 | done (pop\ppilot.c 16, pherc 2; 3 parked) |
 | s8 | sol | 00433640, pop\pdeath.c | done (18: terr\tbuild.c 10, tu_004349c0 4, pdeath 4; 7 parked) |
 | s9 | sol | 0040d2b0, 0040e794, 0040f4d8 | done (54, none parked) |
-| s10 | sol | 00454210, 004556f0 | running |
-| s11 | sol | 00438374, 004394e0, 0043a294 | running |
+| s10 | sol | 00454210, 004556f0 | done (27; 10 parked) |
+| s11 | sol | 00438374, 004394e0, 0043a294 | done (54; 14 parked) |
 | s12 | sol | 004413e0, 004425d4, 00443100 | running |
 | s13 | sol | 00407204..00409408 | done (40, none parked) |
 | s14 | sol | terr\tdisplay.c, tarea.c, tsurface.c (from w13); 0042cf40, 0042e210 | running |
 | s15 | sol | 0041c7d8..0041d774, 0046b918 | running |
 | s16 | sol | 00417efc..00418ef0, 004481c0 | running |
+| s17 | sol | sim\anim.c, animbmp.c, simhot.c (from w10/w12); 00460800 | running |
+| s18 | sol | logic\logic.c + sim\hotbrief.c, logic\lactors.c, intel.c (from w12/w9); 00464d7c | running |
+| s19 | sol | 004742bc..00477dd8 | running |
 | l1 | luna | shell\hercbuy.c | done (19) |
 | o1 | opus | multi\linkdlg.c, linkq.c, message.c | done |
 | o2 | opus | sim\apply.c, fxout.c, explo.c | done |
