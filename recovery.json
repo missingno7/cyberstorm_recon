@@ -9370,6 +9370,179 @@
    },
    "data": {},
    "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0045a050.c": {
+   "as": "tu_0045a050.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "AnimSoundDescriptor": {
+     "va": "0045a050",
+     "size": 154,
+     "mangled": "W?AnimSoundDescriptor$n(pn$Animation$$)pn$SoundDescriptor$$"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/sim/animfluf.c": {
+   "as": "sim\\animfluf.c",
+   "install": "wc106",
+   "profile": "ot-oe",
+   "functions": {
+    "SimAnimSet": {
+     "va": "0045a0f0",
+     "size": 208,
+     "mangled": "W?SimAnimSet$n(pn$SimAnim$$iii)v"
+    },
+    "SimAnimAdvance": {
+     "va": "0045a1c0",
+     "size": 80,
+     "mangled": "W?SimAnimAdvance$n(pn$SimAnim$$)v"
+    },
+    "SimAnimFrame": {
+     "va": "0045a210",
+     "size": 80,
+     "mangled": "W?SimAnimFrame$n(pn$SimAnim$$i)pn$MenuImage$$"
+    },
+    "SimAnimClear": {
+     "va": "0045a260",
+     "size": 35,
+     "mangled": "W?SimAnimClear$n(pn$SimAnim$$)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0045a290.c": {
+   "as": "tu_0045a290.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "ActorPaletteLoad": {
+     "va": "0045a5e0",
+     "size": 31,
+     "mangled": "W?ActorPaletteLoad$n()v"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048b538",
+     "size": 12
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0045ad00.c": {
+   "as": "tu_0045ad00.c",
+   "install": "wc106",
+   "profile": "ot-oe",
+   "functions": {
+    "TrajectoryPosition": {
+     "va": "0045b1f0",
+     "size": 224,
+     "mangled": "W?TrajectoryPosition$n(pn$Trajectory$$)v"
+    },
+    "TrajectoryDraw": {
+     "va": "0045b2d0",
+     "size": 256,
+     "mangled": "W?TrajectoryDraw$n(pn$Trajectory$$)v"
+    },
+    "TrajectoryAdvance": {
+     "va": "0045b3d0",
+     "size": 208,
+     "mangled": "W?TrajectoryAdvance$n(pn$Trajectory$$)v"
+    },
+    "TrajectoryUpdate": {
+     "va": "0045b740",
+     "size": 80,
+     "mangled": "W?TrajectoryUpdate$n(pn$Trajectory$$i)i"
+    },
+    "TrajectoryDone": {
+     "va": "0045b790",
+     "size": 16,
+     "mangled": "W?TrajectoryDone$n(pn$Trajectory$$)i"
+    },
+    "TrajectoryActive": {
+     "va": "0045b7a0",
+     "size": 32,
+     "mangled": "W?TrajectoryActive$n(pn$Trajectory$$)i"
+    },
+    "TrajectoryCrossed": {
+     "va": "0045b7c0",
+     "size": 8,
+     "mangled": "W?TrajectoryCrossed$n(pn$Trajectory$$)i"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0045b7d0.c": {
+   "as": "tu_0045b7d0.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "UnitHealth": {
+     "va": "0045b9e0",
+     "size": 32,
+     "mangled": "W?UnitHealth$n(pn$Unit$$i)i"
+    },
+    "UpdatePayload": {
+     "va": "0045ba00",
+     "size": 304,
+     "mangled": "W?UpdatePayload$n(pn$Unit$$i)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/sim/weapai.c": {
+   "as": "sim\\weapai.c",
+   "install": "wc106",
+   "profile": "ot-oe",
+   "functions": {
+    "WeaponAlwaysEnabled": {
+     "va": "0045cc50",
+     "size": 16,
+     "mangled": "W?WeaponAlwaysEnabled$n()i"
+    },
+    "WeaponPower": {
+     "va": "0045d120",
+     "size": 160,
+     "mangled": "W?WeaponPower$n(pn$Context$$i)i"
+    },
+    "WeaponPrepare": {
+     "va": "0045d6b0",
+     "size": 160,
+     "mangled": "W?WeaponPrepare$n(pn$Context$$pn$TargetRecord$$i)v"
+    },
+    "WeaponAreaCallback": {
+     "va": "0045d750",
+     "size": 64,
+     "mangled": "W?WeaponAreaCallback$n(pn$AreaCandidate$$)i"
+    },
+    "WeaponAreaValue": {
+     "va": "0045d790",
+     "size": 160,
+     "mangled": "W?WeaponAreaValue$n(ipn$Weapon$$i)i"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0045d9f0.c": {
+   "as": "tu_0045d9f0.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "SoundAtPoint": {
+     "va": "0045d9f0",
+     "size": 224,
+     "mangled": "W?SoundAtPoint$n(pn$ExploPoint$$pn$SoundDescriptor$$)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
   }
  },
  "accepted_losses": [

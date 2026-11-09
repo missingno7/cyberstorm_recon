@@ -8940,6 +8940,13 @@
    "mangled": "W?UnitFogObject$n(pn$UnitState$$ipnv)pn$FogObject$$",
    "evidence": "implied by src/sim/simdo.c 2026-11-09"
   },
+  "UnitFogObject#W?UnitFogObject$n(pn$ActorUnit$$ipnv)pn$FogObject$$": {
+   "va": "0043b044",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?UnitFogObject$n(pn$ActorUnit$$ipnv)pn$FogObject$$",
+   "evidence": "implied by src/sim/weapai.c 2026-11-09"
+  },
   "CurveInit": {
    "va": "0043b3d0",
    "kind": "func",
@@ -13238,26 +13245,37 @@
    "tu": "src/sim/animbmp.c",
    "evidence": "placed (at) in src/sim/animbmp.c 2026-11-09"
   },
+  "AnimSoundDescriptor": {
+   "va": "0045a050",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?AnimSoundDescriptor$n(pn$Animation$$)pn$SoundDescriptor$$",
+   "tu": "src/_unknown/tu_0045a050.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "SimAnimSet": {
    "va": "0045a0f0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?SimAnimSet$n(pn$SimAnim$$iii)v",
-   "evidence": "implied by src/sim/simturn.c 2026-11-09"
+   "tu": "src/sim/animfluf.c",
+   "evidence": "strict match 2026-11-09"
   },
   "SimAnimAdvance": {
    "va": "0045a1c0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?SimAnimAdvance$n(pn$SimAnim$$)v",
-   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+   "tu": "src/sim/animfluf.c",
+   "evidence": "strict match 2026-11-09"
   },
   "SimAnimFrame": {
    "va": "0045a210",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?SimAnimFrame$n(pn$SimAnim$$i)pn$MenuImage$$",
-   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+   "tu": "src/sim/animfluf.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ReportAnimClose": {
    "va": "0045a260",
@@ -13265,6 +13283,30 @@
    "status": "hypothesis",
    "mangled": "W?ReportAnimClose$n(pn$SimAnim$$)v",
    "evidence": "implied by src/_unknown/tu_004481c0.c 2026-11-09"
+  },
+  "SimAnimClear": {
+   "va": "0045a260",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SimAnimClear$n(pn$SimAnim$$)v",
+   "tu": "src/sim/animfluf.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ActorPalette": {
+   "va": "0045a290",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ActorPalette$n(pn$PaletteActor$$)v",
+   "tu": "src/_unknown/tu_0045a290.c",
+   "evidence": "placed (at) in src/_unknown/tu_0045a290.c 2026-11-09"
+  },
+  "ActorPaletteLoad": {
+   "va": "0045a5e0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ActorPaletteLoad$n()v",
+   "tu": "src/_unknown/tu_0045a290.c",
+   "evidence": "strict match 2026-11-09"
   },
   "TargetModuleInit": {
    "va": "0045a600",
@@ -13385,19 +13427,125 @@
    "tu": "src/sim/target.c",
    "evidence": "strict match 2026-11-09"
   },
+  "TrajectoryArc": {
+   "va": "0045ad00",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?TrajectoryArc$n(pn$ProjectileDef$$pn$Weapon$$pn$TargetRecord$$)i",
+   "tu": "src/_unknown/tu_0045ad00.c",
+   "evidence": "placed (at) in src/_unknown/tu_0045ad00.c 2026-11-09"
+  },
+  "TrajectoryInit": {
+   "va": "0045ada0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?TrajectoryInit$n(pn$Trajectory$$pn$ProjectileDef$$pn$ExploRecord$$pn$ExploPoint$$pn$4$pn$Weapon$$pn$TargetRecord$$i)v",
+   "tu": "src/_unknown/tu_0045ad00.c",
+   "evidence": "placed (at) in src/_unknown/tu_0045ad00.c 2026-11-09"
+  },
+  "TrajectoryEffects": {
+   "va": "0045b0b0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?TrajectoryEffects$n(pn$Trajectory$$ucucucucuc)v",
+   "tu": "src/_unknown/tu_0045ad00.c",
+   "evidence": "placed (at) in src/_unknown/tu_0045ad00.c 2026-11-09"
+  },
+  "TrajectoryPosition": {
+   "va": "0045b1f0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TrajectoryPosition$n(pn$Trajectory$$)v",
+   "tu": "src/_unknown/tu_0045ad00.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "TrajectoryDraw": {
+   "va": "0045b2d0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TrajectoryDraw$n(pn$Trajectory$$)v",
+   "tu": "src/_unknown/tu_0045ad00.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "TrajectoryAdvance": {
+   "va": "0045b3d0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TrajectoryAdvance$n(pn$Trajectory$$)v",
+   "tu": "src/_unknown/tu_0045ad00.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "TrajectoryDirection": {
+   "va": "0045b4a0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?TrajectoryDirection$n(pn$Trajectory$$)v",
+   "tu": "src/_unknown/tu_0045ad00.c",
+   "evidence": "placed (at) in src/_unknown/tu_0045ad00.c 2026-11-09"
+  },
+  "TrajectoryUpdate": {
+   "va": "0045b740",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TrajectoryUpdate$n(pn$Trajectory$$i)i",
+   "tu": "src/_unknown/tu_0045ad00.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "TrajectoryDone": {
+   "va": "0045b790",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TrajectoryDone$n(pn$Trajectory$$)i",
+   "tu": "src/_unknown/tu_0045ad00.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "TrajectoryActive": {
+   "va": "0045b7a0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TrajectoryActive$n(pn$Trajectory$$)i",
+   "tu": "src/_unknown/tu_0045ad00.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "TrajectoryCrossed": {
+   "va": "0045b7c0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TrajectoryCrossed$n(pn$Trajectory$$)i",
+   "tu": "src/_unknown/tu_0045ad00.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "UnitDamageSplit": {
+   "va": "0045b7d0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?UnitDamageSplit$n(pn$Unit$$iipn$Weapon$$rnirni)v",
+   "tu": "src/_unknown/tu_0045b7d0.c",
+   "evidence": "placed (at) in src/_unknown/tu_0045b7d0.c 2026-11-09"
+  },
+  "UnitDamage": {
+   "va": "0045b8c0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?UnitDamage$n(pn$Unit$$iipn$Weapon$$)i",
+   "tu": "src/_unknown/tu_0045b7d0.c",
+   "evidence": "placed (at) in src/_unknown/tu_0045b7d0.c 2026-11-09"
+  },
   "UnitHealth": {
    "va": "0045b9e0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?UnitHealth$n(pn$Unit$$i)i",
-   "evidence": "implied by src/sim/apply.c 2026-11-09"
+   "tu": "src/_unknown/tu_0045b7d0.c",
+   "evidence": "strict match 2026-11-09"
   },
   "UpdatePayload": {
    "va": "0045ba00",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?UpdatePayload$n(pnvi)i",
-   "evidence": "implied by src/logic/lactor.c 2026-11-09"
+   "status": "matched",
+   "mangled": "W?UpdatePayload$n(pn$Unit$$i)v",
+   "tu": "src/_unknown/tu_0045b7d0.c",
+   "evidence": "strict match 2026-11-09"
   },
   "UpdatePayload#W?UpdatePayload$n(pn$UnitState$$i)i": {
    "va": "0045ba00",
@@ -13405,6 +13553,21 @@
    "status": "hypothesis",
    "mangled": "W?UpdatePayload$n(pn$UnitState$$i)i",
    "evidence": "implied by src/sim/simturn.c 2026-11-09"
+  },
+  "UpdatePayload#W?UpdatePayload$n(pnvi)i": {
+   "va": "0045ba00",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?UpdatePayload$n(pnvi)i",
+   "evidence": "implied by src/logic/lactor.c 2026-11-09"
+  },
+  "UnitDamageIndicator": {
+   "va": "0045bb30",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?UnitDamageIndicator$n(pn$Unit$$ipn$1$)pnuc",
+   "tu": "src/_unknown/tu_0045b7d0.c",
+   "evidence": "placed (at) in src/_unknown/tu_0045b7d0.c 2026-11-09"
   },
   "W?.fn_init$n()v@sim/apply.c": {
    "va": "0045bc50",
@@ -13438,6 +13601,110 @@
    "tu": "src/sim/apply.c",
    "evidence": "strict match 2026-11-09"
   },
+  "WeaponEnabled": {
+   "va": "0045cc00",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?WeaponEnabled$n(pn$Context$$i)i",
+   "tu": "src/sim/weapai.c",
+   "evidence": "placed (at) in src/sim/weapai.c 2026-11-09"
+  },
+  "WeaponAlwaysEnabled": {
+   "va": "0045cc50",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?WeaponAlwaysEnabled$n()i",
+   "tu": "src/sim/weapai.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "WeaponStatus": {
+   "va": "0045cc60",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?WeaponStatus$n(pn$Context$$i)i",
+   "tu": "src/sim/weapai.c",
+   "evidence": "placed (at) in src/sim/weapai.c 2026-11-09"
+  },
+  "WeaponAccuracy": {
+   "va": "0045cf40",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?WeaponAccuracy$n(pn$Context$$i)i",
+   "tu": "src/sim/weapai.c",
+   "evidence": "placed (at) in src/sim/weapai.c 2026-11-09"
+  },
+  "WeaponPower": {
+   "va": "0045d120",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?WeaponPower$n(pn$Context$$i)i",
+   "tu": "src/sim/weapai.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "WeaponMaximum": {
+   "va": "0045d1c0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?WeaponMaximum$n(pn$Context$$i)i",
+   "tu": "src/sim/weapai.c",
+   "evidence": "placed (at) in src/sim/weapai.c 2026-11-09"
+  },
+  "WeaponExpected": {
+   "va": "0045d200",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?WeaponExpected$n(pn$Context$$i)i",
+   "tu": "src/sim/weapai.c",
+   "evidence": "placed (at) in src/sim/weapai.c 2026-11-09"
+  },
+  "WeaponAmmoFactor": {
+   "va": "0045d390",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?WeaponAmmoFactor$n(pn$Context$$i)i",
+   "tu": "src/sim/weapai.c",
+   "evidence": "placed (at) in src/sim/weapai.c 2026-11-09"
+  },
+  "WeaponEvaluate": {
+   "va": "0045d430",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?WeaponEvaluate$n(pn$Context$$ii)i",
+   "tu": "src/sim/weapai.c",
+   "evidence": "placed (at) in src/sim/weapai.c 2026-11-09"
+  },
+  "WeaponTerrain": {
+   "va": "0045d580",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?WeaponTerrain$n(ii)i",
+   "tu": "src/sim/weapai.c",
+   "evidence": "placed (at) in src/sim/weapai.c 2026-11-09"
+  },
+  "WeaponPrepare": {
+   "va": "0045d6b0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?WeaponPrepare$n(pn$Context$$pn$TargetRecord$$i)v",
+   "tu": "src/sim/weapai.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "WeaponAreaCallback": {
+   "va": "0045d750",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?WeaponAreaCallback$n(pn$AreaCandidate$$)i",
+   "tu": "src/sim/weapai.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "WeaponAreaValue": {
+   "va": "0045d790",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?WeaponAreaValue$n(ipn$Weapon$$i)i",
+   "tu": "src/sim/weapai.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "f_0045d830": {
    "va": "0045d830",
    "kind": "func",
@@ -13445,7 +13712,23 @@
    "mangled": "W?f_0045d830$n(pnvpnvii)i",
    "evidence": "implied by src/_unknown/tu_00464d7c.c 2026-11-09"
   },
+  "WeaponChoose": {
+   "va": "0045d830",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?WeaponChoose$n(pn$Context$$pn$TargetRecord$$ii)i",
+   "tu": "src/sim/weapai.c",
+   "evidence": "placed (at) in src/sim/weapai.c 2026-11-09"
+  },
   "SoundAtPoint": {
+   "va": "0045d9f0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SoundAtPoint$n(pn$ExploPoint$$pn$SoundDescriptor$$)v",
+   "tu": "src/_unknown/tu_0045d9f0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SoundAtPoint#W?SoundAtPoint$n(pn$ExploPoint$$i)v": {
    "va": "0045d9f0",
    "kind": "func",
    "status": "hypothesis",
@@ -13458,6 +13741,14 @@
    "status": "hypothesis",
    "mangled": "W?WeaponSound$n(pn$ApplyPoint$$iiii)v",
    "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
+  "WeaponSound#W?WeaponSound$n(pn$ApplyPoint$$pn$SoundDescriptor$$iii)v": {
+   "va": "0045dad0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?WeaponSound$n(pn$ApplyPoint$$pn$SoundDescriptor$$iii)v",
+   "tu": "src/_unknown/tu_0045d9f0.c",
+   "evidence": "placed (at) in src/_unknown/tu_0045d9f0.c 2026-11-09"
   },
   "W?.fn_init$n()v@sim/fxout.c": {
    "va": "0045dbd0",
@@ -20122,6 +20413,13 @@
    "mangled": "W?PointAngle$n(pn$ExploPoint$$pn$1$)i",
    "evidence": "implied by src/sim/explo.c (overload-safe migration 2026-11-09)"
   },
+  "PointPolar": {
+   "va": "0047ef50",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PointPolar$n(pn$DamagePoint$$ii)v",
+   "evidence": "implied by src/_unknown/tu_0045b7d0.c 2026-11-09"
+  },
   "f_0047efb0": {
    "va": "0047efb0",
    "kind": "func",
@@ -20156,6 +20454,13 @@
    "status": "hypothesis",
    "mangled": "W?ISqrt$n(ui)ui",
    "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
+  "FixedSin": {
+   "va": "0047f9d9",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?FixedSin$n(i)i",
+   "evidence": "implied by src/_unknown/tu_0045ad00.c 2026-11-09"
   },
   "TimerNow": {
    "va": "0047fc80",
@@ -21779,6 +22084,13 @@
    "mangled": "W?animBmpSourcePath$n[]a",
    "tu": "src/sim/animbmp.c",
    "evidence": "own data placed in src/sim/animbmp.c 2026-11-09"
+  },
+  "animationSoundStates": {
+   "va": "004a05a4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?animationSoundStates$n[]c",
+   "evidence": "implied by src/_unknown/tu_0045a050.c 2026-11-09"
   },
   "animationKindTable": {
    "va": "004a0cb0",
@@ -26984,6 +27296,13 @@
    "mangled": "W?gRemoteActorKind$ni",
    "evidence": "implied by src/multi/message.c 2026-11-09"
   },
+  "animationSoundMode": {
+   "va": "004d2dee",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?animationSoundMode$ni",
+   "evidence": "implied by src/_unknown/tu_0045a050.c 2026-11-09"
+  },
   "weaponReport": {
    "va": "004d2e06",
    "kind": "data",
@@ -28020,6 +28339,13 @@
    "tu": "src/sim/animbmp.c",
    "evidence": "own data placed in src/sim/animbmp.c 2026-11-09"
   },
+  "actorRemaps": {
+   "va": "004dc248",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?actorRemaps$n[][256]uc",
+   "evidence": "implied by src/_unknown/tu_0045a290.c 2026-11-09"
+  },
   "targetPrompt": {
    "va": "004dca54",
    "kind": "data",
@@ -28061,6 +28387,20 @@
    "status": "hypothesis",
    "mangled": "W?targetPrompt5$ni",
    "evidence": "implied by src/sim/target.c 2026-11-09"
+  },
+  "W?centers$:.0$:?UpdatePayload$n(pn$Unit$$i)vn[]$DamagePoint$$": {
+   "va": "004dcb84",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?centers$:.0$:?UpdatePayload$n(pn$Unit$$i)vn[]$DamagePoint$$",
+   "evidence": "implied by src/_unknown/tu_0045b7d0.c 2026-11-09"
+  },
+  "W?$Wbi00$:.0$:?UpdatePayload$n(pn$Unit$$i)vn[]uc": {
+   "va": "004dcbb4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wbi00$:.0$:?UpdatePayload$n(pn$Unit$$i)vn[]uc",
+   "evidence": "implied by src/_unknown/tu_0045b7d0.c 2026-11-09"
   },
   "gApplyWeapon": {
    "va": "004dcbc0",
@@ -28187,6 +28527,34 @@
    "status": "hypothesis",
    "mangled": "W?gApplyTotalDamage$ni",
    "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
+  "weaponTerrainPenalty": {
+   "va": "004dcc28",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?weaponTerrainPenalty$ni",
+   "evidence": "implied by src/sim/weapai.c 2026-11-09"
+  },
+  "weaponAreaOwner": {
+   "va": "004dcc2c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?weaponAreaOwner$ni",
+   "evidence": "implied by src/sim/weapai.c 2026-11-09"
+  },
+  "weaponRingDamage": {
+   "va": "004dcc30",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?weaponRingDamage$ni",
+   "evidence": "implied by src/sim/weapai.c 2026-11-09"
+  },
+  "weaponAreaScore": {
+   "va": "004dcc34",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?weaponAreaScore$ni",
+   "evidence": "implied by src/sim/weapai.c 2026-11-09"
   },
   "gFxFrom": {
    "va": "004dcc38",
