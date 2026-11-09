@@ -701,16 +701,13 @@ extern "C" void f_0043e1f4(GameSession *s) {memset(s->known,255,128);}
 extern "C" void f_0043e211(GameSession *s) {memset(s->known,0,128);}
 extern "C" void f_0043e21a(GameSession *s,int requested)
 {
-    memset(s->known,255,128);s->credits=9000000;s->pilotCapacity=60;s->hercCapacity=60;
-    {for(int kind=0;kind<20;++kind) f_0043bced(s,kind); }
-    f_0043bed7(s,1);
-    int count;f_00441456(s,&count);
-    int groups;if(count<requested) groups=requested/count;else groups=1;
+int kind,count,groups;memset(s->known,255,128);s->credits=9000000;s->pilotCapacity=60;s->hercCapacity=60;for(kind=0;kind<20;++kind)f_0043bced(s,kind);f_0043bed7(s,1);f_00441456(s,&count);kind=0;if(count>=requested)groups=1;else groups=requested/count;
     if(count>requested) count=requested;
-    {for(int group=0;group<groups;++group) for(int kind=0;kind<count;++kind) f_00441b19(s,kind);}
-    for(int kind=0;kind<requested-count*groups;++kind) f_00441b19(s,kind);
+    {for(int group=0;group<groups;++group) for(kind=0;kind<count;++kind) f_00441b19(s,kind);}
+    for(kind=0;kind<requested-count*groups;++kind) f_00441b19(s,kind);
     s->hercSelection=1;f_0043c844(s);s->credits=9000000;
 }
 
 extern "C" void f_0043e37c(GameSession *s) {s->allPilots=1;f_0043c17c(s);}
 extern "C" void f_0043e38f(GameSession *s) {f_004773a1(s->pilots,s->pilotCount,sizeof(Pilot));}
+

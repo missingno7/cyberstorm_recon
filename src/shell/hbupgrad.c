@@ -1450,7 +1450,12 @@ void f_0041b089(char *screen)
 
 void f_0041b0d2(char *screen)
 {
-    UpgradeCostList(screen);
+
+    for (unsigned char i = 0; (int)i < *(int *)(screen + 0x3d8); ++i) {
+        sprintf(g4b5dd4 + i * 4, g48ab34, UpgradeEntryAt(screen, i)->cost);
+        upgradeValues[i].SetText(g4b5dd4 + i * 4);
+    }
+
 }
 
 void f_0041b13b(char *unused)

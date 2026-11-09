@@ -21,9 +21,9 @@ struct ViewRect {int left,top,right,bottom;};extern ViewRect viewportClipLeft,gB
 struct GuiRect { long x, y, width, height; };
 extern GuiRect gMenuClip;
 struct Font;
-extern char DAT_00511dc0[]; extern char g513888; extern int DAT_004d1fa4; extern char DAT_004d1f48, DAT_004d1f49, DAT_004d1f4a, DAT_004d1f4b;
+extern Font g511dc0; extern char g513888; extern int DAT_004d1fa4; extern char DAT_004d1f48, DAT_004d1f49, DAT_004d1f4a, DAT_004d1f4b;
 extern long DAT_0051390c, DAT_00513910, DAT_00513914, DAT_00513918; extern char s__3d___0048b30a[]; extern char DAT_0048b305[]; extern long DAT_004bb7a4, DAT_004bc4f8; extern long g4bb78c;
-extern long gInA4; extern void *PTR_f_00446848_0048dcf0; extern int f_00426d74(int, int, unsigned long *); extern void f_0047bfa0(int, int, int, int, int, int, int);
+extern long gInA4; extern void *PTR_f_00446848_0048dcf0; extern int f_00426d74(int, int, unsigned long *); extern void PopDrawSurface(void *, int, int, int, int, int, int);
 extern byte *f_00438374(int, int, int); extern void f_00438730(byte *); extern int f_00446493(int, int, int *, int *); extern byte *f_0047d420(byte *); extern int f_0047cc10(int *, byte *);
 extern void f_0047cf80(int *, int, int, byte *); extern void f_0047b930(int, int, int); extern void f_0047bad0(int, int, int, int, int); extern void MenuSetClip(GuiRect *, long, long, long, long);
 extern void MenuSetColors(void *, unsigned long, long); extern void MenuFill(void *, long, long, long, long); extern void MenuDrawText(Font *, long, long, const char *);
@@ -31,7 +31,7 @@ extern int MenuControlChanged(void *, unsigned long, unsigned long *); extern lo
 extern "C" void RenderFormattedResourceText(void *,int,int,const char *,const char *,const char *); extern "C" void LogicCallMode(int, int); extern uint f_0043a7e8(int, uint); extern long GridClamp(unsigned long);
 struct GuiScreen {char header[16];int active;char rest[56];GuiScreen(GuiControl **,unsigned,uint);void Reset(GuiControl **,unsigned,uint);long HitTest(const void *);void Invalidate();int IsActive(){return active!=0;}int Update();};
 inline long AutoAdvanceEnabled() { return gInA4; }
-extern void PopObjectConstruct(void *object); extern "C" void BriefModuleOpen(void *object, int id, int delay, int flags); extern int f_00439d48(int); extern void f_00446350(int);
+extern void PopObjectConstruct(void *object); extern "C" void BriefModuleOpen(void *object, int id, int delay, int flags); extern int f_00439d48(int); struct HercModule;extern void f_00446350(HercModule *);
 extern void f_00425e1a(int); struct SimGame;struct ActorRecord;extern void SimDrawTimer(SimGame *,int,int,int=1,int=-1); extern void f_0047ae20(unsigned long *); struct HercModule;extern int f_00445e23(HercModule *); extern void PilotSetState(SimGame *,int);
 extern void SimSetFocus(SimGame *,ActorRecord *); extern void f_0047e670(void *, void *, unsigned long); extern int f_0047fce0(int); extern void f_0047fca0(int *, int);
 extern void f_0043ac02(int, int *, int *, int *, int *); extern void f_0047c320(void *); extern void SigsStart(void *,int); extern void SurfacePresent(void *); extern void SetGameWindowSize(int=-1,int=-1);
@@ -44,8 +44,8 @@ struct ActorRecordCopy {byte data[267];};
 struct ActorRecord;struct PacketList {void Repair(ActorRecord *,char,char,int);};extern PacketList modeLogName;
 extern int DAT_004faf40; extern int TimeSleep(unsigned long); extern void f_004259f7(void *, const char *); extern void f_00425f87(void *, void *, void *, int, int); extern int f_0046c461(int, int *);
 extern void f_0041c891(void *, int); extern char s_DMGGUI_BMX_0048b310[], s_DMGHRC_BMX_0048b31b[], s_DMGGUI_BOX_0048b326[]; extern "C" void *memset(void *, int, unsigned long);
-extern char DAT_004d1f63, DAT_004d1f8f; extern int DAT_005138e8, DAT_005138f4, DAT_005138f8; extern int DAT_004bc560, DAT_004bc4e8; extern void f_0047bff0(void *, int *, int, int);
-extern void f_0047cfc0(void *, int, int, int, byte *);
+extern char DAT_004d1f63, DAT_004d1f8f; extern void *gDrawRemap;extern unsigned long gMenuTextColor; extern int DAT_004bc560, DAT_004bc4e8; extern void MenuDrawImage(void *, void *, int, int);
+extern void MenuDrawTextAt(Font *, long, long, int, const char *);
 struct HercControl : GuiControl {
     unsigned long value;
     HercControl();
@@ -77,15 +77,15 @@ extern int HercMountAllowed(ActorUnit *,int);extern "C" int f_00439d02(void *);
 extern void DecodeLaunchPalette(void *,void *);extern void ApplyPaletteData(void *,int=0,int=256);extern void GuiFilterPalette(void *,int=0); extern "C" void AssertFail(const char *,int,const char *);
 extern "C" byte *BriefFormat(const char *,...); extern int IORelease(FileRecord *);extern uint IoClose(FileRecord *);extern void *GlobalBlockAlloc(uint,unsigned);
 extern int next_link_seed(uint *);extern uint gFxSeed; extern void PilotManagerPoll(void *);extern int HercRepairPoints(ActorUnit *);extern int HercRepairNeeded(ActorUnit *,int);
-extern ActorItem *PopFindItem(ActorUnit *,int,int);extern char *HercFormatItem(ActorUnit *,ActorItem *,int,unsigned);
+extern ActorItem *PopFindItem(ActorUnit *,int,int=-1);extern char *HercFormatItem(ActorUnit *,ActorItem *,int,unsigned);
 extern void DialogTimedMessage(const char *);extern char gDebugText[];extern StrPool gShellMiniStrings;
 extern void HelpSetDirty(int);extern ActorRecord *ActorGetByIndex(int);extern ActorRecord *ActorFindRelated(ActorRecord *);extern ActorRecord *ActorFindRelatedOther(ActorRecord *);
-extern unsigned long gIn80,gIn7c,gInA0;extern int SimShortcutMode(void *); extern "C" int sprintf(char *,const char *,...);
+extern unsigned long gIn80,gInA0;extern long gIn7c;extern int SimShortcutMode(void *); extern "C" int sprintf(char *,const char *,...);
 void f_0044591f(HercModule *,int);void f_00446570(int *);void f_00446253(int);
 void f_004465d6(int);
 inline int Percent(int n,int p){return n*p/100;}inline int ClampValue(int n,int lo,int hi){if(n<=lo)return lo;if(n>=hi)return hi;return n;}
 inline void GuiControl::Clip(){int left=x;int top=y;int w=width;int h=height;MenuSetClip(&gMenuClip,left,top,w,h);}
-inline void GuiControl::Background(){f_0047bfa0((int)&g513888,1,0,x,y,width,height);}
+inline void GuiControl::Background(){PopDrawSurface(&g513888,1,0,x,y,width,height);}
 void f_00445238(void) {
     PopObjectConstruct(&DAT_004a009c);
     BriefModuleOpen(&DAT_004d1f4c, 0x7f, 1000, 0x33);
@@ -119,10 +119,10 @@ void f_0044540f(HercControl *control,int id) {
   else{condition=*((byte *)unit+index*8+0x13);long textId=index+1102;title=gMenuPrefixStrings.GetString(textId,0);value=PopItemValue(PopFindItem(unit,index,-1));}
   if(((HercModule *)DAT_004d1fa4)->showDamage){if(id==26)condition=100;else condition=f_00446493(DAT_004d1fa4,index,&unused,&unused);}
   viewportClipLeft.right=control->x+200;
-  RenderFormattedResourceText(DAT_00511dc0,control->x+5,control->y+1,DAT_0048b305,title,value);
+  RenderFormattedResourceText(&g511dc0,control->x+5,control->y+1,DAT_0048b305,title,value);
   viewportClipLeft=gBriefDrawSource;
   const char *text=(char *)BriefFormat(s__3d___0048b30a,condition);
-  MenuDrawText((Font *)DAT_00511dc0,control->x+control->width-5-MenuTextWidth((Font *)DAT_00511dc0,text),control->y+1,text);
+  MenuDrawText(&g511dc0,control->x+control->width-5-MenuTextWidth(&g511dc0,text),control->y+1,text);
   if(control->value&0x80000){MenuSetColors(&g513888,DAT_004bc4f8,-1);MenuFill(&g513888,control->x,control->y,control->width,control->height);if(!(prior&0x80000))LogicCallMode(0x188,0);}
  }
 }
@@ -305,9 +305,9 @@ void f_0044591f(HercModule *self,int actor) {
   }
  }
  viewportClipLeft=gBriefDrawSource;
- SigsStart(&g513888,0);GuiResetClip(&gMenuClip);f_0047bff0(&g513888,self->guiImages+1,0,0);
- f_0047bfa0((int)&g513888,0,1,0,0,g5138ac,DAT_005138b0);
- if(self->portrait){DAT_005138e8=(int)self->remap;f_0047bff0(&g513888,(int *)((byte *)self->hercImages+4+self->portrait*12),260,0);DAT_005138e8=0;}
+ SigsStart(&g513888,0);GuiResetClip(&gMenuClip);MenuDrawImage(&g513888,self->guiImages+1,0,0);
+ PopDrawSurface(&g513888,0,1,0,0,g5138ac,DAT_005138b0);
+ if(self->portrait){gDrawRemap=self->remap;MenuDrawImage(&g513888,(int *)((byte *)self->hercImages+4+self->portrait*12),260,0);gDrawRemap=0;}
 }
 
 void f_00445c81(int object) {
@@ -351,10 +351,10 @@ int f_00445e23(HercModule *self) {
  int oldPoints=self->points;self->points=HercRepairPoints((ActorUnit *)self->unit);
  long hit=self->HitTest(&g4bb78c);
  self->help.id=hit;
- if(hit<3||hit>25)self->selected=-1;else self->selected=self->ids[hit];
+ self->selected=(hit<3||hit>25)?-1:self->ids[hit];
  if(hit==26)self->selected=23;
  if(self->HelpPressed()&&self->selected>=0&&self->selected<23){
-  HercFormatItem((ActorUnit *)self->unit,PopFindItem((ActorUnit *)self->unit,self->selected,-1),self->selected,0xfffffaff);
+  HercFormatItem((ActorUnit *)self->unit,PopFindItem((ActorUnit *)self->unit,self->selected),self->selected,0xfffffaff);
   DialogTimedMessage(gDebugText);self->changed=1;
  }
  int damage=gInA0;if(!self->totalBytes)damage=0;
@@ -363,7 +363,7 @@ int f_00445e23(HercModule *self) {
   if(!self->showDamage){
    if(self->points){int need=HercRepairNeeded((ActorUnit *)self->unit,self->selected);if(need){
     if(need<100000){if(oldPoints!=self->points)HelpSetDirty(1);self->help.id=self->selected+38;
-     sprintf(gShellMiniStrings.GetString(339),targetBriefResource.GetString(338),need,self->points);
+     char *destination=gShellMiniStrings.GetString(339,0);const char *format=targetBriefResource.GetString(338,0);sprintf(destination,format,need,self->points);
     }else self->help.id=self->selected+62;
    }}
   }else self->help.id=36;
@@ -398,7 +398,7 @@ void f_00446253(int object) {
    if(speed<0)f_0047fca0((int *)(object+0x610),-500/speed);
    else if(speed>0)f_0047fca0((int *)(object+0x610),500/speed);
    else f_0047fca0((int *)(object+0x610),100);
-   f_00446350(object);
+   f_00446350((HercModule *)object);
    if(*(int *)(object+0x607)>0){
     int frame=++*(int *)(object+0x603);
     if((unsigned)frame>=**(unsigned **)(object+0x60b))*(int *)(object+0x603)=0;
@@ -409,15 +409,14 @@ void f_00446253(int object) {
   }
  }
 }
-void f_00446350(int object) {
- HercModule *self=(HercModule *)object;
- f_0047bfa0((int)&g513888,1,0,280,0,360,40);f_0047bfa0((int)&g513888,1,0,260,40,380,440);
- MenuSetClip(&gMenuClip,260,0,380,480);DAT_004d1f63&=0xfe;DAT_004d1f8f&=0xfe;self->button.Invalidate();DAT_005138e8=(int)self->remap;
- if(!self->totalBytes||self->loaded<self->totalBytes)f_0047bff0(&g513888,(int *)((byte *)self->hercImages+4+self->portrait*12),260,0);
- else f_0047bff0(&g513888,(int *)((byte *)self->frames+4+self->frame*12),260,0);
- DAT_005138e8=0;
- if(self->points){DAT_005138f8=(int)&DAT_004bc560;DAT_005138f4=DAT_004bc4e8;
- f_0047cfc0(DAT_00511dc0,475,453,0,BriefFormat(targetBriefResource.GetString(337,0),self->points));}
+void f_00446350(HercModule *self) {
+ PopDrawSurface(&g513888,1,0,280,0,360,40);PopDrawSurface(&g513888,1,0,260,40,380,440);
+ MenuSetClip(&gMenuClip,260,0,380,480);DAT_004d1f63&=0xfe;DAT_004d1f8f&=0xfe;self->button.Invalidate();gDrawRemap=self->remap;
+ if(!self->totalBytes||self->loaded<self->totalBytes)MenuDrawImage(&g513888,(int *)((byte *)self->hercImages+4+self->portrait*12),260,0);
+ else MenuDrawImage(&g513888,(int *)((byte *)self->frames+4+self->frame*12),260,0);
+ gDrawRemap=0;
+ if(self->points){gMenuTextMap=(uint *)&DAT_004bc560;gMenuTextColor=DAT_004bc4e8;
+ MenuDrawTextAt(&g511dc0,475,453,0,(const char *)BriefFormat(targetBriefResource.GetString(337),self->points));}
 }
 int f_00446493(int param_1, int param_2, int *param_3, int *param_4) {
     int local_28, local_24, local_20;
@@ -484,7 +483,7 @@ void HercModule::Update() {
  if(IsActive()){
   if(selected!=previous||changed){
    if(changed){changed=0;total=f_00439d48((int)unit);}
-   previous=selected;f_004465d6((int)this);f_00446350((int)this);GuiResetClip(&gMenuClip);
+   previous=selected;f_004465d6((int)this);f_00446350(this);GuiResetClip(&gMenuClip);
   }
   BriefRenderUpdate(this);SimDrawTimer((SimGame *)modeCheckName,g5138ac-75,20);
  }

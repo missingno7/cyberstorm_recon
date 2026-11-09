@@ -3906,6 +3906,11 @@
      "size": 125,
      "mangled": "W?f_00445c81$n(i)v"
     },
+    "f_00446350": {
+     "va": "00446350",
+     "size": 323,
+     "mangled": "W?f_00446350$n(pn$HercModule$$)v"
+    },
     "HercModule::Update": {
      "va": "004466d6",
      "size": 171,
@@ -5450,6 +5455,11 @@
      "va": "0041b089",
      "size": 73,
      "mangled": "W?f_0041b089$n(pna)v"
+    },
+    "f_0041b0d2": {
+     "va": "0041b0d2",
+     "size": 105,
+     "mangled": "W?f_0041b0d2$n(pna)v"
     },
     "f_0041b13b": {
      "va": "0041b13b",

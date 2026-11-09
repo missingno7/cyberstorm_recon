@@ -3741,10 +3741,10 @@
   "f_0041b0d2": {
    "va": "0041b0d2",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?f_0041b0d2$n(pna)v",
    "tu": "src/shell/hbupgrad.c",
-   "evidence": "placed (at) in src/shell/hbupgrad.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "f_0041b13b": {
    "va": "0041b13b",
@@ -11981,6 +11981,14 @@
    "evidence": "placed (at) in src/pop/pherc.c 2026-11-09"
   },
   "f_00446350": {
+   "va": "00446350",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_00446350$n(pn$HercModule$$)v",
+   "tu": "src/pop/pherc.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_00446350#W?f_00446350$n(i)v": {
    "va": "00446350",
    "kind": "func",
    "status": "hypothesis",
@@ -23725,6 +23733,13 @@
    "mangled": "W?g48aa2c$n[]a",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
   },
+  "g48ab34": {
+   "va": "0048ab34",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g48ab34$n[]a",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
   "g48ab38": {
    "va": "0048ab38",
    "kind": "data",
@@ -28914,6 +28929,13 @@
    "mangled": "W?g4b5dc0$n[]a",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
+  "g4b5dd4": {
+   "va": "004b5dd4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b5dd4$n[]a",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
   "g4b5e30": {
    "va": "004b5e30",
    "kind": "data",
@@ -31791,6 +31813,13 @@
    "mangled": "W?deathTextColor$nul",
    "evidence": "implied by src/pop/pdeath.c 2026-11-09"
   },
+  "DAT_004bc4e8": {
+   "va": "004bc4e8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?DAT_004bc4e8$ni",
+   "evidence": "implied by src/pop/pherc.c 2026-11-09"
+  },
   "deathMapColor": {
    "va": "004bc4f8",
    "kind": "data",
@@ -31818,6 +31847,13 @@
    "status": "hypothesis",
    "mangled": "W?deathTextMap$n[]ul",
    "evidence": "implied by src/pop/pdeath.c 2026-11-09"
+  },
+  "DAT_004bc560": {
+   "va": "004bc560",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?DAT_004bc560$ni",
+   "evidence": "implied by src/pop/pherc.c 2026-11-09"
   },
   "gGuiFadeFirst": {
    "va": "004bc5ac",
@@ -32610,11 +32646,25 @@
    "mangled": "W?DAT_004d1f4c$na",
    "evidence": "implied by src/pop/pherc.c 2026-11-09"
   },
+  "DAT_004d1f63": {
+   "va": "004d1f63",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?DAT_004d1f63$na",
+   "evidence": "implied by src/pop/pherc.c 2026-11-09"
+  },
   "DAT_004d1f78": {
    "va": "004d1f78",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?DAT_004d1f78$na",
+   "evidence": "implied by src/pop/pherc.c 2026-11-09"
+  },
+  "DAT_004d1f8f": {
+   "va": "004d1f8f",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?DAT_004d1f8f$na",
    "evidence": "implied by src/pop/pherc.c 2026-11-09"
   },
   "DAT_004d1fa4": {
