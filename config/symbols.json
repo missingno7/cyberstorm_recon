@@ -7516,9 +7516,10 @@
   "PopFindItem": {
    "va": "00438374",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?PopFindItem$n(pnvii)i",
-   "evidence": "implied by src/pop/psystem.c 2026-11-09"
+   "status": "matched",
+   "mangled": "W?PopFindItem$n(pn$ActorUnit$$ii)pn$ActorItem$$",
+   "tu": "src/_unknown/tu_00438374.c",
+   "evidence": "strict match 2026-11-09"
   },
   "PopFindItem#W?PopFindItem$n(pn$ActorUnit$$ii)pn$ActorItem$$": {
    "va": "00438374",
@@ -7527,19 +7528,67 @@
    "mangled": "W?PopFindItem$n(pn$ActorUnit$$ii)pn$ActorItem$$",
    "evidence": "implied by src/_unknown/tu_00452950.c 2026-11-09"
   },
+  "PopFindItem#W?PopFindItem$n(pnvii)i": {
+   "va": "00438374",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PopFindItem$n(pnvii)i",
+   "evidence": "implied by src/pop/psystem.c 2026-11-09"
+  },
+  "HercMountAllowed": {
+   "va": "004383b3",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercMountAllowed$n(pn$ActorUnit$$i)i",
+   "tu": "src/_unknown/tu_00438374.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "PopItemReady": {
+   "va": "004383e1",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PopItemReady$n(pn$ActorUnit$$i)i",
+   "tu": "src/_unknown/tu_00438374.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PopItemReady#W?PopItemReady$n(pnvi)i": {
    "va": "004383e1",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?PopItemReady$n(pnvi)i",
    "evidence": "implied by src/pop/psystem.c 2026-11-09"
   },
+  "HercItemEfficiency": {
+   "va": "0043842f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercItemEfficiency$n(pn$ActorUnit$$i)i",
+   "tu": "src/_unknown/tu_00438374.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercClearField": {
+   "va": "004384f4",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercClearField$n(pn$ActorUnit$$)i",
+   "tu": "src/_unknown/tu_00438374.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercCalculateMass": {
+   "va": "00438505",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercCalculateMass$n(pn$ActorUnit$$)i",
+   "tu": "src/_unknown/tu_00438374.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "StateInvoke": {
    "va": "00438602",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?StateInvoke$n(pnvii)i",
-   "evidence": "implied by src/logic/lactor.c 2026-11-09"
+   "status": "matched",
+   "mangled": "W?StateInvoke$n(pn$ActorUnit$$pnipni)i",
+   "tu": "src/_unknown/tu_00438374.c",
+   "evidence": "strict match 2026-11-09"
   },
   "StateInvoke#W?StateInvoke$n(pn$UnitState$$pnlpnl)i": {
    "va": "00438602",
@@ -7548,7 +7597,22 @@
    "mangled": "W?StateInvoke$n(pn$UnitState$$pnlpnl)i",
    "evidence": "implied by src/sim/simgame.c 2026-11-09"
   },
+  "StateInvoke#W?StateInvoke$n(pnvii)i": {
+   "va": "00438602",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?StateInvoke$n(pnvii)i",
+   "evidence": "implied by src/logic/lactor.c 2026-11-09"
+  },
   "StateInvokeEnergy": {
+   "va": "0043863d",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?StateInvokeEnergy$n(pn$ActorUnit$$pnipni)i",
+   "tu": "src/_unknown/tu_00438374.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "StateInvokeEnergy#W?StateInvokeEnergy$n(pn$UnitState$$pnlpnl)i": {
    "va": "0043863d",
    "kind": "func",
    "status": "hypothesis",
@@ -7562,14 +7626,150 @@
    "mangled": "W?f_00438678$n(pn$UnitState$$)i",
    "evidence": "implied by src/_unknown/tu_00454990.c 2026-11-09"
   },
+  "HercEnergy": {
+   "va": "00438678",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercEnergy$n(pn$ActorUnit$$)i",
+   "tu": "src/_unknown/tu_00438374.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercCanSpend": {
+   "va": "00438683",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercCanSpend$n(pn$ActorUnit$$i)i",
+   "tu": "src/_unknown/tu_00438374.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercCategoryName": {
+   "va": "00438699",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercCategoryName$n(pn$ActorItem$$)pna",
+   "tu": "src/_unknown/tu_00438374.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercCategoryShort": {
+   "va": "004386b7",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercCategoryShort$n(pn$ActorItem$$)pna",
+   "tu": "src/_unknown/tu_00438374.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercCategoryPlural": {
+   "va": "004386c8",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercCategoryPlural$n(pn$ActorItem$$)pna",
+   "tu": "src/_unknown/tu_00438374.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercCategoryUnits": {
+   "va": "004386d9",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercCategoryUnits$n(pn$ActorItem$$)pna",
+   "tu": "src/_unknown/tu_00438374.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercItemName": {
+   "va": "004386ea",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercItemName$n(pn$ActorItem$$)pna",
+   "tu": "src/_unknown/tu_00438374.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "PopItemValue": {
+   "va": "00438730",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PopItemValue$n(pn$ActorItem$$)pna",
+   "tu": "src/_unknown/tu_00438374.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PopItemValue#W?PopItemValue$n(i)i": {
    "va": "00438730",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?PopItemValue$n(i)i",
    "evidence": "implied by src/pop/psystem.c 2026-11-09"
   },
+  "HercItemDescription": {
+   "va": "0043877f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercItemDescription$n(pn$ActorItem$$)pna",
+   "tu": "src/_unknown/tu_00438374.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercAppendAmount": {
+   "va": "004387af",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercAppendAmount$n(pn$HercSlot$$i)v",
+   "tu": "src/_unknown/tu_00438374.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercFormatItem": {
+   "va": "004387e6",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HercFormatItem$n(pn$ActorUnit$$pn$ActorItem$$iui)pna",
+   "tu": "src/_unknown/tu_00438374.c",
+   "evidence": "placed (at) in src/_unknown/tu_00438374.c 2026-11-09"
+  },
+  "HercNoOperation": {
+   "va": "00438dac",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HercNoOperation$n(pn$ActorUnit$$)v",
+   "tu": "src/_unknown/tu_00438374.c",
+   "evidence": "placed (at) in src/_unknown/tu_00438374.c 2026-11-09"
+  },
+  "HercPowerUse": {
+   "va": "004390e9",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HercPowerUse$n(pn$ActorUnit$$i)i",
+   "tu": "src/_unknown/tu_00438374.c",
+   "evidence": "placed (at) in src/_unknown/tu_00438374.c 2026-11-09"
+  },
+  "HercFreePower": {
+   "va": "00439218",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HercFreePower$n(pn$ActorUnit$$)i",
+   "tu": "src/_unknown/tu_00438374.c",
+   "evidence": "placed (at) in src/_unknown/tu_00438374.c 2026-11-09"
+  },
+  "HercMobility": {
+   "va": "004392a8",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercMobility$n(pn$ActorUnit$$)i",
+   "tu": "src/_unknown/tu_00438374.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercUnsupported": {
+   "va": "00439333",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercUnsupported$n()i",
+   "tu": "src/_unknown/tu_00438374.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "BlockChecksum": {
+   "va": "00439339",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?BlockChecksum$n(pn$ActorUnit$$)i",
+   "tu": "src/_unknown/tu_00438374.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BlockChecksum#W?BlockChecksum$n(pnv)i": {
    "va": "00439339",
    "kind": "func",
    "status": "hypothesis",
@@ -7583,6 +7783,14 @@
    "mangled": "W?f_00439363$n(pn$UnitState$$pnv)i",
    "evidence": "implied by src/_unknown/tu_004556f0.c 2026-11-09"
   },
+  "HercEqual": {
+   "va": "00439363",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercEqual$n(pn$ActorUnit$$pn$1$)i",
+   "tu": "src/_unknown/tu_00438374.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "f_00439438": {
    "va": "00439438",
    "kind": "func",
@@ -7590,47 +7798,141 @@
    "mangled": "W?f_00439438$n(pn$UnitState$$pnv)v",
    "evidence": "implied by src/_unknown/tu_004556f0.c 2026-11-09"
   },
+  "HercCopy": {
+   "va": "00439438",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercCopy$n(pn$ActorUnit$$pn$1$)v",
+   "tu": "src/_unknown/tu_00438374.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercUnsupported2": {
+   "va": "004394d8",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercUnsupported2$n()i",
+   "tu": "src/_unknown/tu_004394d8.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "f_004394e0": {
    "va": "004394e0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "f_004394e0",
-   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+   "tu": "src/_unknown/tu_004394e0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercRepairUnitCost": {
+   "va": "00439563",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercRepairUnitCost$n(pn$ActorUnit$$i)i",
+   "tu": "src/_unknown/tu_004394e0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercResetAmountZero": {
+   "va": "004395c6",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercResetAmountZero$n(pn$ActorUnit$$i)i",
+   "tu": "src/_unknown/tu_004394e0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercSaleValue": {
+   "va": "0043960a",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HercSaleValue$n(pn$ActorUnit$$i)i",
+   "tu": "src/_unknown/tu_004394e0.c",
+   "evidence": "placed (at) in src/_unknown/tu_004394e0.c 2026-11-09"
   },
   "f_00439706": {
    "va": "00439706",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "f_00439706",
-   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+   "tu": "src/_unknown/tu_004394e0.c",
+   "evidence": "strict match 2026-11-09"
   },
   "f_00439736": {
    "va": "00439736",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "f_00439736",
-   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+   "tu": "src/_unknown/tu_004394e0.c",
+   "evidence": "strict match 2026-11-09"
   },
   "f_004397d3": {
    "va": "004397d3",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "f_004397d3",
-   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+   "tu": "src/_unknown/tu_004394e0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercResetAmount": {
+   "va": "004398a8",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercResetAmount$n(pn$ActorUnit$$i)v",
+   "tu": "src/_unknown/tu_004394e0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercAddChoiceNode": {
+   "va": "004398e4",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercAddChoiceNode$n(pn$ActorUnit$$pnpn$ChoiceNode$$iipni)v",
+   "tu": "src/_unknown/tu_004394e0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercListItems": {
+   "va": "00439997",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HercListItems$n(pn$ActorUnit$$ipn$SessionLevel$$pni)pn$ChoiceNode$$",
+   "tu": "src/_unknown/tu_004394e0.c",
+   "evidence": "placed (at) in src/_unknown/tu_004394e0.c 2026-11-09"
+  },
+  "HercInstallItem": {
+   "va": "00439cad",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercInstallItem$n(pn$ActorUnit$$ipn$ActorItem$$)i",
+   "tu": "src/_unknown/tu_004394e0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_00439d02": {
+   "va": "00439d02",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_00439d02",
+   "tu": "src/_unknown/tu_004394e0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercChassisName": {
+   "va": "00439d0c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercChassisName$n(pn$ActorUnit$$)pna",
+   "tu": "src/_unknown/tu_004394e0.c",
+   "evidence": "strict match 2026-11-09"
   },
   "f_00439d2c": {
    "va": "00439d2c",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "f_00439d2c",
-   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+   "tu": "src/_unknown/tu_004394e0.c",
+   "evidence": "strict match 2026-11-09"
   },
   "f_00439d31": {
    "va": "00439d31",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "f_00439d31",
-   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+   "tu": "src/_unknown/tu_004394e0.c",
+   "evidence": "strict match 2026-11-09"
   },
   "f_00439d48": {
    "va": "00439d48",
@@ -7642,32 +7944,154 @@
   "f_00439daf": {
    "va": "00439daf",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "f_00439daf",
-   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+   "tu": "src/_unknown/tu_004394e0.c",
+   "evidence": "strict match 2026-11-09"
   },
   "LoadActorData": {
    "va": "00439df6",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "LoadActorData",
-   "evidence": "implied by src/sim/actoradd.c 2026-11-09"
+   "tu": "src/_unknown/tu_004394e0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercAddChoice": {
+   "va": "00439e9a",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercAddChoice$n(pn$ActorUnit$$pn$Choice$$iipnii)v",
+   "tu": "src/_unknown/tu_004394e0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercFillItems": {
+   "va": "00439f6e",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HercFillItems$n(pn$ActorUnit$$ipn$SessionLevel$$pn$Choice$$i)i",
+   "tu": "src/_unknown/tu_004394e0.c",
+   "evidence": "placed (at) in src/_unknown/tu_004394e0.c 2026-11-09"
   },
   "UnitSpend": {
+   "va": "0043a294",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?UnitSpend$n(pn$ActorUnit$$i)i",
+   "tu": "src/_unknown/tu_0043a294.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "UnitSpend#W?UnitSpend$n(pn$UnitState$$i)i": {
    "va": "0043a294",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?UnitSpend$n(pn$UnitState$$i)i",
    "evidence": "implied by src/sim/simdo.c 2026-11-09"
   },
+  "HercAdvanceTurn": {
+   "va": "0043a2d5",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HercAdvanceTurn$n(pn$ActorUnit$$pnv)v",
+   "tu": "src/_unknown/tu_0043a294.c",
+   "evidence": "placed (at) in src/_unknown/tu_0043a294.c 2026-11-09"
+  },
+  "HercBuildDamage": {
+   "va": "0043a597",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercBuildDamage$n(pn$ActorUnit$$)v",
+   "tu": "src/_unknown/tu_0043a294.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercBuildDamageCopy": {
+   "va": "0043a606",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercBuildDamageCopy$n(pn$ActorUnit$$)v",
+   "tu": "src/_unknown/tu_0043a294.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercDamageAtRange": {
+   "va": "0043a670",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercDamageAtRange$n(pn$ActorUnit$$i)i",
+   "tu": "src/_unknown/tu_0043a294.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercWeaponDamage": {
+   "va": "0043a69c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercWeaponDamage$n(pn$ActorUnit$$ii)i",
+   "tu": "src/_unknown/tu_0043a294.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercRepairPoints": {
+   "va": "0043a739",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercRepairPoints$n(pn$ActorUnit$$)i",
+   "tu": "src/_unknown/tu_0043a294.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercRepairNeeded": {
+   "va": "0043a782",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercRepairNeeded$n(pn$ActorUnit$$i)i",
+   "tu": "src/_unknown/tu_0043a294.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "f_0043a7e8": {
+   "va": "0043a7e8",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0043a7e8$n(pn$ActorUnit$$i)i",
+   "tu": "src/_unknown/tu_0043a294.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043a7e8#W?f_0043a7e8$n(iul)ul": {
    "va": "0043a7e8",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?f_0043a7e8$n(iul)ul",
    "evidence": "implied by src/pop/pherc.c 2026-11-09"
   },
+  "HercAmmoCost": {
+   "va": "0043a90e",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercAmmoCost$n(pn$ActorUnit$$i)i",
+   "tu": "src/_unknown/tu_0043a294.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercAddAmmo": {
+   "va": "0043a97f",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HercAddAmmo$n(pn$ActorUnit$$i)i",
+   "tu": "src/_unknown/tu_0043a294.c",
+   "evidence": "placed (at) in src/_unknown/tu_0043a294.c 2026-11-09"
+  },
+  "HercNeedsAmmo": {
+   "va": "0043a9e7",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercNeedsAmmo$n(pn$ActorUnit$$)i",
+   "tu": "src/_unknown/tu_0043a294.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "StateAction": {
+   "va": "0043aa29",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?StateAction$n(pn$ActorUnit$$)i",
+   "tu": "src/_unknown/tu_0043a294.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "StateAction#W?StateAction$n(pnv)i": {
    "va": "0043aa29",
    "kind": "func",
    "status": "hypothesis",
@@ -7677,9 +8101,71 @@
   "SimAddMission": {
    "va": "0043aa62",
    "kind": "func",
+   "status": "matched",
+   "mangled": "W?SimAddMission$n(pn$ActorUnit$$)v",
+   "tu": "src/_unknown/tu_0043a294.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimAddMission#W?SimAddMission$n(pn$ActorUnit$$)v": {
+   "va": "0043aa62",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SimAddMission$n(pn$ActorUnit$$)v",
+   "evidence": "implied by src/_unknown/tu_004394e0.c 2026-11-09"
+  },
+  "SimAddMission#W?SimAddMission$n(pnv)v": {
+   "va": "0043aa62",
+   "kind": "func",
    "status": "hypothesis",
    "mangled": "W?SimAddMission$n(pnv)v",
    "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
+  "HercConditionDiagram": {
+   "va": "0043ab6e",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HercConditionDiagram$n(pn$ActorUnit$$pn$1$)pnv",
+   "tu": "src/_unknown/tu_0043a294.c",
+   "evidence": "placed (at) in src/_unknown/tu_0043a294.c 2026-11-09"
+  },
+  "HercAngleWeights": {
+   "va": "0043ac02",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HercAngleWeights$n(ipnipnipnipni)v",
+   "tu": "src/_unknown/tu_0043a294.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0043ac9c": {
+   "va": "0043ac9c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_0043ac9c$n(pn$ActorUnit$$ii)i",
+   "evidence": "implied by src/_unknown/tu_00438374.c 2026-11-09"
+  },
+  "f_0043ad4f": {
+   "va": "0043ad4f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0043ad4f$n(pn$ActorUnit$$ii)i",
+   "tu": "src/_unknown/tu_0043a294.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercDefense": {
+   "va": "0043adf6",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HercDefense$n(pn$ActorUnit$$)i",
+   "tu": "src/_unknown/tu_0043a294.c",
+   "evidence": "placed (at) in src/_unknown/tu_0043a294.c 2026-11-09"
+  },
+  "HercSelectHit": {
+   "va": "0043ae77",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HercSelectHit$n(pn$ActorUnit$$i)i",
+   "tu": "src/_unknown/tu_0043a294.c",
+   "evidence": "placed (at) in src/_unknown/tu_0043a294.c 2026-11-09"
   },
   "UnitFogObject": {
    "va": "0043b044",
@@ -18014,6 +18500,13 @@
    "mangled": "W?gPilotTypes$n[]pn$PilotType$$",
    "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
   },
+  "HercItemTables": {
+   "va": "00493d90",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?HercItemTables$n[]$ItemTable$$",
+   "evidence": "implied by src/_unknown/tu_00438374.c 2026-11-09"
+  },
   "gLevelInfo": {
    "va": "00494074",
    "kind": "data",
@@ -22368,6 +22861,41 @@
    "mangled": "W?statusColorEmpty$nuc",
    "evidence": "implied by src/pop/ppilot.c 2026-11-09"
   },
+  "HercEfficiency": {
+   "va": "004c924e",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?HercEfficiency$n[]uc",
+   "evidence": "implied by src/_unknown/tu_00438374.c 2026-11-09"
+  },
+  "WeaponEfficiency": {
+   "va": "004c9265",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?WeaponEfficiency$n[]uc",
+   "evidence": "implied by src/_unknown/tu_00438374.c 2026-11-09"
+  },
+  "SpecialEfficiency": {
+   "va": "004c926d",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?SpecialEfficiency$n[]uc",
+   "evidence": "implied by src/_unknown/tu_00438374.c 2026-11-09"
+  },
+  "HercRepairScale": {
+   "va": "004c9278",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?HercRepairScale$ni",
+   "evidence": "implied by src/_unknown/tu_0043a294.c 2026-11-09"
+  },
+  "HercMassScale": {
+   "va": "004c9288",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?HercMassScale$ni",
+   "evidence": "implied by src/_unknown/tu_00438374.c 2026-11-09"
+  },
   "g4c9338": {
    "va": "004c9338",
    "kind": "data",
@@ -24341,6 +24869,13 @@
    "status": "hypothesis",
    "mangled": "W?gMenuPrefixStrings$n$StrPool$$",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "gHercStrings": {
+   "va": "00511e04",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gHercStrings$n$StrPool$$",
+   "evidence": "implied by src/_unknown/tu_00438374.c 2026-11-09"
   },
   "g511e18": {
    "va": "00511e18",

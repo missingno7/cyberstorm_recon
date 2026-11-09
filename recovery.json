@@ -7158,6 +7158,312 @@
     }
    },
    "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_00438374.c": {
+   "as": "_unknown\\tu_00438374.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "PopFindItem": {
+     "va": "00438374",
+     "size": 63,
+     "mangled": "W?PopFindItem$n(pn$ActorUnit$$ii)pn$ActorItem$$"
+    },
+    "HercMountAllowed": {
+     "va": "004383b3",
+     "size": 46,
+     "mangled": "W?HercMountAllowed$n(pn$ActorUnit$$i)i"
+    },
+    "PopItemReady": {
+     "va": "004383e1",
+     "size": 78,
+     "mangled": "W?PopItemReady$n(pn$ActorUnit$$i)i"
+    },
+    "HercItemEfficiency": {
+     "va": "0043842f",
+     "size": 197,
+     "mangled": "W?HercItemEfficiency$n(pn$ActorUnit$$i)i"
+    },
+    "HercClearField": {
+     "va": "004384f4",
+     "size": 17,
+     "mangled": "W?HercClearField$n(pn$ActorUnit$$)i"
+    },
+    "HercCalculateMass": {
+     "va": "00438505",
+     "size": 253,
+     "mangled": "W?HercCalculateMass$n(pn$ActorUnit$$)i"
+    },
+    "StateInvoke": {
+     "va": "00438602",
+     "size": 59,
+     "mangled": "W?StateInvoke$n(pn$ActorUnit$$pnipni)i"
+    },
+    "StateInvokeEnergy": {
+     "va": "0043863d",
+     "size": 59,
+     "mangled": "W?StateInvokeEnergy$n(pn$ActorUnit$$pnipni)i"
+    },
+    "HercEnergy": {
+     "va": "00438678",
+     "size": 11,
+     "mangled": "W?HercEnergy$n(pn$ActorUnit$$)i"
+    },
+    "HercCanSpend": {
+     "va": "00438683",
+     "size": 22,
+     "mangled": "W?HercCanSpend$n(pn$ActorUnit$$i)i"
+    },
+    "HercCategoryName": {
+     "va": "00438699",
+     "size": 30,
+     "mangled": "W?HercCategoryName$n(pn$ActorItem$$)pna"
+    },
+    "HercCategoryShort": {
+     "va": "004386b7",
+     "size": 17,
+     "mangled": "W?HercCategoryShort$n(pn$ActorItem$$)pna"
+    },
+    "HercCategoryPlural": {
+     "va": "004386c8",
+     "size": 17,
+     "mangled": "W?HercCategoryPlural$n(pn$ActorItem$$)pna"
+    },
+    "HercCategoryUnits": {
+     "va": "004386d9",
+     "size": 17,
+     "mangled": "W?HercCategoryUnits$n(pn$ActorItem$$)pna"
+    },
+    "HercItemName": {
+     "va": "004386ea",
+     "size": 70,
+     "mangled": "W?HercItemName$n(pn$ActorItem$$)pna"
+    },
+    "PopItemValue": {
+     "va": "00438730",
+     "size": 79,
+     "mangled": "W?PopItemValue$n(pn$ActorItem$$)pna"
+    },
+    "HercItemDescription": {
+     "va": "0043877f",
+     "size": 48,
+     "mangled": "W?HercItemDescription$n(pn$ActorItem$$)pna"
+    },
+    "HercAppendAmount": {
+     "va": "004387af",
+     "size": 55,
+     "mangled": "W?HercAppendAmount$n(pn$HercSlot$$i)v"
+    },
+    "HercMobility": {
+     "va": "004392a8",
+     "size": 139,
+     "mangled": "W?HercMobility$n(pn$ActorUnit$$)i"
+    },
+    "HercUnsupported": {
+     "va": "00439333",
+     "size": 6,
+     "mangled": "W?HercUnsupported$n()i"
+    },
+    "BlockChecksum": {
+     "va": "00439339",
+     "size": 42,
+     "mangled": "W?BlockChecksum$n(pn$ActorUnit$$)i"
+    },
+    "HercEqual": {
+     "va": "00439363",
+     "size": 213,
+     "mangled": "W?HercEqual$n(pn$ActorUnit$$pn$1$)i"
+    },
+    "HercCopy": {
+     "va": "00439438",
+     "size": 160,
+     "mangled": "W?HercCopy$n(pn$ActorUnit$$pn$1$)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_004394d8.c": {
+   "as": "_unknown\\tu_004394d8.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "HercUnsupported2": {
+     "va": "004394d8",
+     "size": 6,
+     "mangled": "W?HercUnsupported2$n()i"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_004394e0.c": {
+   "as": "_unknown\\tu_004394e0.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "f_004394e0": {
+     "va": "004394e0",
+     "size": 131,
+     "mangled": "f_004394e0"
+    },
+    "HercRepairUnitCost": {
+     "va": "00439563",
+     "size": 99,
+     "mangled": "W?HercRepairUnitCost$n(pn$ActorUnit$$i)i"
+    },
+    "HercResetAmountZero": {
+     "va": "004395c6",
+     "size": 68,
+     "mangled": "W?HercResetAmountZero$n(pn$ActorUnit$$i)i"
+    },
+    "f_00439706": {
+     "va": "00439706",
+     "size": 48,
+     "mangled": "f_00439706"
+    },
+    "f_00439736": {
+     "va": "00439736",
+     "size": 157,
+     "mangled": "f_00439736"
+    },
+    "f_004397d3": {
+     "va": "004397d3",
+     "size": 213,
+     "mangled": "f_004397d3"
+    },
+    "HercResetAmount": {
+     "va": "004398a8",
+     "size": 60,
+     "mangled": "W?HercResetAmount$n(pn$ActorUnit$$i)v"
+    },
+    "HercAddChoiceNode": {
+     "va": "004398e4",
+     "size": 179,
+     "mangled": "W?HercAddChoiceNode$n(pn$ActorUnit$$pnpn$ChoiceNode$$iipni)v"
+    },
+    "HercInstallItem": {
+     "va": "00439cad",
+     "size": 85,
+     "mangled": "W?HercInstallItem$n(pn$ActorUnit$$ipn$ActorItem$$)i"
+    },
+    "f_00439d02": {
+     "va": "00439d02",
+     "size": 10,
+     "mangled": "f_00439d02"
+    },
+    "HercChassisName": {
+     "va": "00439d0c",
+     "size": 32,
+     "mangled": "W?HercChassisName$n(pn$ActorUnit$$)pna"
+    },
+    "f_00439d2c": {
+     "va": "00439d2c",
+     "size": 5,
+     "mangled": "f_00439d2c"
+    },
+    "f_00439d31": {
+     "va": "00439d31",
+     "size": 23,
+     "mangled": "f_00439d31"
+    },
+    "f_00439daf": {
+     "va": "00439daf",
+     "size": 71,
+     "mangled": "f_00439daf"
+    },
+    "LoadActorData": {
+     "va": "00439df6",
+     "size": 164,
+     "mangled": "LoadActorData"
+    },
+    "HercAddChoice": {
+     "va": "00439e9a",
+     "size": 212,
+     "mangled": "W?HercAddChoice$n(pn$ActorUnit$$pn$Choice$$iipnii)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0043a294.c": {
+   "as": "_unknown\\tu_0043a294.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "UnitSpend": {
+     "va": "0043a294",
+     "size": 65,
+     "mangled": "W?UnitSpend$n(pn$ActorUnit$$i)i"
+    },
+    "HercBuildDamage": {
+     "va": "0043a597",
+     "size": 111,
+     "mangled": "W?HercBuildDamage$n(pn$ActorUnit$$)v"
+    },
+    "HercBuildDamageCopy": {
+     "va": "0043a606",
+     "size": 106,
+     "mangled": "W?HercBuildDamageCopy$n(pn$ActorUnit$$)v"
+    },
+    "HercDamageAtRange": {
+     "va": "0043a670",
+     "size": 44,
+     "mangled": "W?HercDamageAtRange$n(pn$ActorUnit$$i)i"
+    },
+    "HercWeaponDamage": {
+     "va": "0043a69c",
+     "size": 157,
+     "mangled": "W?HercWeaponDamage$n(pn$ActorUnit$$ii)i"
+    },
+    "HercRepairPoints": {
+     "va": "0043a739",
+     "size": 73,
+     "mangled": "W?HercRepairPoints$n(pn$ActorUnit$$)i"
+    },
+    "HercRepairNeeded": {
+     "va": "0043a782",
+     "size": 102,
+     "mangled": "W?HercRepairNeeded$n(pn$ActorUnit$$i)i"
+    },
+    "f_0043a7e8": {
+     "va": "0043a7e8",
+     "size": 294,
+     "mangled": "W?f_0043a7e8$n(pn$ActorUnit$$i)i"
+    },
+    "HercAmmoCost": {
+     "va": "0043a90e",
+     "size": 113,
+     "mangled": "W?HercAmmoCost$n(pn$ActorUnit$$i)i"
+    },
+    "HercNeedsAmmo": {
+     "va": "0043a9e7",
+     "size": 66,
+     "mangled": "W?HercNeedsAmmo$n(pn$ActorUnit$$)i"
+    },
+    "StateAction": {
+     "va": "0043aa29",
+     "size": 57,
+     "mangled": "W?StateAction$n(pn$ActorUnit$$)i"
+    },
+    "SimAddMission": {
+     "va": "0043aa62",
+     "size": 268,
+     "mangled": "W?SimAddMission$n(pn$ActorUnit$$)v"
+    },
+    "HercAngleWeights": {
+     "va": "0043ac02",
+     "size": 154,
+     "mangled": "W?HercAngleWeights$n(ipnipnipnipni)v"
+    },
+    "f_0043ad4f": {
+     "va": "0043ad4f",
+     "size": 167,
+     "mangled": "W?f_0043ad4f$n(pn$ActorUnit$$ii)i"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
   }
  },
  "accepted_losses": [
