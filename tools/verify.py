@@ -27,6 +27,7 @@ def main(argv):
     ledger = gate.load_ledger()
     syms = symbols.load()["symbols"]
     nfun = nbytes = 0
+    asm_done = [0, 0]
     sec = {"funcs": 0, "strict": 0}
     pass
     import tucheck
@@ -62,8 +63,12 @@ def main(argv):
         if bad:
             print(f"FAIL {tu}: {bad}")
             ok = False
-        nfun += len(ent["functions"])
-        nbytes += sum(e["size"] for e in ent["functions"].values())
+        if ent.get("profile") == "asm":       # hand assembly: reported separately from the C/C++ census
+            asm_done[0] += len(ent["functions"])
+            asm_done[1] += sum(e["size"] for e in ent["functions"].values())
+        else:
+            nfun += len(ent["functions"])
+            nbytes += sum(e["size"] for e in ent["functions"].values())
         if "--secondary" in argv:
             try:
                 r2, _, _ = gate.build_and_compare(src, ent, oracle="cs10", find=True, imply=True)
@@ -78,8 +83,8 @@ def main(argv):
         asm = [f for f in fm["functions"] if f["kind"] == "asm"]
         gbytes = sum(f["size"] for f in game)
         print(f"strict: {nfun} functions / ~{len(game)} game functions; {nbytes} / ~{gbytes} bytes "
-              f"({100 * nbytes / gbytes:.2f}%) in {len(ledger['tus'])} TUs; hand assembly (not counted): "
-              f"{len(asm)} functions, {sum(f['size'] for f in asm)} bytes")
+              f"({100 * nbytes / gbytes:.2f}%) in {len(ledger['tus'])} TUs; hand assembly: {asm_done[0]} of "
+              f"{len(asm)} functions, {asm_done[1]} of {sum(f['size'] for f in asm)} bytes")
     else:
         print(f"strict: {nfun} functions, {nbytes} bytes in {len(ledger['tus'])} TUs")
     if tu_starts is not None:

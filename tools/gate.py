@@ -20,8 +20,20 @@ BANNED = [
 ]
 
 
+ASM_BANNED = [
+    (re.compile(r"\bincbin\b|\binclude\s+binary\b", re.I), "binary inclusion"),
+    # byte blobs: four or more comma-separated values after db/dw/dd, unless labelled UNKNOWN debt (hand review)
+    (re.compile(r"^[ \t]*(?:\w+[ \t]+)?d[bwd][ \t]+[^;\n]*,[^;\n]*,[^;\n]*,[^\n]*$", re.I | re.M), "data blob in assembly"),
+]
+
+
 def policy(path):
     text = Path(path).read_text(encoding="latin-1")
+    if str(path).lower().endswith(".asm"):
+        # hand assembly is legitimate source only for ranges classified asm (config/nongame.json); no blobs
+        lines = [ln for ln in text.splitlines() if "UNKNOWN" not in ln]
+        text_nc = "\n".join(re.sub(r";.*", "", ln) for ln in lines)
+        return [f"{why}" for rx, why in ASM_BANNED if rx.search(text_nc)]
     text_nc = re.sub(r"/\*.*?\*/|//[^\n]*", "", text, flags=re.S)
     return [f"{why}" for rx, why in BANNED if rx.search(text_nc)]
 

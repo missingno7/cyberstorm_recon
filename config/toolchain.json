@@ -9,7 +9,8 @@
     "wcc386": "BINNT/WCC386.EXE",
     "wpp386": "BINNT/WPP386.EXE",
     "wlink": "BINNT/WLINK.EXE",
-    "wlib": "BINNT/WLIB.EXE"
+    "wlib": "BINNT/WLIB.EXE",
+    "wasm": "BINNT/WASM.EXE"
    },
    "key_files": {
     "BINNT/WCC386.EXE": "b533dd0b4685cd6e1b32a4dcb2e83624a5bf36d61453af6d171527602c049d7e",
@@ -22,7 +23,8 @@
     "LIB386/PLIB3S.LIB": "7257dcd62c4d53c1edf389025bd4f9006bf076c00e3cfa11fbef97cedc2911ec",
     "LIB386/MATH387S.LIB": "e891569ec780e149832a53c9a95bc4722c0b84b9bc5b831a9d2a5194d579ed67",
     "LIB386/MATH3S.LIB": "a925be8ed51506ea491ae4a6b4d462f4db556422674d5bb8ff5c7566ae908af8",
-    "LIB386/PLIBMT3S.LIB": "2de982d2abbd2b1e03e898acd7f0c58ecc1df8fa56f3e4ff154ee6021977e35f"
+    "LIB386/PLIBMT3S.LIB": "2de982d2abbd2b1e03e898acd7f0c58ecc1df8fa56f3e4ff154ee6021977e35f",
+    "BINNT/WASM.EXE": "b533dd0b4685cd6e1b32a4dcb2e83624a5bf36d61453af6d171527602c049d7e"
    },
    "include": [
     "H",
@@ -114,6 +116,15 @@
     "-oe"
    ],
    "status": "verified 2026-11-09 on sim\u0007pply.c, sim\fxout.c, sim\\explo.c (lane o2): -ox does not include -oe in wpp386 10.6; same-TU functions inlined at every call, referenced/non-static ones keep an out-of-line copy"
+  },
+  "asm": {
+   "install": "wc106",
+   "tool": "wasm",
+   "flags": [
+    "-4s",
+    "-q"
+   ],
+   "status": "hypothesis: Watcom WASM 10.6 for hand-assembly objects (config/nongame.json class asm); the original assembler is not yet identified (WASM vs MASM 6.x vs TASM encoding fingerprints)"
   }
  }
 }

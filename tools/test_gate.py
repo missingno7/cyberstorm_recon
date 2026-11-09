@@ -153,6 +153,13 @@ def main():
         except py_compile.PyCompileError as e:
             bad.append(t.name)
     check(not bad, f"all tools parse {bad or ''}")
+    import gate
+    with tempfile.TemporaryDirectory(dir=ROOT / "build") as td:
+        a = Path(td) / "a.asm"
+        a.write_text("f_ proc near\n    ret\nf_ endp\nx db 1,2,3,4\n", encoding="latin-1")
+        b = Path(td) / "b.asm"
+        b.write_text("f_ proc near\n    enter 0,0\n    leave\n    ret\nf_ endp\nx db 7 ; one value\n", encoding="latin-1")
+        check(gate.policy(a) and not gate.policy(b), "assembly policy rejects byte blobs, accepts instructions")
     import symbols
     cases = {"W?get$:Foo$n()i": "Foo::get", "W?$ct:Foo$n()_": "Foo::$ct", "W?$dt:Foo$n()_": "Foo::$dt",
              "W?gVar$ni": "gVar", "W?InputNop$n()v": "InputNop", "W?n$ni": "n", "cfunc": "cfunc",

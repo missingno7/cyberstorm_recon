@@ -23,3 +23,12 @@
 
 ## CWARSDLL.DLL (deferred)
 Microsoft linker 2.55, MSVC C++ mangling, static MFC. Points at Visual C++ 2.x (hypothesis); not in `C:\tools`.
+
+## Hand assembly (2026-11-09)
+`config/nongame.json` classifies 12 ranges (2074 bytes) as hand assembly (ENTER/LEAVE frames, string
+instructions, register idioms a C compiler does not emit). Profile `asm` assembles `.asm` sources with the pinned
+WATCOM 10.6 WASM (`-4s -q`) through tools/cc.py; the comparator and gate are the same as for C. The original
+assembler is NOT identified yet (WASM vs MASM 6.x vs TASM: test encoding fingerprints such as `mov r32,r32`
+89/8B direction, short-jump relaxation, `enter`/`leave`, segment alignment and OMF records). Gate policy for
+`.asm`: no binary inclusion, no data blobs (4+ comma-separated db/dw/dd values) unless a line is labelled
+UNKNOWN debt. verify counts accepted asm TUs separately from the C/C++ census.
