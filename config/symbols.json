@@ -1508,12 +1508,148 @@
    "tu": "src/_unknown/tu_0040f4e4.c",
    "evidence": "strict match 2026-11-09"
   },
+  "PilotBriefStaticInit": {
+   "va": "0040ffb8",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PilotBriefStaticInit$n()v",
+   "tu": "src/_unknown/tu_0040ffb8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PilotBriefLoadResources": {
+   "va": "004100c8",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PilotBriefLoadResources$n(pnv)v",
+   "tu": "src/_unknown/tu_0040ffb8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PilotBriefOpenStandby": {
+   "va": "004100df",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PilotBriefOpenStandby$n(pnvpnv)v",
+   "tu": "src/_unknown/tu_0040ffb8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PilotBriefResetIfOpen": {
+   "va": "00410188",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PilotBriefResetIfOpen$n(pnv)v",
+   "tu": "src/_unknown/tu_0040ffb8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PilotBriefAcceptProfile": {
+   "va": "004101a2",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PilotBriefAcceptProfile$n(pnv)i",
+   "tu": "src/_unknown/tu_0040ffb8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PilotBriefDoneRoom": {
+   "va": "00410207",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PilotBriefDoneRoom$n()v",
+   "tu": "src/_unknown/tu_0040ffb8.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "ShellBiodermDetailsRender": {
+   "va": "00410228",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ShellBiodermDetailsRender$n(pnv)v",
+   "tu": "src/_unknown/tu_0040ffb8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ShellBiodermDetailsRender#W?ShellBiodermDetailsRender$n(pn$Scene$$)v": {
    "va": "00410228",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?ShellBiodermDetailsRender$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "PilotBriefRefreshSelection": {
+   "va": "004103ef",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PilotBriefRefreshSelection$n(pnv)v",
+   "tu": "src/_unknown/tu_0040ffb8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PilotBriefReviewKey": {
+   "va": "0041042d",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PilotBriefReviewKey$n()v",
+   "tu": "src/_unknown/tu_0040ffb8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PilotBriefModule::InstallMissionProfile": {
+   "va": "004104f0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?InstallMissionProfile$:PilotBriefModule$n()v",
+   "tu": "src/_unknown/tu_0040ffb8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PilotBriefSwitchProfileMode": {
+   "va": "0041059d",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PilotBriefSwitchProfileMode$n()v",
+   "tu": "src/_unknown/tu_0040ffb8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PilotBriefResetProfileMode": {
+   "va": "0041060c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PilotBriefResetProfileMode$n()v",
+   "tu": "src/_unknown/tu_0040ffb8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PilotBriefRestoreProfile": {
+   "va": "0041066e",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PilotBriefRestoreProfile$n()v",
+   "tu": "src/_unknown/tu_0040ffb8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PilotBriefSaveOrRestore": {
+   "va": "00410694",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PilotBriefSaveOrRestore$n()v",
+   "tu": "src/_unknown/tu_0040ffb8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "W?.fn_init$n()v@shell/pilotgui.c": {
+   "va": "00410738",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/shell/pilotgui.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PilotGuiModule::$ct": {
+   "va": "00410b7c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:PilotGuiModule$n()_",
+   "tu": "src/shell/pilotgui.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PilotGuiCloseResources": {
+   "va": "00411027",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PilotGuiCloseResources$n(pnv)v",
+   "tu": "src/shell/pilotgui.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ShellSelectionControlsRender": {
    "va": "004110ad",
@@ -1522,12 +1658,97 @@
    "mangled": "W?ShellSelectionControlsRender$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "PilotGuiSelectionControlsRender": {
+   "va": "004110ad",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PilotGuiSelectionControlsRender$n(pnv)v",
+   "tu": "src/shell/pilotgui.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PilotGuiDrawSelectionFrame": {
+   "va": "0041124c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PilotGuiDrawSelectionFrame$n()v",
+   "tu": "src/shell/pilotgui.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PilotGuiUpdateDetails": {
+   "va": "004113bc",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PilotGuiUpdateDetails$n(pnv)v",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
   "f_0041170c": {
    "va": "0041170c",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "f_0041170c",
    "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
+  },
+  "f_0041170c#W?f_0041170c$n(pnv)v": {
+   "va": "0041170c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_0041170c$n(pnv)v",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "PilotGuiDrawBars": {
+   "va": "00411bf7",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PilotGuiDrawBars$n(pnviii)v",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "PilotGuiRenderControls": {
+   "va": "00411cf3",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PilotGuiRenderControls$n(pnv)v",
+   "tu": "src/shell/pilotgui.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PilotGuiHandleInput": {
+   "va": "00411dc6",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PilotGuiHandleInput$n(pnv)v",
+   "tu": "src/shell/pilotgui.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PilotGuiNextProfile": {
+   "va": "00411e8a",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PilotGuiNextProfile$n(pnv)v",
+   "tu": "src/shell/pilotgui.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PilotGuiPreviousProfile": {
+   "va": "00411ec2",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PilotGuiPreviousProfile$n(pnv)v",
+   "tu": "src/shell/pilotgui.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PilotGuiPreviousProfileByKey": {
+   "va": "00411efb",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PilotGuiPreviousProfileByKey$n(pnv)v",
+   "tu": "src/shell/pilotgui.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PilotGuiEnable": {
+   "va": "00412035",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PilotGuiEnable$n(pnv)v",
+   "tu": "src/shell/pilotgui.c",
+   "evidence": "strict match 2026-11-09"
   },
   "f_0041204b": {
    "va": "0041204b",
@@ -1536,12 +1757,28 @@
    "mangled": "f_0041204b",
    "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
   },
+  "PilotGuiDisable": {
+   "va": "0041204b",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PilotGuiDisable$n(pnv)v",
+   "tu": "src/shell/pilotgui.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "f_00412068": {
    "va": "00412068",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "f_00412068",
    "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
+  },
+  "PilotGuiPaletteForward": {
+   "va": "00412068",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PilotGuiPaletteForward$n()v",
+   "tu": "src/shell/pilotgui.c",
+   "evidence": "strict match 2026-11-09"
   },
   "f_0041207d": {
    "va": "0041207d",
@@ -1550,6 +1787,22 @@
    "mangled": "f_0041207d",
    "evidence": "implied by src/_unknown/tu_0040e7a0.c 2026-11-09"
   },
+  "PilotGuiPaletteBackward": {
+   "va": "0041207d",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PilotGuiPaletteBackward$n()v",
+   "tu": "src/shell/pilotgui.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PilotGuiSelectProfileAt": {
+   "va": "00412089",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PilotGuiSelectProfileAt$n(pnvi)v",
+   "tu": "src/shell/pilotgui.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "f_004120e2": {
    "va": "004120e2",
    "kind": "func",
@@ -1557,12 +1810,36 @@
    "mangled": "f_004120e2",
    "evidence": "implied by src/_unknown/tu_0040f4e4.c 2026-11-09"
   },
+  "PilotGuiReleaseChatMenu": {
+   "va": "004120e2",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PilotGuiReleaseChatMenu$n()v",
+   "tu": "src/shell/pilotgui.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "f_004120fe": {
    "va": "004120fe",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "f_004120fe",
    "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
+  },
+  "PilotGuiClearProfileModified": {
+   "va": "004122c9",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PilotGuiClearProfileModified$n(pnv)v",
+   "tu": "src/shell/pilotgui.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PilotGuiSetProfileModified": {
+   "va": "004122d8",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PilotGuiSetProfileModified$n(pnv)v",
+   "tu": "src/shell/pilotgui.c",
+   "evidence": "strict match 2026-11-09"
   },
   "W?.tdctor$:MenuLabel$n()rn$1$": {
    "va": "004122e8",
@@ -1575,9 +1852,17 @@
   "W?$Wda018$:MenuLabel$n(ui)pnv": {
    "va": "00412304",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?$Wda018$:MenuLabel$n(ui)pnv",
-   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+   "tu": "src/shell/pilotgui.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PilotGuiModule::$dt": {
+   "va": "0041231c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:PilotGuiModule$n()_",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
   },
   "PilotImageButton::$dt": {
    "va": "0041235c",
@@ -1586,6 +1871,13 @@
    "mangled": "W?$dt:PilotImageButton$n()_",
    "tu": "src/pop/ppilot.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "W?.tdtor$:PilotGuiOpenObject$n()pnv": {
+   "va": "0041235c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?.tdtor$:PilotGuiOpenObject$n()pnv",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
   },
   "W?.fn_init$n()v@shell/commscrn.c": {
    "va": "004123a0",
@@ -7588,6 +7880,13 @@
    "tu": "src/_unknown/tu_0043b8e8.c",
    "evidence": "strict match 2026-11-09"
   },
+  "f_0043bf81#W?f_0043bf81$n(pnvi)i": {
+   "va": "0043bf81",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_0043bf81$n(pnvi)i",
+   "evidence": "implied by src/_unknown/tu_0040ffb8.c 2026-11-09"
+  },
   "ProfileManager::Count": {
    "va": "0043bfe1",
    "kind": "func",
@@ -7610,6 +7909,13 @@
    "mangled": "f_0043bffc",
    "tu": "src/_unknown/tu_0043b8e8.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "f_0043bffc#W?f_0043bffc$n(pnvi)i": {
+   "va": "0043bffc",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_0043bffc$n(pnvi)i",
+   "evidence": "implied by src/_unknown/tu_0040ffb8.c 2026-11-09"
   },
   "f_0043c036": {
    "va": "0043c036",
@@ -7817,6 +8123,13 @@
    "tu": "src/_unknown/tu_0043b8e8.c",
    "evidence": "strict match 2026-11-09"
   },
+  "f_0043cd28#W?f_0043cd28$n(pnvi)i": {
+   "va": "0043cd28",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_0043cd28$n(pnvi)i",
+   "evidence": "implied by src/_unknown/tu_0040ffb8.c 2026-11-09"
+  },
   "f_0043cd6c": {
    "va": "0043cd6c",
    "kind": "func",
@@ -7944,6 +8257,13 @@
    "tu": "src/_unknown/tu_0043b8e8.c",
    "evidence": "placed (at) in src/_unknown/tu_0043b8e8.c 2026-11-09"
   },
+  "f_0043d2b9#W?f_0043d2b9$n(pnvpnx$PilotKey$$)i": {
+   "va": "0043d2b9",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_0043d2b9$n(pnvpnx$PilotKey$$)i",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
   "f_0043d3cc": {
    "va": "0043d3cc",
    "kind": "func",
@@ -7951,6 +8271,13 @@
    "mangled": "f_0043d3cc",
    "tu": "src/_unknown/tu_0043b8e8.c",
    "evidence": "placed (at) in src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "f_0043d3cc#W?f_0043d3cc$n(pnvpnv)i": {
+   "va": "0043d3cc",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_0043d3cc$n(pnvpnv)i",
+   "evidence": "implied by src/_unknown/tu_0040ffb8.c 2026-11-09"
   },
   "f_0043d591": {
    "va": "0043d591",
@@ -14906,6 +15233,13 @@
    "mangled": "W?HelpClearTopic$n()v",
    "evidence": "implied by src/_unknown/tu_0042a0e0.c 2026-11-09"
   },
+  "f_00476412": {
+   "va": "00476412",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_00476412$n(i)v",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
   "OptionsDlgProc": {
    "va": "00476505",
    "kind": "func",
@@ -15452,6 +15786,13 @@
    "status": "hypothesis",
    "mangled": "SurfacePresent",
    "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "f_0047b3d0": {
+   "va": "0047b3d0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_0047b3d0$n(pnvllll)v",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
   },
   "ApplyPaletteData": {
    "va": "0047b430",
@@ -16021,6 +16362,13 @@
    "status": "hypothesis",
    "mangled": "W?PlyGetKey$n(pn$PlyKey$$)v",
    "evidence": "implied by src/_unknown/tu_004297d4.c 2026-11-09"
+  },
+  "PlyGetKey#PlyGetKey": {
+   "va": "0047d770",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "PlyGetKey",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
   },
   "PaletteRead": {
    "va": "0047d9f0",
@@ -17043,6 +17391,13 @@
    "mangled": "W?screenSlideStep$nuc",
    "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
   },
+  "gPilotGuiFrameStep": {
+   "va": "0048e589",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiFrameStep$nuc",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
   "mainMenuLastHover": {
    "va": "0048e5a0",
    "kind": "data",
@@ -17091,6 +17446,34 @@
    "status": "hypothesis",
    "mangled": "W?medlabControls$n[]pn$GuiControl$$",
    "evidence": "implied by src/_unknown/tu_0040f4e4.c 2026-11-09"
+  },
+  "gBriefModuleBase": {
+   "va": "0048e7c4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gBriefModuleBase$nuc",
+   "evidence": "implied by src/_unknown/tu_0040ffb8.c 2026-11-09"
+  },
+  "gBriefInitState": {
+   "va": "0048e7cc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gBriefInitState$nul",
+   "evidence": "implied by src/_unknown/tu_0040ffb8.c 2026-11-09"
+  },
+  "gBriefResourceDesc": {
+   "va": "0048e7e0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gBriefResourceDesc$nuc",
+   "evidence": "implied by src/_unknown/tu_0040ffb8.c 2026-11-09"
+  },
+  "gPilotGuiResourceTemplate": {
+   "va": "0048e834",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiResourceTemplate$nuc",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
   },
   "g48e8f4": {
    "va": "0048e8f4",
@@ -18331,6 +18714,13 @@
    "mangled": "W?g4ae17f$nl",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
+  "g4ae17f#W?g4ae17f$nul": {
+   "va": "004ae17f",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4ae17f$nul",
+   "evidence": "implied by src/_unknown/tu_0040ffb8.c 2026-11-09"
+  },
   "gShellAnimationTimer": {
    "va": "004ae5ac",
    "kind": "data",
@@ -18673,6 +19063,13 @@
    "status": "hypothesis",
    "mangled": "W?g4aff6c$n$Scene$$",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "g4aff6c#W?g4aff6c$nul": {
+   "va": "004aff6c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4aff6c$nul",
+   "evidence": "implied by src/_unknown/tu_0040ffb8.c 2026-11-09"
   },
   "g4affb8": {
    "va": "004affb8",
@@ -19087,6 +19484,83 @@
    "mangled": "W?g4b0c50$n$MedlabScreen$$",
    "evidence": "implied by src/_unknown/tu_0040f4e4.c 2026-11-09"
   },
+  "gBriefButtonA": {
+   "va": "004b0cac",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gBriefButtonA$nuc",
+   "evidence": "implied by src/_unknown/tu_0040ffb8.c 2026-11-09"
+  },
+  "gBriefButtonB": {
+   "va": "004b0cd4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gBriefButtonB$nuc",
+   "evidence": "implied by src/_unknown/tu_0040ffb8.c 2026-11-09"
+  },
+  "gBriefButtonC": {
+   "va": "004b0cfc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gBriefButtonC$nuc",
+   "evidence": "implied by src/_unknown/tu_0040ffb8.c 2026-11-09"
+  },
+  "gBriefButtonD": {
+   "va": "004b0d24",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gBriefButtonD$nuc",
+   "evidence": "implied by src/_unknown/tu_0040ffb8.c 2026-11-09"
+  },
+  "gBriefButtonE": {
+   "va": "004b0d4c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gBriefButtonE$nuc",
+   "evidence": "implied by src/_unknown/tu_0040ffb8.c 2026-11-09"
+  },
+  "gBriefButtonF": {
+   "va": "004b0d74",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gBriefButtonF$nuc",
+   "evidence": "implied by src/_unknown/tu_0040ffb8.c 2026-11-09"
+  },
+  "gBriefHelpRegion": {
+   "va": "004b0d9c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gBriefHelpRegion$nuc",
+   "evidence": "implied by src/_unknown/tu_0040ffb8.c 2026-11-09"
+  },
+  "g4b0dbc": {
+   "va": "004b0dbc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b0dbc$nul",
+   "evidence": "implied by src/_unknown/tu_0040ffb8.c 2026-11-09"
+  },
+  "gBriefNumber": {
+   "va": "004b0dc4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gBriefNumber$nuc",
+   "evidence": "implied by src/_unknown/tu_0040ffb8.c 2026-11-09"
+  },
+  "g4b0df3": {
+   "va": "004b0df3",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b0df3$nuc",
+   "evidence": "implied by src/_unknown/tu_0040ffb8.c 2026-11-09"
+  },
+  "gBriefPanel": {
+   "va": "004b0df4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gBriefPanel$nuc",
+   "evidence": "implied by src/_unknown/tu_0040ffb8.c 2026-11-09"
+  },
   "g4b0e18": {
    "va": "004b0e18",
    "kind": "data",
@@ -19094,12 +19568,271 @@
    "mangled": "W?g4b0e18$n$Scene$$",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "gPilotGuiOpenA": {
+   "va": "004b0ef8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiOpenA$n$PilotGuiOpenObject$$",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiOpenB": {
+   "va": "004b0f24",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiOpenB$n$PilotGuiOpenObject$$",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiHelpRegion": {
+   "va": "004b0f50",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiHelpRegion$n$MenuHelpRegion$$",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiSelection": {
+   "va": "004b0f70",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiSelection$nl",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiLabel01": {
+   "va": "004b0f78",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiLabel01$n$MenuLabel$$",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiLabel02": {
+   "va": "004b0fac",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiLabel02$n$MenuLabel$$",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiLabel03": {
+   "va": "004b0fe0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiLabel03$n$MenuLabel$$",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiLabel04": {
+   "va": "004b1014",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiLabel04$n$MenuLabel$$",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiFlags": {
+   "va": "004b102b",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiFlags$nuc",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiLabel05": {
+   "va": "004b1048",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiLabel05$n$MenuLabel$$",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiLabel06": {
+   "va": "004b107c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiLabel06$n$MenuLabel$$",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiLabel07": {
+   "va": "004b10b0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiLabel07$n$MenuLabel$$",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiLabel08": {
+   "va": "004b10e4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiLabel08$n$MenuLabel$$",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiLabel09": {
+   "va": "004b1118",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiLabel09$n$MenuLabel$$",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiLabel10": {
+   "va": "004b114c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiLabel10$n$MenuLabel$$",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiLabel11": {
+   "va": "004b1180",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiLabel11$n$MenuLabel$$",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiLabel12": {
+   "va": "004b11b4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiLabel12$n$MenuLabel$$",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiLabel13": {
+   "va": "004b11e8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiLabel13$n$MenuLabel$$",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiLabel14": {
+   "va": "004b121c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiLabel14$n$MenuLabel$$",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiLabel15": {
+   "va": "004b1250",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiLabel15$n$MenuLabel$$",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiLabel16": {
+   "va": "004b1284",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiLabel16$n$MenuLabel$$",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiLabel17": {
+   "va": "004b12b8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiLabel17$n$MenuLabel$$",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiLabel18": {
+   "va": "004b12ec",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiLabel18$n$MenuLabel$$",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiLabel19": {
+   "va": "004b1320",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiLabel19$n$MenuLabel$$",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiLabelArray": {
+   "va": "004b1354",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiLabelArray$n[]$MenuLabel$$",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiLabel20": {
+   "va": "004b14dc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiLabel20$n$MenuLabel$$",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiLabel21": {
+   "va": "004b1510",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiLabel21$n$MenuLabel$$",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiLabel22": {
+   "va": "004b1544",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiLabel22$n$MenuPrefixButton$$",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiPalette": {
+   "va": "004b1558",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiPalette$nul",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiLabel23": {
+   "va": "004b1570",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiLabel23$n$MenuPrefixButton$$",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiLabel24": {
+   "va": "004b159c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiLabel24$n$MenuPrefixButton$$",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiLabel25": {
+   "va": "004b15c8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiLabel25$n$MenuPrefixButton$$",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiLabel26": {
+   "va": "004b15f4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiLabel26$n$MenuPrefixButton$$",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiLabel27": {
+   "va": "004b1620",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiLabel27$n$MenuPrefixButton$$",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiLabel28": {
+   "va": "004b164c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiLabel28$n$MenuPrefixButton$$",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
+  "gPilotGuiLabel29": {
+   "va": "004b1678",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiLabel29$n$MenuPrefixButton$$",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
+  },
   "g4b16a4": {
    "va": "004b16a4",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4b16a4$n$Scene$$",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "g4b16a4#W?g4b16a4$n$PilotGuiModule$$": {
+   "va": "004b16a4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b16a4$n$PilotGuiModule$$",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
   },
   "gBiodermSelectionMode": {
    "va": "004b1788",
@@ -19128,6 +19861,13 @@
    "status": "hypothesis",
    "mangled": "W?screenChanged$ni",
    "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
+  },
+  "gPilotChatMenu": {
+   "va": "004b1db0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotChatMenu$nul",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
   },
   "g4b1db4": {
    "va": "004b1db4",

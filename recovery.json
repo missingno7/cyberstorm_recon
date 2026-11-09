@@ -6953,6 +6953,211 @@
    },
    "data": {},
    "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0040ffb8.c": {
+   "as": "_unknown\\tu_0040ffb8.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "PilotBriefStaticInit": {
+     "va": "0040ffb8",
+     "size": 272,
+     "mangled": "W?PilotBriefStaticInit$n()v"
+    },
+    "PilotBriefLoadResources": {
+     "va": "004100c8",
+     "size": 23,
+     "mangled": "W?PilotBriefLoadResources$n(pnv)v"
+    },
+    "PilotBriefOpenStandby": {
+     "va": "004100df",
+     "size": 169,
+     "mangled": "W?PilotBriefOpenStandby$n(pnvpnv)v"
+    },
+    "PilotBriefResetIfOpen": {
+     "va": "00410188",
+     "size": 26,
+     "mangled": "W?PilotBriefResetIfOpen$n(pnv)v"
+    },
+    "PilotBriefAcceptProfile": {
+     "va": "004101a2",
+     "size": 101,
+     "mangled": "W?PilotBriefAcceptProfile$n(pnv)i"
+    },
+    "PilotBriefDoneRoom": {
+     "va": "00410207",
+     "size": 33,
+     "mangled": "W?PilotBriefDoneRoom$n()v"
+    },
+    "ShellBiodermDetailsRender": {
+     "va": "00410228",
+     "size": 455,
+     "mangled": "W?ShellBiodermDetailsRender$n(pnv)v"
+    },
+    "PilotBriefRefreshSelection": {
+     "va": "004103ef",
+     "size": 62,
+     "mangled": "W?PilotBriefRefreshSelection$n(pnv)v"
+    },
+    "PilotBriefReviewKey": {
+     "va": "0041042d",
+     "size": 195,
+     "mangled": "W?PilotBriefReviewKey$n()v"
+    },
+    "PilotBriefModule::InstallMissionProfile": {
+     "va": "004104f0",
+     "size": 173,
+     "mangled": "W?InstallMissionProfile$:PilotBriefModule$n()v"
+    },
+    "PilotBriefSwitchProfileMode": {
+     "va": "0041059d",
+     "size": 111,
+     "mangled": "W?PilotBriefSwitchProfileMode$n()v"
+    },
+    "PilotBriefResetProfileMode": {
+     "va": "0041060c",
+     "size": 98,
+     "mangled": "W?PilotBriefResetProfileMode$n()v"
+    },
+    "PilotBriefRestoreProfile": {
+     "va": "0041066e",
+     "size": 38,
+     "mangled": "W?PilotBriefRestoreProfile$n()v"
+    },
+    "PilotBriefSaveOrRestore": {
+     "va": "00410694",
+     "size": 152,
+     "mangled": "W?PilotBriefSaveOrRestore$n()v"
+    }
+   },
+   "data": {
+    "_DATA": {
+     "va": "0048a80c",
+     "size": 20
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/shell/pilotgui.c": {
+   "as": "shell\\pilotgui.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "00410738",
+     "size": 1092,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "PilotGuiModule::$ct": {
+     "va": "00410b7c",
+     "size": 70,
+     "mangled": "W?$ct:PilotGuiModule$n()_"
+    },
+    "PilotGuiCloseResources": {
+     "va": "00411027",
+     "size": 134,
+     "mangled": "W?PilotGuiCloseResources$n(pnv)v"
+    },
+    "PilotGuiSelectionControlsRender": {
+     "va": "004110ad",
+     "size": 415,
+     "mangled": "W?PilotGuiSelectionControlsRender$n(pnv)v"
+    },
+    "PilotGuiDrawSelectionFrame": {
+     "va": "0041124c",
+     "size": 368,
+     "mangled": "W?PilotGuiDrawSelectionFrame$n()v"
+    },
+    "PilotGuiRenderControls": {
+     "va": "00411cf3",
+     "size": 211,
+     "mangled": "W?PilotGuiRenderControls$n(pnv)v"
+    },
+    "PilotGuiHandleInput": {
+     "va": "00411dc6",
+     "size": 182,
+     "mangled": "W?PilotGuiHandleInput$n(pnv)v"
+    },
+    "PilotGuiNextProfile": {
+     "va": "00411e8a",
+     "size": 56,
+     "mangled": "W?PilotGuiNextProfile$n(pnv)v"
+    },
+    "PilotGuiPreviousProfile": {
+     "va": "00411ec2",
+     "size": 57,
+     "mangled": "W?PilotGuiPreviousProfile$n(pnv)v"
+    },
+    "PilotGuiPreviousProfileByKey": {
+     "va": "00411efb",
+     "size": 122,
+     "mangled": "W?PilotGuiPreviousProfileByKey$n(pnv)v"
+    },
+    "PilotGuiEnable": {
+     "va": "00412035",
+     "size": 22,
+     "mangled": "W?PilotGuiEnable$n(pnv)v"
+    },
+    "PilotGuiDisable": {
+     "va": "0041204b",
+     "size": 29,
+     "mangled": "W?PilotGuiDisable$n(pnv)v"
+    },
+    "PilotGuiPaletteForward": {
+     "va": "00412068",
+     "size": 21,
+     "mangled": "W?PilotGuiPaletteForward$n()v"
+    },
+    "PilotGuiPaletteBackward": {
+     "va": "0041207d",
+     "size": 12,
+     "mangled": "W?PilotGuiPaletteBackward$n()v"
+    },
+    "PilotGuiSelectProfileAt": {
+     "va": "00412089",
+     "size": 89,
+     "mangled": "W?PilotGuiSelectProfileAt$n(pnvi)v"
+    },
+    "PilotGuiReleaseChatMenu": {
+     "va": "004120e2",
+     "size": 28,
+     "mangled": "W?PilotGuiReleaseChatMenu$n()v"
+    },
+    "PilotGuiClearProfileModified": {
+     "va": "004122c9",
+     "size": 15,
+     "mangled": "W?PilotGuiClearProfileModified$n(pnv)v"
+    },
+    "PilotGuiSetProfileModified": {
+     "va": "004122d8",
+     "size": 15,
+     "mangled": "W?PilotGuiSetProfileModified$n(pnv)v"
+    },
+    "W?$Wda018$:MenuLabel$n(ui)pnv": {
+     "va": "00412304",
+     "size": 21,
+     "mangled": "W?$Wda018$:MenuLabel$n(ui)pnv"
+    }
+   },
+   "data": {
+    "CONST2": {
+     "va": "0048cc8c",
+     "size": 276
+    },
+    "_DATA": {
+     "va": "0048e804",
+     "size": 12
+    },
+    "W?$Wts0dn$MenuLabel$$$nx[]uc": {
+     "va": "0048c9b0",
+     "size": 17
+    },
+    "W?$Wts0kn$MenuPrefixButton$$$nx[]uc": {
+     "va": "0048c9ec",
+     "size": 17
+    }
+   },
+   "accepted": "2026-11-09"
   }
  },
  "accepted_losses": [
