@@ -34,6 +34,8 @@ python tools/promote.py SRC.c --tu src/DIR/FILE.c --as 'DIR\FILE.c' --profile ot
 python tools/verify.py [--secondary]          fresh rebuild of every accepted TU
 python tools/flagsweep.py SRC.c AS Label=VA   deliberate flag sweep (diagnostic)
 python tools/test_gate.py                     self-tests of the proof machinery
+python tools/accept.py candidates/L/REPORT.md [--publish]   integrator: re-run a report's promotions
+python tools/commit.py "msg"                  integrator: commit only if verify and test_gate pass
 ```
 
 ## Roles
