@@ -3072,6 +3072,14 @@
    "mangled": "W?Log$:Chat$n(ipnxa)v",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
   },
+  "W?.fn_init$n()v@multi/mstart.c": {
+   "va": "0046ec5c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "MenuNetwork::DropPeer": {
    "va": "0046ecd8",
    "kind": "func",
@@ -3503,6 +3511,13 @@
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?ValidateSlot$n(i)v",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "Options::$ct": {
+   "va": "00474900",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$ct:Options$n()_",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
   },
   "Options::Reset": {
@@ -4179,6 +4194,20 @@
    "status": "hypothesis",
    "mangled": "W?UnpackFlicPacked$n(pnucpnxv)i",
    "evidence": "implied by src/gui/flic.c 2026-11-09"
+  },
+  "CriticalSection::$ct": {
+   "va": "0047fd40",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$ct:CriticalSection$n()_",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "CriticalSection::$dt": {
+   "va": "0047fd60",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:CriticalSection$n()_",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
   },
   "g48a9df": {
    "va": "0048a9fb",

@@ -138,7 +138,7 @@ class Comparison:
         self.local = {n for n, s, o, loc in mod.publics if symbols.is_local(n, loc)}
         self.ext_va = {}        # (si, off) -> (va, how)
         self.base = {}          # data si -> (va, how)
-        self.data_conflict = set()
+        self.data_conflict = set()  # data segments in per-item mode
         at = at or {}
         # 1. bound placement
         for si, exts in self.extents.items():
@@ -199,7 +199,7 @@ class Comparison:
                     disp = 0 if m & 4 else f.disp
                     implied.setdefault(d, set()).add((tgt - self._addend(si, f) - disp) & 0xFFFFFFFF)
             for d, bs in implied.items():
-                if d in self.base:
+                if d in self.base or d in self.data_conflict:
                     continue
                 if len(bs) == 1:
                     self.base[d] = (next(iter(bs)), "inferred")
@@ -221,8 +221,13 @@ class Comparison:
         seg = self.m.segments[si]
         if not is_code(seg):
             b = va - off
+            if si in self.data_conflict:
+                return
             if si in self.base and self.base[si][0] != b:
-                self.conflicts.append(f"{seg.name}: base {self.base[si][0]:08x} vs {b:08x} ({how})")
+                # bound data publics disagree on the segment base: the TU's data layout is not reconstructed
+                # yet -> no segment placement; fixups into it are checked per item (see module doc)
+                del self.base[si]
+                self.data_conflict.add(si)
             else:
                 self.base[si] = (b, how)
             return

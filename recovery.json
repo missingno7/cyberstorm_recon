@@ -1636,6 +1636,11 @@
    "install": "wc106",
    "profile": "plain",
    "functions": {
+    "W?.fn_init$n()v": {
+     "va": "0046ec5c",
+     "size": 124,
+     "mangled": "W?.fn_init$n()v"
+    },
     "StartStatus": {
      "va": "0046ef81",
      "size": 31,
@@ -1827,7 +1832,16 @@
      "mangled": "W?IsRunning$:MenuNetwork$n()i"
     }
    },
-   "data": {},
+   "data": {
+    "CONST2": {
+     "va": "0048e1b4",
+     "size": 12
+    },
+    "_DATA": {
+     "va": "004a3f98",
+     "size": 12
+    }
+   },
    "accepted": "2026-11-09"
   }
  }
