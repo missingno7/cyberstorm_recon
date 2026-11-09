@@ -9143,6 +9143,22 @@
    "tu": "src/_unknown/tu_0043ef34.c",
    "evidence": "strict match 2026-11-09"
   },
+  "f_004413e0": {
+   "va": "004413e0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_004413e0",
+   "tu": "src/_unknown/tu_004413e0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_00441456": {
+   "va": "00441456",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_00441456",
+   "tu": "src/_unknown/tu_004413e0.c",
+   "evidence": "placed (at) in src/_unknown/tu_004413e0.c 2026-11-09"
+  },
   "f_004418a9": {
    "va": "004418a9",
    "kind": "func",
@@ -9150,12 +9166,21 @@
    "mangled": "f_004418a9",
    "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
   },
+  "f_00441b19": {
+   "va": "00441b19",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_00441b19",
+   "tu": "src/_unknown/tu_004413e0.c",
+   "evidence": "placed (at) in src/_unknown/tu_004413e0.c 2026-11-09"
+  },
   "f_00441c2c": {
    "va": "00441c2c",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "f_00441c2c",
-   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+   "tu": "src/_unknown/tu_004413e0.c",
+   "evidence": "strict match 2026-11-09"
   },
   "f_00441ca7": {
    "va": "00441ca7",
@@ -9167,16 +9192,18 @@
   "f_00441ce1": {
    "va": "00441ce1",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "f_00441ce1",
-   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+   "tu": "src/_unknown/tu_004413e0.c",
+   "evidence": "strict match 2026-11-09"
   },
   "f_00441d1f": {
    "va": "00441d1f",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "f_00441d1f",
-   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+   "tu": "src/_unknown/tu_004413e0.c",
+   "evidence": "strict match 2026-11-09"
   },
   "MainMenuMissionReady": {
    "va": "00441d5d",
@@ -9185,12 +9212,68 @@
    "mangled": "W?MainMenuMissionReady$n(pnv)i",
    "evidence": "implied by src/_unknown/tu_00407204.c 2026-11-09"
   },
+  "f_00441d5d": {
+   "va": "00441d5d",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_00441d5d",
+   "tu": "src/_unknown/tu_004413e0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_00441dad": {
+   "va": "00441dad",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_00441dad",
+   "tu": "src/_unknown/tu_004413e0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_00441ec5": {
+   "va": "00441ec5",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_00441ec5",
+   "tu": "src/_unknown/tu_004413e0.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "f_00442045": {
    "va": "00442045",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "f_00442045",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "f_0044220e": {
+   "va": "0044220e",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0044220e",
+   "tu": "src/_unknown/tu_004413e0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_00442258": {
+   "va": "00442258",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_00442258",
+   "tu": "src/_unknown/tu_004413e0.c",
+   "evidence": "placed (at) in src/_unknown/tu_004413e0.c 2026-11-09"
+  },
+  "f_004422f0": {
+   "va": "004422f0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_004422f0",
+   "tu": "src/_unknown/tu_004413e0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_004423d7": {
+   "va": "004423d7",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_004423d7",
+   "tu": "src/_unknown/tu_004413e0.c",
+   "evidence": "placed (at) in src/_unknown/tu_004413e0.c 2026-11-09"
   },
   "ActorActivate": {
    "va": "004424d4",
@@ -9199,12 +9282,124 @@
    "mangled": "W?ActorActivate$n(pn$ActorRecord$$)v",
    "evidence": "implied by src/multi/message.c 2026-11-09"
   },
+  "f_004424d4": {
+   "va": "004424d4",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_004424d4",
+   "tu": "src/_unknown/tu_004413e0.c",
+   "evidence": "placed (at) in src/_unknown/tu_004413e0.c 2026-11-09"
+  },
+  "W?.fn_init$n()v@_unknown/tu_004425d4.c": {
+   "va": "004425d4",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/_unknown/tu_004425d4.c",
+   "evidence": "placed (at) in src/_unknown/tu_004425d4.c 2026-11-09"
+  },
+  "MovementPopup::$ct": {
+   "va": "0044276c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:MovementPopup$n()_",
+   "tu": "src/_unknown/tu_004425d4.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MovementPopup::OpenMove": {
+   "va": "00442783",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?OpenMove$:MovementPopup$n(pn$InputReq$$)v",
+   "tu": "src/_unknown/tu_004425d4.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MovementPopup::Close": {
+   "va": "004427c7",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Close$:MovementPopup$n()v",
+   "tu": "src/_unknown/tu_004425d4.c",
+   "evidence": "placed (at) in src/_unknown/tu_004425d4.c 2026-11-09"
+  },
+  "MovementPopup::Process": {
+   "va": "00442800",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Process$:MovementPopup$n()i",
+   "tu": "src/_unknown/tu_004425d4.c",
+   "evidence": "placed (at) in src/_unknown/tu_004425d4.c 2026-11-09"
+  },
   "SimPanelDraw": {
+   "va": "004429dc",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SimPanelDraw$n(pn$MovementPopup$$)v",
+   "tu": "src/_unknown/tu_004425d4.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimPanelDraw#W?SimPanelDraw$n(pnv)v": {
    "va": "004429dc",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?SimPanelDraw$n(pnv)v",
    "evidence": "implied by src/sim/sim.c 2026-11-09"
+  },
+  "MovementPopup::Invalidate": {
+   "va": "004429f8",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Invalidate$:MovementPopup$n()v",
+   "tu": "src/_unknown/tu_004425d4.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "StopMoving": {
+   "va": "00442a04",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?StopMoving$n(pnvi)v",
+   "tu": "src/_unknown/tu_004425d4.c",
+   "evidence": "placed (at) in src/_unknown/tu_004425d4.c 2026-11-09"
+  },
+  "MovementCommand": {
+   "va": "00442af4",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MovementCommand$n(pn$SimGame$$)v",
+   "tu": "src/_unknown/tu_004425d4.c",
+   "evidence": "placed (at) in src/_unknown/tu_004425d4.c 2026-11-09"
+  },
+  "MovementPopup::$dt": {
+   "va": "00443100",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$dt:MovementPopup$n()_",
+   "tu": "src/_unknown/tu_004425d4.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "W?.fn_init$n()v@_unknown/tu_0044310c.c": {
+   "va": "0044310c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/_unknown/tu_0044310c.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "WeaponControl::$ct": {
+   "va": "0044318c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:WeaponControl$n()_",
+   "tu": "src/_unknown/tu_0044310c.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "WeaponControl::Reset": {
+   "va": "004431b3",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Reset$:WeaponControl$n(ui)v",
+   "tu": "src/_unknown/tu_0044310c.c",
+   "evidence": "strict match 2026-11-09"
   },
   "PopRegisterItem": {
    "va": "004431c5",
@@ -9213,7 +9408,87 @@
    "mangled": "W?PopRegisterItem$n(pnvi)v",
    "evidence": "implied by src/pop/psystem.c 2026-11-09"
   },
+  "WeaponControl::SetText": {
+   "va": "004431c5",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetText$:WeaponControl$n(pnxa)v",
+   "tu": "src/_unknown/tu_0044310c.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "WeaponControl::Draw": {
+   "va": "004431d1",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Draw$:WeaponControl$n(ui)v",
+   "tu": "src/_unknown/tu_0044310c.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "WeaponControl::Event": {
+   "va": "00443328",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Event$:WeaponControl$n(uiul)i",
+   "tu": "src/_unknown/tu_0044310c.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "WeaponPopup::$ct": {
+   "va": "0044332e",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:WeaponPopup$n()_",
+   "tu": "src/_unknown/tu_0044310c.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "WeaponPopup::OpenWeapons": {
+   "va": "00443366",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?OpenWeapons$:WeaponPopup$n(pn$InputReq$$)v",
+   "tu": "src/_unknown/tu_0044310c.c",
+   "evidence": "placed (at) in src/_unknown/tu_0044310c.c 2026-11-09"
+  },
+  "WeaponPopup::Close": {
+   "va": "0044346f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Close$:WeaponPopup$n()v",
+   "tu": "src/_unknown/tu_0044310c.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "WeaponPopup::UpdateWeapons": {
+   "va": "00443489",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?UpdateWeapons$:WeaponPopup$n()v",
+   "tu": "src/_unknown/tu_0044310c.c",
+   "evidence": "placed (at) in src/_unknown/tu_0044310c.c 2026-11-09"
+  },
+  "WeaponPopup::Process": {
+   "va": "004435e5",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Process$:WeaponPopup$n()i",
+   "tu": "src/_unknown/tu_0044310c.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "WeaponPopup::UpdatePreview": {
+   "va": "004437a2",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?UpdatePreview$:WeaponPopup$n()v",
+   "tu": "src/_unknown/tu_0044310c.c",
+   "evidence": "placed (at) in src/_unknown/tu_0044310c.c 2026-11-09"
+  },
   "SimActionsDraw": {
+   "va": "00443cec",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SimActionsDraw$n(pn$WeaponPopup$$)v",
+   "tu": "src/_unknown/tu_0044310c.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimActionsDraw#W?SimActionsDraw$n(pnv)v": {
    "va": "00443cec",
    "kind": "func",
    "status": "hypothesis",
@@ -9227,6 +9502,69 @@
    "mangled": "W?f_00443d08$n(pnv)v",
    "evidence": "implied by src/_unknown/tu_004556f0.c 2026-11-09"
   },
+  "WeaponPopup::Invalidate": {
+   "va": "00443d08",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Invalidate$:WeaponPopup$n()v",
+   "tu": "src/_unknown/tu_0044310c.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "WeaponPopup::SetMode": {
+   "va": "00443d14",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetMode$:WeaponPopup$n(iii)v",
+   "tu": "src/_unknown/tu_0044310c.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "WeaponCommand": {
+   "va": "00443d2f",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?WeaponCommand$n(pn$SimGame$$)v",
+   "tu": "src/_unknown/tu_0044310c.c",
+   "evidence": "placed (at) in src/_unknown/tu_0044310c.c 2026-11-09"
+  },
+  "W?.tdctor$:MenuImageButton$n()rn$1$": {
+   "va": "00443e88",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.tdctor$:MenuImageButton$n()rn$1$",
+   "tu": "src/_unknown/tu_0044310c.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "W?$Wda018$:WeaponControl$n(ui)pnv": {
+   "va": "00443ea0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$Wda018$:WeaponControl$n(ui)pnv",
+   "tu": "src/_unknown/tu_0044310c.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "W?$Wda018$:MenuImageButton$n(ui)pnv": {
+   "va": "00443eb8",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$Wda018$:MenuImageButton$n(ui)pnv",
+   "tu": "src/_unknown/tu_0044310c.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimMapGadget::$dt": {
+   "va": "00443ed0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:SimMapGadget$n()_",
+   "evidence": "implied by src/_unknown/tu_0044310c.c 2026-11-09"
+  },
+  "WeaponControl::$dt": {
+   "va": "00443f14",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$dt:WeaponControl$n()_",
+   "tu": "src/_unknown/tu_0044310c.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "PopNodeReset": {
    "va": "00443f58",
    "kind": "func",
@@ -9234,6 +9572,13 @@
    "mangled": "W?PopNodeReset$n(pn$PopNode$$)v",
    "tu": "src/pop/psystem.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "WeaponPopup::$dt": {
+   "va": "00443f58",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:WeaponPopup$n()_",
+   "evidence": "implied by src/_unknown/tu_0044310c.c 2026-11-09"
   },
   "PopModuleInit": {
    "va": "00443f64",
@@ -15810,6 +16155,13 @@
    "mangled": "W?f_00477295$n(pna)v",
    "evidence": "implied by src/shell/hotseat.c 2026-11-09"
   },
+  "f_00477304": {
+   "va": "00477304",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_00477304",
+   "evidence": "implied by src/_unknown/tu_0044310c.c 2026-11-09"
+  },
   "f_477352": {
    "va": "00477352",
    "kind": "func",
@@ -18556,6 +18908,20 @@
    "mangled": "W?g4941e8$ni",
    "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
   },
+  "unitTypes": {
+   "va": "00494a98",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?unitTypes$n[]$TypeItem$$",
+   "evidence": "implied by src/_unknown/tu_004413e0.c 2026-11-09"
+  },
+  "weaponTypes": {
+   "va": "0049cb22",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?weaponTypes$n[]a",
+   "evidence": "implied by src/_unknown/tu_004413e0.c 2026-11-09"
+  },
   "weaponInfoTable": {
    "va": "0049cb38",
    "kind": "data",
@@ -18563,12 +18929,40 @@
    "mangled": "W?weaponInfoTable$n[]$WeaponInfo$$",
    "evidence": "implied by src/sim/apply.c 2026-11-09"
   },
+  "systemTypes": {
+   "va": "0049dfe9",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?systemTypes$n[]a",
+   "evidence": "implied by src/_unknown/tu_004413e0.c 2026-11-09"
+  },
+  "unitTemplates": {
+   "va": "0049e9b8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?unitTemplates$n[]$UnitTemplate$$",
+   "evidence": "implied by src/_unknown/tu_004413e0.c 2026-11-09"
+  },
   "gVehicleInfo": {
    "va": "0049f958",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gVehicleInfo$n[]$UnitInfo$$",
    "evidence": "implied by src/logic/lgen.c 2026-11-09"
+  },
+  "moveControls": {
+   "va": "0049ff80",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?moveControls$n[]pn$GuiControl$$",
+   "evidence": "implied by src/_unknown/tu_004425d4.c 2026-11-09"
+  },
+  "weaponControls": {
+   "va": "0049ffcc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?weaponControls$n[]pn$GuiControl$$",
+   "evidence": "implied by src/_unknown/tu_0044310c.c 2026-11-09"
   },
   "link_data": {
    "va": "004a0000",
@@ -23008,6 +23402,20 @@
    "mangled": "W?g4d0840$ni",
    "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
   },
+  "inventoryRows": {
+   "va": "004d0844",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?inventoryRows$n[]$InventoryRow$$",
+   "evidence": "implied by src/_unknown/tu_004413e0.c 2026-11-09"
+  },
+  "sortRows": {
+   "va": "004d0f48",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?sortRows$n[]$Choice$$",
+   "evidence": "implied by src/_unknown/tu_004413e0.c 2026-11-09"
+  },
   "simPanel": {
    "va": "004d16b0",
    "kind": "data",
@@ -23015,12 +23423,40 @@
    "mangled": "W?simPanel$na",
    "evidence": "implied by src/sim/sim.c 2026-11-09"
   },
+  "weaponRows": {
+   "va": "004d1730",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?weaponRows$n[]$WeaponControl$$",
+   "evidence": "implied by src/_unknown/tu_0044310c.c 2026-11-09"
+  },
+  "weaponButtons": {
+   "va": "004d1910",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?weaponButtons$n[]$MenuImageButton$$",
+   "evidence": "implied by src/_unknown/tu_0044310c.c 2026-11-09"
+  },
+  "weaponMap": {
+   "va": "004d1a70",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?weaponMap$n$SimMapGadget$$",
+   "evidence": "implied by src/_unknown/tu_0044310c.c 2026-11-09"
+  },
   "simActions": {
    "va": "004d1a9c",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?simActions$na",
    "evidence": "implied by src/sim/sim.c 2026-11-09"
+  },
+  "simActions#W?simActions$n$WeaponPopup$$": {
+   "va": "004d1a9c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?simActions$n$WeaponPopup$$",
+   "evidence": "implied by src/_unknown/tu_0044310c.c 2026-11-09"
   },
   "g4d1cfc": {
    "va": "004d1cfc",
@@ -23266,6 +23702,13 @@
    "status": "hypothesis",
    "mangled": "W?gRemoteActorKind$ni",
    "evidence": "implied by src/multi/message.c 2026-11-09"
+  },
+  "weaponReport": {
+   "va": "004d2e06",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?weaponReport$n$WeaponReport$$",
+   "evidence": "implied by src/_unknown/tu_0044310c.c 2026-11-09"
   },
   "gFogDefaultData": {
    "va": "004d33f5",

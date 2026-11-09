@@ -7464,6 +7464,209 @@
    },
    "data": {},
    "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_004413e0.c": {
+   "as": "_unknown\\tu_004413e0.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "f_004413e0": {
+     "va": "004413e0",
+     "size": 118,
+     "mangled": "f_004413e0"
+    },
+    "f_00441c2c": {
+     "va": "00441c2c",
+     "size": 123,
+     "mangled": "f_00441c2c"
+    },
+    "f_00441ce1": {
+     "va": "00441ce1",
+     "size": 62,
+     "mangled": "f_00441ce1"
+    },
+    "f_00441d1f": {
+     "va": "00441d1f",
+     "size": 62,
+     "mangled": "f_00441d1f"
+    },
+    "f_00441d5d": {
+     "va": "00441d5d",
+     "size": 80,
+     "mangled": "f_00441d5d"
+    },
+    "f_00441dad": {
+     "va": "00441dad",
+     "size": 280,
+     "mangled": "f_00441dad"
+    },
+    "f_00441ec5": {
+     "va": "00441ec5",
+     "size": 384,
+     "mangled": "f_00441ec5"
+    },
+    "f_0044220e": {
+     "va": "0044220e",
+     "size": 74,
+     "mangled": "f_0044220e"
+    },
+    "f_004422f0": {
+     "va": "004422f0",
+     "size": 231,
+     "mangled": "f_004422f0"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_004425d4.c": {
+   "as": "_unknown\\tu_004425d4.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "MovementPopup::$ct": {
+     "va": "0044276c",
+     "size": 23,
+     "mangled": "W?$ct:MovementPopup$n()_"
+    },
+    "MovementPopup::OpenMove": {
+     "va": "00442783",
+     "size": 68,
+     "mangled": "W?OpenMove$:MovementPopup$n(pn$InputReq$$)v"
+    },
+    "SimPanelDraw": {
+     "va": "004429dc",
+     "size": 28,
+     "mangled": "W?SimPanelDraw$n(pn$MovementPopup$$)v"
+    },
+    "MovementPopup::Invalidate": {
+     "va": "004429f8",
+     "size": 12,
+     "mangled": "W?Invalidate$:MovementPopup$n()v"
+    },
+    "MovementPopup::$dt": {
+     "va": "00443100",
+     "size": 12,
+     "mangled": "W?$dt:MovementPopup$n()_"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048b29c",
+     "size": 12
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0044310c.c": {
+   "as": "_unknown\\tu_0044310c.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "0044310c",
+     "size": 128,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "WeaponControl::$ct": {
+     "va": "0044318c",
+     "size": 39,
+     "mangled": "W?$ct:WeaponControl$n()_"
+    },
+    "WeaponControl::Reset": {
+     "va": "004431b3",
+     "size": 18,
+     "mangled": "W?Reset$:WeaponControl$n(ui)v"
+    },
+    "WeaponControl::SetText": {
+     "va": "004431c5",
+     "size": 12,
+     "mangled": "W?SetText$:WeaponControl$n(pnxa)v"
+    },
+    "WeaponControl::Draw": {
+     "va": "004431d1",
+     "size": 343,
+     "mangled": "W?Draw$:WeaponControl$n(ui)v"
+    },
+    "WeaponControl::Event": {
+     "va": "00443328",
+     "size": 6,
+     "mangled": "W?Event$:WeaponControl$n(uiul)i"
+    },
+    "WeaponPopup::$ct": {
+     "va": "0044332e",
+     "size": 56,
+     "mangled": "W?$ct:WeaponPopup$n()_"
+    },
+    "WeaponPopup::Close": {
+     "va": "0044346f",
+     "size": 26,
+     "mangled": "W?Close$:WeaponPopup$n()v"
+    },
+    "WeaponPopup::Process": {
+     "va": "004435e5",
+     "size": 445,
+     "mangled": "W?Process$:WeaponPopup$n()i"
+    },
+    "SimActionsDraw": {
+     "va": "00443cec",
+     "size": 28,
+     "mangled": "W?SimActionsDraw$n(pn$WeaponPopup$$)v"
+    },
+    "WeaponPopup::Invalidate": {
+     "va": "00443d08",
+     "size": 12,
+     "mangled": "W?Invalidate$:WeaponPopup$n()v"
+    },
+    "WeaponPopup::SetMode": {
+     "va": "00443d14",
+     "size": 27,
+     "mangled": "W?SetMode$:WeaponPopup$n(iii)v"
+    },
+    "W?.tdctor$:MenuImageButton$n()rn$1$": {
+     "va": "00443e88",
+     "size": 23,
+     "mangled": "W?.tdctor$:MenuImageButton$n()rn$1$"
+    },
+    "W?$Wda018$:WeaponControl$n(ui)pnv": {
+     "va": "00443ea0",
+     "size": 21,
+     "mangled": "W?$Wda018$:WeaponControl$n(ui)pnv"
+    },
+    "W?$Wda018$:MenuImageButton$n(ui)pnv": {
+     "va": "00443eb8",
+     "size": 21,
+     "mangled": "W?$Wda018$:MenuImageButton$n(ui)pnv"
+    },
+    "WeaponControl::$dt": {
+     "va": "00443f14",
+     "size": 67,
+     "mangled": "W?$dt:WeaponControl$n()_"
+    }
+   },
+   "data": {
+    "CONST2": {
+     "va": "0048dbb0",
+     "size": 36
+    },
+    "_DATA": {
+     "va": "0049ffa4",
+     "size": 12
+    },
+    "W?$Wvf0hos:WeaponControl$$nx[]pn()v": {
+     "va": "0048dc18",
+     "size": 20
+    },
+    "W?$Wts0hn$WeaponControl$$$nx[]uc": {
+     "va": "0048dc00",
+     "size": 17
+    },
+    "W?$Wts0jn$MenuImageButton$$$nx[]uc": {
+     "va": "0048d978",
+     "size": 17
+    }
+   },
+   "accepted": "2026-11-09"
   }
  },
  "accepted_losses": [
