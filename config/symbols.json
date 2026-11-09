@@ -2156,6 +2156,13 @@
    "mangled": "W?$ct:GuiControl$n(ulul)_",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
   },
+  "GuiControl::$dt": {
+   "va": "00426cf6",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:GuiControl$n()_",
+   "evidence": "implied by src/_unknown/tu_00452950.c 2026-11-09"
+  },
   "GuiControlStyle": {
    "va": "00426d33",
    "kind": "func",
@@ -3628,6 +3635,13 @@
    "tu": "src/terr/tfog.c",
    "evidence": "strict match 2026-11-09"
   },
+  "SimLoadImage": {
+   "va": "004336d0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SimLoadImage$n(pnvipnv)v",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
   "f_00434a20": {
    "va": "00434a20",
    "kind": "func",
@@ -3770,6 +3784,13 @@
    "mangled": "W?Fixup$:ActorListObject$n()v",
    "evidence": "implied by src/multi/message.c 2026-11-09"
   },
+  "SimLogicFlags": {
+   "va": "00436db7",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SimLogicFlags$n(pnv)ui",
+   "evidence": "implied by src/_unknown/tu_00452950.c 2026-11-09"
+  },
   "PilotChecksum": {
    "va": "0043819f",
    "kind": "func",
@@ -3784,6 +3805,13 @@
    "mangled": "W?PopFindItem$n(pnvii)i",
    "evidence": "implied by src/pop/psystem.c 2026-11-09"
   },
+  "PopFindItem#W?PopFindItem$n(pn$ActorUnit$$ii)pn$ActorItem$$": {
+   "va": "00438374",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PopFindItem$n(pn$ActorUnit$$ii)pn$ActorItem$$",
+   "evidence": "implied by src/_unknown/tu_00452950.c 2026-11-09"
+  },
   "PopItemReady": {
    "va": "004383e1",
    "kind": "func",
@@ -3797,6 +3825,20 @@
    "status": "hypothesis",
    "mangled": "W?StateInvoke$n(pnvii)i",
    "evidence": "implied by src/logic/lactor.c 2026-11-09"
+  },
+  "StateInvoke#W?StateInvoke$n(pn$UnitState$$pnlpnl)i": {
+   "va": "00438602",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?StateInvoke$n(pn$UnitState$$pnlpnl)i",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
+  "StateInvokeEnergy": {
+   "va": "0043863d",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?StateInvokeEnergy$n(pn$UnitState$$pnlpnl)i",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
   },
   "PopItemValue": {
    "va": "00438730",
@@ -3832,6 +3874,20 @@
    "status": "hypothesis",
    "mangled": "W?StateAction$n(pnv)i",
    "evidence": "implied by src/logic/lactor.c 2026-11-09"
+  },
+  "SimAddMission": {
+   "va": "0043aa62",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SimAddMission$n(pnv)v",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
+  "SimLoadPalette": {
+   "va": "0043b74c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SimLoadPalette$n(ipnv)v",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
   },
   "HercPrepareAssets": {
    "va": "0043b7a4",
@@ -3882,6 +3938,13 @@
    "mangled": "W?Count$:ProfileManager$n()i",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "ProfileManager::Mission": {
+   "va": "0043c40e",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Mission$:ProfileManager$n(i)pnv",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
   "HasMission": {
    "va": "0043cab9",
    "kind": "func",
@@ -3930,6 +3993,13 @@
    "status": "hypothesis",
    "mangled": "BriefMissionFile",
    "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+  },
+  "ProfileManager::BeginMissions": {
+   "va": "0043ef64",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?BeginMissions$:ProfileManager$n()v",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
   },
   "GetGameInfo": {
    "va": "00440ea6",
@@ -4233,12 +4303,55 @@
    "mangled": "W?WorldDrawTerrain$n(pnv)v",
    "evidence": "implied by src/sim/fxout.c 2026-11-09"
   },
+  "SimValueGadget::$dt": {
+   "va": "0044d710",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$dt:SimValueGadget$n()_",
+   "tu": "src/_unknown/tu_00452950.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimSetMode": {
+   "va": "0044da10",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SimSetMode$n(pn$SimGame$$i)v",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
+  "SimSetView": {
+   "va": "0044da90",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SimSetView$n(pn$SimGame$$i)v",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
+  "SimSetFocus": {
+   "va": "0044dd40",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SimSetFocus$n(pn$SimGame$$pn$ActorRecord$$)v",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
   "ModeCheck": {
    "va": "0044eb00",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?ModeCheck$n(pnxa)i",
    "evidence": "implied by src/logic/lactor.c 2026-11-09"
+  },
+  "SimSetUpdate": {
+   "va": "0044ffb0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SimSetUpdate$n(pn$SimGame$$i)v",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
+  "SimRefreshPanel": {
+   "va": "00450660",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SimRefreshPanel$n(pn$SimGame$$i)v",
+   "evidence": "implied by src/_unknown/tu_00452950.c 2026-11-09"
   },
   "GetModePlayer": {
    "va": "00450a30",
@@ -4247,12 +4360,219 @@
    "mangled": "W?GetModePlayer$n(pnvi)pn$PlayerSlot$$",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
   },
+  "SimGameDrawPortrait": {
+   "va": "00450eb0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SimGameDrawPortrait$n(pn$SimGame$$)v",
+   "tu": "src/sim/simgame.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimGameRefresh": {
+   "va": "00451000",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SimGameRefresh$n(pn$SimGame$$)v",
+   "tu": "src/sim/simgame.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimDrawBar": {
+   "va": "00451070",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SimDrawBar$n(llillll)v",
+   "tu": "src/sim/simgame.c",
+   "evidence": "placed (at) in src/sim/simgame.c 2026-11-09"
+  },
+  "SimGameDrawPanel": {
+   "va": "004511d0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SimGameDrawPanel$n(pn$SimGame$$)v",
+   "tu": "src/sim/simgame.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimGameDrawStatus": {
+   "va": "00451370",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SimGameDrawStatus$n(pn$SimGame$$)v",
+   "tu": "src/sim/simgame.c",
+   "evidence": "placed (at) in src/sim/simgame.c 2026-11-09"
+  },
+  "SimGameNothing": {
+   "va": "00451b00",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SimGameNothing$n()v",
+   "tu": "src/sim/simgame.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimGameBlink": {
+   "va": "00451b10",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SimGameBlink$n()v",
+   "tu": "src/sim/simgame.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimDrawHLine": {
+   "va": "00451be0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SimDrawHLine$n(lll)v",
+   "tu": "src/sim/simgame.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimDrawVLine": {
+   "va": "00451c70",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SimDrawVLine$n(lll)v",
+   "tu": "src/sim/simgame.c",
+   "evidence": "placed (at) in src/sim/simgame.c 2026-11-09"
+  },
+  "SimGameDrawActors": {
+   "va": "004521f0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SimGameDrawActors$n(pn$SimGame$$i)v",
+   "tu": "src/sim/simgame.c",
+   "evidence": "placed (at) in src/sim/simgame.c 2026-11-09"
+  },
+  "SimGameLoad": {
+   "va": "00452340",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SimGameLoad$n(pn$SimGame$$pn$FileRecord$$)i",
+   "tu": "src/sim/simgame.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimGameSave": {
+   "va": "004524c0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SimGameSave$n(pn$SimGame$$pn$FileRecord$$)i",
+   "tu": "src/sim/simgame.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimGameLeave": {
+   "va": "00452870",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SimGameLeave$n(pn$SimGame$$)v",
+   "tu": "src/sim/simgame.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimGameLoadMissions": {
+   "va": "004528f0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SimGameLoadMissions$n()v",
+   "tu": "src/sim/simgame.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimGameEnd": {
+   "va": "00452940",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SimGameEnd$n()v",
+   "tu": "src/sim/simgame.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimFireAt": {
+   "va": "00452950",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SimFireAt$n(pn$SimGame$$pnvpnll)i",
+   "tu": "src/_unknown/tu_00452950.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimFire": {
+   "va": "00452980",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SimFire$n(pn$SimGame$$pnvlll)i",
+   "evidence": "implied by src/_unknown/tu_00452950.c 2026-11-09"
+  },
+  "SimInTrapezoid": {
+   "va": "00453310",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SimInTrapezoid$n(pnx$SimTrapezoid$$pnx$GuiPoint$$)i",
+   "tu": "src/_unknown/tu_00452950.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimDrawTrapezoid": {
+   "va": "00453390",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SimDrawTrapezoid$n(pnx$SimTrapezoid$$ll)v",
+   "tu": "src/_unknown/tu_00452950.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimImagePixel": {
+   "va": "00453430",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SimImagePixel$n(pnx$MenuImage$$ll)i",
+   "tu": "src/_unknown/tu_00452950.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "BriefModuleSetup": {
    "va": "00453470",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "BriefModuleSetup",
    "evidence": "implied by src/sim/target.c 2026-11-09"
+  },
+  "SimMapGadget::$ct": {
+   "va": "00453470",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$ct:SimMapGadget$n(ulllul)_",
+   "tu": "src/_unknown/tu_00452950.c",
+   "evidence": "placed (found) in src/_unknown/tu_00452950.c 2026-11-09"
+  },
+  "SimMapGadget::HitTest": {
+   "va": "004534b0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HitTest$:SimMapGadget$n(pnx$GuiPoint$$)i",
+   "tu": "src/_unknown/tu_00452950.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimMapGadget::Draw": {
+   "va": "00453580",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Draw$:SimMapGadget$n(ui)v",
+   "tu": "src/_unknown/tu_00452950.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimMapGadget::Reset": {
+   "va": "00453770",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Reset$:SimMapGadget$n(ui)v",
+   "tu": "src/_unknown/tu_00452950.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimMapGadget::Event": {
+   "va": "00453790",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Event$:SimMapGadget$n(uiul)i",
+   "tu": "src/_unknown/tu_00452950.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimValueGadget::Event": {
+   "va": "004537f0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Event$:SimValueGadget$n(uiul)i",
+   "tu": "src/_unknown/tu_00452950.c",
+   "evidence": "strict match 2026-11-09"
   },
   "BriefModuleOpen": {
    "va": "00453800",
@@ -4261,19 +4581,164 @@
    "mangled": "BriefModuleOpen",
    "evidence": "implied by src/sim/target.c 2026-11-09"
   },
+  "SimImageGadget::$ct": {
+   "va": "00453800",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$ct:SimImageGadget$n(llul)_",
+   "tu": "src/_unknown/tu_00452950.c",
+   "evidence": "placed (found) in src/_unknown/tu_00452950.c 2026-11-09"
+  },
+  "SimImageGadget::HitTest": {
+   "va": "00453840",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HitTest$:SimImageGadget$n(pnx$GuiPoint$$)i",
+   "tu": "src/_unknown/tu_00452950.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimImageGadget::Draw": {
+   "va": "004538f0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Draw$:SimImageGadget$n(ui)v",
+   "tu": "src/_unknown/tu_00452950.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimImageGadget::Reset": {
+   "va": "00453a00",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Reset$:SimImageGadget$n(ui)v",
+   "tu": "src/_unknown/tu_00452950.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimImageGadget::Event": {
+   "va": "00453a10",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Event$:SimImageGadget$n(uiul)i",
+   "tu": "src/_unknown/tu_00452950.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimValueGadget::$ct": {
+   "va": "00453af0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:SimValueGadget$n(ul)_",
+   "tu": "src/_unknown/tu_00452950.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimValueGadget::Reset": {
+   "va": "00453b20",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Reset$:SimValueGadget$n(ui)v",
+   "tu": "src/_unknown/tu_00452950.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimValueGadget::Draw": {
+   "va": "00453b40",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Draw$:SimValueGadget$n(ui)v",
+   "tu": "src/_unknown/tu_00452950.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimValueGadget::Value": {
+   "va": "00453c50",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Value$:SimValueGadget$n()l",
+   "tu": "src/_unknown/tu_00452950.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimValueGadget::SetValue": {
+   "va": "00453c60",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetValue$:SimValueGadget$n(l)v",
+   "tu": "src/_unknown/tu_00452950.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "Interpolate": {
    "va": "00453c70",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?Interpolate$n(iiiii)i",
-   "evidence": "implied by src/sim/apply.c 2026-11-09"
+   "tu": "src/_unknown/tu_00452950.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimDamageActor": {
+   "va": "00453cb0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SimDamageActor$n(pn$SimGame$$pn$ActorRecord$$i)v",
+   "tu": "src/_unknown/tu_00452950.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ModeEvent": {
    "va": "00453d40",
    "kind": "func",
+   "status": "matched",
+   "mangled": "W?ModeEvent$n(pn$SimGame$$pn$ActorRecord$$ii)v",
+   "tu": "src/_unknown/tu_00452950.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ModeEvent#W?ModeEvent$n(pnapn$ActorRecord$$ii)v": {
+   "va": "00453d40",
+   "kind": "func",
    "status": "hypothesis",
    "mangled": "W?ModeEvent$n(pnapn$ActorRecord$$ii)v",
-   "evidence": "implied by src/sim/apply.c 2026-11-09"
+   "evidence": "prior binding implied by src/sim/apply.c (kept as alias when o6 matched ModeEvent)"
+  },
+  "SimActorKilled": {
+   "va": "00453e40",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SimActorKilled$n(pn$SimGame$$pn$ActorRecord$$ii)v",
+   "tu": "src/_unknown/tu_00452950.c",
+   "evidence": "placed (at) in src/_unknown/tu_00452950.c 2026-11-09"
+  },
+  "SimMessage": {
+   "va": "00453f20",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SimMessage$n(pn$SimGame$$pnxa)v",
+   "tu": "src/_unknown/tu_00452950.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimSoundAtActor": {
+   "va": "00453f50",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SimSoundAtActor$n(pn$SimSound$$pn$ActorRecord$$)v",
+   "tu": "src/_unknown/tu_00452950.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimSoundAtTile": {
+   "va": "00453fa0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SimSoundAtTile$n(pn$SimSound$$i)v",
+   "tu": "src/_unknown/tu_00452950.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimSoundSetup": {
+   "va": "00453fd0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SimSoundSetup$n(pn$SimSound$$pn$ExploPoint$$)v",
+   "tu": "src/_unknown/tu_00452950.c",
+   "evidence": "placed (at) in src/_unknown/tu_00452950.c 2026-11-09"
+  },
+  "SimDistanceToDepot": {
+   "va": "00454180",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SimDistanceToDepot$n(pn$SimGame$$pn$ActorRecord$$)i",
+   "tu": "src/_unknown/tu_00452950.c",
+   "evidence": "placed (at) in src/_unknown/tu_00452950.c 2026-11-09"
   },
   "ResetPlayer": {
    "va": "004543d0",
@@ -4837,6 +5302,20 @@
    "mangled": "W?AnimFrames$n(i)pn$ExploAnim$$",
    "evidence": "implied by src/sim/explo.c 2026-11-09"
   },
+  "SimAnimAdvance": {
+   "va": "0045a1c0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SimAnimAdvance$n(pn$SimAnim$$)v",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
+  "SimAnimFrame": {
+   "va": "0045a210",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SimAnimFrame$n(pn$SimAnim$$i)pn$MenuImage$$",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
   "TargetModuleInit": {
    "va": "0045a600",
    "kind": "func",
@@ -5262,6 +5741,34 @@
    "status": "hypothesis",
    "mangled": "W?FxDamage$n(pn$WeaponInfo$$pn$ActorRecord$$ii)v",
    "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
+  "SimLoadExtra": {
+   "va": "00460e50",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SimLoadExtra$n(pn$FileRecord$$)v",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
+  "SimSaveExtra": {
+   "va": "00460f50",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SimSaveExtra$n(pn$FileRecord$$)v",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
+  "LogicSystem::Load": {
+   "va": "00462d31",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Load$:LogicSystem$n(pn$FileRecord$$)i",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
+  "LogicSystem::Save": {
+   "va": "00462d9a",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Save$:LogicSystem$n(pn$FileRecord$$)i",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
   },
   "ActorRead": {
    "va": "00463b18",
@@ -5902,6 +6409,13 @@
    "mangled": "W?LogicTextAppend$n(pnvpnxa)v",
    "tu": "src/logic/lsys.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "LogicTextAppend#W?LogicTextAppend$n(pn$LogicSystem$$pnxa)v": {
+   "va": "0046b05d",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LogicTextAppend$n(pn$LogicSystem$$pnxa)v",
+   "evidence": "implied by src/_unknown/tu_00452950.c 2026-11-09"
   },
   "LogicTextPrevious": {
    "va": "0046b140",
@@ -8309,6 +8823,13 @@
    "mangled": "W?ApplyPaletteData$n(pnvii)v",
    "evidence": "implied by src/gui/flic.c 2026-11-09"
   },
+  "SimPaletteCycle": {
+   "va": "0047b650",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SimPaletteCycle$n(pnv)v",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
   "MenuSetColors": {
    "va": "0047b930",
    "kind": "func",
@@ -8365,6 +8886,13 @@
    "mangled": "BriefBlit",
    "evidence": "implied by src/shell/missbrf.c 2026-11-09"
   },
+  "PopDrawSurface": {
+   "va": "0047bfa0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PopDrawSurface$n(pnviiiiii)v",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
   "MenuDrawImage": {
    "va": "0047bff0",
    "kind": "func",
@@ -8385,6 +8913,13 @@
    "status": "hypothesis",
    "mangled": "W?DrawSprite$n(pnvpn$ExploFrame$$iiiii)v",
    "evidence": "implied by src/sim/explo.c 2026-11-09"
+  },
+  "MenuImageData": {
+   "va": "0047c170",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuImageData$n(pnvpnx$MenuImage$$)pn$1$",
+   "evidence": "implied by src/_unknown/tu_00452950.c 2026-11-09"
   },
   "SurfaceFlush": {
    "va": "0047c240",
@@ -8635,6 +9170,13 @@
    "status": "hypothesis",
    "mangled": "W?MenuDrawText$n(pn$Font$$llpnxa)v",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "MenuDrawTextAt": {
+   "va": "0047cfc0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuDrawTextAt$n(pn$Font$$llipnxa)v",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
   },
   "RenderFormattedResourceText": {
    "va": "0047d080",
@@ -9164,6 +9706,13 @@
    "mangled": "W?Crc16$n(pnuspnvi)v",
    "evidence": "implied by src/multi/message.c 2026-11-09"
   },
+  "SimMarkPosition": {
+   "va": "0047f84e",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SimMarkPosition$n(llii)v",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
   "ISqrt": {
    "va": "0047f8ea",
    "kind": "func",
@@ -9177,6 +9726,20 @@
    "status": "hypothesis",
    "mangled": "W?TimerNow$n()ui",
    "evidence": "implied by src/sim/explo.c 2026-11-09"
+  },
+  "GameTimerSet": {
+   "va": "0047fca0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?GameTimerSet$n(pn$GameTimer$$ul)v",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
+  "GameTimerExpired": {
+   "va": "0047fce0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?GameTimerExpired$n(pn$GameTimer$$)i",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
   },
   "CriticalSection::$ct": {
    "va": "0047fd40",
@@ -9507,6 +10070,34 @@
    "mangled": "W?PTR_f_00446804_0048dd04$npnv",
    "evidence": "implied by src/pop/pherc.c 2026-11-09"
   },
+  "W?$Wts0in$SimImageGadget$$$nx[]uc": {
+   "va": "0048df88",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0in$SimImageGadget$$$nx[]uc",
+   "evidence": "implied by src/_unknown/tu_00452950.c 2026-11-09"
+  },
+  "W?$Wts0gn$SimMapGadget$$$nx[]uc": {
+   "va": "0048df88",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0gn$SimMapGadget$$$nx[]uc",
+   "evidence": "implied by src/_unknown/tu_00452950.c 2026-11-09"
+  },
+  "W?$Wvf0ios:SimImageGadget$$nx[]pn()v": {
+   "va": "0048dfb0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wvf0ios:SimImageGadget$$nx[]pn()v",
+   "evidence": "implied by src/_unknown/tu_00452950.c 2026-11-09"
+  },
+  "W?$Wvf0gos:SimMapGadget$$nx[]pn()v": {
+   "va": "0048dfc4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wvf0gos:SimMapGadget$$nx[]pn()v",
+   "evidence": "implied by src/_unknown/tu_00452950.c 2026-11-09"
+  },
   "W?$Wts0fn$ActorRecord$$$nx[]uc": {
    "va": "0048dfe4",
    "kind": "data",
@@ -9758,6 +10349,48 @@
    "status": "hypothesis",
    "mangled": "W?_DAT_004a00a4$ni",
    "evidence": "implied by src/pop/pherc.c 2026-11-09"
+  },
+  "g4a0338": {
+   "va": "004a0338",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4a0338$nl",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
+  "g4a033c": {
+   "va": "004a033c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4a033c$nl",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
+  "g4a0350": {
+   "va": "004a0350",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4a0350$n[]uc",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
+  "g4a042c": {
+   "va": "004a042c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4a042c$n$SimTrapezoid$$",
+   "evidence": "implied by src/_unknown/tu_00452950.c 2026-11-09"
+  },
+  "g4a0444": {
+   "va": "004a0444",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4a0444$n$SimTrapezoid$$",
+   "evidence": "implied by src/_unknown/tu_00452950.c 2026-11-09"
+  },
+  "g4a045c": {
+   "va": "004a045c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4a045c$n$SimTrapezoid$$",
+   "evidence": "implied by src/_unknown/tu_00452950.c 2026-11-09"
   },
   "animationMetaAt0cbc": {
    "va": "004a0cbc",
@@ -10844,6 +11477,20 @@
    "mangled": "W?gFogGlobalMode$nl",
    "evidence": "implied by src/terr/tfog.c 2026-11-09"
   },
+  "g4c68b4": {
+   "va": "004c68b4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4c68b4$na",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
+  "g4c9234": {
+   "va": "004c9234",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4c9234$na",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
   "profileManager": {
    "va": "004c934c",
    "kind": "data",
@@ -10977,6 +11624,13 @@
    "mangled": "W?g4d2498$npnv",
    "evidence": "implied by src/pop/psystem.c 2026-11-09"
   },
+  "g4d2498#W?g4d2498$npn$ActorRecord$$": {
+   "va": "004d2498",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4d2498$npn$ActorRecord$$",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
   "modeSwitch": {
    "va": "004d2722",
    "kind": "data",
@@ -11061,6 +11715,13 @@
    "mangled": "W?fallbackName$n$FastGrid$$",
    "evidence": "implied by src/terr/tfast.c (overload-safe migration 2026-11-09)"
   },
+  "fallbackName#W?fallbackName$n$TerrainGrid$$": {
+   "va": "004d3594",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?fallbackName$n$TerrainGrid$$",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
   "logicWorldOffsetX": {
    "va": "004d35a4",
    "kind": "data",
@@ -11095,6 +11756,20 @@
    "status": "hypothesis",
    "mangled": "W?animResourcePointerTable$npnul",
    "evidence": "implied by src/sim/anim.c 2026-11-09"
+  },
+  "g4d35e4": {
+   "va": "004d35e4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4d35e4$n$FastBuffer$$",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
+  "g4d35f4": {
+   "va": "004d35f4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4d35f4$n$FogBuffer$$",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
   },
   "gView": {
    "va": "004d360c",
@@ -11145,12 +11820,26 @@
    "mangled": "W?gGameTurn$ni",
    "evidence": "implied by src/sim/apply.c 2026-11-09"
   },
+  "g4d381c": {
+   "va": "004d381c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4d381c$n$ViewRect$$",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
   "gViewRect": {
    "va": "004d382c",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gViewRect$n$ViewRect$$",
    "evidence": "implied by src/sim/fxout.c 2026-11-09"
+  },
+  "g4d385c": {
+   "va": "004d385c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4d385c$n$ViewRect$$",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
   },
   "targetLimits": {
    "va": "004d388c",
@@ -11159,12 +11848,103 @@
    "mangled": "W?targetLimits$ni",
    "evidence": "implied by src/sim/target.c 2026-11-09"
   },
+  "g4d3c9c": {
+   "va": "004d3c9c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4d3c9c$n$GuiRect$$",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
+  "g4d3cec": {
+   "va": "004d3cec",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4d3cec$n$GuiRect$$",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
   "gFxSeed": {
    "va": "004d3e04",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gFxSeed$nui",
    "evidence": "implied by src/sim/fxout.c 2026-11-09"
+  },
+  "g4d4094": {
+   "va": "004d4094",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4d4094$n$GuiScreen$$",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
+  "W?timer$:.0$:?SimGameDrawPortrait$n(pn$SimGame$$)vn$GameTimer$$": {
+   "va": "004d40e4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?timer$:.0$:?SimGameDrawPortrait$n(pn$SimGame$$)vn$GameTimer$$",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
+  "W?$Wbi00$:.0$:?SimGameDrawPortrait$n(pn$SimGame$$)vn[]uc": {
+   "va": "004d40f0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wbi00$:.0$:?SimGameDrawPortrait$n(pn$SimGame$$)vn[]uc",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
+  "W?timer$:.0$:?SimGameBlink$n()vn$GameTimer$$": {
+   "va": "004d4108",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?timer$:.0$:?SimGameBlink$n()vn$GameTimer$$",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
+  "W?ticks$:.0$:?SimGameBlink$n()vni": {
+   "va": "004d4114",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?ticks$:.0$:?SimGameBlink$n()vni",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
+  "W?$Wbi00$:.0$:?SimGameBlink$n()vn[]uc": {
+   "va": "004d4118",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wbi00$:.0$:?SimGameBlink$n()vn[]uc",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
+  "g4d4150": {
+   "va": "004d4150",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4d4150$n$SimPoint$$",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
+  "W?timer$:.0$:?Event$n(uiul)i:SimMapGadget$n$GameTimer$$": {
+   "va": "004d4158",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?timer$:.0$:?Event$n(uiul)i:SimMapGadget$n$GameTimer$$",
+   "evidence": "implied by src/_unknown/tu_00452950.c 2026-11-09"
+  },
+  "W?$Wbi00$:.0$:?Event$n(uiul)i:SimMapGadget$n[]uc": {
+   "va": "004d4164",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wbi00$:.0$:?Event$n(uiul)i:SimMapGadget$n[]uc",
+   "evidence": "implied by src/_unknown/tu_00452950.c 2026-11-09"
+  },
+  "W?repeatTimer$:.0$:?Event$n(uiul)i:SimImageGadget$n$GameTimer$$": {
+   "va": "004d4168",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?repeatTimer$:.0$:?Event$n(uiul)i:SimImageGadget$n$GameTimer$$",
+   "evidence": "implied by src/_unknown/tu_00452950.c 2026-11-09"
+  },
+  "W?$Wbi00$:.0$:?Event$n(uiul)i:SimImageGadget$n[]uc": {
+   "va": "004d4174",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wbi00$:.0$:?Event$n(uiul)i:SimImageGadget$n[]uc",
+   "evidence": "implied by src/_unknown/tu_00452950.c 2026-11-09"
   },
   "actorCount": {
    "va": "004d41dc",
@@ -11957,6 +12737,13 @@
    "mangled": "W?gShellBackground$n[]a",
    "evidence": "implied by src/shell/missbrf.c 2026-11-09"
   },
+  "g511dc0": {
+   "va": "00511dc0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g511dc0$n$Font$$",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
   "gShellFont": {
    "va": "00511dc8",
    "kind": "data",
@@ -12243,6 +13030,13 @@
    "status": "hypothesis",
    "mangled": "W?DAT_0051390c$nl",
    "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "gBriefDrawSource#W?gBriefDrawSource$n$ViewRect$$": {
+   "va": "0051390c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gBriefDrawSource$n$ViewRect$$",
+   "evidence": "implied by src/_unknown/tu_00452950.c 2026-11-09"
   },
   "gMenuClip": {
    "va": "0051391c",

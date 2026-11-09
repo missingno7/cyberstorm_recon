@@ -167,7 +167,12 @@ def main(argv):
     if lost:
         ledger.setdefault("accepted_losses", []).append({"tu": tu, "functions": lost, "date": now})
     for n, e in strict.items():
-        syms[skey(n, e)] = {"va": e["va"], "kind": "func", "status": "matched", "mangled": n, "tu": tu,
+        k = skey(n, e)
+        prev = syms.get(k)
+        if prev and prev.get("mangled") and prev["mangled"] != n and prev["va"] == e["va"]:
+            # same function, another TU's prototype spelling: keep it resolvable as an exact-mangled alias
+            syms.setdefault(f"{k}#{prev['mangled']}", dict(prev, status="hypothesis"))
+        syms[k] = {"va": e["va"], "kind": "func", "status": "matched", "mangled": n, "tu": tu,
                                   "evidence": f"strict match {now}"}
     for k, v in implied.items():
         lab = symbols.label(k)
