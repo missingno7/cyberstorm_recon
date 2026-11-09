@@ -32,6 +32,8 @@ You reconstruct C++ source that Watcom 10.6 compiles to the exact bytes of `CSTO
 - Profile `ot` (`-4s -s -oxt`) for 16-byte-aligned modules, profile `plain` (`-4s -s`) for modules with no
   function alignment (`tools/modules.py` prints the hint). A module that mixes both is two objects. Do not
   sweep flags blindly; `tools/flagsweep.py` is for a deliberate, recorded sweep.
+- Profile `plain-oe` (`-4s -s -bm -oe`): if uncalled copies of small functions exist and their bodies appear
+  inlined at call sites in the same TU (multi\ files), the TU was compiled with `-oe`.
 - `x &= ~M; x |= v & M;` (two statements) gives the in-memory `and/or` shape; one expression does not.
 - Pointer-walk loops (`T *e = table; ...; i++, e++`) and indexing (`&table[i]`) compile differently.
 - A 1-byte function (`ret`) cannot be placed by search: use `--at`.

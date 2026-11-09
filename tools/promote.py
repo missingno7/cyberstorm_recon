@@ -95,8 +95,14 @@ def main(argv):
     scope = symbols.scope_of_as(entry["as"])
 
     def skey(n, e):
-        """symbols.json key: TU-scoped for file-local symbols (statics, generated `W?.fn_init`)."""
-        return symbols.key_for(n, e.get("local"), scope)
+        """symbols.json key: TU-scoped for file-local symbols (statics, generated `W?.fn_init`); overloads whose
+        readable label is already taken by a different mangled name get `label#mangled` (the resolver finds
+        them by their exact mangled name first)."""
+        k = symbols.key_for(n, e.get("local"), scope)
+        cur = syms.get(k)
+        if cur and cur.get("mangled") and cur["mangled"] != n and cur["va"] != e.get("va"):
+            return f"{k}#{n}"
+        return k
     for n, e in strict.items():
         lab = skey(n, e)
         cur = syms.get(lab)

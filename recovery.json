@@ -1863,6 +1863,336 @@
     }
    },
    "accepted": "2026-11-09"
+  },
+  "src/multi/linkdlg.c": {
+   "as": "multi\\linkdlg.c",
+   "install": "wc106",
+   "flags": [
+    "-4s",
+    "-s",
+    "-bm",
+    "-oe"
+   ],
+   "tool": "wpp386",
+   "functions": {
+    "LinkPeerTimer::$ct": {
+     "va": "0046d9ac",
+     "size": 20,
+     "mangled": "W?$ct:LinkPeerTimer$n()_"
+    },
+    "ProviderList::Clear": {
+     "va": "0046d9c0",
+     "size": 15,
+     "mangled": "W?Clear$:ProviderList$n()v"
+    },
+    "ProviderList::Add": {
+     "va": "0046d9cf",
+     "size": 90,
+     "mangled": "W?Add$:ProviderList$n(pnapn$_GUID$$)v"
+    },
+    "ProviderList::Dump": {
+     "va": "0046da29",
+     "size": 60,
+     "mangled": "W?Dump$:ProviderList$n()pna"
+    },
+    "EnumProviders": {
+     "va": "0046da65",
+     "size": 97,
+     "mangled": "W?EnumProviders$n(pn$_GUID$$pnaululpnv)i"
+    },
+    "EnumSessions": {
+     "va": "0046dac6",
+     "size": 95,
+     "mangled": "W?EnumSessions$n(pn$DPSESSIONDESC$$pnvpnulul)i"
+    },
+    "SelectProvider": {
+     "va": "0046db25",
+     "size": 325,
+     "mangled": "W?SelectProvider$n(i)pna"
+    },
+    "LinkSigsPoll": {
+     "va": "0046dc6a",
+     "size": 72,
+     "mangled": "W?LinkSigsPoll$n()v"
+    },
+    "RecreateSession": {
+     "va": "0046dcb2",
+     "size": 336,
+     "mangled": "W?RecreateSession$n()i"
+    },
+    "LinkDialog": {
+     "va": "0046de02",
+     "size": 702,
+     "mangled": "W?LinkDialog$n(pna)i"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048b878",
+     "size": 50
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/multi/linkq.c": {
+   "as": "multi\\linkq.c",
+   "install": "wc106",
+   "flags": [
+    "-4s",
+    "-s",
+    "-bm",
+    "-oe"
+   ],
+   "tool": "wpp386",
+   "functions": {
+    "Queue::MoveHead": {
+     "va": "0046e0c0",
+     "size": 139,
+     "mangled": "W?MoveHead$:Queue$n(pn$QueueNode$$pn$1$)v"
+    },
+    "Queue::IsEmpty": {
+     "va": "0046e14b",
+     "size": 16,
+     "mangled": "W?IsEmpty$:Queue$n()i"
+    },
+    "Queue::First": {
+     "va": "0046e15b",
+     "size": 16,
+     "mangled": "W?First$:Queue$n()pn$QueueNode$$"
+    },
+    "Queue::Append": {
+     "va": "0046e16b",
+     "size": 85,
+     "mangled": "W?Append$:Queue$n(pn$QueueNode$$)pn$2$"
+    },
+    "Queue::Add": {
+     "va": "0046e1c0",
+     "size": 178,
+     "mangled": "W?Add$:Queue$n(uipnv)pn$QueueNode$$"
+    },
+    "Queue::Remove": {
+     "va": "0046e272",
+     "size": 117,
+     "mangled": "W?Remove$:Queue$n(pn$QueueNode$$)v"
+    },
+    "Queue::RemoveAll": {
+     "va": "0046e2e7",
+     "size": 49,
+     "mangled": "W?RemoveAll$:Queue$n()v"
+    },
+    "Queue::Lock": {
+     "va": "0046e318",
+     "size": 13,
+     "mangled": "W?Lock$:Queue$n()v"
+    },
+    "Queue::Unlock": {
+     "va": "0046e325",
+     "size": 13,
+     "mangled": "W?Unlock$:Queue$n()v"
+    },
+    "Queue::$ct": {
+     "va": "0046e332",
+     "size": 36,
+     "mangled": "W?$ct:Queue$n()_"
+    },
+    "Queue::$dt": {
+     "va": "0046e356",
+     "size": 36,
+     "mangled": "W?$dt:Queue$n()_"
+    },
+    "KeyedQueue::$ct": {
+     "va": "0046e37a",
+     "size": 47,
+     "mangled": "W?$ct:KeyedQueue$n(i)_"
+    },
+    "Queue::Insert": {
+     "va": "0046e3a9",
+     "size": 204,
+     "mangled": "W?Insert$:Queue$n(pn$QueueNode$$)pn$2$"
+    },
+    "Queue::AddSorted": {
+     "va": "0046e475",
+     "size": 118,
+     "mangled": "W?AddSorted$:Queue$n(uipnv)pn$QueueNode$$"
+    },
+    "Queue::Find": {
+     "va": "0046e4eb",
+     "size": 63,
+     "mangled": "W?Find$:Queue$n(i)pn$QueueNode$$"
+    },
+    "Queue::Rewind": {
+     "va": "0046e52a",
+     "size": 68,
+     "mangled": "W?Rewind$:Queue$n(ipni)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/multi/message.c": {
+   "as": "multi\\message.c",
+   "install": "wc106",
+   "flags": [
+    "-4s",
+    "-s",
+    "-bm",
+    "-oe"
+   ],
+   "tool": "wpp386",
+   "functions": {
+    "MenuMessage::From": {
+     "va": "004706b0",
+     "size": 8,
+     "mangled": "W?From$:MenuMessage$n()i"
+    },
+    "MenuMessage::IsBroadcast": {
+     "va": "004706b8",
+     "size": 17,
+     "mangled": "W?IsBroadcast$:MenuMessage$n()i"
+    },
+    "NetworkDropPeer": {
+     "va": "004706c9",
+     "size": 19,
+     "mangled": "W?NetworkDropPeer$n(i)v"
+    },
+    "MenuMessage::ApplyPackets": {
+     "va": "004706dc",
+     "size": 47,
+     "mangled": "W?ApplyPackets$:MenuMessage$n()v"
+    },
+    "MessageName": {
+     "va": "0047070b",
+     "size": 6,
+     "mangled": "W?MessageName$n()pnxa"
+    },
+    "MessageActorMoved": {
+     "va": "00470711",
+     "size": 65,
+     "mangled": "W?MessageActorMoved$n(pn$MenuMessage$$pn$1$)v"
+    },
+    "MessageActorCreated": {
+     "va": "00470752",
+     "size": 519,
+     "mangled": "W?MessageActorCreated$n(pn$MenuMessage$$pn$1$)v"
+    },
+    "MessageActorUpdate": {
+     "va": "00470959",
+     "size": 217,
+     "mangled": "W?MessageActorUpdate$n(pn$MenuMessage$$pn$1$)v"
+    },
+    "MessageJoinRequest": {
+     "va": "00470a32",
+     "size": 426,
+     "mangled": "W?MessageJoinRequest$n(pn$MenuMessage$$)v"
+    },
+    "MenuMessage::Clear": {
+     "va": "00470bdc",
+     "size": 21,
+     "mangled": "W?Clear$:MenuMessage$n()v"
+    },
+    "MessageCheckSync": {
+     "va": "00470bf1",
+     "size": 261,
+     "mangled": "W?MessageCheckSync$n(pn$MenuMessage$$)v"
+    },
+    "MessageActorJoined": {
+     "va": "00471435",
+     "size": 325,
+     "mangled": "W?MessageActorJoined$n(pn$MenuMessage$$pn$1$)v"
+    },
+    "LocalPeer": {
+     "va": "0047157a",
+     "size": 6,
+     "mangled": "W?LocalPeer$n()i"
+    },
+    "MessageChecksum": {
+     "va": "00471580",
+     "size": 155,
+     "mangled": "W?MessageChecksum$n(pn$MenuMessage$$)ui"
+    },
+    "IsSystemMessage": {
+     "va": "00471744",
+     "size": 43,
+     "mangled": "W?IsSystemMessage$n(pn$MenuMessage$$)i"
+    },
+    "MessageTransmit": {
+     "va": "0047176f",
+     "size": 26,
+     "mangled": "W?MessageTransmit$n(pn$MenuMessage$$)i"
+    },
+    "MessageDeliver": {
+     "va": "004718f2",
+     "size": 67,
+     "mangled": "W?MessageDeliver$n(pn$MenuMessage$$)i"
+    },
+    "MessageAcknowledge": {
+     "va": "00471935",
+     "size": 34,
+     "mangled": "W?MessageAcknowledge$n(pn$MenuMessage$$pna)v"
+    },
+    "MessageRequestStatus": {
+     "va": "00471957",
+     "size": 102,
+     "mangled": "W?MessageRequestStatus$n(i)v"
+    },
+    "MessageSendStatus": {
+     "va": "004719bd",
+     "size": 28,
+     "mangled": "W?MessageSendStatus$n(i)v"
+    },
+    "MessageSendPing": {
+     "va": "004719d9",
+     "size": 48,
+     "mangled": "W?MessageSendPing$n(i)v"
+    },
+    "MenuMessageNull": {
+     "va": "00471a09",
+     "size": 18,
+     "mangled": "W?MenuMessageNull$n(pn$MenuMessage$$)pn$1$"
+    },
+    "MenuMessageBasic": {
+     "va": "00471a1b",
+     "size": 142,
+     "mangled": "W?MenuMessageBasic$n(pn$MenuMessage$$i)pn$1$"
+    },
+    "MenuMessageStart": {
+     "va": "00471aa9",
+     "size": 134,
+     "mangled": "W?MenuMessageStart$n(pn$MenuMessage$$ipn$ActorRecord$$)pn$1$"
+    },
+    "MenuMessageData": {
+     "va": "00471b2f",
+     "size": 39,
+     "mangled": "W?MenuMessageData$n(pn$MenuMessage$$iiii)pn$1$"
+    },
+    "MenuMessageInfo": {
+     "va": "00471b56",
+     "size": 59,
+     "mangled": "W?MenuMessageInfo$n(pn$MenuMessage$$iipn$Options$$)pn$1$"
+    },
+    "MenuMessageGame": {
+     "va": "00471b91",
+     "size": 36,
+     "mangled": "W?MenuMessageGame$n(pn$MenuMessage$$ipn$GameInfo$$)pn$1$"
+    },
+    "MenuMessageSlot": {
+     "va": "00471bb5",
+     "size": 43,
+     "mangled": "W?MenuMessageSlot$n(pn$MenuMessage$$iipn$PlayerSlot$$)pn$1$"
+    },
+    "MenuMessage::$ct": {
+     "va": "00471be0",
+     "size": 150,
+     "mangled": "W?$ct:MenuMessage$n(uipnxa)_"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048b9ac",
+     "size": 72
+    }
+   },
+   "accepted": "2026-11-09"
   }
  }
 }

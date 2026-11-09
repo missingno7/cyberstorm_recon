@@ -91,6 +91,17 @@
     "-bm"
    ],
    "status": "C front end variant of 'plain'; untested"
+  },
+  "plain-oe": {
+   "install": "wc106",
+   "tool": "wpp386",
+   "flags": [
+    "-4s",
+    "-s",
+    "-bm",
+    "-oe"
+   ],
+   "status": "verified 2026-11-09 on multi\\linkdlg.c (10 vs 8), multi\\linkq.c (16 vs 7), multi\\message.c (29 vs 26): small same-TU functions are inlined at every call and keep an uncalled out-of-line copy. Harmful in logic\\lsys.c, pop\\psystem.c, shell\\hercbay.c, shell\\missbrf.c; neutral in mstart.c and 14 others. Per-TU choice"
   }
  }
 }
