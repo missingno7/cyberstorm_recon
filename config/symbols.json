@@ -531,6 +531,61 @@
    "mangled": "W?AllocateMissionImage$n(pnxaii)pnv",
    "evidence": "implied by src/logic/miss.c 2026-11-09"
   },
+  "ResMgr::FindPath": {
+   "va": "0047c710",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?FindPath$:ResMgr$n(pnxapnai)i",
+   "evidence": "implied by src/io/resource.c 2026-11-09"
+  },
+  "ResMgr::CloseFile": {
+   "va": "0047c860",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?CloseFile$:ResMgr$n()i",
+   "tu": "src/io/resource.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ResMgr::IsOpen": {
+   "va": "0047c890",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?IsOpen$:ResMgr$n()i",
+   "tu": "src/io/resource.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_c8a0": {
+   "va": "0047c8a0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_c8a0",
+   "tu": "src/io/resource.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_c8c0": {
+   "va": "0047c8c0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_c8c0",
+   "tu": "src/io/resource.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_c8e0": {
+   "va": "0047c8e0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_c8e0",
+   "tu": "src/io/resource.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_c900": {
+   "va": "0047c900",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_c900",
+   "tu": "src/io/resource.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "ResMgr::Load": {
    "va": "0047c920",
    "kind": "func",
@@ -544,6 +599,70 @@
    "status": "hypothesis",
    "mangled": "W?ReleasePoolData$n(pnv)v",
    "evidence": "implied by src/misc/strpool.c 2026-11-09"
+  },
+  "f_cb80": {
+   "va": "0047cb80",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_cb80",
+   "tu": "src/io/resource.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_cbf0": {
+   "va": "0047cbf0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_cbf0",
+   "tu": "src/io/resource.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_d110": {
+   "va": "0047d110",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_d110",
+   "tu": "src/io/resource.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MciState::StopClose": {
+   "va": "0047d130",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?StopClose$:MciState$n()pn$1$",
+   "tu": "src/io/resource.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MciState::Close": {
+   "va": "0047d220",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Close$:MciState$n()v",
+   "tu": "src/io/resource.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_d270": {
+   "va": "0047d270",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_d270",
+   "tu": "src/io/resource.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_d2c0": {
+   "va": "0047d2c0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_d2c0",
+   "tu": "src/io/resource.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_d2f0": {
+   "va": "0047d2f0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_d2f0",
+   "tu": "src/io/resource.c",
+   "evidence": "strict match 2026-11-09"
   },
   "DrainAssertCallbacks": {
    "va": "0047d4c0",
@@ -590,6 +709,20 @@
    "tu": "src/io/file.c",
    "evidence": "strict match 2026-11-09"
   },
+  "IORelease": {
+   "va": "0047e5a0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "IORelease",
+   "evidence": "implied by src/io/resource.c 2026-11-09"
+  },
+  "IoClose": {
+   "va": "0047e610",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "IoClose",
+   "evidence": "implied by src/io/resource.c 2026-11-09"
+  },
   "StreamRead": {
    "va": "0047e670",
    "kind": "func",
@@ -597,12 +730,26 @@
    "mangled": "W?StreamRead$n(pnvpnvi)i",
    "evidence": "implied by src/logic/lactor.c 2026-11-09"
   },
+  "IoWrite": {
+   "va": "0047e670",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "IoWrite",
+   "evidence": "implied by src/io/resource.c 2026-11-09"
+  },
   "StreamWrite": {
    "va": "0047e6f0",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?StreamWrite$n(pnvpnxvi)i",
    "evidence": "implied by src/logic/lactor.c 2026-11-09"
+  },
+  "IoRead": {
+   "va": "0047e780",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "IoRead",
+   "evidence": "implied by src/io/resource.c 2026-11-09"
   },
   "FileGetAndClearError": {
    "va": "0047e7f0",
@@ -667,6 +814,13 @@
    "mangled": "W?GlobalBlockFree$n(pnv)pnv",
    "tu": "src/io/memory.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "MemFree": {
+   "va": "0047eb40",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "MemFree",
+   "evidence": "implied by src/io/resource.c 2026-11-09"
   },
   "MemoryAllocationRetry": {
    "va": "0047eb98",

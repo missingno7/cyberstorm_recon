@@ -462,6 +462,85 @@
    },
    "data": {},
    "accepted": "2026-11-09"
+  },
+  "src/io/resource.c": {
+   "as": "io\\resource.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "ResMgr::CloseFile": {
+     "va": "0047c860",
+     "size": 48,
+     "mangled": "W?CloseFile$:ResMgr$n()i"
+    },
+    "ResMgr::IsOpen": {
+     "va": "0047c890",
+     "size": 16,
+     "mangled": "W?IsOpen$:ResMgr$n()i"
+    },
+    "f_c8a0": {
+     "va": "0047c8a0",
+     "size": 32,
+     "mangled": "f_c8a0"
+    },
+    "f_c8c0": {
+     "va": "0047c8c0",
+     "size": 32,
+     "mangled": "f_c8c0"
+    },
+    "f_c8e0": {
+     "va": "0047c8e0",
+     "size": 32,
+     "mangled": "f_c8e0"
+    },
+    "f_c900": {
+     "va": "0047c900",
+     "size": 32,
+     "mangled": "f_c900"
+    },
+    "f_cb80": {
+     "va": "0047cb80",
+     "size": 32,
+     "mangled": "f_cb80"
+    },
+    "f_cbf0": {
+     "va": "0047cbf0",
+     "size": 32,
+     "mangled": "f_cbf0"
+    },
+    "f_d110": {
+     "va": "0047d110",
+     "size": 32,
+     "mangled": "f_d110"
+    },
+    "MciState::StopClose": {
+     "va": "0047d130",
+     "size": 80,
+     "mangled": "W?StopClose$:MciState$n()pn$1$"
+    },
+    "MciState::Close": {
+     "va": "0047d220",
+     "size": 80,
+     "mangled": "W?Close$:MciState$n()v"
+    },
+    "f_d270": {
+     "va": "0047d270",
+     "size": 80,
+     "mangled": "f_d270"
+    },
+    "f_d2c0": {
+     "va": "0047d2c0",
+     "size": 48,
+     "mangled": "f_d2c0"
+    },
+    "f_d2f0": {
+     "va": "0047d2f0",
+     "size": 32,
+     "mangled": "f_d2f0"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
   }
  }
 }
