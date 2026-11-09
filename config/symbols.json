@@ -10632,10 +10632,10 @@
   "W?.fn_init$n()v@pop/ppilot.c": {
    "va": "0044688c",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?.fn_init$n()v",
    "tu": "src/pop/ppilot.c",
-   "evidence": "placed in src/pop/ppilot.c 2026-11-09; strict only with --at/search"
+   "evidence": "strict match 2026-11-09"
   },
   "PilotScreen::$ct": {
    "va": "00446920",
@@ -10712,10 +10712,10 @@
   "PilotDrawFrame": {
    "va": "004478ae",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?PilotDrawFrame$n(pn$PilotScreen$$pn$GuiRect$$ii)v",
    "tu": "src/pop/ppilot.c",
-   "evidence": "placed in src/pop/ppilot.c 2026-11-09; strict only with --at/search"
+   "evidence": "strict match 2026-11-09"
   },
   "PilotScreen::Draw": {
    "va": "00447907",
@@ -11062,10 +11062,10 @@
   "W?.fn_init$n()v@sim/sim.c": {
    "va": "00449f00",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?.fn_init$n()v",
    "tu": "src/sim/sim.c",
-   "evidence": "placed (at) in src/sim/sim.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "SimClosePopups": {
    "va": "00449f60",
@@ -11164,10 +11164,10 @@
   "SimGame::$ct": {
    "va": "0044b870",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?$ct:SimGame$n()_",
    "tu": "src/sim/sim.c",
-   "evidence": "placed (at) in src/sim/sim.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "W?.fn_init$n()v@_unknown/tu_0044b8b0.c": {
    "va": "0044b8b0",
@@ -11222,7 +11222,7 @@
    "status": "matched",
    "mangled": "W?SimShortcutMode$n()i",
    "tu": "src/_unknown/tu_0044b8b0.c",
-   "evidence": "strict match 2026-11-09 (accepted size change 64->51)"
+   "evidence": "strict match 2026-11-09"
   },
   "SimShortcutMode#W?SimShortcutMode$n(pnv)i": {
    "va": "0044bc90",
@@ -11402,10 +11402,10 @@
   "SimSetView": {
    "va": "0044da90",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?SimSetView$n(pn$SimGame$$i)v",
    "tu": "src/sim/simdo.c",
-   "evidence": "placed in src/sim/simdo.c 2026-11-09; strict only with --at/search"
+   "evidence": "strict match 2026-11-09"
   },
   "f_44db70": {
    "va": "0044db70",
@@ -11413,6 +11413,14 @@
    "status": "hypothesis",
    "mangled": "W?f_44db70$n(pn$ModeSystem$$i)v",
    "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+  },
+  "f_44db70#W?f_44db70$n(pn$SimGame$$i)v": {
+   "va": "0044db70",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_44db70$n(pn$SimGame$$i)v",
+   "tu": "src/sim/simdo.c",
+   "evidence": "placed (at) in src/sim/simdo.c 2026-11-09"
   },
   "SimSaveBookmark": {
    "va": "0044dc80",
@@ -11425,10 +11433,10 @@
   "SimRestoreBookmark": {
    "va": "0044dcb0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?SimRestoreBookmark$n(pn$SimGame$$i)v",
    "tu": "src/sim/simdo.c",
-   "evidence": "placed in src/sim/simdo.c 2026-11-09; strict only with --at/search"
+   "evidence": "strict match 2026-11-09"
   },
   "SimCycleFocus": {
    "va": "0044dcf0",
@@ -11570,6 +11578,14 @@
    "tu": "src/sim/simdo.c",
    "evidence": "placed (at) in src/sim/simdo.c 2026-11-09"
   },
+  "SimFireFocus#W?SimFireFocus$n(pn$SimGame$$i)i": {
+   "va": "0044eb50",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SimFireFocus$n(pn$SimGame$$i)i",
+   "tu": "src/sim/simdo.c",
+   "evidence": "placed (at) in src/sim/simdo.c 2026-11-09"
+  },
   "SimExecuteItem": {
    "va": "0044ebe0",
    "kind": "func",
@@ -11691,6 +11707,14 @@
    "status": "hypothesis",
    "mangled": "W?IntelClearMode$n(pnxa)i",
    "evidence": "implied by src/logic/intel.c 2026-11-09"
+  },
+  "IntelClearMode#W?IntelClearMode$n(pnxa)v": {
+   "va": "0044f990",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?IntelClearMode$n(pnxa)v",
+   "tu": "src/sim/simdo.c",
+   "evidence": "placed (at) in src/sim/simdo.c 2026-11-09"
   },
   "SimBeginTurn": {
    "va": "0044fa30",
@@ -21600,6 +21624,14 @@
    "mangled": "W?_DAT_004a00a4$ni",
    "evidence": "implied by src/pop/pherc.c 2026-11-09"
   },
+  "frameTable@pop/ppilot.c": {
+   "va": "004a00c0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?frameTable$n[][4]c",
+   "tu": "src/pop/ppilot.c",
+   "evidence": "own data placed in src/pop/ppilot.c 2026-11-09"
+  },
   "reportControls": {
    "va": "004a0120",
    "kind": "data",
@@ -26824,12 +26856,28 @@
    "mangled": "W?timer$:.2$:?SimAmbientSound$n(pn$SimGame$$)vn$GameTimer$$",
    "evidence": "implied by src/sim/sim.c 2026-11-09"
   },
+  "W?timer$:.2$:?SimAmbientSound$n(pn$SimGame$$)vn$GameTimer$$@sim/sim.c": {
+   "va": "004d2450",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?timer$:.2$:?SimAmbientSound$n(pn$SimGame$$)vn$GameTimer$$",
+   "tu": "src/sim/sim.c",
+   "evidence": "own data placed in src/sim/sim.c 2026-11-09"
+  },
   "W?$Wbi00$:.2$:?SimAmbientSound$n(pn$SimGame$$)vn[]uc": {
    "va": "004d245c",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?$Wbi00$:.2$:?SimAmbientSound$n(pn$SimGame$$)vn[]uc",
    "evidence": "implied by src/sim/sim.c 2026-11-09"
+  },
+  "W?$Wbi00$:.2$:?SimAmbientSound$n(pn$SimGame$$)vn[]uc@sim/sim.c": {
+   "va": "004d245c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wbi00$:.2$:?SimAmbientSound$n(pn$SimGame$$)vn[]uc",
+   "tu": "src/sim/sim.c",
+   "evidence": "own data placed in src/sim/sim.c 2026-11-09"
   },
   "modeCheckName": {
    "va": "004d2460",

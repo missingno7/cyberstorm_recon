@@ -5493,6 +5493,11 @@
    "install": "wc106",
    "profile": "ot-oe",
    "functions": {
+    "W?.fn_init$n()v": {
+     "va": "00449f00",
+     "size": 96,
+     "mangled": "W?.fn_init$n()v"
+    },
     "SimAmbientSound": {
      "va": "0044a600",
      "size": 192,
@@ -5527,6 +5532,11 @@
      "va": "0044b820",
      "size": 80,
      "mangled": "W?$dt:SimGame$n()_"
+    },
+    "SimGame::$ct": {
+     "va": "0044b870",
+     "size": 64,
+     "mangled": "W?$ct:SimGame$n()_"
     }
    },
    "data": {
@@ -5546,6 +5556,10 @@
      "va": "0048de50",
      "size": 20
     },
+    "W?$Wts0dn$ViewState$$$nx[]uc": {
+     "va": "0048de28",
+     "size": 17
+    },
     "W?$Wts0bn$SimGame$$$nx[]uc": {
      "va": "0048de3c",
      "size": 17
@@ -5556,6 +5570,14 @@
     },
     "W?$Wts0en$MenuNumber$$$nx[]uc": {
      "va": "0048c988",
+     "size": 17
+    },
+    "W?$Wts0in$MenuImageLabel$$$nx[]uc": {
+     "va": "0048d950",
+     "size": 17
+    },
+    "W?$Wts0fn$HercControl$$$nx[]uc": {
+     "va": "0048dcdc",
      "size": 17
     }
    },
@@ -5681,10 +5703,20 @@
      "size": 128,
      "mangled": "W?SimSetMode$n(pn$SimGame$$i)v"
     },
+    "SimSetView": {
+     "va": "0044da90",
+     "size": 224,
+     "mangled": "W?SimSetView$n(pn$SimGame$$i)v"
+    },
     "SimSaveBookmark": {
      "va": "0044dc80",
      "size": 48,
      "mangled": "W?SimSaveBookmark$n(pn$SimGame$$i)v"
+    },
+    "SimRestoreBookmark": {
+     "va": "0044dcb0",
+     "size": 64,
+     "mangled": "W?SimRestoreBookmark$n(pn$SimGame$$i)v"
     },
     "SimCycleFocus": {
      "va": "0044dcf0",
@@ -6312,6 +6344,11 @@
      "size": 31,
      "mangled": "W?.tdctor$:MenuImageLabel$n()rn$1$"
     },
+    "W?.fn_init$n()v": {
+     "va": "0044688c",
+     "size": 148,
+     "mangled": "W?.fn_init$n()v"
+    },
     "PilotScreen::$ct": {
      "va": "00446920",
      "size": 469,
@@ -6352,6 +6389,11 @@
      "size": 147,
      "mangled": "W?PilotDrawFlashing$n(pn$PilotScreen$$iiiii)v"
     },
+    "PilotDrawFrame": {
+     "va": "004478ae",
+     "size": 89,
+     "mangled": "W?PilotDrawFrame$n(pn$PilotScreen$$pn$GuiRect$$ii)v"
+    },
     "PilotScreen::Next": {
      "va": "00447f36",
      "size": 63,
@@ -6369,6 +6411,14 @@
     }
    },
    "data": {
+    "CONST2": {
+     "va": "0048dd18",
+     "size": 36
+    },
+    "_DATA": {
+     "va": "004a00b4",
+     "size": 32
+    },
     "W?$Wts0kn$PilotImageButton$$$nx[]uc": {
      "va": "0048cdb8",
      "size": 17

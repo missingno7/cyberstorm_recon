@@ -216,7 +216,10 @@ def main(argv):
         if e["cls"].upper() != "CODE" or e["status"] == "STRICT" or not e.get("va"):
             continue
         lab = skey(n, e)
-        if e.get("placed") in ("at", "found") and lab not in syms and e["va"] not in taken:
+        if lab in syms and syms[lab].get("mangled") not in (None, n) and syms[lab]["va"] == e["va"]:
+            lab = f"{lab}#{n}"      # same function under another TU's prototype: exact-mangled alias key
+        if e.get("placed") in ("at", "found") and lab not in syms and (
+                e["va"] not in taken or "#" in lab):
             syms[lab] = {"va": e["va"], "kind": "func", "status": "hypothesis", "mangled": n, "tu": tu,
                          "evidence": f"placed ({e['placed']}) in {tu} {now}"}
             taken.add(e["va"])
