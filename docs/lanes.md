@@ -28,9 +28,11 @@ Model: `luna` = gpt-6-luna xhigh, `sol` = gpt-6.1-sol high (Codex; all new lanes
 | s5 | sol | 00435dec, 0041d774 | running |
 | s6 | sol | shell\hbupgrad.c (from w14) | done (42; 18 parked) |
 | s7 | sol | 0044688c, 00446848 | running |
-| s8 | sol | 00433640, pop\pdeath.c | running |
-| s9 | sol | 0040d2b0, 0040e794, 0040f4d8 | running |
+| s8 | sol | 00433640, pop\pdeath.c | done (18: terr	build.c 10, tu_004349c0 4, pdeath 4; 7 parked) |
+| s9 | sol | 0040d2b0, 0040e794, 0040f4d8 | done (54, none parked) |
 | s10 | sol | 00454210, 004556f0 | running |
+| s11 | sol | 00438374, 004394e0, 0043a294 | running |
+| s12 | sol | 004413e0, 004425d4, 00443100 | running |
 | l1 | luna | shell\hercbuy.c | done (19) |
 | o1 | opus | multi\linkdlg.c, linkq.c, message.c | done |
 | o2 | opus | sim\apply.c, fxout.c, explo.c | done |
