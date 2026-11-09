@@ -5006,26 +5006,26 @@
   "reset_link_timer": {
    "va": "0046ceec",
    "kind": "func",
-   "status": "matched",
+   "status": "hypothesis",
    "mangled": "W?reset_link_timer$n()v",
    "tu": "src/multi/link.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "lost strict 2026-11-09"
   },
   "initialize_directplay": {
    "va": "0046cefc",
    "kind": "func",
-   "status": "matched",
+   "status": "hypothesis",
    "mangled": "W?initialize_directplay$n()i",
    "tu": "src/multi/link.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "lost strict 2026-11-09"
   },
   "shutdown_directplay": {
    "va": "0046cfce",
    "kind": "func",
-   "status": "matched",
+   "status": "hypothesis",
    "mangled": "W?shutdown_directplay$n()v",
    "tu": "src/multi/link.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "lost strict 2026-11-09"
   },
   "NetworkCreate": {
    "va": "0046d020",
@@ -5075,10 +5075,10 @@
   "receive_link_packet": {
    "va": "0046d3d8",
    "kind": "func",
-   "status": "matched",
+   "status": "hypothesis",
    "mangled": "W?receive_link_packet$n(pnipnipnuiuii)i",
    "tu": "src/multi/link.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "lost strict 2026-11-09"
   },
   "dp_error_not_recognized": {
    "va": "0046d449",
@@ -5106,10 +5106,10 @@
   "disconnect_link_interface": {
    "va": "0046d455",
    "kind": "func",
-   "status": "matched",
+   "status": "hypothesis",
    "mangled": "W?disconnect_link_interface$n()v",
    "tu": "src/multi/link.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "lost strict 2026-11-09"
   },
   "LinkSetupPlayer": {
    "va": "0046d47a",
@@ -5121,10 +5121,10 @@
   "reset_link_options": {
    "va": "0046d47a",
    "kind": "func",
-   "status": "matched",
+   "status": "hypothesis",
    "mangled": "W?reset_link_options$n()v",
    "tu": "src/multi/link.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "lost strict 2026-11-09"
   },
   "NetworkJoin": {
    "va": "0046d4a6",
@@ -5136,10 +5136,10 @@
   "request_link_connection": {
    "va": "0046d4a6",
    "kind": "func",
-   "status": "matched",
+   "status": "hypothesis",
    "mangled": "W?request_link_connection$n(pnxa)i",
    "tu": "src/multi/link.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "lost strict 2026-11-09"
   },
   "initialize_linkapp_globals": {
    "va": "0046d538",
@@ -5167,10 +5167,10 @@
   "wait_for_link_shutdown": {
    "va": "0046d5c4",
    "kind": "func",
-   "status": "matched",
+   "status": "hypothesis",
    "mangled": "W?wait_for_link_shutdown$n()v",
    "tu": "src/multi/linkapp.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "lost strict 2026-11-09"
   },
   "NetworkReset": {
    "va": "0046d603",
@@ -5182,10 +5182,10 @@
   "clear_link_entries": {
    "va": "0046d603",
    "kind": "func",
-   "status": "matched",
+   "status": "hypothesis",
    "mangled": "W?clear_link_entries$n()v",
    "tu": "src/multi/linkapp.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "lost strict 2026-11-09"
   },
   "PeerAlive": {
    "va": "0046d61f",
@@ -5197,18 +5197,18 @@
   "retry_link_timer": {
    "va": "0046d61f",
    "kind": "func",
-   "status": "matched",
+   "status": "hypothesis",
    "mangled": "W?retry_link_timer$n(i)i",
    "tu": "src/multi/linkapp.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "lost strict 2026-11-09"
   },
   "set_link_timer": {
    "va": "0046d6d7",
    "kind": "func",
-   "status": "matched",
+   "status": "hypothesis",
    "mangled": "W?set_link_timer$n(i)v",
    "tu": "src/multi/linkapp.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "lost strict 2026-11-09"
   },
   "process_link_events": {
    "va": "0046d74c",
@@ -5236,10 +5236,10 @@
   "save_link_tick": {
    "va": "0046d8a6",
    "kind": "func",
-   "status": "matched",
+   "status": "hypothesis",
    "mangled": "W?save_link_tick$n()v",
    "tu": "src/multi/linkapp.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "lost strict 2026-11-09"
   },
   "NetworkPoll": {
    "va": "0046d8bb",
@@ -5496,10 +5496,10 @@
   "initialize_chat": {
    "va": "0046e570",
    "kind": "func",
-   "status": "matched",
+   "status": "hypothesis",
    "mangled": "W?initialize_chat$n(pnv)pnv",
    "tu": "src/multi/chat.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "lost strict 2026-11-09"
   },
   "Chat::Reset": {
    "va": "0046e58f",
@@ -5511,10 +5511,10 @@
   "reset_chat_history": {
    "va": "0046e58f",
    "kind": "func",
-   "status": "matched",
+   "status": "hypothesis",
    "mangled": "W?reset_chat_history$n(pnv)i",
    "tu": "src/multi/chat.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "lost strict 2026-11-09"
   },
   "Chat::Activate": {
    "va": "0046e5d3",
@@ -5526,10 +5526,10 @@
   "clear_chat": {
    "va": "0046e5d3",
    "kind": "func",
-   "status": "matched",
+   "status": "hypothesis",
    "mangled": "W?clear_chat$n(pnv)v",
    "tu": "src/multi/chat.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "lost strict 2026-11-09"
   },
   "core_chat": {
    "va": "0046e5f9",
@@ -5557,10 +5557,10 @@
   "flush_chat_log": {
    "va": "0046e843",
    "kind": "func",
-   "status": "matched",
+   "status": "hypothesis",
    "mangled": "W?flush_chat_log$n()v",
    "tu": "src/multi/chat.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "lost strict 2026-11-09"
   },
   "Chat::Log": {
    "va": "0046e869",

@@ -2654,35 +2654,10 @@
      "size": 60,
      "mangled": "W?wait_for_name_release$n(pnv)i"
     },
-    "wait_for_link_shutdown": {
-     "va": "0046d5c4",
-     "size": 63,
-     "mangled": "W?wait_for_link_shutdown$n()v"
-    },
-    "clear_link_entries": {
-     "va": "0046d603",
-     "size": 28,
-     "mangled": "W?clear_link_entries$n()v"
-    },
-    "retry_link_timer": {
-     "va": "0046d61f",
-     "size": 184,
-     "mangled": "W?retry_link_timer$n(i)i"
-    },
-    "set_link_timer": {
-     "va": "0046d6d7",
-     "size": 117,
-     "mangled": "W?set_link_timer$n(i)v"
-    },
     "format_link_name": {
      "va": "0046d86d",
      "size": 57,
      "mangled": "W?format_link_name$n(ii)v"
-    },
-    "save_link_tick": {
-     "va": "0046d8a6",
-     "size": 21,
-     "mangled": "W?save_link_tick$n()v"
     },
     "cancel_current_link_entry": {
      "va": "0046d93b",
@@ -2698,26 +2673,6 @@
    "install": "wc106",
    "profile": "plain",
    "functions": {
-    "reset_link_timer": {
-     "va": "0046ceec",
-     "size": 16,
-     "mangled": "W?reset_link_timer$n()v"
-    },
-    "initialize_directplay": {
-     "va": "0046cefc",
-     "size": 210,
-     "mangled": "W?initialize_directplay$n()i"
-    },
-    "shutdown_directplay": {
-     "va": "0046cfce",
-     "size": 82,
-     "mangled": "W?shutdown_directplay$n()v"
-    },
-    "receive_link_packet": {
-     "va": "0046d3d8",
-     "size": 113,
-     "mangled": "W?receive_link_packet$n(pnipnipnuiuii)i"
-    },
     "dp_error_not_recognized": {
      "va": "0046d449",
      "size": 6,
@@ -2727,21 +2682,6 @@
      "va": "0046d44f",
      "size": 6,
      "mangled": "W?system_message_not_recognized$n()pnxa"
-    },
-    "disconnect_link_interface": {
-     "va": "0046d455",
-     "size": 37,
-     "mangled": "W?disconnect_link_interface$n()v"
-    },
-    "reset_link_options": {
-     "va": "0046d47a",
-     "size": 44,
-     "mangled": "W?reset_link_options$n()v"
-    },
-    "request_link_connection": {
-     "va": "0046d4a6",
-     "size": 145,
-     "mangled": "W?request_link_connection$n(pnxa)i"
     }
    },
    "data": {},
@@ -2752,26 +2692,6 @@
    "install": "wc106",
    "profile": "plain",
    "functions": {
-    "initialize_chat": {
-     "va": "0046e570",
-     "size": 31,
-     "mangled": "W?initialize_chat$n(pnv)pnv"
-    },
-    "reset_chat_history": {
-     "va": "0046e58f",
-     "size": 68,
-     "mangled": "W?reset_chat_history$n(pnv)i"
-    },
-    "clear_chat": {
-     "va": "0046e5d3",
-     "size": 38,
-     "mangled": "W?clear_chat$n(pnv)v"
-    },
-    "flush_chat_log": {
-     "va": "0046e843",
-     "size": 38,
-     "mangled": "W?flush_chat_log$n()v"
-    },
     "set_chat_mode": {
      "va": "0046e869",
      "size": 57,
@@ -3035,6 +2955,40 @@
    "tu": "src/shell/hercbay.c",
    "functions": [
     "HercBayModuleInit"
+   ],
+   "date": "2026-11-09"
+  },
+  {
+   "tu": "src/multi/chat.c",
+   "functions": [
+    "initialize_chat",
+    "reset_chat_history",
+    "clear_chat",
+    "flush_chat_log"
+   ],
+   "date": "2026-11-09"
+  },
+  {
+   "tu": "src/multi/link.c",
+   "functions": [
+    "reset_link_timer",
+    "initialize_directplay",
+    "shutdown_directplay",
+    "receive_link_packet",
+    "disconnect_link_interface",
+    "reset_link_options",
+    "request_link_connection"
+   ],
+   "date": "2026-11-09"
+  },
+  {
+   "tu": "src/multi/linkapp.c",
+   "functions": [
+    "wait_for_link_shutdown",
+    "clear_link_entries",
+    "retry_link_timer",
+    "set_link_timer",
+    "save_link_tick"
    ],
    "date": "2026-11-09"
   }

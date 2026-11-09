@@ -2,6 +2,8 @@
 
     python tools/test_gate.py
 """
+import contextlib
+import io
 import sys
 import tempfile
 from pathlib import Path
@@ -22,6 +24,117 @@ def statuses(src, flags, at=None, find=False, as_name=None):
         assert rc == 0, text
         reps, _ = compare.compare_object(obj, None, at, find)
     return {e["names"][0]: e["status"] for r in reps for s in r["segments"] for e in s.get("extents", [])}
+
+
+def audit_v1_f3_f5(check):
+    import gate
+    import promote
+    from common import ROOT
+
+    def build(path, entry):
+        reports, _, _ = gate.build_and_compare(path, entry, find=True, imply=True)
+        return gate.by_label(gate.extents(reports))
+
+    def dry_promote(path, tu, entry):
+        argv = ['promote.py', str(path), '--tu', tu, '--as', entry['as']]
+        if entry.get('flags') is not None:
+            _, tool, flags = gate.flags_for(entry)
+            argv += ['--flags', ' '.join(flags), '--tool', tool]
+        else:
+            argv += ['--profile', entry['profile']]
+        output = io.StringIO()
+        with contextlib.redirect_stdout(output):
+            rc = promote.main(argv)  # no --publish, no --accept-loss
+        return rc, output.getvalue()
+
+    ledger = gate.load_ledger()
+    shell_tu = 'src/shell/shell.c'
+    shell_entry = ledger['tus'][shell_tu]
+    shell = ROOT / shell_tu
+    good = build(shell, shell_entry)
+    check(good.get('Shell::Event', {}).get('status') == 'STRICT',
+          'F3 positive: unchanged switch owner is STRICT')
+    text = shell.read_text(encoding='latin-1')
+    head, marker, tail = text.partition('void Shell::Event(unsigned char)')
+    buy = 'case 25:case 29:'
+    store = 'case 27:\n            ShellStorageRender'
+    shape = bool(marker) and tail.count(buy) == 1 and tail.count(store) == 1
+    check(shape, 'F3 fixture still has distinct screen-27 and screen-29 handlers')
+    if not shape:
+        return
+    swapped = head + marker + tail.replace(buy, 'case 25:case 27:', 1).replace(
+        store, 'case 29:\n            ShellStorageRender', 1)
+    with tempfile.TemporaryDirectory(dir=ROOT / 'build') as td:
+        candidate = Path(td) / 'shell.c'
+        candidate.write_text(swapped, encoding='latin-1')
+        bad = build(candidate, shell_entry)
+        check(bad.get('Shell::Event', {}).get('status') != 'STRICT',
+              'F3 negative: case swap invalidates Event itself, including its external table')
+        check(bad.get('Shell::RestoreMenu', {}).get('status') == 'DIFF',
+              'F3 fixture changes the table in the predecessor extent')
+        rc, output = dry_promote(candidate, shell_tu, shell_entry)
+        check(rc == 1 and 'LOSS' in output and 'Shell::Event' in output,
+              'F3 promotion reports loss of the switch owner')
+
+    fog_tu = 'src/terr/tfog.c'
+    fog_entry = ledger['tus'][fog_tu]
+    fog = ROOT / fog_tu
+    original = fog.read_text(encoding='latin-1')
+    needle = 'void FogNoOp() {}'
+    shape = original.count(needle) == 1 and original.count('\n\n') >= 2
+    check(shape, 'F5 fixture has one empty function and spare blank lines')
+    if not shape:
+        return
+    split = original.replace(needle,
+        '#pragma code_seg("AUDIT_TEXT", "CODE")\nvoid FogNoOp() {}\n#pragma code_seg()', 1)
+    split = split.replace('\n\n', '\n', 2)  # preserve assert __LINE__ values
+    check([i for i, line in enumerate(original.splitlines()) if 'AssertFail(' in line] ==
+          [i for i, line in enumerate(split.splitlines()) if 'AssertFail(' in line],
+          'F5 fixture preserves assertion source lines')
+    good = build(fog, fog_entry)
+    rc, output = dry_promote(fog, fog_tu, fog_entry)
+    check(rc == 0, 'F5 positive: unchanged TU passes dry promotion')
+    with tempfile.TemporaryDirectory(dir=ROOT / 'build') as td:
+        candidate = Path(td) / 'tfog.c'
+        candidate.write_text(split, encoding='latin-1')
+        bad = build(candidate, fog_entry)
+        before, after = good.get('FogNoOp', {}), bad.get('FogNoOp', {})
+        check(before.get('status') == after.get('status') == 'STRICT' and
+              before.get('va') == after.get('va') and
+              before.get('end', 0) - before.get('off', 0) == 16 and
+              after.get('end', 0) - after.get('off', 0) == 1 and after.get('tail_fill') == 15,
+              'F5 fixture is a STRICT same-VA 16-to-1-byte size loss')
+        other_losses = [n for n, e in fog_entry['functions'].items() if n != 'FogNoOp' and
+            (bad.get(n, {}).get('status') != 'STRICT' or bad[n]['va'] != e['va'] or
+             bad[n]['end'] - bad[n]['off'] != e['size'])]
+        check(not other_losses, 'F5 fixture preserves every other accepted function')
+        rc, output = dry_promote(candidate, fog_tu, fog_entry)
+        check(rc == 1 and 'LOSS' in output and 'FogNoOp' in output,
+              'F5 negative: dry promotion rejects size loss without --accept-loss')
+
+
+def audit_v1_r2_scalars(check):
+    """R2.1/R2.2: a named scalar's initializer is proven in full and a zero (BSS) object must be zero in the oracle."""
+    import gate
+    from common import ROOT
+    tu = "src/_unknown/tu_0042a0e0.c"
+    entry = gate.load_ledger()["tus"][tu]
+    text = (ROOT / tu).read_text(encoding="latin-1")
+    decl = "extern long gGuiFadeStep,"
+    check(decl in text, "R2 fixture: fade TU declares gGuiFadeStep extern")
+    if decl not in text:
+        return
+    res = {}
+    for tag, init in (("good", "64"), ("high", "65600"), ("zero", "0")):
+        with tempfile.TemporaryDirectory(dir=ROOT / "build") as td:
+            p = Path(td) / "tu_0042a0e0.c"
+            p.write_text(text.replace(decl, "long gGuiFadeStep=%s; extern long " % init, 1), encoding="latin-1")
+            r, _, _ = gate.build_and_compare(p, entry, find=True, imply=True)
+            ext = gate.by_label(gate.extents(r))
+            res[tag] = [ext.get(n, {}).get("status") for n in ("GuiFadeOut", "GuiFadeOutRange", "GuiFadeIn")]
+    check(all(x == "STRICT" for x in res["good"]), "R2 positive: correctly initialized scalar keeps consumers STRICT")
+    check(not any(x == "STRICT" for x in res["high"]), "R2.1 negative: wrong high byte of a scalar is not STRICT")
+    check(not any(x == "STRICT" for x in res["zero"]), "R2.2 negative: zero (BSS) object over nonzero oracle data is not STRICT")
 
 
 def main():
@@ -108,6 +221,8 @@ def main():
         p6.write_text("void FogNoOp() {}\n")
         st6 = statuses(p6, ["-4s", "-s", "-oxt", "-bm"], at={"FogNoOp": 0x47ac72})
         check(all(v != "STRICT" for v in st6.values()), "placement at an interior address is not STRICT (F4)")
+    audit_v1_f3_f5(check)
+    audit_v1_r2_scalars(check)
     print("TEST GATE OK" if not fails else f"TEST GATE FAILED: {fails}")
     return 1 if fails else 0
 

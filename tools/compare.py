@@ -31,6 +31,7 @@ Verdict per extent:
 Initialized data segments placed at one base are compared byte for byte the same way. Nothing here writes
 the ledger.
 """
+import dataclasses
 import json
 import struct
 import sys
@@ -124,14 +125,18 @@ def oracle_tables(img):
             t = img.section("BEGTEXT")
             t0 = img.image_base + t.rva
             t1 = t0 + len(img.section_bytes("BEGTEXT"))
-            for fn in json.loads(fm.read_text())["functions"]:
-                for tab in fn.get("jumptables", []):
-                    v = int(tab, 16)
-                    n = 0
-                    while v + 4 * n in rel and t0 <= img.u32_va(v + 4 * n) < t1:
-                        n += 1
-                    if n:
-                        out[v] = n
+            rows = json.loads(fm.read_text())["functions"]
+            starts = {int(f["va"], 16) for f in rows}
+            tabs = {int(t, 16) for f in rows for t in f.get("jumptables", [])}
+            for v in sorted(tabs):
+                n = 0
+                while v + 4 * n in rel and t0 <= img.u32_va(v + 4 * n) < t1:
+                    n += 1
+                    nxt = v + 4 * n
+                    if nxt in tabs or nxt in starts:     # a following table/function bounds this one
+                        break
+                if n:
+                    out[v] = n
         _TABLES[img.name] = out
     return _TABLES[img.name]
 
@@ -219,7 +224,7 @@ class Comparison:
             hi_a = max(anchors) + 0x2000 if anchors else None
             for si, o, e, names, hits in pending:
                     seg = mod.segments[si]
-                    if len(hits) == 1 and (lo_a is None or not (lo_a <= hits[0] <= hi_a)):
+                    if len(hits) == 1 and not any(abs(hits[0] - a) <= 0x2000 for a in anchors):
                         self.notes.append(f"{symbols.label(names[0]) if names else seg.name}: unique masked hit "
                                           f"{hits[0]:08x} outside this object's anchored range; not placed")
                     elif len(hits) == 1:
@@ -331,9 +336,19 @@ class Comparison:
             raw = raw[:raw.index(0) + 1]
         return raw
 
+    def _string_item(self, d, off):
+        """May the item at d+off be proven only up to its NUL? Only anonymous items (compiler string literals,
+        no public at that offset) and objects typed as char arrays (`$n[]a`, `$n[]xa`, `$n[]uc`...). Named
+        scalars/structs are never shortened (audit v1 R2.1)."""
+        names = [n for n, s, o, _ in self.m.publics if s == d and o == off]
+        if not names:
+            return True
+        return any(n.startswith("W?") and n[n.rfind("$n") + 2:].startswith("[]") and n.endswith(("a", "uc"))
+                   for n in names)
+
     def _item_end(self, d, off):
         """End of the data item at segment d + off: next public/referenced offset or segment end; a printable
-        NUL-terminated string ends at its NUL."""
+        NUL-terminated string item (see _string_item) ends at its NUL."""
         seg = self.m.segments[d]
         bounds = {seg.size} | {o for n, s, o, _ in self.m.publics if s == d}
         for f in self.m.fixups:
@@ -341,9 +356,20 @@ class Comparison:
                 bounds.add(((0 if f.target[0] & 4 else f.disp) + self._addend(f.seg, f)) & 0xFFFFFFFF)
         end = min((b for b in bounds if b > off), default=seg.size)
         raw = bytes(seg.data[off:end])
-        if 0 in raw and raw.index(0) > 0 and all(32 <= c < 127 or c in (9, 10, 13) for c in raw[:raw.index(0)]):
+        if self._string_item(d, off) and 0 in raw and raw.index(0) > 0 and \
+                all(32 <= c < 127 or c in (9, 10, 13) for c in raw[:raw.index(0)]):
             end = off + raw.index(0) + 1
         return end
+
+    def _prove_bss(self, d, lo, hi, va):
+        """A zero-initialized (BSS) object of the candidate at va: every byte must lie in the image and be zero
+        in the oracle (audit v1 R2.2)."""
+        if hi <= lo:
+            return False
+        for k in range(hi - lo):
+            if self.img.section_at_rva(va + k - self.img.image_base) is None:
+                return False
+        return not any(self.img.read_va(va, hi - lo))
 
     def _prove_data(self, d, lo, hi, va):
         """Initialized data [lo,hi) of segment d is proven at va: bytes equal after applying its own fixups and
@@ -368,7 +394,9 @@ class Comparison:
         """A reference into initialized data segment d at item_off resolving to va is acceptable only if the
         whole segment is proven at its base, or the referenced item itself is proven at va (audit v1 F2)."""
         seg = self.m.segments[d]
-        if is_bss(seg) or self._segment_proven(d):
+        if is_bss(seg):
+            return self._prove_bss(d, item_off, self._item_end(d, item_off), va)
+        if self._segment_proven(d):
             return True
         return self._prove_data(d, item_off, self._item_end(d, item_off), va)
 
@@ -395,7 +423,9 @@ class Comparison:
                         add = self._addend(f.seg, f) if f.size() == 4 else 0
                         item_off = (disp + add) & 0xFFFFFFFF
                         if f.self_rel:
-                            if not (is_bss(seg) or self._segment_proven(d)):
+                            if not self._segment_proven(d) and not (
+                                    is_bss(seg) and self._prove_bss(d, item_off, self._item_end(d, item_off),
+                                                                    (va + add) & 0xFFFFFFFF)):
                                 return None, None, seg.name
                         elif not self._data_ref_ok(d, item_off, (va + add) & 0xFFFFFFFF):
                             return None, None, seg.name
@@ -417,7 +447,7 @@ class Comparison:
             name = self.m.externs[d]
             va, how = self.res.resolve(name)
             own = next(((psi, po) for pn, psi, po, _ in self.m.publics if pn == name
-                        and not is_code(self.m.segments[psi]) and not is_bss(self.m.segments[psi])), None)
+                        and not is_code(self.m.segments[psi])), None)
             if own is not None:
                 # audit v1 F1: an object of this TU referenced through its extern name must itself be proven
                 psi, po = own
@@ -427,12 +457,22 @@ class Comparison:
                 if va is None:
                     return None, None, name
                 end = self._item_end(psi, po)
-                if not self._prove_data(psi, po, end, va):
+                proof = self._prove_bss if is_bss(self.m.segments[psi]) else self._prove_data
+                if not proof(psi, po, end, va):
                     return None, None, name
                 return (va + disp) & 0xFFFFFFFF, how, name
             if va is None and d in self.m.weak and not any(pn == name for pn, *_ in self.m.publics):
-                # weak extern (WKEXT) that nothing binds: the linker uses its default resolution
-                dva, dhow = self.res.resolve(self.m.externs[self.m.weak[d]])
+                # weak/lazy extern that nothing binds: the linker uses its default, resolved through the full
+                # target path (own-object proofs, chains), with a cycle guard (audit v1 R2.6)
+                key = ("weak", d)
+                if key in self._proving:
+                    return None, None, name
+                self._proving.add(key)
+                try:
+                    default = dataclasses.replace(f, target=(6, self.m.weak[d]), disp=0)
+                    dva, dhow, _ = self.target(default, site)
+                finally:
+                    self._proving.discard(key)
                 if dva is not None:
                     return (dva + disp) & 0xFFFFFFFF, f"weak:{dhow}", name
             if va is None:
@@ -525,11 +565,9 @@ class Comparison:
                 # relocated run can continue into an adjacent table)
                 cand = {g.off for g in self.fx_by_seg.get(d, []) if g.size() == 4 and not g.self_rel
                         and g.target[0] & 3 == 0 and is_code(self.m.segments[g.target[1]])}
-                n_ent = 0
-                while toff + 4 * n_ent in cand:
-                    n_ent += 1
-                if not n_ent:
-                    unbound.setdefault("<external jump table>", set()).add(None)
+                n_ent = self.tables[tva]          # independent length (oracle, bounded by known starts)
+                if toff + 4 * n_ent > self.m.segments[d].size or any(toff + 4 * k not in cand for k in range(n_ent)):
+                    unbound.setdefault("<incomplete external jump table>", set()).add(None)
                     continue
                 key = ("table", d, toff)
                 ok = False

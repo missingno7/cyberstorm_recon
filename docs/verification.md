@@ -40,6 +40,14 @@ name differs from the bound one (overloads, e.g. copy constructors) are no longe
 weak/lazy externs (OMF WKEXT/LZEXT comment classes A8/A9) resolve to their default; single-function search hits
 must lie within the object's anchored address window (identical code elsewhere is not identity).
 
+Audit v1 round 2 (same day): R2.1 NUL-shortened proofs only for anonymous literals and char arrays (a named
+integer 64 = `40 00 00 00` was proven over 2 bytes); R2.2 zero (BSS) objects and BSS references must be zero in
+the oracle; R2.3 external jump-table length comes from the oracle (bounded by the next known table/function
+start) and the candidate must supply every entry; R2.4 search identity = within 0x2000 of an anchor (not the hull
+between anchors); R2.5 local-symbol fallback needs an exact owner and the overload check; R2.6 weak/lazy defaults
+resolve through the full proof path with a cycle guard. 16 functions of multi\link/linkapp/chat that referenced
+a fake zero array over initialized data were withdrawn (docs/blocked.md). test_gate covers F1-F5 and R2.1/R2.2.
+
 ## Bindings — `config/symbols.json`
 `matched` (written by promote for strict functions), `lib`, and `hypothesis`: an extern whose VA was implied
 by a byte-equal caller (`--imply`): unique across the TU, plausible (function start / data section), never

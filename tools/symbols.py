@@ -124,12 +124,15 @@ class Resolver:
             return (self.imports[imp], "import") if imp in self.imports else (None, None)
         if is_local(sym, local):
             e = self.db.get(key_for(sym, True, scope)) if scope else None
+            if e and e.get("mangled") and e["mangled"] != sym and not (
+                    not sym.startswith("W?") and label(e["mangled"]) == sym):
+                e = None                    # scoped overload/prototype mismatch (audit v1 R2.5)
             if not e and scope:
-                # an unscoped entry recorded by this same TU for exactly this mangled name (older bindings)
+                # an unscoped entry explicitly owned by exactly this TU, same symbol (older bindings)
                 u = self.db.get(label(sym))
                 same_name = u and (u.get("mangled") == sym or (not sym.startswith("W?") and label(u.get("mangled", "")) == sym))
-                if same_name and (str(u.get("tu", "")).lower().endswith(scope)
-                                                      or f"src/{scope}" in str(u.get("evidence", "")).lower()):
+                owner = str(u.get("tu", "")).replace("\\", "/").lower() if u else ""
+                if same_name and owner == f"src/{scope}":
                     e = u
             return (int(e["va"], 16), e["status"]) if e else (None, None)
         key = self.by_mangled.get(sym) or label(sym)

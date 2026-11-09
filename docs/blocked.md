@@ -17,3 +17,9 @@ object at +0x20 via 00457510, returns this). src currently has `ActorRecord() : 
 `ActorCloseRecord` function with the right bytes at 00456c80. Rewrite as the real constructor (member object with
 its own constructor) so the COMDAT matches; the old `ActorRecord::$ct`@00467971 identity was removed (identical
 trivial constructor of another class).
+
+## Data-model correction (integrator, 2026-11-09, audit v1 R2.2)
+multi\link.c, multi\linkapp.c, multi\chat.c model many globals as one fake zero-initialized array `link_data`
+(`unsigned char[]`) at 004a0000. The oracle holds initialized, nonzero data there, so references through that
+array are no longer accepted; 16 functions were withdrawn (accepted losses). Rework: declare the real globals
+(initialized ones in _DATA/CONST, zero ones in BSS) with their own names.
