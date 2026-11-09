@@ -38,3 +38,5 @@ Each row: context, trigger, effect, status, where. Add rows; replace a row when 
 | double null check | `if (!e) return 0; if (e) {...} return e;` | gives the original `test; je; je` pair | verified (o2, ExploAdd*) |
 | compiler crash | `#pragma data_seg("CONST","DATA")` around `static const int[]` | wpp386 10.6 access violation; plain `static const` objects go to _DATA in declaration order | observed (o2) |
 | 10.5 vs 10.6 compiler | | identical bytes on StrPool::Lock variants | measured (does not discriminate yet) |
+| inline limit | `-oe=80` vs `-oe` (=100) in a plain-oe TU (tu_0040e7a0, VR screen) | `-oe`/`-oe=100` inlines `BiodermStatsScreen::SetControls` into its callers; `-oe=80` keeps the out-of-line calls; only `-oe=80` is STRICT (promoted with `--flags '-4s -s -bm -oe=80'`). Try `-oe=N` when plain-oe over- or under-inlines one helper | verified (s9) |
+| global width and register allocation | a later global declared byte vs short vs int (both assignments zero) | only the byte declaration reproduces an earlier function's register choice in the list TU | verified (s9) |
