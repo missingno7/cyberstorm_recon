@@ -35,6 +35,10 @@ You reconstruct C++ source that Watcom 10.6 compiles to the exact bytes of `CSTO
   (`--profile ot-c|plain-c`, plain C structs and functions); `xor r,r; mov rl,[x]; test r,r` or `movsx` mean
   C++. Global objects with constructors/destructors, `W?` names and default arguments mean C++.
 - Use Watcom's `<windows.h>` for Win32 calls, not hand-written `__stdcall` prototypes.
+- Never call Watcom runtime internals under invented names. `__wcpp_2_mod_register_`, `__wcpp_2_ctor_array_`,
+  `__wcpp_2_dtor_array_*`, `W?$nwn`/`W?$nan` (new/new[]), `W?$dln`/`W?$dan` (delete/delete[]) are generated
+  by the compiler from global objects, arrays of class objects, `new` and `delete`. Write those C++ constructs.
+  `python tools/show.py` names library functions; anything named there is runtime, not game code.
 - An EBP frame without locals can come from calling a function with default arguments (C++).
 - `mov eax,[g]; test eax,eax` vs `cmp [g],0` can come from an inline accessor.
 - Statement order is visible in store order; operand order in `a < b` vs `b > a` is visible.
