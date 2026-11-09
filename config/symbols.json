@@ -3519,6 +3519,13 @@
    "mangled": "W?$ct:Surface$n(ul)_",
    "evidence": "implied by src/gui/flic.c 2026-11-09"
   },
+  "Surface::$dt": {
+   "va": "0042728b",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:Surface$n()_",
+   "evidence": "implied by src/pop/pdeath.c 2026-11-09"
+  },
   "SurfaceAttach": {
    "va": "004272cd",
    "kind": "func",
@@ -3532,6 +3539,13 @@
    "status": "hypothesis",
    "mangled": "W?SurfaceCreate$n(pnvll)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "SurfaceCreate#W?SurfaceCreate$n(pnvll)i": {
+   "va": "0042732e",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SurfaceCreate$n(pnvll)i",
+   "evidence": "implied by src/pop/pdeath.c 2026-11-09"
   },
   "SurfaceFree": {
    "va": "00427399",
@@ -3574,6 +3588,13 @@
    "status": "hypothesis",
    "mangled": "W?SurfaceCopyRegion$n(pnvpnvll)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "SurfaceGetFrame": {
+   "va": "0042758a",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "SurfaceGetFrame",
+   "evidence": "implied by src/pop/pdeath.c 2026-11-09"
   },
   "PlyMatch": {
    "va": "004275dc",
@@ -4839,12 +4860,103 @@
    "mangled": "W?SetFastView$n(pn$FastCoord$$pnx$ViewState$$)v",
    "evidence": "implied by src/_unknown/tu_0044b8b0.c 2026-11-09"
   },
+  "SetFastView#SetFastView": {
+   "va": "0042e2d0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "SetFastView",
+   "evidence": "implied by src/pop/pdeath.c 2026-11-09"
+  },
   "GridConvert": {
    "va": "0042e450",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?GridConvert$n(pn$FastCoord$$pn$1$pn$1$)v",
    "evidence": "implied by src/terr/tfast.c 2026-11-09"
+  },
+  "PrepareDeathMap": {
+   "va": "0042e760",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "PrepareDeathMap",
+   "evidence": "implied by src/pop/pdeath.c 2026-11-09"
+  },
+  "DrawDeathMap": {
+   "va": "0042e7a0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "DrawDeathMap",
+   "evidence": "implied by src/pop/pdeath.c 2026-11-09"
+  },
+  "Noise::$ct": {
+   "va": "00431d70",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$ct:Noise$n()_",
+   "evidence": "implied by src/terr/tbuild.c 2026-11-09"
+  },
+  "NoiseConstruct": {
+   "va": "00431d70",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "NoiseConstruct",
+   "evidence": "implied by src/terr/tbuild.c 2026-11-09"
+  },
+  "NoiseDestroy": {
+   "va": "00431d80",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "NoiseDestroy",
+   "evidence": "implied by src/terr/tbuild.c 2026-11-09"
+  },
+  "NoiseGenerate": {
+   "va": "00431f40",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "NoiseGenerate",
+   "evidence": "implied by src/terr/tbuild.c 2026-11-09"
+  },
+  "NoiseClear": {
+   "va": "00432020",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "NoiseClear",
+   "evidence": "implied by src/terr/tbuild.c 2026-11-09"
+  },
+  "NoiseGet": {
+   "va": "00432050",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "NoiseGet",
+   "evidence": "implied by src/terr/tbuild.c 2026-11-09"
+  },
+  "NoiseSet": {
+   "va": "004320a0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "NoiseSet",
+   "evidence": "implied by src/terr/tbuild.c 2026-11-09"
+  },
+  "NoiseSmooth": {
+   "va": "00432100",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "NoiseSmooth",
+   "evidence": "implied by src/terr/tbuild.c 2026-11-09"
+  },
+  "NoiseFill": {
+   "va": "00432160",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "NoiseFill",
+   "evidence": "implied by src/terr/tbuild.c 2026-11-09"
+  },
+  "TerrainRaise": {
+   "va": "004323c0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "TerrainRaise",
+   "evidence": "implied by src/terr/tbuild.c 2026-11-09"
   },
   "GridClearSelection": {
    "va": "00432870",
@@ -4991,12 +5103,148 @@
    "tu": "src/terr/tfog.c",
    "evidence": "strict match 2026-11-09"
   },
+  "W?.fn_init$n()v@terr/tbuild.c": {
+   "va": "00433640",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/terr/tbuild.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "TerrainFilename": {
+   "va": "00433670",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TerrainFilename$n(pnvpnxa)pna",
+   "tu": "src/terr/tbuild.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "SimLoadImage": {
    "va": "004336d0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?SimLoadImage$n(pnvipnv)v",
-   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+   "tu": "src/terr/tbuild.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "TerrainReleaseImage": {
+   "va": "00433a60",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TerrainReleaseImage$n()v",
+   "tu": "src/terr/tbuild.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "TerrainHeightRange": {
+   "va": "00433a80",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?TerrainHeightRange$n(pn$TerrainGrid$$pn$Noise$$pn$Range$$iuii)i",
+   "tu": "src/terr/tbuild.c",
+   "evidence": "placed (at) in src/terr/tbuild.c 2026-11-09"
+  },
+  "TerrainSetHeights": {
+   "va": "00433c80",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TerrainSetHeights$n(pn$TerrainGrid$$pn$Noise$$)v",
+   "tu": "src/terr/tbuild.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "TerrainSetTypes": {
+   "va": "00433d40",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?TerrainSetTypes$n(pn$TerrainGrid$$pn$Noise$$)v",
+   "tu": "src/terr/tbuild.c",
+   "evidence": "placed (at) in src/terr/tbuild.c 2026-11-09"
+  },
+  "TerrainSetWater": {
+   "va": "00433e50",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?TerrainSetWater$n(pn$TerrainGrid$$ii)v",
+   "tu": "src/terr/tbuild.c",
+   "evidence": "placed (at) in src/terr/tbuild.c 2026-11-09"
+  },
+  "TerrainTriplet": {
+   "va": "00434070",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?TerrainTriplet$n(pn$TerrainGrid$$ii)v",
+   "tu": "src/terr/tbuild.c",
+   "evidence": "placed (at) in src/terr/tbuild.c 2026-11-09"
+  },
+  "TerrainFeatures": {
+   "va": "004341f0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?TerrainFeatures$n(pn$TerrainGrid$$)v",
+   "tu": "src/terr/tbuild.c",
+   "evidence": "placed (at) in src/terr/tbuild.c 2026-11-09"
+  },
+  "TerrainSetNoiseHeight": {
+   "va": "00434730",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TerrainSetNoiseHeight$n(pn$Point$$uc)v",
+   "tu": "src/terr/tbuild.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "TerrainBuildHeights": {
+   "va": "00434770",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TerrainBuildHeights$n(pn$TerrainGrid$$pn$MissionTerrain$$ipnv)v",
+   "tu": "src/terr/tbuild.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "TerrainBuildFeatures": {
+   "va": "00434890",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TerrainBuildFeatures$n(pn$TerrainGrid$$pn$MissionTerrain$$ii)v",
+   "tu": "src/terr/tbuild.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "TerrainDestroyNoise": {
+   "va": "004349a0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TerrainDestroyNoise$n(pn$Noise$$)v",
+   "tu": "src/terr/tbuild.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "Noise::$dt": {
+   "va": "004349a0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:Noise$n()_",
+   "evidence": "implied by src/terr/tbuild.c 2026-11-09"
+  },
+  "TerrainConstructNoise": {
+   "va": "004349b0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TerrainConstructNoise$n(pn$Noise$$)v",
+   "tu": "src/terr/tbuild.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "W?.fn_init$n()v@_unknown/tu_004349c0.c": {
+   "va": "004349c0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/_unknown/tu_004349c0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "TerrainSumHeight": {
+   "va": "004349d0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TerrainSumHeight$n(pnv)i",
+   "tu": "src/_unknown/tu_004349c0.c",
+   "evidence": "strict match 2026-11-09"
   },
   "f_00434a20": {
    "va": "00434a20",
@@ -5005,6 +5253,22 @@
    "mangled": "f_00434a20",
    "evidence": "implied by src/logic/lsys.c 2026-11-09"
   },
+  "TerrainAverageHeight": {
+   "va": "00434a20",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TerrainAverageHeight$n(pn$TerrainGrid$$ii)i",
+   "tu": "src/_unknown/tu_004349c0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "TerrainBlendHeight": {
+   "va": "00434aa0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?TerrainBlendHeight$n(pn$Visit$$)i",
+   "tu": "src/_unknown/tu_004349c0.c",
+   "evidence": "placed (at) in src/_unknown/tu_004349c0.c 2026-11-09"
+  },
   "f_00434bd0": {
    "va": "00434bd0",
    "kind": "func",
@@ -5012,12 +5276,28 @@
    "mangled": "f_00434bd0",
    "evidence": "implied by src/logic/lsys.c 2026-11-09"
   },
+  "TerrainAdjustHeight": {
+   "va": "00434bd0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?TerrainAdjustHeight$n(pn$TerrainGrid$$iiiii)v",
+   "tu": "src/_unknown/tu_004349c0.c",
+   "evidence": "placed (at) in src/_unknown/tu_004349c0.c 2026-11-09"
+  },
   "f_00434c70": {
    "va": "00434c70",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "f_00434c70",
    "evidence": "implied by src/logic/lsys.c 2026-11-09"
+  },
+  "TerrainNoAction": {
+   "va": "00434c70",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TerrainNoAction$n()i",
+   "tu": "src/_unknown/tu_004349c0.c",
+   "evidence": "strict match 2026-11-09"
   },
   "FastBufferClear": {
    "va": "00434c80",
@@ -5160,6 +5440,13 @@
    "status": "hypothesis",
    "mangled": "W?PilotValue$n(pnvi)l",
    "evidence": "implied by src/sim/simturn.c 2026-11-09"
+  },
+  "PilotValue#PilotValue": {
+   "va": "00436dcc",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "PilotValue",
+   "evidence": "implied by src/pop/pdeath.c 2026-11-09"
   },
   "UnitCapability": {
    "va": "0043718a",
@@ -6593,6 +6880,38 @@
    "mangled": "W?SimPilotDraw$n(pnv)v",
    "evidence": "implied by src/sim/sim.c 2026-11-09"
   },
+  "DeathScreenClose": {
+   "va": "00448d74",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?DeathScreenClose$n(pn$DeathScreen$$)v",
+   "tu": "src/pop/pdeath.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "DeathMovie": {
+   "va": "00448d80",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?DeathMovie$n(pn$Shell$$pnv)v",
+   "tu": "src/pop/pdeath.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "W?.tdctor$:Surface$n()rn$1$": {
+   "va": "00449138",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.tdctor$:Surface$n()rn$1$",
+   "tu": "src/pop/pdeath.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "DeathSummary": {
+   "va": "00449148",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?DeathSummary$n(pn$Shell$$)v",
+   "tu": "src/pop/pdeath.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "W?.fn_init$n()v@_unknown/tu_0044950c.c": {
    "va": "0044950c",
    "kind": "func",
@@ -7280,6 +7599,13 @@
    "tu": "src/sim/simturn.c",
    "evidence": "strict match 2026-11-09"
   },
+  "ShellRestore": {
+   "va": "00450b00",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "ShellRestore",
+   "evidence": "implied by src/pop/pdeath.c 2026-11-09"
+  },
   "SimGameDrawPortrait": {
    "va": "00450eb0",
    "kind": "func",
@@ -7680,6 +8006,20 @@
    "status": "hypothesis",
    "mangled": "W?SimHotReadTimer$n(pna)i",
    "evidence": "implied by src/sim/simhot.c 2026-11-09"
+  },
+  "DeathTimerDraw": {
+   "va": "00454440",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?DeathTimerDraw$n(pn$Shell$$iiii)v",
+   "evidence": "implied by src/pop/pdeath.c 2026-11-09"
+  },
+  "DeathInput": {
+   "va": "004546f0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "DeathInput",
+   "evidence": "implied by src/pop/pdeath.c 2026-11-09"
   },
   "ModeBeginDiagnose": {
    "va": "004547c0",
@@ -9113,6 +9453,13 @@
    "mangled": "W?LogicGetScriptData$n()pnv",
    "tu": "src/logic/logic.c",
    "evidence": "placed (at) in src/logic/logic.c 2026-11-09"
+  },
+  "LogicGetScriptData#W?LogicGetScriptData$n(pnv)pnv": {
+   "va": "00462e33",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LogicGetScriptData$n(pnv)pnv",
+   "evidence": "implied by src/pop/pdeath.c 2026-11-09"
   },
   "LogicActorBuild": {
    "va": "00462e3c",
@@ -12873,6 +13220,20 @@
    "mangled": "W?ApplyPaletteData$n(pnvii)v",
    "evidence": "implied by src/gui/flic.c 2026-11-09"
   },
+  "PaletteAttach": {
+   "va": "0047b4a0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "PaletteAttach",
+   "evidence": "implied by src/terr/tbuild.c 2026-11-09"
+  },
+  "PaletteBlend": {
+   "va": "0047b5b0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "PaletteBlend",
+   "evidence": "implied by src/terr/tbuild.c 2026-11-09"
+  },
   "SimPaletteCycle": {
    "va": "0047b650",
    "kind": "func",
@@ -13414,12 +13775,26 @@
    "mangled": "W?PlyGetKey$n(pn$PlyKey$$)v",
    "evidence": "implied by src/_unknown/tu_004297d4.c 2026-11-09"
   },
+  "PaletteRead": {
+   "va": "0047d9f0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "PaletteRead",
+   "evidence": "implied by src/terr/tbuild.c 2026-11-09"
+  },
   "PaletteCopyRange": {
    "va": "0047da40",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?PaletteCopyRange$n(pn$Palette$$pnx$PaletteColor$$ii)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "PaletteCopyRange#PaletteCopyRange": {
+   "va": "0047da40",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "PaletteCopyRange",
+   "evidence": "implied by src/terr/tbuild.c 2026-11-09"
   },
   "DecodeLaunchPalette": {
    "va": "0047da70",
@@ -13448,6 +13823,13 @@
    "status": "hypothesis",
    "mangled": "W?f_47dde0$n()v",
    "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+  },
+  "ResetFrameClock": {
+   "va": "0047ddf0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "ResetFrameClock",
+   "evidence": "implied by src/pop/pdeath.c 2026-11-09"
   },
   "GuiReadKey": {
    "va": "0047df20",
@@ -14764,6 +15146,13 @@
    "mangled": "W?promoSounds_00490178$n[]$FlicSound$$",
    "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
   },
+  "deathSounds": {
+   "va": "004901c0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?deathSounds$n[]$FlicSound$$",
+   "evidence": "implied by src/pop/pdeath.c 2026-11-09"
+  },
   "GridSourcePath": {
    "va": "00490450",
    "kind": "data",
@@ -14777,6 +15166,13 @@
    "status": "hypothesis",
    "mangled": "W?FogSourcePath$n[]xa",
    "evidence": "implied by src/terr/tfog.c 2026-11-09"
+  },
+  "seasonCounts": {
+   "va": "00490604",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?seasonCounts$n[]i",
+   "evidence": "implied by src/terr/tbuild.c 2026-11-09"
   },
   "actorListDescriptor": {
    "va": "00493b2c",
@@ -17592,12 +17988,33 @@
    "mangled": "W?gMenuColors$n[]ul",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
   },
+  "deathTextColor": {
+   "va": "004bc4e4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?deathTextColor$nul",
+   "evidence": "implied by src/pop/pdeath.c 2026-11-09"
+  },
+  "deathMapColor": {
+   "va": "004bc4f8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?deathMapColor$nul",
+   "evidence": "implied by src/pop/pdeath.c 2026-11-09"
+  },
   "gMenuColorMap": {
    "va": "004bc534",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gMenuColorMap$n[]ul",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "deathTextMap": {
+   "va": "004bc55c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?deathTextMap$n[]ul",
+   "evidence": "implied by src/pop/pdeath.c 2026-11-09"
   },
   "gGuiFadeFirst": {
    "va": "004bc5ac",
@@ -17634,12 +18051,124 @@
    "mangled": "W?gFogGlobalMode$nl",
    "evidence": "implied by src/terr/tfog.c 2026-11-09"
   },
+  "terrainFilename": {
+   "va": "004c6894",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?terrainFilename$n[]a",
+   "evidence": "implied by src/terr/tbuild.c 2026-11-09"
+  },
   "g4c68b4": {
    "va": "004c68b4",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4c68b4$na",
    "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
+  "g4c68b4#W?g4c68b4$n$TerrainConfig$$": {
+   "va": "004c68b4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4c68b4$n$TerrainConfig$$",
+   "evidence": "implied by src/terr/tbuild.c 2026-11-09"
+  },
+  "terrainTypeOrder": {
+   "va": "004c68ce",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?terrainTypeOrder$n[]uc",
+   "evidence": "implied by src/terr/tbuild.c 2026-11-09"
+  },
+  "terrainTypeRemap": {
+   "va": "004c6d69",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?terrainTypeRemap$n[]uc",
+   "evidence": "implied by src/terr/tbuild.c 2026-11-09"
+  },
+  "hexCursor": {
+   "va": "004c6d7c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hexCursor$npnv",
+   "evidence": "implied by src/terr/tbuild.c 2026-11-09"
+  },
+  "terrainImage": {
+   "va": "004c6d80",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?terrainImage$npnv",
+   "evidence": "implied by src/terr/tbuild.c 2026-11-09"
+  },
+  "hexMask": {
+   "va": "004c6d84",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hexMask$n[]uc",
+   "evidence": "implied by src/terr/tbuild.c 2026-11-09"
+  },
+  "worldColorInfo": {
+   "va": "004c7984",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?worldColorInfo$n[]uc",
+   "evidence": "implied by src/terr/tbuild.c 2026-11-09"
+  },
+  "worldColorExtras": {
+   "va": "004c79fc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?worldColorExtras$n[]uc",
+   "evidence": "implied by src/terr/tbuild.c 2026-11-09"
+  },
+  "terrainNumber": {
+   "va": "004c7a2c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?terrainNumber$ni",
+   "evidence": "implied by src/terr/tbuild.c 2026-11-09"
+  },
+  "worldColors": {
+   "va": "004c7a30",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?worldColors$n[]uc",
+   "evidence": "implied by src/terr/tbuild.c 2026-11-09"
+  },
+  "heightLevels": {
+   "va": "004c7e30",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?heightLevels$n[]i",
+   "evidence": "implied by src/terr/tbuild.c 2026-11-09"
+  },
+  "heightStep": {
+   "va": "004c7e50",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?heightStep$ni",
+   "evidence": "implied by src/terr/tbuild.c 2026-11-09"
+  },
+  "terrainNoise": {
+   "va": "004c7e54",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?terrainNoise$n$Noise$$",
+   "evidence": "implied by src/terr/tbuild.c 2026-11-09"
+  },
+  "heightSum": {
+   "va": "004c8010",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?heightSum$ni",
+   "evidence": "implied by src/_unknown/tu_004349c0.c 2026-11-09"
+  },
+  "heightCount": {
+   "va": "004c8014",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?heightCount$ni",
+   "evidence": "implied by src/_unknown/tu_004349c0.c 2026-11-09"
   },
   "g4c9234": {
    "va": "004c9234",
@@ -18194,6 +18723,13 @@
    "mangled": "W?simLimit4$ni",
    "evidence": "implied by src/_unknown/tu_0044b8b0.c 2026-11-09"
   },
+  "deathMovies": {
+   "va": "004d37a4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?deathMovies$ni",
+   "evidence": "implied by src/pop/pdeath.c 2026-11-09"
+  },
   "g4d381c": {
    "va": "004d381c",
    "kind": "data",
@@ -18228,6 +18764,13 @@
    "status": "hypothesis",
    "mangled": "W?targetLimits$nl",
    "evidence": "implied by src/_unknown/tu_0044950c.c 2026-11-09"
+  },
+  "worldColorsBackup": {
+   "va": "004d3894",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?worldColorsBackup$n[]uc",
+   "evidence": "implied by src/terr/tbuild.c 2026-11-09"
   },
   "g4d3c9c": {
    "va": "004d3c9c",
@@ -19362,6 +19905,13 @@
    "status": "hypothesis",
    "mangled": "W?g511dc0$n$Font$$",
    "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
+  "gDefaultFont": {
+   "va": "00511dc4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gDefaultFont$n$Font$$",
+   "evidence": "implied by src/pop/pdeath.c 2026-11-09"
   },
   "gShellFont": {
    "va": "00511dc8",

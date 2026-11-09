@@ -5529,6 +5529,132 @@
    },
    "data": {},
    "accepted": "2026-11-09"
+  },
+  "src/terr/tbuild.c": {
+   "as": "terr\\tbuild.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "00433640",
+     "size": 48,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "TerrainFilename": {
+     "va": "00433670",
+     "size": 96,
+     "mangled": "W?TerrainFilename$n(pnvpnxa)pna"
+    },
+    "SimLoadImage": {
+     "va": "004336d0",
+     "size": 912,
+     "mangled": "W?SimLoadImage$n(pnvipnv)v"
+    },
+    "TerrainReleaseImage": {
+     "va": "00433a60",
+     "size": 32,
+     "mangled": "W?TerrainReleaseImage$n()v"
+    },
+    "TerrainSetHeights": {
+     "va": "00433c80",
+     "size": 192,
+     "mangled": "W?TerrainSetHeights$n(pn$TerrainGrid$$pn$Noise$$)v"
+    },
+    "TerrainSetNoiseHeight": {
+     "va": "00434730",
+     "size": 64,
+     "mangled": "W?TerrainSetNoiseHeight$n(pn$Point$$uc)v"
+    },
+    "TerrainBuildHeights": {
+     "va": "00434770",
+     "size": 288,
+     "mangled": "W?TerrainBuildHeights$n(pn$TerrainGrid$$pn$MissionTerrain$$ipnv)v"
+    },
+    "TerrainBuildFeatures": {
+     "va": "00434890",
+     "size": 272,
+     "mangled": "W?TerrainBuildFeatures$n(pn$TerrainGrid$$pn$MissionTerrain$$ii)v"
+    },
+    "TerrainDestroyNoise": {
+     "va": "004349a0",
+     "size": 16,
+     "mangled": "W?TerrainDestroyNoise$n(pn$Noise$$)v"
+    },
+    "TerrainConstructNoise": {
+     "va": "004349b0",
+     "size": 14,
+     "mangled": "W?TerrainConstructNoise$n(pn$Noise$$)v"
+    }
+   },
+   "data": {
+    "CONST2": {
+     "va": "0048db08",
+     "size": 12
+    },
+    "_DATA": {
+     "va": "004905f8",
+     "size": 12
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_004349c0.c": {
+   "as": "_unknown\\tu_004349c0.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "004349c0",
+     "size": 16,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "TerrainSumHeight": {
+     "va": "004349d0",
+     "size": 80,
+     "mangled": "W?TerrainSumHeight$n(pnv)i"
+    },
+    "TerrainAverageHeight": {
+     "va": "00434a20",
+     "size": 128,
+     "mangled": "W?TerrainAverageHeight$n(pn$TerrainGrid$$ii)i"
+    },
+    "TerrainNoAction": {
+     "va": "00434c70",
+     "size": 3,
+     "mangled": "W?TerrainNoAction$n()i"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/pop/pdeath.c": {
+   "as": "pop\\pdeath.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "DeathScreenClose": {
+     "va": "00448d74",
+     "size": 12,
+     "mangled": "W?DeathScreenClose$n(pn$DeathScreen$$)v"
+    },
+    "DeathMovie": {
+     "va": "00448d80",
+     "size": 952,
+     "mangled": "W?DeathMovie$n(pn$Shell$$pnv)v"
+    },
+    "W?.tdctor$:Surface$n()rn$1$": {
+     "va": "00449138",
+     "size": 16,
+     "mangled": "W?.tdctor$:Surface$n()rn$1$"
+    },
+    "DeathSummary": {
+     "va": "00449148",
+     "size": 963,
+     "mangled": "W?DeathSummary$n(pn$Shell$$)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
   }
  },
  "accepted_losses": [
