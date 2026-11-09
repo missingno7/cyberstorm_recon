@@ -1135,7 +1135,12 @@
      "mangled": "W?TargetRecordType$n(pnvi)i"
     }
    },
-   "data": {},
+   "data": {
+    "XI": {
+     "va": "004a6c7e",
+     "size": 6
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/logic/lsys.c": {
@@ -4634,6 +4639,10 @@
      "va": "0048e8d4",
      "size": 328
     },
+    "XI": {
+     "va": "004a6b94",
+     "size": 6
+    },
     "W?$Wvf0gos:CommsLogView$$nx[]pn()v": {
      "va": "0048cfac",
      "size": 20
@@ -4642,8 +4651,24 @@
      "va": "0048c9ec",
      "size": 17
     },
+    "W?$Wts0in$MenuListButton$$$nx[]uc": {
+     "va": "0048cf98",
+     "size": 17
+    },
     "W?$Wts0gn$CommsLogView$$$nx[]uc": {
      "va": "0048cf84",
+     "size": 17
+    },
+    "W?$Wts0dn$MenuPanel$$$nx[]uc": {
+     "va": "0048c99c",
+     "size": 17
+    },
+    "W?$Wts0in$MenuHelpRegion$$$nx[]uc": {
+     "va": "0048c9c4",
+     "size": 17
+    },
+    "W?$Wts0fn$CommsScreen$$$nx[]uc": {
+     "va": "0048cf70",
      "size": 17
     }
    },
@@ -6087,6 +6112,14 @@
      "va": "00494164",
      "size": 12
     },
+    "XI": {
+     "va": "004a6c12",
+     "size": 6
+    },
+    "W?$Wts0fn$GameSession$$$nx[]uc": {
+     "va": "0048c85c",
+     "size": 17
+    },
     "W?$Wts0jn$ActorListObject$$$nx[]uc": {
      "va": "0048db34",
      "size": 17
@@ -6394,8 +6427,16 @@
      "va": "004a0178",
      "size": 12
     },
+    "XI": {
+     "va": "004a6c48",
+     "size": 6
+    },
     "W?$Wts0en$MenuSpacer$$$nx[]uc": {
      "va": "0048d964",
+     "size": 17
+    },
+    "W?$Wts0cn$PopWorld$$$nx[]uc": {
+     "va": "0048de08",
      "size": 17
     }
    },
@@ -7611,6 +7652,10 @@
     "_DATA": {
      "va": "00490460",
      "size": 36
+    },
+    "XI": {
+     "va": "004a6bee",
+     "size": 6
     },
     "W?$Wsi09gaps$n[]i$:.0$:?DisplaySortItems$n(pnpnvi)vnx[]i": {
      "va": "00490470",
@@ -9198,6 +9243,14 @@
     "CONST": {
      "va": "0048b29c",
      "size": 12
+    },
+    "XI": {
+     "va": "004a6c18",
+     "size": 6
+    },
+    "W?$Wts0hn$MovementPopup$$$nx[]uc": {
+     "va": "0048db9c",
+     "size": 17
     }
    },
    "accepted": "2026-11-09"

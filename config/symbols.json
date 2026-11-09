@@ -24340,11 +24340,27 @@
    "tu": "src/shell/pilotgui.c",
    "evidence": "own data placed in src/shell/pilotgui.c 2026-11-09"
   },
+  "W?$Wts0fn$CommsScreen$$$nx[]uc": {
+   "va": "0048cf70",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0fn$CommsScreen$$$nx[]uc",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "own data placed in src/shell/commscrn.c 2026-11-09"
+  },
   "W?$Wts0gn$CommsLogView$$$nx[]uc": {
    "va": "0048cf84",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?$Wts0gn$CommsLogView$$$nx[]uc",
+   "tu": "src/shell/commscrn.c",
+   "evidence": "own data placed in src/shell/commscrn.c 2026-11-09"
+  },
+  "W?$Wts0in$MenuListButton$$$nx[]uc": {
+   "va": "0048cf98",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0in$MenuListButton$$$nx[]uc",
    "tu": "src/shell/commscrn.c",
    "evidence": "own data placed in src/shell/commscrn.c 2026-11-09"
   },
@@ -24609,6 +24625,14 @@
    "tu": "src/_unknown/tu_0043b8e8.c",
    "evidence": "own data placed in src/_unknown/tu_0043b8e8.c 2026-11-09"
   },
+  "W?$Wts0hn$MovementPopup$$$nx[]uc": {
+   "va": "0048db9c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0hn$MovementPopup$$$nx[]uc",
+   "tu": "src/_unknown/tu_004425d4.c",
+   "evidence": "own data placed in src/_unknown/tu_004425d4.c 2026-11-09"
+  },
   "W?$Wts0jn$WeaponMapGadget$$$nx[]uc": {
    "va": "0048dbe8",
    "kind": "data",
@@ -24723,6 +24747,14 @@
    "mangled": "W?$Wts0bn$StrPool$$$nx[]uc",
    "tu": "src/_unknown/tu_00475dc8.c",
    "evidence": "own data placed in src/_unknown/tu_00475dc8.c 2026-11-09"
+  },
+  "W?$Wts0cn$PopWorld$$$nx[]uc": {
+   "va": "0048de08",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0cn$PopWorld$$$nx[]uc",
+   "tu": "src/_unknown/tu_00449bb4.c",
+   "evidence": "own data placed in src/_unknown/tu_00449bb4.c 2026-11-09"
   },
   "W?$Wts0dn$ViewState$$$nx[]uc": {
    "va": "0048de28",
@@ -34975,6 +35007,14 @@
    "status": "hypothesis",
    "mangled": "W?logicTextBuffer$n[]a",
    "evidence": "implied by src/logic/lsys.c 2026-11-09"
+  },
+  "soundPollDeadline": {
+   "va": "004f41c4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?soundPollDeadline$ni",
+   "tu": "src/_unknown/tu_0046b918.c",
+   "evidence": "own data placed in src/_unknown/tu_0046b918.c 2026-11-09"
   },
   "soundDevice": {
    "va": "004f41c8",
