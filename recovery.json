@@ -6120,6 +6120,108 @@
     }
    },
    "accepted": "2026-11-09"
+  },
+  "src/terr/tarea.c": {
+   "as": "terr\\tarea.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "AreaEnumerateAll": {
+     "va": "0042cf20",
+     "size": 27,
+     "mangled": "W?AreaEnumerateAll$n(pnipnv)v"
+    }
+   },
+   "data": {
+    "_DATA": {
+     "va": "00490484",
+     "size": 13
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/terr/tdisplay.c": {
+   "as": "terr\\tdisplay.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "DisplayInitialize": {
+     "va": "0042b960",
+     "size": 32,
+     "mangled": "W?DisplayInitialize$n(pnvpnxai)v"
+    },
+    "DisplayIdentity": {
+     "va": "0042b980",
+     "size": 16,
+     "mangled": "W?DisplayIdentity$n(pnv)pnv"
+    },
+    "DisplayPointScale": {
+     "va": "0042bf10",
+     "size": 32,
+     "mangled": "W?DisplayPointScale$n(pnii)i"
+    },
+    "DisplayIdentityA": {
+     "va": "0042c9d0",
+     "size": 16,
+     "mangled": "W?DisplayIdentityA$n(pnv)pnv"
+    },
+    "DisplayIdentityB": {
+     "va": "0042c9e0",
+     "size": 16,
+     "mangled": "W?DisplayIdentityB$n(pnv)pnv"
+    },
+    "DisplayIdentityC": {
+     "va": "0042c9f0",
+     "size": 16,
+     "mangled": "W?DisplayIdentityC$n(pnv)pnv"
+    },
+    "DisplayWalkInit": {
+     "va": "0042ca00",
+     "size": 48,
+     "mangled": "W?DisplayWalkInit$n(pn$AreaWalk$$ui)v"
+    },
+    "DisplayCount": {
+     "va": "0042cb30",
+     "size": 32,
+     "mangled": "W?DisplayCount$n(i)i"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/terr/tsurface.c": {
+   "as": "terr\\tsurface.c",
+   "install": "wc106",
+   "profile": "ot-oe",
+   "functions": {
+    "SurfaceAllocateGrid": {
+     "va": "00431b00",
+     "size": 96,
+     "mangled": "W?SurfaceAllocateGrid$n(iii)pni"
+    },
+    "SurfaceReleaseGrid": {
+     "va": "00431b60",
+     "size": 32,
+     "mangled": "W?SurfaceReleaseGrid$n(pnypnv)v"
+    },
+    "SurfaceClearAllocation": {
+     "va": "00431d70",
+     "size": 16,
+     "mangled": "W?SurfaceClearAllocation$n(pnv)v"
+    },
+    "SurfaceReleaseAllocation": {
+     "va": "00431d80",
+     "size": 48,
+     "mangled": "W?SurfaceReleaseAllocation$n(pni)pni"
+    },
+    "SurfaceClearAllocationAndRelease": {
+     "va": "00432020",
+     "size": 48,
+     "mangled": "W?SurfaceClearAllocationAndRelease$n(pni)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
   }
  },
  "accepted_losses": [

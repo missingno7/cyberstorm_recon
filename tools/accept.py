@@ -14,7 +14,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import ROOT  # noqa: E402
 
-LINE = re.compile(r"python(?:\s+-\w+)*\s+tools/promote\.py\s+(candidates/\S+.*?)\s*`?\s*$")
+LINE = re.compile(r"python(?:\s+-\w+)*\s+(?:\.[\\/])?tools[\\/]promote\.py\s+(candidates/\S+.*?)\s*`?\s*$")
 
 
 def commands(report):

@@ -5301,12 +5301,68 @@
    "tu": "src/terr/tgrid.c",
    "evidence": "placed (at) in src/terr/tgrid.c 2026-11-09"
   },
+  "DisplayConstructArray": {
+   "va": "0042b940",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?DisplayConstructArray$n()v",
+   "tu": "src/terr/tdisplay.c",
+   "evidence": "placed (at) in src/terr/tdisplay.c 2026-11-09"
+  },
+  "DisplayInitialize": {
+   "va": "0042b960",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?DisplayInitialize$n(pnvpnxai)v",
+   "tu": "src/terr/tdisplay.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "DisplayIdentity": {
+   "va": "0042b980",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?DisplayIdentity$n(pnv)pnv",
+   "tu": "src/terr/tdisplay.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "DisplaySetRect": {
+   "va": "0042b990",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?DisplaySetRect$n(pnvpnx$DisplayRect$$)v",
+   "tu": "src/terr/tdisplay.c",
+   "evidence": "placed (at) in src/terr/tdisplay.c 2026-11-09"
+  },
   "SetTerrainView": {
    "va": "0042b9e0",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?SetTerrainView$n(pnvpnx$ViewState$$i)v",
    "evidence": "implied by src/sim/simdo.c 2026-11-09"
+  },
+  "DisplayConfigure": {
+   "va": "0042b9e0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?DisplayConfigure$n(pnipnii)v",
+   "tu": "src/terr/tdisplay.c",
+   "evidence": "placed (at) in src/terr/tdisplay.c 2026-11-09"
+  },
+  "DisplayZoomArea": {
+   "va": "0042bcb0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?DisplayZoomArea$n(pnipnuiiii)i",
+   "tu": "src/terr/tdisplay.c",
+   "evidence": "placed (at) in src/terr/tdisplay.c 2026-11-09"
+  },
+  "DisplayScale": {
+   "va": "0042bed0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?DisplayScale$n(pni)i",
+   "tu": "src/terr/tdisplay.c",
+   "evidence": "placed (at) in src/terr/tdisplay.c 2026-11-09"
   },
   "ViewScale": {
    "va": "0042bf10",
@@ -5315,12 +5371,140 @@
    "mangled": "W?ViewScale$n(pnvi)i",
    "evidence": "implied by src/sim/explo.c 2026-11-09"
   },
+  "DisplayPointScale": {
+   "va": "0042bf10",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?DisplayPointScale$n(pnii)i",
+   "tu": "src/terr/tdisplay.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "ViewToScreen": {
    "va": "0042bf30",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?ViewToScreen$n(pnvpn$ExploPoint$$pn$1$)v",
    "evidence": "implied by src/sim/explo.c 2026-11-09"
+  },
+  "DisplayGetBounds": {
+   "va": "0042bf30",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?DisplayGetBounds$n(pnipnuipnui)v",
+   "tu": "src/terr/tdisplay.c",
+   "evidence": "placed (at) in src/terr/tdisplay.c 2026-11-09"
+  },
+  "DisplayPointToScreen": {
+   "va": "0042c040",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?DisplayPointToScreen$n(pnipnipnii)v",
+   "tu": "src/terr/tdisplay.c",
+   "evidence": "placed (at) in src/terr/tdisplay.c 2026-11-09"
+  },
+  "DisplayPointToScreenScaled": {
+   "va": "0042c130",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?DisplayPointToScreenScaled$n(pnipnuipnui)i",
+   "tu": "src/terr/tdisplay.c",
+   "evidence": "placed (at) in src/terr/tdisplay.c 2026-11-09"
+  },
+  "DisplayRectOutside": {
+   "va": "0042c1f0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?DisplayRectOutside$n(ipni)i",
+   "tu": "src/terr/tdisplay.c",
+   "evidence": "placed (at) in src/terr/tdisplay.c 2026-11-09"
+  },
+  "DisplaySubmitElement": {
+   "va": "0042c250",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?DisplaySubmitElement$n(pni)i",
+   "tu": "src/terr/tdisplay.c",
+   "evidence": "placed (at) in src/terr/tdisplay.c 2026-11-09"
+  },
+  "DisplaySort": {
+   "va": "0042c3f0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?DisplaySort$n(pnpnvi)v",
+   "tu": "src/terr/tdisplay.c",
+   "evidence": "placed (at) in src/terr/tdisplay.c 2026-11-09"
+  },
+  "DisplayProcess": {
+   "va": "0042c490",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?DisplayProcess$n(pnipnvpnvpnv)v",
+   "tu": "src/terr/tdisplay.c",
+   "evidence": "placed (at) in src/terr/tdisplay.c 2026-11-09"
+  },
+  "DisplayResolveCandidate": {
+   "va": "0042c670",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?DisplayResolveCandidate$n(pnipnii)i",
+   "tu": "src/terr/tdisplay.c",
+   "evidence": "placed (at) in src/terr/tdisplay.c 2026-11-09"
+  },
+  "DisplayConsiderElement": {
+   "va": "0042c800",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?DisplayConsiderElement$n(pni)i",
+   "tu": "src/terr/tdisplay.c",
+   "evidence": "placed (at) in src/terr/tdisplay.c 2026-11-09"
+  },
+  "DisplayPickAt": {
+   "va": "0042c880",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?DisplayPickAt$n(pnipni)i",
+   "tu": "src/terr/tdisplay.c",
+   "evidence": "placed (at) in src/terr/tdisplay.c 2026-11-09"
+  },
+  "DisplayIdentityA": {
+   "va": "0042c9d0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?DisplayIdentityA$n(pnv)pnv",
+   "tu": "src/terr/tdisplay.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "DisplayIdentityB": {
+   "va": "0042c9e0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?DisplayIdentityB$n(pnv)pnv",
+   "tu": "src/terr/tdisplay.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "DisplayIdentityC": {
+   "va": "0042c9f0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?DisplayIdentityC$n(pnv)pnv",
+   "tu": "src/terr/tdisplay.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "DisplayWalkInit": {
+   "va": "0042ca00",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?DisplayWalkInit$n(pn$AreaWalk$$ui)v",
+   "tu": "src/terr/tdisplay.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "DisplayStep": {
+   "va": "0042ca30",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "DisplayStep",
+   "tu": "src/terr/tdisplay.c",
+   "evidence": "placed (at) in src/terr/tdisplay.c 2026-11-09"
   },
   "BestLocInitialize": {
    "va": "0042caf0",
@@ -5336,6 +5520,14 @@
    "mangled": "AnimResourceFind",
    "evidence": "implied by src/sim/anim.c 2026-11-09"
   },
+  "DisplayCount": {
+   "va": "0042cb30",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?DisplayCount$n(i)i",
+   "tu": "src/terr/tdisplay.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "BestLocSetCandidate": {
    "va": "0042cb50",
    "kind": "func",
@@ -5350,6 +5542,54 @@
    "mangled": "AnimResourceUpdate",
    "evidence": "implied by src/sim/anim.c 2026-11-09"
   },
+  "DisplaySetCandidate": {
+   "va": "0042cb50",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?DisplaySetCandidate$n(pnii)v",
+   "tu": "src/terr/tdisplay.c",
+   "evidence": "placed (at) in src/terr/tdisplay.c 2026-11-09"
+  },
+  "DisplaySetRadius": {
+   "va": "0042cb70",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?DisplaySetRadius$n(pnii)v",
+   "tu": "src/terr/tdisplay.c",
+   "evidence": "placed (at) in src/terr/tdisplay.c 2026-11-09"
+  },
+  "AreaFind": {
+   "va": "0042cba0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?AreaFind$n(pnii)i",
+   "tu": "src/terr/tarea.c",
+   "evidence": "placed (at) in src/terr/tarea.c 2026-11-09"
+  },
+  "AreaIndexToPoint": {
+   "va": "0042cca0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?AreaIndexToPoint$n(pnii)v",
+   "tu": "src/terr/tarea.c",
+   "evidence": "placed (at) in src/terr/tarea.c 2026-11-09"
+  },
+  "AreaGetPoint": {
+   "va": "0042cd90",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?AreaGetPoint$n(pnipnii)pni",
+   "tu": "src/terr/tarea.c",
+   "evidence": "placed (at) in src/terr/tarea.c 2026-11-09"
+  },
+  "AreaEnumerate": {
+   "va": "0042ce60",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?AreaEnumerate$n(pnipnvuiui)v",
+   "tu": "src/terr/tarea.c",
+   "evidence": "placed (at) in src/terr/tarea.c 2026-11-09"
+  },
   "BestLocVisit": {
    "va": "0042cf20",
    "kind": "func",
@@ -5363,6 +5603,14 @@
    "status": "hypothesis",
    "mangled": "AnimResourceIterate",
    "evidence": "implied by src/sim/anim.c 2026-11-09"
+  },
+  "AreaEnumerateAll": {
+   "va": "0042cf20",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?AreaEnumerateAll$n(pnipnv)v",
+   "tu": "src/terr/tarea.c",
+   "evidence": "strict match 2026-11-09"
   },
   "BestLocSetup": {
    "va": "0042d080",
@@ -5406,6 +5654,94 @@
    "mangled": "DrawDeathMap",
    "evidence": "implied by src/pop/pdeath.c 2026-11-09"
   },
+  "f_0042f540": {
+   "va": "0042f540",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_0042f540",
+   "tu": "src/terr/tsurface.c",
+   "evidence": "placed (at) in src/terr/tsurface.c 2026-11-09"
+  },
+  "SurfaceAdjust": {
+   "va": "0042fc40",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SurfaceAdjust$n(pnausuius)ui",
+   "tu": "src/terr/tsurface.c",
+   "evidence": "placed (at) in src/terr/tsurface.c 2026-11-09"
+  },
+  "f_0042fc90": {
+   "va": "0042fc90",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_0042fc90",
+   "tu": "src/terr/tsurface.c",
+   "evidence": "placed (at) in src/terr/tsurface.c 2026-11-09"
+  },
+  "SurfaceMidpoint": {
+   "va": "004319b0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SurfaceMidpoint$n(usus)i",
+   "tu": "src/terr/tsurface.c",
+   "evidence": "placed (at) in src/terr/tsurface.c 2026-11-09"
+  },
+  "SurfaceAverage": {
+   "va": "004319d0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SurfaceAverage$n(usususus)i",
+   "tu": "src/terr/tsurface.c",
+   "evidence": "placed (at) in src/terr/tsurface.c 2026-11-09"
+  },
+  "SurfaceBuildNoiseTable": {
+   "va": "00431a00",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SurfaceBuildNoiseTable$n()v",
+   "tu": "src/terr/tsurface.c",
+   "evidence": "placed (at) in src/terr/tsurface.c 2026-11-09"
+  },
+  "SurfaceNoiseAt": {
+   "va": "00431a60",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SurfaceNoiseAt$n(iiiiiiuc)i",
+   "tu": "src/terr/tsurface.c",
+   "evidence": "placed (at) in src/terr/tsurface.c 2026-11-09"
+  },
+  "SurfaceAllocateGrid": {
+   "va": "00431b00",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SurfaceAllocateGrid$n(iii)pni",
+   "tu": "src/terr/tsurface.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SurfaceReleaseGrid": {
+   "va": "00431b60",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SurfaceReleaseGrid$n(pnypnv)v",
+   "tu": "src/terr/tsurface.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SurfaceStaticValue": {
+   "va": "00431b80",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SurfaceStaticValue$n(i)i",
+   "tu": "src/terr/tsurface.c",
+   "evidence": "placed (at) in src/terr/tsurface.c 2026-11-09"
+  },
+  "SurfaceLoadDefinition": {
+   "va": "00431ba0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SurfaceLoadDefinition$n(pnapnxa)i",
+   "tu": "src/terr/tsurface.c",
+   "evidence": "placed (at) in src/terr/tsurface.c 2026-11-09"
+  },
   "Noise::$ct": {
    "va": "00431d70",
    "kind": "func",
@@ -5420,12 +5756,44 @@
    "mangled": "NoiseConstruct",
    "evidence": "implied by src/terr/tbuild.c 2026-11-09"
   },
+  "SurfaceClearAllocation": {
+   "va": "00431d70",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SurfaceClearAllocation$n(pnv)v",
+   "tu": "src/terr/tsurface.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "NoiseDestroy": {
    "va": "00431d80",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "NoiseDestroy",
    "evidence": "implied by src/terr/tbuild.c 2026-11-09"
+  },
+  "SurfaceReleaseAllocation": {
+   "va": "00431d80",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SurfaceReleaseAllocation$n(pni)pni",
+   "tu": "src/terr/tsurface.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SurfaceApplyNoise": {
+   "va": "00431db0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SurfaceApplyNoise$n(pni)v",
+   "tu": "src/terr/tsurface.c",
+   "evidence": "placed (at) in src/terr/tsurface.c 2026-11-09"
+  },
+  "SurfaceApplyNoiseDetails": {
+   "va": "00431eb0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SurfaceApplyNoiseDetails$n(pni)v",
+   "tu": "src/terr/tsurface.c",
+   "evidence": "placed (at) in src/terr/tsurface.c 2026-11-09"
   },
   "NoiseGenerate": {
    "va": "00431f40",
@@ -5434,12 +5802,28 @@
    "mangled": "NoiseGenerate",
    "evidence": "implied by src/terr/tbuild.c 2026-11-09"
   },
+  "SurfaceInitializeProcedural": {
+   "va": "00431f40",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SurfaceInitializeProcedural$n(pnii)v",
+   "tu": "src/terr/tsurface.c",
+   "evidence": "placed (at) in src/terr/tsurface.c 2026-11-09"
+  },
   "NoiseClear": {
    "va": "00432020",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "NoiseClear",
    "evidence": "implied by src/terr/tbuild.c 2026-11-09"
+  },
+  "SurfaceClearAllocationAndRelease": {
+   "va": "00432020",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SurfaceClearAllocationAndRelease$n(pni)v",
+   "tu": "src/terr/tsurface.c",
+   "evidence": "strict match 2026-11-09"
   },
   "NoiseGet": {
    "va": "00432050",
@@ -5448,12 +5832,28 @@
    "mangled": "NoiseGet",
    "evidence": "implied by src/terr/tbuild.c 2026-11-09"
   },
+  "SurfaceGridValue": {
+   "va": "00432050",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SurfaceGridValue$n(pnipnui)uc",
+   "tu": "src/terr/tsurface.c",
+   "evidence": "placed (at) in src/terr/tsurface.c 2026-11-09"
+  },
   "NoiseSet": {
    "va": "004320a0",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "NoiseSet",
    "evidence": "implied by src/terr/tbuild.c 2026-11-09"
+  },
+  "SurfaceGridSetValue": {
+   "va": "004320a0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SurfaceGridSetValue$n(pnipnuiuc)v",
+   "tu": "src/terr/tsurface.c",
+   "evidence": "placed (at) in src/terr/tsurface.c 2026-11-09"
   },
   "NoiseSmooth": {
    "va": "00432100",
@@ -5462,12 +5862,28 @@
    "mangled": "NoiseSmooth",
    "evidence": "implied by src/terr/tbuild.c 2026-11-09"
   },
+  "SurfaceApplyColorMap": {
+   "va": "00432100",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SurfaceApplyColorMap$n(pni)v",
+   "tu": "src/terr/tsurface.c",
+   "evidence": "placed (at) in src/terr/tsurface.c 2026-11-09"
+  },
   "NoiseFill": {
    "va": "00432160",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "NoiseFill",
    "evidence": "implied by src/terr/tbuild.c 2026-11-09"
+  },
+  "SurfaceRandomize": {
+   "va": "00432160",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SurfaceRandomize$n(pnipnvi)ui",
+   "tu": "src/terr/tsurface.c",
+   "evidence": "placed (at) in src/terr/tsurface.c 2026-11-09"
   },
   "TerrainRaise": {
    "va": "004323c0",
