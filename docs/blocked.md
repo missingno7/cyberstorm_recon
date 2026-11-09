@@ -52,3 +52,9 @@ copy ctor 00429a04, dtor 0042c9d0); tdisplay.c now uses the real GuiPoint and Di
 (DisplayIdentityA/B/C retired; C's extent shrinks by 11 filler bytes, accepted). MCI moved from io\resource.c to its
 own object tu_0047d0e0 (6 functions migrated). sinterp.c published after the promote.py fix: BSS items are recorded
 only when STRICT code references them by name (a placed BSS base does not prove item offsets).
+
+## pop\pdeath.c spans two objects (2026-11-09, s47)
+The code and CONST discontinuities agree: DeathMovie ends at 00449138, a Surface default-constructor COMDAT occupies
+00449138..00449148, and DeathSummary starts after it, so pdeath.c is two objects (candidates/s47/pdeath_movie.c,
+pdeath_summary.c, each COMPLETE by tucheck). Publishing needs an ownership migration of the accepted functions from
+src/pop/pdeath.c to the two new TUs (promote refuses: matched elsewhere). Do it with --accept-loss in one sequence.
