@@ -7672,37 +7672,98 @@
   "TerrainRaise": {
    "va": "004323c0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "TerrainRaise",
-   "evidence": "implied by src/terr/tbuild.c 2026-11-09"
+   "tu": "src/_unknown/tu_004323c0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BuildTerrainPath": {
+   "va": "004324d0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?BuildTerrainPath$n(pn$TerrainGrid$$iipnii)i",
+   "tu": "src/_unknown/tu_004324d0.c",
+   "evidence": "placed (at) in src/_unknown/tu_004324d0.c 2026-11-09"
   },
   "GridClearSelection": {
    "va": "00432870",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?GridClearSelection$n(pn$TerrainGrid$$)i",
-   "evidence": "implied by src/sim/simdo.c 2026-11-09"
+   "tu": "src/_unknown/tu_004324d0.c",
+   "evidence": "strict match 2026-11-09"
   },
   "GridSetSelection": {
    "va": "004328b0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?GridSetSelection$n(pn$TerrainGrid$$pn$UnitModel$$)v",
-   "evidence": "implied by src/sim/simdo.c 2026-11-09"
+   "tu": "src/_unknown/tu_004324d0.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ReportSelectMission": {
    "va": "00432900",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ReportSelectMission$n(pn$TerrainGrid$$ii)v",
-   "evidence": "implied by src/_unknown/tu_004481c0.c 2026-11-09"
+   "tu": "src/_unknown/tu_004324d0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ConfigureMovement": {
+   "va": "00432930",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ConfigureMovement$n(pn$TerrainGrid$$pn$UnitState$$pnv)v",
+   "tu": "src/_unknown/tu_00432930.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "TerrainMovementCost": {
+   "va": "00432b50",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TerrainMovementCost$n(pn$TerrainGrid$$ii)i",
+   "tu": "src/_unknown/tu_00432930.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "OccupiedMovementCost": {
+   "va": "00432c00",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?OccupiedMovementCost$n(pn$TerrainGrid$$ii)i",
+   "tu": "src/_unknown/tu_00432930.c",
+   "evidence": "strict match 2026-11-09"
   },
   "TargetInitAt": {
    "va": "00432c40",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "TargetInitAt",
-   "evidence": "implied by src/sim/target.c 2026-11-09"
+   "tu": "src/_unknown/tu_00432930.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "TerrainFeatureValue": {
+   "va": "00432d60",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TerrainFeatureValue$n(pn$TerrainGrid$$i)i",
+   "tu": "src/_unknown/tu_00432930.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "TakeTerrainFeature": {
+   "va": "00432db0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?TakeTerrainFeature$n(pn$TerrainGrid$$i)i",
+   "tu": "src/_unknown/tu_00432930.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "VisitTerrainFeature": {
+   "va": "00432e30",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?VisitTerrainFeature$n(pnv)i",
+   "tu": "src/_unknown/tu_00432930.c",
+   "evidence": "strict match 2026-11-09"
   },
   "IntelFindBestByName": {
    "va": "00432e80",
@@ -7711,12 +7772,21 @@
    "mangled": "W?IntelFindBestByName$n(ii)i",
    "evidence": "implied by src/logic/intel.c 2026-11-09"
   },
+  "FindTerrainFeature": {
+   "va": "00432e80",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?FindTerrainFeature$n(pn$TerrainGrid$$pnv)i",
+   "tu": "src/_unknown/tu_00432930.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "AnimReleaseResource": {
    "va": "00432ef0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "AnimReleaseResource",
-   "evidence": "implied by src/sim/anim.c 2026-11-09"
+   "tu": "src/_unknown/tu_00432930.c",
+   "evidence": "strict match 2026-11-09"
   },
   "FogNoOp": {
    "va": "00432f40",
@@ -8130,6 +8200,116 @@
    "mangled": "W?FastBufferMakeCoords$n(pn$FastBuffer$$)v",
    "tu": "src/terr/tfast.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "MaskTerrainTile": {
+   "va": "00435084",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MaskTerrainTile$n(pnucpnucpnucii)v",
+   "tu": "src/_unknown/tu_00435084.c",
+   "evidence": "placed (at) in src/_unknown/tu_00435084.c 2026-11-09"
+  },
+  "StoreTerrainEdge": {
+   "va": "00435130",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?StoreTerrainEdge$n(pn$RayPoint$$)v",
+   "tu": "src/_unknown/tu_00435130.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SetTerrainSpanSize": {
+   "va": "00435140",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SetTerrainSpanSize$n(i)v",
+   "tu": "src/_unknown/tu_00435130.c",
+   "evidence": "placed (at) in src/_unknown/tu_00435130.c 2026-11-09"
+  },
+  "DrawTerrainRows": {
+   "va": "004352e0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?DrawTerrainRows$n(pniiiiii)v",
+   "tu": "src/_unknown/tu_00435130.c",
+   "evidence": "placed (at) in src/_unknown/tu_00435130.c 2026-11-09"
+  },
+  "DrawTerrainTop": {
+   "va": "00435520",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?DrawTerrainTop$n(pniiiiii)v",
+   "tu": "src/_unknown/tu_00435130.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "DrawTerrainBottom": {
+   "va": "00435610",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?DrawTerrainBottom$n(pniiiiii)v",
+   "tu": "src/_unknown/tu_00435130.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "DrawTerrainMiddle": {
+   "va": "00435700",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?DrawTerrainMiddle$n(pniiiii)v",
+   "tu": "src/_unknown/tu_00435130.c",
+   "evidence": "placed (at) in src/_unknown/tu_00435130.c 2026-11-09"
+  },
+  "FillTerrainDiamond": {
+   "va": "00435830",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?FillTerrainDiamond$n(ii)v",
+   "tu": "src/_unknown/tu_00435130.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "DrawScaledSpan": {
+   "va": "004358b8",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?DrawScaledSpan$n(pn$SpanState$$)v",
+   "tu": "src/_unknown/tu_004358b8.c",
+   "evidence": "placed (at) in src/_unknown/tu_004358b8.c 2026-11-09"
+  },
+  "DrawSpan16": {
+   "va": "0043595e",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?DrawSpan16$n(pn$SpanState$$)v",
+   "tu": "src/_unknown/tu_004358b8.c",
+   "evidence": "placed (at) in src/_unknown/tu_004358b8.c 2026-11-09"
+  },
+  "FillTerrainRows": {
+   "va": "004359b2",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?FillTerrainRows$n(pnucpnuciii)v",
+   "evidence": "implied by src/_unknown/tu_00435130.c 2026-11-09"
+  },
+  "FillTerrainRowsClipped": {
+   "va": "00435a76",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?FillTerrainRowsClipped$n(pnucpnuciii)v",
+   "evidence": "implied by src/_unknown/tu_00435130.c 2026-11-09"
+  },
+  "DrawTerrainTile": {
+   "va": "00435b5c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?DrawTerrainTile$n(pn$Image$$iii)v",
+   "tu": "src/_unknown/tu_00435b5c.c",
+   "evidence": "placed (at) in src/_unknown/tu_00435b5c.c 2026-11-09"
+  },
+  "DrawTerrainTileClipped": {
+   "va": "00435c5e",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?DrawTerrainTileClipped$n(pn$Image$$iiiii)v",
+   "tu": "src/_unknown/tu_00435b5c.c",
+   "evidence": "placed (at) in src/_unknown/tu_00435b5c.c 2026-11-09"
   },
   "ActorListObject::$ct": {
    "va": "00435dec",
@@ -10033,11 +10213,44 @@
   "BriefMissionFile": {
    "va": "0043e3ac",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "BriefMissionFile",
-   "evidence": "implied by src/shell/missbrf.c 2026-11-09"
+   "tu": "src/_unknown/tu_0043e3ac.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BriefNewEquipment": {
+   "va": "0043eade",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?BriefNewEquipment$n(pn$ProfileManager$$)pna",
+   "tu": "src/_unknown/tu_0043e3ac.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LoadSession": {
+   "va": "0043ecf8",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LoadSession$n(pn$GameSession$$pn$FileRecord$$)i",
+   "tu": "src/_unknown/tu_0043ecf8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SaveSession": {
+   "va": "0043edf0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SaveSession$n(pn$GameSession$$pn$FileRecord$$)i",
+   "tu": "src/_unknown/tu_0043ecf8.c",
+   "evidence": "strict match 2026-11-09"
   },
   "f_43ee17": {
+   "va": "0043ee17",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_43ee17$n(pn$GameSession$$pn$FileRecord$$i)i",
+   "tu": "src/_unknown/tu_0043ecf8.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_43ee17#W?f_43ee17$n(pnvpn$FileRecord$$i)i": {
    "va": "0043ee17",
    "kind": "func",
    "status": "hypothesis",
@@ -10047,9 +10260,10 @@
   "f_43ee71": {
    "va": "0043ee71",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?f_43ee71$n(pnvpn$FileRecord$$)i",
-   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+   "tu": "src/_unknown/tu_0043ecf8.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ResetProfileUnits": {
    "va": "0043ef34",
@@ -21655,6 +21869,104 @@
    "mangled": "W?g48ab51$n[]a",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
+  "reportBreak_0048ae06": {
+   "va": "0048ae06",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?reportBreak_0048ae06$n[]a",
+   "evidence": "implied by src/_unknown/tu_0043e3ac.c 2026-11-09"
+  },
+  "reportBreak_0048ae60": {
+   "va": "0048ae60",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?reportBreak_0048ae60$n[]a",
+   "evidence": "implied by src/_unknown/tu_0043e3ac.c 2026-11-09"
+  },
+  "reportBreak_0048ae8a": {
+   "va": "0048ae8a",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?reportBreak_0048ae8a$n[]a",
+   "evidence": "implied by src/_unknown/tu_0043e3ac.c 2026-11-09"
+  },
+  "reportBreak_0048aeb4": {
+   "va": "0048aeb4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?reportBreak_0048aeb4$n[]a",
+   "evidence": "implied by src/_unknown/tu_0043e3ac.c 2026-11-09"
+  },
+  "reportBreak_0048aeb9": {
+   "va": "0048aeb9",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?reportBreak_0048aeb9$n[]a",
+   "evidence": "implied by src/_unknown/tu_0043e3ac.c 2026-11-09"
+  },
+  "reportBreak_0048aebb": {
+   "va": "0048aebb",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?reportBreak_0048aebb$n[]a",
+   "evidence": "implied by src/_unknown/tu_0043e3ac.c 2026-11-09"
+  },
+  "reportBreak_0048aec3": {
+   "va": "0048aec3",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?reportBreak_0048aec3$n[]a",
+   "evidence": "implied by src/_unknown/tu_0043e3ac.c 2026-11-09"
+  },
+  "reportBreak_0048aec5": {
+   "va": "0048aec5",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?reportBreak_0048aec5$n[]a",
+   "evidence": "implied by src/_unknown/tu_0043e3ac.c 2026-11-09"
+  },
+  "reportBreak_0048aed3": {
+   "va": "0048aed3",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?reportBreak_0048aed3$n[]a",
+   "evidence": "implied by src/_unknown/tu_0043e3ac.c 2026-11-09"
+  },
+  "reportBreak_0048aed8": {
+   "va": "0048aed8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?reportBreak_0048aed8$n[]a",
+   "evidence": "implied by src/_unknown/tu_0043e3ac.c 2026-11-09"
+  },
+  "reportBreak_0048aeda": {
+   "va": "0048aeda",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?reportBreak_0048aeda$n[]a",
+   "evidence": "implied by src/_unknown/tu_0043e3ac.c 2026-11-09"
+  },
+  "reportBreak_0048aef4": {
+   "va": "0048aef4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?reportBreak_0048aef4$n[]a",
+   "evidence": "implied by src/_unknown/tu_0043e3ac.c 2026-11-09"
+  },
+  "reportBreak_0048af05": {
+   "va": "0048af05",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?reportBreak_0048af05$n[]a",
+   "evidence": "implied by src/_unknown/tu_0043e3ac.c 2026-11-09"
+  },
+  "reportBreak_0048af16": {
+   "va": "0048af16",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?reportBreak_0048af16$n[]a",
+   "evidence": "implied by src/_unknown/tu_0043e3ac.c 2026-11-09"
+  },
   "animFormatPool@sim/animbmp.c": {
    "va": "0048b4e4",
    "kind": "data",
@@ -22951,6 +23263,13 @@
    "mangled": "W?HercItemTables$n[]$ItemTable$$",
    "evidence": "implied by src/_unknown/tu_00438374.c 2026-11-09"
   },
+  "equipmentCategories": {
+   "va": "00493d9c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?equipmentCategories$n[]$EquipmentCategory$$",
+   "evidence": "implied by src/_unknown/tu_0043e3ac.c 2026-11-09"
+  },
   "gLevelInfo": {
    "va": "00494074",
    "kind": "data",
@@ -22964,6 +23283,55 @@
    "status": "hypothesis",
    "mangled": "W?rankCosts$n[]$RankCost$$",
    "evidence": "implied by src/_unknown/tu_0043ef34.c 2026-11-09"
+  },
+  "reportToken_0049417c": {
+   "va": "0049417c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?reportToken_0049417c$n[]a",
+   "evidence": "implied by src/_unknown/tu_0043e3ac.c 2026-11-09"
+  },
+  "reportToken_00494184": {
+   "va": "00494184",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?reportToken_00494184$n[]a",
+   "evidence": "implied by src/_unknown/tu_0043e3ac.c 2026-11-09"
+  },
+  "reportToken_0049418c": {
+   "va": "0049418c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?reportToken_0049418c$n[]a",
+   "evidence": "implied by src/_unknown/tu_0043e3ac.c 2026-11-09"
+  },
+  "reportToken_004941a0": {
+   "va": "004941a0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?reportToken_004941a0$n[]a",
+   "evidence": "implied by src/_unknown/tu_0043e3ac.c 2026-11-09"
+  },
+  "reportToken_004941a8": {
+   "va": "004941a8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?reportToken_004941a8$n[]a",
+   "evidence": "implied by src/_unknown/tu_0043e3ac.c 2026-11-09"
+  },
+  "reportToken_004941b0": {
+   "va": "004941b0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?reportToken_004941b0$n[]a",
+   "evidence": "implied by src/_unknown/tu_0043e3ac.c 2026-11-09"
+  },
+  "reportToken_004941c8": {
+   "va": "004941c8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?reportToken_004941c8$n[]a",
+   "evidence": "implied by src/_unknown/tu_0043e3ac.c 2026-11-09"
   },
   "g4941d8": {
    "va": "004941d8",
@@ -22999,6 +23367,13 @@
    "status": "hypothesis",
    "mangled": "W?g4941e8$ni",
    "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "missionCategories": {
+   "va": "004941f4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?missionCategories$n[]$MissionCategory$$",
+   "evidence": "implied by src/_unknown/tu_0043e3ac.c 2026-11-09"
   },
   "unitTypes": {
    "va": "00494a98",
@@ -27896,6 +28271,13 @@
    "mangled": "W?gGuiFadeColor$nul",
    "evidence": "implied by src/_unknown/tu_0042a0e0.c 2026-11-09"
   },
+  "pathDirections": {
+   "va": "004bc5cc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?pathDirections$n[]$Point$$",
+   "evidence": "implied by src/_unknown/tu_004323c0.c 2026-11-09"
+  },
   "MapPick": {
    "va": "004c6288",
    "kind": "data",
@@ -27938,6 +28320,34 @@
    "mangled": "W?MapDrawScale$ni",
    "evidence": "implied by src/_unknown/tu_0042e210.c 2026-11-09"
   },
+  "terrainMovementCosts": {
+   "va": "004c66a0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?terrainMovementCosts$n[]i",
+   "evidence": "implied by src/_unknown/tu_00432930.c 2026-11-09"
+  },
+  "ascentCosts": {
+   "va": "004c67e8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?ascentCosts$n[]i",
+   "evidence": "implied by src/_unknown/tu_00432930.c 2026-11-09"
+  },
+  "descentCosts": {
+   "va": "004c6808",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?descentCosts$n[]i",
+   "evidence": "implied by src/_unknown/tu_00432930.c 2026-11-09"
+  },
+  "selectedFeature": {
+   "va": "004c6828",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?selectedFeature$ni",
+   "evidence": "implied by src/_unknown/tu_00432930.c 2026-11-09"
+  },
   "gFogGlobalMode": {
    "va": "004c6890",
    "kind": "data",
@@ -27972,6 +28382,20 @@
    "status": "hypothesis",
    "mangled": "W?terrainTypeOrder$n[]uc",
    "evidence": "implied by src/terr/tbuild.c 2026-11-09"
+  },
+  "terrainTypes": {
+   "va": "004c6920",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?terrainTypes$n[]$TerrainType$$",
+   "evidence": "implied by src/_unknown/tu_00432930.c 2026-11-09"
+  },
+  "featureTypes": {
+   "va": "004c6b69",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?featureTypes$n[]$FeatureType$$",
+   "evidence": "implied by src/_unknown/tu_00432930.c 2026-11-09"
   },
   "terrainTypeRemap": {
    "va": "004c6d69",
@@ -28070,6 +28494,13 @@
    "status": "hypothesis",
    "mangled": "W?heightCount$ni",
    "evidence": "implied by src/_unknown/tu_004349c0.c 2026-11-09"
+  },
+  "terrainSpan": {
+   "va": "004c8030",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?terrainSpan$n$SpanState$$",
+   "evidence": "implied by src/_unknown/tu_00435130.c 2026-11-09"
   },
   "actorVoiceCycle": {
    "va": "004c9214",
@@ -28176,12 +28607,26 @@
    "mangled": "W?g4c9344$npnv",
    "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
   },
+  "g4c9344#W?g4c9344$npna": {
+   "va": "004c9344",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4c9344$npna",
+   "evidence": "implied by src/_unknown/tu_0043e3ac.c 2026-11-09"
+  },
   "g4c9348": {
    "va": "004c9348",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4c9348$npnv",
    "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "g4c9348#W?g4c9348$npna": {
+   "va": "004c9348",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4c9348$npna",
+   "evidence": "implied by src/_unknown/tu_0043e3ac.c 2026-11-09"
   },
   "profileManager": {
    "va": "004c934c",

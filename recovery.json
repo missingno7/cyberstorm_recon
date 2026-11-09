@@ -10368,6 +10368,199 @@
    },
    "data": {},
    "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_004323c0.c": {
+   "as": "_unknown\\tu_004323c0.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "TerrainRaise": {
+     "va": "004323c0",
+     "size": 269,
+     "mangled": "TerrainRaise"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_004324d0.c": {
+   "as": "_unknown\\tu_004324d0.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "GridClearSelection": {
+     "va": "00432870",
+     "size": 64,
+     "mangled": "W?GridClearSelection$n(pn$TerrainGrid$$)i"
+    },
+    "GridSetSelection": {
+     "va": "004328b0",
+     "size": 80,
+     "mangled": "W?GridSetSelection$n(pn$TerrainGrid$$pn$UnitModel$$)v"
+    },
+    "ReportSelectMission": {
+     "va": "00432900",
+     "size": 35,
+     "mangled": "W?ReportSelectMission$n(pn$TerrainGrid$$ii)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_00432930.c": {
+   "as": "_unknown\\tu_00432930.c",
+   "install": "wc106",
+   "profile": "ot-oe",
+   "functions": {
+    "ConfigureMovement": {
+     "va": "00432930",
+     "size": 544,
+     "mangled": "W?ConfigureMovement$n(pn$TerrainGrid$$pn$UnitState$$pnv)v"
+    },
+    "TerrainMovementCost": {
+     "va": "00432b50",
+     "size": 176,
+     "mangled": "W?TerrainMovementCost$n(pn$TerrainGrid$$ii)i"
+    },
+    "OccupiedMovementCost": {
+     "va": "00432c00",
+     "size": 64,
+     "mangled": "W?OccupiedMovementCost$n(pn$TerrainGrid$$ii)i"
+    },
+    "TargetInitAt": {
+     "va": "00432c40",
+     "size": 288,
+     "mangled": "TargetInitAt"
+    },
+    "TerrainFeatureValue": {
+     "va": "00432d60",
+     "size": 80,
+     "mangled": "W?TerrainFeatureValue$n(pn$TerrainGrid$$i)i"
+    },
+    "TakeTerrainFeature": {
+     "va": "00432db0",
+     "size": 128,
+     "mangled": "W?TakeTerrainFeature$n(pn$TerrainGrid$$i)i"
+    },
+    "VisitTerrainFeature": {
+     "va": "00432e30",
+     "size": 80,
+     "mangled": "W?VisitTerrainFeature$n(pnv)i"
+    },
+    "FindTerrainFeature": {
+     "va": "00432e80",
+     "size": 112,
+     "mangled": "W?FindTerrainFeature$n(pn$TerrainGrid$$pnv)i"
+    },
+    "AnimReleaseResource": {
+     "va": "00432ef0",
+     "size": 66,
+     "mangled": "AnimReleaseResource"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_00435084.c": {
+   "as": "_unknown\\tu_00435084.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {},
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_00435130.c": {
+   "as": "_unknown\\tu_00435130.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "StoreTerrainEdge": {
+     "va": "00435130",
+     "size": 16,
+     "mangled": "W?StoreTerrainEdge$n(pn$RayPoint$$)v"
+    },
+    "DrawTerrainTop": {
+     "va": "00435520",
+     "size": 240,
+     "mangled": "W?DrawTerrainTop$n(pniiiiii)v"
+    },
+    "DrawTerrainBottom": {
+     "va": "00435610",
+     "size": 240,
+     "mangled": "W?DrawTerrainBottom$n(pniiiiii)v"
+    },
+    "FillTerrainDiamond": {
+     "va": "00435830",
+     "size": 136,
+     "mangled": "W?FillTerrainDiamond$n(ii)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_004358b8.c": {
+   "as": "_unknown\\tu_004358b8.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {},
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_00435b5c.c": {
+   "as": "_unknown\\tu_00435b5c.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {},
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0043e3ac.c": {
+   "as": "_unknown\\tu_0043e3ac.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "BriefMissionFile": {
+     "va": "0043e3ac",
+     "size": 1842,
+     "mangled": "BriefMissionFile"
+    },
+    "BriefNewEquipment": {
+     "va": "0043eade",
+     "size": 536,
+     "mangled": "W?BriefNewEquipment$n(pn$ProfileManager$$)pna"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0043ecf8.c": {
+   "as": "_unknown\\tu_0043ecf8.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "LoadSession": {
+     "va": "0043ecf8",
+     "size": 248,
+     "mangled": "W?LoadSession$n(pn$GameSession$$pn$FileRecord$$)i"
+    },
+    "SaveSession": {
+     "va": "0043edf0",
+     "size": 39,
+     "mangled": "W?SaveSession$n(pn$GameSession$$pn$FileRecord$$)i"
+    },
+    "f_43ee17": {
+     "va": "0043ee17",
+     "size": 90,
+     "mangled": "W?f_43ee17$n(pn$GameSession$$pn$FileRecord$$i)i"
+    },
+    "f_43ee71": {
+     "va": "0043ee71",
+     "size": 192,
+     "mangled": "W?f_43ee71$n(pnvpn$FileRecord$$)i"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
   }
  },
  "accepted_losses": [
