@@ -199,9 +199,7 @@ class Comparison:
             # identity window for single-function search hits: near this object's anchored code (bound/--at/
             # whole-segment). A unique hit far away is identical code of another function (audit follow-up:
             # a trivial COMDAT constructor matched another class's constructor 70 KB away).
-            anchors = [va for (si2, o2), (va, how) in self.ext_va.items()]
-            lo_a = min(anchors) - 0x2000 if anchors else None
-            hi_a = max(anchors) + 0x2000 if anchors else None
+            pending = []
             for si, exts in self.extents.items():
                 seg = mod.segments[si]
                 if not is_code(seg):
@@ -209,7 +207,18 @@ class Comparison:
                 for o, e, names in exts:
                     if (si, o) in self.ext_va or e <= o:
                         continue
-                    hits = masked_search(img, seg.data, seg.covered, self.fx_by_seg.get(si, []), o, e)
+                    pending.append((si, o, e, names,
+                                    masked_search(img, seg.data, seg.covered, self.fx_by_seg.get(si, []), o, e)))
+            anchors = [va for (si2, o2), (va, how) in self.ext_va.items()]
+            if not anchors:
+                # no anchored function yet: the object's own unique hits cluster around their median
+                uniq = sorted(h[0] for *_, h in pending if len(h) == 1)
+                if uniq:
+                    anchors = [uniq[len(uniq) // 2]]
+            lo_a = min(anchors) - 0x2000 if anchors else None
+            hi_a = max(anchors) + 0x2000 if anchors else None
+            for si, o, e, names, hits in pending:
+                    seg = mod.segments[si]
                     if len(hits) == 1 and (lo_a is None or not (lo_a <= hits[0] <= hi_a)):
                         self.notes.append(f"{symbols.label(names[0]) if names else seg.name}: unique masked hit "
                                           f"{hits[0]:08x} outside this object's anchored range; not placed")
