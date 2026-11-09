@@ -8195,10 +8195,10 @@
   "SurfaceApplyNoise": {
    "va": "00431db0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?SurfaceApplyNoise$n(pni)v",
    "tu": "src/terr/tsurface.c",
-   "evidence": "placed (at) in src/terr/tsurface.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "SurfaceApplyNoiseDetails": {
    "va": "00431eb0",
@@ -8218,10 +8218,10 @@
   "SurfaceInitializeProcedural": {
    "va": "00431f40",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?SurfaceInitializeProcedural$n(pnii)v",
    "tu": "src/terr/tsurface.c",
-   "evidence": "placed (at) in src/terr/tsurface.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "NoiseClear": {
    "va": "00432020",
@@ -8271,16 +8271,24 @@
   "SurfaceGridSetValue": {
    "va": "004320a0",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?SurfaceGridSetValue$n(pnipnuiuc)v",
+   "status": "matched",
+   "mangled": "W?SurfaceGridSetValue$n(pn$SurfaceGridLayout$$pnuiuc)v",
    "tu": "src/terr/tsurface.c",
-   "evidence": "placed (at) in src/terr/tsurface.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "SurfaceGridSetValue#W?SurfaceGridSetValue$n(pn$SurfaceGridLayout$$pnuiuc)v": {
    "va": "004320a0",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?SurfaceGridSetValue$n(pn$SurfaceGridLayout$$pnuiuc)v",
+   "tu": "src/terr/tsurface.c",
+   "evidence": "placed (at) in src/terr/tsurface.c 2026-11-09"
+  },
+  "SurfaceGridSetValue#W?SurfaceGridSetValue$n(pnipnuiuc)v": {
+   "va": "004320a0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SurfaceGridSetValue$n(pnipnuiuc)v",
    "tu": "src/terr/tsurface.c",
    "evidence": "placed (at) in src/terr/tsurface.c 2026-11-09"
   },

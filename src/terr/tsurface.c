@@ -867,9 +867,11 @@ extern "C" void f_0042f540(char *);
 
 void SurfaceApplyNoise(int *object)
 {
+    int i;
+    unsigned int row;
     unsigned char *grid=(unsigned char *)object[0x1b];
     signed char *weights=(signed char *)object[0x1c];
-    for (unsigned int row=0; row < (unsigned int)object[0x1a]; ++row) {
+    for (row=0; row < (unsigned int)object[0x1a]; ++row) {
         for (unsigned int column=0; column < (unsigned int)object[0x1a]; ++column, ++grid, weights+=2) {
             int value=RandomRange((unsigned int *)MissionRandomTable,weights[1],weights[0])+*grid;
             if (value<0) *grid=0;
@@ -879,21 +881,22 @@ void SurfaceApplyNoise(int *object)
     }
     unsigned char *descriptor=(unsigned char *)(object+0x1d);
     unsigned int depth=object[0x1a]*object[0x1a];
-    for (int i=0;i<8;++i,descriptor+=4) {
+    for (i=0;i<8;++i,descriptor+=4) {
         int count=descriptor[0];
         unsigned char value=(unsigned char)RandomRange((unsigned int *)MissionRandomTable,descriptor[2],descriptor[3]);
         while (count-- > 0) {
             unsigned int index=next_link_seed((unsigned int *)MissionRandomTable) % depth;
-            ((unsigned char *)object[0x1b])[index]=value;
+            unsigned char *data=(unsigned char *)object[0x1b];
+            data+=index;
+            *data=value;
         }
     }
 }
-
 struct SurfaceScatterGrid { char gap[0x98]; unsigned char *data; unsigned char &At(unsigned int i) { return data[i]; } };
 void SurfaceApplyNoiseDetails(int *object)
 {
-    unsigned char *descriptor = (unsigned char *)(object + 0x27);
     unsigned int width = object[0x25]*object[0x25];
+    unsigned char *descriptor = (unsigned char *)(object + 0x27);
     for (int n = 0; n < 8; ++n, descriptor += 4) {
         int count = descriptor[0];
         unsigned char value = (unsigned char)RandomRange((unsigned int *)MissionRandomTable, descriptor[2], descriptor[3]);
@@ -902,7 +905,6 @@ void SurfaceApplyNoiseDetails(int *object)
         }
     }
 }
-
 void SurfaceInitializeProcedural(int *object, int fileNumber)
 {
     char filename[32];
@@ -939,15 +941,16 @@ unsigned char SurfaceGridValue(SurfaceGridLayout *object, unsigned int *point)
 void SurfaceGridSetValue(SurfaceGridLayout *object, unsigned int *point, unsigned char value)
 {
     if (object->data) {
-        unsigned int x = point[0] & 63;
-        unsigned int y = point[1] & 63;
+        unsigned int y;
+        unsigned int x;
+        x = point[0] & 63;
+        y = point[1] & 63;
         x <<= object->shift; y <<= object->shift;
         if (x >= object->width) x = object->width - 1;
         if (y >= object->width) y = object->width - 1;
         object->data[y + x * object->width] = value;
     }
 }
-
 void SurfaceApplyColorMap(int *object)
 {
     unsigned char *data = (unsigned char *)object[0x26];
@@ -963,10 +966,7 @@ unsigned int SurfaceRandomize(int *object, int fileNumber, int fillGrid)
     sprintf(filename, "scape%d.dat", fileNumber);
     if ((unsigned int)object[0x26] != 0) {
         delete[] (char *)object[0x26];
-        ((char *)object)[0x98] = 0;
-        ((char *)object)[0x99] = 0;
-        ((char *)object)[0x9a] = 0;
-        ((char *)object)[0x9b] = 0;
+        object[0x26] = 0;
     }
     SurfaceLoadDefinition((char *)object, filename);
     unsigned char *grid = (unsigned char *)object[0x1b];
@@ -1009,6 +1009,9 @@ unsigned int SurfaceRandomize(int *object, int fileNumber, int fillGrid)
     }
     return result;
 }
+
+
+
 
 
 

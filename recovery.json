@@ -7501,10 +7501,20 @@
      "size": 48,
      "mangled": "W?SurfaceReleaseAllocation$n(pni)pni"
     },
+    "SurfaceApplyNoise": {
+     "va": "00431db0",
+     "size": 256,
+     "mangled": "W?SurfaceApplyNoise$n(pni)v"
+    },
     "SurfaceApplyNoiseDetails": {
      "va": "00431eb0",
      "size": 144,
      "mangled": "W?SurfaceApplyNoiseDetails$n(pni)v"
+    },
+    "SurfaceInitializeProcedural": {
+     "va": "00431f40",
+     "size": 224,
+     "mangled": "W?SurfaceInitializeProcedural$n(pnii)v"
     },
     "SurfaceClearAllocationAndRelease": {
      "va": "00432020",
@@ -7515,6 +7525,11 @@
      "va": "00432050",
      "size": 80,
      "mangled": "W?SurfaceGridValue$n(pn$SurfaceGridLayout$$pnui)uc"
+    },
+    "SurfaceGridSetValue": {
+     "va": "004320a0",
+     "size": 96,
+     "mangled": "W?SurfaceGridSetValue$n(pn$SurfaceGridLayout$$pnuiuc)v"
     },
     "SurfaceApplyColorMap": {
      "va": "00432100",

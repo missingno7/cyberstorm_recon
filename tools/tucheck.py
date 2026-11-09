@@ -1,6 +1,9 @@
 """TU-level proof (diagnostic until adopted by verify): is a whole accepted object reproduced?
 
-    python tools/tucheck.py [--tu src/DIR/FILE.c] [-v]
+    python tools/tucheck.py [--tu src/DIR/FILE.c [--src CANDIDATE.c]] [-v]
+
+--src checks a candidate in place of the published file of --tu (same toolchain entry; order check against the
+other published TUs).
 
 A TU is COMPLETE when, in verify's view (fresh compile, no --at, no search):
 1. every extent of its main code segment is STRICT and the extents sit contiguously at base + object offset
@@ -26,8 +29,8 @@ import pe as pemod  # noqa: E402
 from common import BUILD, ROOT  # noqa: E402
 
 
-def check_tu(tu, ent, img, starts):
-    reports, mods, _ = gate.build_and_compare(ROOT / tu, ent)
+def check_tu(tu, ent, img, starts, src=None):
+    reports, mods, _ = gate.build_and_compare(Path(src) if src else ROOT / tu, ent)
     return check_reports(reports, mods, img, starts)
 
 
@@ -127,7 +130,8 @@ def main(argv):
     rows = []
     for tu, ent in sorted(ledger["tus"].items()):
         try:
-            ok, why, size, place = check_tu(tu, ent, img, starts)
+            cand = argv[argv.index("--src") + 1] if "--src" in argv and "--tu" in argv and                 argv[argv.index("--tu") + 1] == tu else None
+            ok, why, size, place = check_tu(tu, ent, img, starts, cand)
         except RuntimeError as e:
             ok, why, size, place = False, [f"compile: {e}"], 0, {}
         rows.append([tu, ok, why, size, place])
