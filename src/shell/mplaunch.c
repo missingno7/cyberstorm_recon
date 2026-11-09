@@ -58,15 +58,15 @@ struct Scene:GuiScreen {
     int twoPlayersOnly;
     Flic movie;
     Scene();void Open(InputReq *);
-    int IsActive(){return input!=0;}
+    int IsActive(){return input!=0;}long SelectedPlayer(){return selectedPlayer;}
 };
 struct PlayerState {long state;unsigned char unknown04[0x40];char shortName[20];unsigned char unknown58[0x50];long peer;U32 limit,cost;long unknownb4;U32 ready;};
-struct LaunchReadyLabel {unsigned char unknown00[0x14];union {U32 style;struct {unsigned char styleBytes[3],flags;};};unsigned char unknown18[0xc];const char *text;void SetText(const char *s){text=s;}void Invalidate(){flags&=~1;}void SetVisibilityBits(U32 v){style=(style&0xff1fffffUL)+v;}};
-class MenuLabel {public:unsigned char unknown00[0x14];union {U32 style;struct {unsigned char styleBytes[3],flags;};};unsigned char unknown18[0x19];void Invalidate(){flags&=~1;}void SetVisibilityBits(U32 v){style=(style&0xff1fffffUL)+v;}void SetText(const char *);void SetColor(long);void SetAlign(long);void SetBackground(int);void SetFont(unsigned char);};
-class MenuNumber {public:unsigned char unknown00[0x14];union {U32 style;struct {unsigned char styleBytes[3],flags;};};unsigned char unknown18[0xc];const char *text;long value;signed char font,color,flash,align;void SetVisibilityBits(U32 v){style=(style&0xff1fffffUL)+v;}void SetValue(long,signed char);void SetFont(signed char);};
-class MenuTextButton {public:unsigned char unknown00[0x17],flags,unknown18[0xc];long style;const char *text;unsigned char unknown2c[3];void SetColor(signed char);void Invalidate(){flags&=~1;}};
+struct LaunchReadyLabel {unsigned char unknown00[0x14];union {U32 style;struct {unsigned char styleBytes[3],flags;};};unsigned char unknown18[0xc];const char *text;void SetText(const char *s){text=s;}void Invalidate(){flags&=~1;}void SetControlState(unsigned state){style=(style&0xff1fffffUL)+(state<<21);}};
+class MenuLabel {public:unsigned char unknown00[0x14];union {U32 style;struct {unsigned char styleBytes[3],flags;};};unsigned char unknown18[0x19];void Invalidate(){flags&=~1;}void SetControlState(unsigned state){style=(style&0xff1fffffUL)+(state<<21);}void SetText(const char *);void SetColor(long);void SetAlign(long);void SetBackground(int);void SetFont(unsigned char);};
+class MenuNumber {public:unsigned char unknown00[0x14];union {U32 style;struct {unsigned char styleBytes[3],flags;};};unsigned char unknown18[0xc];const char *text;long value;signed char font,color,flash,align;void SetControlState(unsigned state){style=(style&0xff1fffffUL)+(state<<21);}void SetValue(long,signed char);void SetFont(signed char);};
+class MenuTextButton {public:unsigned char unknown00[0x14];union {U32 visibility;struct {unsigned char visibilityBytes[3],flags;};};unsigned char unknown18[0xc];long style;const char *text;unsigned char unknown2c[3];void SetColor(signed char);void Invalidate(){flags&=~1;}void SetControlState(unsigned state){visibility=(visibility&0xff1fffffUL)+(state<<21);}};
 typedef MenuTextButton LaunchStatusLabel;
-class MenuPrefixButton {public:unsigned char unknown00[44];void SetAlign(signed char);};
+class MenuPrefixButton {public:unsigned char unknown00[0x14];U32 visibility;unsigned char unknown18[20];void SetControlState(unsigned state){visibility=(visibility&0xff1fffffUL)+(state<<21);}void SetAlign(signed char);};
 #pragma pack(pop)
 extern PlayerState chat_player_state_table[];
 extern int gLinkIsSigs;
@@ -135,12 +135,18 @@ extern const char *gLaunchOption78Text,*gLaunchRuleText,*gLaunchOption105Text;
 
 struct LaunchChoice {U32 value;U32 Value(){return value;}};
 extern LaunchChoice gLaunchScenarioChoice,gLaunchLimitChoice,gLaunchDurationChoice,gLaunchSettingChoice,gLaunchCostChoice;
+struct LaunchControlStyle {U32 bits;void SetControlState(unsigned state){bits=(bits&0xff1fffffUL)+(state<<21);}};
+extern LaunchControlStyle gLaunchScenarioNextStyle,gLaunchScenarioPreviousStyle,gLaunchScenarioRandomStyle,gLaunchCostNextStyle,gLaunchCostPreviousStyle,gLaunchCostLabelStyle,gLaunchLimitNextStyle,gLaunchLimitPreviousStyle,gLaunchLimitLabelStyle,gLaunchSettingNextStyle,gLaunchSettingPreviousStyle,gLaunchSettingLabelStyle,gLaunchDurationNextStyle,gLaunchDurationPreviousStyle,gLaunchDurationLabelStyle;
+extern LaunchControlStyle gLaunchDurationSummaryStyle;
+extern LaunchControlStyle gLaunchSummary0Style,gLaunchSummary1Style,gLaunchSummary2Style,gLaunchSummary3Style,gLaunchCostNumberStyle,gLaunchBudgetNumberStyle,gLaunchTitleLabelStyle,gLaunchSettingNumberStyle,gLaunchSummary6Style,gLaunchSummary7Style,gLaunchOption78Style,gLaunchRuleStyle,gLaunchOption105Style,gLaunchOptionLabel0Style,gLaunchOptionLabel1Style,gLaunchOptionLabel2Style,gLaunchOptionLabel3Style,gLaunchPlayerNameEditStyle,gLaunchReadyErrorCancelStyle,gLaunchPlayerCancelStyle,gLaunchPlayerAcceptStyle,gLaunchAloneCancelStyle,gLaunchAloneAcceptStyle,gLaunchNotReadyCancelStyle,gLaunchStatusHeadingStyle;
+void LaunchUpdateChoiceVisibility(Scene *);
 extern int multiState,g4bb78c;extern long gLaunchHoveredControl;
 extern void LinkSigsPoll();extern void NetworkPoll();extern void MenuHelpOpenTopic(long);
 struct SoundSettings;extern int SoundPlay(unsigned,const SoundSettings * =0);extern int SoundTrigger(unsigned,int);
 extern unsigned char gLaunchReadyErrorCancel;
 
-class MenuChat {public:unsigned char unknown00[97];void Clear();};extern MenuChat gLaunchChats[8];
+class MenuChat {public:unsigned char unknown00[0x14];U32 visibility;unsigned char unknown18[73];void SetControlState(unsigned state){visibility=(visibility&0xff1fffffUL)+(state<<21);}void Clear();};extern MenuChat gLaunchChats[8];
+extern MenuPrefixButton gLaunchTeamLabels[8];
 class MenuButton {public:unsigned char unknown00[40];void Reset(unsigned);};
 struct ResMgr {void *Load(long,int=1,int=0,int=0);};extern ResMgr gResMgr;
 struct Palette;extern char gShellBackground,g511948,gMenuSavedSurface;
@@ -154,6 +160,8 @@ struct PlayerInfo {unsigned char kind,unknown01[39];long value;unsigned char unk
 struct ProfileManager;extern ProfileManager profileManager;extern void GetPlayerInfo(void *,PlayerInfo *);
 void LaunchSetupControlStyles(Scene *);
 
+
+Scene g4ba2bc;
 
 /* Definitions follow original function order; unresolved bodies stay external. */
 void LaunchResetPlayers(Scene *screen);
@@ -272,15 +280,7 @@ void Scene::Open(InputReq *input)
 
 
 
-
-
-
-
-
-
-
-
-        AssertFail(__FILE__,__LINE__,"Tried to open MpLaunch, already opened..");return;
+        AssertFail(__FILE__,__LINE__,"Tried to open MpLaunch, already opened...try restarting CyberStorm.");return;
     }
     this->twoPlayersOnly=LaunchLinkType()!=0;
     f_cba0(&DAT_00511dcc,"font4.fnx");
@@ -292,7 +292,7 @@ void Scene::Open(InputReq *input)
     ShellClearFrame();gLaunchHoveredControl=-1;
     this->LoadLayout((long)"mplaunch.box");this->GuiScreen::Open(input,&gShellStrings,3701,1);
     gLaunchChats[this->selectedIndex].Clear();
-    for(int i=0;i<8;++i)memset(gLaunchPlayerNames[i],0,80);
+    {int i;for(i=0;i<8;++i)memset(gLaunchPlayerNames[i],0,80);}
     ((MenuButton *)&gLaunchSummaryNumbers[3])->Reset(8);((MenuButton *)&gLaunchSummaryNumbers[4])->Reset(9);
     ((MenuButton *)&gLaunchCostNumber)->Reset(10);((MenuButton *)&gLaunchBudgetNumber)->Reset(11);
     ((MenuButton *)&gLaunchTitleLabel)->Reset(12);((MenuButton *)&gLaunchSettingNumber)->Reset(13);
@@ -300,7 +300,7 @@ void Scene::Open(InputReq *input)
     gLaunchSummaryNumbers[3].text=gShellStrings.GetString(3709,1);gLaunchSummaryNumbers[4].text=gShellStrings.GetString(3710,1);
     gLaunchCostNumber.text=gShellStrings.GetString(3711,1);gLaunchBudgetNumber.text=gShellStrings.GetString(3712,1);
     gLaunchTitleLabel.text=gShellStrings.GetString(3713,1);gLaunchSettingNumber.text=gShellStrings.GetString(3714,1);
-    for(i=0;i<8;++i)((GuiControl *)&gLaunchStatusLabels[i])->Reset(i+37);
+    {int i;for(i=0;i<8;++i)((GuiControl *)&gLaunchStatusLabels[i])->Reset(i+37);}
     LaunchSetupControlStyles(this);LaunchShuffleSlots(this);
     this->resource=0;this->resource=gResMgr.Load((long)"mpl.bmx");
     DecodeLaunchPalette((Palette *)&gShellBackground,(const unsigned char *)this->resource+16);
@@ -314,11 +314,12 @@ void Scene::Open(InputReq *input)
         gLaunchReadyLabels[this->selectedIndex].SetText("X");gLaunchReadyLabels[this->selectedIndex].Invalidate();
         gLaunchBudget=player.kind;BriefSetMode(&gLaunchLimitChoice,gLaunchBudget-1);
         if(gLaunchOption105&~1)gLaunchOption105=1;
-        for(i=0;i<10;++i){
+        {int i=0;while(i<10){
             if((U32)this->costs[i]>chat_player_state_table[this->selectedPlayer].cost){
                 gLaunchMap=i;gLaunchConfig=this->costs[i];BriefSetMode(&gLaunchCostChoice,i);break;
             }
-        }
+            ++i;
+        }}
         BriefSetMode(&gLaunchScenarioChoice,gLaunchScenario);BriefSetMode(&gLaunchDurationChoice,gLaunchDurationIndex);BriefSetMode(&gLaunchSettingChoice,gLaunchSetting);
         this->value25d=(unsigned char)gLaunchScenarioChoice.Value();this->value261=(unsigned char)gLaunchLimitChoice.Value();
         this->value265=(unsigned char)gLaunchDurationChoice.Value();this->value269=(unsigned char)gLaunchSettingChoice.Value();this->value26d=(unsigned char)gLaunchCostChoice.Value();
@@ -419,10 +420,879 @@ void LaunchSetupControlStyles(Scene *)
     ((MenuNumber *)&gLaunchTitleLabel)->SetFont(0);gLaunchSummaryNumber6.SetFont(0);gLaunchSummaryNumber7.SetFont(0);
     gLaunchOptionLabel0.SetBackground(0);gLaunchOptionLabel1.SetBackground(0);gLaunchOptionLabel2.SetBackground(0);gLaunchOptionLabel3.SetBackground(0);
     gLaunchOptionLabel0.SetColor(3);gLaunchOptionLabel1.SetColor(3);gLaunchStatusHeading.SetBackground(0);
-    gLaunchSummaryNumbers[1].SetVisibilityBits(0xa00000UL);
+    gLaunchSummaryNumbers[1].SetControlState(5);
     for(unsigned char i=0;i<8;++i){
         gLaunchMoneyLabels[i].SetAlign(0);gLaunchLimitLabels[i].SetAlign(0);
         gLaunchMoneyLabels[i].SetBackground(0);gLaunchLimitLabels[i].SetBackground(0);gLaunchNameLabels[i].SetFont(4);
+    }
+}
+
+void LaunchSetActiveButtons(Scene *screen)
+{
+    int i;
+    switch(screen->mode){
+    case 3:
+        gLaunchAloneCancelStyle.SetControlState(5);
+        gLaunchAloneAcceptStyle.SetControlState(5);
+        gLaunchNotReadyCancelStyle.SetControlState(5);
+        gLaunchPlayerCancelStyle.SetControlState(5);
+        gLaunchPlayerAcceptStyle.SetControlState(5);
+        gLaunchPlayerNameEditStyle.SetControlState(5);
+        gLaunchReadyErrorCancelStyle.SetControlState(5);
+        gLaunchHeadings[0].SetControlState(5);
+        gLaunchHeadings[1].SetControlState(1);
+        gLaunchHeadings[2].SetControlState(1);
+        gLaunchHeadings[3].SetControlState(1);
+        for(i=0;i<8;++i){
+            gLaunchChats[i].SetControlState(5);
+            gLaunchNameLabels[i].SetControlState(5);
+            gLaunchStatusLabels[i].SetControlState(1);
+            gLaunchMoneyLabels[i].SetControlState(1);
+            gLaunchLimitLabels[i].SetControlState(1);
+            gLaunchReadyLabels[i].SetControlState(5);
+            gLaunchTeamLabels[i].SetControlState(5);
+        }
+        gLaunchSummary0Style.SetControlState(1);
+        gLaunchSummary1Style.SetControlState(1);
+        gLaunchSummary2Style.SetControlState(1);
+        gLaunchSummary3Style.SetControlState(1);
+        gLaunchCostNumberStyle.SetControlState(1);
+        gLaunchBudgetNumberStyle.SetControlState(1);
+        gLaunchTitleLabelStyle.SetControlState(1);
+        gLaunchSettingNumberStyle.SetControlState(1);
+        gLaunchDurationSummaryStyle.SetControlState(1);
+        gLaunchSummary6Style.SetControlState(1);
+        gLaunchSummary7Style.SetControlState(1);
+        gLaunchOption78Style.SetControlState(1);
+        gLaunchRuleStyle.SetControlState(1);
+        gLaunchOption105Style.SetControlState(1);
+        gLaunchOptionLabel0Style.SetControlState(5);
+        gLaunchOptionLabel1Style.SetControlState(5);
+        gLaunchOptionLabel2Style.SetControlState(5);
+        gLaunchOptionLabel3Style.SetControlState(5);
+        gLaunchStatusHeadingStyle.SetControlState(1);
+        LaunchUpdateChoiceVisibility(screen);break;
+    case 2:
+        gLaunchPlayerCancelStyle.SetControlState(0);
+        gLaunchPlayerAcceptStyle.SetControlState(0);
+        gLaunchAloneCancelStyle.SetControlState(5);
+        gLaunchAloneAcceptStyle.SetControlState(5);
+        gLaunchNotReadyCancelStyle.SetControlState(5);
+        gLaunchPlayerNameEditStyle.SetControlState(5);
+        gLaunchReadyErrorCancelStyle.SetControlState(5);
+        gLaunchHeadings[0].SetControlState(1);
+        gLaunchHeadings[1].SetControlState(1);
+        gLaunchHeadings[2].SetControlState(1);
+        gLaunchHeadings[3].SetControlState(1);
+        for(i=0;i<8;++i){
+            if(screen->twoPlayersOnly&&i>1)gLaunchStatusLabels[i].SetControlState(5);
+            else gLaunchStatusLabels[i].SetControlState(1);
+            gLaunchMoneyLabels[i].SetControlState(1);
+            gLaunchLimitLabels[i].SetControlState(1);
+            gLaunchReadyLabels[i].SetControlState(5);
+            gLaunchNameLabels[i].SetControlState(5);
+            gLaunchChats[i].SetControlState(5);
+            gLaunchTeamLabels[i].SetControlState(5);
+        }
+        gLaunchSummary0Style.SetControlState(1);
+        gLaunchSummary1Style.SetControlState(1);
+        gLaunchSummary2Style.SetControlState(1);
+        gLaunchSummary3Style.SetControlState(1);
+        gLaunchCostNumberStyle.SetControlState(1);
+        gLaunchBudgetNumberStyle.SetControlState(1);
+        gLaunchTitleLabelStyle.SetControlState(1);
+        gLaunchSettingNumberStyle.SetControlState(1);
+        gLaunchDurationSummaryStyle.SetControlState(1);
+        gLaunchSummary6Style.SetControlState(1);
+        gLaunchSummary7Style.SetControlState(1);
+        gLaunchOption78Style.SetControlState(1);
+        gLaunchRuleStyle.SetControlState(1);
+        gLaunchOption105Style.SetControlState(1);
+        gLaunchOptionLabel0Style.SetControlState(5);
+        gLaunchOptionLabel1Style.SetControlState(5);
+        gLaunchOptionLabel2Style.SetControlState(5);
+        gLaunchOptionLabel3Style.SetControlState(5);
+        gLaunchStatusHeadingStyle.SetControlState(1);
+        LaunchUpdateChoiceVisibility(screen);break;
+    case 1:
+        gLaunchPlayerNameEditStyle.SetControlState(5);
+        gLaunchReadyErrorCancelStyle.SetControlState(5);
+        gLaunchAloneCancelStyle.SetControlState(5);
+        gLaunchAloneAcceptStyle.SetControlState(5);
+        gLaunchNotReadyCancelStyle.SetControlState(5);
+        gLaunchPlayerCancelStyle.SetControlState(5);
+        gLaunchPlayerAcceptStyle.SetControlState(5);
+        if(gMenuNetwork.host){
+            gLaunchHeadings[0].SetControlState(0);
+            gLaunchHeadings[1].SetControlState(0);
+            gLaunchHeadings[2].SetControlState(0);
+            gLaunchHeadings[3].SetControlState(0);
+        for(i=0;i<8;++i){
+            if(screen->twoPlayersOnly&&i>1){
+                gLaunchNameLabels[i].SetControlState(5);
+                gLaunchStatusLabels[i].SetControlState(5);
+            }else{
+                gLaunchNameLabels[i].SetControlState(0);
+                gLaunchStatusLabels[i].SetControlState(0);
+            }
+            gLaunchChats[i].SetControlState(5);
+            gLaunchReadyLabels[i].SetControlState(5);
+            gLaunchTeamLabels[i].SetControlState(5);
+            screen->playerStates[i]=99;
+        }
+            gLaunchNameLabels[screen->selectedIndex].SetControlState(5);
+            gLaunchChats[screen->selectedIndex].SetControlState(0);
+            gLaunchReadyLabels[screen->selectedIndex].SetControlState(0);
+            gLaunchTeamLabels[screen->selectedIndex].SetControlState(0);
+            gLaunchStatusLabels[screen->selectedIndex].SetControlState(1);
+        gLaunchSummary0Style.SetControlState(0);
+        gLaunchSummary1Style.SetControlState(0);
+        gLaunchSummary2Style.SetControlState(0);
+        gLaunchSummary3Style.SetControlState(0);
+        gLaunchCostNumberStyle.SetControlState(0);
+        gLaunchBudgetNumberStyle.SetControlState(0);
+        gLaunchTitleLabelStyle.SetControlState(0);
+        gLaunchSettingNumberStyle.SetControlState(0);
+        gLaunchDurationSummaryStyle.SetControlState(0);
+        gLaunchSummary6Style.SetControlState(0);
+        gLaunchSummary7Style.SetControlState(0);
+        gLaunchOption78Style.SetControlState(0);
+        gLaunchRuleStyle.SetControlState(0);
+        gLaunchOption105Style.SetControlState(0);
+        gLaunchScenarioNextStyle.SetControlState(0);
+        gLaunchScenarioPreviousStyle.SetControlState(0);
+        gLaunchScenarioRandomStyle.SetControlState(0);
+        gLaunchCostNextStyle.SetControlState(0);
+        gLaunchCostPreviousStyle.SetControlState(0);
+        gLaunchCostLabelStyle.SetControlState(0);
+        gLaunchLimitNextStyle.SetControlState(0);
+        gLaunchLimitPreviousStyle.SetControlState(0);
+        gLaunchLimitLabelStyle.SetControlState(0);
+        gLaunchSettingNextStyle.SetControlState(0);
+        gLaunchSettingPreviousStyle.SetControlState(0);
+        gLaunchSettingLabelStyle.SetControlState(0);
+        gLaunchDurationNextStyle.SetControlState(0);
+        gLaunchDurationPreviousStyle.SetControlState(0);
+        gLaunchDurationLabelStyle.SetControlState(0);
+        gLaunchStatusHeadingStyle.SetControlState(0);
+            screen->value271=99;
+        }else{
+            gLaunchHeadings[0].SetControlState(5);
+            gLaunchHeadings[1].SetControlState(0);
+            gLaunchHeadings[2].SetControlState(0);
+            gLaunchHeadings[3].SetControlState(0);
+        for(i=0;i<8;++i){
+            if(screen->twoPlayersOnly&&i>1){
+                gLaunchNameLabels[i].SetControlState(5);
+                gLaunchStatusLabels[i].SetControlState(5);
+            }else{
+                gLaunchNameLabels[i].SetControlState(0);
+                gLaunchStatusLabels[i].SetControlState(1);
+            }
+            gLaunchChats[i].SetControlState(5);
+            gLaunchMoneyLabels[i].SetControlState(5);
+            gLaunchLimitLabels[i].SetControlState(5);
+            gLaunchReadyLabels[i].SetControlState(5);
+            gLaunchTeamLabels[i].SetControlState(1);
+            screen->playerStates[i]=99;
+        }
+            gLaunchChats[screen->selectedIndex].SetControlState(0);
+            gLaunchNameLabels[screen->selectedIndex].SetControlState(5);
+            gLaunchReadyLabels[screen->selectedIndex].SetControlState(0);
+            gLaunchTeamLabels[screen->selectedIndex].SetControlState(0);
+        gLaunchSummary0Style.SetControlState(0);
+        gLaunchSummary1Style.SetControlState(0);
+        gLaunchSummary2Style.SetControlState(0);
+        gLaunchSummary3Style.SetControlState(0);
+        gLaunchCostNumberStyle.SetControlState(0);
+        gLaunchBudgetNumberStyle.SetControlState(0);
+        gLaunchTitleLabelStyle.SetControlState(0);
+        gLaunchSettingNumberStyle.SetControlState(0);
+        gLaunchDurationSummaryStyle.SetControlState(0);
+        gLaunchSummary6Style.SetControlState(0);
+        gLaunchSummary7Style.SetControlState(0);
+        gLaunchOption78Style.SetControlState(1);
+        gLaunchRuleStyle.SetControlState(1);
+        gLaunchOption105Style.SetControlState(1);
+        gLaunchOptionLabel0Style.SetControlState(5);
+        gLaunchOptionLabel1Style.SetControlState(5);
+        gLaunchOptionLabel2Style.SetControlState(5);
+        gLaunchOptionLabel3Style.SetControlState(5);
+        gLaunchScenarioNextStyle.SetControlState(5);
+        gLaunchScenarioPreviousStyle.SetControlState(5);
+        gLaunchScenarioRandomStyle.SetControlState(5);
+        gLaunchCostNextStyle.SetControlState(5);
+        gLaunchCostPreviousStyle.SetControlState(5);
+        gLaunchCostLabelStyle.SetControlState(5);
+        gLaunchLimitNextStyle.SetControlState(5);
+        gLaunchLimitPreviousStyle.SetControlState(5);
+        gLaunchLimitLabelStyle.SetControlState(5);
+        gLaunchSettingNextStyle.SetControlState(5);
+        gLaunchSettingPreviousStyle.SetControlState(5);
+        gLaunchSettingLabelStyle.SetControlState(5);
+        gLaunchDurationNextStyle.SetControlState(5);
+        gLaunchDurationPreviousStyle.SetControlState(5);
+        gLaunchDurationLabelStyle.SetControlState(5);
+        }
+        gLaunchStatusHeadingStyle.SetControlState(0);
+        screen->value271=99;break;
+    case 4:
+        gLaunchAloneCancelStyle.SetControlState(0);
+        gLaunchAloneAcceptStyle.SetControlState(0);
+        gLaunchPlayerCancelStyle.SetControlState(5);
+        gLaunchPlayerAcceptStyle.SetControlState(5);
+        gLaunchPlayerNameEditStyle.SetControlState(5);
+        gLaunchReadyErrorCancelStyle.SetControlState(5);
+        gLaunchHeadings[0].SetControlState(1);
+        gLaunchHeadings[1].SetControlState(1);
+        gLaunchHeadings[2].SetControlState(1);
+        gLaunchHeadings[3].SetControlState(1);
+        for(i=0;i<8;++i){
+            if(screen->twoPlayersOnly&&i>1)gLaunchStatusLabels[i].SetControlState(5);
+            else gLaunchStatusLabels[i].SetControlState(1);
+            gLaunchMoneyLabels[i].SetControlState(1);
+            gLaunchLimitLabels[i].SetControlState(1);
+            gLaunchNameLabels[i].SetControlState(5);
+            gLaunchChats[i].SetControlState(5);
+            gLaunchReadyLabels[i].SetControlState(5);
+            gLaunchTeamLabels[i].SetControlState(5);
+        }
+        gLaunchSummary0Style.SetControlState(1);
+        gLaunchSummary1Style.SetControlState(1);
+        gLaunchSummary2Style.SetControlState(1);
+        gLaunchSummary3Style.SetControlState(1);
+        gLaunchCostNumberStyle.SetControlState(1);
+        gLaunchBudgetNumberStyle.SetControlState(1);
+        gLaunchTitleLabelStyle.SetControlState(1);
+        gLaunchSettingNumberStyle.SetControlState(1);
+        gLaunchDurationSummaryStyle.SetControlState(1);
+        gLaunchSummary6Style.SetControlState(1);
+        gLaunchSummary7Style.SetControlState(1);
+        gLaunchOption78Style.SetControlState(1);
+        gLaunchRuleStyle.SetControlState(1);
+        gLaunchOption105Style.SetControlState(1);
+        gLaunchStatusHeadingStyle.SetControlState(1);
+        gLaunchOptionLabel0Style.SetControlState(5);
+        gLaunchOptionLabel1Style.SetControlState(5);
+        gLaunchOptionLabel2Style.SetControlState(5);
+        gLaunchOptionLabel3Style.SetControlState(5);
+        LaunchUpdateChoiceVisibility(screen);break;
+    case 5:
+        gLaunchNotReadyCancelStyle.SetControlState(0);
+        gLaunchPlayerCancelStyle.SetControlState(5);
+        gLaunchPlayerAcceptStyle.SetControlState(5);
+        gLaunchPlayerNameEditStyle.SetControlState(5);
+        gLaunchReadyErrorCancelStyle.SetControlState(5);
+        gLaunchHeadings[0].SetControlState(1);
+        gLaunchHeadings[1].SetControlState(1);
+        gLaunchHeadings[2].SetControlState(1);
+        gLaunchHeadings[3].SetControlState(1);
+        for(i=0;i<8;++i){
+            if(screen->twoPlayersOnly&&i>1)gLaunchStatusLabels[i].SetControlState(5);
+            else gLaunchStatusLabels[i].SetControlState(1);
+            gLaunchMoneyLabels[i].SetControlState(1);
+            gLaunchLimitLabels[i].SetControlState(1);
+            gLaunchNameLabels[i].SetControlState(5);
+            gLaunchChats[i].SetControlState(5);
+            gLaunchReadyLabels[i].SetControlState(5);
+            gLaunchTeamLabels[i].SetControlState(5);
+        }
+        gLaunchSummary0Style.SetControlState(1);
+        gLaunchSummary1Style.SetControlState(1);
+        gLaunchSummary2Style.SetControlState(1);
+        gLaunchSummary3Style.SetControlState(1);
+        gLaunchCostNumberStyle.SetControlState(1);
+        gLaunchBudgetNumberStyle.SetControlState(1);
+        gLaunchTitleLabelStyle.SetControlState(1);
+        gLaunchSettingNumberStyle.SetControlState(1);
+        gLaunchDurationSummaryStyle.SetControlState(1);
+        gLaunchSummary6Style.SetControlState(1);
+        gLaunchSummary7Style.SetControlState(1);
+        gLaunchStatusHeadingStyle.SetControlState(1);
+        gLaunchOption78Style.SetControlState(1);
+        gLaunchRuleStyle.SetControlState(1);
+        gLaunchOption105Style.SetControlState(1);
+        gLaunchOptionLabel0Style.SetControlState(5);
+        gLaunchOptionLabel1Style.SetControlState(5);
+        gLaunchOptionLabel2Style.SetControlState(5);
+        gLaunchOptionLabel3Style.SetControlState(5);
+        LaunchUpdateChoiceVisibility(screen);break;
+    case 6:
+        gLaunchAloneCancelStyle.SetControlState(5);
+        gLaunchAloneAcceptStyle.SetControlState(5);
+        gLaunchNotReadyCancelStyle.SetControlState(5);
+        gLaunchPlayerCancelStyle.SetControlState(5);
+        gLaunchPlayerAcceptStyle.SetControlState(5);
+        gLaunchPlayerNameEditStyle.SetControlState(5);
+        gLaunchReadyErrorCancelStyle.SetControlState(0);
+        gLaunchHeadings[0].SetControlState(5);
+        gLaunchHeadings[1].SetControlState(1);
+        gLaunchHeadings[2].SetControlState(1);
+        gLaunchHeadings[3].SetControlState(1);
+        for(i=0;i<8;++i){
+            if(screen->twoPlayersOnly&&i>1)gLaunchStatusLabels[i].SetControlState(5);
+            else gLaunchStatusLabels[i].SetControlState(1);
+            gLaunchNameLabels[i].SetControlState(5);
+            gLaunchChats[i].SetControlState(5);
+            gLaunchReadyLabels[i].SetControlState(5);
+            gLaunchTeamLabels[i].SetControlState(5);
+            gLaunchMoneyLabels[i].SetControlState(1);
+            gLaunchLimitLabels[i].SetControlState(1);
+        }
+        gLaunchSummary0Style.SetControlState(1);
+        gLaunchSummary1Style.SetControlState(1);
+        gLaunchSummary2Style.SetControlState(1);
+        gLaunchTitleLabelStyle.SetControlState(1);
+        gLaunchSettingNumberStyle.SetControlState(1);
+        gLaunchDurationSummaryStyle.SetControlState(1);
+        gLaunchSummary6Style.SetControlState(1);
+        gLaunchSummary7Style.SetControlState(1);
+        gLaunchOption78Style.SetControlState(1);
+        gLaunchRuleStyle.SetControlState(1);
+        gLaunchOption105Style.SetControlState(1);
+        gLaunchStatusHeadingStyle.SetControlState(1);
+        gLaunchOptionLabel0Style.SetControlState(5);
+        gLaunchOptionLabel1Style.SetControlState(5);
+        gLaunchOptionLabel2Style.SetControlState(5);
+        gLaunchOptionLabel3Style.SetControlState(5);
+        gLaunchSummary3Style.SetControlState(5);
+        gLaunchCostNumberStyle.SetControlState(5);
+        gLaunchBudgetNumberStyle.SetControlState(5);
+        LaunchUpdateChoiceVisibility(screen);break;
+    default:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        AssertFail(__FILE__,__LINE__,"impossible case value in setActiveButtons");break;
+    }
+}
+
+void LaunchUpdateChoiceVisibility(Scene *)
+{
+    if(gMenuNetwork.host){
+        gLaunchScenarioNextStyle.SetControlState(1);
+        gLaunchScenarioPreviousStyle.SetControlState(1);
+        gLaunchScenarioRandomStyle.SetControlState(1);
+        gLaunchCostNextStyle.SetControlState(1);
+        gLaunchCostPreviousStyle.SetControlState(1);
+        gLaunchCostLabelStyle.SetControlState(1);
+        gLaunchLimitNextStyle.SetControlState(1);
+        gLaunchLimitPreviousStyle.SetControlState(1);
+        gLaunchLimitLabelStyle.SetControlState(1);
+        gLaunchSettingNextStyle.SetControlState(1);
+        gLaunchSettingPreviousStyle.SetControlState(1);
+        gLaunchSettingLabelStyle.SetControlState(1);
+        gLaunchDurationNextStyle.SetControlState(1);
+        gLaunchDurationPreviousStyle.SetControlState(1);
+        gLaunchDurationLabelStyle.SetControlState(1);
+    }else{
+        gLaunchScenarioNextStyle.SetControlState(5);
+        gLaunchScenarioPreviousStyle.SetControlState(5);
+        gLaunchScenarioRandomStyle.SetControlState(5);
+        gLaunchCostNextStyle.SetControlState(5);
+        gLaunchCostPreviousStyle.SetControlState(5);
+        gLaunchCostLabelStyle.SetControlState(5);
+        gLaunchLimitNextStyle.SetControlState(5);
+        gLaunchLimitPreviousStyle.SetControlState(5);
+        gLaunchLimitLabelStyle.SetControlState(5);
+        gLaunchSettingNextStyle.SetControlState(5);
+        gLaunchSettingPreviousStyle.SetControlState(5);
+        gLaunchSettingLabelStyle.SetControlState(5);
+        gLaunchDurationNextStyle.SetControlState(5);
+        gLaunchDurationPreviousStyle.SetControlState(5);
+        gLaunchDurationLabelStyle.SetControlState(5);
     }
 }
 
@@ -439,35 +1309,36 @@ void ShellNetworkSetupAction4(Scene *screen)
 
 void LaunchRefreshBudgetLabels(Scene *screen)
 {
+
     int refresh=0;int player=1;
     while(player<=8){
         if(chat_player_state_table[player].state==1||chat_player_state_table[player].state==2){
             if(screen->nameDirty[player-1]!=chat_player_state_table[player].cost){
                 LaunchRefreshEligibility(screen);screen->moneyDirty[player-1]=1;
                 screen->nameDirty[player-1]=chat_player_state_table[player].cost;
-                char *text=gLaunchMoneyText[player-1];sprintf(text,"%d",screen->nameDirty[player-1]);
-                MenuLabel *label=&gLaunchMoneyLabels[player-1];label->SetText(text);label->flags&=~1;
+                sprintf(gLaunchMoneyText[player-1],"%d",screen->nameDirty[player-1]);
+                gLaunchMoneyLabels[player-1].SetText(gLaunchMoneyText[player-1]);gLaunchMoneyLabels[player-1].Invalidate();
             }
             if(screen->previousNames[player-1]!=chat_player_state_table[player].limit){
                 LaunchRefreshAffordability(screen);screen->limitDirty[player-1]=1;
                 screen->previousNames[player-1]=chat_player_state_table[player].limit;
-                char *text=gLaunchLimitText[player-1];sprintf(text,"%2d",screen->previousNames[player-1]);
-                MenuLabel *label=&gLaunchLimitLabels[player-1];label->SetText(text);label->flags&=~1;
+                sprintf(gLaunchLimitText[player-1],"%2d",screen->previousNames[player-1]);
+                MenuLabel *label=&gLaunchLimitLabels[player-1];label->SetText(gLaunchLimitText[player-1]);label->flags&=~1;
             }
             if(screen->mode==1){
-                gLaunchReadyLabels[player-1].SetVisibilityBits(0x200000UL);
-                gLaunchReadyLabels[screen->selectedIndex].SetVisibilityBits(0);
-                gLaunchMoneyLabels[player-1].SetVisibilityBits(0);gLaunchLimitLabels[player-1].SetVisibilityBits(0);
+                gLaunchReadyLabels[player-1].SetControlState(1);
+                gLaunchReadyLabels[screen->selectedIndex].SetControlState(0);
+                gLaunchMoneyLabels[player-1].SetControlState(0);gLaunchLimitLabels[player-1].SetControlState(0);
             }
         }else{
-            gLaunchMoneyLabels[player-1].SetVisibilityBits(0xa00000UL);gLaunchLimitLabels[player-1].SetVisibilityBits(0xa00000UL);
+            gLaunchMoneyLabels[player-1].SetControlState(5);gLaunchLimitLabels[player-1].SetControlState(5);
             if(TimerExpired(&screen->refreshTimer)){
                 refresh=1;
                 if(screen->mode==1){
                     long y=(player-1)*26+45;
                     BriefBlit(&g513888,1,0,442,y,442,y,190,22);
                     MenuLabel *label=&gLaunchNameLabels[player-1];label->SetText(" ");label->flags&=~1;
-                    gLaunchReadyLabels[player-1].SetVisibilityBits(0xa00000UL);
+                    gLaunchReadyLabels[player-1].SetControlState(5);
                     BriefBlit(&g513888,1,0,1,y,1,y,25,24);
                 }
             }
@@ -475,10 +1346,12 @@ void LaunchRefreshBudgetLabels(Scene *screen)
         ++player;
     }
     if(refresh)TimerSet(&screen->refreshTimer,1200);
+
 }
 
 void LaunchRefreshCostLabels(Scene *screen)
 {
+
     int player=1;
     while(player<=8){
         int invalid=0;
@@ -491,7 +1364,7 @@ void LaunchRefreshCostLabels(Scene *screen)
                     MenuDrawImage(&g513888,&((MenuImages *)gShellImages)->images[68],541,y);label->SetColor(14);invalid=1;
                 }
                 SurfacePresent(&g513888);
-                gLaunchMoneyLabels[player-1].SetVisibilityBits(0);gLaunchMoneyLabels[player-1].flags&=~1;
+                gLaunchMoneyLabels[player-1].SetControlState(0);gLaunchMoneyLabels[player-1].Invalidate();
                 screen->moneyDirty[player-1]=0;
             }
             if(screen->limitDirty[player-1]){
@@ -502,18 +1375,19 @@ void LaunchRefreshCostLabels(Scene *screen)
                     MenuDrawImage(&g513888,&((MenuImages *)gShellImages)->images[70],460,y);label->SetColor(14);invalid=1;
                 }
                 SurfacePresent(&g513888);
-                gLaunchLimitLabels[player-1].SetVisibilityBits(0);screen->limitDirty[player-1]=0;
-                gLaunchLimitLabels[player-1].flags&=~1;
+                gLaunchLimitLabels[player-1].SetControlState(0);screen->limitDirty[player-1]=0;
+                gLaunchLimitLabels[player-1].Invalidate();
             }
             LaunchStatusLabel *status=&gLaunchStatusLabels[player-1];
             if(invalid){
                 status->SetColor(14);chat_player_state_table[player].ready=0;
-                LaunchReadyLabel *label=&gLaunchReadyLabels[player-1];label->text=" ";label->flags&=~1;
+                LaunchReadyLabel *label=&gLaunchReadyLabels[player-1];label->text=" ";label->Invalidate();
             }else status->SetColor(2);
-            gLaunchStatusLabels[player-1].flags&=~1;
+            gLaunchStatusLabels[player-1].Invalidate();
         }
         ++player;
     }
+
 }
 
 void LaunchRefreshReadyLabels(Scene *screen)
@@ -891,7 +1765,7 @@ void LaunchSetPlayerName(Scene *screen,unsigned player,const char *name)
 void ShellNetworkSetupAction70(Scene *screen)
 {
     if(gMenuNetwork.host){
-        int player=screen->selectedPlayer;
+        int player=screen->SelectedPlayer();
         int next=LaunchFindFreeTeamSlot(screen,player);
         if(next>=0){
             for(int i=1;i<=8;++i){
@@ -957,6 +1831,7 @@ int LaunchFindFreeTeamSlot(Scene *screen,int player)
     }
     return -1;
 }
+
 
 
 

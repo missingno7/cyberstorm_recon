@@ -4097,6 +4097,11 @@
      "size": 87,
      "mangled": "W?$ct:Scene$n()_"
     },
+    "Scene::Open": {
+     "va": "0041fd84",
+     "size": 1595,
+     "mangled": "W?Open$:Scene$n(pn$InputReq$$)v"
+    },
     "LaunchResetPlayers": {
      "va": "004203bf",
      "size": 169,
@@ -4127,6 +4132,21 @@
      "size": 122,
      "mangled": "W?LaunchShuffleSlots$n(pn$Scene$$)v"
     },
+    "LaunchSetupControlStyles": {
+     "va": "004207d9",
+     "size": 467,
+     "mangled": "W?LaunchSetupControlStyles$n(pn$Scene$$)v"
+    },
+    "LaunchSetActiveButtons": {
+     "va": "004209ac",
+     "size": 6205,
+     "mangled": "W?LaunchSetActiveButtons$n(pn$Scene$$)v"
+    },
+    "LaunchUpdateChoiceVisibility": {
+     "va": "004221e9",
+     "size": 667,
+     "mangled": "W?LaunchUpdateChoiceVisibility$n(pn$Scene$$)v"
+    },
     "ShellNetworkSetupAction4": {
      "va": "00422484",
      "size": 180,
@@ -4136,6 +4156,11 @@
      "va": "00422aaa",
      "size": 98,
      "mangled": "W?LaunchRefreshReadyLabels$n(pn$Scene$$)v"
+    },
+    "LaunchRefreshRules": {
+     "va": "00422b0c",
+     "size": 618,
+     "mangled": "W?LaunchRefreshRules$n(pn$Scene$$)v"
     },
     "ShellNetworkSetupAction79": {
      "va": "00422d76",

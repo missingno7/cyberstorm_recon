@@ -2461,10 +2461,10 @@
   "Scene::Open": {
    "va": "0041fd84",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?Open$:Scene$n(pn$InputReq$$)v",
    "tu": "src/shell/mplaunch.c",
-   "evidence": "placed (at) in src/shell/mplaunch.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "LaunchResetPlayers": {
    "va": "004203bf",
@@ -2525,17 +2525,26 @@
   "LaunchSetupControlStyles": {
    "va": "004207d9",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?LaunchSetupControlStyles$n(pn$Scene$$)v",
    "tu": "src/shell/mplaunch.c",
-   "evidence": "placed (at) in src/shell/mplaunch.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "LaunchSetActiveButtons": {
    "va": "004209ac",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?LaunchSetActiveButtons$n(pn$Scene$$)v",
-   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LaunchUpdateChoiceVisibility": {
+   "va": "004221e9",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LaunchUpdateChoiceVisibility$n(pn$Scene$$)v",
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ShellNetworkSetupAction4": {
    "va": "00422484",
@@ -2570,9 +2579,10 @@
   "LaunchRefreshRules": {
    "va": "00422b0c",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?LaunchRefreshRules$n(pn$Scene$$)v",
-   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ShellNetworkSetupAction79": {
    "va": "00422d76",
@@ -13411,6 +13421,13 @@
    "mangled": "W?PaletteCopyRange$n(pn$Palette$$pnx$PaletteColor$$ii)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "DecodeLaunchPalette": {
+   "va": "0047da70",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?DecodeLaunchPalette$n(pn$Palette$$pnxv)v",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
   "PaletteFade": {
    "va": "0047dbc0",
    "kind": "func",
@@ -16700,11 +16717,60 @@
    "mangled": "W?g4b82fc$n$Scene$$",
    "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
   },
+  "gLaunchHeadings": {
+   "va": "004b8e40",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchHeadings$n[]$MenuPrefixButton$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchSummaryNumbers": {
+   "va": "004b8ef0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchSummaryNumbers$n[]$MenuNumber$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchSummary0Style": {
+   "va": "004b8f04",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchSummary0Style$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchSummary1Style": {
+   "va": "004b8f64",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchSummary1Style$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchSummary2Style": {
+   "va": "004b8f94",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchSummary2Style$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchSummary3Style": {
+   "va": "004b8fc4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchSummary3Style$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
   "gLaunchCostNumber": {
    "va": "004b8fe0",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gLaunchCostNumber$n$MenuNumber$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchCostNumberStyle": {
+   "va": "004b8ff4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchCostNumberStyle$n$LaunchControlStyle$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
   "gLaunchBudgetNumber": {
@@ -16714,11 +16780,25 @@
    "mangled": "W?gLaunchBudgetNumber$n$MenuNumber$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
+  "gLaunchBudgetNumberStyle": {
+   "va": "004b9024",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchBudgetNumberStyle$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
   "gLaunchTitleLabel": {
    "va": "004b9040",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gLaunchTitleLabel$n$LaunchReadyLabel$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchTitleLabelStyle": {
+   "va": "004b9054",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchTitleLabelStyle$n$LaunchControlStyle$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
   "gLaunchSettingNumber": {
@@ -16728,11 +16808,74 @@
    "mangled": "W?gLaunchSettingNumber$n$MenuNumber$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
+  "gLaunchSettingNumberStyle": {
+   "va": "004b9084",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchSettingNumberStyle$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
   "gLaunchDurationLabel": {
    "va": "004b90a0",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gLaunchDurationLabel$n$LaunchReadyLabel$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchDurationSummaryStyle": {
+   "va": "004b90b4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchDurationSummaryStyle$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchSummaryNumber6": {
+   "va": "004b90d0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchSummaryNumber6$n$MenuNumber$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchSummary6Style": {
+   "va": "004b90e4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchSummary6Style$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchSummaryNumber7": {
+   "va": "004b9100",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchSummaryNumber7$n$MenuNumber$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchSummary7Style": {
+   "va": "004b9114",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchSummary7Style$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchMoneyLabels": {
+   "va": "004b9130",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchMoneyLabels$n[]$MenuLabel$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchLimitLabels": {
+   "va": "004b92b8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchLimitLabels$n[]$MenuLabel$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchStatusHeading": {
+   "va": "004b9440",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchStatusHeading$n$MenuLabel$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
   "gLaunchScenarioChoice": {
@@ -16742,11 +16885,46 @@
    "mangled": "W?gLaunchScenarioChoice$n$LaunchChoice$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
+  "gLaunchScenarioPreviousStyle": {
+   "va": "004b9490",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchScenarioPreviousStyle$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchScenarioRandomStyle": {
+   "va": "004b94b8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchScenarioRandomStyle$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchScenarioNextStyle": {
+   "va": "004b94e4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchScenarioNextStyle$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
   "gLaunchStatusLabels": {
    "va": "004b94fc",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gLaunchStatusLabels$n[]$MenuTextButton$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchChats": {
+   "va": "004b9674",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchChats$n[]$MenuChat$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchNameLabels": {
+   "va": "004b997c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchNameLabels$n[]$MenuLabel$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
   "gLaunchReadyLabels": {
@@ -16756,11 +16934,39 @@
    "mangled": "W?gLaunchReadyLabels$n[]$LaunchReadyLabel$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
+  "gLaunchTeamLabels": {
+   "va": "004b9c44",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchTeamLabels$n[]$MenuPrefixButton$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchOption78Style": {
+   "va": "004b9db8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchOption78Style$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
   "gLaunchOption78Button": {
    "va": "004b9dbb",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gLaunchOption78Button$nuc",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchOption78Text": {
+   "va": "004b9dc8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchOption78Text$npnxa",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchRuleStyle": {
+   "va": "004b9de0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchRuleStyle$n$LaunchControlStyle$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
   "gLaunchRuleButton": {
@@ -16770,11 +16976,116 @@
    "mangled": "W?gLaunchRuleButton$nuc",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
+  "gLaunchRuleText": {
+   "va": "004b9df0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchRuleText$npnxa",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchOption105Style": {
+   "va": "004b9e08",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchOption105Style$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
   "gLaunchOption105Button": {
    "va": "004b9e0b",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gLaunchOption105Button$nuc",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchOption105Text": {
+   "va": "004b9e18",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchOption105Text$npnxa",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchOptionLabel0": {
+   "va": "004b9e1c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchOptionLabel0$n$MenuLabel$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchOptionLabel0Style": {
+   "va": "004b9e30",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchOptionLabel0Style$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchOptionLabel1": {
+   "va": "004b9e50",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchOptionLabel1$n$MenuLabel$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchOptionLabel1Style": {
+   "va": "004b9e64",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchOptionLabel1Style$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchOptionLabel2": {
+   "va": "004b9e84",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchOptionLabel2$n$MenuLabel$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchOptionLabel2Style": {
+   "va": "004b9e98",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchOptionLabel2Style$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchOptionLabel3": {
+   "va": "004b9eb8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchOptionLabel3$n$MenuLabel$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchOptionLabel3Style": {
+   "va": "004b9ecc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchOptionLabel3Style$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchPlayerNameEditStyle": {
+   "va": "004b9f3c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchPlayerNameEditStyle$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchReadyErrorCancelStyle": {
+   "va": "004b9f6c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchReadyErrorCancelStyle$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchPlayerCancelStyle": {
+   "va": "004b9f94",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchPlayerCancelStyle$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchPlayerAcceptStyle": {
+   "va": "004b9fbc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchPlayerAcceptStyle$n$LaunchControlStyle$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
   "gLaunchCostChoice": {
@@ -16784,11 +17095,53 @@
    "mangled": "W?gLaunchCostChoice$n$LaunchChoice$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
+  "gLaunchCostPreviousStyle": {
+   "va": "004b9fec",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchCostPreviousStyle$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchCostNextStyle": {
+   "va": "004ba014",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchCostNextStyle$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchCostLabelStyle": {
+   "va": "004ba040",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchCostLabelStyle$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
   "gLaunchLimitChoice": {
    "va": "004ba058",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gLaunchLimitChoice$n$LaunchChoice$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchLimitPreviousStyle": {
+   "va": "004ba074",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchLimitPreviousStyle$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchLimitNextStyle": {
+   "va": "004ba09c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchLimitNextStyle$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchLimitLabelStyle": {
+   "va": "004ba0c8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchLimitLabelStyle$n$LaunchControlStyle$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
   "gLaunchSettingChoice": {
@@ -16798,11 +17151,60 @@
    "mangled": "W?gLaunchSettingChoice$n$LaunchChoice$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
+  "gLaunchSettingPreviousStyle": {
+   "va": "004ba0fc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchSettingPreviousStyle$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchSettingNextStyle": {
+   "va": "004ba124",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchSettingNextStyle$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchSettingLabelStyle": {
+   "va": "004ba150",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchSettingLabelStyle$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
   "gLaunchDurationChoice": {
    "va": "004ba168",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gLaunchDurationChoice$n$LaunchChoice$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchDurationPreviousStyle": {
+   "va": "004ba184",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchDurationPreviousStyle$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchDurationNextStyle": {
+   "va": "004ba1ac",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchDurationNextStyle$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchDurationLabelStyle": {
+   "va": "004ba1d8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchDurationLabelStyle$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchAloneCancelStyle": {
+   "va": "004ba204",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchAloneCancelStyle$n$LaunchControlStyle$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
   "gLaunchAloneCancel": {
@@ -16812,6 +17214,13 @@
    "mangled": "W?gLaunchAloneCancel$nuc",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
+  "gLaunchAloneAcceptStyle": {
+   "va": "004ba22c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchAloneAcceptStyle$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
   "gLaunchAloneAccept": {
    "va": "004ba22f",
    "kind": "data",
@@ -16819,11 +17228,25 @@
    "mangled": "W?gLaunchAloneAccept$nuc",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
+  "gLaunchNotReadyCancelStyle": {
+   "va": "004ba254",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchNotReadyCancelStyle$n$LaunchControlStyle$$",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
   "gLaunchNotReadyCancel": {
    "va": "004ba257",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gLaunchNotReadyCancel$nuc",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchStatusHeadingStyle": {
+   "va": "004ba27c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchStatusHeadingStyle$n$LaunchControlStyle$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
   "gLaunchHoveredControl": {
