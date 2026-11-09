@@ -36,7 +36,7 @@ extern void ReleaseUnit(void *state, int flags);
 extern void StopUnit(void *state, int flags);
 extern int UpdatePayload(void *unit, int rank);
 extern int ModeCheck(const char *name);
-extern void LogMode(void *actor, const char *name, int a, int b);
+extern void LogMode(const char *name, void *state, int a, int b);
 extern int modeSwitch;
 extern char modeCheckName[];
 extern char modeLogName[];
@@ -113,29 +113,120 @@ void ActorSetMode(LogicActor *actor, int value) {
 
 
     ASSERT(actor->state != 0);
-    ActorUnit *state = (ActorUnit *)actor->state;
-    u8 low = (*(u8 *)((char *)actor + 0x0c) & 1) ? 0 : 10;
-    char *display = (char *)state->action;
-    display[0xc9] = (u8)(value >> 24);
-    display[0xca] = low;
-    UpdatePayload(state->action, state->rank);
-    if (modeSwitch && ModeCheck(modeCheckName))
-        LogMode(actor, modeLogName, (u8)display[0xc9], (u8)display[0xca]);
+    int low = 10;
+    int lowIsDefault = ((*(u8 *)((char *)actor + 0x0c) & 1) == 0);
+    if (!lowIsDefault)
+        low = 0;
+    ((u8 *)((char *)((ActorUnit *)actor->state)->action + 0xc9))[0] = (u8)(value >> 24);
+    ((u8 *)((char *)((ActorUnit *)actor->state)->action + 0xca))[0] = low;
+    UpdatePayload(((ActorUnit *)actor->state)->action,
+                  ((ActorUnit *)actor->state)->rank);
+    if (modeSwitch && ModeCheck(modeCheckName)) {
+        LogMode(modeLogName, actor->state,
+                (u8)*((char *)((ActorUnit *)actor->state)->action + 0xc9),
+                (u8)*((char *)((ActorUnit *)actor->state)->action + 0xca));
+    }
 }
 
 int ActorCanAct(LogicActor *actor)
 {
-    void *state = actor->state;
-    if (state && *(u8 *)((char *)state + 0x88) &&
-        *(int *)((char *)*(void **)((char *)state + 0x1c) + 0x12) > 0 &&
-        !*(u8 *)((char *)state + 0x89)) {
-        if (*(u8 *)((char *)actor + 0x0c) & 2)
-            return 1;
-        if ((*(u8 *)((char *)actor + 0x0c) & 1) == 0 &&
-            *(int *)((char *)actor + 0x7c) >= 5)
-            return 1;
-    }
+    LogicActor *actorArg = actor;
+    void *state = actorArg->state;
+    u8 active;
+    if (!state || !*(char *)((char *)state + 0x88) ||
+        *(int *)((char *)*(void **)((char *)state + 0x1c) + 0x12) < 1 ||
+        *(char *)((char *)state + 0x89))
+        active = 0;
+    else
+        active = 1;
+    if (active &&
+        ((*(u8 *)((char *)actorArg + 0x0c) & 2) != 0 ||
+         (((*(u8 *)((char *)actorArg + 0x0c) & 1) == 0) &&
+          *(int *)((char *)actorArg + 0x7c) < 5)))
+        return 1;
     return 0;
+}
+
+extern LogicActor *ActorFind(const char *table, void *key);
+extern int ActorCompare(const char *name, const char *text);
+extern const char actorTable[];
+extern const char unknownTest[];
+
+int ActorSelect(LogicActor *actor, int mode, int limit, const char *name)
+{
+    LogicActor *initialActor = actor; u8 result = 0; int stateOnEntry = *(int *)actor; int *textPointer;
+    if (stateOnEntry) {
+        switch (mode) {
+        case 3:
+            for (; actor; actor = ActorFind(actorTable, *(void **)((char *)actor + 0x80))) { result = 0;
+                void *state = actor->state;
+                if (!state || !*(char *)((char *)state + 0x88) ||
+                    *(int *)((char *)*(void **)((char *)state + 0x1c) + 0x12) < 1 ||
+                    *(char *)((char *)state + 0x89))
+                    result = 0;
+                else
+                    result = 1;
+                if (result)
+                    return 1;
+            }
+            break;
+        case 2:
+            for (; actor; actor = ActorFind(actorTable, *(void **)((char *)actor + 0x80))) { result = 0;
+                void *state = actor->state;
+                if (!state || !*(char *)((char *)state + 0x88) ||
+                    *(int *)((char *)*(void **)((char *)state + 0x1c) + 0x12) < 1 ||
+                    *(char *)((char *)state + 0x89))
+                    result = 0;
+                else
+                    result = 1;
+                if (result &&
+                    ((*(u8 *)((char *)actor + 0x0c) & 2) != 0 ||
+                     (((*(u8 *)((char *)actor + 0x0c) & 1) == 0) &&
+                      *(int *)((char *)actor + 0x7c) < 5)))
+                    return 1;
+            }
+            break;
+        case 0:
+            for (; actor; actor = ActorFind(actorTable, *(void **)((char *)actor + 0x80))) {
+                if (*(int *)((char *)actor + 0x7c) < 5) {
+                    void *state = actor->state;
+                    if (!state || (*(char *)((char *)state + 0x88) &&
+                        *(int *)((char *)*(void **)((char *)state + 0x1c) + 0x12) > 0))
+                        result = 0;
+                    else
+                        result = 1;
+                    if (!result)
+                        return result;
+                }
+            }
+            break;
+        case 1:
+            if (name) {
+                if (!stateOnEntry) textPointer = (int *)initialActor + 0x1c;
+                else textPointer = (int *)((char *)stateOnEntry + 0x3a);
+                stateOnEntry = ActorCompare(name, (const char *)textPointer);
+                result = stateOnEntry <= limit;
+            }
+            break;
+        default:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            AssertFail(actorSourcePath, __LINE__, unknownTest);
+        }
+    }
+    return result;
 }
 
 int ActorArrayGet(LogicActor *actor, int index)
@@ -165,11 +256,10 @@ void ActorStopUnit(LogicActor *actor)
 
 int ActorIsAvailable(LogicActor *actor)
 {
-    void *state = actor->state;
-    if (state) {
-        if (!*(u8 *)((char *)state + 0x88))
+    if (actor->state) {
+        if (!*(u8 *)((char *)actor->state + 0x88))
             return 1;
-        int hasCount = *(int *)((char *)*(void **)((char *)state + 0x1c) + 0x12) > 0;
+        int hasCount = *(int *)((char *)*(void **)((char *)actor->state + 0x1c) + 0x12) > 0;
         if (hasCount)
             return 0;
         return 1;

@@ -529,6 +529,11 @@
      "size": 43,
      "mangled": "W?ActorStateCall$n(pn$LogicActor$$)i"
     },
+    "ActorSetMode": {
+     "va": "00463cc2",
+     "size": 164,
+     "mangled": "W?ActorSetMode$n(pn$LogicActor$$i)v"
+    },
     "ActorArrayGet": {
      "va": "00463fbf",
      "size": 27,
@@ -538,6 +543,11 @@
      "va": "00463fda",
      "size": 28,
      "mangled": "W?ActorArraySet$n(pn$LogicActor$$ii)v"
+    },
+    "ActorIsAvailable": {
+     "va": "00464022",
+     "size": 47,
+     "mangled": "W?ActorIsAvailable$n(pn$LogicActor$$)i"
     }
    },
    "data": {},
@@ -548,6 +558,11 @@
    "install": "wc106",
    "profile": "plain",
    "functions": {
+    "MissionRecordInitialize": {
+     "va": "00465525",
+     "size": 91,
+     "mangled": "W?MissionRecordInitialize$n(pn$MissionRecord$$iiiii)v"
+    },
     "MissionBaseType": {
      "va": "00465bfd",
      "size": 6,

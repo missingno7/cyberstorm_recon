@@ -774,6 +774,13 @@
    "mangled": "W?PopUpdateItem$n(pn$PopNode$$i)v",
    "evidence": "implied by src/pop/psystem.c 2026-11-09"
   },
+  "ModeCheck": {
+   "va": "0044eb00",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ModeCheck$n(pnxa)i",
+   "evidence": "implied by src/logic/lactor.c 2026-11-09"
+  },
   "ReleaseState": {
    "va": "00455ac0",
    "kind": "func",
@@ -786,6 +793,13 @@
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?CreateState$n(i)pnv",
+   "evidence": "implied by src/logic/lactor.c 2026-11-09"
+  },
+  "UpdatePayload": {
+   "va": "0045ba00",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?UpdatePayload$n(pnvi)i",
    "evidence": "implied by src/logic/lactor.c 2026-11-09"
   },
   "ActorRead": {
@@ -852,6 +866,14 @@
    "tu": "src/logic/lactor.c",
    "evidence": "strict match 2026-11-09"
   },
+  "ActorSetMode": {
+   "va": "00463cc2",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ActorSetMode$n(pn$LogicActor$$i)v",
+   "tu": "src/logic/lactor.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "ActorArrayGet": {
    "va": "00463fbf",
    "kind": "func",
@@ -867,6 +889,37 @@
    "mangled": "W?ActorArraySet$n(pn$LogicActor$$ii)v",
    "tu": "src/logic/lactor.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "ActorIsAvailable": {
+   "va": "00464022",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ActorIsAvailable$n(pn$LogicActor$$)i",
+   "tu": "src/logic/lactor.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MissionRecordInitialize": {
+   "va": "00465525",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?MissionRecordInitialize$n(pn$MissionRecord$$iiiii)v",
+   "tu": "src/logic/miss.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MissionDataInit": {
+   "va": "004656a4",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MissionDataInit$n(pn$MissionRecord$$iiiiii)v",
+   "evidence": "implied by src/logic/miss.c 2026-11-09"
+  },
+  "MissionRef::Address": {
+   "va": "00465bba",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Address$:MissionRef$n()i",
+   "tu": "src/logic/miss.c",
+   "evidence": "placed (at) in src/logic/miss.c 2026-11-09"
   },
   "MissionBaseType": {
    "va": "00465bfd",
@@ -929,6 +982,13 @@
    "mangled": "W?BestLocRun$n(pnv)i",
    "tu": "src/logic/bestloc.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "LogMode": {
+   "va": "00472cc3",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LogMode$n(pnxapnvii)v",
+   "evidence": "implied by src/logic/lactor.c 2026-11-09"
   },
   "BriefModuleConstruct": {
    "va": "0047ab8c",
@@ -1262,6 +1322,13 @@
    "status": "hypothesis",
    "mangled": "W?PopConstructorArray$n(pnvipnv)v",
    "evidence": "implied by src/pop/psystem.c 2026-11-09"
+  },
+  "RandomRange": {
+   "va": "0047e1a0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?RandomRange$n(pniii)i",
+   "evidence": "implied by src/logic/miss.c 2026-11-09"
   },
   "FileInit": {
    "va": "0047e450",
@@ -1885,12 +1952,26 @@
    "mangled": "W?g4d1dec$ni",
    "evidence": "implied by src/pop/psystem.c 2026-11-09"
   },
+  "modeCheckName": {
+   "va": "004d2460",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?modeCheckName$n[]a",
+   "evidence": "implied by src/logic/lactor.c 2026-11-09"
+  },
   "g4d2498": {
    "va": "004d2498",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4d2498$npnv",
    "evidence": "implied by src/pop/psystem.c 2026-11-09"
+  },
+  "modeSwitch": {
+   "va": "004d2722",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?modeSwitch$ni",
+   "evidence": "implied by src/logic/lactor.c 2026-11-09"
   },
   "fallbackName": {
    "va": "004d3594",
@@ -1969,6 +2050,13 @@
    "mangled": "W?bestLocIndex$ni",
    "evidence": "implied by src/logic/bestloc.c 2026-11-09"
   },
+  "modeLogName": {
+   "va": "004faf48",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?modeLogName$n[]a",
+   "evidence": "implied by src/logic/lactor.c 2026-11-09"
+  },
   "g511948": {
    "va": "00511948",
    "kind": "data",
@@ -2024,6 +2112,13 @@
    "status": "hypothesis",
    "mangled": "W?g_assertCallbacks$n[]pn()v",
    "evidence": "implied by src/debug/assert.c 2026-11-09"
+  },
+  "MissionRandomTable": {
+   "va": "0051445c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?MissionRandomTable$n[]i",
+   "evidence": "implied by src/logic/miss.c 2026-11-09"
   },
   "g_fileOpenCount": {
    "va": "00514460",
