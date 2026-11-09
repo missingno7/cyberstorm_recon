@@ -18,7 +18,7 @@ Model: `luna` = gpt-6-luna xhigh, `sol` = gpt-6.1-sol high (Codex; all new lanes
 | w10 | luna | sim\anim.c, sim\animbmp.c | running |
 | w11 | luna | shell\hotseat.c, pop\pherc.c | done |
 | w12 | luna | sim\simhot.c, logic\logic.c + sim\hotbrief.c | running |
-| w13 | luna | terr\tsurface.c, terr\tarea.c + tdisplay.c | running |
+| w13 | luna | terr\tsurface.c, terr\tarea.c + tdisplay.c | done (14; 39 parked); continued by s14 |
 | w14 | luna | shell\hbupgrad.c | done; continued by s6 |
 | w15 | luna | shell\pilotgui.c | running |
 | s1 | sol | multi\mstart.c | done (39) |
@@ -34,6 +34,7 @@ Model: `luna` = gpt-6-luna xhigh, `sol` = gpt-6.1-sol high (Codex; all new lanes
 | s11 | sol | 00438374, 004394e0, 0043a294 | running |
 | s12 | sol | 004413e0, 004425d4, 00443100 | running |
 | s13 | sol | 00407204..00409408 | running |
+| s14 | sol | terr\tdisplay.c, tarea.c, tsurface.c (from w13); 0042cf40, 0042e210 | running |
 | l1 | luna | shell\hercbuy.c | done (19) |
 | o1 | opus | multi\linkdlg.c, linkq.c, message.c | done |
 | o2 | opus | sim\apply.c, fxout.c, explo.c | done |
