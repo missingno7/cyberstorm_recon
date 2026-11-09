@@ -2437,6 +2437,20 @@
    "tu": "src/terr/tgrid.c",
    "evidence": "placed (at) in src/terr/tgrid.c 2026-11-09"
   },
+  "ViewScale": {
+   "va": "0042bf10",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ViewScale$n(pnvi)i",
+   "evidence": "implied by src/sim/explo.c 2026-11-09"
+  },
+  "ViewToScreen": {
+   "va": "0042bf30",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ViewToScreen$n(pnvpn$ExploPoint$$pn$1$)v",
+   "evidence": "implied by src/sim/explo.c 2026-11-09"
+  },
   "BestLocInitialize": {
    "va": "0042caf0",
    "kind": "func",
@@ -2913,6 +2927,13 @@
    "mangled": "W?PopUpdateItem$n(pn$PopNode$$i)v",
    "evidence": "implied by src/pop/psystem.c 2026-11-09"
   },
+  "WorldDrawTerrain": {
+   "va": "0044ad70",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?WorldDrawTerrain$n(pnv)v",
+   "evidence": "implied by src/sim/fxout.c 2026-11-09"
+  },
   "ModeCheck": {
    "va": "0044eb00",
    "kind": "func",
@@ -2941,12 +2962,33 @@
    "mangled": "BriefModuleOpen",
    "evidence": "implied by src/sim/target.c 2026-11-09"
   },
+  "Interpolate": {
+   "va": "00453c70",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Interpolate$n(iiiii)i",
+   "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
+  "ModeEvent": {
+   "va": "00453d40",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ModeEvent$n(pnapn$ActorRecord$$ii)v",
+   "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
   "ResetPlayer": {
    "va": "004543d0",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?ResetPlayer$n(pn$PlayerSlot$$)v",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "WorldDrawBegin": {
+   "va": "004554c0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?WorldDrawBegin$n(pnv)v",
+   "evidence": "implied by src/sim/fxout.c 2026-11-09"
   },
   "ReleaseState": {
    "va": "00455ac0",
@@ -3328,6 +3370,13 @@
    "tu": "src/sim/anim.c",
    "evidence": "placed (at) in src/sim/anim.c 2026-11-09"
   },
+  "ActorDrawEffect": {
+   "va": "00457f90",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ActorDrawEffect$n(pnv)v",
+   "evidence": "implied by src/sim/fxout.c 2026-11-09"
+  },
   "AnimActionFreeBlock": {
    "va": "00458820",
    "kind": "func",
@@ -3447,6 +3496,13 @@
    "tu": "src/_unknown/tu_00458f20.c",
    "evidence": "strict match 2026-11-09"
   },
+  "AnimFrames": {
+   "va": "00459e60",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?AnimFrames$n(i)pn$ExploAnim$$",
+   "evidence": "implied by src/sim/explo.c 2026-11-09"
+  },
   "TargetModuleInit": {
    "va": "0045a600",
    "kind": "func",
@@ -3551,12 +3607,312 @@
    "tu": "src/sim/target.c",
    "evidence": "strict match 2026-11-09"
   },
+  "UnitHealth": {
+   "va": "0045b9e0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?UnitHealth$n(pn$Unit$$i)i",
+   "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
   "UpdatePayload": {
    "va": "0045ba00",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?UpdatePayload$n(pnvi)i",
    "evidence": "implied by src/logic/lactor.c 2026-11-09"
+  },
+  "W?.fn_init$n()v@sim/apply.c": {
+   "va": "0045bc50",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/sim/apply.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ApplyFinish@sim/apply.c": {
+   "va": "0045bc60",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ApplyFinish$n()v",
+   "tu": "src/sim/apply.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ApplyOne@sim/apply.c": {
+   "va": "0045be00",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ApplyOne$n(i)v",
+   "tu": "src/sim/apply.c",
+   "evidence": "placed (at) in src/sim/apply.c 2026-11-09"
+  },
+  "ApplyDamage": {
+   "va": "0045ca10",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ApplyDamage$n(iiipn$Weapon$$)v",
+   "tu": "src/sim/apply.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SoundAtPoint": {
+   "va": "0045d9f0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SoundAtPoint$n(pn$ExploPoint$$i)v",
+   "evidence": "implied by src/sim/explo.c 2026-11-09"
+  },
+  "WeaponSound": {
+   "va": "0045dad0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?WeaponSound$n(pn$ApplyPoint$$iiii)v",
+   "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
+  "W?.fn_init$n()v@sim/fxout.c": {
+   "va": "0045dbd0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/sim/fxout.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "FxDrawCurrent": {
+   "va": "0045e190",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?FxDrawCurrent$n()v",
+   "tu": "src/sim/fxout.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "FxDrawJagged": {
+   "va": "0045e1e0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?FxDrawJagged$n()v",
+   "tu": "src/sim/fxout.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "FxBounds": {
+   "va": "0045e310",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?FxBounds$n(pn$FxRect$$)v",
+   "tu": "src/sim/fxout.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "FxRedraw@sim/fxout.c": {
+   "va": "0045e3b0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?FxRedraw$n(pnv)v",
+   "tu": "src/sim/fxout.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "FxPart::$dt": {
+   "va": "0045f880",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$dt:FxPart$n()_",
+   "tu": "src/sim/fxout.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "FxPart::$ct": {
+   "va": "0045f890",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:FxPart$n()_",
+   "tu": "src/sim/fxout.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "W?.fn_init$n()v@sim/explo.c": {
+   "va": "0045f8a0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/sim/explo.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ExploFindReset@sim/explo.c": {
+   "va": "0045f8b0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ExploFindReset$n(ii)pn$ExploRecord$$",
+   "tu": "src/sim/explo.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ExploMessage": {
+   "va": "0045f930",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ExploMessage$n(ipn$ExploActor$$)pn$ExploRecord$$",
+   "tu": "src/sim/explo.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ExploStart": {
+   "va": "0045fa20",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ExploStart$n(ipn$ExploTarget$$)pn$ExploRecord$$",
+   "tu": "src/sim/explo.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ExploAddGlow": {
+   "va": "0045faf0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ExploAddGlow$n(iipn$ExploActor$$aa)pn$ExploRecord$$",
+   "tu": "src/sim/explo.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ExploAddAt": {
+   "va": "0045fb70",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ExploAddAt$n(ipn$ExploPoint$$i)pn$ExploRecord$$",
+   "tu": "src/sim/explo.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ExploAddTarget": {
+   "va": "0045fbe0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ExploAddTarget$n(iii)pn$ExploRecord$$",
+   "tu": "src/sim/explo.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ExploAddSmoke": {
+   "va": "0045fc30",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ExploAddSmoke$n(ipn$ExploActor$$iii)pn$ExploRecord$$",
+   "tu": "src/sim/explo.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ExploAddPart": {
+   "va": "0045fcd0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ExploAddPart$n(ai)pn$ExploRecord$$",
+   "tu": "src/sim/explo.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ExploAddTrail": {
+   "va": "0045fd20",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ExploAddTrail$n(iiipn$ExploRecord$$pn$ExploPoint$$)pn$1$",
+   "tu": "src/sim/explo.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ExploAlloc": {
+   "va": "0045fdb0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ExploAlloc$n(i)pn$ExploRecord$$",
+   "tu": "src/sim/explo.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ExploFree": {
+   "va": "0045fe70",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ExploFree$n(pn$ExploRecord$$)i",
+   "tu": "src/sim/explo.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ExploCompact": {
+   "va": "0045fe90",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ExploCompact$n(i)v",
+   "tu": "src/sim/explo.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ExploInit": {
+   "va": "0045ff10",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ExploInit$n()i",
+   "tu": "src/sim/explo.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ExploClear@sim/explo.c": {
+   "va": "0045ffc0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ExploClear$n()v",
+   "tu": "src/sim/explo.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ExploShutdown": {
+   "va": "0045fff0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ExploShutdown$n()v",
+   "tu": "src/sim/explo.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ExploSave": {
+   "va": "00460040",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ExploSave$n(pn$FileRecord$$)i",
+   "tu": "src/sim/explo.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ExploLoad": {
+   "va": "004600e0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ExploLoad$n(pn$FileRecord$$)i",
+   "tu": "src/sim/explo.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ExploSetupFrame": {
+   "va": "004601a0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ExploSetupFrame$n(pn$ExploRecord$$pn$ExploPoint$$)v",
+   "tu": "src/sim/explo.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ExploDraw": {
+   "va": "004605c0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ExploDraw$n(pn$ExploRecord$$)v",
+   "tu": "src/sim/explo.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ExploAnimate": {
+   "va": "004606b0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ExploAnimate$n(pn$ExploRecord$$)v",
+   "tu": "src/sim/explo.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ExploAnimateAll": {
+   "va": "004607b0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ExploAnimateAll$n()v",
+   "tu": "src/sim/explo.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ExploRecord::$ct": {
+   "va": "004607f0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:ExploRecord$n()_",
+   "tu": "src/sim/explo.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "FxDamage": {
+   "va": "00460800",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?FxDamage$n(pn$WeaponInfo$$pn$ActorRecord$$ii)v",
+   "evidence": "implied by src/sim/apply.c 2026-11-09"
   },
   "ActorRead": {
    "va": "00463b18",
@@ -4170,6 +4526,20 @@
    "status": "hypothesis",
    "mangled": "W?SoundTrigger$n(uii)i",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "VoicePlay": {
+   "va": "0046cbc6",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?VoicePlay$n(ii)v",
+   "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
+  "ViewFlip": {
+   "va": "0046cbdb",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ViewFlip$n(i)v",
+   "evidence": "implied by src/sim/fxout.c 2026-11-09"
   },
   "LinkDecoderOwner::decode_link_samples": {
    "va": "0046cdbc",
@@ -5604,6 +5974,13 @@
    "mangled": "W?MenuHelpOpenTopic$n(l)v",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
   },
+  "ExploIdle": {
+   "va": "0047682c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ExploIdle$n()v",
+   "evidence": "implied by src/sim/explo.c 2026-11-09"
+  },
   "LinkSelectDialog": {
    "va": "0047746f",
    "kind": "func",
@@ -5820,6 +6197,13 @@
    "status": "hypothesis",
    "mangled": "W?MenuDrawImage$n(pnvpnx$MenuImage$$ll)v",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "DrawSprite": {
+   "va": "0047c0f0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?DrawSprite$n(pnvpn$ExploFrame$$iiiii)v",
+   "evidence": "implied by src/sim/explo.c 2026-11-09"
   },
   "SurfaceFlush": {
    "va": "0047c240",
@@ -6417,12 +6801,33 @@
    "mangled": "W?UnpackFlicPacked$n(pnucpnxv)i",
    "evidence": "implied by src/gui/flic.c 2026-11-09"
   },
+  "PointAngle": {
+   "va": "0047ef20",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PointAngle$n(pn$ApplyPoint$$pn$1$)i",
+   "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
   "Crc16": {
    "va": "0047f0b0",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?Crc16$n(pnuspnvi)v",
    "evidence": "implied by src/multi/message.c 2026-11-09"
+  },
+  "ISqrt": {
+   "va": "0047f8ea",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ISqrt$n(ui)ui",
+   "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
+  "TimerNow": {
+   "va": "0047fc80",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?TimerNow$n()ui",
+   "evidence": "implied by src/sim/explo.c 2026-11-09"
   },
   "CriticalSection::$ct": {
    "va": "0047fd40",
@@ -6697,6 +7102,13 @@
    "mangled": "W?$Wts0fn$WorldAction$$$nx[]uc",
    "evidence": "implied by src/sim/worldact.c 2026-11-09"
   },
+  "W?$Wts0fn$ExploRecord$$$nx[]uc": {
+   "va": "0048e07c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0fn$ExploRecord$$$nx[]uc",
+   "evidence": "implied by src/sim/explo.c 2026-11-09"
+  },
   "link_thread_proc_anchor": {
    "va": "0048e120",
    "kind": "data",
@@ -6823,6 +7235,13 @@
    "mangled": "W?actorListDescriptor$n[]xa",
    "evidence": "implied by src/sim/actorlst.c 2026-11-09"
   },
+  "weaponInfoTable": {
+   "va": "0049cb38",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?weaponInfoTable$n[]$WeaponInfo$$",
+   "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
   "link_data": {
    "va": "004a0000",
    "kind": "data",
@@ -6872,6 +7291,13 @@
    "mangled": "W?animationMetaAt0cc0$n[]i",
    "evidence": "implied by src/sim/anim.c 2026-11-09"
   },
+  "exploSoundTable": {
+   "va": "004a0cd8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?exploSoundTable$n[]i",
+   "evidence": "implied by src/sim/explo.c 2026-11-09"
+  },
   "targetHeader": {
    "va": "004a256c",
    "kind": "data",
@@ -6892,6 +7318,27 @@
    "status": "hypothesis",
    "mangled": "W?targetSavedObject$ni",
    "evidence": "implied by src/sim/target.c 2026-11-09"
+  },
+  "applySourcePath": {
+   "va": "004a2620",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?applySourcePath$n[]xa",
+   "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
+  "weaponSoundTable": {
+   "va": "004a32e8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?weaponSoundTable$n[]i",
+   "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
+  "exploSourcePath": {
+   "va": "004a34b4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?exploSourcePath$n[]xa",
+   "evidence": "implied by src/sim/explo.c 2026-11-09"
   },
   "actorSourcePath": {
    "va": "004a3a9c",
@@ -7684,6 +8131,13 @@
    "mangled": "W?modeCheckName$n[]a",
    "evidence": "implied by src/logic/lactor.c 2026-11-09"
   },
+  "gRedrawFlags": {
+   "va": "004d248c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gRedrawFlags$ni",
+   "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
   "logicFlagWord": {
    "va": "004d248d",
    "kind": "data",
@@ -7732,6 +8186,13 @@
    "status": "hypothesis",
    "mangled": "W?gRemoteActorKind$ni",
    "evidence": "implied by src/multi/message.c 2026-11-09"
+  },
+  "gZoom": {
+   "va": "004d3401",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gZoom$ni",
+   "evidence": "implied by src/sim/fxout.c 2026-11-09"
   },
   "fallbackName": {
    "va": "004d3594",
@@ -7782,6 +8243,13 @@
    "mangled": "W?animResourcePointerTable$npnul",
    "evidence": "implied by src/sim/anim.c 2026-11-09"
   },
+  "gView": {
+   "va": "004d360c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gView$n[]a",
+   "evidence": "implied by src/sim/explo.c 2026-11-09"
+  },
   "gFastTransform": {
    "va": "004d3698",
    "kind": "data",
@@ -7810,12 +8278,40 @@
    "mangled": "W?bestLocCount$ni",
    "evidence": "implied by src/logic/bestloc.c 2026-11-09"
   },
+  "gGameTime": {
+   "va": "004d374c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gGameTime$ni",
+   "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
+  "gGameTurn": {
+   "va": "004d3784",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gGameTurn$ni",
+   "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
+  "gViewRect": {
+   "va": "004d382c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gViewRect$n$ViewRect$$",
+   "evidence": "implied by src/sim/fxout.c 2026-11-09"
+  },
   "targetLimits": {
    "va": "004d388c",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?targetLimits$ni",
    "evidence": "implied by src/sim/target.c 2026-11-09"
+  },
+  "gFxSeed": {
+   "va": "004d3e04",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gFxSeed$nui",
+   "evidence": "implied by src/sim/fxout.c 2026-11-09"
   },
   "actorCount": {
    "va": "004d41dc",
@@ -7956,6 +8452,216 @@
    "status": "hypothesis",
    "mangled": "W?targetPrompt5$ni",
    "evidence": "implied by src/sim/target.c 2026-11-09"
+  },
+  "gApplyWeapon": {
+   "va": "004dcbc0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gApplyWeapon$npn$Weapon$$",
+   "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
+  "gApplyInfo": {
+   "va": "004dcbc4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gApplyInfo$npn$WeaponInfo$$",
+   "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
+  "gApplyAttackerPos": {
+   "va": "004dcbc8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gApplyAttackerPos$n$ApplyPoint$$",
+   "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
+  "gApplyAttackerLoc": {
+   "va": "004dcbd0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gApplyAttackerLoc$n$ApplyPoint$$",
+   "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
+  "gApplyImpactPos": {
+   "va": "004dcbd8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gApplyImpactPos$n$ApplyPoint$$",
+   "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
+  "gApplyImpactLoc": {
+   "va": "004dcbe0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gApplyImpactLoc$n$ApplyPoint$$",
+   "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
+  "gApplyDistance": {
+   "va": "004dcbe8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gApplyDistance$ni",
+   "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
+  "gApplyPercent": {
+   "va": "004dcbec",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gApplyPercent$ni",
+   "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
+  "gApplyAttacker": {
+   "va": "004dcbf0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gApplyAttacker$npn$ActorRecord$$",
+   "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
+  "gApplyActor": {
+   "va": "004dcbf4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gApplyActor$npn$ActorRecord$$",
+   "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
+  "gApplyLastActor": {
+   "va": "004dcbf8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gApplyLastActor$npn$ActorRecord$$",
+   "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
+  "gApplySound": {
+   "va": "004dcc00",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gApplySound$ni",
+   "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
+  "gApplyLoss": {
+   "va": "004dcc0c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gApplyLoss$ni",
+   "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
+  "gApplyDamage": {
+   "va": "004dcc10",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gApplyDamage$ni",
+   "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
+  "gApplyShots": {
+   "va": "004dcc14",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gApplyShots$ni",
+   "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
+  "gApplyTotalHits": {
+   "va": "004dcc1c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gApplyTotalHits$ni",
+   "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
+  "gApplyTotalLoss": {
+   "va": "004dcc20",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gApplyTotalLoss$ni",
+   "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
+  "gApplyTotalDamage": {
+   "va": "004dcc24",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gApplyTotalDamage$ni",
+   "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
+  "gFxFrom": {
+   "va": "004dcc38",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gFxFrom$n$FxPoint$$",
+   "evidence": "implied by src/sim/fxout.c 2026-11-09"
+  },
+  "gFxTo": {
+   "va": "004dcc40",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gFxTo$n$FxPoint$$",
+   "evidence": "implied by src/sim/fxout.c 2026-11-09"
+  },
+  "gFxShade": {
+   "va": "004dcc48",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gFxShade$ni",
+   "evidence": "implied by src/sim/fxout.c 2026-11-09"
+  },
+  "gFxColors": {
+   "va": "004dcc4c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gFxColors$npnuc",
+   "evidence": "implied by src/sim/fxout.c 2026-11-09"
+  },
+  "gFxWidth": {
+   "va": "004dcc50",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gFxWidth$ni",
+   "evidence": "implied by src/sim/fxout.c 2026-11-09"
+  },
+  "gFxSegments": {
+   "va": "004dcc54",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gFxSegments$ni",
+   "evidence": "implied by src/sim/fxout.c 2026-11-09"
+  },
+  "gFxDef": {
+   "va": "004dcc58",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gFxDef$npn$FxDef$$",
+   "evidence": "implied by src/sim/fxout.c 2026-11-09"
+  },
+  "W?hidden$:.2$:?ExploSetupFrame$n(pn$ExploRecord$$pn$ExploPoint$$)vn$ExploRect$$": {
+   "va": "004dcc5c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hidden$:.2$:?ExploSetupFrame$n(pn$ExploRecord$$pn$ExploPoint$$)vn$ExploRect$$",
+   "evidence": "implied by src/sim/explo.c 2026-11-09"
+  },
+  "W?$Wbi00$:.2$:?ExploSetupFrame$n(pn$ExploRecord$$pn$ExploPoint$$)vn[]uc": {
+   "va": "004dcc6c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wbi00$:.2$:?ExploSetupFrame$n(pn$ExploRecord$$pn$ExploPoint$$)vn[]uc",
+   "evidence": "implied by src/sim/explo.c 2026-11-09"
+  },
+  "exploCount": {
+   "va": "004dcc7c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?exploCount$ni",
+   "evidence": "implied by src/sim/explo.c 2026-11-09"
+  },
+  "explos": {
+   "va": "004dcc80",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?explos$npn$ExploRecord$$",
+   "evidence": "implied by src/sim/explo.c 2026-11-09"
+  },
+  "exploRemap": {
+   "va": "004dcc84",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?exploRemap$n$ExploRemap$$",
+   "evidence": "implied by src/sim/explo.c 2026-11-09"
   },
   "g4dd0c0": {
    "va": "004dd0c0",
@@ -8383,6 +9089,13 @@
    "status": "hypothesis",
    "mangled": "W?gMenuForeground$nul",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "gDrawRemap": {
+   "va": "005138e8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gDrawRemap$npnv",
+   "evidence": "implied by src/sim/explo.c 2026-11-09"
   },
   "gMenuTextMode": {
    "va": "005138ec",

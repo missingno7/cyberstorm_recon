@@ -44,6 +44,8 @@ def is_function(sym):
     C names (no `W?`) are treated as functions."""
     if not sym.startswith("W?"):
         return True
+    if re.search(r"\$:\.\d+\$:\?", sym):
+        return False        # function-local static (`W?x$:.N$:?Func...`) or its guard: always data
     i = sym.rfind("$n")
     return i >= 0 and sym[i + 2:i + 3] == "("
 

@@ -2608,6 +2608,198 @@
    },
    "data": {},
    "accepted": "2026-11-09"
+  },
+  "src/sim/apply.c": {
+   "as": "sim\\apply.c",
+   "install": "wc106",
+   "profile": "ot-oe",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "0045bc50",
+     "size": 16,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "ApplyFinish": {
+     "va": "0045bc60",
+     "size": 416,
+     "mangled": "W?ApplyFinish$n()v"
+    },
+    "ApplyDamage": {
+     "va": "0045ca10",
+     "size": 490,
+     "mangled": "W?ApplyDamage$n(iiipn$Weapon$$)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/sim/fxout.c": {
+   "as": "sim\\fxout.c",
+   "install": "wc106",
+   "profile": "ot-oe",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "0045dbd0",
+     "size": 16,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "FxDrawCurrent": {
+     "va": "0045e190",
+     "size": 80,
+     "mangled": "W?FxDrawCurrent$n()v"
+    },
+    "FxDrawJagged": {
+     "va": "0045e1e0",
+     "size": 304,
+     "mangled": "W?FxDrawJagged$n()v"
+    },
+    "FxBounds": {
+     "va": "0045e310",
+     "size": 160,
+     "mangled": "W?FxBounds$n(pn$FxRect$$)v"
+    },
+    "FxRedraw": {
+     "va": "0045e3b0",
+     "size": 128,
+     "mangled": "W?FxRedraw$n(pnv)v"
+    },
+    "FxPart::$dt": {
+     "va": "0045f880",
+     "size": 5,
+     "mangled": "W?$dt:FxPart$n()_"
+    },
+    "FxPart::$ct": {
+     "va": "0045f890",
+     "size": 16,
+     "mangled": "W?$ct:FxPart$n()_"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/sim/explo.c": {
+   "as": "sim\\explo.c",
+   "install": "wc106",
+   "profile": "ot-oe",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "0045f8a0",
+     "size": 16,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "ExploFindReset": {
+     "va": "0045f8b0",
+     "size": 128,
+     "mangled": "W?ExploFindReset$n(ii)pn$ExploRecord$$"
+    },
+    "ExploMessage": {
+     "va": "0045f930",
+     "size": 240,
+     "mangled": "W?ExploMessage$n(ipn$ExploActor$$)pn$ExploRecord$$"
+    },
+    "ExploStart": {
+     "va": "0045fa20",
+     "size": 208,
+     "mangled": "W?ExploStart$n(ipn$ExploTarget$$)pn$ExploRecord$$"
+    },
+    "ExploAddGlow": {
+     "va": "0045faf0",
+     "size": 128,
+     "mangled": "W?ExploAddGlow$n(iipn$ExploActor$$aa)pn$ExploRecord$$"
+    },
+    "ExploAddAt": {
+     "va": "0045fb70",
+     "size": 112,
+     "mangled": "W?ExploAddAt$n(ipn$ExploPoint$$i)pn$ExploRecord$$"
+    },
+    "ExploAddTarget": {
+     "va": "0045fbe0",
+     "size": 80,
+     "mangled": "W?ExploAddTarget$n(iii)pn$ExploRecord$$"
+    },
+    "ExploAddSmoke": {
+     "va": "0045fc30",
+     "size": 160,
+     "mangled": "W?ExploAddSmoke$n(ipn$ExploActor$$iii)pn$ExploRecord$$"
+    },
+    "ExploAddPart": {
+     "va": "0045fcd0",
+     "size": 80,
+     "mangled": "W?ExploAddPart$n(ai)pn$ExploRecord$$"
+    },
+    "ExploAddTrail": {
+     "va": "0045fd20",
+     "size": 144,
+     "mangled": "W?ExploAddTrail$n(iiipn$ExploRecord$$pn$ExploPoint$$)pn$1$"
+    },
+    "ExploAlloc": {
+     "va": "0045fdb0",
+     "size": 192,
+     "mangled": "W?ExploAlloc$n(i)pn$ExploRecord$$"
+    },
+    "ExploFree": {
+     "va": "0045fe70",
+     "size": 32,
+     "mangled": "W?ExploFree$n(pn$ExploRecord$$)i"
+    },
+    "ExploCompact": {
+     "va": "0045fe90",
+     "size": 128,
+     "mangled": "W?ExploCompact$n(i)v"
+    },
+    "ExploInit": {
+     "va": "0045ff10",
+     "size": 176,
+     "mangled": "W?ExploInit$n()i"
+    },
+    "ExploClear": {
+     "va": "0045ffc0",
+     "size": 48,
+     "mangled": "W?ExploClear$n()v"
+    },
+    "ExploShutdown": {
+     "va": "0045fff0",
+     "size": 80,
+     "mangled": "W?ExploShutdown$n()v"
+    },
+    "ExploSave": {
+     "va": "00460040",
+     "size": 160,
+     "mangled": "W?ExploSave$n(pn$FileRecord$$)i"
+    },
+    "ExploLoad": {
+     "va": "004600e0",
+     "size": 192,
+     "mangled": "W?ExploLoad$n(pn$FileRecord$$)i"
+    },
+    "ExploSetupFrame": {
+     "va": "004601a0",
+     "size": 416,
+     "mangled": "W?ExploSetupFrame$n(pn$ExploRecord$$pn$ExploPoint$$)v"
+    },
+    "ExploDraw": {
+     "va": "004605c0",
+     "size": 240,
+     "mangled": "W?ExploDraw$n(pn$ExploRecord$$)v"
+    },
+    "ExploAnimate": {
+     "va": "004606b0",
+     "size": 256,
+     "mangled": "W?ExploAnimate$n(pn$ExploRecord$$)v"
+    },
+    "ExploAnimateAll": {
+     "va": "004607b0",
+     "size": 64,
+     "mangled": "W?ExploAnimateAll$n()v"
+    },
+    "ExploRecord::$ct": {
+     "va": "004607f0",
+     "size": 11,
+     "mangled": "W?$ct:ExploRecord$n()_"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
   }
  }
 }

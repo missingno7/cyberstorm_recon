@@ -102,6 +102,18 @@
     "-oe"
    ],
    "status": "verified 2026-11-09 on multi\\linkdlg.c (10 vs 8), multi\\linkq.c (16 vs 7), multi\\message.c (29 vs 26): small same-TU functions are inlined at every call and keep an uncalled out-of-line copy. Harmful in logic\\lsys.c, pop\\psystem.c, shell\\hercbay.c, shell\\missbrf.c; neutral in mstart.c and 14 others. Per-TU choice"
+  },
+  "ot-oe": {
+   "install": "wc106",
+   "tool": "wpp386",
+   "flags": [
+    "-4s",
+    "-s",
+    "-oxt",
+    "-bm",
+    "-oe"
+   ],
+   "status": "verified 2026-11-09 on sim\u0007pply.c, sim\fxout.c, sim\\explo.c (lane o2): -ox does not include -oe in wpp386 10.6; same-TU functions inlined at every call, referenced/non-static ones keep an out-of-line copy"
   }
  }
 }

@@ -29,4 +29,12 @@ Each row: context, trigger, effect, status, where. Add rows; replace a row when 
 | 16-bit locals | `unsigned short x = 0` in a 4-byte slot | dword store; the original word store `mov word ptr [esp],dx` needs `unsigned short x[2]; x[0] = 0;` | verified (o1, MessageChecksum) |
 | tail merging | identical function tails | later functions jump into earlier functions' tails: every function in between must have its original size first | observed (o1) |
 | aggregate locals | several struct/array locals | stack layout follows declaration order and scope | verified (o1, MessageJoinRequest) |
+| `-ox` vs `-oe` | profile `ot-oe` | `-ox` does NOT include `-oe` in wpp386 10.6; ot TUs whose same-TU calls are inlined (even 1 KB functions) need `-oxt -oe`; referenced/non-static functions keep an out-of-line copy, uncalled statics are dropped, `inline` removes the copy | verified (o2: apply/fxout/explo) |
+| C++ default arguments | caller uses >= 2 default arguments | caller gets an EBP frame; one default does not (refines the StrPool rule) | verified (o2, synthetic A/B) |
+| C++ by-value class parameters | class with any user constructor passed by value | caller builds a temporary per call (copies interleaved with pushes), passes its address, and gets an EBP frame | verified (o2, FxFire) |
+| static initializer `ret` only | global object whose class has an empty inline constructor | `W?.fn_init` = `ret`, first in the object, XI entry priority 0x40; BSS in declaration order | verified (o2) |
+| arrays of class objects | `new T[n]` / local `T a[n]` | `__wcpp_2_ctor_array_` + typesig survive only if the element ctor is not elided: in-class empty ctor is elided; out-of-class `inline` ctor is kept | verified (o2) |
+| commutative operands | `x*x + y*y` written either way | canonicalised: source operand order does not change code | verified (o2) |
+| double null check | `if (!e) return 0; if (e) {...} return e;` | gives the original `test; je; je` pair | verified (o2, ExploAdd*) |
+| compiler crash | `#pragma data_seg("CONST","DATA")` around `static const int[]` | wpp386 10.6 access violation; plain `static const` objects go to _DATA in declaration order | observed (o2) |
 | 10.5 vs 10.6 compiler | | identical bytes on StrPool::Lock variants | measured (does not discriminate yet) |
