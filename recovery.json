@@ -2888,8 +2888,38 @@
   "src/multi/link.c": {
    "as": "multi\\link.c",
    "install": "wc106",
-   "profile": "plain",
+   "profile": "plain-oe",
    "functions": {
+    "reset_link_timer": {
+     "va": "0046ceec",
+     "size": 16,
+     "mangled": "W?reset_link_timer$n()v"
+    },
+    "initialize_directplay": {
+     "va": "0046cefc",
+     "size": 210,
+     "mangled": "W?initialize_directplay$n()i"
+    },
+    "shutdown_directplay": {
+     "va": "0046cfce",
+     "size": 82,
+     "mangled": "W?shutdown_directplay$n()v"
+    },
+    "open_link_connection": {
+     "va": "0046d020",
+     "size": 480,
+     "mangled": "W?open_link_connection$n(pna)i"
+    },
+    "close_link_connection": {
+     "va": "0046d200",
+     "size": 264,
+     "mangled": "W?close_link_connection$n()v"
+    },
+    "receive_link_packet": {
+     "va": "0046d3d8",
+     "size": 113,
+     "mangled": "W?receive_link_packet$n(pnipnipnuiuii)i"
+    },
     "dp_error_not_recognized": {
      "va": "0046d449",
      "size": 6,
@@ -2899,9 +2929,29 @@
      "va": "0046d44f",
      "size": 6,
      "mangled": "W?system_message_not_recognized$n()pnxa"
+    },
+    "disconnect_link_interface": {
+     "va": "0046d455",
+     "size": 37,
+     "mangled": "W?disconnect_link_interface$n()v"
+    },
+    "reset_link_options": {
+     "va": "0046d47a",
+     "size": 44,
+     "mangled": "W?reset_link_options$n()v"
+    },
+    "request_link_connection": {
+     "va": "0046d4a6",
+     "size": 145,
+     "mangled": "W?request_link_connection$n(pna)i"
     }
    },
-   "data": {},
+   "data": {
+    "CONST": {
+     "va": "004a3eec",
+     "size": 13
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/multi/chat.c": {
@@ -3148,7 +3198,7 @@
   "src/shell/hercbuy.c": {
    "as": "shell\\hercbuy.c",
    "install": "wc106",
-   "profile": "plain",
+   "profile": "plain-oe",
    "functions": {
     "W?.tdctor$:MenuLabel$n()rn$1$": {
      "va": "004122e8",
@@ -3190,10 +3240,20 @@
      "size": 109,
      "mangled": "W?f_004171ac$n(pnv)v"
     },
+    "f_00417732": {
+     "va": "00417732",
+     "size": 125,
+     "mangled": "W?f_00417732$n(pnvuc)v"
+    },
     "f_004177af": {
      "va": "004177af",
      "size": 147,
      "mangled": "W?f_004177af$n(pnva)v"
+    },
+    "f_0041791b": {
+     "va": "0041791b",
+     "size": 188,
+     "mangled": "W?f_0041791b$n(pn$HercBuyDataView$$)v"
     },
     "f_004179d7": {
      "va": "004179d7",
@@ -3204,6 +3264,11 @@
      "va": "004179ff",
      "size": 40,
      "mangled": "W?f_004179ff$n()v"
+    },
+    "f_00417a27": {
+     "va": "00417a27",
+     "size": 587,
+     "mangled": "W?f_00417a27$n(pnv)i"
     },
     "f_00417c72": {
      "va": "00417c72",
@@ -3423,7 +3488,7 @@
   "src/shell/hotseat.c": {
    "as": "shell\\hotseat.c",
    "install": "wc106",
-   "profile": "plain",
+   "profile": "plain-oe",
    "functions": {
     "f_004243e4": {
      "va": "004243e4",
@@ -3450,6 +3515,21 @@
      "size": 249,
      "mangled": "W?f_0042490e$n(i)i"
     },
+    "f_00424cf4": {
+     "va": "00424cf4",
+     "size": 108,
+     "mangled": "W?f_00424cf4$n(i)v"
+    },
+    "f_00424d60": {
+     "va": "00424d60",
+     "size": 685,
+     "mangled": "W?f_00424d60$n(i)v"
+    },
+    "f_0042500d": {
+     "va": "0042500d",
+     "size": 333,
+     "mangled": "W?f_0042500d$n(pn$HotseatDataView$$)i"
+    },
     "f_0042515a": {
      "va": "0042515a",
      "size": 133,
@@ -3465,21 +3545,73 @@
      "size": 127,
      "mangled": "W?f_00425222$n(i)i"
     },
+    "f_0042539a": {
+     "va": "0042539a",
+     "size": 315,
+     "mangled": "W?f_0042539a$n(i)v"
+    },
+    "f_004254d5": {
+     "va": "004254d5",
+     "size": 234,
+     "mangled": "W?f_004254d5$n(pn$HotseatDataView$$)v"
+    },
     "f_00425616": {
      "va": "00425616",
      "size": 94,
      "mangled": "W?f_00425616$n(i)i"
     },
+    "f_00425674": {
+     "va": "00425674",
+     "size": 119,
+     "mangled": "W?f_00425674$n(ii)v"
+    },
     "f_004256eb": {
      "va": "004256eb",
      "size": 298,
      "mangled": "W?f_004256eb$n(ii)v"
+    },
+    "f_00425906": {
+     "va": "00425906",
+     "size": 111,
+     "mangled": "W?f_00425906$n(i)v"
     }
    },
    "data": {
     "CONST": {
      "va": "0048f1cc",
      "size": 16
+    },
+    "CONST2": {
+     "va": "0048d7dc",
+     "size": 332
+    },
+    "_DATA": {
+     "va": "0048f1c0",
+     "size": 12
+    },
+    "W?$Wts0kn$MenuPrefixButton$$$nx[]uc": {
+     "va": "0048c9ec",
+     "size": 17
+    },
+    "W?$Wts0en$MenuNumber$$$nx[]uc": {
+     "va": "0048c988",
+     "size": 17
+    },
+    "W?$Wts0en$UpgradeBar$$$nx[]uc": {
+     "va": "0048d024",
+     "size": 17
+    },
+    "W?$Wts0gn$UpgradeArrow$$$nx[]uc": {
+     "va": "0048d010",
+     "size": 17
+    },
+    "W?$Wts0en$MenuButton$$$nx[]uc": {
+     "va": "0048c9d8",
+     "size": 17
+    },
+    "W?$Wts0dn$MenuLabel$$$nx[]uc": {
+     "va": "0048c9b0",
+     "size": 17
     }
    },
    "accepted": "2026-11-09"
@@ -11493,6 +11625,14 @@
      "size": 17
     }
    },
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0046cdbc.c": {
+   "as": "_unknown\\tu_0046cdbc.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {},
+   "data": {},
    "accepted": "2026-11-09"
   }
  },

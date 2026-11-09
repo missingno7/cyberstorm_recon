@@ -2995,10 +2995,10 @@
   "f_00417732": {
    "va": "00417732",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?f_00417732$n(pnvuc)v",
    "tu": "src/shell/hercbuy.c",
-   "evidence": "placed (at) in src/shell/hercbuy.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "HercBuySelect": {
    "va": "004177af",
@@ -3033,10 +3033,10 @@
   "f_0041791b": {
    "va": "0041791b",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?f_0041791b$n(pn$HercBuyDataView$$)v",
    "tu": "src/shell/hercbuy.c",
-   "evidence": "placed (at) in src/shell/hercbuy.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "f_004179d7": {
    "va": "004179d7",
@@ -3064,10 +3064,10 @@
   "f_00417a27": {
    "va": "00417a27",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?f_00417a27$n(pnv)i",
    "tu": "src/shell/hercbuy.c",
-   "evidence": "placed (at) in src/shell/hercbuy.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "f_00417c72": {
    "va": "00417c72",
@@ -4734,6 +4734,13 @@
    "tu": "src/shell/mplaunch.c",
    "evidence": "strict match 2026-11-09"
   },
+  "W?$Wda018$:MenuButton$n(ui)pnv": {
+   "va": "004242dc",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$Wda018$:MenuButton$n(ui)pnv",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
   "MenuEdit::$dt": {
    "va": "004242f4",
    "kind": "func",
@@ -4793,6 +4800,14 @@
    "tu": "src/shell/hotseat.c",
    "evidence": "strict match 2026-11-09"
   },
+  "W?.fn_init$n()v@shell/hotseat.c": {
+   "va": "004243e8",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/shell/hotseat.c",
+   "evidence": "placed (at) in src/shell/hotseat.c 2026-11-09"
+  },
   "HotseatScreen::$ct": {
    "va": "004248f7",
    "kind": "func",
@@ -4819,12 +4834,28 @@
   "f_00424cf4": {
    "va": "00424cf4",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?f_00424cf4$n(i)v",
    "tu": "src/shell/hotseat.c",
-   "evidence": "placed (at) in src/shell/hotseat.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_00424d60": {
+   "va": "00424d60",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_00424d60$n(i)v",
+   "tu": "src/shell/hotseat.c",
+   "evidence": "strict match 2026-11-09"
   },
   "f_0042500d": {
+   "va": "0042500d",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0042500d$n(pn$HotseatDataView$$)i",
+   "tu": "src/shell/hotseat.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0042500d#W?f_0042500d$n(i)i": {
    "va": "0042500d",
    "kind": "func",
    "status": "hypothesis",
@@ -4895,12 +4926,20 @@
   "f_0042539a": {
    "va": "0042539a",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?f_0042539a$n(i)v",
    "tu": "src/shell/hotseat.c",
-   "evidence": "placed (at) in src/shell/hotseat.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "f_004254d5": {
+   "va": "004254d5",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_004254d5$n(pn$HotseatDataView$$)v",
+   "tu": "src/shell/hotseat.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_004254d5#W?f_004254d5$n(i)v": {
    "va": "004254d5",
    "kind": "func",
    "status": "hypothesis",
@@ -4941,10 +4980,10 @@
   "f_00425674": {
    "va": "00425674",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?f_00425674$n(ii)v",
    "tu": "src/shell/hotseat.c",
-   "evidence": "placed (at) in src/shell/hotseat.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "HotseatSelectColor": {
    "va": "004256eb",
@@ -4986,10 +5025,10 @@
   "f_00425906": {
    "va": "00425906",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?f_00425906$n(i)v",
    "tu": "src/shell/hotseat.c",
-   "evidence": "placed (at) in src/shell/hotseat.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "PopLoadResource": {
    "va": "00425978",
@@ -17080,29 +17119,37 @@
    "tu": "src/multi/link.c",
    "evidence": "placed (at) in src/multi/link.c 2026-11-09"
   },
+  "LinkDecoderOwner::decode_link_samples#W?decode_link_samples$:LinkDecoderOwner$n(pn$LinkDecoderState$$ui)ui": {
+   "va": "0046cdbc",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?decode_link_samples$:LinkDecoderOwner$n(pn$LinkDecoderState$$ui)ui",
+   "tu": "src/_unknown/tu_0046cdbc.c",
+   "evidence": "placed (at) in src/_unknown/tu_0046cdbc.c 2026-11-09"
+  },
   "reset_link_timer": {
    "va": "0046ceec",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?reset_link_timer$n()v",
    "tu": "src/multi/link.c",
-   "evidence": "lost strict 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "initialize_directplay": {
    "va": "0046cefc",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?initialize_directplay$n()i",
    "tu": "src/multi/link.c",
-   "evidence": "lost strict 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "shutdown_directplay": {
    "va": "0046cfce",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?shutdown_directplay$n()v",
    "tu": "src/multi/link.c",
-   "evidence": "lost strict 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "NetworkCreate": {
    "va": "0046d020",
@@ -17112,6 +17159,14 @@
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
   },
   "open_link_connection": {
+   "va": "0046d020",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?open_link_connection$n(pna)i",
+   "tu": "src/multi/link.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "open_link_connection#W?open_link_connection$n(pnxa)i": {
    "va": "0046d020",
    "kind": "func",
    "status": "hypothesis",
@@ -17129,10 +17184,10 @@
   "close_link_connection": {
    "va": "0046d200",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?close_link_connection$n()v",
    "tu": "src/multi/link.c",
-   "evidence": "placed (at) in src/multi/link.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "NetworkSend": {
    "va": "0046d308",
@@ -17149,13 +17204,21 @@
    "tu": "src/multi/link.c",
    "evidence": "placed (at) in src/multi/link.c 2026-11-09"
   },
+  "send_link_packet#W?send_link_packet$n(ipnvuii)i": {
+   "va": "0046d308",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?send_link_packet$n(ipnvuii)i",
+   "tu": "src/multi/link.c",
+   "evidence": "placed (at) in src/multi/link.c 2026-11-09"
+  },
   "receive_link_packet": {
    "va": "0046d3d8",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?receive_link_packet$n(pnipnipnuiuii)i",
    "tu": "src/multi/link.c",
-   "evidence": "lost strict 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "dp_error_not_recognized": {
    "va": "0046d449",
@@ -17183,10 +17246,10 @@
   "disconnect_link_interface": {
    "va": "0046d455",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?disconnect_link_interface$n()v",
    "tu": "src/multi/link.c",
-   "evidence": "lost strict 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "LinkSetupPlayer": {
    "va": "0046d47a",
@@ -17198,10 +17261,10 @@
   "reset_link_options": {
    "va": "0046d47a",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?reset_link_options$n()v",
    "tu": "src/multi/link.c",
-   "evidence": "lost strict 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "NetworkJoin": {
    "va": "0046d4a6",
@@ -17211,6 +17274,14 @@
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
   },
   "request_link_connection": {
+   "va": "0046d4a6",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?request_link_connection$n(pna)i",
+   "tu": "src/multi/link.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "request_link_connection#W?request_link_connection$n(pnxa)i": {
    "va": "0046d4a6",
    "kind": "func",
    "status": "hypothesis",
@@ -22954,6 +23025,41 @@
    "mangled": "W?g48ab51$n[]a",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
+  "hotseatPlayerFormat": {
+   "va": "0048acee",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotseatPlayerFormat$n[]xa",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "DAT_0048acf2": {
+   "va": "0048acf2",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?DAT_0048acf2$n[]a",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "DAT_0048acf5": {
+   "va": "0048acf5",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?DAT_0048acf5$n[]a",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "DAT_0048acf8": {
+   "va": "0048acf8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?DAT_0048acf8$n[]a",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "DAT_0048acfb": {
+   "va": "0048acfb",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?DAT_0048acfb$n[]a",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
   "reportBreak_0048ae06": {
    "va": "0048ae06",
    "kind": "data",
@@ -23093,6 +23199,13 @@
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?directplay_message$n[]xa",
+   "evidence": "implied by src/multi/link.c 2026-11-09"
+  },
+  "last_dialed_label": {
+   "va": "0048b832",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?last_dialed_label$n[]xa",
    "evidence": "implied by src/multi/link.c 2026-11-09"
   },
   "directplay_error_text": {
@@ -23959,6 +24072,20 @@
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?PTR_DAT_0048f1dc$n[]pn$GuiControl$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "DAT_0048f30c": {
+   "va": "0048f30c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?DAT_0048f30c$n[]i",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "DAT_0048f334": {
+   "va": "0048f334",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?DAT_0048f334$n[]s",
    "evidence": "implied by src/shell/hotseat.c 2026-11-09"
   },
   "gMenuFonts": {
@@ -27635,6 +27762,20 @@
    "mangled": "W?g4b392c$ni",
    "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
   },
+  "g4b39e4": {
+   "va": "004b39e4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b39e4$n[]$MenuPrefixButton$$",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
+  },
+  "g4b3c78": {
+   "va": "004b3c78",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b3c78$n[]$MenuLabel$$",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
+  },
   "g4b3fd0": {
    "va": "004b3fd0",
    "kind": "data",
@@ -29605,11 +29746,235 @@
    "mangled": "W?g4ba9a8$n$Scene$$",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "hotPanel": {
+   "va": "004ba9ac",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotPanel$n$MenuPanel$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotMode": {
+   "va": "004ba9d0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotMode$n$MenuPrefixButton$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotFunds": {
+   "va": "004ba9fc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotFunds$n$MenuPrefixButton$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotOption": {
+   "va": "004baa28",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotOption$n$MenuPrefixButton$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotNumber0": {
+   "va": "004baa54",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotNumber0$n$MenuNumber$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotNumber1": {
+   "va": "004baa84",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotNumber1$n$MenuNumber$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotNumber2": {
+   "va": "004baab4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotNumber2$n$MenuNumber$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotNumber3": {
+   "va": "004baae4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotNumber3$n$MenuNumber$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotNumber4": {
+   "va": "004bab14",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotNumber4$n$MenuNumber$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotNumber5": {
+   "va": "004bab44",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotNumber5$n$MenuNumber$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "DAT_004bab5b": {
+   "va": "004bab5b",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?DAT_004bab5b$na",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotNumber6": {
+   "va": "004bab74",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotNumber6$n$MenuNumber$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "DAT_004bab8b": {
+   "va": "004bab8b",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?DAT_004bab8b$na",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotNumber7": {
+   "va": "004baba4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotNumber7$n$MenuNumber$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "DAT_004babbb": {
+   "va": "004babbb",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?DAT_004babbb$na",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "_DAT_004babc8": {
+   "va": "004babc8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?_DAT_004babc8$ni",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotNumber8": {
+   "va": "004babd4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotNumber8$n$MenuNumber$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "DAT_004babeb": {
+   "va": "004babeb",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?DAT_004babeb$na",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotNumber9": {
+   "va": "004bac04",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotNumber9$n$MenuNumber$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "DAT_004bac1b": {
+   "va": "004bac1b",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?DAT_004bac1b$na",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "_DAT_004bac28": {
+   "va": "004bac28",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?_DAT_004bac28$ni",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotNumber10": {
+   "va": "004bac34",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotNumber10$n$MenuNumber$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotNumber11": {
+   "va": "004bac64",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotNumber11$n$MenuNumber$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
   "DAT_004bac94": {
    "va": "004bac94",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?DAT_004bac94$ni",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotMapBar": {
+   "va": "004bac9c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotMapBar$n$UpgradeBar$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotMapNext": {
+   "va": "004bacc4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotMapNext$n$UpgradeArrow$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotMapPrevious": {
+   "va": "004bacf0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotMapPrevious$n$UpgradeArrow$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotNames": {
+   "va": "004bad1c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotNames$n[]$MenuButton$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotProfiles": {
+   "va": "004bae5c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotProfiles$n[]$MenuButton$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotActions": {
+   "va": "004baf9c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotActions$n[]$MenuPrefixButton$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotTeamLabels": {
+   "va": "004bb0fc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotTeamLabels$n[]$MenuLabel$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotValueLabels": {
+   "va": "004bb284",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotValueLabels$n[]$MenuLabel$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotSetting0": {
+   "va": "004bb40c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotSetting0$n$MenuButton$$",
    "evidence": "implied by src/shell/hotseat.c 2026-11-09"
   },
   "DAT_004bb423": {
@@ -29626,6 +29991,13 @@
    "mangled": "W?_DAT_004bb430$ni",
    "evidence": "implied by src/shell/hotseat.c 2026-11-09"
   },
+  "hotSetting1": {
+   "va": "004bb434",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotSetting1$n$MenuButton$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
   "DAT_004bb44b": {
    "va": "004bb44b",
    "kind": "data",
@@ -29640,6 +30012,13 @@
    "mangled": "W?_DAT_004bb458$ni",
    "evidence": "implied by src/shell/hotseat.c 2026-11-09"
   },
+  "hotSetting2": {
+   "va": "004bb45c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotSetting2$n$MenuButton$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
   "DAT_004bb473": {
    "va": "004bb473",
    "kind": "data",
@@ -29652,6 +30031,104 @@
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?_DAT_004bb480$ni",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotBar0": {
+   "va": "004bb48c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotBar0$n$UpgradeBar$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotNext0": {
+   "va": "004bb4b4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotNext0$n$UpgradeArrow$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotPrevious0": {
+   "va": "004bb4e0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotPrevious0$n$UpgradeArrow$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotBar1": {
+   "va": "004bb514",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotBar1$n$UpgradeBar$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotNext1": {
+   "va": "004bb53c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotNext1$n$UpgradeArrow$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotPrevious1": {
+   "va": "004bb568",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotPrevious1$n$UpgradeArrow$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotBar2": {
+   "va": "004bb59c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotBar2$n$UpgradeBar$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotNext2": {
+   "va": "004bb5c4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotNext2$n$UpgradeArrow$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotPrevious2": {
+   "va": "004bb5f0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotPrevious2$n$UpgradeArrow$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotBar3": {
+   "va": "004bb624",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotBar3$n$UpgradeBar$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotNext3": {
+   "va": "004bb64c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotNext3$n$UpgradeArrow$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotPrevious3": {
+   "va": "004bb678",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotPrevious3$n$UpgradeArrow$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotDone": {
+   "va": "004bb6a4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotDone$n$MenuPrefixButton$$",
+   "evidence": "implied by src/shell/hotseat.c 2026-11-09"
+  },
+  "hotHelp": {
+   "va": "004bb6d0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hotHelp$n$MenuHelpRegion$$",
    "evidence": "implied by src/shell/hotseat.c 2026-11-09"
   },
   "_DAT_004bb6f0": {
@@ -32707,12 +33184,26 @@
    "mangled": "W?localPeer$nul",
    "evidence": "implied by src/multi/linkdlg.c (overload-safe migration 2026-11-09)"
   },
+  "linkLastError": {
+   "va": "004f5cf8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?linkLastError$nui",
+   "evidence": "implied by src/multi/link.c 2026-11-09"
+  },
   "gLinkTimer": {
    "va": "004f5cfc",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gLinkTimer$n$Timer$$",
    "evidence": "implied by src/multi/linkdlg.c 2026-11-09"
+  },
+  "linkOptions": {
+   "va": "004f5d08",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?linkOptions$n[]ui",
+   "evidence": "implied by src/multi/link.c 2026-11-09"
   },
   "gLinkThread": {
    "va": "004f5d24",
@@ -32741,6 +33232,13 @@
    "status": "hypothesis",
    "mangled": "W?gLinkEvent$npnv",
    "evidence": "implied by src/multi/linkdlg.c 2026-11-09"
+  },
+  "directplayModule": {
+   "va": "004f5d40",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?directplayModule$npnv",
+   "evidence": "implied by src/multi/link.c 2026-11-09"
   },
   "gDirectPlayCreate": {
    "va": "004f5d44",

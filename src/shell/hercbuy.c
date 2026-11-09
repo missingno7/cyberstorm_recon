@@ -1,6 +1,7 @@
-/* Working labels identify original functions by address until better names are known. */
+/* shell\hercbuy.c: working names and packed layouts reconstructed from accesses.
+ * The complete DIFF bodies and their code-generation blockers are recorded in REPORT.md. */
 
-struct Surface;
+struct Surface; struct HercRect {int v[4];}; struct HercTabs { long v[2]; };
 struct GuiPoint;
 struct GuiControl;
 extern GuiControl *gHercBuyControls[];
@@ -22,7 +23,7 @@ public:
     Flic(); ~Flic();
     unsigned long Update(Surface *surface);
     void Close();
-    int Open(long source, int priority, int mode);
+    int Open(long source, int priority=100, int mode=0); void SetLoops(int n){*(int*)((char*)this+0x4c)=n;}
 };
 #pragma pack(push, 1)
 class MenuNumber {
@@ -30,7 +31,7 @@ class MenuNumber {
 public:
     void SetValue(long value, signed char flash); MenuNumber(signed char font, signed char color); virtual ~MenuNumber();
 };
-struct MenuImage;
+struct MenuImage { int value[3]; }; struct MenuImageSet { int count; MenuImage images[1]; };
 struct MenuPrefixButton {
     char data[0x28];
     MenuPrefixButton(const char *text = 0, signed char align = 1, signed char color = 2, signed char font = -1); virtual ~MenuPrefixButton();
@@ -56,7 +57,7 @@ public:
 };
 class ResMgr {
 public:
-    void *Load(long resource, int flags, int first, int second);
+    void *Load(long resource, int flags=1, int first=0, int second=0);
 };
 class HercBuyCtor : public GuiScreen {
     char gap[0x0d];
@@ -71,10 +72,10 @@ extern int g4a706d; extern int g4b392c;
 extern int g4b40dc; extern int g4b410c;
 extern int g4b395c; extern int g4b3f78;
 extern int g4bb78c; extern int g4a70b8;
-extern int g4ae17f; extern int g5138fc;
+extern long g4ae17f; extern int g5138fc;
 extern int g51390c; extern int gMenuTextColor;
 extern unsigned long *gMenuTextMap; extern int g4bc4f8;
-extern int g4bc570; extern int g4c9772;
+extern int g4bc570; extern int logicMode; inline int HercLogicMode(){return logicMode;}
 extern int g4b3fec; extern ResMgr gResMgr;
 extern int profileManager[];
 extern unsigned long gInDirty;
@@ -92,7 +93,7 @@ extern MenuLabel g4b3c78[15];
 extern "C" void BriefBlit(void *surface, int a, int b, int c, int d, int e, int f, int g, int h);
 extern "C" int f_00406fc9(char *system);
 extern "C" void f_0040627a(int a, int b, int c, int d);
-extern "C" void f_00429a75(int *range, int value);
+extern "C" void BriefSetMode(void *range, int value);
 extern "C" void f_00429aa0(int *range, int value);
 extern "C" unsigned long f_00441456(void *resource, int *count);
 extern "C" void f_00476512(int value);
@@ -102,13 +103,12 @@ extern "C" char *f_004418a9(void *resource, unsigned index);
 extern "C" void *f_0047c350(void *pool, int id, int load);
 extern "C" void f_0047bff0(void *surface, int *image, int x, int y);
 extern "C" void f_0047b3a0(void *surface);
-extern "C" int f_0043c327(void);
+extern "C" int f_0043c327(void*);
 extern "C" void f_00441b19(void *resource, unsigned index);
-extern "C" void f_0046cbc6(int id, int mode);
+int SoundTrigger(unsigned int id,int mode);
 extern "C" int f_004786d8(void *resource);
 extern "C" int f_0047723b(const char *text);
 extern "C" void f_004298fa(void *object, unsigned *value);
-extern "C" void f_00416f43(void);
 extern "C" int sprintf(char *destination, const char *format, ...);
 void SurfaceCopyRegion(void *destination, void *source, long x, long y);
 extern "C" void AssertFail(const char *file, int line, const char *message);
@@ -125,23 +125,23 @@ extern "C" char *strncpy(char *destination, const char *source, unsigned long co
 extern const char *MenuFormatNumber(long value, long destination = 0, long length = 16);
 void MenuDrawImage(void *surface, const MenuImage *image, long x, long y);
 void SurfacePresent(void *surface);
+void f_00417219(void*); void f_004176b1(void*); void f_00416b76(void*); void f_00416bad(void*); void f_00417732(void*,unsigned char);
 void f_0041686f(void *object);
 void f_0041733c(void *object);
 void f_00417842(void *object);
 
 #pragma pack(push, 1)
+struct HercBuyRecord { const char *name; const unsigned char *description; long price; unsigned char image; long pilots,units; unsigned char other[4]; };
 struct HercBuyDataView {
-    unsigned char prefix00[0x4c];
-    int resource;
-    unsigned char state;
-    unsigned char prefix51[0xed - 0x51];
-    unsigned char entryCount;
-    unsigned char middle[0xfce - 0xee];
-    unsigned char * volatile records;
-    unsigned char currentIndex;
-    unsigned char selected;
-    unsigned char lastSelected;
-    int IsActive() const { return *(const int *)((const char *)this + 0x10) != 0; }
+    unsigned char prefix00[0x4c]; int resource; unsigned char state;
+    unsigned char prefix51[0xed-0x51]; unsigned char entryCount;
+    long highlight,dirty; char names[100][17]; unsigned char images[100]; char prices[100][12];
+    long units[100],pilots[100]; unsigned char *records;
+    unsigned char currentIndex,selected,lastSelected,base,previousBase;
+    unsigned short textTop,previousTop; long totalHeight,visibleHeight; const unsigned char *description; unsigned char purchaseIndex;
+    int IsActive() const { return *(const int *)((const char *)this+0x10)!=0; }
+    HercBuyRecord *Records(){return (HercBuyRecord*)records;}
+    unsigned char Count(){return entryCount;}
 };
 #pragma pack(pop)
 
@@ -174,19 +174,19 @@ void f_00416764(void *object, void *input)
     *(int *)((char *)object + 0xf2) = 0;
     g4a706d = g4ae17f - 1;
     g4b3f78 = -1;
-    *(int *)&g5138fc = *(int *)&g51390c;
-    *((int *)&g5138fc + 1) = *((int *)&g51390c + 1);
-    *((int *)&g5138fc + 2) = *((int *)&g51390c + 2);
-    *((int *)&g5138fc + 3) = *((int *)&g51390c + 3);
+    *(HercRect *)&g5138fc = *(HercRect *)&g51390c;
     SurfaceCopyRegion(&gMenuSavedSurface, &g511948, 0, 0);
-    void *resource = gResMgr.Load((long)"SHELLHRC.bmx", 1, 0, 0);
+    void *resource = gResMgr.Load((long)"SHELLHRC.bmx");
     *(int *)((char *)object + 0x4c) = (int)resource;
     if (resource == 0) {
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
         AssertFail(__FILE__, __LINE__, 0);
     }
-    ((Flic *)((char *)object + 0x5d))->Open((long)"hb_buy_flx", 100, 0);
-    *(int *)((char *)object + 0xa9) = 1;
-    ((GuiScreen *)object)->LoadLayout((long)"hercbuy_box");
+    ((Flic *)((char *)object + 0x5d))->Open((long)"hb_buy.flx");
+    ((Flic *)((char *)object + 0x5d))->SetLoops(1);
+    ((GuiScreen *)object)->LoadLayout((long)"hercbuy.box");
     ((GuiScreen *)object)->Open((InputReq *)input, (StrPool *)&gShellStrings, 0x76d, 1);
     *((unsigned char *)object + 0x50) = 0;
     *(int *)((char *)object + 0xee) = 0;
@@ -195,74 +195,20 @@ void f_00416764(void *object, void *input)
 
 void f_0041686f(void *object)
 {
+    HercBuyDataView *screen=(HercBuyDataView*)object;
     int count;
-    unsigned long records;
-    unsigned char row;
-    unsigned char entry;
-    unsigned char i;
-
-    records = f_00441456(&g4a70b8, &count);
-    *(unsigned long *)((char *)object + 0xfce) = records;
-    *((unsigned char *)object + 0xed) = (unsigned char)count;
-    f_00429a75(&g4b395c, 0);
-    if (count < 0x10) {
-        g4b39cc = (g4b39cc & 0xff1fffff) + 0xa00000;
-        g4b3978 = (g4b3978 & 0xff1fffff) + 0xa00000;
-        g4b39a0 = (g4b39a0 & 0xff1fffff) + 0xa00000;
+    screen->records=(unsigned char*)f_00441456(&g4a70b8,&count); screen->entryCount=(unsigned char)count;
+    BriefSetMode(&g4b395c,0);
+    if(count>15) {
+        f_00429aa0(&g4b395c,count-14); screen->base=0; screen->previousBase=screen->base;
     } else {
-        f_00429aa0(&g4b395c, count - 0xe);
-        *((unsigned char *)object + 0xfd5) = 0;
-        *((unsigned char *)object + 0xfd6) = *((unsigned char *)object + 0xfd5);
+        g4b39cc=(g4b39cc&0xff1fffff)+0xa00000; g4b3978=(g4b3978&0xff1fffff)+0xa00000; g4b39a0=(g4b39a0&0xff1fffff)+0xa00000;
     }
-    f_00429a75(&g4b3fd0, 0);
-    *(unsigned short *)((char *)object + 0xfd7) = 0;
-    *(unsigned short *)((char *)object + 0xfd9) = 99;
-    *(int *)((char *)object + 0x55) = 0;
-    *((unsigned char *)object + 0xfd2) = 0;
-    *((unsigned char *)object + 0xfd4) = 99;
-    *((unsigned char *)object + 0xfd3) = 1;
-
-    for (row = 0; row < 0xf; ++row) {
-        g4b39e4[row].SetColor(2);
-        g4b39e4[row].SetAlign(1);
-        entry = 0;
-        while (1) {
-            if (0xe < entry)
-                break;
-            g4b39e4[entry].SetText((const char *)object + 0xf6 +
-                                   (unsigned long)entry * 0x11);
-            g4b3c78[entry].SetText((const char *)object + 0x7fe +
-                                   (unsigned long)entry * 0xc);
-            entry = entry + 1;
-        }
-        g4b3c78[row].SetColor(2);
-        g4b3c78[row].SetFont(1);
-        g4b3c78[row].SetBackground(0);
-        g4b3c78[row].SetAlign(1);
-    }
-
-    if (((Shell *)uiSystem)->UpdateCredits() != 0)
-        ((MenuNumber *)&g4b392c)->SetValue(g4a706d, 0);
-
-    for (i = 0; i < *((unsigned char *)object + 0xed); ++i) {
-        strncpy((char *)object + 0xf6 + (unsigned long)i * 0x11,
-                *(const char **)(records + (unsigned long)i * 0x19), 0x10);
-        MenuFormatNumber(*(long *)(records + 8 + (unsigned long)i * 0x19),
-                         (long)(unsigned long)((unsigned char *)object + 0x7fe +
-                                               (unsigned long)i * 0xc),
-                         0xb);
-    }
-    for (i = 0; i < *((unsigned char *)object + 0xed); ++i) {
-        *((unsigned char *)object + 0x79a + i) =
-            *(unsigned char *)(records + 0xc + (unsigned long)i * 0x19);
-    }
-    for (i = 0; i < *((unsigned char *)object + 0xed); ++i) {
-        *(unsigned long *)((char *)object + 0xcae + (unsigned long)i * 4) =
-            *(unsigned long *)(records + 0x11 + (unsigned long)i * 0x19);
-        *(unsigned long *)((char *)object + 0xe3e + (unsigned long)i * 4) =
-            *(unsigned long *)(records + 0x0d + (unsigned long)i * 0x19);
-    }
-    f_0041733c(object);
+    BriefSetMode(&g4b3fd0,0); screen->textTop=0; screen->previousTop=99;
+    *(int*)((char*)screen+0x55)=0; screen->currentIndex=0; screen->lastSelected=99; screen->selected=1;
+    f_00417219(screen);
+    if(((Shell*)uiSystem)->UpdateCredits())((MenuNumber*)&g4b392c)->SetValue(g4a706d,0);
+    f_004176b1(screen); f_00416b76(screen); f_00416bad(screen); f_0041733c(screen);
 }
 
 void f_0041686f(void *object);
@@ -278,15 +224,10 @@ void f_00416b76(void *object)
 
 void f_00416bad(void *object)
 {
-    unsigned char i;
-    HercBuyDataView *screen = (HercBuyDataView *)object;
-
-    for (i = 0; i < screen->entryCount; ++i) {
-        unsigned long offset = (unsigned long)i * 0x19;
-        *(unsigned long *)((char *)screen + 0xcae + (unsigned long)i * 4) =
-            *(unsigned long *)(screen->records + 0x11 + offset);
-        *(unsigned long *)((char *)screen + 0xe3e + (unsigned long)i * 4) =
-            *(unsigned long *)(screen->records + 0x0d + offset);
+    HercBuyDataView *screen=(HercBuyDataView*)object;
+    for(unsigned char i=0;i<screen->entryCount;i++) {
+        screen->units[i]=screen->Records()[i].units;
+        screen->pilots[i]=screen->Records()[i].pilots;
     }
 }
 
@@ -302,10 +243,11 @@ void f_00416bfa(void *object)
     }
 }
 
+inline long HercRangeValue(){return g4b395c;}
 void f_00416c65(void *object)
 {
     if (((HercBuyDataView *)object)->IsActive()) {
-        signed char current = (signed char)g4b395c;
+        long current=HercRangeValue();
         *((char *)object + 0xfd5) = (char)current;
         if ((char)current != *((char *)object + 0xfd6)) {
             *((char *)object + 0xfd6) = (char)current;
@@ -375,9 +317,7 @@ void f_00416eec(void *object)
     unsigned char baseIndex;
     unsigned char i;
 
-    if (!((HercBuyDataView *)object)->IsActive())
-        return;
-
+    if (((HercBuyDataView *)object)->IsActive()) {
     switch (*((unsigned char *)object + 0x50)) {
     case 0:
         ((Flic *)((char *)object + 0x5d))->Update((Surface *)&g511948);
@@ -393,13 +333,7 @@ void f_00416eec(void *object)
         if (*(int *)((char *)object + 0x55) != 0) {
             *(int *)((char *)object + 0x55) = 0;
             screenCopy = (HercBuyDataView *)object;
-            baseIndex = *((unsigned char *)object + 0xfd5);
-            for (i = 0; i < 0xf; ++i) {
-                g4b39e4[i].SetText((const char *)object + 0xf6 +
-                                   ((unsigned long)baseIndex + i) * 0x11);
-                g4b3c78[i].SetText((const char *)object + 0x7fe +
-                                   ((unsigned long)baseIndex + i) * 0xc);
-            }
+            f_00417732(object, screenCopy->base);
             ((GuiScreen *)screenCopy)->Invalidate();
             BriefBlit(&g513888, 1, 0, 0, 0x26, 0, 0x26, 0x104, 0x192);
         }
@@ -439,6 +373,7 @@ void f_00416eec(void *object)
         break;
     }
     ((GuiScreen *)object)->Draw();
+    }
 }
 
 void f_004171ac(void *object)
@@ -455,32 +390,17 @@ void f_004171ac(void *object)
 
 void f_00417219(void *object)
 {
-    unsigned char row;
-    unsigned char entry;
-
-    for (row = 0; row < 0xf; ++row) {
-        MenuPrefixButton *button = &g4b39e4[row];
-        button->SetColor(2);
-        button->SetAlign(1);
-        entry = 0;
-        while (1) {
-            if (0xe < entry)
-                break;
-            g4b39e4[entry].SetText((const char *)object + 0xf6 +
-                                   (unsigned long)entry * 0x11);
-            g4b3c78[entry].SetText((const char *)object + 0x7fe +
-                                   (unsigned long)entry * 0xc);
-            entry = entry + 1;
-        }
-        MenuLabel *label = &g4b3c78[row];
-        label->SetColor(2);
-        label->SetFont(1);
-        label->SetBackground(0);
-        label->SetAlign(1);
+    for(char row=0;row<15;row++) {
+        g4b39e4[row].SetColor(2); g4b39e4[row].SetAlign(1);
+        f_00417732(object,0);
+        g4b3c78[row].SetColor(2); g4b3c78[row].SetFont(1); g4b3c78[row].SetBackground(0); g4b3c78[row].SetAlign(1);
     }
 }
 
 void f_0041733c(void *object);
+struct HercControlView {char unused[20]; unsigned long flags; void Visibility(unsigned long n){flags=(flags&0xff1fffffUL)+(n<<21);} };
+inline void HercInvalidate(unsigned long &flags){flags&=~0x1000000UL;}
+inline void HercVisibility(unsigned long &flags,unsigned long n){flags=(flags&0xff1fffffUL)+(n<<21);}
 void f_0041733c(void *object)
 {
     int i;
@@ -491,61 +411,58 @@ void f_0041733c(void *object)
     case 2:
         f_00476512(0xd);
         for (i = 0; i < *((unsigned char *)object + 0xed) && i < 0xf; ++i) {
-            *(unsigned long *)((char *)&g4b39e4[i] + 0x14) &= 0xff1fffff;
-            *(unsigned long *)((char *)&g4b3c78[i] + 0x14) &= 0xff1fffff;
+            ((HercControlView*)&g4b39e4[i])->Visibility(0);
+            ((HercControlView*)&g4b3c78[i])->Visibility(0);
         }
-        for (; i < 0xf; ++i) {
-            *(unsigned long *)((char *)&g4b39e4[i] + 0x14) =
-                (*(unsigned long *)((char *)&g4b39e4[i] + 0x14) & 0xff1fffff) + 0xa00000;
-            *(unsigned long *)((char *)&g4b3c78[i] + 0x14) =
-                (*(unsigned long *)((char *)&g4b3c78[i] + 0x14) & 0xff1fffff) + 0xa00000;
+        while(1) { if(i>14)break;
+            ((HercControlView*)&g4b39e4[i])->Visibility(5);
+            ((HercControlView*)&g4b3c78[i])->Visibility(5);
+            ++i;
         }
-        g4b38c8 &= 0xff1fffff;
-        g4b38f0 &= 0xff1fffff;
+        HercVisibility(*(unsigned long*)&g4b38c8,0);
+        HercVisibility(*(unsigned long*)&g4b38f0,0);
         if (0xf < *((unsigned char *)object + 0xed)) {
-            g4b39cc &= 0xff1fffff;
-            g4b3978 &= 0xff1fffff;
-            g4b39a0 &= 0xff1fffff;
+            HercVisibility(*(unsigned long*)&g4b39cc,0);
+            HercVisibility(*(unsigned long*)&g4b3978,0);
+            HercVisibility(*(unsigned long*)&g4b39a0,0);
         }
-        g4b4040 = (g4b4040 & 0xff1fffff) + 0xa00000;
-        g4b3fec = (g4b3fec & 0xff1fffff) + 0xa00000;
-        g4b4014 = (g4b4014 & 0xff1fffff) + 0xa00000;
-        g4b3f94 = (g4b3f94 & 0xff1fffff) + 0xa00000;
-        g4b3fbc = (g4b3fbc & 0xff1fffff) + 0xa00000;
-        g4b3918 = (g4b3918 & 0xff1fffff) + 0xa00000;
+        HercVisibility(*(unsigned long*)&g4b4040,5);
+        HercVisibility(*(unsigned long*)&g4b3fec,5);
+        HercVisibility(*(unsigned long*)&g4b4014,5);
+        HercVisibility(*(unsigned long*)&g4b3f94,5);
+        HercVisibility(*(unsigned long*)&g4b3fbc,5);
+        HercVisibility(*(unsigned long*)&g4b3918,5);
         g4b4090 &= 0xfe1fffff;
         g4b40c0 &= 0xfe1fffff;
-        g4b4150 = ((g4b4150 & 0xff1fffff) + 0xa00000) & 0xfeffffff;
+        HercVisibility(*(unsigned long*)&g4b4150,5); HercInvalidate(*(unsigned long*)&g4b4150);
         return;
     case 3:
         f_00476512(0xe);
-        for (i = 0; i < 0xf; ++i) {
-            *(unsigned long *)((char *)&g4b39e4[i] + 0x14) =
-                (*(unsigned long *)((char *)&g4b39e4[i] + 0x14) & 0xff1fffff) + 0xa00000;
-            *(unsigned long *)((char *)&g4b3c78[i] + 0x14) =
-                (*(unsigned long *)((char *)&g4b3c78[i] + 0x14) & 0xff1fffff) + 0xa00000;
+        for (i = 0; i <= 14; ++i) {
+            ((HercControlView*)&g4b39e4[i])->Visibility(5);
+            ((HercControlView*)&g4b3c78[i])->Visibility(5);
         }
-        g4b38c8 = (g4b38c8 & 0xff1fffff) + 0xa00000;
-        g4b38f0 = (g4b38f0 & 0xff1fffff) + 0xa00000;
-        g4b39cc = (g4b39cc & 0xff1fffff) + 0xa00000;
-        g4b3978 = (g4b3978 & 0xff1fffff) + 0xa00000;
-        g4b39a0 = (g4b39a0 & 0xff1fffff) + 0xa00000;
-        g4b4090 = (g4b4090 & 0xff1fffff) + 0xa00000;
-        g4b4040 &= 0xff1fffff;
-        g4b3fec &= 0xff1fffff;
-        g4b4014 &= 0xff1fffff;
-        g4b3f94 &= 0xff1fffff;
-        g4b3fbc &= 0xff1fffff;
-        g4b3918 = (g4b3918 & 0xff1fffff) + 0xa00000;
-        g4b40c0 = ((g4b40c0 & 0xff1fffff) + 0xa00000) & 0xfeffffff;
+        HercVisibility(*(unsigned long*)&g4b38c8,5);
+        HercVisibility(*(unsigned long*)&g4b38f0,5);
+        HercVisibility(*(unsigned long*)&g4b39cc,5);
+        HercVisibility(*(unsigned long*)&g4b3978,5);
+        HercVisibility(*(unsigned long*)&g4b39a0,5);
+        HercVisibility(*(unsigned long*)&g4b4090,5);
+        HercVisibility(*(unsigned long*)&g4b4040,0);
+        HercVisibility(*(unsigned long*)&g4b3fec,0);
+        HercVisibility(*(unsigned long*)&g4b4014,0);
+        HercVisibility(*(unsigned long*)&g4b3f94,0);
+        HercVisibility(*(unsigned long*)&g4b3fbc,0);
+        HercVisibility(*(unsigned long*)&g4b3918,5);
+        HercVisibility(*(unsigned long*)&g4b40c0,5); HercInvalidate(*(unsigned long*)&g4b40c0);
         g4b4150 &= 0xfe1fffff;
         return;
     case 4:
-        g4b4040 = (g4b4040 & 0xff1fffff) + 0x200000;
-        g4b3fec = (g4b3fec & 0xff1fffff) + 0x200000;
-        g4b4014 = (g4b4014 & 0xff1fffff) + 0x200000;
-        g4b3f94 = (g4b3f94 & 0xff1fffff) + 0x200000;
-        g4b3fbc = (g4b3fbc & 0xff1fffff) + 0x200000;
+        HercVisibility(*(unsigned long*)&g4b4040,1);
+        HercVisibility(*(unsigned long*)&g4b3fec,1);
+        HercVisibility(*(unsigned long*)&g4b4014,1);
+        HercVisibility(*(unsigned long*)&g4b3f94,1);
+        HercVisibility(*(unsigned long*)&g4b3fbc,1);
     case 5:
         g4b3918 &= 0xfe1fffff;
         return;
@@ -570,19 +487,12 @@ void f_004176b1(void *object)
     }
 }
 
-void f_00417732(void *object, unsigned char baseIndex)
+void f_00417732(void *object,unsigned char baseIndex)
 {
-    unsigned int i;
-
-    i = 0;
-    while (1) {
-        if (0xe < i)
-            break;
-        g4b39e4[i].SetText((const char *)object + 0xf6 +
-                           ((unsigned long)baseIndex + i) * 0x11);
-        g4b3c78[i].SetText((const char *)object + 0x7fe +
-                           ((unsigned long)baseIndex + i) * 0xc);
-        i = i + 1;
+    HercBuyDataView *screen=(HercBuyDataView*)object;
+    for(char i=0;i<15;i++) {
+        g4b39e4[i].SetText(screen->names[baseIndex+i]);
+        g4b3c78[i].SetText((const char*)((baseIndex+i)*12+(unsigned long)screen->prices));
     }
 }
 
@@ -598,190 +508,280 @@ void f_004177af(void *object, char amount)
     text = f_004418a9(&g4a70b8, *((unsigned char *)object + 0xfe7));
     *(char **)((char *)object + 0xfe3) = text;
     if (text == 0) {
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
-        /* original ASSERT line immediate */
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
         AssertFail(__FILE__, __LINE__, "no text for purchase window");
     }
     f_00417842(object);
@@ -790,26 +790,19 @@ void f_004177af(void *object, char amount)
 
 void f_00417842(void *object)
 {
-    long tabs[2];
-    tabs[0] = g48ec0c;
-    tabs[1] = g48ec10;
-    short selected = (short)g4b3fd0;
-    *(short *)((char *)object + 0xfd7) = selected;
-    if (selected != *(short *)((char *)object + 0xfd9)) {
-        BriefBlit(&g513888, 1, 0, 0, 0x2b, 0, 0x2b, 0x104, 0x188);
-        *(unsigned short *)((char *)object + 0xfd9) =
-            *(unsigned short *)((char *)object + 0xfd7);
-        gMenuTextMap = (unsigned long *)&g4bc570;
-        gMenuTextColor = g4bc4f8;
-        RichTextDraw(0xd, 0x2b, 0xd9, 0x188,
-                     *(const unsigned char **)((char *)object + 0xfe3),
-                     *(unsigned short *)((char *)object + 0xfd7), -1, 6,
-                     (long *)((char *)object + 0xfdb),
-                     (long *)((char *)object + 0xfdf), tabs, 0xf);
-        *((unsigned char *)&g4b3fec + 3) &= 0xfe;
-        ((GuiScreen *)object)->Draw();
-        SurfacePresent(&g513888);
-        f_00416f43();
+    HercTabs tabs=*(HercTabs*)&g48ec0c;
+    long selected=g4b3fd0;
+    HercBuyDataView *screen=(HercBuyDataView*)object;
+    screen->textTop=(unsigned short)selected;
+    if ((short)selected!=(short)screen->previousTop) {
+        BriefBlit(&g513888,1,0,0,0x2b,0,0x2b,0x104,0x188);
+        screen->previousTop=screen->textTop;
+        unsigned long top=screen->textTop;
+        gMenuTextMap=(unsigned long*)&g4bc570;
+        gMenuTextColor=g4bc4f8;
+        RichTextDraw(13,43,217,392,screen->description,top,-1,6,&screen->totalHeight,&screen->visibleHeight,tabs.v,15);
+        *((unsigned char*)&g4b3fec+3)&=0xfe;
+        ((GuiScreen*)screen)->Draw(); SurfacePresent(&g513888);
     }
 }
 
@@ -823,9 +816,9 @@ void f_0041791b(HercBuyDataView *screen)
     MenuDrawImage(&g513888,
                   (const MenuImage *)(screen->resource + 4), 0, 0);
     MenuDrawImage(&g513888,
-                  (const MenuImage *)(screen->resource + 4 + (screen->selected * 4 - screen->selected) * 4),
+                  (const MenuImage *)(screen->selected*12+(screen->resource+4)),
                   0, 0);
-    f_00429a75(&g4b3fd0, 0);
+    BriefSetMode(&g4b3fd0, 0);
     screen->state = 2;
     f_0041733c(screen);
     ((GuiScreen *)screen)->Invalidate();
@@ -863,19 +856,13 @@ int f_00417a27(void *object)
         f_0041733c(object);
         RichTextDraw(0x122, 0xb4, 0xd7, 0x50, text, 0, -1, 0,
                      &totalA, &visibleA, 0, 0xf);
-        result = 0x37;
+        SoundTrigger(0x37,0); return 0;
     } else {
-        result = f_0043c327();
-        if (result != 0) {
-            f_00441b19(&g4a70b8, *((unsigned char *)object + 0xfe7));
-            if (((Shell *)uiSystem)->UpdateCredits() != 0)
-                ((MenuNumber *)&g4b392c)->SetValue(g4a706d, 0);
-            *(int *)((char *)object + 0xf2) = 1;
-            f_0046cbc6(0x66, 0);
-            return 1;
-        }
+        result = f_0043c327(&g4a70b8);
+        if(result==0) {
         *((unsigned char *)object + 0x50) = 4;
-        if (g4c9772 == 0 || g4c9772 == 1) {
+        int mode=HercLogicMode();
+        if (mode == 0 || mode == 1) {
             text = (unsigned char *)f_0047c350(&gShellStrings, 0x79e, 1);
             MenuDrawImage(&g513888, (const MenuImage *)(gShellImages + 0x31c), 0x118, 0xaa);
             SurfacePresent(&g513888);
@@ -890,10 +877,16 @@ int f_00417a27(void *object)
             RichTextDraw(0x122, 0xb4, 0xd7, 0x50, text, 0, -1, 0,
                          &totalC, &visibleC, 0, 0xf);
         }
-        result = 0x72;
-    }
-    f_0046cbc6(result, 0);
-    return 0;
+            SoundTrigger(0x72,0); return 0;
+        }
+
+            f_00441b19(&g4a70b8, *((unsigned char *)object + 0xfe7));
+            if (((Shell *)uiSystem)->UpdateCredits() != 0)
+                ((MenuNumber *)&g4b392c)->SetValue(g4a706d, 0);
+            *(int *)((char *)object + 0xf2) = 1;
+            SoundTrigger(0x66, 0);
+            return 1;
+            }
 }
 
 int f_00417a27(void *object);
@@ -1055,5 +1048,7 @@ HercBuyInitScreen initScreen;
 
 
 HercBuyCtor::~HercBuyCtor() {} 
+
+
 
 
