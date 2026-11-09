@@ -1,6 +1,6 @@
 struct FogSource { long unused[10]; long count; };
 struct FogBuffer { long mode; FogSource *source; long count; signed char *lower; signed char *upper; long state; int Resize(); void Initialize(int mode = 0, int initialize = 1);  };
-extern "C" void AssertFail(const char *, int, const char *); static const char FogSourcePath[] = "terr\\fog.c"; extern "C" void MemoryRelease(void *); extern "C" void *MemoryAllocationRetry(unsigned long); extern "C" void *memcpy(void *, const void *, unsigned long); extern "C" void *memset(void *, int, unsigned long); void FogInitialize(FogBuffer *, int mode = 0, int initialize = 1);
+extern "C" void AssertFail(const char *, int, const char *); static const char FogSourcePath[] = "terr\\tfog.c"; extern "C" void MemoryRelease(void *); extern "C" void *MemoryAllocationRetry(unsigned long); extern "C" void *memcpy(void *, const void *, unsigned long); extern "C" void *memset(void *, int, unsigned long); void FogInitialize(FogBuffer *, int mode = 0, int initialize = 1);
 
 
 void FogNoOp() {}
@@ -74,11 +74,11 @@ void FogCopy(FogBuffer *dst, FogBuffer *src) { if (!dst->lower || !dst->upper) A
 
 void FogMerge(FogBuffer *dst, FogBuffer *src) { dst->mode = 0; for (long i = 0; i <= dst->count; ++i) { if (dst->lower[i] > src->lower[i]) dst->lower[i] = src->lower[i]; if (dst->upper[i] > src->upper[i]) dst->upper[i] = src->upper[i]; } }
 
-void FogBuffer::Initialize(int mode, int initialize) { volatile long *modeField = (volatile long *)&this->mode; *modeField = mode; long effectiveMode = *modeField; this->state = 1; int fillLower = 0; switch (effectiveMode) { case 1: case 3: case 4: fillLower = 1; break; case 5: fillLower = 0; break; } int fillUpper = (effectiveMode == 4); if (fillLower || initialize) memset(this->lower, fillLower, this->count + 1); if (fillUpper || initialize) memset(this->upper, fillUpper, this->count + 1); }
+void FogBuffer::Initialize(int mode, int initialize) { volatile long *modeField = (volatile long *)&this->mode; *modeField = mode; long effectiveMode = *modeField; this->state = 1; char fillLower = 0; if (effectiveMode == 1) fillLower = 1; else if (effectiveMode == 3) fillLower = 1; else if (effectiveMode == 4) fillLower = 1; if (effectiveMode == 5) fillLower = 0; char fillUpper = (effectiveMode == 4); if (fillLower || initialize) memset(this->lower, fillLower, this->count + 1); if (fillUpper || initialize) memset(this->upper, fillUpper, this->count + 1); }
 
 void FogResetMode(FogBuffer *p) { if (p->mode == 4 || p->mode == 3 || p->mode == 2 || p->mode == 5) return; p->state = 1; memset(p->upper, 0, p->count + 1); }
 
-int FogSetValue(FogBuffer *p, long index, int value) { register long v; signed char *lower; if (p->mode == 4) goto unchanged; if (p->mode == 5) goto unchanged; v = (value > 0); lower = p->lower; if (lower[index] != v) goto changed; if (p->upper[index] == v) goto unchanged; changed: p->state = 1; p->lower[index] = (signed char)v; p->upper[index] = (signed char)v; return 1; unchanged: return 0; }
+int FogSetValue(FogBuffer *p, long index, int value) { register long v; if (p->mode == 4) return 0; if (p->mode == 5) return 0; v = (value > 0); if (*(p->lower + index) != v || *(p->upper + index) != v) { p->state = 1; *(p->lower + index) = (signed char)v; *(p->upper + index) = (signed char)v; return 1; } return 0; }
 
 struct TerrainGrid { long fields[17]; void *cells; void *neighbors; };
 struct GridPoint { long x; long y; };
@@ -91,30 +91,30 @@ extern long gTerrainCellState;
 extern long gFogScale[16];
 extern unsigned char gFogMaskWidths[6];
 extern long gFogGlobalMode;
-void GridToWorldCoord(TerrainGrid *, GridPoint *, long);
-long GridMetric(GridPoint *, GridPoint *);
+extern "C" void TargetObjectInit(const char *, void *, int);
+extern "C" int LogicCopyPoint(int *, int *);
 long GridPointDistance(const GridPoint *, const GridPoint *);
 long GridIndexFromCoord(TerrainGrid *, GridPoint *);
-void GridShapeCreate(void *, TerrainGrid *, long);
-void GridShapeReset(void *, long);
-void GridShapeVisit(void *, long (*)(void *), long, long);
-void GridGetIndexCoord(TerrainGrid *, GridPoint *, long);
+int BestLocInitialize(void *, const char *, int);
+int BestLocSetCandidate(void *, void *);
+void BestLocVisit(void *, int (*)(void *));
+void BestLocSetData(void *, void *, void *);
 int StreamRead(void *, void *, int);
 int StreamWrite(void *, const void *, unsigned long);
-extern "C" FogObject *FogObjectLookup(long);
+extern FogObject *CreateState(int);
 
-long FogUpdateCell(void *argument) {
+int FogUpdateCell(void *argument) {
     long index = ((long *)argument)[3];
     if (index) {
-        volatile unsigned long visible = (gFogCast.limit <= 7);
+        unsigned char visible = (gFogCast.limit <= 7);
         unsigned long band;
         char blocked = 0;
         if (visible) {
             GridPoint coordinate;
-            GridToWorldCoord(*(TerrainGrid **)argument, &coordinate, index);
+            TargetObjectInit((const char *)*(TerrainGrid **)argument, &coordinate, (int)index);
             long distance = GridPointDistance(&gFogCast.target, &coordinate);
             band = ((unsigned long)distance + 0x1fU) >> 0x1a;
-            long range = GridMetric(&gFogCast.source, (GridPoint *)((unsigned char *)argument + sizeof(long)));
+            int range = LogicCopyPoint((int *)&gFogCast.source, (int *)((unsigned char *)argument + sizeof(long)));
             blocked = gFogCast.mask[band];
             if (range < 0) blocked = 0;
         }
@@ -124,7 +124,7 @@ long FogUpdateCell(void *argument) {
                 gFogCast.active->lower[index] = gFogCast.active->upper[index];
             } else {
                 long objectId = ((long *)*(TerrainGrid **)argument)[18 + index * 2];
-                FogObject *object = objectId ? FogObjectLookup(objectId) : 0;
+                FogObject *object = objectId ? CreateState((int)objectId) : 0;
                 if (object && object->raw[0x88] && index == *(long *)(object->raw + 0x42) && gTerrainCellState != *(long *)(object->raw + 8)) gFogCast.flags |= 4;
             }
             if (visible && gFogCast.limit <= ((unsigned char *)((*(TerrainGrid **)argument)->cells))[index * 12 + 1]) {
@@ -145,7 +145,7 @@ long FogUpdateCell(void *argument) {
     return 0;
 }
 
-long FogCast(FogBuffer *buffer, long index, FogObject *object) {
+long FogCast(register FogBuffer *buffer, register long index, register FogObject *object) {
     if (buffer->mode == 4 || buffer->mode == 5) return 0;
     gFogCast.flagsWord = 0;
     buffer->state = 1;
@@ -153,16 +153,16 @@ long FogCast(FogBuffer *buffer, long index, FogObject *object) {
         gFogCast.active = buffer;
         gFogCast.owner = object;
         gFogCast.index = index;
-        GridGetIndexCoord((TerrainGrid *)buffer->source, &gFogCast.source, index);
-        GridToWorldCoord((TerrainGrid *)buffer->source, &gFogCast.target, gFogCast.index);
+        BestLocSetData(buffer->source, &gFogCast.source, (void *)index);
+        TargetObjectInit((const char *)buffer->source, &gFogCast.target, (int)gFogCast.index);
         long shape[10];
-        GridShapeCreate(shape, (TerrainGrid *)buffer->source, *(long *)(object->raw + 0x1f));
-        GridShapeReset(shape, gFogCast.index);
+        BestLocInitialize(shape, (const char *)buffer->source, (int)*(long *)(object->raw + 0x1f));
+        BestLocSetCandidate(shape, (void *)gFogCast.index);
         long half = (gTerrainCellState + 500) / 2;
         long scale = gFogScale[*(long *)(object->raw + 0x23)];
         memset(gFogCast.mask, 0, 0x40);
         gFogCast.limit = ((unsigned char *)((TerrainGrid *)buffer->source)->cells)[gFogCast.index * 12 + 1] + (scale * 500 + half / 2) / half;
-        GridShapeVisit(shape, FogUpdateCell, index, index);
+        BestLocVisit(shape, FogUpdateCell);
         gFogCast.flagsWord |= 3;
     }
     return gFogCast.flagsWord;

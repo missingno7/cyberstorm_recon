@@ -1579,6 +1579,14 @@
    "mangled": "W?MenuFormatNumber$n(lll)pnxa",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
   },
+  "GridInitConfig": {
+   "va": "0042acf0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?GridInitConfig$n()v",
+   "tu": "src/terr/tgrid.c",
+   "evidence": "placed (at) in src/terr/tgrid.c 2026-11-09"
+  },
   "GridClear": {
    "va": "0042ad60",
    "kind": "func",
@@ -1587,6 +1595,30 @@
    "tu": "src/terr/tgrid.c",
    "evidence": "strict match 2026-11-09"
   },
+  "GridRelease": {
+   "va": "0042ad80",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?GridRelease$n(pn$TerrainGrid$$)pn$1$",
+   "tu": "src/terr/tgrid.c",
+   "evidence": "placed (at) in src/terr/tgrid.c 2026-11-09"
+  },
+  "GridDestroy": {
+   "va": "0042adc0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?GridDestroy$n(pn$TerrainGrid$$)v",
+   "tu": "src/terr/tgrid.c",
+   "evidence": "placed (at) in src/terr/tgrid.c 2026-11-09"
+  },
+  "GridInitialize": {
+   "va": "0042ae00",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?GridInitialize$n(pn$TerrainGrid$$ll)l",
+   "tu": "src/terr/tgrid.c",
+   "evidence": "placed (at) in src/terr/tgrid.c 2026-11-09"
+  },
   "GridClearNeighbors": {
    "va": "0042af80",
    "kind": "func",
@@ -1594,6 +1626,14 @@
    "mangled": "W?GridClearNeighbors$n(pn$TerrainGrid$$)v",
    "tu": "src/terr/tgrid.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "GridPointToIndex": {
+   "va": "0042afb0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?GridPointToIndex$n(pn$TerrainGrid$$pn$GridPoint$$)l",
+   "tu": "src/terr/tgrid.c",
+   "evidence": "placed (at) in src/terr/tgrid.c 2026-11-09"
   },
   "TargetObjectInit": {
    "va": "0042b1a0",
@@ -1615,6 +1655,14 @@
    "status": "hypothesis",
    "mangled": "W?BestLocSetData$n(pnvpnvpnv)v",
    "evidence": "implied by src/logic/bestloc.c 2026-11-09"
+  },
+  "GridFindNeighbor": {
+   "va": "0042b2d0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?GridFindNeighbor$n(pn$TerrainGrid$$ll)l",
+   "tu": "src/terr/tgrid.c",
+   "evidence": "placed (at) in src/terr/tgrid.c 2026-11-09"
   },
   "GridClamp": {
    "va": "0042b3a0",
@@ -1638,6 +1686,54 @@
    "status": "hypothesis",
    "mangled": "LogicCopyPoint",
    "evidence": "implied by src/logic/lsys.c 2026-11-09"
+  },
+  "GridVisitBest": {
+   "va": "0042b460",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?GridVisitBest$n(pnv)l",
+   "tu": "src/terr/tgrid.c",
+   "evidence": "placed (at) in src/terr/tgrid.c 2026-11-09"
+  },
+  "GridFindClosest": {
+   "va": "0042b540",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?GridFindClosest$n(pn$TerrainGrid$$ull)l",
+   "tu": "src/terr/tgrid.c",
+   "evidence": "placed (at) in src/terr/tgrid.c 2026-11-09"
+  },
+  "GridLoad": {
+   "va": "0042b640",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?GridLoad$n(pn$TerrainGrid$$pnv)l",
+   "tu": "src/terr/tgrid.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "GridSave": {
+   "va": "0042b6f0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?GridSave$n(pn$TerrainGrid$$pnv)l",
+   "tu": "src/terr/tgrid.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "GridInvalidIndex": {
+   "va": "0042b780",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?GridInvalidIndex$n()l",
+   "tu": "src/terr/tgrid.c",
+   "evidence": "placed (at) in src/terr/tgrid.c 2026-11-09"
+  },
+  "GridSerializeStats": {
+   "va": "0042b7a0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?GridSerializeStats$n(pn$TerrainGrid$$pnv)l",
+   "tu": "src/terr/tgrid.c",
+   "evidence": "placed (at) in src/terr/tgrid.c 2026-11-09"
   },
   "BestLocInitialize": {
    "va": "0042caf0",
@@ -1744,6 +1840,22 @@
    "tu": "src/terr/tfog.c",
    "evidence": "strict match 2026-11-09"
   },
+  "FogSetValue": {
+   "va": "004331e0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?FogSetValue$n(pn$FogBuffer$$li)i",
+   "tu": "src/terr/tfog.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "FogUpdateCell": {
+   "va": "00433240",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?FogUpdateCell$n(pnv)i",
+   "tu": "src/terr/tfog.c",
+   "evidence": "placed (at) in src/terr/tfog.c 2026-11-09"
+  },
   "FogCast": {
    "va": "004333a0",
    "kind": "func",
@@ -1814,6 +1926,30 @@
    "mangled": "W?FastBufferReset$n(pn$FastBuffer$$)v",
    "tu": "src/terr/tfast.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "FastBuffer::Update": {
+   "va": "00434d90",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Update$:FastBuffer$n(ll)v",
+   "tu": "src/terr/tfast.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "FastBuffer::BuildFlags": {
+   "va": "00434e30",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?BuildFlags$:FastBuffer$n()v",
+   "tu": "src/terr/tfast.c",
+   "evidence": "placed (at) in src/terr/tfast.c 2026-11-09"
+  },
+  "FastBuffer::BuildPixels": {
+   "va": "00434f50",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?BuildPixels$:FastBuffer$n()v",
+   "tu": "src/terr/tfast.c",
+   "evidence": "placed (at) in src/terr/tfast.c 2026-11-09"
   },
   "FastBufferMakeCoords": {
    "va": "00435020",
@@ -4474,6 +4610,13 @@
    "status": "hypothesis",
    "mangled": "W?gGuiFadeLast$nl",
    "evidence": "implied by src/_unknown/tu_0042a0e0.c 2026-11-09"
+  },
+  "GridSourcePath": {
+   "va": "00490450",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?GridSourcePath$n[]xa",
+   "evidence": "implied by src/terr/tgrid.c 2026-11-09"
   },
   "FogSourcePath": {
    "va": "004905ec",

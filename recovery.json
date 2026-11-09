@@ -380,6 +380,16 @@
      "va": "0042b3d0",
      "size": 80,
      "mangled": "W?GridRotatePoint$n(pn$GridPoint$$l)v"
+    },
+    "GridLoad": {
+     "va": "0042b640",
+     "size": 176,
+     "mangled": "W?GridLoad$n(pn$TerrainGrid$$pnv)l"
+    },
+    "GridSave": {
+     "va": "0042b6f0",
+     "size": 144,
+     "mangled": "W?GridSave$n(pn$TerrainGrid$$pnv)l"
     }
    },
    "data": {},
@@ -424,6 +434,11 @@
      "va": "004331a0",
      "size": 64,
      "mangled": "W?FogResetMode$n(pn$FogBuffer$$)v"
+    },
+    "FogSetValue": {
+     "va": "004331e0",
+     "size": 96,
+     "mangled": "W?FogSetValue$n(pn$FogBuffer$$li)i"
     },
     "FogCastAlternate": {
      "va": "00433510",
@@ -473,6 +488,11 @@
      "va": "00434d70",
      "size": 32,
      "mangled": "W?FastBufferReset$n(pn$FastBuffer$$)v"
+    },
+    "FastBuffer::Update": {
+     "va": "00434d90",
+     "size": 160,
+     "mangled": "W?Update$:FastBuffer$n(ll)v"
     },
     "FastBufferMakeCoords": {
      "va": "00435020",
