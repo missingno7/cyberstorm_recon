@@ -329,8 +329,8 @@ extern "C" char *BriefFormat(const char *,...);
 extern void f_00477295(const char *);
 extern int f_0047723b(const char *);
 extern int g4d0413;
-/* Six register-byte differences and an extent blocker remain. */
-inline void ShellConfirmPurchasesCore()
+/* The public extent also owns the following ProcessInput dispatch tables. */
+static void ShellConfirmPurchases()
 {
 
 
@@ -361,7 +361,6 @@ inline void ShellConfirmPurchasesCore()
 
 
 }
-void ShellConfirmPurchases(){ShellConfirmPurchasesCore();}
 void Shell::ProcessInput()
 {
     long key=ShellInputCommand();
@@ -471,6 +470,7 @@ char *Shell::DifficultyLabel()
     case 1:return gShellStrings.GetString(502,1);
     case 2:return gShellStrings.GetString(503,1);
     }
+
 
 
 
