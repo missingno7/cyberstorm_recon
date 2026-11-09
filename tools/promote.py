@@ -91,14 +91,15 @@ def main(argv):
     if lost and set(lost) - set(opts["loss"]):
         print("LOSS (not accepted):", sorted(set(lost) - set(opts["loss"])))
         return 1
-    # label collisions inside the candidate
+    # overloads sharing a readable label inside the candidate: ledger and symbols keys become `label#mangled`
     labels = {}
     for n in strict:
         labels.setdefault(symbols.label(n), []).append(n)
-    dup = {k: v for k, v in labels.items() if len(v) > 1}
-    if dup:
-        print("label collision (overloads need distinct labels):", dup)
-        return 1
+    dup = {k for k, v in labels.items() if len(v) > 1}
+
+    def lkey(n):
+        lab = symbols.label(n)
+        return f"{lab}#{n}" if lab in dup else lab
     db = symbols.load()
     syms = db["symbols"]
     scope = symbols.scope_of_as(entry["as"])
@@ -108,6 +109,8 @@ def main(argv):
         readable label is already taken by a different mangled name get `label#mangled` (the resolver finds
         them by their exact mangled name first)."""
         k = symbols.key_for(n, e.get("local"), scope)
+        if symbols.label(n) in dup:
+            return f"{k}#{n}"
         cur = syms.get(k)
         if cur and cur.get("mangled") and cur["mangled"] != n and cur["va"] != e.get("va"):
             return f"{k}#{n}"
@@ -144,7 +147,7 @@ def main(argv):
             return 1
         other = [n for n, e in syms.items() if e["va"] == v and n != lab]
         print(f"  new hypothesis binding: {lab} = {v}" + (f"  ALIAS of {other}: use that name" if other else ""))
-    gain = sorted({symbols.label(n) for n in strict} - set(old.get("functions", {})))
+    gain = sorted({lkey(n) for n in strict} - set(old.get("functions", {})))
     sbytes = sum(e["end"] - e["off"] for e in strict.values())
     data_strict = [s for r in reports for s in r["segments"]
                    if s["class"].upper() != "CODE" and s["status"] == "STRICT"]
@@ -166,7 +169,7 @@ def main(argv):
     shutil.copyfile(cand, dest)
     now = datetime.date.today().isoformat()
     rec = {k: v for k, v in entry.items() if v is not None}
-    rec["functions"] = {symbols.label(n): {"va": e["va"], "size": e["end"] - e["off"], "mangled": n}
+    rec["functions"] = {lkey(n): {"va": e["va"], "size": e["end"] - e["off"], "mangled": n}
                         for n, e in sorted(strict.items(), key=lambda kv: kv[1]["va"])}
     rec["data"] = {s["seg"]: {"va": s["base"], "size": s["size"]} for s in data_strict}
     rec["accepted"] = now

@@ -76,5 +76,8 @@ def data_losses(reports, recorded):
 
 
 def by_label(ext):
+    """{label: extent}, plus `label#mangled` for every C++ name (ledger key of overloads sharing a label)."""
     import symbols
-    return {symbols.label(n): e for n, e in ext.items()}
+    out = {symbols.label(n): e for n, e in ext.items()}
+    out.update({f"{symbols.label(n)}#{n}": e for n, e in ext.items() if n.startswith("W?")})
+    return out

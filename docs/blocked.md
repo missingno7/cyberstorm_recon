@@ -33,3 +33,9 @@ sibling sources into the scratch dir (preserving relative paths so __FILE__ of i
 "sim\simturn.c"), promote/gate policy-check and publish the included files, ledger records the include set.
 Until then those TUs are published as single files and functions whose __FILE__/__LINE__ come from an included
 file (e.g. 00452570, asserts on simgame.c lines 113/189) stay open.
+
+## Shared inline COMDAT under two names (2026-11-09, s21)
+`src/_unknown/tu_004297d4.c` (s21 candidate) emits `GuiPoint::$ct()` as an inline COMDAT; the linker kept one copy at
+0042c9d0, which `src/terr/tdisplay.c` already counts under the working label `DisplayIdentityA`. Promotion refuses
+the second name. Fix: make tdisplay.c use the real inline `GuiPoint` constructor (same mangled name), then promote
+tu_004297d4 (its shared COMDAT is then skipped as already counted). 7 STRICT functions of s21 wait on this.
