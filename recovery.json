@@ -228,55 +228,84 @@
   "src/io/file.c": {
    "as": "io\\file.c",
    "install": "wc106",
-   "profile": "ot",
+   "profile": "ot-c",
    "functions": {
     "FileInit": {
      "va": "0047e450",
      "size": 32,
-     "mangled": "W?FileInit$n(pn$FileRecord$$)v"
+     "mangled": "FileInit"
     },
     "FileRecord::Open": {
      "va": "0047e4d0",
      "size": 208,
      "mangled": "W?Open$:FileRecord$n(pnxaul)i"
     },
+    "IORelease": {
+     "va": "0047e5a0",
+     "size": 112,
+     "mangled": "IORelease"
+    },
+    "StreamRead": {
+     "va": "0047e670",
+     "size": 128,
+     "mangled": "StreamRead"
+    },
+    "StreamWrite": {
+     "va": "0047e6f0",
+     "size": 144,
+     "mangled": "StreamWrite"
+    },
     "FileGetAndClearError": {
      "va": "0047e7f0",
      "size": 16,
-     "mangled": "W?FileGetAndClearError$n(pn$FileRecord$$)i"
+     "mangled": "FileGetAndClearError"
+    },
+    "SetRange": {
+     "va": "0047e8d0",
+     "size": 80,
+     "mangled": "SetRange"
     },
     "FileCopy": {
      "va": "0047e970",
      "size": 80,
-     "mangled": "W?FileCopy$n(pnxapnxai)i"
+     "mangled": "FileCopy"
     },
     "FileMove": {
      "va": "0047e9c0",
      "size": 64,
-     "mangled": "W?FileMove$n(pnxapnxa)i"
+     "mangled": "FileMove"
     },
     "FileDelete": {
      "va": "0047ea00",
      "size": 48,
-     "mangled": "W?FileDelete$n(pnxa)i"
+     "mangled": "FileDelete"
     },
     "DirectoryCreate": {
      "va": "0047ea30",
      "size": 48,
-     "mangled": "W?DirectoryCreate$n(pnxa)i"
+     "mangled": "DirectoryCreate"
     },
     "DirectoryRemove": {
      "va": "0047ea60",
      "size": 48,
-     "mangled": "W?DirectoryRemove$n(pnxa)i"
+     "mangled": "DirectoryRemove"
     },
     "FileFreeSpace": {
      "va": "0047ea90",
      "size": 105,
-     "mangled": "W?FileFreeSpace$n(c)l"
+     "mangled": "FileFreeSpace"
     }
    },
-   "data": {},
+   "data": {
+    "CONST": {
+     "va": "004a4b9c",
+     "size": 10
+    },
+    "_DATA": {
+     "va": "0048c0b8",
+     "size": 8
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/terr/tgrid.c": {

@@ -1182,7 +1182,7 @@
    "va": "0047e450",
    "kind": "func",
    "status": "matched",
-   "mangled": "W?FileInit$n(pn$FileRecord$$)v",
+   "mangled": "FileInit",
    "tu": "src/io/file.c",
    "evidence": "strict match 2026-11-09"
   },
@@ -1205,9 +1205,10 @@
   "IORelease": {
    "va": "0047e5a0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "IORelease",
-   "evidence": "implied by src/io/resource.c 2026-11-09"
+   "tu": "src/io/file.c",
+   "evidence": "strict match 2026-11-09"
   },
   "IoClose": {
    "va": "0047e610",
@@ -1219,9 +1220,10 @@
   "StreamRead": {
    "va": "0047e670",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?StreamRead$n(pnvpnvi)i",
-   "evidence": "implied by src/logic/lactor.c 2026-11-09"
+   "status": "matched",
+   "mangled": "StreamRead",
+   "tu": "src/io/file.c",
+   "evidence": "strict match 2026-11-09"
   },
   "IoWrite": {
    "va": "0047e670",
@@ -1233,9 +1235,10 @@
   "StreamWrite": {
    "va": "0047e6f0",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?StreamWrite$n(pnvpnxvi)i",
-   "evidence": "implied by src/logic/lactor.c 2026-11-09"
+   "status": "matched",
+   "mangled": "StreamWrite",
+   "tu": "src/io/file.c",
+   "evidence": "strict match 2026-11-09"
   },
   "IoRead": {
    "va": "0047e780",
@@ -1248,7 +1251,7 @@
    "va": "0047e7f0",
    "kind": "func",
    "status": "matched",
-   "mangled": "W?FileGetAndClearError$n(pn$FileRecord$$)i",
+   "mangled": "FileGetAndClearError",
    "tu": "src/io/file.c",
    "evidence": "strict match 2026-11-09"
   },
@@ -1263,10 +1266,10 @@
   "SetRange": {
    "va": "0047e8d0",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?SetRange$n(pn$FileRecord$$ill)v",
+   "status": "matched",
+   "mangled": "SetRange",
    "tu": "src/io/file.c",
-   "evidence": "placed (at) in src/io/file.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "FileExists": {
    "va": "0047e920",
@@ -1280,7 +1283,7 @@
    "va": "0047e970",
    "kind": "func",
    "status": "matched",
-   "mangled": "W?FileCopy$n(pnxapnxai)i",
+   "mangled": "FileCopy",
    "tu": "src/io/file.c",
    "evidence": "strict match 2026-11-09"
   },
@@ -1288,7 +1291,7 @@
    "va": "0047e9c0",
    "kind": "func",
    "status": "matched",
-   "mangled": "W?FileMove$n(pnxapnxa)i",
+   "mangled": "FileMove",
    "tu": "src/io/file.c",
    "evidence": "strict match 2026-11-09"
   },
@@ -1296,7 +1299,7 @@
    "va": "0047ea00",
    "kind": "func",
    "status": "matched",
-   "mangled": "W?FileDelete$n(pnxa)i",
+   "mangled": "FileDelete",
    "tu": "src/io/file.c",
    "evidence": "strict match 2026-11-09"
   },
@@ -1304,7 +1307,7 @@
    "va": "0047ea30",
    "kind": "func",
    "status": "matched",
-   "mangled": "W?DirectoryCreate$n(pnxa)i",
+   "mangled": "DirectoryCreate",
    "tu": "src/io/file.c",
    "evidence": "strict match 2026-11-09"
   },
@@ -1312,7 +1315,7 @@
    "va": "0047ea60",
    "kind": "func",
    "status": "matched",
-   "mangled": "W?DirectoryRemove$n(pnxa)i",
+   "mangled": "DirectoryRemove",
    "tu": "src/io/file.c",
    "evidence": "strict match 2026-11-09"
   },
@@ -1320,7 +1323,7 @@
    "va": "0047ea90",
    "kind": "func",
    "status": "matched",
-   "mangled": "W?FileFreeSpace$n(c)l",
+   "mangled": "FileFreeSpace",
    "tu": "src/io/file.c",
    "evidence": "strict match 2026-11-09"
   },
@@ -1913,6 +1916,13 @@
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g_fileOpenCount$nul",
+   "evidence": "implied by src/io/file.c 2026-11-09"
+  },
+  "g_fileCloseCount": {
+   "va": "00514464",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g_fileCloseCount$nul",
    "evidence": "implied by src/io/file.c 2026-11-09"
   },
   "g_fileDirectCount": {

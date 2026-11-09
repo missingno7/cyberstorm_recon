@@ -34,6 +34,9 @@ You reconstruct C++ source that Watcom 10.6 compiles to the exact bytes of `CSTO
 - C or C++ is per TU. Byte-width tests of `char` fields (`mov dl,[x]; test dl,dl`) mean the C front end
   (`--profile ot-c|plain-c`, plain C structs and functions); `xor r,r; mov rl,[x]; test r,r` or `movsx` mean
   C++. Global objects with constructors/destructors, `W?` names and default arguments mean C++.
+- Asserts: the original macro evaluates the asserted expression into a scalar temporary first
+  (`unsigned long v = f->open; if (v == 0) AssertFail(__FILE__, __LINE__, (char *)v);`). Using the member
+  expression twice adds ESI/EDI saves to the prologue. Diffs at +1..+3 in assert-bearing functions: try this.
 - Use Watcom's `<windows.h>` for Win32 calls, not hand-written `__stdcall` prototypes.
 - Never call Watcom runtime internals under invented names. `__wcpp_2_mod_register_`, `__wcpp_2_ctor_array_`,
   `__wcpp_2_dtor_array_*`, `W?$nwn`/`W?$nan` (new/new[]), `W?$dln`/`W?$dan` (delete/delete[]) are generated
