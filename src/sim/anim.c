@@ -4,8 +4,8 @@ char animSourcePath[] = "sim\\anim.c";
 extern void AssertFail(const char *file, int line, const char *message);
 struct AnimBlockAllocation { unsigned char bytes[0x494]; };
 extern "C" unsigned int TimerNow(void);
-struct AnimPair { unsigned long first; unsigned long second; };
-extern int *actorIndexTable;
+struct AnimPair { unsigned long first; unsigned long second; void Copy(const AnimPair &p) { *this = p; } int Equal(const AnimPair &p) const { return first == p.first && second == p.second; } };
+extern int *actorIndexTable; static inline unsigned long *AnimResourceSlot(int index) { return (unsigned long *)((char *)actorIndexTable+index*8); }
 extern unsigned long animReleaseSentinel;
 extern const char fallbackName[];
 extern int animationMetaAt0cc0[];
@@ -48,7 +48,7 @@ extern int g_004d2df2;
 extern int g_004d271a;
 extern unsigned char *simActorVisibility;
 extern int g_004c7e50;
-extern char modeLogName[];
+extern char modeLogName[], modeCheckName[];
 extern char targetBriefResource[];
 struct StrPool { char *GetString(long id, int flags); };
 extern "C" void TargetObjectInit(const char *name, void *position,
@@ -163,16 +163,16 @@ int AnimActionAdvance(void *action) {
 unsigned char *p = (unsigned char *)action; unsigned long now = TimerNow(); if (now >= *(unsigned long *)(p + 14) && p[7]) { *(unsigned long *)(p + 14) = now + 1000 / (int)(unsigned char)p[7]; return 1; } return 0;
 }
 int AnimActionStep(unsigned char *p) {
-    unsigned long now = TimerNow();
-    if (now < *(unsigned long *)(p + 14))
-        return 0;
-    if (!p[7])
-        return 0;
-    *(unsigned long *)(p + 14) = now + 1000 / (int)(unsigned char)p[7];
-    if (!p[9])
-        return 0;
-    if (!p[5])
-        return 0;
+int advanced=AnimActionAdvance(p); if (!advanced) return 0; if (!p[9]) return 0; if ((int)p[5]==0) return 0; 
+
+
+
+
+
+
+
+
+
     if (p[10] & 0x20) {
         unsigned char frame = p[8];
         ++frame;
@@ -262,35 +262,35 @@ void AnimActionClearGroup(void *action) {
     }
     actorIndexTable[index * 2] = 0;
 }
-void AnimActionReplace(unsigned char *action, unsigned long value) {
-    unsigned char *p = action;
-    int count = animationMetaAt0cbc[*(unsigned short *)(p + 12) * 15];
-    int index = *(int *)(p + 0x22);
+void AnimActionReplace(unsigned char *action, unsigned long value)  {
+    int count=AnimActionGetMetadata(action);
+    int index = *(int *)(action + 0x22);
     int resourceListA[10];
     int resourceListB[10];
-    if (count > 1) {
+    if (count > 1)  {
         animReleaseSentinel = 0;
         BestLocInitialize(resourceListA, fallbackName, count - 1);
         BestLocSetCandidate(resourceListA, (void *)index);
         BestLocVisit(resourceListA, (int (*)(void *))AnimActionRelease);
-    } else {
+    }
+    else  {
         actorIndexTable[index * 2] = 0;
     }
-    index = AnimResourceResolve((unsigned long)fallbackName,
-                                (int *)(p + 0x12));
-    *(int *)(p + 0x22) = index;
-    AnimResourceLoadEntry((unsigned long)fallbackName,
-                          (unsigned long *)(p + 0x1a), index);
-    index = *(int *)(p + 0x22);
-    if (count > 1) {
+    index = AnimResourceResolve((unsigned long)fallbackName, (int *)(action + 0x12));
+    *(int *)(action + 0x22) = index;
+    AnimResourceLoadEntry((unsigned long)fallbackName, (unsigned long *)(action + 0x1a), index);
+    index = *(int *)(action + 0x22);
+    if (count > 1)  {
         animReleaseSentinel = value;
         BestLocInitialize(resourceListB, fallbackName, count - 1);
         BestLocSetCandidate(resourceListB, (void *)index);
         BestLocVisit(resourceListB, (int (*)(void *))AnimActionRelease);
-    } else {
-        actorIndexTable[index * 2] = value;
+    }
+    else  {
+        *AnimResourceSlot(index)=value;
     }
 }
+
 void AnimActionUpdateTrajectory(int *action, int *actor) {
     unsigned char *p = (unsigned char *)action;
     int distance = 0;
@@ -325,7 +325,7 @@ void AnimActionUpdateTrajectory(int *action, int *actor) {
     int scaledWidth = ViewScale(actor,
         animationMetaAt0cc4[*(unsigned short *)(p + 12) * 15]) * width;
     scaledWidth /= 64;
-    int height = *(unsigned short *)((char *)frame + 6);
+    int height = *(unsigned short *)(*(unsigned char **)(p + 0x4b) + 6);
     int scaledHeight = ViewScale(actor,
         animationMetaAt0cc8[*(unsigned short *)(p + 12) * 15]) * height;
     scaledHeight /= 64;
@@ -333,8 +333,10 @@ void AnimActionUpdateTrajectory(int *action, int *actor) {
     *(int *)(p + 0x3b) = *(int *)(p + 0x2a);
     *(int *)(p + 0x3f) = *(int *)(p + 0x2e);
     *(int *)(p + 0x47) = scaledHeight;
+    width = *(unsigned short *)(*(unsigned char **)(p + 0x4b) + 4);
     if (width != 0)
         *(int *)(p + 0x3b) -= ((unsigned int)xOffset * scaledWidth) / width;
+    height = *(unsigned short *)(*(unsigned char **)(p + 0x4b) + 6);
     if (height != 0)
         *(int *)(p + 0x3f) -= (yOffset * scaledHeight) / height;
     p[11] = 0;
@@ -352,14 +354,15 @@ void AnimActionInterpolateDrawPos(void *action, int *position, int frame,
         ends[0] = frameData[frame * 2 + 2];
         ends[1] = frameData[frame * 2 + 3];
         if (ends[0] != 0 || ends[1] != 0) {
+            ends[0] -= frameData[0]; ends[1] -= frameData[1];
             ((int *)position)[0] = *(int *)(p + 0x2a);
             ((int *)position)[1] = *(int *)(p + 0x2e);
             int scaleX = ViewScale(actor,
                 animationMetaAt0cc4[*(unsigned short *)(p + 12) * 15]);
-            position[0] += ((ends[0] - frameData[0]) * scaleX) / 64;
+            position[0] += (ends[0] * scaleX) / 64;
             int scaleY = ViewScale(actor,
                 animationMetaAt0cc8[*(unsigned short *)(p + 12) * 15]);
-            position[1] += ((ends[1] - frameData[1]) * scaleY) / 64;
+            position[1] += (ends[1] * scaleY) / 64;
         }
     }
 }
@@ -412,8 +415,8 @@ success:
         *((unsigned char *)actor + 0x8d) = 1;
         *(int *)(p + 0x26) = (int)direction;
         if (g_004d2df2 != 0 && target != 0 && simActorVisibility[target] == 0)
-            f_0044e940(0x4d2460, 0);
-        if (modeSwitch != 0 && ModeCheck(0x4d2460) != 0)
+            f_0044e940((unsigned long)modeCheckName, 0);
+        if (modeSwitch != 0 && ModeCheck((unsigned long)modeCheckName) != 0)
             f_004731e8(modeLogName, actor, target, event);
         ++*(int *)(block + 0x488);
         if (oldActor != 0) {
@@ -535,9 +538,6 @@ case 4: {
 // Original assertion source-line padding.
 // Original assertion source-line padding.
 // Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
             if (!block || !*(int *)(block + 0x490)) AssertFail(animSourcePath, __LINE__, 0);
             int current = *(int *)(p + 0x5f), count = *(int *)(p + 99); if (current < count) {
                 *(int *)(p + 0x12) = current * (*(int *)(p + 0x57) - *(int *)(p + 0x4f)) / count + *(int *)(p + 0x4f);
@@ -546,15 +546,15 @@ case 4: {
                 
                 p[8] = (unsigned char)step; } else { int slot = *(int *)(block + 0x488); int target = *(int *)(block + slot * 4); if (!target) {
                     *(int *)(p + 0x12) = *(int *)(p + 0x57); *(int *)(p + 0x16) = *(int *)(p + 0x5b);
-                    f_00455890(*(int *)(block + 0x490), 1); if (slot > 0 && ModeCheck(0x4d2460)) {
-                        f_00462920(0x4d2460, *(int **)(block + 0x490), *(int *)(block + slot * 4 - 4), *(int *)(block + slot * 4 - 8));
+                    f_00455890(*(int *)(block + 0x490), 1); if (slot > 0 && ModeCheck((unsigned long)modeCheckName)) {
+                        f_00462920((unsigned long)modeCheckName, *(int **)(block + 0x490), *(int *)(block + slot * 4 - 4), *(int *)(block + slot * 4 - 8));
                         unsigned long active = *(unsigned long *)(block + 0x490);
                         if (*(char *)(active + 0x88) == 0) return; if (*(int *)(*(int *)(active + 0x1c) + 0x12) < 1) {
                             p[8]=0; p[9]=0; *(unsigned long *)(p+14)=0; p[11]=1; unsigned char flags=p[10]&0x70; p[5]=3; p[10]=flags; p[10]=flags|0x80; return;
                         } } p[8]=0; p[9]=0; *(unsigned long *)(p+14)=0; p[11]=1;
                     unsigned char flags=p[10]&0x70; p[5]=3; p[10]=flags;  p[10]=flags|0x80; } else {
-                    *(int *)(p + 0x12)=*(int *)(p+0x57); *(int *)(p+0x16)=*(int *)(p+0x5b); f_00455890(*(int *)(block+0x490),0); if (slot>0 && ModeCheck(0x4d2460)) {
-                        f_00462920(0x4d2460,*(int **)(block+0x490),*(int *)(block+slot*4),*(int *)(block+slot*4-4));
+                    *(int *)(p + 0x12)=*(int *)(p+0x57); *(int *)(p+0x16)=*(int *)(p+0x5b); f_00455890(*(int *)(block+0x490),0); if (slot>0 && ModeCheck((unsigned long)modeCheckName)) {
+                        f_00462920((unsigned long)modeCheckName,*(int **)(block+0x490),*(int *)(block+slot*4),*(int *)(block+slot*4-4));
                         unsigned long active=*(unsigned long *)(block+0x490); if (*(char *)(active+0x88)==0) return; if (*(int *)(*(int *)(active+0x1c)+0x12)<1) {
                             p[8]=0; p[9]=0; p[5]=3; *(unsigned long *)(p+14)=0;  p[11]=1;
                             unsigned char flags=p[10]&0x70; p[10]=flags; p[10]=flags|0x80; return;
@@ -890,10 +890,10 @@ void AnimActionInitTargetActor(void *action) {
 // Original assertion source-line padding.
     AssertFail(animSourcePath, __LINE__, 0);
 valid:
-    TargetObjectInit(fallbackName, p + 0x57,
-                     *(int *)(block + 4));
-    *(int *)(p + 0x4f) = *(int *)(p + 0x12);
-    *(int *)(p + 0x53) = *(int *)(p + 0x16);
+TargetObjectInit(fallbackName,p+0x57,*(int *)(*(unsigned char **)(p+0x32)+4));((AnimPair *)(p+0x4f))->Copy(*(AnimPair *)(p+0x12));
+
+
+
     p[8] = 0;
     p[5] = 4;
     AnimActionCommitTrajectory(action);
@@ -944,13 +944,13 @@ void AnimActionChecksum(void *action, unsigned short *checksum) {
     Crc16(checksum, (char *)action + 0x22, 4);
     Crc16(checksum, (char *)action + 0x26, 4);
 }
-void AnimActionCopyState(void *action, void *output) {
-    struct Pair { unsigned long x; unsigned long y; };
-    *(Pair *)((char *)output + 5) = *(Pair *)((char *)action + 0x12);
-    *(Pair *)((char *)output + 0x0d) = *(Pair *)((char *)action + 0x1a);
-    *(unsigned long *)((char *)output + 0x15) = *(unsigned long *)((char *)action + 0x22);
-    *(unsigned long *)((char *)output + 0x19) = *(unsigned long *)((char *)action + 0x26);
+void AnimActionCopyState(void *action, void *output)  {
+    ((AnimPair *)((char *)output+5))->Copy(*(AnimPair *)((char *)action+0x12));
+    ((AnimPair *)((char *)output+0xd))->Copy(*(AnimPair *)((char *)action+0x1a));
+    *(unsigned long *)((char *)output+0x15)=*(unsigned long *)((char *)action+0x22);
+    *(unsigned long *)((char *)output+0x19)=*(unsigned long *)((char *)action+0x26);
 }
+
 int AnimActionEqual(void *action, void *state) {
     unsigned char *p = (unsigned char *)action;
     unsigned char *q = (unsigned char *)state;
@@ -986,3 +986,6 @@ void AnimActionCopyChangedFields(void *action, void *state) {
     if (*(int *)(q + 0x19) != *(int *)(p + 0x26))
         *(int *)(p + 0x26) = *(int *)(q + 0x19);
 }
+
+
+

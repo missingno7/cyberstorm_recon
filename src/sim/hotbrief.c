@@ -37,7 +37,7 @@ extern int DAT_004d2de6; extern int DAT_004d3551; extern int DAT_004dd0b4;
 extern int DAT_004dd0b8; extern int DAT_004f65e8; extern char DAT_004fb944[];
 extern char DAT_00511ddc[]; extern char DAT_0048b5ac[]; extern char DAT_0048b5ae[];
 extern char DAT_0048b5b2[]; extern char DAT_0048b5b4[]; extern char DAT_0051445c[];
-extern int gHotbriefMissionFlags;
+extern int gHotbriefMissionFlags; extern char g511dc0[], hotbriefPlayerMaps[], hotbriefCountFormat[]; extern int hotbriefPlayerColors[];
 
 
 class MenuButton { public:
@@ -183,24 +183,24 @@ void HotbriefSetup(void *screen)
             break;
         int owner = *(int *)(actor + 8) - 1;
         if (owner < 0 || owner > 8)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
             ASSERT(owner >= 0 && owner < 9);
         ++ownerCounts[owner];
         if (actor[0x88] == 0)
@@ -208,32 +208,35 @@ void HotbriefSetup(void *screen)
     }
     int row = 0;
     int yOffset = 0;
-    char *rowName = (char *)0x004bc588;
+    char *rowName = hotbriefPlayerMaps;
     char *missionNames = DAT_004d274e;
     for (; row < playerCount; ++row) {
         if (ownerCounts[row] == 0) {
             if (row != gRemoteActorKind - 1) {
+                gMenuTextMap = rowName; gMenuTextColor = hotbriefPlayerColors[row];
                 gMenuTextColor = gBriefTextColor;
-                gMenuTextMap = gBriefTextMap;
-                f_0047cfc0(gShellFontBefore,
+                gMenuTextMap = rowName; gMenuTextColor = hotbriefPlayerColors[row];
+            gMenuTextMap = gBriefTextMap;
+                f_0047cfc0(g511dc0,
                            *(int *)((char *)screen + 0x50) + 10,
                            *(int *)((char *)screen + 0x54) + 100 + yOffset,
                            -1, missionNames);
                 title = f_0047c350(targetBriefResource, 0x5e5, 0);
-                f_0047cfc0(gShellFontBefore,
+                f_0047cfc0(g511dc0,
                            *(int *)((char *)screen + 0x50) + 0xb9,
                            *(int *)((char *)screen + 0x54) + 100 + yOffset,
                            1, title);
             }
         } else {
+            gMenuTextMap = rowName; gMenuTextColor = hotbriefPlayerColors[row];
             gMenuTextMap = gBriefTextMap;
             gMenuTextColor = gBriefTextColor;
-            f_0047cfc0(gShellFontBefore,
+            f_0047cfc0(g511dc0,
                        *(int *)((char *)screen + 0x50) + 10,
                        *(int *)((char *)screen + 0x54) + 100 + yOffset,
                        -1, missionNames);
-            title = BriefFormat((char *)0x0048b5a7);
-            f_0047cfc0(gShellFontBefore,
+            title = BriefFormat(hotbriefCountFormat, aiOwnerCounts[row]);
+            f_0047cfc0(g511dc0,
                        *(int *)((char *)screen + 0x50) + 0xb9,
                        *(int *)((char *)screen + 0x54) + 100 + yOffset,
                        1, title);
@@ -273,8 +276,8 @@ void HotbriefMainLoop(void *mission, int selection)
         ShellLimitFrameRate(mission);
     }
     if (HotbriefIsActive(&gHotbriefResources)) {
-        void *poolData = *(void **)((char *)&gHotbriefResources + 0x60);
-        if (poolData) ReleasePoolData(poolData);
+        if (*(void **)((char *)&gHotbriefResources+0x60))
+            ReleasePoolData(*(void **)((char *)&gHotbriefResources+0x60));
         *(void **)((char *)&gHotbriefResources + 0x60) = 0;
         f_cbf0(gShellFont);
         f_0041cab0(g4b74f4);
@@ -315,7 +318,7 @@ int HotbriefCanSelectAction(void *actor, int rankLimit)
 int HotbriefCheckAction(void *actorA, void *actorB, int location,
                         int priorLocation, int *target)
 {
-    if (!((char *)actorB)[0x22])
+    if (!((signed char *)actorB)[0x88])
         return 0;
     unsigned long actorLocation[2];
     f_0042b290(fallbackName, actorLocation, location);
@@ -341,6 +344,7 @@ int HotbriefCheckAction(void *actorA, void *actorB, int location,
     int skill = 0;
     if (HotbriefHealth(*(int **)((char *)actorB + 0x1c))) {
         char *slot = (char *)mission + 0x69;
+        skill = f_00438678(mission);
         for (int index = 0, row = 0xb; index < 8; ++index, ++row, slot += 8) {
             if (slot[1] && slot[2] &&
                 ((*(unsigned char *)((char *)actorB + 0x8e) & ((1 << index) == 0)) == 0)) {
@@ -365,60 +369,48 @@ int HotbriefCheckAction(void *actorA, void *actorB, int location,
     return 1;
 }
 
-void HotbriefProcessOpposingActions(void *mission, int *actor, int location,
-                                    int priorLocation)
-{
+void HotbriefProcessOpposingActions(void *mission, int *actor, int location, int priorLocation)  {
     DAT_004dd0b8 = 0;
     int owner = DAT_004f65e8;
-    if (*(int *)((char *)mission + 0x2c2) == 0) {
+    int actorOwner;
+    if (*(int *)((char *)mission + 0x2c2) == 0)  {
         owner = DAT_004dd0b4;
-        if (*(int *)((char *)mission + 0x10f1) != 0)
-            owner = *(int *)((char *)mission + 0x10f9);
+        if (*(int *)((char *)mission + 0x10f1) != 0) owner = *(int *)((char *)mission + 0x10f9);
     }
-    if (owner != 0 && actor[2] == *(int *)((char *)mission + 0x97e) &&
-        (char)actor[0x22]) {
+    if (owner != 0 && (actorOwner=actor[2]) == *(int *)((char *)mission + 0x97e) && (char)actor[0x22])  {
         int *other = (int *)f_00456b20();
-        if (other != 0) {
+        if (other != 0)  {
             int *targetRecord = (int *)((char *)mission + 0x9a6);
             int targetData[44];
-            do {
-                if (actor[2] != other[2]) {
+            do  {
+                if (actorOwner != other[2])  {
+                    int *testActor=other;
+                    int previousLocation=priorLocation;
+                    int *sourceActor=actor;
                     int valid = 0;
-                    if ((char)other[0x22]) {
+                    if ((char)testActor[0x22])  {
                         unsigned long actorLocation[2];
                         f_0042b290(fallbackName, actorLocation, location);
-                        int rank = f_0042b420((int *)actorLocation,
-                                              (int *)((char *)other + 0x3a));
-                        if (rank < 0x15) {
-                            int chance = *(int *)(0x004a3a0c + rank * 4);
-                            if (chance != 0 &&
-                                (chance == 100 || (int)(f_0047e160(DAT_0051445c) % 100) <= chance)) {
-                                if (priorLocation != 0) {
+                        int rank = f_0042b420((int *)actorLocation, (int *)((char *)testActor + 0x3a));
+                        if (rank < 0x15)  {
+                            int chance = ((int *)DAT_004a3a0c)[rank];
+                            if (chance != 0 && (chance == 100 || (int)(f_0047e160(DAT_0051445c) % 100) <= chance))  {
+                                if (previousLocation != 0)  {
                                     unsigned long previous[2];
-                                    f_0042b290(fallbackName, previous, priorLocation);
-                                    if (f_0042b420((int *)previous,
-                                                   (int *)((char *)other + 0x3a)) < rank)
-                                        goto consider_next;
+                                    f_0042b290(fallbackName, previous, previousLocation);
+                                    if (f_0042b420((int *)previous, (int *)((char *)testActor + 0x3a)) < rank) goto consider_next;
                                 }
-                                if (*(int *)(other[7] + 0x12) > 0) {
-                                    int missionData = other[6];
+                                if (*(int *)(testActor[7] + 0x12) > 0)  {
+                                    int missionData = testActor[6];
                                     char *slot = (char *)missionData + 0x69;
                                     int skill = f_00438678(missionData);
-                                    for (int index = 0, row = 0xb; index < 8;
-                                         ++index, ++row, slot += 8) {
-                                        if (slot[1] && slot[2] &&
-                                            ((*(unsigned char *)((char *)other + 0x8e) & (1 << index)) != 0)) {
+                                    for (int index = 0, row = 0xb; index < 8; ++index, ++row, slot += 8)  {
+                                        if (slot[1] && slot[2] && ((*(unsigned char *)((char *)testActor + 0x8e) & ((1 << index) == 0)) == 0))  {
                                             unsigned int recordId = f_004394d8();
                                             char *record = f_00438374(missionData, row, recordId);
-                                            if ((unsigned char)slot[3] < (signed char)record[0x20] &&
-                                                DAT_004c9265[(signed char)record[0x1f]] &&
-                                                (*(int *)(record + 0x13) == 0 || *(int *)(slot + 4) != 0) &&
-                                                (DAT_004d2dea == other[2] || *(int *)(record + 0x2b) <= skill) &&
-                                                rank <= (signed char)record[0x21]) {
-                                                f_0045a9f0(modeCheckName, targetData,
-                                                           *other, -*actor);
-                                                if (targetData[0x2b] >= 0x3c)
-                                                    valid = 1;
+                                            if ((unsigned char)slot[3] < (signed char)record[0x20] && DAT_004c9265[(signed char)record[0x1f]] && (*(int *)(record + 0x13) == 0 || *(int *)(slot + 4) != 0) && (DAT_004d2dea == testActor[2] || *(int *)(record + 0x2b) <= skill) && rank <= (signed char)record[0x21])  {
+                                                f_0045a9f0(modeCheckName, targetData, *testActor, -*sourceActor);
+                                                if (targetData[0x2b] >= 0x3c) valid = 1;
                                                 break;
                                             }
                                         }
@@ -427,27 +419,24 @@ void HotbriefProcessOpposingActions(void *mission, int *actor, int location,
                             }
                         }
                     }
-consider_next:
-                    if (valid) {
+                    consider_next: if (valid)  {
                         DAT_004dd0b8 = 1;
                         int index;
-                        while ((index = f_0045d830(targetRecord, targetData,
-                                                   0x23, 0)) >= 0) {
+                        while ((index = f_0045d830(targetRecord, targetData, 0x23, 0)) >= 0)  {
                             f_00452950(mission, other, actor, index);
                             DAT_004dd0b8 = 0;
-                            if (actor[2] == *(int *)((char *)mission + 0x986) &&
-                                f_0044eb00(mission) != 0) {
+                            if (actor[2] == *(int *)((char *)mission + 0x986) && f_0044eb00(mission) != 0)  {
                                 ((unsigned char *)mission)[0x2c] |= 0x20;
                                 f_00451370(mission);
                                 ((unsigned char *)mission)[0x2c] &= 0xdf;
                             }
-                            if (!(char)actor[0x22])
-                                return;
+                            if (!(char)actor[0x22]) return;
                         }
                     }
                 }
                 other = (int *)f_00456bb0(other);
-            } while (other != 0);
+            }
+            while (other != 0);
         }
     }
     DAT_004dd0b8 = 0;

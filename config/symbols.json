@@ -6968,6 +6968,13 @@
    "mangled": "GridClamp",
    "evidence": "implied by src/sim/target.c (overload-safe migration 2026-11-09)"
   },
+  "GridClamp#W?GridClamp$n(i)i": {
+   "va": "0042b3a0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?GridClamp$n(i)i",
+   "evidence": "implied by src/logic/intel.c 2026-11-09"
+  },
   "GridRotatePoint": {
    "va": "0042b3d0",
    "kind": "func",
@@ -12552,6 +12559,13 @@
    "tu": "src/sim/simdo.c",
    "evidence": "placed (at) in src/sim/simdo.c 2026-11-09"
   },
+  "SimFaceTarget#W?SimFaceTarget$n(pnxaii)i": {
+   "va": "0044e420",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SimFaceTarget$n(pnxaii)i",
+   "evidence": "implied by src/logic/intel.c 2026-11-09"
+  },
   "SimTargetAction": {
    "va": "0044e4e0",
    "kind": "func",
@@ -13982,6 +13996,14 @@
    "mangled": "WorldActionNotify",
    "evidence": "implied by src/sim/worldact.c 2026-11-09"
   },
+  "WorldActionNotify#W?WorldActionNotify$n(pnvuc)v": {
+   "va": "004573f0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?WorldActionNotify$n(pnvuc)v",
+   "tu": "src/sim/anim.c",
+   "evidence": "placed (at) in src/sim/anim.c 2026-11-09"
+  },
   "AnimActionIsSet": {
    "va": "00457420",
    "kind": "func",
@@ -14020,6 +14042,14 @@
    "mangled": "WorldActorClose",
    "evidence": "implied by src/sim/worldact.c 2026-11-09"
   },
+  "ActorClose#W?ActorClose$n(pnv)v": {
+   "va": "00457510",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ActorClose$n(pnv)v",
+   "tu": "src/sim/anim.c",
+   "evidence": "placed (at) in src/sim/anim.c 2026-11-09"
+  },
   "AnimActionRelease": {
    "va": "004575a0",
    "kind": "func",
@@ -14056,6 +14086,14 @@
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?AnimActionReplace$n(pnvul)v",
+   "tu": "src/sim/anim.c",
+   "evidence": "placed (at) in src/sim/anim.c 2026-11-09"
+  },
+  "AnimActionReplace#W?AnimActionReplace$n(pnucul)v": {
+   "va": "004576d0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?AnimActionReplace$n(pnucul)v",
    "tu": "src/sim/anim.c",
    "evidence": "placed (at) in src/sim/anim.c 2026-11-09"
   },
@@ -14154,6 +14192,14 @@
    "tu": "src/sim/anim.c",
    "evidence": "placed (at) in src/sim/anim.c 2026-11-09"
   },
+  "AnimActionConfigure#W?AnimActionConfigure$n(pnvuci)v": {
+   "va": "00458c90",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?AnimActionConfigure$n(pnvuci)v",
+   "tu": "src/sim/anim.c",
+   "evidence": "placed (at) in src/sim/anim.c 2026-11-09"
+  },
   "AnimActionGetMetadata": {
    "va": "00458d10",
    "kind": "func",
@@ -14189,10 +14235,10 @@
   "AnimActionCopyState": {
    "va": "00458df0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?AnimActionCopyState$n(pnvpnv)v",
    "tu": "src/sim/anim.c",
-   "evidence": "placed (at) in src/sim/anim.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "AnimActionEqual": {
    "va": "00458e20",
@@ -15843,10 +15889,10 @@
   "LogicActorList::UpdateActorPercentages": {
    "va": "00464a0e",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?UpdateActorPercentages$:LogicActorList$n()v",
    "tu": "src/logic/lactors.c",
-   "evidence": "placed (at) in src/logic/lactors.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "LogicActorList::CalculateActorValues": {
    "va": "00464a96",
@@ -15910,6 +15956,13 @@
    "mangled": "W?ActorChooseByMode$n(pn$LogicActor$$ii)pn$1$",
    "tu": "src/_unknown/tu_00464d7c.c",
    "evidence": "placed (at) in src/_unknown/tu_00464d7c.c 2026-11-09"
+  },
+  "ActorChooseByMode#W?ActorChooseByMode$n(pniii)i": {
+   "va": "00464f50",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ActorChooseByMode$n(pniii)i",
+   "evidence": "implied by src/logic/intel.c 2026-11-09"
   },
   "ActorUpdateView": {
    "va": "004651fd",
@@ -16024,6 +16077,13 @@
    "tu": "src/logic/bestloc.c",
    "evidence": "strict match 2026-11-09"
   },
+  "IntelFindBest": {
+   "va": "00465f1c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?IntelFindBest$n(pniii)i",
+   "evidence": "implied by src/logic/intel.c 2026-11-09"
+  },
   "BestLocSubCandidate": {
    "va": "004660cb",
    "kind": "func",
@@ -16071,10 +16131,10 @@
   "IntelPredict": {
    "va": "0046639c",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?IntelPredict$n(pni)v",
    "tu": "src/logic/intel.c",
-   "evidence": "placed (at) in src/logic/intel.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "IntelDisableMode": {
    "va": "004663de",
@@ -16127,18 +16187,18 @@
   "IntelStateRetry": {
    "va": "00466c90",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?IntelStateRetry$n(pni)i",
    "tu": "src/logic/intel.c",
-   "evidence": "placed (at) in src/logic/intel.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "IntelStateCommon": {
    "va": "00466f20",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?IntelStateCommon$n(pni)i",
    "tu": "src/logic/intel.c",
-   "evidence": "placed (at) in src/logic/intel.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "IntelStateSeek": {
    "va": "0046718b",
@@ -22393,6 +22453,13 @@
    "mangled": "W?PointAngle$n(pn$ApplyPoint$$pn$1$)i",
    "evidence": "implied by src/sim/apply.c 2026-11-09"
   },
+  "PointAngle#W?PointAngle$n(pnipni)i": {
+   "va": "0047ef20",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PointAngle$n(pnipni)i",
+   "evidence": "implied by src/logic/intel.c 2026-11-09"
+  },
   "PointPolar": {
    "va": "0047ef50",
    "kind": "func",
@@ -25175,6 +25242,14 @@
    "status": "hypothesis",
    "mangled": "W?actorSourcePath$n[]xa",
    "evidence": "implied by src/logic/lactor.c 2026-11-09"
+  },
+  "lactorsSourcePath@logic/lactors.c": {
+   "va": "004a3ae4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?lactorsSourcePath$n[]xa",
+   "tu": "src/logic/lactors.c",
+   "evidence": "own data placed in src/logic/lactors.c 2026-11-09"
   },
   "missLimitByType": {
    "va": "004a3c54",
@@ -32930,6 +33005,14 @@
    "status": "hypothesis",
    "mangled": "W?logicActors$n$ActorGlobals$$",
    "evidence": "implied by src/logic/lactors.c 2026-11-09"
+  },
+  "W?$Wsi0caverage$n[]i$:.6$:?CalculateActorValues$n(i)v:LogicActorList$nx[]i@logic/lactors.c": {
+   "va": "004f218c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wsi0caverage$n[]i$:.6$:?CalculateActorValues$n(i)v:LogicActorList$nx[]i",
+   "tu": "src/logic/lactors.c",
+   "evidence": "own data placed in src/logic/lactors.c 2026-11-09"
   },
   "bestLocActor": {
    "va": "004f2874",

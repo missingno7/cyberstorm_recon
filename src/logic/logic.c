@@ -1,4 +1,5 @@
 #include <string.h>
+#pragma inline_depth(10)
 
 class FileRecord;
 struct LogicActor;
@@ -46,7 +47,7 @@ void f_00451370(void *);
 void f_00452950(void *, void *, void *, int);
 void *f_0045d830(void *, void *, int, int);
 void *f_00463c56(void *);
-char *ActorName(LogicActor *);
+char *ActorName(LogicActor *); char *ActorGetEvent(LogicActor *);
 void ActorRelease(LogicActor *);
 extern "C" int LogicCopyPoint(int *, int *);
 int f_004771aa(const char *);
@@ -74,7 +75,7 @@ extern int DAT_004dd0b8;
 extern int DAT_004f65e8;
 extern int DAT_004dd0b4;
 
-struct LogicActor { int Attached() { return *(void **)this != 0; } int Value() { return ((int *)this)[5]; } int Friendly() { return (((unsigned char *)this)[0xc] & 1) == 0; } int Enemy() { return (((unsigned char *)this)[0xc] & 1) != 0; } };
+struct LogicHealth { int Alive() { return *(int *)((char *)this+0x12)>0; } }; struct LogicUnit { LogicHealth *Health() { return *(LogicHealth **)((char *)this+0x1c); }  }; struct LogicActor { LogicUnit *Unit() { return *(LogicUnit **)this; } int Available() { LogicUnit *u=Unit(); return u && ((unsigned char *)u)[0x88] && u->Health()->Alive() && !((unsigned char *)Unit())[0x89]; } int Owner() { LogicUnit *u=Unit(); if (u) return *(int *)((char *)u+8); return 0; } int Kind30() { return ((int *)this)[7]==30; } int Flag2Clear() { return ((((unsigned char *)this)[0xc])&2)==0; } int Attached() { return *(void **)this != 0; } int Value() { return ((int *)this)[5]; } int Friendly() { return (((unsigned char *)this)[0xc] & 1) == 0; } int Enemy() { return (((unsigned char *)this)[0xc] & 1) != 0; } };
 class StrPool { public: int Lock(); void Unlock(); int IsOpen() { return DAT_00511e38 != 0; } };
 extern StrPool missionImageName;
 extern char fallbackName[]; extern char g4c9234[]; int LogicStoreActorLink(void *, void *); static inline int DefaultActorLink() { return DAT_004d35ac; }
@@ -185,91 +186,91 @@ int LogicCheckActorCollision(unsigned char *mission, int unused)
     LogicActor *candidateActors[32];
     int candidateCount = DAT_004d3551;
     if (!logicActorList.AllLocalActorsPresent()) {
-        for (LogicActor *entry = logicActorList.First(); entry != 0;
-             entry = logicActorList.Next(entry)) {
-            unsigned char *actor = *(unsigned char **)entry;
-            int eligible = actor != 0 && actor[0x88] != 0 &&
-                           *(int *)(*(int *)(actor + 0x1c) + 0x12) >= 1 &&
-                           actor[0x89] == 0;
-            if (eligible && ((((unsigned char *)entry)[0x0c] & 1) != 0)) {
-                int owner = actor == 0 ? 0 : *(int *)(actor + 8);
-                if (owner == DAT_004d2de6 &&
-                    ((((unsigned char *)entry)[0x0c] & 2) != 0)) {
+        LogicActor *entry = logicActorList.First(); while (entry != 0) {
+            if (entry->Available() && entry->Enemy()) {
+                if (entry->Owner() == DAT_004d2de6 && !entry->Flag2Clear()) {
                     int foundCloseName = 0;
-                    int foundOtherUnit = 0;
-                    int foundCandidateKind = 0;
                     int foundSimilarName = 0;
-                    for (LogicActor *other = logicActorList.First(); other != 0;
-                         other = logicActorList.Next(other)) {
-                        unsigned char *otherActor = *(unsigned char **)other;
-                        int otherEligible = otherActor != 0 &&
-                                            otherActor[0x88] != 0 &&
-                                            *(int *)(*(int *)(otherActor + 0x1c) + 0x12) >= 1 &&
-                                            otherActor[0x89] == 0;
-                        if (otherEligible) {
-                            if (((int *)other)[7] == 0x1e) {
+                    int foundCandidateKind = 0;
+                    int foundOtherUnit = 0;
+                    LogicActor *other = logicActorList.First(); while (other != 0) {
+                        if (other->Available()) {
+                            if (other->Kind30()) {
                                 foundCandidateKind = 1;
                                 if (LogicCopyPoint((int *)ActorName(entry),
-                                                   (int *)ActorName(other)) < 7)
+                                                   (int *)ActorName(other)) <= 6)
                                     foundCloseName = 1;
-                            } else if ((((unsigned char *)other)[0x0c] & 1) == 0) {
+                            } else if (other->Friendly()) {
                                 foundOtherUnit = 1;
                                 if (LogicCopyPoint((int *)ActorName(entry),
-                                                   (int *)ActorName(other)) < 0x11)
+                                                   (int *)ActorName(other)) <= 0x10)
                                     foundSimilarName = 1;
                             }
                         }
+                        other = logicActorList.Next(other);
                     }
                     if ((!foundCloseName && foundSimilarName) ||
                         (!foundCandidateKind && foundOtherUnit)) {
                         if (candidateCount > 0x1f)
-                            // Original ASSERT source-line padding.
-                            // Original ASSERT source-line padding.
-                            // Original ASSERT source-line padding.
-                            // Original ASSERT source-line padding.
-                            // Original ASSERT source-line padding.
-                            // Original ASSERT source-line padding.
-                            // Original ASSERT source-line padding.
-                            // Original ASSERT source-line padding.
-                            // Original ASSERT source-line padding.
-                            // Original ASSERT source-line padding.
-                            // Original ASSERT source-line padding.
-                            // Original ASSERT source-line padding.
-                            // Original ASSERT source-line padding.
-                            // Original ASSERT source-line padding.
-                            // Original ASSERT source-line padding.
-                            // Original ASSERT source-line padding.
-                            // Original ASSERT source-line padding.
-                            // Original ASSERT source-line padding.
-                            // Original ASSERT source-line padding.
-                            // Original ASSERT source-line padding.
-                            // Original ASSERT source-line padding.
-                            // Original ASSERT source-line padding.
-                            // Original ASSERT source-line padding.
-                            // Original ASSERT source-line padding.
-                            // Original ASSERT source-line padding.
-                            // Original ASSERT source-line padding.
-                            // Original ASSERT source-line padding.
-                            // Original ASSERT source-line padding.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
                             ASSERT(candidateCount <= 0x1f);
                         candidateActors[candidateCount++] = entry;
                     }
                 }
             }
+            entry = logicActorList.Next(entry);
         }
     }
     if (candidateCount == 0) {
@@ -284,7 +285,7 @@ int LogicCheckActorCollision(unsigned char *mission, int unused)
         strcat((char *)DAT_004fb944, (char *)DAT_0048b5ac);
         for (int i = 0; i < candidateCount; ++i) {
             strcat((char *)DAT_004fb944, (char *)DAT_0048b5ae);
-            strcat((char *)DAT_004fb944, ActorName(candidateActors[i]));
+            strcat((char *)DAT_004fb944, ActorGetEvent(candidateActors[i]));
             strcat((char *)DAT_004fb944, (char *)DAT_0048b5b2);
         }
         strcat((char *)DAT_004fb944, (char *)DAT_0048b5b4);
@@ -525,3 +526,4 @@ void LogicGetMissionSummary(unsigned char *mission, unsigned long *summary)
     struct Summary { unsigned long words[10]; };
     *(Summary *)summary = *(Summary *)(mission + 0x5c);
 }
+

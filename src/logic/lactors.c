@@ -160,7 +160,7 @@ LogicActor *LogicActorList::FindByUnit(void *unit)
 
 extern void ActorRandomAction(LogicActor *actor);
 extern void ActorFinalize(LogicActor *actor);
-extern int ActorPercentFromUnit(void *data);
+extern int f_00439d48(int data);
 extern int ActorDirectionCompare(int *left, int *right);
 extern int ActorDirectionBlend(int *result, int kind, int direction);
 extern int ActorDirectionLength(int *direction);
@@ -169,36 +169,34 @@ extern void IntelActorEvent(LogicActor *actor);
 extern int ActorModeType(int type);
 extern unsigned char *targetDefinitionTable;
 
-LogicActor *LogicActorList::SelectActor(LogicActor *actor)
-{
-    LogicActor *result = 0;
-    if (actor == 0) {
+LogicActor *LogicActorList::SelectActor(LogicActor *actor)  {
+    LogicActor *result;
+    if (actor == 0)  {
         LogicActor *clear = ActorFirst();
-        while (clear != 0) {
+        while (clear != 0)  {
             clear->next = 0;
             clear = ActorNext(clear);
         }
-        LogicActor *previous = 0;
-        for (;;) {
+        result=0;
+        LogicActor *previous=0;
+        for (;;)  {
             LogicActor *best = 0;
-            int bestScore = 0;
+            int bestScore;
             LogicActor *scan = ActorFirst();
-            while (scan != 0) {
+            while (scan != 0)  {
                 ActorUnit *unit = (ActorUnit *)scan->unit;
                 int active = scan->Available();
-                if (active && scan->next == 0) {
-                    u8 flags = *((u8 *)&scan->flags);
+                if (active && scan->next == 0)  {
                     int choose = 0;
-                    if ((flags & 1) == 0) choose = 1;
+                    if (scan->Friendly()) choose = 1;
                     else if (ActorArrayGet(scan, 7) != 0) choose = 1;
                     else if (*GetModePlayer(modeCheckName, (int)scan->name) == 0) choose = 1;
-                    if (choose) {
+                    if (choose)  {
                         int score = 0;
-                        if (previous != 0)
-                            score = -LogicCopyPoint(ActorName(previous), ActorName(scan));
-                        if ((flags & 1) == 0) score -= 1000;
-                        if ((flags & 1) == 0 && *((u8 *)unit->actorData + 0x12) == 9) score -= 1000;
-                        if (best == 0 || score > bestScore) {
+                        if (previous != 0) score = -LogicCopyPoint(ActorName(previous), ActorName(scan));
+                        if (scan->Friendly()) score -= 1000;
+                        if (scan->Friendly() && *((u8 *)((ActorUnit *)scan->unit)->actorData + 0x12) == 9) score -= 1000;
+                        if (best == 0 || score > bestScore)  {
                             best = scan;
                             bestScore = score;
                         }
@@ -213,16 +211,14 @@ LogicActor *LogicActorList::SelectActor(LogicActor *actor)
             previous = best;
         }
         if (previous != 0) previous->next = 0;
-    } else {
-        if ((g4dd0c0 & 8) != 0 && (actor->flags & 2) != 0 &&
-            next_link_seed(&MissionRandomTable) % 100 < 25)
-            ActorRandomAction(actor);
+    }
+    else  {
+        if ((g4dd0c0 & 8) != 0 && (actor->flags & 2) != 0 && next_link_seed(&MissionRandomTable) % 100 < 25) ActorRandomAction(actor);
         int next = actor->next;
-        if (next >= 1 && next <= logicActors.actorCount)
-            result = logicActors.actorRecords + next - 1;
+        if (next >= 1 && next <= logicActors.actorCount) result = logicActors.actorRecords + next - 1;
     }
     g4d2498 = 0;
-    if (result != 0) {
+    if (result != 0)  {
         SetModeForUnit(modeCheckName, result->unit);
         if ((result->flags & 2) != 0) ActorFinalize(result);
     }
@@ -333,9 +329,7 @@ void LogicActorList::UpdateActorPercentages()
         if (actor->Attached()) {
             if (ActorIsAvailable(actor)) percent = 0;
             else {
-                percent = ActorPercentFromUnit(((ActorUnit *)actor->unit)->actorData);
-                if (percent <= 1) percent = 1;
-                else if (percent >= 100) percent = 100;
+percent = ClampPercent(f_00439d48((int)((ActorUnit *)actor->unit)->actorData));
             }
         }
         ActorArraySet(actor, 5, percent);
@@ -413,3 +407,5 @@ void LogicActorList::NotifyActorLinks()
         actor = ActorNext(actor);
     }
 }
+
+

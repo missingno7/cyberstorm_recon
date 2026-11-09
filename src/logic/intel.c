@@ -15,12 +15,12 @@ extern int *ActorListFind(void *, int);
 extern int *IntelChooseCandidate(int *, int); extern int IntelUpdate(int *, int);
 extern int IntelFindBest(int *, int = 0, int = 0), IntelFindBestByName(int, int);
 extern int IntelResetOne(int *, int), IntelClearReservation(int *, int);
-extern int SimPrepareAction(const char *, int), IntelSetMode3(const char *, int, int), IntelClearMode(const char *);
+extern int SimPrepareAction(const char *, int), SimFaceTarget(const char *, int, int=0), IntelClearMode(const char *);
 extern int IntelUnitQuery(int, int, int), HercNeedsAmmo(int);
-extern int IntelPrepareState(int *, int = 0, int = 0), IntelContinueState(int *, int, int);
+extern int ActorChooseByMode(int *, int = 0, int = 0), IntelContinueState(int *, int, int);
 struct ActorPoint { int x, y; }; class LogicActorList { public: int *At(int); int *CreateActor(int, ActorPoint *, int, const char *); };
-struct IntelUnitState { u8 pad[5]; u8 type; int Type() { return type; } }; struct IntelUnit { u8 pad[0x20]; struct IntelUnitState info; struct IntelUnitState *Info() { return &info; } int Allowed() { int n = Info()->Type(); return n != 1 && n != 7 && n != 14 && n != 17 && n != 18; } };
-extern int IntelTargetData(int, int *, int), IntelGetActorState(int *), IntelChooseSpawnPos(void *, int, int, int, int), IntelFinalizeActor(int *);
+struct IntelUnitState { u8 pad[5]; u8 type; int Type() { return type; } }; struct IntelUnit { u8 pad[0x20]; struct IntelUnitState info; struct IntelUnitState *Info() { return &info; } int SeekAllowed() { int n=Info()->Type(); return n!=1 && n!=7 && n!=14 && n!=17 && *(u8 *)((char *)this+0x25)!=18; }  int Allowed() { int n = Info()->Type(); return n != 1 && n != 7 && n != 14 && n != 17 && n != 18; } };
+extern int IntelTargetData(int, int *, int), IntelGetActorState(int *), IntelChooseSpawnPos(void *, int, int=0, int=0, int=0), IntelFinalizeActor(int *);
 extern int PointAngle(int *, int *);
 extern void BestLocSetData(int, int *, int);
 int IntelStateCommon(int *a);
@@ -28,15 +28,25 @@ void IntelActorCommand(int *a, int command, int value, int *target);
 
 static inline int IntelState(int *a) { return a[0x22]; } static inline int IntelRadius() { return g4d359c; } static inline int IntelOwner(int *a) { if (a[0]) return *(int *)(a[0] + 8); return 0; }
 static inline int IntelUnitAllowed(int *a) { return a[0] && ((IntelUnit *)a[0])->Allowed(); }
-static inline int IntelHealthAlive(int *data) { return *(int *)((char *)data + 0x12) > 0; }
+static inline int IntelEndState(int *a) { a[0x22]=8; return 1; } static inline int IntelSeekUnitAllowed(int *a) { return a[0] && ((IntelUnit *)a[0])->SeekAllowed(); } static inline int IntelHealthAlive(int *data) { return *(int *)((char *)data + 0x12) > 0; }
 static inline int IntelUnitActive(int *actor) { return actor[0] && *(u8 *)(actor[0] + 0x88) && IntelHealthAlive(*(int **)(actor[0] + 0x1c)) && !*(u8 *)(actor[0] + 0x89); }
 
-void IntelPredict(int *a)
-{
-    if (a[1] != 0) {
-        int direction = PointAngle((int *)(a[0] + 0x32), (int *)(*(int *)a[1] + 0x32));
-        int value = GridClamp(direction);
-        IntelSetMode3(modeCheckName, value * 0x2aaaaabc, 0);
+struct IntelDirection  {
+    int value,scale;
+    IntelDirection(int direction,int factor=0x2aaaaabc,int wrap=1)  {
+        if(wrap) direction=GridClamp(direction);
+        value=direction;
+        scale=factor;
+    }
+    operator int() const  {
+        return value*scale;
+    }
+}
+;
+void IntelPredict(int *a)  {
+    if (a[1])  {
+        IntelDirection value=IntelDirection(PointAngle((int *)(a[0]+0x32),(int *)(*(int *)a[1]+0x32)));
+        SimFaceTarget(modeCheckName,value,0);
     }
 }
 
@@ -169,17 +179,17 @@ int IntelStateRetry(int *a)
             if (actor) a[0x26] = ActorValue(actor);
         }
         if (a[0x26]) {
-            if (!IntelPrepareState(a, a[0x26], a[0x27]) && !IntelPrepareState(a, a[0x26], a[0x27] + 8))
-                IntelPrepareState(a, a[0x26], 0);
+            if (!ActorChooseByMode(a, a[0x26], a[0x27]) && !ActorChooseByMode(a, a[0x26], a[0x27] + 8))
+                ActorChooseByMode(a, a[0x26], 0);
             a[0x22] = 1;
         } else {
-            if (IntelPrepareState(a)) a[0x22] = 1;
+            if (ActorChooseByMode(a)) a[0x22] = 1;
             else a[0x22] = 8;
         }
         break;
     case 1: case 2:
         if (!IntelUnitAllowed(a)) {
-            if (!a[1]) { a[0x22] = 8; return 1; }
+            if (!a[1]) return IntelEndState(a);
             int value = 0;
             if (a[0x26]) {
                 int point[2];
@@ -205,7 +215,7 @@ int IntelStateCommon(int *a)
     int state = a[0x22];
     int value;
     if (a[3] & 8) {
-        if (IntelPrepareState(a) == 0) return IntelStateSearch(a);
+        if (ActorChooseByMode(a) == 0) return IntelStateSearch(a);
         *(u8 *)(a + 3) &= 0xf7;
         a[0x22] = 1;
     }
@@ -217,7 +227,7 @@ int IntelStateCommon(int *a)
             a[1] = (int)actor;
             if (a[1] && IntelUnitActive((int *)a[1])) a[0x22] = 1;
         }
-        if (a[0x22] == 8 && IntelPrepareState(a) != 0) a[0x22] = 1;
+        if (a[0x22] == 8 && ActorChooseByMode(a) != 0) a[0x22] = 1;
         if (a[0x22] == 8 && IntelOwner(a) == gLocalActorKind) {
             *(u8 *)(a + 3) |= 8;
             a[0x22] = 0;
@@ -246,41 +256,39 @@ int IntelStateCommon(int *a)
     return a[0x22] == 8;
 }
 
-int IntelStateSeek(int *a)
-{
-    u32 state = a[0x22];
+int IntelStateSeek(int *a)  {
+    u32 state=a[0x22];
     int value;
-    if ((int)state < 3) return IntelStateCommon(a);
-    if (state <= 3) {
-        if (state != 3) goto finish;
-        if (a[1] == 0) { a[0x22] = 8; return 1; }
+    if ((int)state<3) return IntelStateCommon(a);
+    switch(state)  {
+        case 3: if (a[1] == 0)  {
+            a[0x22] = 8;
+            return 1;
+        }
         if (IntelResetOne(a, 0) == 0) goto finish;
         a[0x22] = 8;
         if (a[1] == 0) return 1;
-        value = LogicCopyPoint(ActorName((int *)a[1]), ActorName(a));
+        value = LogicCopyPoint(ActorName(a),ActorName((int *)a[1]));
         if (a[0x1b] < value) goto finish;
         value = ActorValue((int *)a[1]);
         value = BestLocBegin(a, value);
         if (value == 0) goto finish;
         SimPrepareAction(modeCheckName, value);
-        if (IntelUnitAllowed(a)) a[0x22] = 4;
+        if (IntelSeekUnitAllowed(a)) a[0x22] = 4;
         goto finish;
-    }
-    if (state > 4) {
-        if (state != 5) goto finish;
-        if (!IntelUnitAllowed(a)) {
-            if (a[1] != 0) {
-                int direction = PointAngle((int *)(a[0] + 0x32), (int *)(*(int *)a[1] + 0x32));
-                int clamped = GridClamp(direction);
-                IntelSetMode3(modeCheckName, clamped * 0x2aaaaabc, 0);
+        break;
+        case 4: if (!IntelUnitAllowed(a)) a[0x22]=5;
+        break;
+        case 5: if (!IntelUnitAllowed(a))  {
+            if (a[1])  {
+                IntelDirection direction=IntelDirection(PointAngle((int *)(a[0]+0x32),(int *)(*(int *)a[1]+0x32)));
+                SimFaceTarget(modeCheckName,direction,0);
             }
-            a[0x22] = 8;
+            a[0x22]=8;
         }
-        goto finish;
+        break;
     }
-    if (IntelUnitAllowed(a) == 0) a[0x22] = 5;
-finish:
-    return a[0x22] == 8;
+    finish: return a[0x22]==8;
 }
 
 int IntelSpawnTimer(int *a)
@@ -288,10 +296,10 @@ int IntelSpawnTimer(int *a)
     if (modeSwitch == 0) {
         if (--a[0x21] <= 0) {
             u8 *record = (u8 *)actorStateTable + a[8] * 0x2f;
-            u8 rawActorType = record[9]; u32 count = record[11];
-            int actorType = rawActorType - 8;
+            int actorType=record[9]; u32 count=record[11]; actorType-=8;
+
             while (--count != 0xffffffff) {
-                int point = IntelChooseSpawnPos(&logicActorList, actorType, 0, 0, 0);
+                int point = IntelChooseSpawnPos(&logicActorList, actorType);
                 int *actor = ((LogicActorList *)&logicActorList)->CreateActor(actorType,
                     (ActorPoint *)ActorName(a), point, 0);
                 if (actor != 0) IntelFinalizeActor(actor);
@@ -311,7 +319,7 @@ int IntelStateLink(int *a)
             a[1] = (int)((LogicActorList *)&logicActorList)->At(a[0x28]);
             if (a[1] && IntelUnitActive((int *)a[1])) a[0x22] = 3;
         }
-        if (a[0x22] == 8 && IntelPrepareState(a)) a[0x22] = 3;
+        if (a[0x22] == 8 && ActorChooseByMode(a)) a[0x22] = 3;
         if (a[0x22] != 3) break;
     case 3:
         if (IntelResetOne(a, 0)) a[0x22] = 8;
@@ -578,93 +586,85 @@ void IntelActorCommand(int *a, int command, int value, int *target)
         if (value != 0) {
             // assert source line follows the null lookup check
             // preserve the second original line boundary
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
             int *actor = ((LogicActorList *)&logicActorList)->At(value); if (actor == 0) AssertFail(__FILE__, __LINE__, 0);
             a[0x26] = ActorValue(actor);
             a[0x27] = 3;
@@ -695,11 +695,11 @@ int IntelActorDispatch(int *a)
                 count = IntelUnitQuery(*(int *)(a[0] + 0x18), 1, 1);
                 if (count == 0) {
                     count = IntelUnitQuery(*(int *)(a[0] + 0x18), 1, 0);
-                    if (count != 0) IntelSetMode3(modeCheckName, count - 0x13, 1);
+                    if (count != 0) SimFaceTarget(modeCheckName, count - 0x13, 1);
                 }
             } else {
                 while (count < 4 && (kind = IntelUnitQuery(*(int *)(a[0] + 0x18), 1, 1)) != 0) {
-                    IntelSetMode3(modeCheckName, kind - 0x13, 0);
+                    SimFaceTarget(modeCheckName, kind - 0x13, 0);
                     ++count;
                 }
             }
@@ -742,10 +742,16 @@ int IntelIsAvailable(int *a)
             int distance = LogicCopyPoint(ActorName(a), ActorName((int *)a[1]));
             if (distance <= a[0x1b]) {
                 int mode = IntelUnitQuery(*(int *)(a[0] + 0x18), 4, 0);
-                if (mode != 0) IntelSetMode3(modeCheckName, mode - 0x13, -1);
+                if (mode != 0) SimFaceTarget(modeCheckName, mode - 0x13, -1);
             }
         }
     }
     if (result == 0) IntelClearReservation(a, 0);
     return result;
 }
+
+
+
+
+
+

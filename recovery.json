@@ -2827,6 +2827,11 @@
      "va": "00458da0",
      "size": 80,
      "mangled": "W?AnimActionChecksum$n(pnvpnus)v"
+    },
+    "AnimActionCopyState": {
+     "va": "00458df0",
+     "size": 48,
+     "mangled": "W?AnimActionCopyState$n(pnvpnv)v"
     }
    },
    "data": {
@@ -4439,6 +4444,11 @@
      "size": 92,
      "mangled": "W?AllRemoteActorsPresent$:LogicActorList$n()i"
     },
+    "LogicActorList::UpdateActorPercentages": {
+     "va": "00464a0e",
+     "size": 136,
+     "mangled": "W?UpdateActorPercentages$:LogicActorList$n()v"
+    },
     "LogicActor::$ct": {
      "va": "00464d6c",
      "size": 5,
@@ -4462,6 +4472,11 @@
    "install": "wc106",
    "profile": "plain-oe",
    "functions": {
+    "IntelPredict": {
+     "va": "0046639c",
+     "size": 66,
+     "mangled": "W?IntelPredict$n(pni)v"
+    },
     "IntelDisableMode": {
      "va": "004663de",
      "size": 19,
@@ -4491,6 +4506,16 @@
      "va": "00466955",
      "size": 827,
      "mangled": "W?IntelStateMatch$n(pni)i"
+    },
+    "IntelStateRetry": {
+     "va": "00466c90",
+     "size": 656,
+     "mangled": "W?IntelStateRetry$n(pni)i"
+    },
+    "IntelStateCommon": {
+     "va": "00466f20",
+     "size": 619,
+     "mangled": "W?IntelStateCommon$n(pni)i"
     }
    },
    "data": {},
