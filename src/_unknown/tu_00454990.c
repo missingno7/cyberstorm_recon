@@ -1,7 +1,7 @@
 /* Drawing object 00454990..004556f0; split from the preceding timer/player object.
  * Unknown structure ranges are temporary padding. Labels are descriptive guesses. */
 #pragma pack(push,1)
-struct GridPoint { int x,y; };
+struct GridPoint { int x,y; GridPoint() {} };
 struct GuiRect { long x,y,width,height; GuiRect() {}
     int Moved(const GuiRect &r) { return x != r.x || y != r.y; }
 };
@@ -128,7 +128,7 @@ inline void DrawActionBody(AnimAction *action)
         if (action->state != 4 || action->variant != 0) {
             unsigned char image = targetDefinitionTable[target].marker;
             if (image) {
-                GridPoint screen,world;
+                GridPoint world,screen;
                 BestLocSetData(fallbackName,&world,(void *)target);
                 DisplayPointToScreen((int *)gView,(int *)&screen,(int *)&world,target);
                 int zoom = gZoom*2;
@@ -324,3 +324,4 @@ void SimDrawFrame(SimGame *game)
     ExploAnimateAll();
     viewportClipLeft = gViewRect;
 }
+

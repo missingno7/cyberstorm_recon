@@ -443,7 +443,7 @@ unsigned short *ScriptStep(Script *s, unsigned short *ip, unsigned short *stop)
         s->vars[index] = ScriptEval(s, ip[1]);
         break; }
     case 0x10b2: { 
-        ((long *)(s->base + s->table[SecStrIndex]))[ip[0]] = ip[1];
+        int index=ip[0]; int value=ip[1]; ((long *)(s->base + s->table[SecStrIndex]))[index] = value;
         break; }
     case 0x2031: { 
         LogicRedraw(gLogic, ScriptEval(s, ip[0]));
@@ -1492,12 +1492,12 @@ int ScriptFormat(Script *s, char *dst, int max, const char *src)
         const long *args=(const long *)(src+1);
         remaining=max-len; next=src+5;
         if (code==-1) {
-            index=*args; src=next;
-            part=ScriptFormat(s,dst,remaining,MissionAllocateFromData(gLogic,ScriptEval(s,index)));
+            const char *t=MissionAllocateFromData(gLogic,ScriptEval(s,*args)); src=next;
+            part=ScriptFormat(s,dst,remaining,t);
             dst+=part; len+=part;
         } else if (code==-4) {
-            index=*args; src=next;
-            sprintf(number,"%d",ScriptEval(s,index));
+            long n=ScriptEval(s,*args);
+            sprintf(number,"%d",n); src=next;
             part=ScriptFormat(s,dst,remaining,number);
             dst+=part; len+=part;
         } else if (code==-2) {
@@ -1507,8 +1507,8 @@ int ScriptFormat(Script *s, char *dst, int max, const char *src)
             dst+=part; len+=part;
         } else if (code==-3) {
             lists=(ScriptList *)(s->base+s->table[SecStrLists]);
-            index=*args; pick=ScriptEval(s,*(long *)next); src=next+4;
-            list=&lists[index]; count=list->count;
+            index=*args; pick=ScriptEval(s,*(long *)next); list=&lists[index];
+            src=next+4; count=list->count;
             text=s->base+s->table[SecStrings]+list->offset;
             if (pick>=0 && pick<count)
                 while(pick-- >0)text+=strlen(text)+1;
@@ -1527,3 +1527,4 @@ char *ScriptString(Script *s, long offset)
     scriptText[len] = 0;
     return scriptText;
 }
+

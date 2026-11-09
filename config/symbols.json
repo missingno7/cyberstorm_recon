@@ -13032,6 +13032,13 @@
    "mangled": "W?ModeCheck$n(pnxa)i",
    "evidence": "implied by src/logic/lactor.c 2026-11-09"
   },
+  "ModeCheck#W?ModeCheck$n(pn$SimGame$$)i": {
+   "va": "0044eb00",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ModeCheck$n(pn$SimGame$$)i",
+   "evidence": "implied by src/_unknown/tu_00452950.c 2026-11-09"
+  },
   "SimFireFocus": {
    "va": "0044eb50",
    "kind": "func",
@@ -13483,6 +13490,14 @@
    "mangled": "W?SimFire$n(pn$SimGame$$pnvlll)i",
    "evidence": "implied by src/_unknown/tu_00452950.c 2026-11-09"
   },
+  "SimFire#W?SimFire$n(pn$SimGame$$pn$ActorRecord$$lll)i": {
+   "va": "00452980",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SimFire$n(pn$SimGame$$pn$ActorRecord$$lll)i",
+   "tu": "src/_unknown/tu_00452950.c",
+   "evidence": "placed (at) in src/_unknown/tu_00452950.c 2026-11-09"
+  },
   "SimInTrapezoid": {
    "va": "00453310",
    "kind": "func",
@@ -13517,10 +13532,10 @@
   "SimMapGadget::$ct": {
    "va": "00453470",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?$ct:SimMapGadget$n(ulllul)_",
    "tu": "src/_unknown/tu_00452950.c",
-   "evidence": "placed (found) in src/_unknown/tu_00452950.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "SimMapGadget::HitTest": {
    "va": "004534b0",
@@ -13572,10 +13587,10 @@
   "SimImageGadget::$ct": {
    "va": "00453800",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?$ct:SimImageGadget$n(llul)_",
    "tu": "src/_unknown/tu_00452950.c",
-   "evidence": "placed (found) in src/_unknown/tu_00452950.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "SimImageGadget::HitTest": {
    "va": "00453840",
@@ -13683,10 +13698,10 @@
   "SimActorKilled": {
    "va": "00453e40",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?SimActorKilled$n(pn$SimGame$$pn$ActorRecord$$ii)v",
    "tu": "src/_unknown/tu_00452950.c",
-   "evidence": "placed (at) in src/_unknown/tu_00452950.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "SimMessage": {
    "va": "00453f20",
@@ -13715,10 +13730,10 @@
   "SimSoundSetup": {
    "va": "00453fd0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?SimSoundSetup$n(pn$SimSound$$pn$ExploPoint$$)v",
    "tu": "src/_unknown/tu_00452950.c",
-   "evidence": "placed (at) in src/_unknown/tu_00452950.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "SimDistanceToDepot": {
    "va": "00454180",
@@ -23232,6 +23247,13 @@
    "mangled": "W?SimMarkPosition$n(llii)v",
    "evidence": "implied by src/sim/simgame.c 2026-11-09"
   },
+  "VectorLength": {
+   "va": "0047f87c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?VectorLength$n(ii)i",
+   "evidence": "implied by src/_unknown/tu_00452950.c 2026-11-09"
+  },
   "ISqrt": {
    "va": "0047f8ea",
    "kind": "func",
@@ -24566,6 +24588,14 @@
    "tu": "src/_unknown/tu_0044d150.c",
    "evidence": "own data placed in src/_unknown/tu_0044d150.c 2026-11-09"
   },
+  "W?$Wvf0ios:SimValueGadget$$nx[]pn()v": {
+   "va": "0048df9c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wvf0ios:SimValueGadget$$nx[]pn()v",
+   "tu": "src/_unknown/tu_00452950.c",
+   "evidence": "own data placed in src/_unknown/tu_00452950.c 2026-11-09"
+  },
   "W?$Wvf0ios:SimImageGadget$$nx[]pn()v": {
    "va": "0048dfb0",
    "kind": "data",
@@ -24615,6 +24645,14 @@
    "status": "hypothesis",
    "mangled": "W?$Wts0en$LogicActor$$$nx[]uc",
    "evidence": "implied by src/logic/lactors.c 2026-11-09"
+  },
+  "W?$Wts0an$Script$$$nx[]uc": {
+   "va": "0048e0f8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0an$Script$$$nx[]uc",
+   "tu": "src/logic/sinterp.c",
+   "evidence": "own data placed in src/logic/sinterp.c 2026-11-09"
   },
   "W?$Wts0dn$GenAnchor$$$nx[]uc": {
    "va": "0048e10c",
@@ -26571,6 +26609,14 @@
    "status": "hypothesis",
    "mangled": "W?fileSourcePath$n[]xa",
    "evidence": "implied by src/io/file.c 2026-11-09"
+  },
+  "W?.mod_init$npn()v@logic/lgen.c": {
+   "va": "004a6cba",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?.mod_init$npn()v",
+   "tu": "src/logic/lgen.c",
+   "evidence": "own data placed in src/logic/lgen.c 2026-11-09"
   },
   "gNetworkPlayerSelection": {
    "va": "004a7024",
@@ -32913,6 +32959,13 @@
    "status": "hypothesis",
    "mangled": "W?g4d2498$npn$ActorRecord$$",
    "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
+  "g4d249c": {
+   "va": "004d249c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4d249c$npnv",
+   "evidence": "implied by src/_unknown/tu_00452950.c 2026-11-09"
   },
   "modeSwitch": {
    "va": "004d2722",

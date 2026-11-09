@@ -73,7 +73,7 @@ struct AnimMeta { long radius; char pad[0x38]; };
 extern AnimMeta animationMetaAt0cbc[];
 inline void GenSetSquad(GenActor *actor,int side) { actor->squad=side; }
 inline void GenSetWeight(GenActor *actor,long weight) { actor->weight=weight; }
-inline long GenVehicleCost(int index) { return gVehicleInfo[index].cost; }
+inline int GenChassis(int index){return gHercInfo[index].chassis;} inline long GenVehicleCost(int index) { return gVehicleInfo[index].cost; }
 inline long GenVehicleWeight(int index) { return gVehicleInfo[index].weight; }
 inline long GenInfoCost(UnitInfo *info) {return info->cost;}
 inline long Min(long a, long b) { return a < b ? a : b; }
@@ -318,10 +318,10 @@ long *LogicMapViewUpdate(void *list, long budget, ScriptPoint *at)
         }
     }
     n = 0;
-    for (i = 0; i < 6; i++) {
+    for (i = 0; ; i++) { int next=n+1; if (i>=6) break;
         if (chosen[i] != -1) {
-            GenActor *actor = GenCreateActor(list, gHercInfo[chosen[i]].chassis - 8, at, chosen[i], 0);
-            if (actor) { dropList[n] = actor->id; n++; }
+            GenActor *actor = GenCreateActor(list, GenChassis(chosen[i]) - 8, at, chosen[i], 0);
+            if (actor) { dropList[n] = actor->id; n=next; }
         }
     }
     dropList[n] = -1;
@@ -820,9 +820,4 @@ void LogicDeleteActorFromList(void *list, GenRecord *rec)
     ActorArraySet(actor, 7, 0);
     LogicGenSetup(actor);
 }
-
-
-
-
-
 

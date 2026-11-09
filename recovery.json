@@ -3615,6 +3615,10 @@
     }
    },
    "data": {
+    "XI": {
+     "va": "004a6cba",
+     "size": 6
+    },
     "W?$Wts0dn$GenAnchor$$$nx[]uc": {
      "va": "0048e10c",
      "size": 17
@@ -3726,6 +3730,14 @@
     "_DATA": {
      "va": "004a3c80",
      "size": 12
+    },
+    "XI": {
+     "va": "004a6cb4",
+     "size": 6
+    },
+    "W?$Wts0an$Script$$$nx[]uc": {
+     "va": "0048e0f8",
+     "size": 17
     }
    },
    "accepted": "2026-11-09"
@@ -4245,6 +4257,11 @@
      "size": 64,
      "mangled": "W?SimImagePixel$n(pnx$MenuImage$$ll)i"
     },
+    "SimMapGadget::$ct": {
+     "va": "00453470",
+     "size": 64,
+     "mangled": "W?$ct:SimMapGadget$n(ulllul)_"
+    },
     "SimMapGadget::HitTest": {
      "va": "004534b0",
      "size": 208,
@@ -4269,6 +4286,11 @@
      "va": "004537f0",
      "size": 16,
      "mangled": "W?Event$:SimValueGadget$n(uiul)i"
+    },
+    "SimImageGadget::$ct": {
+     "va": "00453800",
+     "size": 64,
+     "mangled": "W?$ct:SimImageGadget$n(llul)_"
     },
     "SimImageGadget::HitTest": {
      "va": "00453840",
@@ -4330,6 +4352,11 @@
      "size": 256,
      "mangled": "W?ModeEvent$n(pn$SimGame$$pn$ActorRecord$$ii)v"
     },
+    "SimActorKilled": {
+     "va": "00453e40",
+     "size": 224,
+     "mangled": "W?SimActorKilled$n(pn$SimGame$$pn$ActorRecord$$ii)v"
+    },
     "SimMessage": {
      "va": "00453f20",
      "size": 48,
@@ -4344,9 +4371,22 @@
      "va": "00453fa0",
      "size": 48,
      "mangled": "W?SimSoundAtTile$n(pn$SimSound$$i)v"
+    },
+    "SimSoundSetup": {
+     "va": "00453fd0",
+     "size": 432,
+     "mangled": "W?SimSoundSetup$n(pn$SimSound$$pn$ExploPoint$$)v"
     }
    },
    "data": {
+    "W?$Wvf0gos:SimMapGadget$$nx[]pn()v": {
+     "va": "0048dfc4",
+     "size": 20
+    },
+    "W?$Wvf0ios:SimImageGadget$$nx[]pn()v": {
+     "va": "0048dfb0",
+     "size": 20
+    },
     "W?$Wvf0ios:SimValueGadget$$nx[]pn()v": {
      "va": "0048df9c",
      "size": 20
@@ -8231,6 +8271,10 @@
     "CONST": {
      "va": "0048b4a8",
      "size": 58
+    },
+    "XI": {
+     "va": "004a6c66",
+     "size": 6
     }
    },
    "accepted": "2026-11-09"
@@ -8266,7 +8310,12 @@
      "mangled": "W?SimDrawCursor$n()v"
     }
    },
-   "data": {},
+   "data": {
+    "XI": {
+     "va": "004a6c6c",
+     "size": 6
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/_unknown/tu_004556f0.c": {

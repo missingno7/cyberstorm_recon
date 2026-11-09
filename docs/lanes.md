@@ -66,7 +66,7 @@ Model: `luna` = gpt-6-luna xhigh, `sol` = gpt-6.1-sol high (Codex; all new lanes
 | s41 | sol | 3rd pass: sim\sim.c region | done |
 | s42 | sol | 3rd pass: shell\hbupgrad.c, pop\pherc.c, 0043b7e0 | done (+2) |
 | s43 | sol | big functions: 0043ef34 region, sim\explo.c, apply.c, simhot.c | done |
-| s44 | sol | logic\lgen.c + sinterp.c, 00452950, 00454210 | running |
+| s44 | sol | logic\lgen.c + sinterp.c, 00452950, 00454210 | done |
 | s45 | sol | terr\tsurface.c recursive helpers (inline_recursion hypothesis) | done (+3; recursive helper still 5984 vs 7456) |
 | s46 | sol | hand-assembly routines (asm profile, assembler identification) | running |
 | s47 | sol | TU completion: 17 TUs blocked only at TU level | running |
