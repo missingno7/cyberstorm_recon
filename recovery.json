@@ -6786,6 +6786,173 @@
     }
    },
    "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_00454210.c": {
+   "as": "_unknown\\tu_00454210.c",
+   "install": "wc106",
+   "profile": "ot-oe",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "00454210",
+     "size": 16,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "SimResetPlayers": {
+     "va": "00454220",
+     "size": 80,
+     "mangled": "W?SimResetPlayers$n(pn$SimGame$$)v"
+    },
+    "SimEliminatePlayer": {
+     "va": "00454270",
+     "size": 224,
+     "mangled": "W?SimEliminatePlayer$n(pn$SimGame$$i)v"
+    },
+    "SimHasEarlierPlayer": {
+     "va": "00454350",
+     "size": 64,
+     "mangled": "W?SimHasEarlierPlayer$n(pn$SimGame$$i)i"
+    },
+    "SimCountPlayers": {
+     "va": "00454390",
+     "size": 64,
+     "mangled": "W?SimCountPlayers$n(pn$SimGame$$)i"
+    },
+    "ResetPlayer": {
+     "va": "004543d0",
+     "size": 32,
+     "mangled": "W?ResetPlayer$n(pn$PlayerSlot$$)v"
+    },
+    "SimHotReadTimer": {
+     "va": "004543f0",
+     "size": 80,
+     "mangled": "W?SimHotReadTimer$n(pn$SimGame$$)i"
+    },
+    "SimSetRepeat": {
+     "va": "004546a0",
+     "size": 80,
+     "mangled": "W?SimSetRepeat$n(pn$SimGame$$i)v"
+    },
+    "SimPollRepeat": {
+     "va": "004546f0",
+     "size": 192,
+     "mangled": "W?SimPollRepeat$n(pn$RepeatInput$$)v"
+    },
+    "SimSetOption": {
+     "va": "004547b0",
+     "size": 16,
+     "mangled": "W?SimSetOption$n(pn$SimGame$$i)v"
+    },
+    "SimCheckEndTurn": {
+     "va": "00454930",
+     "size": 94,
+     "mangled": "W?SimCheckEndTurn$n(pn$SimGame$$)v"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048b4a8",
+     "size": 58
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_00454990.c": {
+   "as": "_unknown\\tu_00454990.c",
+   "install": "wc106",
+   "profile": "ot-oe",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "00454990",
+     "size": 16,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "SimDrawAction": {
+     "va": "004549a0",
+     "size": 304,
+     "mangled": "W?SimDrawAction$n(pn$AnimAction$$)v"
+    },
+    "SimSortDrawQueue": {
+     "va": "00455170",
+     "size": 176,
+     "mangled": "W?SimSortDrawQueue$n(pn$SimGame$$)v"
+    },
+    "SimDrawBackground": {
+     "va": "004553a0",
+     "size": 208,
+     "mangled": "W?SimDrawBackground$n(pn$SimGame$$)v"
+    },
+    "SimDrawCursor": {
+     "va": "00455470",
+     "size": 80,
+     "mangled": "W?SimDrawCursor$n()v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_004556f0.c": {
+   "as": "_unknown\\tu_004556f0.c",
+   "install": "wc106",
+   "profile": "ot-oe",
+   "functions": {
+    "ActorAdvanceState": {
+     "va": "004556f0",
+     "size": 416,
+     "mangled": "W?ActorAdvanceState$n(pn$ActorRecord$$)v"
+    },
+    "SimHotbriefClearActor": {
+     "va": "00455bf0",
+     "size": 80,
+     "mangled": "W?SimHotbriefClearActor$n(pn$ActorRecord$$)v"
+    },
+    "ActorClearAndSelect": {
+     "va": "00455c40",
+     "size": 208,
+     "mangled": "W?ActorClearAndSelect$n(pn$ActorRecord$$)i"
+    },
+    "SimHotbriefCheckActor": {
+     "va": "00455d10",
+     "size": 32,
+     "mangled": "W?SimHotbriefCheckActor$n(pn$ActorRecord$$)i"
+    },
+    "ActorIsSpecial": {
+     "va": "00455d30",
+     "size": 48,
+     "mangled": "W?ActorIsSpecial$n(pn$ActorRecord$$)i"
+    },
+    "ActorSetExternal": {
+     "va": "00455f40",
+     "size": 48,
+     "mangled": "W?ActorSetExternal$n(pn$ActorRecord$$iul)v"
+    },
+    "ActorSetHeading": {
+     "va": "00455f70",
+     "size": 32,
+     "mangled": "W?ActorSetHeading$n(pn$ActorRecord$$i)v"
+    },
+    "ActorChecksum": {
+     "va": "00455f90",
+     "size": 208,
+     "mangled": "W?ActorChecksum$n(pn$ActorRecord$$)i"
+    },
+    "ActorSaveState": {
+     "va": "00456060",
+     "size": 64,
+     "mangled": "W?ActorSaveState$n(pn$ActorRecord$$pn$ActorWireState$$)v"
+    },
+    "ActorLoad": {
+     "va": "004560a0",
+     "size": 160,
+     "mangled": "W?ActorLoad$n(pn$ActorRecord$$pnvpn$ActorState$$pn$ActorWireState$$)i"
+    },
+    "ActorUpdate": {
+     "va": "00456140",
+     "size": 130,
+     "mangled": "W?ActorUpdate$n(pn$ActorRecord$$pnvpn$ActorState$$pn$ActorWireState$$)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
   }
  },
  "accepted_losses": [
