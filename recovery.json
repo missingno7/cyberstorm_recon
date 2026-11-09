@@ -4722,6 +4722,11 @@
      "size": 1202,
      "mangled": "W?.fn_init$n()v"
     },
+    "f_004193a2": {
+     "va": "004193a2",
+     "size": 88,
+     "mangled": "W?f_004193a2$n(i)i"
+    },
     "f_004193fa": {
      "va": "004193fa",
      "size": 24,
@@ -4751,6 +4756,16 @@
      "va": "00419d21",
      "size": 49,
      "mangled": "W?f_00419d21$n(pnv)v"
+    },
+    "f_00419ee4": {
+     "va": "00419ee4",
+     "size": 88,
+     "mangled": "W?f_00419ee4$n(pnv)v"
+    },
+    "f_00419f3c": {
+     "va": "00419f3c",
+     "size": 2718,
+     "mangled": "f_00419f3c"
     },
     "f_0041a9da": {
      "va": "0041a9da",
@@ -4962,6 +4977,14 @@
     },
     "W?$Wts0kn$MenuPrefixButton$$$nx[]uc": {
      "va": "0048c9ec",
+     "size": 17
+    },
+    "W?$Wts0en$UpgradeBar$$$nx[]uc": {
+     "va": "0048d024",
+     "size": 17
+    },
+    "W?$Wts0gn$UpgradeArrow$$$nx[]uc": {
+     "va": "0048d010",
      "size": 17
     }
    },
@@ -8505,10 +8528,35 @@
      "size": 69,
      "mangled": "W?SoundRelease$n(ui)v"
     },
+    "SoundReleaseList": {
+     "va": "0046c0b6",
+     "size": 84,
+     "mangled": "W?SoundReleaseList$n(pni)v"
+    },
+    "SoundReleaseAll": {
+     "va": "0046c10a",
+     "size": 84,
+     "mangled": "W?SoundReleaseAll$n()v"
+    },
+    "SoundFlush": {
+     "va": "0046c2d4",
+     "size": 118,
+     "mangled": "W?SoundFlush$n(i)v"
+    },
     "SoundFinished": {
      "va": "0046c34a",
      "size": 61,
      "mangled": "W?SoundFinished$n(ui)i"
+    },
+    "ShellSoundShutdown": {
+     "va": "0046c387",
+     "size": 40,
+     "mangled": "W?ShellSoundShutdown$n()v"
+    },
+    "SoundStop": {
+     "va": "0046c3af",
+     "size": 77,
+     "mangled": "W?SoundStop$n(ui)v"
     },
     "SoundClearContext": {
      "va": "0046cbbd",
@@ -8519,6 +8567,11 @@
      "va": "0046cbc6",
      "size": 21,
      "mangled": "W?SoundTrigger$n(uii)i"
+    },
+    "ViewFlip": {
+     "va": "0046cbdb",
+     "size": 478,
+     "mangled": "W?ViewFlip$n(i)v"
     }
    },
    "data": {

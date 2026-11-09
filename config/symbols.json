@@ -3393,10 +3393,10 @@
   "f_004193a2": {
    "va": "004193a2",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?f_004193a2$n(i)i",
    "tu": "src/shell/hbupgrad.c",
-   "evidence": "placed (at) in src/shell/hbupgrad.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "f_004193fa": {
    "va": "004193fa",
@@ -3540,17 +3540,18 @@
   "f_00419ee4": {
    "va": "00419ee4",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?f_00419ee4$n(pnv)v",
    "tu": "src/shell/hbupgrad.c",
-   "evidence": "placed (found) in src/shell/hbupgrad.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "f_00419f3c": {
    "va": "00419f3c",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "f_00419f3c",
-   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
   },
   "f_0041a9da": {
    "va": "0041a9da",
@@ -16858,17 +16859,18 @@
   "SoundReleaseList": {
    "va": "0046c0b6",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?SoundReleaseList$n(pni)v",
    "tu": "src/_unknown/tu_0046b918.c",
-   "evidence": "placed (at) in src/_unknown/tu_0046b918.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "SoundReleaseAll": {
    "va": "0046c10a",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?SoundReleaseAll$n()v",
-   "evidence": "implied by src/_unknown/tu_0041c864.c 2026-11-09"
+   "tu": "src/_unknown/tu_0046b918.c",
+   "evidence": "strict match 2026-11-09"
   },
   "SoundLoad": {
    "va": "0046c15e",
@@ -16877,12 +16879,21 @@
    "mangled": "W?SoundLoad$n(ui)v",
    "evidence": "implied by src/gui/flic.c 2026-11-09"
   },
+  "SoundLoad#W?SoundLoad$n(ui)i": {
+   "va": "0046c15e",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SoundLoad$n(ui)i",
+   "tu": "src/_unknown/tu_0046b918.c",
+   "evidence": "placed (at) in src/_unknown/tu_0046b918.c 2026-11-09"
+  },
   "SoundFlush": {
    "va": "0046c2d4",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?SoundFlush$n(i)v",
-   "evidence": "implied by src/gui/flic.c 2026-11-09"
+   "tu": "src/_unknown/tu_0046b918.c",
+   "evidence": "strict match 2026-11-09"
   },
   "SoundFinished": {
    "va": "0046c34a",
@@ -16895,16 +16906,18 @@
   "ShellSoundShutdown": {
    "va": "0046c387",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ShellSoundShutdown$n()v",
-   "evidence": "implied by src/shell/shell.c 2026-11-09"
+   "tu": "src/_unknown/tu_0046b918.c",
+   "evidence": "strict match 2026-11-09"
   },
   "SoundStop": {
    "va": "0046c3af",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?SoundStop$n(ui)v",
-   "evidence": "implied by src/gui/flic.c 2026-11-09"
+   "tu": "src/_unknown/tu_0046b918.c",
+   "evidence": "strict match 2026-11-09"
   },
   "SoundAllowed": {
    "va": "0046c3fc",
@@ -16990,9 +17003,10 @@
   "ViewFlip": {
    "va": "0046cbdb",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ViewFlip$n(i)v",
-   "evidence": "implied by src/sim/fxout.c 2026-11-09"
+   "tu": "src/_unknown/tu_0046b918.c",
+   "evidence": "strict match 2026-11-09"
   },
   "LinkDecoderOwner::decode_link_samples": {
    "va": "0046cdbc",
@@ -23825,6 +23839,13 @@
    "mangled": "W?storageControls$n[]pn$GuiControl$$",
    "evidence": "implied by src/_unknown/tu_00417f34.c 2026-11-09"
   },
+  "g48ed3c": {
+   "va": "0048ed3c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g48ed3c$n[]a",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
   "quickControls": {
    "va": "0048eef8",
    "kind": "data",
@@ -24911,6 +24932,13 @@
    "status": "hypothesis",
    "mangled": "W?logicTextCurrent$npna",
    "evidence": "implied by src/logic/lsys.c 2026-11-09"
+  },
+  "soundDefaults": {
+   "va": "004a3d24",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?soundDefaults$n$SoundSettings$$",
+   "evidence": "implied by src/_unknown/tu_0046b918.c 2026-11-09"
   },
   "shieldSoundDefaults": {
    "va": "004a3d34",
@@ -27631,12 +27659,35 @@
    "mangled": "W?g4b5eb8$n[]a",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
+  "upgradeExit": {
+   "va": "004b5f08",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?upgradeExit$n$MenuButton$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
+  },
   "g4b5f1c": {
    "va": "004b5f1c",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4b5f1c$nul",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b5f1f": {
+   "va": "004b5f1f",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b5f1f$nuc",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "upgradeBack": {
+   "va": "004b5f30",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?upgradeBack$n$MenuButton$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
   },
   "g4b5f44": {
    "va": "004b5f44",
@@ -27645,6 +27696,21 @@
    "mangled": "W?g4b5f44$nul",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
+  "g4b5f47": {
+   "va": "004b5f47",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b5f47$nuc",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "upgradeBuy": {
+   "va": "004b5f58",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?upgradeBuy$n$MenuButton$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
+  },
   "g4b5f6c": {
    "va": "004b5f6c",
    "kind": "data",
@@ -27652,11 +27718,48 @@
    "mangled": "W?g4b5f6c$nul",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
+  "g4b5f6f": {
+   "va": "004b5f6f",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b5f6f$nuc",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "upgradeSell": {
+   "va": "004b5f80",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?upgradeSell$n$MenuButton$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
+  },
   "g4b5f94": {
    "va": "004b5f94",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4b5f94$nul",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b5f97": {
+   "va": "004b5f97",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b5f97$nuc",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "upgradeCancel": {
+   "va": "004b5fa8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?upgradeCancel$n$MenuButton$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b5fbc": {
+   "va": "004b5fbc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b5fbc$nul",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
   "g4b5fd0": {
@@ -27673,6 +27776,14 @@
    "mangled": "W?g4b5fe4$nul",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
+  "upgradePurchaseValue": {
+   "va": "004b6004",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?upgradePurchaseValue$n$MenuNumber$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
+  },
   "g4b6018": {
    "va": "004b6018",
    "kind": "data",
@@ -27687,12 +27798,60 @@
    "mangled": "W?g4b6028$npna",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
+  "upgradeNames": {
+   "va": "004b6034",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?upgradeNames$n[]$MenuPrefixButton$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
+  },
+  "upgradeValues": {
+   "va": "004b6428",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?upgradeValues$n[]$MenuPrefixButton$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
+  },
+  "weaponNames": {
+   "va": "004b681c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?weaponNames$n[]$MenuPrefixButton$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
+  },
+  "weaponValues": {
+   "va": "004b697c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?weaponValues$n[]$MenuLabel$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
+  },
+  "upgradeAction0": {
+   "va": "004b6b04",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?upgradeAction0$n$MenuButton$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
+  },
   "g4b6b18": {
    "va": "004b6b18",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4b6b18$nul",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "upgradeAction1": {
+   "va": "004b6b2c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?upgradeAction1$n$MenuButton$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
   },
   "g4b6b40": {
    "va": "004b6b40",
@@ -27701,6 +27860,14 @@
    "mangled": "W?g4b6b40$nul",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
+  "upgradeAction2": {
+   "va": "004b6b54",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?upgradeAction2$n$MenuButton$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
+  },
   "g4b6b68": {
    "va": "004b6b68",
    "kind": "data",
@@ -27708,12 +27875,28 @@
    "mangled": "W?g4b6b68$nul",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
+  "upgradeAction3": {
+   "va": "004b6b7c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?upgradeAction3$n$MenuButton$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
+  },
   "g4b6b90": {
    "va": "004b6b90",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4b6b90$nul",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "upgradeAction4": {
+   "va": "004b6ba4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?upgradeAction4$n$MenuButton$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
   },
   "g4b6bb8": {
    "va": "004b6bb8",
@@ -27736,6 +27919,14 @@
    "mangled": "W?g4b6be0$nul",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
+  "upgradeRepairCost": {
+   "va": "004b6c00",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?upgradeRepairCost$n$MenuNumber$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
+  },
   "g4b6c14": {
    "va": "004b6c14",
    "kind": "data",
@@ -27757,12 +27948,28 @@
    "mangled": "W?g4b6c44$nul",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
+  "upgradeTotalCost": {
+   "va": "004b6c64",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?upgradeTotalCost$n$MenuNumber$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
+  },
   "g4b6c78": {
    "va": "004b6c78",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4b6c78$nul",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "upgradePageUp": {
+   "va": "004b6c94",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?upgradePageUp$n$MenuButton$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
   },
   "g4b6ca8": {
    "va": "004b6ca8",
@@ -27771,12 +27978,28 @@
    "mangled": "W?g4b6ca8$nul",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
+  "upgradePageDown": {
+   "va": "004b6cbc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?upgradePageDown$n$MenuButton$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
+  },
   "g4b6cd0": {
    "va": "004b6cd0",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4b6cd0$nul",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "upgradeCanvas": {
+   "va": "004b6ce4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?upgradeCanvas$n$UpgradeCanvas$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
   },
   "g4b6cf8": {
    "va": "004b6cf8",
@@ -27785,11 +28008,26 @@
    "mangled": "W?g4b6cf8$nul",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
+  "upgradeHelp": {
+   "va": "004b6d04",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?upgradeHelp$n$MenuHelpRegion$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
+  },
   "g4b6d2c": {
    "va": "004b6d2c",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4b6d2c$n$MenuNumber$$",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b6d43": {
+   "va": "004b6d43",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6d43$nuc",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
   "g4b6d5c": {
@@ -27806,12 +28044,36 @@
    "mangled": "W?g4b6d73$nuc",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
+  "upgradePanel": {
+   "va": "004b6d88",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?upgradePanel$n$MenuPanel$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
+  },
   "g4b6dac": {
    "va": "004b6dac",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4b6dac$ni",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "upgradeRange": {
+   "va": "004b6dac",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?upgradeRange$n$UpgradeRange$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
+  },
+  "upgradeBar": {
+   "va": "004b6db4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?upgradeBar$n$UpgradeBar$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
   },
   "g4b6dc8": {
    "va": "004b6dc8",
@@ -27820,12 +28082,28 @@
    "mangled": "W?g4b6dc8$nul",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
+  "upgradeUp": {
+   "va": "004b6ddc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?upgradeUp$n$UpgradeArrow$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
+  },
   "g4b6df0": {
    "va": "004b6df0",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4b6df0$nul",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "upgradeDown": {
+   "va": "004b6e08",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?upgradeDown$n$UpgradeArrow$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
   },
   "g4b6e1c": {
    "va": "004b6e1c",
@@ -27834,12 +28112,36 @@
    "mangled": "W?g4b6e1c$nul",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
+  "descriptionRange": {
+   "va": "004b6e34",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?descriptionRange$n$UpgradeRange$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
+  },
+  "descriptionBar": {
+   "va": "004b6e3c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?descriptionBar$n$UpgradeBar$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
+  },
   "g4b6e50": {
    "va": "004b6e50",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4b6e50$nul",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "descriptionUp": {
+   "va": "004b6e64",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?descriptionUp$n$UpgradeArrow$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
   },
   "g4b6e78": {
    "va": "004b6e78",
@@ -27848,12 +28150,28 @@
    "mangled": "W?g4b6e78$nul",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
+  "descriptionDown": {
+   "va": "004b6e90",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?descriptionDown$n$UpgradeArrow$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
+  },
   "g4b6ea4": {
    "va": "004b6ea4",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4b6ea4$nul",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "upgradeStat0": {
+   "va": "004b6ebc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?upgradeStat0$n$MenuNumber$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
   },
   "g4b6ed0": {
    "va": "004b6ed0",
@@ -27869,6 +28187,14 @@
    "mangled": "W?g4b6ee0$npna",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
+  "upgradeStat1": {
+   "va": "004b6eec",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?upgradeStat1$n$MenuNumber$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
+  },
   "g4b6f00": {
    "va": "004b6f00",
    "kind": "data",
@@ -27882,6 +28208,14 @@
    "status": "hypothesis",
    "mangled": "W?g4b6f10$npna",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "upgradeStat2": {
+   "va": "004b6f1c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?upgradeStat2$n$MenuNumber$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
   },
   "g4b6f30": {
    "va": "004b6f30",
@@ -27897,12 +28231,58 @@
    "mangled": "W?g4b6f40$npna",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
+  "g4b6f4c": {
+   "va": "004b6f4c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6f4c$n$MenuNumber$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b6f63": {
+   "va": "004b6f63",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6f63$nuc",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b6f7c": {
+   "va": "004b6f7c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6f7c$n$MenuNumber$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b6f93": {
+   "va": "004b6f93",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6f93$nuc",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "upgradeStat5": {
+   "va": "004b6fac",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?upgradeStat5$n$MenuNumber$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
+  },
   "g4b6fc0": {
    "va": "004b6fc0",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4b6fc0$nul",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "upgradeStat6": {
+   "va": "004b6fdc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?upgradeStat6$n$MenuNumber$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
   },
   "g4b6ff0": {
    "va": "004b6ff0",
@@ -27917,6 +28297,14 @@
    "status": "hypothesis",
    "mangled": "W?g4b700c$n$Scene$$",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "upgradeScreen": {
+   "va": "004b700c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?upgradeScreen$n$UpgradeInitScreen$$",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
   },
   "W?timer$:.0$:?PilotManagerPoll$n(pnv)vn$Timer$$": {
    "va": "004b74e4",
@@ -31977,6 +32365,14 @@
    "status": "hypothesis",
    "mangled": "W?logicTextBuffer$n[]a",
    "evidence": "implied by src/logic/lsys.c 2026-11-09"
+  },
+  "soundPollDeadline": {
+   "va": "004f41c4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?soundPollDeadline$ni",
+   "tu": "src/_unknown/tu_0046b918.c",
+   "evidence": "own data placed in src/_unknown/tu_0046b918.c 2026-11-09"
   },
   "soundDevice": {
    "va": "004f41c8",

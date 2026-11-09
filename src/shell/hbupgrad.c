@@ -266,8 +266,8 @@ inline void VerifyUpgradeResource(int success)
  * and inline helpers are reconstruction labels, not recovered identifiers.
  * GuiControl/Menu* layouts follow src/gui/menu.c. Raw byte offsets in the
  * upgrade-screen view are provisional, evidenced by the corresponding accesses.
- * UpgradeBar/UpgradeArrow/UpgradeInitScreen opaque storage is a temporary layout
- * model. Their global declaration order reproduces all 41 construction states.
+ * UpgradeBar/UpgradeArrow and unobserved screen bytes remain provisional.
+ * The screen uses native FileRecord, Timer and Flic member construction. Their global declaration order reproduces all 41 construction states.
  * Switch tables are compiler-owned. No padding has been inserted to compensate
  * for the still-different function sizes or shared epilogue displacements.
  */
@@ -420,12 +420,12 @@ extern "C" void f_0047bff0(void *, int *, int, int);
 extern "C" void f_0047b3a0(void *);
 extern "C" int f_00406fc9(void *);
 extern "C" void f_0041c096(char *);
-extern "C" void f_00425e1a(void *);
+extern "C" void BriefRenderUpdate(void *);
 extern "C" void *f_00441dad(void *, unsigned int, int *);
 extern "C" unsigned int f_0042604d(void *, void *);
 extern "C" void f_0041b37c(char *);
 extern "C" void f_00425ba1(void *);
-extern "C" void f_00425f1c(void *);
+extern "C" void BriefStatus(void *);
 
 
 
@@ -511,7 +511,7 @@ extern unsigned long g4b6ff0;
 extern MenuPrefixButton upgradeNames[23], upgradeValues[23], weaponNames[8];
 extern MenuLabel weaponValues[8];
 
-struct UpgradeEntry { int id; const char *name; int cost; int Cost() const {return cost;} };
+struct UpgradeEntry { int id; const char *name; int cost; int Cost() const {return cost;} int Id() const {return id;} };
 inline void UpgradeNameList(char *screen)
 {
     for (unsigned char i = 0; (int)i < *(int *)(screen + 0x3d8); ++i) {
@@ -835,10 +835,12 @@ class UpgradeCanvas : public GuiControl { public: __pragma("upgrade_canvas_ctor"
 /* The packed screen view below replaces only the storage required for destruction. */
 #pragma aux upgrade_screen_ctor "W?f_004193a2$n(i)i"
 #pragma aux file_release_name "W?Release$:FileRecord$n()pn$1$"
-class FileRecord { public: char bytes[0x1c]; ~FileRecord(); };
-class Flic { public: char bytes[0xa1]; ~Flic(); };
-class UpgradeScreenBase { public: char first[16]; void *input; char rest[0x38]; ~UpgradeScreenBase(){ input=0; } };
-class UpgradeInitScreen : public UpgradeScreenBase { public: FileRecord file; char unknown68[0x3c9]; Flic animation; __pragma("upgrade_screen_ctor") UpgradeInitScreen(); ~UpgradeInitScreen() {} };
+#pragma aux file_init_ctor "W?FileInit$n(pn$FileRecord$$)v"
+class FileRecord { public: char bytes[0x1c]; __pragma("file_init_ctor") FileRecord(); ~FileRecord(); };
+class Flic { public: char bytes[0xa1]; Flic(); ~Flic(); };
+class UpgradeScreenBase : public GuiScreen { public: UpgradeScreenBase() : GuiScreen((GuiControl **)g48ed3c,0x62,0) {} ~UpgradeScreenBase(){ *(void **)(data+16)=0; } };
+class Timer { public: char bytes[12]; Timer(){ TimerSet(this,0); } };
+class UpgradeInitScreen : public UpgradeScreenBase { public: FileRecord file; char unknown68[0x18]; Timer streamTimer; char unknown8c[0x10a]; Timer imageTimer; char unknown1a2[0x28f]; Flic animation; __pragma("upgrade_screen_ctor") UpgradeInitScreen(); ~UpgradeInitScreen() {} };
 #pragma pack(pop)
 
 
@@ -868,20 +870,7 @@ inline unsigned char UpgradeVisibleSlot(char *screen) {
 inline int UpgradeFirstChoice(char *screen) { return *(unsigned char *)(screen + 0x3eb); }
 inline int UpgradeIsOpen(char *screen) { return *(int *)(screen + 0x10) != 0; }
 
-int f_004193a2(int param_1)
-{
-    register GuiScreen *object = (GuiScreen *)param_1;
-    GuiScreen *screen = GuiScreenCtor(object, g48ed3c, 0x62, 0);
-    FileRecord *file = FileInitReturn((FileRecord *)((char *)screen + 0x4c));
-    char *timer = (char *)file + 0x34;
-    TimerSet((Timer *)timer, 0);
-    char *timer2 = timer + 0x116;
-    TimerSet((Timer *)timer2, 0);
-    timer = timer2;
-    timer += 0x29b;
-    Flic *flic = FlicCtor((Flic *)timer);
-    return (int)flic - 0x431;
-}
+UpgradeInitScreen::UpgradeInitScreen() {}
 
 void f_004193fa(void *param_1)
 {
@@ -1051,13 +1040,13 @@ void f_00419b3c(char *param_1)
             g4b6d43 &= 0xfe;
             g4b6f63 &= 0xfe;
             g4b6f93 &= 0xfe;
-            f_00425e1a(param_1);
+            BriefRenderUpdate(param_1);
             if (uiSystem.UpdateCredits() != 0) g4b6d2c.SetValue(g4a706d, 0);
             g4b6d73 &= 0xfe;
             break;
         case 3:
         case 5:
-            f_00425e1a(param_1);
+            BriefRenderUpdate(param_1);
             return;
         case 4:
         case 6:
@@ -1077,10 +1066,10 @@ void f_00419b3c(char *param_1)
                     (int *)(param_1 + 0x419), (int *)(param_1 + 0x41d),
                     (int *)&local, 0xe);
             }
-            f_00425f1c(param_1);
+            BriefStatus(param_1);
             break;
         }
-        f_00425e1a(param_1);
+        BriefRenderUpdate(param_1);
     }
 }
 
@@ -1090,13 +1079,24 @@ void f_00419d21(void *param_1)
     f_0041c096((char *)param_1);
 }
 
+
 void f_00419d52(char *screen)
 {
     if (*(int *)(screen + 0x6c)) {
         if (*(int *)(screen + 0x90) == 0) {
-            UpgradeReadStream(screen);
+            {
+    if (*(int *)(screen + 0x70) < *(int *)(screen + 0x6c)) {
+        int amount = *(int *)(screen + 0x6c) - *(int *)(screen + 0x70);
+        if (amount > 0x4000) amount = 0x4000;
+        StreamRead((FileRecord *)(screen + 0x4c), *(char **)(screen + 0x68) + *(int *)(screen + 0x70), amount);
+        *(int *)(screen + 0x70) += amount;
+        ++*(short *)(screen + 0x194);
+    } else {
+        *(int *)(screen + 0x90) = 1;
+    }
+}
             if (*(unsigned short *)(screen + 0x194) < 12) return;
-            if (*(int *)(screen + 0x70) - 0x7fff < (int)(*(MovieHeader **)(screen + 0x8c))->Image(*(int *)(screen + 0x74))->offset) return;
+            if (*(int *)(screen + 0x70) - 0x7fff < (int)(&(*(MovieHeader **)(screen+0x8c))->images[*(int *)(screen+0x74)])->offset) return;
         }
         Timer *timer = (Timer *)(screen + 0x80);
         if (TimerExpired(timer)) {
@@ -1105,7 +1105,7 @@ void f_00419d52(char *screen)
             BriefBlit(&g513888, 1, 0, 0xf8, 0, 0xf8, 0, 0x188, 0x1e0);
             MenuSetClip(&gMenuClip, 0xfa, 0x14, 0x186, 0x1cc);
             gDrawRemap = screen + 0x94;
-            MenuDrawImage(&g513888, (*(MovieHeader **)(screen + 0x8c))->Image(*(int *)(screen + 0x74)), 0x104, 10);
+            MenuDrawImage(&g513888, (&(*(MovieHeader **)(screen+0x8c))->images[*(int *)(screen+0x74)]), 0x104, 10);
             gDrawRemap = 0;
             if (*(int *)(screen + 0x78) > 0) {
                 unsigned index = *(unsigned *)(screen + 0x74) + 1;
@@ -1120,6 +1120,7 @@ void f_00419d52(char *screen)
     }
 }
 
+
 void f_00419ee4(void *param_1)
 {
     g4b5f47 &= 0xfe;
@@ -1129,7 +1130,7 @@ void f_00419ee4(void *param_1)
     g4b6d43 &= 0xfe;
     g4b6f63 &= 0xfe;
     g4b6f93 &= 0xfe;
-    f_00425e1a(param_1);
+    BriefRenderUpdate(param_1);
 }
 
 void f_00419f3c(char *screen)
@@ -1171,7 +1172,7 @@ void f_00419f3c(char *screen)
         value = g4b5fbc; value &= 0xff1fffff; g4b5fbc = value;
         break;
     }
-    f_00425f1c(screen);
+    BriefStatus(screen);
 }
 
 void f_0041a9da(char *param_1)
@@ -1645,7 +1646,7 @@ void f_0041b7a1(char *screen, int selected)
     *(int *)(screen + 0x3e7) = id;
     f_0043cffc(&gShellGame, (unsigned)*(unsigned char *)(screen + 0x3dc), id);
     BriefBlit(&g513888, 1, 0, 0, 0, 0, 0, 0x104, 0x1bf);
-    f_00425f1c(screen);
+    BriefStatus(screen);
     UpgradeRefreshList(screen);
     f_00418c61(&g4b5b50);
     f_0041b37c(screen);
@@ -1727,6 +1728,7 @@ void f_0041bdda(char *screen)
     UpgradeChangeState(screen, 2);
 }
 
+
 void f_0041be20(char *screen)
 {
     long available = UpgradeAvailableCredits();
@@ -1735,7 +1737,7 @@ void f_0041be20(char *screen)
         BriefBlit(&g513888, 1, 0, 0x96, 0x1a4, 0x96, 0x1a4, 0x7d, 0x1e);
         UpgradeChangeState(screen, 2);
     } else if (available >= *(int *)(screen + 0x3ed + slot * 4)) {
-        const char *name = f_00442258(&gShellGame, (unsigned)*(unsigned char *)(screen + 0x3dc), ((UpgradeEntry *)*(void **)(screen + 0x3cc))[*(int *)(screen + 0x3e3)].id, *(int *)(screen + 0x3df));
+        const char *name = f_00442258(&gShellGame, (unsigned)*(unsigned char *)(screen + 0x3dc), UpgradeEntryAt(screen,*(int *)(screen+0x3e3))->id, *(int *)(screen + 0x3df));
         upgradeNames[*(int *)(screen + 0x3e3)].SetText(name);
         sprintf(g4b5eb4, g48ab47);
         upgradeValues[*(int *)(screen + 0x3e3)].SetText(g4b5eb4);
@@ -1751,6 +1753,7 @@ void f_0041be20(char *screen)
         SoundTrigger(0x37, 0);
     }
 }
+
 
 void f_0041c096(char *screen)
 {
@@ -1947,4 +1950,6 @@ MenuNumber g4b6f7c(-1, 0x12);
 MenuNumber upgradeStat5(-1, 0x12);
 MenuNumber upgradeStat6(-1, 0x12);
 UpgradeInitScreen upgradeScreen;
+
+
 

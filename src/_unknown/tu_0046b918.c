@@ -116,16 +116,17 @@ int SoundCreateBuffer(int id,SoundBuffer **result,WAVEFORMATEX *format) {
   memset(&desc,0,sizeof(desc));desc.size=sizeof(desc);desc.flags=0xe0;desc.bytes=bytes;desc.format=format;
   soundFrequency[id]=format->nSamplesPerSec;
   if(soundDevice->vtable->CreateSoundBuffer(soundDevice,&desc,result,0)==0) {
+   SoundBuffer **const output=result;
    ++soundCreated;
    void *first,*second; U32 firstBytes,secondBytes;
-   long hr=(*result)->vtable->Lock(*result,0,bytes,&first,&firstBytes,&second,&secondBytes,0);
+   long hr=(*output)->vtable->Lock(*output,0,bytes,&first,&firstBytes,&second,&secondBytes,0);
    if(hr==(long)0x88780096UL) {
-    (*result)->vtable->Restore(*result);
-    hr=(*result)->vtable->Lock(*result,0,bytes,&first,&firstBytes,&second,&secondBytes,0);
+    (*output)->vtable->Restore(*output);
+    hr=(*output)->vtable->Lock(*output,0,bytes,&first,&firstBytes,&second,&secondBytes,0);
    }
    if(hr==0) {
     memcpy(first,samples,firstBytes); if(second) memcpy(second,samples+firstBytes,secondBytes);
-    if((*result)->vtable->Unlock(*result,first,firstBytes,second,secondBytes)==0) success=1;
+    if((*output)->vtable->Unlock(*output,first,firstBytes,second,secondBytes)==0) success=1;
    }
   }
   if(resource)ReleasePoolData(resource); if(allocated)GlobalBlockFree(allocated);
@@ -149,7 +150,9 @@ int SoundCache(int id) {
  }
  return 0;
 }
-void SoundCacheList(int *ids){while(*ids){int id=*ids++;SoundCache(id);}}
+
+void SoundCacheList(int *ids){while(*ids){SoundCache(*ids++);}}
+
 void SoundRelease(unsigned id) {
  if(id && (int)id<440 && soundEnabled) {
   if(soundCache[id]){++soundReleased;soundCache[id]->vtable->Release(soundCache[id]);soundCache[id]=0;soundTouched[id]=0;}
@@ -158,7 +161,9 @@ void SoundRelease(unsigned id) {
 void SoundReleaseList(int *ids){while(*ids){int id=*ids++;SoundRelease(id);}}
 void SoundReleaseAll(){for(int i=0;i<440;i++)SoundRelease(i);}
 int SoundLoad(unsigned id) {if(SoundCached(id))return 1; if(SoundCache(id)){soundTouched[id]=TimeNow();return 1;}return 0;}
-void SoundFlush(int age) {int limit=TimeNow()-age;int *t=soundTouched;for(int i=0;i<440;i++,t++){if(*t && limit>*t)SoundRelease(i);}}
+
+void SoundFlush(int age) {int i;int limit=TimeNow()-age;int *t=soundTouched;for(i=0;i<440;i++,t++){if(*t && limit>*t)SoundRelease(i);}}
+
 int SoundFinished(unsigned id) {
  if(!id || (int)id>=440 || !soundEnabled)return 0;
  SoundVoice *v=soundVoices;for(int i=0;i<32;i++,v++){if(v->id==id)return 0;}return 1;
@@ -171,6 +176,7 @@ int SoundAllowed(int id) {
  if(category==0)volume=100-soundEffectsVolume;else if(category==1)volume=100-soundVoiceVolume;else volume=100-soundMusicVolume;
  return priority>volume;
 }
+
 int SoundPlay(unsigned id,const SoundSettings *settings) {
  if(!id || (int)id>=440)return 0;
  if(!SoundAllowed(id))return 0;
@@ -181,22 +187,23 @@ int SoundPlay(unsigned id,const SoundSettings *settings) {
  for(i=0;i<32 && voice->id;i++,voice++){}
  if(i>=32)return 0;
  int keep=soundPriority[id].keep;
- if(keep && !SoundCached(id))SoundLoad(id);
+ if(keep)SoundLoad(id);
  SoundBuffer *buffer; WAVEFORMATEX format;
  if(!SoundDuplicate(id,&buffer,&format))return 0;
- int volume=(soundPriority[id].category==1)?soundMasterVolume:100;
+ int volume=((unsigned char)soundPriority[id].category==1)?soundMasterVolume:100;
  int pan=0,frequency=100;
- if(settings){pan=settings->pan; if(pan<=-100)pan=-100;else if(pan>=100)pan=100;
+ if(settings){pan=SoundClamp(settings->pan,-100,100);
   volume=settings->volume*volume/100;frequency=settings->frequency*frequency/100;}
  if(frequency!=100)buffer->vtable->SetFrequency(buffer,frequency*soundFrequency[id]/100);
  if(volume<=0)volume=0;else if(volume>=99)volume=99;
- buffer->vtable->SetVolume(buffer,soundAttenuation[volume]*-100);
+ volume=soundAttenuation[volume]*-100;buffer->vtable->SetVolume(buffer,volume);
  if(pan)buffer->vtable->SetPan(buffer,pan*100);
- buffer->vtable->Play(buffer,0,0,settings && settings->loop ? 1 : 0);
+ int looping=settings && settings->loop ? 1 : 0;buffer->vtable->Play(buffer,0,0,looping);
  voice->id=id;voice->buffer=buffer;
  if(keep){int delay=(keep*1000-20000)/2;if(delay<0)delay=0;soundTouched[id]=TimeNow()+delay;}
  return 1;
 }
+
 int SoundSetSettings(int id,const SoundSettings *settings) {
  if(!id || id>=440 || !soundEnabled || !settings)return 0;
  SoundVoice *v=soundVoices;
@@ -210,10 +217,10 @@ int SoundSetSettings(int id,const SoundSettings *settings) {
 int SoundPlayDefault(unsigned id,int delay) {
  int i;for(i=0;i<soundQueueCount;i++)if(soundQueue[i].id==id)return 0;
  if(!id || SoundFinished(id)) {
- if(soundQueueCount>=4){for(i=0;i<soundQueueCount-1;i++)soundQueue[i]=soundQueue[i+1];--soundQueueCount;}
+ if(soundQueueCount>=4){for(i=0;i<soundQueueCount-1;i++)soundQueue[i]=soundQueue[i+1];soundQueueCount--;}
  if(soundQueueCount>=4)return 0;
  soundQueue[soundQueueCount].id=id;soundQueue[soundQueueCount].delay=delay;++soundQueueCount;
- if(!SoundCached(id))SoundLoad(id);
+ SoundLoad(id);
  ViewFlip(1);return 1;
  } return 0;
 }
@@ -226,7 +233,7 @@ void ViewFlip(int force) {
  SoundVoice *v=soundVoices;
  for(int i=0;i<32;i++,v++)if(v->id){U32 status;v->buffer->vtable->GetStatus(v->buffer,&status);if(!(status&1)){++soundReleased;v->buffer->vtable->Release(v->buffer);v->buffer=0;v->id=0;}}
  if(soundQueueCount){int ready=1;if(soundCurrent.id && !SoundFinished(soundCurrent.id))ready=0;if(now<soundCurrent.delay)ready=0;
-  if(ready){soundCurrent=soundQueue[0];for(i=0;i<soundQueueCount-1;i++)soundQueue[i]=soundQueue[i+1];--soundQueueCount;
+  if(ready){soundCurrent=soundQueue[0];for(i=0;i<soundQueueCount-1;i++)soundQueue[i]=soundQueue[i+1];soundQueueCount--;
    soundCurrent.delay+=TimeNow();SoundSettings settings=soundDefaults;settings.volume=35;
    SoundPlay(soundCurrent.id,&settings);Sleep(13);SoundPlay(soundCurrent.id,&settings);
   }
@@ -234,6 +241,9 @@ void ViewFlip(int force) {
  SoundFlush(10000);
 } }
 }
+
+
+
 
 
 
