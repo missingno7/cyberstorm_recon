@@ -4356,6 +4356,113 @@
    },
    "data": {},
    "accepted": "2026-11-09"
+  },
+  "src/sim/animbmp.c": {
+   "as": "sim\\animbmp.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {},
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/shell/hbupgrad.c": {
+   "as": "shell\\hbupgrad.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "f_004193fa": {
+     "va": "004193fa",
+     "size": 24,
+     "mangled": "W?f_004193fa$n(pnv)v"
+    },
+    "f_00419412": {
+     "va": "00419412",
+     "size": 1,
+     "mangled": "W?f_00419412$n()v"
+    },
+    "f_004198c3": {
+     "va": "004198c3",
+     "size": 36,
+     "mangled": "W?f_004198c3$n()v"
+    },
+    "f_004198e7": {
+     "va": "004198e7",
+     "size": 26,
+     "mangled": "W?f_004198e7$n()v"
+    },
+    "f_00419d21": {
+     "va": "00419d21",
+     "size": 49,
+     "mangled": "W?f_00419d21$n(pnv)v"
+    },
+    "f_0041a9da": {
+     "va": "0041a9da",
+     "size": 122,
+     "mangled": "W?f_0041a9da$n(pna)v"
+    },
+    "f_0041aa54": {
+     "va": "0041aa54",
+     "size": 46,
+     "mangled": "W?f_0041aa54$n()v"
+    },
+    "f_0041aa82": {
+     "va": "0041aa82",
+     "size": 106,
+     "mangled": "W?f_0041aa82$n()v"
+    },
+    "f_0041aaec": {
+     "va": "0041aaec",
+     "size": 140,
+     "mangled": "W?f_0041aaec$n()v"
+    },
+    "f_0041ab78": {
+     "va": "0041ab78",
+     "size": 61,
+     "mangled": "W?f_0041ab78$n()v"
+    },
+    "f_0041b539": {
+     "va": "0041b539",
+     "size": 42,
+     "mangled": "W?f_0041b539$n(pni)v"
+    },
+    "f_0041b563": {
+     "va": "0041b563",
+     "size": 149,
+     "mangled": "W?f_0041b563$n(pni)v"
+    },
+    "f_0041b5f8": {
+     "va": "0041b5f8",
+     "size": 164,
+     "mangled": "W?f_0041b5f8$n(pni)v"
+    },
+    "f_0041b69c": {
+     "va": "0041b69c",
+     "size": 33,
+     "mangled": "W?f_0041b69c$n(pni)v"
+    },
+    "f_0041b6bd": {
+     "va": "0041b6bd",
+     "size": 143,
+     "mangled": "W?f_0041b6bd$n(pni)v"
+    },
+    "f_0041b74c": {
+     "va": "0041b74c",
+     "size": 85,
+     "mangled": "W?f_0041b74c$n(pni)v"
+    },
+    "f_0041c66e": {
+     "va": "0041c66e",
+     "size": 110,
+     "mangled": "W?f_0041c66e$n(pna)v"
+    },
+    "f_0041c7a3": {
+     "va": "0041c7a3",
+     "size": 27,
+     "mangled": "W?f_0041c7a3$n(pni)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
   }
  },
  "accepted_losses": [

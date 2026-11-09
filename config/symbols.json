@@ -1677,6 +1677,22 @@
    "mangled": "W?ShellStorageRender$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "f_004193fa": {
+   "va": "004193fa",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_004193fa$n(pnv)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_00419412": {
+   "va": "00419412",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_00419412$n()v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "HercUpgradeOpen": {
    "va": "004194c4",
    "kind": "func",
@@ -1698,12 +1714,162 @@
    "mangled": "W?HercUpgradeClose$n(pn$Scene$$)i",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "f_004198c3": {
+   "va": "004198c3",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_004198c3$n()v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_004198e7": {
+   "va": "004198e7",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_004198e7$n()v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "HercUpgradeRender": {
    "va": "00419b3c",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?HercUpgradeRender$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "f_00419d21": {
+   "va": "00419d21",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_00419d21$n(pnv)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_00419ee4": {
+   "va": "00419ee4",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_00419ee4$n(pnv)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "placed (found) in src/shell/hbupgrad.c 2026-11-09"
+  },
+  "f_00419f3c": {
+   "va": "00419f3c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_00419f3c",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "f_0041a9da": {
+   "va": "0041a9da",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0041a9da$n(pna)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0041aa54": {
+   "va": "0041aa54",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0041aa54$n()v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0041aa82": {
+   "va": "0041aa82",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0041aa82$n()v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0041aaec": {
+   "va": "0041aaec",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0041aaec$n()v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0041ab78": {
+   "va": "0041ab78",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0041ab78$n()v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0041b539": {
+   "va": "0041b539",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0041b539$n(pni)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0041b563": {
+   "va": "0041b563",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0041b563$n(pni)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0041b5f8": {
+   "va": "0041b5f8",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0041b5f8$n(pni)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0041b69c": {
+   "va": "0041b69c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0041b69c$n(pni)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0041b6bd": {
+   "va": "0041b6bd",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0041b6bd$n(pni)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0041b74c": {
+   "va": "0041b74c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0041b74c$n(pni)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0041c096": {
+   "va": "0041c096",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_0041c096",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "f_0041c66e": {
+   "va": "0041c66e",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0041c66e$n(pna)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0041c7a3": {
+   "va": "0041c7a3",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0041c7a3$n(pni)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ShellMultiplayerInit": {
    "va": "0041c86a",
@@ -4498,6 +4664,13 @@
    "mangled": "W?BlockChecksum$n(pnv)i",
    "evidence": "implied by src/multi/minipkt.c 2026-11-09"
   },
+  "f_00439d2c": {
+   "va": "00439d2c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_00439d2c",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
   "LoadActorData": {
    "va": "00439df6",
    "kind": "func",
@@ -4609,6 +4782,34 @@
    "status": "hypothesis",
    "mangled": "W?Value$:ProfileManager$n(i)l",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "f_0043cdcc": {
+   "va": "0043cdcc",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_0043cdcc",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "f_0043cec6": {
+   "va": "0043cec6",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_0043cec6",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "f_0043cef6": {
+   "va": "0043cef6",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_0043cef6",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "f_0043cf2d": {
+   "va": "0043cf2d",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_0043cf2d",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
   "ProfileManager::SelectScenario": {
    "va": "0043d6e3",
@@ -6096,12 +6297,44 @@
    "tu": "src/_unknown/tu_004599a0.c",
    "evidence": "strict match 2026-11-09"
   },
+  "AnimBitmapName": {
+   "va": "004599b0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?AnimBitmapName$n(pnv)pna",
+   "tu": "src/sim/animbmp.c",
+   "evidence": "placed (at) in src/sim/animbmp.c 2026-11-09"
+  },
+  "AnimBitmapFrame": {
+   "va": "00459a30",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?AnimBitmapFrame$n(pnuc)pni",
+   "tu": "src/sim/animbmp.c",
+   "evidence": "placed (at) in src/sim/animbmp.c 2026-11-09"
+  },
   "AnimFrames": {
    "va": "00459e60",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?AnimFrames$n(i)pn$ExploAnim$$",
    "evidence": "implied by src/sim/explo.c 2026-11-09"
+  },
+  "AnimEnsureFX": {
+   "va": "00459e60",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?AnimEnsureFX$n(i)pnv",
+   "tu": "src/sim/animbmp.c",
+   "evidence": "placed in src/sim/animbmp.c 2026-11-09; strict only with --at/search"
+  },
+  "AnimBitmapSweep": {
+   "va": "00459ee0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?AnimBitmapSweep$n(iiiii)i",
+   "tu": "src/sim/animbmp.c",
+   "evidence": "placed (at) in src/sim/animbmp.c 2026-11-09"
   },
   "SimAnimAdvance": {
    "va": "0045a1c0",
@@ -8208,6 +8441,13 @@
    "mangled": "W?VoicePlay$n(ii)v",
    "evidence": "implied by src/sim/apply.c 2026-11-09"
   },
+  "SoundTrigger#W?SoundTrigger$n(uiui)i": {
+   "va": "0046cbc6",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SoundTrigger$n(uiui)i",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
   "ViewFlip": {
    "va": "0046cbdb",
    "kind": "func",
@@ -10305,6 +10545,13 @@
    "tu": "src/main/WIN/winmain.c",
    "evidence": "strict match 2026-11-09"
   },
+  "SaveHercConfig#W?SaveHercConfig$n(pnvui)i": {
+   "va": "0047852f",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SaveHercConfig$n(pnvui)i",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
   "f_004786d8": {
    "va": "004786d8",
    "kind": "func",
@@ -11595,6 +11842,34 @@
    "mangled": "W?g48aa2c$n[]a",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
   },
+  "g48ab38": {
+   "va": "0048ab38",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g48ab38$n[]a",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g48ab3c": {
+   "va": "0048ab3c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g48ab3c$n[]a",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g48ab40": {
+   "va": "0048ab40",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g48ab40$n[]a",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g48ab43": {
+   "va": "0048ab43",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g48ab43$n[]a",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
   "snw_valid_dll": {
    "va": "0048b7ec",
    "kind": "data",
@@ -11748,6 +12023,13 @@
    "status": "hypothesis",
    "mangled": "W?$Wts0kn$MenuPrefixButton$$$nx[]uc",
    "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g48d394": {
+   "va": "0048d394",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g48d394$n[]a",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
   "W?$Wvf0cos:MenuChat$$nx[]pn()v": {
    "va": "0048d98c",
@@ -12603,6 +12885,13 @@
    "mangled": "W?g4a706d$ni",
    "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
   },
+  "g4a706d#W?g4a706d$nl": {
+   "va": "004a706d",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4a706d$nl",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
   "gShellGame": {
    "va": "004a70b8",
    "kind": "data",
@@ -12623,6 +12912,13 @@
    "status": "hypothesis",
    "mangled": "W?gShellGame$n[]a",
    "evidence": "implied by src/shell/commscrn.c 2026-11-09"
+  },
+  "g4ae17f": {
+   "va": "004ae17f",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4ae17f$nl",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
   "gShellAnimationTimer": {
    "va": "004ae5ac",
@@ -13443,6 +13739,188 @@
    "mangled": "W?g4b5b50$n$Scene$$",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "g4b5dc0": {
+   "va": "004b5dc0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b5dc0$n[]a",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b5e30": {
+   "va": "004b5e30",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b5e30$n[]a",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b5e3c": {
+   "va": "004b5e3c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b5e3c$n[]a",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b5e88": {
+   "va": "004b5e88",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b5e88$n[]a",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b5e94": {
+   "va": "004b5e94",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b5e94$n[]a",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b5fd0": {
+   "va": "004b5fd0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b5fd0$n$MenuLabel$$",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b5fe4": {
+   "va": "004b5fe4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b5fe4$nul",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b6018": {
+   "va": "004b6018",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6018$nul",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b6028": {
+   "va": "004b6028",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6028$npna",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b6b18": {
+   "va": "004b6b18",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6b18$nul",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b6b40": {
+   "va": "004b6b40",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6b40$nul",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b6b68": {
+   "va": "004b6b68",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6b68$nul",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b6b90": {
+   "va": "004b6b90",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6b90$nul",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b6bb8": {
+   "va": "004b6bb8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6bb8$nul",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b6bcc": {
+   "va": "004b6bcc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6bcc$n$MenuLabel$$",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b6be0": {
+   "va": "004b6be0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6be0$nul",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b6c14": {
+   "va": "004b6c14",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6c14$nul",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b6c30": {
+   "va": "004b6c30",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6c30$n$MenuLabel$$",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b6c44": {
+   "va": "004b6c44",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6c44$nul",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b6c78": {
+   "va": "004b6c78",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6c78$nul",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b6d2c": {
+   "va": "004b6d2c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6d2c$n$MenuNumber$$",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b6d5c": {
+   "va": "004b6d5c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6d5c$n$MenuPrefixButton$$",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b6d73": {
+   "va": "004b6d73",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6d73$nuc",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b6e50": {
+   "va": "004b6e50",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6e50$nul",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b6e78": {
+   "va": "004b6e78",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6e78$nul",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b6ea4": {
+   "va": "004b6ea4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6ea4$nul",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
   "g4b700c": {
    "va": "004b700c",
    "kind": "data",
@@ -14086,6 +14564,13 @@
    "status": "hypothesis",
    "mangled": "W?modeSwitch$ni",
    "evidence": "implied by src/logic/lactor.c 2026-11-09"
+  },
+  "currentFrameCounter": {
+   "va": "004d272a",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?currentFrameCounter$nul",
+   "evidence": "implied by src/sim/animbmp.c 2026-11-09"
   },
   "playerCount": {
    "va": "004d273a",
@@ -15494,6 +15979,13 @@
    "mangled": "W?gShellStrings$ni",
    "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
   },
+  "gShellStrings#W?gShellStrings$n[]a": {
+   "va": "00511e68",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gShellStrings$n[]a",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
   "DAT_00511e7c": {
    "va": "00511e7c",
    "kind": "data",
@@ -15724,6 +16216,13 @@
    "status": "hypothesis",
    "mangled": "W?g513888$n$GuiCanvas$$",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "g513888#W?g513888$nl": {
+   "va": "00513888",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g513888$nl",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
   "gShellSurfacePixels": {
    "va": "00513890",

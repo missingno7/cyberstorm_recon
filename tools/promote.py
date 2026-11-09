@@ -222,9 +222,12 @@ def main(argv):
                or ext2[n]["end"] - ext2[n]["off"] != e["size"]]
         bad += gate.data_losses(reports2, rec.get("data"))
         drop = [n for n in bad if not n.startswith("data:") and n not in old.get("functions", {})]
-        if not bad or len(drop) != len(bad):
+        drop_data = [n for n in bad if n.startswith("data:") and n[5:] not in (old.get("data") or {})]
+        if not bad or len(drop) + len(drop_data) != len(bad):
             break
-        print(f"  withdrawn (strict only with --at/search): {drop}")
+        print(f"  withdrawn (strict only with --at/search): {drop + drop_data}")
+        for n in drop_data:
+            rec["data"].pop(n[5:], None)
         for n in drop:
             m = rec["functions"].pop(n)["mangled"]
             for k, v in syms.items():
