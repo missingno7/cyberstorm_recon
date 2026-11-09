@@ -134,6 +134,8 @@ class Comparison:
             offs = sorted(o for o in offs if o < max(seg.size, 1))
             self.extents[si] = [[o, offs[k + 1] if k + 1 < len(offs) else seg.size, names.get(o, [])]
                                 for k, o in enumerate(offs)]
+        self.scope = symbols.scope_of_module(mod.name)
+        self.local = {n for n, s, o, loc in mod.publics if symbols.is_local(n, loc)}
         self.ext_va = {}        # (si, off) -> (va, how)
         self.base = {}          # data si -> (va, how)
         self.data_conflict = set()
@@ -147,7 +149,7 @@ class Comparison:
                     if lab in at or n in at:
                         self._place(si, off, at.get(lab, at.get(n)), "at")
                         continue
-                    va, how = resolver.resolve(n)
+                    va, how = resolver.resolve(n, self.scope, n in self.local)
                     if va is not None and how.split("~")[0] in ("matched", "hypothesis", "lib"):
                         self._place(si, off, va, "bound")
         self.notes = []
@@ -395,7 +397,8 @@ class Comparison:
                 if e <= o:
                     continue
                 va = self.va_of(si, o)
-                ext = {"off": o, "end": e, "names": names or ["<segment start>"]}
+                ext = {"off": o, "end": e, "names": names or ["<segment start>"],
+                       "local": any(n in self.local for n in names), "scope": self.scope}
                 if va is None:
                     ext.update(status="UNPLACED", va=None)
                 else:

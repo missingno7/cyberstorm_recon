@@ -48,6 +48,31 @@ def is_function(sym):
     return i >= 0 and sym[i + 2:i + 3] == "("
 
 
+def scope_of_as(as_name):
+    """TU scope from the compile-as path: 'multi\mstart.c' -> 'multi/mstart.c'."""
+    return (as_name or "").replace("\\", "/").lower()
+
+
+def scope_of_module(module_name):
+    """TU scope from an object's THEADR (absolute path of the compiled copy inside build/cc/<tmp>/)."""
+    p = (module_name or "").replace("\\", "/").lower()
+    i = p.find("/build/cc/")
+    if i >= 0:
+        rest = p[i + len("/build/cc/"):]
+        return rest.split("/", 1)[1] if "/" in rest else rest
+    return p.rsplit("/", 1)[-1]
+
+
+def is_local(sym, local_flag=False):
+    """File-local symbols: LPUBDEF statics and compiler-generated names (`W?.fn_init...`)."""
+    return bool(local_flag) or sym.startswith("W?.")
+
+
+def key_for(sym, local_flag, scope):
+    lab = label(sym)
+    return f"{lab}@{scope}" if is_local(sym, local_flag) and scope else lab
+
+
 def import_name(sym):
     """'__imp__GetTickCount@0' / '__imp_GetTickCount' -> 'GetTickCount', else None."""
     if not sym.startswith("__imp_"):
@@ -89,11 +114,15 @@ class Resolver:
 
     extra = None  # {object symbol: va} implied bindings for this comparison only (how='implied')
 
-    def resolve(self, sym):
-        """Return (va, how) or (None, None). how: matched|hypothesis|lib|import|implied."""
+    def resolve(self, sym, scope=None, local=False):
+        """Return (va, how) or (None, None). how: matched|hypothesis|lib|import|implied.
+        File-local symbols (statics, generated names) resolve only through their TU-scoped key."""
         imp = import_name(sym)
         if imp is not None:
             return (self.imports[imp], "import") if imp in self.imports else (None, None)
+        if is_local(sym, local):
+            e = self.db.get(key_for(sym, True, scope)) if scope else None
+            return (int(e["va"], 16), e["status"]) if e else (None, None)
         key = self.by_mangled.get(sym) or label(sym)
         e = self.db.get(key)
         if e:

@@ -8,6 +8,13 @@
    "mangled": "BriefCloseAudio",
    "evidence": "implied by src/shell/missbrf.c 2026-11-09"
   },
+  "UiEvent": {
+   "va": "004011ac",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?UiEvent$n(pnvi)v",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
   "MenuHelpRegion::$dt": {
    "va": "00408610",
    "kind": "func",
@@ -1865,6 +1872,34 @@
    "mangled": "W?StateAction$n(pnv)i",
    "evidence": "implied by src/logic/lactor.c 2026-11-09"
   },
+  "HasMission": {
+   "va": "0043cab9",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HasMission$n(pnv)i",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "GetPlayerInfo": {
+   "va": "0043d9e8",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?GetPlayerInfo$n(pnvpn$PlayerInfo$$)v",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "GetGameInfo": {
+   "va": "00440ea6",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?GetGameInfo$n(pnvpn$Options$$pn$GameInfo$$)v",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "ApplyGameInfo": {
+   "va": "00440fb6",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ApplyGameInfo$n(pnvpn$GameInfo$$)v",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
   "PopNodeReset": {
    "va": "00443f58",
    "kind": "func",
@@ -1935,6 +1970,13 @@
    "mangled": "W?ModeCheck$n(pnxa)i",
    "evidence": "implied by src/logic/lactor.c 2026-11-09"
   },
+  "GetModePlayer": {
+   "va": "00450a30",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?GetModePlayer$n(pnvi)pn$PlayerSlot$$",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
   "BriefModuleSetup": {
    "va": "00453470",
    "kind": "func",
@@ -1949,6 +1991,13 @@
    "mangled": "BriefModuleOpen",
    "evidence": "implied by src/sim/target.c 2026-11-09"
   },
+  "ResetPlayer": {
+   "va": "004543d0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ResetPlayer$n(pn$PlayerSlot$$)v",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
   "ReleaseState": {
    "va": "00455ac0",
    "kind": "func",
@@ -1956,7 +2005,7 @@
    "mangled": "W?ReleaseState$n(pnv)v",
    "evidence": "implied by src/logic/lactor.c 2026-11-09"
   },
-  "W?.fn_init$n()v": {
+  "W?.fn_init$n()v@sim/actorlst.c": {
    "va": "004561d0",
    "kind": "func",
    "status": "matched",
@@ -2932,12 +2981,424 @@
    "mangled": "W?SoundPlayDefault$n(uii)i",
    "evidence": "implied by src/gui/flic.c 2026-11-09"
   },
+  "NetworkCreate": {
+   "va": "0046d020",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?NetworkCreate$n(pnxa)i",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "NetworkStop": {
+   "va": "0046d200",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?NetworkStop$n()v",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "NetworkRefresh": {
+   "va": "0046d455",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?NetworkRefresh$n()v",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "NetworkJoin": {
+   "va": "0046d4a6",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?NetworkJoin$n(pnxa)i",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "NetworkCallback": {
+   "va": "0046d5c4",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?NetworkCallback$n()v",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "NetworkReset": {
+   "va": "0046d603",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?NetworkReset$n()v",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "PeerAlive": {
+   "va": "0046d61f",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PeerAlive$n(i)i",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "NetworkBegin": {
+   "va": "0046d8a6",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?NetworkBegin$n()v",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "NetworkPoll": {
+   "va": "0046d8bb",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?NetworkPoll$n()v",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "Chat::$ct": {
+   "va": "0046e570",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$ct:Chat$n()_",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "Chat::Reset": {
+   "va": "0046e58f",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Reset$:Chat$n()i",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "Chat::Activate": {
+   "va": "0046e5d3",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Activate$:Chat$n()v",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "Chat::Log": {
+   "va": "0046e869",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Log$:Chat$n(ipnxa)v",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "MenuNetwork::DropPeer": {
+   "va": "0046ecd8",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?DropPeer$:MenuNetwork$n(i)v",
+   "tu": "src/multi/mstart.c",
+   "evidence": "placed (at) in src/multi/mstart.c 2026-11-09"
+  },
+  "StartStatus": {
+   "va": "0046ef81",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?StartStatus$n(pnxai)v",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "StartMultiplayer": {
+   "va": "0046efa0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?StartMultiplayer$n(pnxai)i",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "MenuNetwork::Count": {
    "va": "0046f2e1",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?Count$:MenuNetwork$n()i",
-   "evidence": "implied by src/gui/menu.c 2026-11-09"
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuNetwork::AllocateSlot": {
+   "va": "0046f31f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?AllocateSlot$:MenuNetwork$n(i)i",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuNetwork::BroadcastInfo": {
+   "va": "0046f381",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?BroadcastInfo$:MenuNetwork$n(pnv)i",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuNetwork::BroadcastLocal": {
+   "va": "0046f410",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?BroadcastLocal$:MenuNetwork$n()i",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuNetwork::BroadcastSlot": {
+   "va": "0046f4ec",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?BroadcastSlot$:MenuNetwork$n(ipn$PlayerSlot$$)i",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuNetwork::Begin": {
+   "va": "0046f578",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Begin$:MenuNetwork$n()i",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuNetwork::Finish": {
+   "va": "0046f738",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Finish$:MenuNetwork$n(pn$GameInfo$$)v",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuNetwork::Active": {
+   "va": "0046f7b0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Active$:MenuNetwork$n()i",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "StopMultiplayer": {
+   "va": "0046f7b6",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?StopMultiplayer$n(ii)i",
+   "tu": "src/multi/mstart.c",
+   "evidence": "placed (at) in src/multi/mstart.c 2026-11-09"
+  },
+  "MenuNetwork::ThreadProc": {
+   "va": "0046fa04",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ThreadProc$:MenuNetwork$n(pnv)ul",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuNetwork::$ct": {
+   "va": "0046fa0e",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:MenuNetwork$n()_",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuNetwork::Reset": {
+   "va": "0046fa4b",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Reset$:MenuNetwork$n()v",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "GetActorState": {
+   "va": "0046fb18",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?GetActorState$n(i)i",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuNetwork::SetMapping": {
+   "va": "0046fb29",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetMapping$:MenuNetwork$n(ii)v",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuNetwork::CompactPlayers": {
+   "va": "0046fb3c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?CompactPlayers$:MenuNetwork$n()v",
+   "tu": "src/multi/mstart.c",
+   "evidence": "placed (at) in src/multi/mstart.c 2026-11-09"
+  },
+  "MenuNetwork::CopySlot": {
+   "va": "0046fd8f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?CopySlot$:MenuNetwork$n(ipn$PlayerSlot$$)v",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuNetwork::BroadcastAll": {
+   "va": "0046fdc6",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?BroadcastAll$:MenuNetwork$n()v",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuNetwork::ResetReady": {
+   "va": "0046fe7a",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ResetReady$:MenuNetwork$n()v",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuNetwork::Synchronize": {
+   "va": "0046fecf",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Synchronize$:MenuNetwork$n(iii)v",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuNetwork::Launch": {
+   "va": "0047002e",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Launch$:MenuNetwork$n()v",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuNetwork::MarkReady": {
+   "va": "00470131",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?MarkReady$:MenuNetwork$n(i)v",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuNetwork::AllReady": {
+   "va": "0047014e",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?AllReady$:MenuNetwork$n()i",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuNetwork::SetAllReady": {
+   "va": "00470175",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetAllReady$:MenuNetwork$n()v",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuNetwork::SetTimeout": {
+   "va": "00470197",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetTimeout$:MenuNetwork$n()v",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuNetwork::SendStart": {
+   "va": "004701fb",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SendStart$:MenuNetwork$n(pn$1$i)v",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuNetwork::PeerForSlot": {
+   "va": "00470265",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PeerForSlot$:MenuNetwork$n(i)i",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuNetwork::SlotForPeer": {
+   "va": "004702bd",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SlotForPeer$:MenuNetwork$n(i)i",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuNetwork::IsLeader": {
+   "va": "00470301",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?IsLeader$:MenuNetwork$n(i)i",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuNetwork::LeaderPeer": {
+   "va": "00470341",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LeaderPeer$:MenuNetwork$n()i",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuNetwork::LeaderSlot": {
+   "va": "004703ae",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LeaderSlot$:MenuNetwork$n()i",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuNetwork::CheckLeader": {
+   "va": "004703d5",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?CheckLeader$:MenuNetwork$n()i",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuNetwork::Connected": {
+   "va": "0047051d",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Connected$:MenuNetwork$n()i",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuNetwork::Poll": {
+   "va": "0047054f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Poll$:MenuNetwork$n()i",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuNetwork::IsRemote": {
+   "va": "0047062f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?IsRemote$:MenuNetwork$n(i)i",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuNetwork::PostStart": {
+   "va": "00470660",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PostStart$:MenuNetwork$n()v",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuNetwork::Pause": {
+   "va": "0047067b",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Pause$:MenuNetwork$n()v",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuNetwork::Resume": {
+   "va": "0047068a",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Resume$:MenuNetwork$n()v",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "MenuNetwork::IsRunning": {
+   "va": "00470699",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?IsRunning$:MenuNetwork$n()i",
+   "tu": "src/multi/mstart.c",
+   "evidence": "strict match 2026-11-09"
   },
   "MenuSend": {
    "va": "00471789",
@@ -2946,6 +3407,48 @@
    "mangled": "W?MenuSend$n(pnx$MenuMessage$$i)v",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
   },
+  "MenuMessageBasic": {
+   "va": "00471a1b",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuMessageBasic$n(pn$MenuMessage$$i)v",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "MenuMessageStart": {
+   "va": "00471aa9",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuMessageStart$n(pn$MenuMessage$$ipnv)v",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "MenuMessageData": {
+   "va": "00471b2f",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuMessageData$n(pn$MenuMessage$$iiii)v",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "MenuMessageInfo": {
+   "va": "00471b56",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuMessageInfo$n(pn$MenuMessage$$iipnv)v",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "MenuMessageGame": {
+   "va": "00471b91",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuMessageGame$n(pn$MenuMessage$$ipn$GameInfo$$)v",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "MenuMessageSlot": {
+   "va": "00471bb5",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuMessageSlot$n(pn$MenuMessage$$iipn$PlayerSlot$$)v",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
   "MenuMessage::$ct": {
    "va": "00471be0",
    "kind": "func",
@@ -2953,12 +3456,61 @@
    "mangled": "W?$ct:MenuMessage$n(uipnxa)_",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
   },
+  "QueuePump": {
+   "va": "00471da2",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?QueuePump$n(pnv)v",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "ClearList": {
+   "va": "004724a1",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ClearList$n(pnv)v",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "SetList": {
+   "va": "004724ab",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SetList$n(pnv)v",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
   "LogMode": {
    "va": "00472cc3",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?LogMode$n(pnxapnvii)v",
    "evidence": "implied by src/logic/lactor.c 2026-11-09"
+  },
+  "FinishMode": {
+   "va": "00473c08",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?FinishMode$n(pnv)v",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "ResetQueue": {
+   "va": "0047431b",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ResetQueue$n(pnv)v",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "ValidateSlot": {
+   "va": "00474366",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ValidateSlot$n(i)v",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "Options::Reset": {
+   "va": "00474960",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Reset$:Options$n()v",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
   },
   "MenuHelpSetTopic": {
    "va": "004762bb",
@@ -2980,6 +3532,13 @@
    "status": "hypothesis",
    "mangled": "W?MenuHelpOpenTopic$n(l)v",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "LoadMission": {
+   "va": "00478d52",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LoadMission$n(pnxai)i",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
   },
   "GuiPumpMessages": {
    "va": "0047a3bd",
@@ -3635,6 +4194,34 @@
    "mangled": "W?g48aa2c$n[]a",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
   },
+  "startFormat": {
+   "va": "0048b8d0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?startFormat$n[]xa",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "blankDescription": {
+   "va": "0048b8e7",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?blankDescription$n[]xa",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "startFailure": {
+   "va": "0048b8e9",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?startFailure$n[]xa",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "hostGreeting": {
+   "va": "0048b992",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hostGreeting$n[]xa",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
   "assertFormat": {
    "va": "0048bff4",
    "kind": "data",
@@ -3774,6 +4361,20 @@
    "status": "hypothesis",
    "mangled": "W?$Wts0fn$WorldAction$$$nx[]uc",
    "evidence": "implied by src/sim/worldact.c 2026-11-09"
+  },
+  "startGuid": {
+   "va": "0048e134",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?startGuid$n[]a",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "sessionGuid": {
+   "va": "0048e164",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?sessionGuid$n[]a",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
   },
   "g48ea1c": {
    "va": "0048ea1c",
@@ -3929,12 +4530,26 @@
    "mangled": "W?logicTextCurrent$npna",
    "evidence": "implied by src/logic/lsys.c 2026-11-09"
   },
+  "mstartFile": {
+   "va": "004a3fa4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?mstartFile$n[]xa",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
   "gRichTextFonts": {
    "va": "004a40a8",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gRichTextFonts$n[]pn$Font$$",
    "evidence": "implied by src/_unknown/tu_0042a5fc.c 2026-11-09"
+  },
+  "searchPaths": {
+   "va": "004a41c0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?searchPaths$n[]pna",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
   },
   "assertProgram": {
    "va": "004a4264",
@@ -3964,6 +4579,13 @@
    "mangled": "W?assertFooter$n[]xa",
    "evidence": "implied by src/debug/assert.c 2026-11-09"
   },
+  "joiningMessage": {
+   "va": "004a4808",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?joiningMessage$n[]xa",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
   "errorText": {
    "va": "004a4a88",
    "kind": "data",
@@ -3977,6 +4599,13 @@
    "status": "hypothesis",
    "mangled": "W?fileSourcePath$n[]xa",
    "evidence": "implied by src/io/file.c 2026-11-09"
+  },
+  "uiSystem": {
+   "va": "004a7058",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?uiSystem$n[]a",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
   },
   "g4b3290": {
    "va": "004b3290",
@@ -4363,6 +4992,13 @@
    "mangled": "W?gFogGlobalMode$nl",
    "evidence": "implied by src/terr/tfog.c 2026-11-09"
   },
+  "profileManager": {
+   "va": "004c934c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?profileManager$n[]a",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
   "g4d030f": {
    "va": "004d030f",
    "kind": "data",
@@ -4418,6 +5054,20 @@
    "status": "hypothesis",
    "mangled": "W?modeSwitch$ni",
    "evidence": "implied by src/logic/lactor.c 2026-11-09"
+  },
+  "playerCount": {
+   "va": "004d273a",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?playerCount$ni",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "leaderPlayer": {
+   "va": "004d2dde",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?leaderPlayer$ni",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
   },
   "fallbackName": {
    "va": "004d3594",
@@ -4650,6 +5300,55 @@
    "mangled": "W?logicTextBuffer$n[]a",
    "evidence": "implied by src/logic/lsys.c 2026-11-09"
   },
+  "networkEnabled": {
+   "va": "004f5cdc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?networkEnabled$ni",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "isHostPeer": {
+   "va": "004f5cec",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?isHostPeer$ni",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "hostPeer": {
+   "va": "004f5cf0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hostPeer$ni",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "localPeer": {
+   "va": "004f5cf4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?localPeer$ni",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "multiState": {
+   "va": "004f5d4c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?multiState$ni",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "retryTimeout": {
+   "va": "004f6600",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?retryTimeout$ni",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "savedRandom": {
+   "va": "004f6614",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?savedRandom$ni",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
   "gMenuNetwork": {
    "va": "004f6624",
    "kind": "data",
@@ -4657,12 +5356,40 @@
    "mangled": "W?gMenuNetwork$n$MenuNetwork$$",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
   },
+  "multiplayerActive": {
+   "va": "004faf38",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?multiplayerActive$ni",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "hostDropFlag": {
+   "va": "004faf3c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hostDropFlag$ni",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
   "modeLogName": {
    "va": "004faf48",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?modeLogName$n[]a",
    "evidence": "implied by src/logic/lactor.c 2026-11-09"
+  },
+  "networkLog": {
+   "va": "004fb134",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?networkLog$n[]a",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "networkQueue": {
+   "va": "004fb32c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?networkQueue$n[]a",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
   },
   "g511948": {
    "va": "00511948",
@@ -4699,6 +5426,13 @@
    "mangled": "W?targetBriefResource$n[]a",
    "evidence": "implied by src/sim/target.c 2026-11-09"
   },
+  "resourcePool": {
+   "va": "00511ea4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?resourcePool$n[]a",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
   "gResMgr": {
    "va": "00511ecc",
    "kind": "data",
@@ -4712,6 +5446,13 @@
    "status": "hypothesis",
    "mangled": "W?gGuiEffectPriority$nl",
    "evidence": "implied by src/_unknown/tu_0042a0e0.c 2026-11-09"
+  },
+  "ShowStatus": {
+   "va": "00512514",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?ShowStatus$npn(pnvpnxaii)v",
+   "evidence": "implied by src/multi/mstart.c 2026-11-09"
   },
   "g_mainWindow": {
    "va": "0051253c",

@@ -92,8 +92,13 @@ def main(argv):
         return 1
     db = symbols.load()
     syms = db["symbols"]
+    scope = symbols.scope_of_as(entry["as"])
+
+    def skey(n, e):
+        """symbols.json key: TU-scoped for file-local symbols (statics, generated `W?.fn_init`)."""
+        return symbols.key_for(n, e.get("local"), scope)
     for n, e in strict.items():
-        lab = symbols.label(n)
+        lab = skey(n, e)
         cur = syms.get(lab)
         if cur and cur["status"] == "matched" and (cur["va"] != e["va"] or cur.get("tu") != tu):
             print(f"symbol {lab} already matched at {cur['va']} in {cur.get('tu')}; refusing")
@@ -145,7 +150,7 @@ def main(argv):
     if lost:
         ledger.setdefault("accepted_losses", []).append({"tu": tu, "functions": lost, "date": now})
     for n, e in strict.items():
-        syms[symbols.label(n)] = {"va": e["va"], "kind": "func", "status": "matched", "mangled": n, "tu": tu,
+        syms[skey(n, e)] = {"va": e["va"], "kind": "func", "status": "matched", "mangled": n, "tu": tu,
                                   "evidence": f"strict match {now}"}
     for k, v in implied.items():
         lab = symbols.label(k)
@@ -160,13 +165,13 @@ def main(argv):
     for n, e in ext.items():
         if e["cls"].upper() != "CODE" or e["status"] == "STRICT" or not e.get("va"):
             continue
-        lab = symbols.label(n)
+        lab = skey(n, e)
         if e.get("placed") in ("at", "found") and lab not in syms and e["va"] not in taken:
             syms[lab] = {"va": e["va"], "kind": "func", "status": "hypothesis", "mangled": n, "tu": tu,
                          "evidence": f"placed ({e['placed']}) in {tu} {now}"}
             taken.add(e["va"])
     for n in lost:
-        lab = symbols.label(n)
+        lab = n if n in syms else next((k for k in syms if k == f"{n}@{scope}"), n)
         if lab in syms and syms[lab].get("tu") == tu:
             syms[lab]["status"] = "hypothesis"
             syms[lab]["evidence"] = f"lost strict {now}"

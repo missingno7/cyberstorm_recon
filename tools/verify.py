@@ -41,7 +41,8 @@ def main(argv):
                if (ext.get(n) or {}).get("status") != "STRICT" or ext[n]["va"] != e["va"]
                or ext[n]["end"] - ext[n]["off"] != e["size"]]
         for n, e in ent["functions"].items():
-            s = syms.get(n)
+            x = ext.get(n) or {}
+            s = syms.get(f"{n}@{x.get('scope')}") if x.get("local") else syms.get(n)
             if not s or s["status"] != "matched" or s["va"] != e["va"]:
                 bad.append(f"{n} (symbols.json)")
         if bad:

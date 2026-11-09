@@ -1630,6 +1630,205 @@
    },
    "data": {},
    "accepted": "2026-11-09"
+  },
+  "src/multi/mstart.c": {
+   "as": "multi\\mstart.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "StartStatus": {
+     "va": "0046ef81",
+     "size": 31,
+     "mangled": "W?StartStatus$n(pnxai)v"
+    },
+    "StartMultiplayer": {
+     "va": "0046efa0",
+     "size": 833,
+     "mangled": "W?StartMultiplayer$n(pnxai)i"
+    },
+    "MenuNetwork::Count": {
+     "va": "0046f2e1",
+     "size": 62,
+     "mangled": "W?Count$:MenuNetwork$n()i"
+    },
+    "MenuNetwork::AllocateSlot": {
+     "va": "0046f31f",
+     "size": 98,
+     "mangled": "W?AllocateSlot$:MenuNetwork$n(i)i"
+    },
+    "MenuNetwork::BroadcastInfo": {
+     "va": "0046f381",
+     "size": 143,
+     "mangled": "W?BroadcastInfo$:MenuNetwork$n(pnv)i"
+    },
+    "MenuNetwork::BroadcastLocal": {
+     "va": "0046f410",
+     "size": 220,
+     "mangled": "W?BroadcastLocal$:MenuNetwork$n()i"
+    },
+    "MenuNetwork::BroadcastSlot": {
+     "va": "0046f4ec",
+     "size": 140,
+     "mangled": "W?BroadcastSlot$:MenuNetwork$n(ipn$PlayerSlot$$)i"
+    },
+    "MenuNetwork::Begin": {
+     "va": "0046f578",
+     "size": 448,
+     "mangled": "W?Begin$:MenuNetwork$n()i"
+    },
+    "MenuNetwork::Finish": {
+     "va": "0046f738",
+     "size": 120,
+     "mangled": "W?Finish$:MenuNetwork$n(pn$GameInfo$$)v"
+    },
+    "MenuNetwork::Active": {
+     "va": "0046f7b0",
+     "size": 6,
+     "mangled": "W?Active$:MenuNetwork$n()i"
+    },
+    "MenuNetwork::ThreadProc": {
+     "va": "0046fa04",
+     "size": 10,
+     "mangled": "W?ThreadProc$:MenuNetwork$n(pnv)ul"
+    },
+    "MenuNetwork::$ct": {
+     "va": "0046fa0e",
+     "size": 61,
+     "mangled": "W?$ct:MenuNetwork$n()_"
+    },
+    "MenuNetwork::Reset": {
+     "va": "0046fa4b",
+     "size": 205,
+     "mangled": "W?Reset$:MenuNetwork$n()v"
+    },
+    "GetActorState": {
+     "va": "0046fb18",
+     "size": 17,
+     "mangled": "W?GetActorState$n(i)i"
+    },
+    "MenuNetwork::SetMapping": {
+     "va": "0046fb29",
+     "size": 19,
+     "mangled": "W?SetMapping$:MenuNetwork$n(ii)v"
+    },
+    "MenuNetwork::CopySlot": {
+     "va": "0046fd8f",
+     "size": 55,
+     "mangled": "W?CopySlot$:MenuNetwork$n(ipn$PlayerSlot$$)v"
+    },
+    "MenuNetwork::BroadcastAll": {
+     "va": "0046fdc6",
+     "size": 180,
+     "mangled": "W?BroadcastAll$:MenuNetwork$n()v"
+    },
+    "MenuNetwork::ResetReady": {
+     "va": "0046fe7a",
+     "size": 85,
+     "mangled": "W?ResetReady$:MenuNetwork$n()v"
+    },
+    "MenuNetwork::Synchronize": {
+     "va": "0046fecf",
+     "size": 351,
+     "mangled": "W?Synchronize$:MenuNetwork$n(iii)v"
+    },
+    "MenuNetwork::Launch": {
+     "va": "0047002e",
+     "size": 259,
+     "mangled": "W?Launch$:MenuNetwork$n()v"
+    },
+    "MenuNetwork::MarkReady": {
+     "va": "00470131",
+     "size": 29,
+     "mangled": "W?MarkReady$:MenuNetwork$n(i)v"
+    },
+    "MenuNetwork::AllReady": {
+     "va": "0047014e",
+     "size": 39,
+     "mangled": "W?AllReady$:MenuNetwork$n()i"
+    },
+    "MenuNetwork::SetAllReady": {
+     "va": "00470175",
+     "size": 34,
+     "mangled": "W?SetAllReady$:MenuNetwork$n()v"
+    },
+    "MenuNetwork::SetTimeout": {
+     "va": "00470197",
+     "size": 100,
+     "mangled": "W?SetTimeout$:MenuNetwork$n()v"
+    },
+    "MenuNetwork::SendStart": {
+     "va": "004701fb",
+     "size": 106,
+     "mangled": "W?SendStart$:MenuNetwork$n(pn$1$i)v"
+    },
+    "MenuNetwork::PeerForSlot": {
+     "va": "00470265",
+     "size": 88,
+     "mangled": "W?PeerForSlot$:MenuNetwork$n(i)i"
+    },
+    "MenuNetwork::SlotForPeer": {
+     "va": "004702bd",
+     "size": 68,
+     "mangled": "W?SlotForPeer$:MenuNetwork$n(i)i"
+    },
+    "MenuNetwork::IsLeader": {
+     "va": "00470301",
+     "size": 64,
+     "mangled": "W?IsLeader$:MenuNetwork$n(i)i"
+    },
+    "MenuNetwork::LeaderPeer": {
+     "va": "00470341",
+     "size": 109,
+     "mangled": "W?LeaderPeer$:MenuNetwork$n()i"
+    },
+    "MenuNetwork::LeaderSlot": {
+     "va": "004703ae",
+     "size": 39,
+     "mangled": "W?LeaderSlot$:MenuNetwork$n()i"
+    },
+    "MenuNetwork::CheckLeader": {
+     "va": "004703d5",
+     "size": 328,
+     "mangled": "W?CheckLeader$:MenuNetwork$n()i"
+    },
+    "MenuNetwork::Connected": {
+     "va": "0047051d",
+     "size": 50,
+     "mangled": "W?Connected$:MenuNetwork$n()i"
+    },
+    "MenuNetwork::Poll": {
+     "va": "0047054f",
+     "size": 224,
+     "mangled": "W?Poll$:MenuNetwork$n()i"
+    },
+    "MenuNetwork::IsRemote": {
+     "va": "0047062f",
+     "size": 49,
+     "mangled": "W?IsRemote$:MenuNetwork$n(i)i"
+    },
+    "MenuNetwork::PostStart": {
+     "va": "00470660",
+     "size": 27,
+     "mangled": "W?PostStart$:MenuNetwork$n()v"
+    },
+    "MenuNetwork::Pause": {
+     "va": "0047067b",
+     "size": 15,
+     "mangled": "W?Pause$:MenuNetwork$n()v"
+    },
+    "MenuNetwork::Resume": {
+     "va": "0047068a",
+     "size": 15,
+     "mangled": "W?Resume$:MenuNetwork$n()v"
+    },
+    "MenuNetwork::IsRunning": {
+     "va": "00470699",
+     "size": 20,
+     "mangled": "W?IsRunning$:MenuNetwork$n()i"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
   }
  }
 }
