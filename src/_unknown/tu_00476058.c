@@ -3,6 +3,7 @@
 #include <string.h>
 extern HWND g_mainWindow;
 char cdDrive[]="?:";
+extern char cdMissingCaption[],cdInsertPrompt[];
 char FindGameCD(int prompt) {
  char volume[64];
  do {
@@ -16,7 +17,7 @@ char FindGameCD(int prompt) {
    drives>>=1; cdDrive[0]++;
   }
   if(prompt) {
-   int result=MessageBox(g_mainWindow,"Please insert the CyberStorm CD","CD Missing!",0x12035);
+   int result=MessageBox(g_mainWindow,cdInsertPrompt,cdMissingCaption,0x12035);
    if(result==4) Sleep(5000);
    if(result==2) prompt=0;
   }

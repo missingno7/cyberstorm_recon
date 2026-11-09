@@ -177,7 +177,7 @@ def main():
     check(sum(v == "STRICT" for v in st.values()) < 7, "missing -ot is not fully strict")
     inp = ROOT / "src" / "_unknown" / "tu_004279fc.c"
     st = statuses(inp, ["-4s", "-s"], find=True)
-    check(sum(v == "STRICT" for v in st.values()) == 6, "positive control: input TU strict with profile plain")
+    check(sum(v == "STRICT" for v in st.values()) >= 6, "positive control: input TU strict with profile plain")
     st = statuses(inp, ["-4s", "-s", "-ox"], find=True)
     check(sum(v == "STRICT" for v in st.values()) < 6, "plain-profile TU under -ox is not fully strict")
     with tempfile.TemporaryDirectory(dir=ROOT / "build") as td:

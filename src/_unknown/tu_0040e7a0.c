@@ -1,3 +1,4 @@
+inline const char *BiodermRoomName() { return "bioroom"; }
 #include <stdio.h>
 typedef unsigned long U32;
 typedef unsigned char byte;
@@ -79,7 +80,7 @@ void BiodermStatsScreen::Close(){if(IsActive())input=0;}
 U32 BiodermStatsExit(BiodermStatsScreen *s){
  switch(s->state){case 2:case 4:
  statsHandle=s->HitTest(&g4bb78c);
- if(statsHandle<0){int room=BriefDone("bioroom");f_0040c63e(&g4aff6c,room,1);if(room>=0)statsHandle=room+100;}
+ if(statsHandle<0){int room=BriefDone(BiodermRoomName());f_0040c63e(&g4aff6c,room,1);if(room>=0)statsHandle=room+100;}
  return s->Update();default:return 0;}
 }
 void ShellBiodermStatsRender(BiodermStatsScreen *s){switch(s->state){
@@ -118,7 +119,7 @@ case 4:for(i=0;i<10;i++)statsButtons[i].SetState(5);statsConfirm.SetState(0);bre
 default:break;
 }}
 void BiodermStatsScreen::UpdateCredits(){if(uiSystem.UpdateCredits())statsCredits.SetValue(g4a706d,0);}
-int BiodermStatsScreen::Room(){return BriefDone("bioroom");}
+int BiodermStatsScreen::Room(){return BriefDone(BiodermRoomName());}
 void BiodermStatsSelect(BiodermStatsScreen *s,unsigned skill){
  if(s->pilot){U32 cost=SendEvent(s->pilot,0x71,(void *)skill);if(cost>0){
  if(ScreenCanAfford(cost)){

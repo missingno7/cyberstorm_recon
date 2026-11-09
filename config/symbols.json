@@ -5867,9 +5867,10 @@
   "InputUpdate": {
    "va": "00427a40",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?InputUpdate$n()v",
-   "evidence": "implied by src/_unknown/tu_004279fc.c 2026-11-09"
+   "tu": "src/_unknown/tu_004279fc.c",
+   "evidence": "strict match 2026-11-09"
   },
   "InputPoll": {
    "va": "00427be8",
@@ -24221,6 +24222,14 @@
    "tu": "src/sim/sim.c",
    "evidence": "own data placed in src/sim/sim.c 2026-11-09"
   },
+  "W?$Wts0dn$MenuPanel$$$nx[]uc": {
+   "va": "0048c99c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0dn$MenuPanel$$$nx[]uc",
+   "tu": "src/_unknown/tu_004087e0.c",
+   "evidence": "own data placed in src/_unknown/tu_004087e0.c 2026-11-09"
+  },
   "W?$Wts0dn$MenuLabel$$$nx[]uc": {
    "va": "0048c9b0",
    "kind": "data",
@@ -24228,6 +24237,14 @@
    "mangled": "W?$Wts0dn$MenuLabel$$$nx[]uc",
    "tu": "src/shell/hercbuy.c",
    "evidence": "own data placed in src/shell/hercbuy.c 2026-11-09"
+  },
+  "W?$Wts0in$MenuHelpRegion$$$nx[]uc": {
+   "va": "0048c9c4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0in$MenuHelpRegion$$$nx[]uc",
+   "tu": "src/_unknown/tu_004087e0.c",
+   "evidence": "own data placed in src/_unknown/tu_004087e0.c 2026-11-09"
   },
   "W?$Wts0en$MenuButton$$$nx[]uc": {
    "va": "0048c9d8",
@@ -24243,6 +24260,14 @@
    "mangled": "W?$Wts0kn$MenuPrefixButton$$$nx[]uc",
    "evidence": "implied by src/shell/commscrn.c 2026-11-09"
   },
+  "W?$Wts0hn$TopMenuScreen$$$nx[]uc": {
+   "va": "0048ca30",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0hn$TopMenuScreen$$$nx[]uc",
+   "tu": "src/_unknown/tu_004087e0.c",
+   "evidence": "own data placed in src/_unknown/tu_004087e0.c 2026-11-09"
+  },
   "W?$Wts0fn$MenuCaption$$$nx[]uc": {
    "va": "0048cabc",
    "kind": "data",
@@ -24250,6 +24275,14 @@
    "mangled": "W?$Wts0fn$MenuCaption$$$nx[]uc",
    "tu": "src/shell/biomenu.c",
    "evidence": "own data placed in src/shell/biomenu.c 2026-11-09"
+  },
+  "W?$Wts0gn$MedlabScreen$$$nx[]uc": {
+   "va": "0048cc10",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0gn$MedlabScreen$$$nx[]uc",
+   "tu": "src/_unknown/tu_0040f4e4.c",
+   "evidence": "own data placed in src/_unknown/tu_0040f4e4.c 2026-11-09"
   },
   "W?$Wts0kn$PilotImageButton$$$nx[]uc": {
    "va": "0048cdb8",
@@ -24611,6 +24644,14 @@
    "tu": "src/pop/pherc.c",
    "evidence": "own data placed in src/pop/pherc.c 2026-11-09"
   },
+  "W?$Wts0bn$StrPool$$$nx[]uc": {
+   "va": "0048ddc4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0bn$StrPool$$$nx[]uc",
+   "tu": "src/_unknown/tu_00475dc8.c",
+   "evidence": "own data placed in src/_unknown/tu_00475dc8.c 2026-11-09"
+  },
   "W?$Wts0dn$ViewState$$$nx[]uc": {
    "va": "0048de28",
    "kind": "data",
@@ -24633,6 +24674,14 @@
    "mangled": "W?$Wvf0bo4:SimGame$$nx[]pn()v",
    "tu": "src/sim/sim.c",
    "evidence": "own data placed in src/sim/sim.c 2026-11-09"
+  },
+  "W?$Wts0cn$SimAlert$$$nx[]uc": {
+   "va": "0048df70",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0cn$SimAlert$$$nx[]uc",
+   "tu": "src/_unknown/tu_0044d150.c",
+   "evidence": "own data placed in src/_unknown/tu_0044d150.c 2026-11-09"
   },
   "W?$Wts0in$SimImageGadget$$$nx[]uc": {
    "va": "0048df88",
@@ -24787,6 +24836,22 @@
    "mangled": "W?$Wts0dn$PeerQueue$$$nx[]uc",
    "tu": "src/_unknown/tu_004742bc.c",
    "evidence": "own data placed in src/_unknown/tu_004742bc.c 2026-11-09"
+  },
+  "W?$Wts0an$ResMgr$$$nx[]uc": {
+   "va": "0048e284",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0an$ResMgr$$$nx[]uc",
+   "tu": "src/_unknown/tu_00475dc8.c",
+   "evidence": "own data placed in src/_unknown/tu_00475dc8.c 2026-11-09"
+  },
+  "W?$Wts0en$FileRecord$$$nx[]uc": {
+   "va": "0048e2b4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0en$FileRecord$$$nx[]uc",
+   "tu": "src/_unknown/tu_0047682c.c",
+   "evidence": "own data placed in src/_unknown/tu_0047682c.c 2026-11-09"
   },
   "W?$Wts0hn$ResourceEntry$$$nx[]uc": {
    "va": "0048e2e8",
@@ -25111,6 +25176,14 @@
    "status": "hypothesis",
    "mangled": "W?gMenuFonts$n[]pn$Font$$",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "inputKeys@tu_004279fc.c": {
+   "va": "0048f390",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?inputKeys$n[]$InputKeyBinding$$",
+   "tu": "src/_unknown/tu_004279fc.c",
+   "evidence": "own data placed in src/_unknown/tu_004279fc.c 2026-11-09"
   },
   "menuReservedColor": {
    "va": "0048f40c",
@@ -26205,6 +26278,14 @@
    "mangled": "W?exploSoundTable$n[]i",
    "evidence": "implied by src/sim/explo.c 2026-11-09"
   },
+  "animflufFile@sim/animfluf.c": {
+   "va": "004a24d4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?animflufFile$n[]a",
+   "tu": "src/sim/animfluf.c",
+   "evidence": "own data placed in src/sim/animfluf.c 2026-11-09"
+  },
   "targetHeader": {
    "va": "004a256c",
    "kind": "data",
@@ -26524,12 +26605,28 @@
    "mangled": "W?versionMajor$ni",
    "evidence": "implied by src/_unknown/tu_0047682c.c 2026-11-09"
   },
+  "W?versionMajor$:.0$:?FormatVersion$n()vni@_unknown/tu_0047682c.c": {
+   "va": "004a4230",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?versionMajor$:.0$:?FormatVersion$n()vni",
+   "tu": "src/_unknown/tu_0047682c.c",
+   "evidence": "own data placed in src/_unknown/tu_0047682c.c 2026-11-09"
+  },
   "versionMinor": {
    "va": "004a4234",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?versionMinor$ni",
    "evidence": "implied by src/_unknown/tu_0047682c.c 2026-11-09"
+  },
+  "W?versionMinor$:.0$:?FormatVersion$n()vni@_unknown/tu_0047682c.c": {
+   "va": "004a4234",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?versionMinor$:.0$:?FormatVersion$n()vni",
+   "tu": "src/_unknown/tu_0047682c.c",
+   "evidence": "own data placed in src/_unknown/tu_0047682c.c 2026-11-09"
   },
   "versionSuffix": {
    "va": "004a4238",
@@ -26538,12 +26635,28 @@
    "mangled": "W?versionSuffix$ni",
    "evidence": "implied by src/_unknown/tu_0047682c.c 2026-11-09"
   },
+  "W?versionSuffix$:.0$:?FormatVersion$n()vni@_unknown/tu_0047682c.c": {
+   "va": "004a4238",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?versionSuffix$:.0$:?FormatVersion$n()vni",
+   "tu": "src/_unknown/tu_0047682c.c",
+   "evidence": "own data placed in src/_unknown/tu_0047682c.c 2026-11-09"
+  },
   "saveVersion0": {
    "va": "004a423c",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?saveVersion0$ni",
    "evidence": "implied by src/_unknown/tu_00476d44.c 2026-11-09"
+  },
+  "W?saveVersion0$:.0$:?FormatVersion$n()vni@_unknown/tu_0047682c.c": {
+   "va": "004a423c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?saveVersion0$:.0$:?FormatVersion$n()vni",
+   "tu": "src/_unknown/tu_0047682c.c",
+   "evidence": "own data placed in src/_unknown/tu_0047682c.c 2026-11-09"
   },
   "saveVersion1": {
    "va": "004a4240",
@@ -26552,6 +26665,22 @@
    "mangled": "W?saveVersion1$ni",
    "evidence": "implied by src/_unknown/tu_00476d44.c 2026-11-09"
   },
+  "W?saveVersion1$:.0$:?FormatVersion$n()vni@_unknown/tu_0047682c.c": {
+   "va": "004a4240",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?saveVersion1$:.0$:?FormatVersion$n()vni",
+   "tu": "src/_unknown/tu_0047682c.c",
+   "evidence": "own data placed in src/_unknown/tu_0047682c.c 2026-11-09"
+  },
+  "W?saveCompatibility$:.0$:?FormatVersion$n()vn[]i@_unknown/tu_0047682c.c": {
+   "va": "004a4244",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?saveCompatibility$:.0$:?FormatVersion$n()vn[]i",
+   "tu": "src/_unknown/tu_0047682c.c",
+   "evidence": "own data placed in src/_unknown/tu_0047682c.c 2026-11-09"
+  },
   "g4a425c": {
    "va": "004a425c",
    "kind": "data",
@@ -26559,12 +26688,28 @@
    "mangled": "W?g4a425c$npna",
    "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
   },
+  "W?buildDescription$:.0$:?FormatVersion$n()vnpna@_unknown/tu_0047682c.c": {
+   "va": "004a425c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?buildDescription$:.0$:?FormatVersion$n()vnpna",
+   "tu": "src/_unknown/tu_0047682c.c",
+   "evidence": "own data placed in src/_unknown/tu_0047682c.c 2026-11-09"
+  },
   "versionExtra": {
    "va": "004a4260",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?versionExtra$npna",
    "evidence": "implied by src/_unknown/tu_0047682c.c 2026-11-09"
+  },
+  "W?versionExtra$:.0$:?FormatVersion$n()vnpna@_unknown/tu_0047682c.c": {
+   "va": "004a4260",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?versionExtra$:.0$:?FormatVersion$n()vnpna",
+   "tu": "src/_unknown/tu_0047682c.c",
+   "evidence": "own data placed in src/_unknown/tu_0047682c.c 2026-11-09"
   },
   "assertProgram": {
    "va": "004a4264",
@@ -26629,6 +26774,27 @@
    "mangled": "W?settingsPath$n[]a",
    "evidence": "implied by src/_unknown/tu_0047682c.c 2026-11-09"
   },
+  "helpDefaultTitle": {
+   "va": "004a4728",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?helpDefaultTitle$n[]a",
+   "evidence": "implied by src/_unknown/tu_00476120.c 2026-11-09"
+  },
+  "cdInsertPrompt": {
+   "va": "004a4740",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?cdInsertPrompt$n[]a",
+   "evidence": "implied by src/_unknown/tu_00476058.c 2026-11-09"
+  },
+  "cdMissingCaption": {
+   "va": "004a4760",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?cdMissingCaption$n[]a",
+   "evidence": "implied by src/_unknown/tu_00476058.c 2026-11-09"
+  },
   "gPilotGuiUnlinked": {
    "va": "004a4784",
    "kind": "data",
@@ -26649,6 +26815,27 @@
    "status": "hypothesis",
    "mangled": "W?joiningMessage$n[]xa",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "installProgramPath": {
+   "va": "004a4820",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?installProgramPath$n[]a",
+   "evidence": "implied by src/_unknown/tu_004770d0.c 2026-11-09"
+  },
+  "installDirectory": {
+   "va": "004a483c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?installDirectory$n[]a",
+   "evidence": "implied by src/_unknown/tu_004770d0.c 2026-11-09"
+  },
+  "installDriveRoot": {
+   "va": "004a4850",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?installDriveRoot$n[]a",
+   "evidence": "implied by src/_unknown/tu_004770d0.c 2026-11-09"
   },
   "g4a48e4": {
    "va": "004a48e4",
@@ -31802,6 +31989,30 @@
    "status": "hypothesis",
    "mangled": "W?gGuiStringBase$nl",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "W?doubleClick$:.0$:?InputUpdate$n()vn$Timer$$@tu_004279fc.c": {
+   "va": "004bb760",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?doubleClick$:.0$:?InputUpdate$n()vn$Timer$$",
+   "tu": "src/_unknown/tu_004279fc.c",
+   "evidence": "own data placed in src/_unknown/tu_004279fc.c 2026-11-09"
+  },
+  "W?repeat$:.0$:?InputUpdate$n()vn$Timer$$@tu_004279fc.c": {
+   "va": "004bb76c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?repeat$:.0$:?InputUpdate$n()vn$Timer$$",
+   "tu": "src/_unknown/tu_004279fc.c",
+   "evidence": "own data placed in src/_unknown/tu_004279fc.c 2026-11-09"
+  },
+  "W?$Wbi00$:.0$:?InputUpdate$n()vn[]uc@tu_004279fc.c": {
+   "va": "004bb778",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wbi00$:.0$:?InputUpdate$n()vn[]uc",
+   "tu": "src/_unknown/tu_004279fc.c",
+   "evidence": "own data placed in src/_unknown/tu_004279fc.c 2026-11-09"
   },
   "gIn7c": {
    "va": "004bb77c",

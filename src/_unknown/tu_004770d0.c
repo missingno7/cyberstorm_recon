@@ -1,6 +1,7 @@
 // Ordinal exports of the UI DLL and wrappers. Export signatures inferred from stack traffic.
 #include <windows.h>
 extern HMODULE g512580;
+extern char installProgramPath[],installDirectory[],installDriveRoot[];
 extern HWND g_mainWindow;
 extern int g4faf44,g4faf40,networkEnabled;
 extern unsigned long dialogInputUntil;
@@ -52,7 +53,7 @@ void DialogTimedMessage(const char *text) {
  int delay=ReadNetworkEnabled()?14000:0; ActivateMainWindow(); dialogMessage(g_mainWindow,text,0,delay); DialogEnd();
 }
 int f_477352(int a,char *b,char *c,char *d) {
- ActivateMainWindow(); int result=dialogInstall(g_mainWindow,a,b,c,d,"C:\\SIERRA\\CSTORM\\CSTORM.EXE","C:\\SIERRA\\CSTORM","C:\\");
+ ActivateMainWindow(); int result=dialogInstall(g_mainWindow,a,b,c,d,installProgramPath,installDirectory,installDriveRoot);
  dialogInputUntil=TimeNow()+50; return result;
 }
 extern "C" void f_004773a1(int a,int b,int c) { ActivateMainWindow(); dialogEdit(g_mainWindow,a,b,c); dialogInputUntil=TimeNow()+50; }

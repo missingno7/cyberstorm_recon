@@ -3,7 +3,7 @@
 #include <windows.h>
 #include <string.h>
 
-static char linkqFile[] = __FILE__;
+/* No surviving queue function references a file-name object. */
 
 struct QueueNode {
     QueueNode *prev;

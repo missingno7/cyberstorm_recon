@@ -1,3 +1,4 @@
+inline const char *TopMenuRoomName() { return "topmenu"; }
 /* Shared working GUI names and layouts, derived from accepted GUI candidates.
  * Unknown fields stay explicit; no original path survives in these objects. */
 #include <stdio.h>
@@ -52,7 +53,7 @@ public:U32 unused;const char *text;long value;signed char font,color,flash,align
 class GuiScreen:public GuiRect {
 public:
     InputReq *input;byte unknown14[56];
-    GuiScreen(GuiControl **,unsigned,U32);~GuiScreen(){input=0;}void ResetInput();
+    GuiScreen(GuiControl **,unsigned,U32);~GuiScreen(){ResetInput();}void ResetInput(){input=0;}
     int IsActive() const{return input!=0;} void LoadLayout(long);void Open(InputReq *,StrPool *,long,int);
     void Invalidate();void ResetControls();long HitTest(const GuiPoint *);int Update();void Draw();
 };
@@ -84,7 +85,7 @@ extern unsigned MissionRandomTable;
 extern void f_0047e200(int *);extern "C" unsigned next_link_seed(void *);
 inline unsigned MenuRandom(unsigned maximum){return next_link_seed(&MissionRandomTable)%maximum;}
 
-void GuiScreen::ResetInput(){input=0;}
+
 /* Top-menu screen. Global order and packed offsets are evidence; names are working labels.
  * Includes destructor COMDATs at 004093c0 and 004093d8. */
 #pragma pack(push,1)
@@ -105,8 +106,8 @@ extern TopMenuScreen g4afa84;
 extern long topMenuStatus;
 extern const char *topMenuText;
 
-/* The shared base cleanup helper at 004087e0 is grouped here provisionally.
- * Its original object ownership is not established by the function proof. */
+/* Base cleanup is an inline COMDAT before this object's main range.
+ * The main initializer begins at 004087ec; ResetInput remains STRICT at 004087e0. */
 
 
 TopMenuScreen::TopMenuScreen():GuiScreen(topMenuControls,22,0),animation(),counter(){}
@@ -163,7 +164,7 @@ void TopMenuScreen::Close(){
 void TopMenuScreen::Update(){
     if(IsActive()){
         topMenuStatus=HitTest(&g4bb78c);
-        if(topMenuStatus<0){int n=BriefDone("topmenu");if(n>=0)topMenuStatus=n+100;}
+        if(topMenuStatus<0){int n=BriefDone(TopMenuRoomName());if(n>=0)topMenuStatus=n+100;}
         GuiScreen::Update();
     }
 }
@@ -196,7 +197,7 @@ void TopMenuScreen::NextAnimation(){
     topMenuPanel.Invalidate();Invalidate();animation.SetLoops(-1);
 }
 void TopMenuScreen::Reset(){ClearPanel();topMenuText=0;page=0;ResetControls();lastTime=TimeNow();}
-void TopMenuScreen::Finish(){BriefDone("topmenu");}
+void TopMenuScreen::Finish(){BriefDone(TopMenuRoomName());}
 
 MenuPrefixButton topMenuButtons[19];
 MenuHelpRegion topMenuHelp;

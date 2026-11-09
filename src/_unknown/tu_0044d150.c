@@ -94,7 +94,7 @@ void SimAlertEvent(SimGame *s) {
 }
 
 
-SimAlert::~SimAlert() {input=0;}
+inline SimAlert::~SimAlert() {input=0;}
 
 
 

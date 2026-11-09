@@ -1,3 +1,4 @@
+inline const char *PromoRoomName() { return "promo"; }
 /* Promotion/campaign narrative screen, including the destructor COMDAT at 0040be9c. All names except shared GUI classes are
  * working labels. The packed arrays follow the original unaligned member offsets. */
 #include <string.h>
@@ -1161,7 +1162,7 @@ void PromoScreen::Close() {
 int PromoScreen::Update() {
     if (IsActive()) {
         if (promoFinished==1) {promoFinished=0;return 1;}
-        if (HitTest((GuiPoint *)&g4bb78c)<0 && BriefDone("promo")>=0) promoStatus=0xc1d;
+        if (HitTest((GuiPoint *)&g4bb78c)<0 && BriefDone(PromoRoomName())>=0) promoStatus=0xc1d;
         return GuiScreen::Update();
     }
     return 0;
@@ -1178,7 +1179,7 @@ void PromoScreen::Render() {
 }
 
 /* 0040be8c */
-void PromoScreen::Finish() {BriefDone("promo");}
+void PromoScreen::Finish() {BriefDone(PromoRoomName());}
 
 
 
@@ -1188,6 +1189,7 @@ void PromoScreen::Finish() {BriefDone("promo");}
 MenuButton promoNumber(0,0);
 MenuPrefixButton promoButton(0,1,2,-1);
 MenuHelpRegion promoHelp;
+int promoPlaying; byte promoFinished;
 PromoScreen g4afbfc;
 
 

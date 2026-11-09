@@ -1,3 +1,4 @@
+inline const char *MedlabRoomName() { return "bioroom"; }
 #include <stdio.h>
 typedef unsigned long U32;
 typedef unsigned char byte;
@@ -85,7 +86,7 @@ void MedlabScreen::Close(){if(IsActive())input=0;}
 int MedlabScreen::Update(){
  if(state!=2)return 0;
  medlabHandle=HitTest(&g4bb78c);
- if(medlabHandle<0){int room=BriefDone("bioroom");f_0040c63e(&g4aff6c,room,1);if(room>=0)medlabHandle=room+100;}
+ if(medlabHandle<0){int room=BriefDone(MedlabRoomName());f_0040c63e(&g4aff6c,room,1);if(room>=0)medlabHandle=room+100;}
  return GuiScreen::Update();
 }
 void ShellBiodermSkillsRender(MedlabScreen *s){
@@ -120,7 +121,7 @@ void MedlabScreen::UpdateText(){
  }UpdateCredits();
 }
 void MedlabScreen::UpdateCredits(){if(uiSystem.UpdateCredits()){MenuFormatNumber(g4a706d,medlabCreditText,12);medlabCredits.SetValue(g4a706d,0);}}
-int MedlabScreen::Room(){return BriefDone("bioroom");}
+int MedlabScreen::Room(){return BriefDone(MedlabRoomName());}
 void MedlabScreen::Cancel(){if(g4affb8){g4affb8=0;f_0043ba3e(profileManager,gShellGame);}}
 void MedlabScreen::Apply(){
  SoundTrigger(47,0);

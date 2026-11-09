@@ -69,7 +69,7 @@ Model: `luna` = gpt-6-luna xhigh, `sol` = gpt-6.1-sol high (Codex; all new lanes
 | s44 | sol | logic\lgen.c + sinterp.c, 00452950, 00454210 | done |
 | s45 | sol | terr\tsurface.c recursive helpers (inline_recursion hypothesis) | done (+3; recursive helper still 5984 vs 7456) |
 | s46 | sol | hand-assembly routines (asm profile, assembler identification) | done; integrator found TASM -ml -m5: 11 of 12 STRICT |
-| s47 | sol | TU completion: 17 TUs blocked only at TU level | running |
+| s47 | sol | TU completion: 17 TUs blocked only at TU level | done (11 COMPLETE published; 6 need bindings/migrations) |
 | l1 | luna | shell\hercbuy.c | done (19) |
 | o1 | opus | multi\linkdlg.c, linkq.c, message.c | done |
 | o2 | opus | sim\apply.c, fxout.c, explo.c | done |

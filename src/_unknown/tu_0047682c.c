@@ -8,7 +8,17 @@ extern char *versionExtra;
 extern "C" char assertVersion[];
 extern char settingsPath[];
 void ExploIdle() {}
-void FormatVersion() { sprintf(assertVersion,"%d.%02d%c %s",versionMajor,versionMinor,versionSuffix,versionExtra); }
+void FormatVersion() {
+ /* Retained version metadata: names and original scope are provisional. */
+ const char *format="%d.%02d%c %s";
+ static int versionMajor=1,versionMinor=10,versionSuffix='A';
+ static int saveVersion0=0xca54,saveVersion1=0xeb88;
+ static int saveCompatibility[6]={0xeb88,0,0,0,0,0};
+ static char *buildDescription="Created: Dec 13 1996 13:51:31";
+ /* The image retains a second trailing NUL on this platform tag. */
+ static char *versionExtra=", Win95\0";
+ sprintf(assertVersion,format,versionMajor,versionMinor,versionSuffix,versionExtra);
+}
 struct FileRecord; void FileInit(FileRecord*);
 struct FileRecord { HANDLE handle; unsigned long open,flags,error; signed char direct,counted; char reserve[2]; unsigned long position,length;
  FileRecord() { FileInit(this); } ~FileRecord(); int Open(const char*,unsigned long);

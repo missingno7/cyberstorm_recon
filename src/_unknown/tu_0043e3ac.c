@@ -17,7 +17,6 @@ extern MissionCategory missionCategories[];
 struct EquipmentCategory {int first,count,unknown[3];};
 extern EquipmentCategory equipmentCategories[];
 extern char reportToken_0049417c[],reportToken_00494184[],reportToken_0049418c[],reportToken_004941a0[],reportToken_004941a8[],reportToken_004941b0[],reportToken_004941c8[];
-extern char reportBreak_0048ae06[],reportBreak_0048ae60[],reportBreak_0048ae8a[],reportBreak_0048aeb4[],reportBreak_0048aeb9[],reportBreak_0048aebb[],reportBreak_0048aec3[],reportBreak_0048aec5[],reportBreak_0048aed3[],reportBreak_0048aed8[],reportBreak_0048aeda[],reportBreak_0048aef4[],reportBreak_0048af05[],reportBreak_0048af16[];
 void DecodeMission(MissionRecord *,MissionInfo *);
 void *MissionAllocateType(int);
 extern "C" void *MissionAllocate(int,int);
@@ -32,7 +31,7 @@ extern "C" char *BriefMissionFile(ProfileManager *p,int index) {
     int blocked=p->MissionIsBlocked(info);
     FormatSetBuffer(gSessionTable,0x4000);DebugTextClear();
     DebugTextAppend(BriefFormat("%s%s%s%s\n",reportToken_004941c8,reportToken_004941a0,reportToken_0049418c,g511ddc.GetString(0x97)));
-    DebugTextAppend(reportBreak_0048ae06);
+    DebugTextAppend("\n");
     DebugTextAppend(BriefFormat("%s%s%s:%s%s%s\n",reportToken_004941c8,reportToken_0049417c,g511ddc.GetString(0x99),reportToken_004941b0,reportToken_00494184,MissionAllocateType(info.type)));
     DebugTextAppend(BriefFormat("%s%s:%s%s%s\n",reportToken_0049417c,g511ddc.GetString(0x9a),reportToken_004941b0,reportToken_00494184,MissionAllocate(info.type,info.number)));
     DebugTextAppend(BriefFormat("%s%s:%s%s%s\n",reportToken_0049417c,g511ddc.GetString(0xc7),reportToken_004941b0,missionCategories[info.category].text,(info.category<0 || info.category>=4 ? g511ddc.GetString(0xc9) : g511ddc.GetString(missionCategories[info.category].name))));
@@ -41,40 +40,40 @@ extern "C" char *BriefMissionFile(ProfileManager *p,int index) {
     DebugTextAppend(BriefFormat("%s%s:%s%s",reportToken_0049417c,g511ddc.GetString(0xb7),reportToken_004941b0,reportToken_00494184));
     if(blocked) DebugTextAppend(BriefFormat("%s\n",g511ddc.GetString(0xba)));
     else DebugTextAppend(BriefFormat("%s\n",g511ddc.GetString(0xc6)));
-    DebugTextAppend(reportBreak_0048ae60);
+    DebugTextAppend("\n");
     DebugTextAppend(BriefFormat("%s%s:\n",reportToken_0049417c,g511ddc.GetString(0xbc)));
     if(info.value28) DebugTextAppend(BriefFormat("%s%s%s:%s%s%s\n",reportToken_0049417c,reportToken_004941a8,g511ddc.GetString(0x9f),reportToken_004941b0,reportToken_00494184,info.value28));
     DebugTextAppend(BriefFormat("%s%s%s:%s%s%d %s\n",reportToken_0049417c,reportToken_004941a8,g511ddc.GetString(0xbf),reportToken_004941b0,reportToken_00494184,info.value20,g511ddc.GetString(0xc0)));
     if(info.value) {
-        DebugTextAppend(reportBreak_0048ae8a);
+        DebugTextAppend("\n");
         DebugTextAppend(BriefFormat("%s%s:\n",reportToken_0049417c,g511ddc.GetString(0xc2)));
         DebugTextAppend(BriefFormat("%s%s%s:%s%s%d %s\n",reportToken_0049417c,reportToken_004941a8,g511ddc.GetString(0xc3),reportToken_004941b0,reportToken_00494184,info.value,g511ddc.GetString(0xb1)));
         if(info.value2c) DebugTextAppend(BriefFormat("%s%s%s:%s%s%s\n",reportToken_0049417c,reportToken_004941a8,g511ddc.GetString(0xc4),reportToken_004941b0,reportToken_00494184,info.value2c));
     }
     if(info.value30) {
-        DebugTextAppend(reportBreak_0048aeb4);
+        DebugTextAppend("\n");
         DebugTextAppend(BriefFormat("%s",reportToken_004941c8));
-        DebugTextAppend((char *)info.value30);DebugTextAppend(reportBreak_0048aeb9);
+        DebugTextAppend((char *)info.value30);DebugTextAppend("\n");
     }
     if(info.value34) {
-        DebugTextAppend(reportBreak_0048aebb);
+        DebugTextAppend("\n");
         DebugTextAppend(BriefFormat("%s%s\n",reportToken_004941c8,info.value34));
     }
-    DebugTextAppend(reportBreak_0048aec3);DebugTextAppend(reportBreak_0048aec5);
+    DebugTextAppend("\n");DebugTextAppend("\n");
     DebugTextAppend(BriefFormat("%s%s%s: %s\n",reportToken_0049417c,reportToken_004941a0,g511ddc.GetString(0xdc),info.rest[2]));
-    DebugTextAppend(reportBreak_0048aed3);
+    DebugTextAppend("\n");
     DebugTextAppend(BriefFormat("%s",reportToken_004941c8));
-    DebugTextAppend((char *)info.rest[3]);DebugTextAppend(reportBreak_0048aed8);
-    DebugTextAppend(reportBreak_0048aeda);
+    DebugTextAppend((char *)info.rest[3]);DebugTextAppend("\n");
+    DebugTextAppend("\n");
     DebugTextAppend(BriefFormat("%s%s:\n",reportToken_0049417c,g511ddc.GetString(0xde)));
     DebugTextAppend(BriefFormat("%s%s%d%% %s(%s)\n",reportToken_00494184,reportToken_004941a8,info.rest[0],reportToken_0049417c,info.rest[1]));
-    DebugTextAppend(reportBreak_0048aef4);
+    DebugTextAppend("\n");
     DebugTextAppend(BriefFormat("%s%s:\n",reportToken_0049417c,g511ddc.GetString(0xdf)));
     DebugTextAppend(BriefFormat("%s%s%s\n",reportToken_0049417c,reportToken_004941a8,info.rest[7]));
-    DebugTextAppend(reportBreak_0048af05);
+    DebugTextAppend("\n");
     DebugTextAppend(BriefFormat("%s%s:\n",reportToken_0049417c,g511ddc.GetString(0xe0)));
     DebugTextAppend(BriefFormat("%s%s%s\n",reportToken_0049417c,reportToken_004941a8,info.rest[8]));
-    DebugTextAppend(reportBreak_0048af16);
+    DebugTextAppend("\n");
     if(!g4941e4) delete [] g4c9344;else g4941e4=0;
     unsigned length=strlen(gDebugText)+1;
     g4c9344=new char[length];memset(g4c9344,0,length);strcpy(g4c9344,gDebugText);

@@ -201,6 +201,11 @@
      "size": 29,
      "mangled": "W?InputSetLoHi$n(pn$InputReq$$ul)v"
     },
+    "InputUpdate": {
+     "va": "00427a40",
+     "size": 424,
+     "mangled": "W?InputUpdate$n()v"
+    },
     "InputPoll": {
      "va": "00427be8",
      "size": 63,
@@ -212,7 +217,12 @@
      "mangled": "W?InputReset$n(pn$InputReq$$)v"
     }
    },
-   "data": {},
+   "data": {
+    "_DATA": {
+     "va": "0048f390",
+     "size": 72
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/debug/assert.c": {
@@ -6107,6 +6117,10 @@
     }
    },
    "data": {
+    "CONST": {
+     "va": "0048a2e8",
+     "size": 731
+    },
     "CONST2": {
      "va": "0048ca44",
      "size": 36
@@ -6114,6 +6128,14 @@
     "_DATA": {
      "va": "0048e668",
      "size": 12
+    },
+    "XI": {
+     "va": "004a6b6a",
+     "size": 6
+    },
+    "W?$Wts0in$MenuHelpRegion$$$nx[]uc": {
+     "va": "0048c9c4",
+     "size": 17
     }
    },
    "accepted": "2026-11-09"
@@ -6532,6 +6554,10 @@
      "va": "004a0234",
      "size": 12
     },
+    "XI": {
+     "va": "004a6c5a",
+     "size": 6
+    },
     "W?$Wts0kn$PilotImageButton$$$nx[]uc": {
      "va": "0048cdb8",
      "size": 17
@@ -6546,6 +6572,10 @@
     },
     "W?$Wts0en$MenuSpacer$$$nx[]uc": {
      "va": "0048d964",
+     "size": 17
+    },
+    "W?$Wts0cn$SimAlert$$$nx[]uc": {
+     "va": "0048df70",
      "size": 17
     }
    },
@@ -7085,6 +7115,10 @@
     }
    },
    "data": {
+    "CONST": {
+     "va": "0048a794",
+     "size": 67
+    },
     "CONST2": {
      "va": "0048cb30",
      "size": 116
@@ -7093,8 +7127,20 @@
      "va": "0048e6f8",
      "size": 12
     },
+    "XI": {
+     "va": "004a6b7c",
+     "size": 6
+    },
     "W?$Wts0en$MenuButton$$$nx[]uc": {
      "va": "0048c9d8",
+     "size": 17
+    },
+    "W?$Wts0in$MenuHelpRegion$$$nx[]uc": {
+     "va": "0048c9c4",
+     "size": 17
+    },
+    "W?$Wts0dn$MenuPanel$$$nx[]uc": {
+     "va": "0048c99c",
      "size": 17
     }
    },
@@ -7202,6 +7248,10 @@
     }
    },
    "data": {
+    "CONST": {
+     "va": "0048a7d8",
+     "size": 49
+    },
     "CONST2": {
      "va": "0048cbbc",
      "size": 84
@@ -7210,8 +7260,24 @@
      "va": "0048e76c",
      "size": 12
     },
+    "XI": {
+     "va": "004a6b82",
+     "size": 6
+    },
     "W?$Wts0en$MenuButton$$$nx[]uc": {
      "va": "0048c9d8",
+     "size": 17
+    },
+    "W?$Wts0in$MenuHelpRegion$$$nx[]uc": {
+     "va": "0048c9c4",
+     "size": 17
+    },
+    "W?$Wts0dn$MenuPanel$$$nx[]uc": {
+     "va": "0048c99c",
+     "size": 17
+    },
+    "W?$Wts0gn$MedlabScreen$$$nx[]uc": {
+     "va": "0048cc10",
      "size": 17
     }
    },
@@ -8179,6 +8245,10 @@
     }
    },
    "data": {
+    "CONST": {
+     "va": "0048a200",
+     "size": 230
+    },
     "CONST2": {
      "va": "0048ca04",
      "size": 44
@@ -8186,6 +8256,10 @@
     "_DATA": {
      "va": "0048e604",
      "size": 12
+    },
+    "XI": {
+     "va": "004a6b64",
+     "size": 6
     },
     "W?$Wts0dn$MenuLabel$$$nx[]uc": {
      "va": "0048c9b0",
@@ -8201,6 +8275,10 @@
     },
     "W?$Wts0dn$MenuPanel$$$nx[]uc": {
      "va": "0048c99c",
+     "size": 17
+    },
+    "W?$Wts0hn$TopMenuScreen$$$nx[]uc": {
+     "va": "0048ca30",
      "size": 17
     }
    },
@@ -10057,6 +10135,18 @@
     "_DATA": {
      "va": "004a408c",
      "size": 12
+    },
+    "XI": {
+     "va": "004a6ce4",
+     "size": 6
+    },
+    "W?$Wts0bn$StrPool$$$nx[]uc": {
+     "va": "0048ddc4",
+     "size": 17
+    },
+    "W?$Wts0an$ResMgr$$$nx[]uc": {
+     "va": "0048e284",
+     "size": 17
     }
    },
    "accepted": "2026-11-09"
@@ -10073,6 +10163,10 @@
     }
    },
    "data": {
+    "CONST": {
+     "va": "0048be4c",
+     "size": 24
+    },
     "_DATA": {
      "va": "004a41e8",
      "size": 3
@@ -10177,6 +10271,10 @@
     }
    },
    "data": {
+    "CONST": {
+     "va": "0048be64",
+     "size": 109
+    },
     "CONST2": {
      "va": "0048e298",
      "size": 28
@@ -10184,6 +10282,14 @@
     "_DATA": {
      "va": "004a41ec",
      "size": 12
+    },
+    "XI": {
+     "va": "004a6cea",
+     "size": 6
+    },
+    "W?$Wts0bn$StrPool$$$nx[]uc": {
+     "va": "0048ddc4",
+     "size": 17
     }
    },
    "accepted": "2026-11-09"
@@ -10258,7 +10364,20 @@
      "mangled": "W?SettingsDefaults$n(pn$Settings$$)v"
     }
    },
-   "data": {},
+   "data": {
+    "CONST": {
+     "va": "0048bee0",
+     "size": 96
+    },
+    "_DATA": {
+     "va": "004a4230",
+     "size": 52
+    },
+    "W?$Wts0en$FileRecord$$$nx[]uc": {
+     "va": "0048e2b4",
+     "size": 17
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/_unknown/tu_00476b3c.c": {
@@ -10570,7 +10689,16 @@
      "mangled": "W?SimAnimClear$n(pn$SimAnim$$)v"
     }
    },
-   "data": {},
+   "data": {
+    "CONST": {
+     "va": "0048b518",
+     "size": 31
+    },
+    "_DATA": {
+     "va": "004a24d4",
+     "size": 15
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/_unknown/tu_0045a290.c": {
@@ -11603,7 +11731,12 @@
      "mangled": "W?BriefNewEquipment$n(pn$ProfileManager$$)pna"
     }
    },
-   "data": {},
+   "data": {
+    "CONST": {
+     "va": "0048adfc",
+     "size": 318
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/_unknown/tu_0043ecf8.c": {

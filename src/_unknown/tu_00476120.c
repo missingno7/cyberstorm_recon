@@ -4,6 +4,7 @@
 #include <stdio.h>
 struct StrPool { long id; char *buffer; long capacity; void *data; long size; StrPool(long,long,long); ~StrPool(); int Lock(); void Unlock(); char *GetString(long,int); };
 extern char gDebugText[];
+extern char helpDefaultTitle[];
 StrPool gShellMiniStrings((long)"miniSh.bin",(long)gDebugText,65536);
 StrPool gShellParaStrings((long)"paraSh.bin",(long)gDebugText,65536);
 StrPool gMiniMenuStrings((long)"miniMenu.bin",(long)gDebugText,65536);
@@ -19,7 +20,7 @@ void HelpShutdown(); void HelpUpdate();
 void HelpInit() {
  if(!helpActive) {
   helpActive=1; gShellMiniStrings.Lock(); manualTopic=2; helpTopic=0;
-  strcpy(helpTitle,"CyberStorm          "); helpDirty=1; HelpUpdate(); RegisterAssertCallback(HelpShutdown);
+  strcpy(helpTitle,helpDefaultTitle); helpDirty=1; HelpUpdate(); RegisterAssertCallback(HelpShutdown);
  }
 }
 void HelpShutdown() { HelpCloseViewer(); helpActive=0; }
@@ -42,8 +43,8 @@ void HelpUpdate() {
  }
 }
 void HelpSetTitle(const char *text) {
- if(text) sprintf(helpTitle,"%s%s","CyberStorm          ",text);
- else strcpy(helpTitle,"CyberStorm          ");
+ if(text) sprintf(helpTitle,"%s%s",helpDefaultTitle,text);
+ else strcpy(helpTitle,helpDefaultTitle);
  helpDirty=1;
 }
 void f_00476412(int topic);

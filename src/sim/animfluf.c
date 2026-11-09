@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+static char animflufFile[] = __FILE__;
 struct MenuImage { char bytes[12]; };
 struct AnimFrames { unsigned int count; MenuImage frame[1]; };
 struct SimAnim { AnimFrames *data; unsigned char kind, number, variant, frame; };
@@ -63,8 +64,7 @@ void SimAnimAdvance(SimAnim *a)
 
 
 
-
-        AssertFail(__FILE__, __LINE__, 0);
+        AssertFail(animflufFile, __LINE__, 0);
     a->frame++;
     if (a->frame >= a->data->count) a->frame = 0;
 }
@@ -83,7 +83,7 @@ MenuImage *SimAnimFrame(SimAnim *a, int frame)
 
 
 
-        AssertFail(__FILE__, __LINE__, 0);
+        AssertFail(animflufFile, __LINE__, 0);
     return &a->data->frame[a->frame];
 }
 void SimAnimClear(SimAnim *a)
