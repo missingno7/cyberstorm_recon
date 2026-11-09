@@ -93,3 +93,20 @@ address from the segment base placed in the dry run (anchored by --at/search and
 promote.py --publish records those addresses as `hypothesis` bindings ("own data placed in TU"), so the verify view
 (no --at, no search) can reach the objects; verify still proves every item (BSS zero in the oracle, data bytes and
 relocations equal). Before this, such functions were withdrawn as "strict only with --at/search" (s15 tu_0041cb48).
+
+## Image-level link probe (2026-11-09, `tools/linkprobe.py`)
+COMPLETE TUs that are adjacent in the original (only zero fill between them) form 11 runs (27 TUs). Each run is
+compiled fresh and linked alone with the pinned WLINK 10.6 (`system nt_win`, `option undefsok`, objects in original
+order); each object's segments are located in the linked image by their own bytes (fixups masked, unique hit) and
+compared with the original as offsets from the run's first object. Result: 33 of 41 relative offsets equal; all 8
+differences are explained:
+- 4 code offsets (runs 0 and 6): WLINK places a COMDAT function directly after the code of the first object in link
+  order that defines it (UpgradeBar/UpgradeArrow destructors, 0x86 bytes -> 0x88 aligned; FileRecord constructor,
+  0x12 -> 0x14). In the original an earlier object outside the run defined them first, so they are absent there.
+  This confirms pick-first COMDAT placement inline in object order: a full link reproduces it naturally.
+- 4 CONST offsets (runs 3 and 5): the original has literal bytes between two adjacent objects' CONST that neither
+  reproduced object emits ("**********" x2 after linkdlg.c; "#:\CSTORM\", "CYBDATA1..4.RBX" after tu_00475dc8.c).
+  They belong to one of the neighbours (unused or differently spelled literals), so those TUs are not truly
+  complete: the TU check does not yet test that consecutive objects' data segments abut. Open item.
+Confirmed: inter-object code fill/alignment and segment concatenation of CONST/_DATA follow object order as WLINK
+does it; no unexplained linker behaviour in the probed runs.
