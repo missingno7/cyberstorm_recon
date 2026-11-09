@@ -4685,6 +4685,13 @@
    "mangled": "W?ModeCheck$n(pnxa)i",
    "evidence": "implied by src/logic/lactor.c 2026-11-09"
   },
+  "IntelClearMode": {
+   "va": "0044f990",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?IntelClearMode$n(pnxa)i",
+   "evidence": "implied by src/logic/intel.c 2026-11-09"
+  },
   "SimSetUpdate": {
    "va": "0044ffb0",
    "kind": "func",
@@ -6202,6 +6209,13 @@
    "tu": "src/logic/lactor.c",
    "evidence": "strict match 2026-11-09"
   },
+  "ActorCanChoose": {
+   "va": "00463d66",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ActorCanChoose$n(pn$LogicActor$$)i",
+   "evidence": "implied by src/logic/lactors.c 2026-11-09"
+  },
   "ActorInvoke": {
    "va": "00463de8",
    "kind": "func",
@@ -6247,6 +6261,38 @@
    "tu": "src/logic/lactor.c",
    "evidence": "strict match 2026-11-09"
   },
+  "W?.fn_init$n()v@logic/lactors.c": {
+   "va": "00464054",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/logic/lactors.c",
+   "evidence": "placed (at) in src/logic/lactors.c 2026-11-09"
+  },
+  "LogicActorList::Load": {
+   "va": "0046406c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Load$:LogicActorList$n(pnv)i",
+   "tu": "src/logic/lactors.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LogicActorList::Save": {
+   "va": "004640f6",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Save$:LogicActorList$n(pnv)i",
+   "tu": "src/logic/lactors.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LogicActorList::Clear": {
+   "va": "0046415f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Clear$:LogicActorList$n()v",
+   "tu": "src/logic/lactors.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "ActorListFind": {
    "va": "00464181",
    "kind": "func",
@@ -6254,12 +6300,68 @@
    "mangled": "ActorListFind",
    "evidence": "implied by src/logic/lsys.c 2026-11-09"
   },
+  "LogicActorList::At": {
+   "va": "00464181",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?At$:LogicActorList$n(i)pn$LogicActor$$",
+   "tu": "src/logic/lactors.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LogicActorList::First": {
+   "va": "004641ac",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?First$:LogicActorList$n()pn$LogicActor$$",
+   "tu": "src/logic/lactors.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LogicActorList::Next": {
+   "va": "004641bb",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Next$:LogicActorList$n(pn$LogicActor$$)pn$2$",
+   "tu": "src/logic/lactors.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LogicActorList::Reserve": {
+   "va": "004641d2",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Reserve$:LogicActorList$n()pn$LogicActor$$",
+   "tu": "src/logic/lactors.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LogicActorList::CreateActor": {
+   "va": "00464218",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?CreateActor$:LogicActorList$n(ipn$ActorPoint$$ipnxa)pn$LogicActor$$",
+   "tu": "src/logic/lactors.c",
+   "evidence": "placed (at) in src/logic/lactors.c 2026-11-09"
+  },
   "LogicActorIndexAt": {
    "va": "0046437c",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "LogicActorIndexAt",
    "evidence": "implied by src/logic/lsys.c 2026-11-09"
+  },
+  "LogicActorList::FindByUnit": {
+   "va": "0046437c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?FindByUnit$:LogicActorList$n(pnv)pn$LogicActor$$",
+   "tu": "src/logic/lactors.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LogicActorList::SelectActor": {
+   "va": "004643c7",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SelectActor$:LogicActorList$n(pn$LogicActor$$)pn$2$",
+   "tu": "src/logic/lactors.c",
+   "evidence": "placed (at) in src/logic/lactors.c 2026-11-09"
   },
   "LogicDeleteFromMap": {
    "va": "0046461b",
@@ -6274,6 +6376,78 @@
    "status": "hypothesis",
    "mangled": "LogicRefreshMap",
    "evidence": "implied by src/logic/lsys.c 2026-11-09"
+  },
+  "LogicActorList::ResetActorState": {
+   "va": "004647c4",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ResetActorState$:LogicActorList$n()v",
+   "tu": "src/logic/lactors.c",
+   "evidence": "placed (at) in src/logic/lactors.c 2026-11-09"
+  },
+  "LogicActorList::ResetActorValues": {
+   "va": "004648a7",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ResetActorValues$:LogicActorList$n()v",
+   "tu": "src/logic/lactors.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LogicActorList::HasLocalMismatch": {
+   "va": "004648f5",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?HasLocalMismatch$:LogicActorList$n()i",
+   "tu": "src/logic/lactors.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LogicActorList::AllLocalActorsPresent": {
+   "va": "00464956",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?AllLocalActorsPresent$:LogicActorList$n()i",
+   "tu": "src/logic/lactors.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LogicActorList::AllRemoteActorsPresent": {
+   "va": "004649b2",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?AllRemoteActorsPresent$:LogicActorList$n()i",
+   "tu": "src/logic/lactors.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LogicActorList::UpdateActorPercentages": {
+   "va": "00464a0e",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?UpdateActorPercentages$:LogicActorList$n()v",
+   "tu": "src/logic/lactors.c",
+   "evidence": "placed (at) in src/logic/lactors.c 2026-11-09"
+  },
+  "LogicActorList::CalculateActorValues": {
+   "va": "00464a96",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?CalculateActorValues$:LogicActorList$n(i)v",
+   "tu": "src/logic/lactors.c",
+   "evidence": "placed (at) in src/logic/lactors.c 2026-11-09"
+  },
+  "LogicActorList::NotifyActorLinks": {
+   "va": "00464c58",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?NotifyActorLinks$:LogicActorList$n()v",
+   "tu": "src/logic/lactors.c",
+   "evidence": "placed (at) in src/logic/lactors.c 2026-11-09"
+  },
+  "LogicActor::$ct": {
+   "va": "00464d6c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:LogicActor$n()_",
+   "tu": "src/logic/lactors.c",
+   "evidence": "strict match 2026-11-09"
   },
   "MissionRecordInitialize": {
    "va": "00465525",
@@ -6381,12 +6555,132 @@
    "tu": "src/logic/bestloc.c",
    "evidence": "strict match 2026-11-09"
   },
+  "IntelPredict": {
+   "va": "0046639c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?IntelPredict$n(pni)v",
+   "tu": "src/logic/intel.c",
+   "evidence": "placed (at) in src/logic/intel.c 2026-11-09"
+  },
+  "IntelDisableMode": {
+   "va": "004663de",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?IntelDisableMode$n()i",
+   "tu": "src/logic/intel.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "IntelStateWait": {
+   "va": "004663f1",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?IntelStateWait$n(pni)i",
+   "tu": "src/logic/intel.c",
+   "evidence": "placed (at) in src/logic/intel.c 2026-11-09"
+  },
+  "IntelMaybeBlock": {
+   "va": "0046659a",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?IntelMaybeBlock$n(pnii)i",
+   "tu": "src/logic/intel.c",
+   "evidence": "placed (at) in src/logic/intel.c 2026-11-09"
+  },
+  "IntelStateApproach": {
+   "va": "00466647",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?IntelStateApproach$n(pni)i",
+   "tu": "src/logic/intel.c",
+   "evidence": "placed (at) in src/logic/intel.c 2026-11-09"
+  },
+  "IntelStateSearch": {
+   "va": "004667e1",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?IntelStateSearch$n(pni)i",
+   "tu": "src/logic/intel.c",
+   "evidence": "placed (at) in src/logic/intel.c 2026-11-09"
+  },
+  "IntelStateMatch": {
+   "va": "00466955",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?IntelStateMatch$n(pni)i",
+   "tu": "src/logic/intel.c",
+   "evidence": "placed (at) in src/logic/intel.c 2026-11-09"
+  },
+  "IntelStateRetry": {
+   "va": "00466c90",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?IntelStateRetry$n(pni)i",
+   "tu": "src/logic/intel.c",
+   "evidence": "placed (at) in src/logic/intel.c 2026-11-09"
+  },
+  "IntelStateCommon": {
+   "va": "00466f20",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?IntelStateCommon$n(pni)i",
+   "tu": "src/logic/intel.c",
+   "evidence": "placed (at) in src/logic/intel.c 2026-11-09"
+  },
+  "IntelStateSeek": {
+   "va": "0046718b",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?IntelStateSeek$n(pni)i",
+   "tu": "src/logic/intel.c",
+   "evidence": "placed (at) in src/logic/intel.c 2026-11-09"
+  },
+  "IntelSpawnTimer": {
+   "va": "004673b4",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?IntelSpawnTimer$n(pni)i",
+   "tu": "src/logic/intel.c",
+   "evidence": "placed (at) in src/logic/intel.c 2026-11-09"
+  },
+  "IntelStateLink": {
+   "va": "00467461",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?IntelStateLink$n(pni)i",
+   "tu": "src/logic/intel.c",
+   "evidence": "placed (at) in src/logic/intel.c 2026-11-09"
+  },
   "LogicActorCommand": {
    "va": "00467560",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "LogicActorCommand",
    "evidence": "implied by src/logic/lsys.c 2026-11-09"
+  },
+  "IntelActorCommand": {
+   "va": "00467560",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?IntelActorCommand$n(pniiipni)v",
+   "tu": "src/logic/intel.c",
+   "evidence": "placed (at) in src/logic/intel.c 2026-11-09"
+  },
+  "IntelActorDispatch": {
+   "va": "00467690",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?IntelActorDispatch$n(pni)i",
+   "tu": "src/logic/intel.c",
+   "evidence": "placed (at) in src/logic/intel.c 2026-11-09"
+  },
+  "IntelIsAvailable": {
+   "va": "00467827",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?IntelIsAvailable$n(pni)i",
+   "tu": "src/logic/intel.c",
+   "evidence": "placed (at) in src/logic/intel.c 2026-11-09"
   },
   "W?.fn_init$n()v@logic/sinterp.c": {
    "va": "0046794c",
@@ -10725,6 +11019,13 @@
    "mangled": "W?$Wts0fn$ExploRecord$$$nx[]uc",
    "evidence": "implied by src/sim/explo.c 2026-11-09"
   },
+  "W?$Wts0en$LogicActor$$$nx[]uc": {
+   "va": "0048e0d8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0en$LogicActor$$$nx[]uc",
+   "evidence": "implied by src/logic/lactors.c 2026-11-09"
+  },
   "link_thread_proc_anchor": {
    "va": "0048e120",
    "kind": "data",
@@ -13454,6 +13755,13 @@
    "status": "hypothesis",
    "mangled": "W?logicActorList$ni",
    "evidence": "implied by src/logic/lsys.c 2026-11-09"
+  },
+  "logicActors": {
+   "va": "004dd184",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?logicActors$n$ActorGlobals$$",
+   "evidence": "implied by src/logic/lactors.c 2026-11-09"
   },
   "bestLocActor": {
    "va": "004f2874",

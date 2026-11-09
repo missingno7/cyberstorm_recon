@@ -3968,6 +3968,94 @@
    },
    "data": {},
    "accepted": "2026-11-09"
+  },
+  "src/logic/lactors.c": {
+   "as": "logic\\lactors.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "LogicActorList::Load": {
+     "va": "0046406c",
+     "size": 138,
+     "mangled": "W?Load$:LogicActorList$n(pnv)i"
+    },
+    "LogicActorList::Save": {
+     "va": "004640f6",
+     "size": 105,
+     "mangled": "W?Save$:LogicActorList$n(pnv)i"
+    },
+    "LogicActorList::Clear": {
+     "va": "0046415f",
+     "size": 34,
+     "mangled": "W?Clear$:LogicActorList$n()v"
+    },
+    "LogicActorList::At": {
+     "va": "00464181",
+     "size": 43,
+     "mangled": "W?At$:LogicActorList$n(i)pn$LogicActor$$"
+    },
+    "LogicActorList::First": {
+     "va": "004641ac",
+     "size": 15,
+     "mangled": "W?First$:LogicActorList$n()pn$LogicActor$$"
+    },
+    "LogicActorList::Next": {
+     "va": "004641bb",
+     "size": 23,
+     "mangled": "W?Next$:LogicActorList$n(pn$LogicActor$$)pn$2$"
+    },
+    "LogicActorList::Reserve": {
+     "va": "004641d2",
+     "size": 70,
+     "mangled": "W?Reserve$:LogicActorList$n()pn$LogicActor$$"
+    },
+    "LogicActorList::FindByUnit": {
+     "va": "0046437c",
+     "size": 75,
+     "mangled": "W?FindByUnit$:LogicActorList$n(pnv)pn$LogicActor$$"
+    },
+    "LogicActorList::ResetActorValues": {
+     "va": "004648a7",
+     "size": 78,
+     "mangled": "W?ResetActorValues$:LogicActorList$n()v"
+    },
+    "LogicActorList::HasLocalMismatch": {
+     "va": "004648f5",
+     "size": 97,
+     "mangled": "W?HasLocalMismatch$:LogicActorList$n()i"
+    },
+    "LogicActorList::AllLocalActorsPresent": {
+     "va": "00464956",
+     "size": 92,
+     "mangled": "W?AllLocalActorsPresent$:LogicActorList$n()i"
+    },
+    "LogicActorList::AllRemoteActorsPresent": {
+     "va": "004649b2",
+     "size": 92,
+     "mangled": "W?AllRemoteActorsPresent$:LogicActorList$n()i"
+    },
+    "LogicActor::$ct": {
+     "va": "00464d6c",
+     "size": 5,
+     "mangled": "W?$ct:LogicActor$n()_"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
+  },
+  "src/logic/intel.c": {
+   "as": "logic\\intel.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "IntelDisableMode": {
+     "va": "004663de",
+     "size": 19,
+     "mangled": "W?IntelDisableMode$n()i"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-09"
   }
  },
  "accepted_losses": [
