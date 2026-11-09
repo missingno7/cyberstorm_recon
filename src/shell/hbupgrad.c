@@ -522,14 +522,14 @@ inline void UpgradeNameList(char *screen)
 inline UpgradeEntry *UpgradeEntryAt(char *screen, int index) {
     return &((UpgradeEntry *)*(void **)(screen + 0x3cc))[index];
 }
-inline void UpgradeCostList(char *screen)
-{
-    for (unsigned char i = 0; (int)i < *(int *)(screen + 0x3d8); ++i) {
-        sprintf(g4b5dd4 + i * 4, g48ab34, UpgradeEntryAt(screen, i)->cost);
-        upgradeValues[i].SetText(g4b5dd4 + i * 4);
-    }
+static inline char *UpgradeCostText(char *text, const UpgradeEntry *entry) {
+    sprintf(text, g48ab34, entry->cost);
+    return text;
 }
-
+inline void UpgradeCostList(char *screen) {
+    for (unsigned char i = 0; (int)i < *(int *)(screen + 0x3d8); ++i)
+        upgradeValues[i].SetText(UpgradeCostText(g4b5dd4 + i * 4, UpgradeEntryAt(screen, i)));
+}
 extern char *g4b6ee0, *g4b6f10, *g4b6f40;
 extern unsigned char g4b6033;
 struct UpgradeChoice { const char *name; int item, type, cost, flags; const char *Name() const {return name;} int Cost() const {return cost;} };

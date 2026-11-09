@@ -132,7 +132,7 @@ int HercAmmoCost(ActorUnit *u,int n){
 /* 0043a97f */
 int HercAddAmmo(ActorUnit *u,int n){
  int slot=f_0043ac9c(u,1,1);
- if(slot){ActorItem *p=PopFindItem(u,slot,-1);n=p->detail.words[5]*n/100;
+ if(slot){ActorItem *p=PopFindItem(u,slot,-1);int percent=p->detail.words[5];n=percent*n/100;
  u->slots[slot].amount+=n;if(u->slots[slot].amount>=p->detail.words[4])u->slots[slot].amount=p->detail.words[4];return 1;}return 0;
 }
 

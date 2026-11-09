@@ -5357,10 +5357,25 @@
      "size": 299,
      "mangled": "W?f_0041bcaf$n(pnai)v"
     },
+    "f_0041be20": {
+     "va": "0041be20",
+     "size": 630,
+     "mangled": "W?f_0041be20$n(pna)v"
+    },
     "f_0041c096": {
      "va": "0041c096",
      "size": 335,
      "mangled": "f_0041c096"
+    },
+    "f_0041c1e5": {
+     "va": "0041c1e5",
+     "size": 485,
+     "mangled": "f_0041c1e5"
+    },
+    "f_0041c3ca": {
+     "va": "0041c3ca",
+     "size": 140,
+     "mangled": "W?f_0041c3ca$n(pna)v"
     },
     "f_0041c456": {
      "va": "0041c456",
@@ -8614,6 +8629,11 @@
      "va": "0043a90e",
      "size": 113,
      "mangled": "W?HercAmmoCost$n(pn$ActorUnit$$i)i"
+    },
+    "HercAddAmmo": {
+     "va": "0043a97f",
+     "size": 104,
+     "mangled": "W?HercAddAmmo$n(pn$ActorUnit$$i)i"
     },
     "HercNeedsAmmo": {
      "va": "0043a9e7",
