@@ -221,6 +221,13 @@
    "tu": "src/shell/shell.c",
    "evidence": "strict match 2026-11-09"
   },
+  "f_0040627a": {
+   "va": "0040627a",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_0040627a",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
+  },
   "Shell::Open": {
    "va": "004063a4",
    "kind": "func",
@@ -283,6 +290,13 @@
    "mangled": "W?UpdateCredits$:Shell$n()i",
    "tu": "src/shell/shell.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "f_00406fc9": {
+   "va": "00406fc9",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_00406fc9",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
   },
   "Shell::NextCreditBreakpoint": {
    "va": "004070af",
@@ -376,6 +390,14 @@
    "status": "hypothesis",
    "mangled": "W?ShellMainMenuRender$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "W?.tdctor$:MenuPrefixButton$n()rn$1$@shell/hercbuy.c": {
+   "va": "004085ac",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.tdctor$:MenuPrefixButton$n()rn$1$",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "strict match 2026-11-09"
   },
   "MenuHelpRegion::$dt": {
    "va": "00408610",
@@ -516,6 +538,14 @@
    "status": "hypothesis",
    "mangled": "W?ShellSelectionControlsRender$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "W?.tdctor$:MenuLabel$n()rn$1$@shell/hercbuy.c": {
+   "va": "004122e8",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.tdctor$:MenuLabel$n()rn$1$",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "strict match 2026-11-09"
   },
   "CommsScreenOpen": {
    "va": "00412b26",
@@ -861,12 +891,68 @@
    "tu": "src/shell/hercbay.c",
    "evidence": "strict match 2026-11-09"
   },
+  "W?.fn_init$n()v@shell/hercbuy.c": {
+   "va": "00416444",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "placed (at) in src/shell/hercbuy.c 2026-11-09"
+  },
+  "f_004166de": {
+   "va": "004166de",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_004166de$n()v",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercBuyCtor::$ct": {
+   "va": "0041673e",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:HercBuyCtor$n()_",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "HercBuyOpen": {
    "va": "00416764",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?HercBuyOpen$n(pn$Scene$$pn$InputReq$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "f_00416764": {
+   "va": "00416764",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_00416764$n(pnvpnv)v",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "placed (at) in src/shell/hercbuy.c 2026-11-09"
+  },
+  "f_0041686f": {
+   "va": "0041686f",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_0041686f$n(pnv)v",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "placed (at) in src/shell/hercbuy.c 2026-11-09"
+  },
+  "f_00416b76": {
+   "va": "00416b76",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_00416b76$n(pnv)v",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_00416bad": {
+   "va": "00416bad",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_00416bad$n(pnv)v",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "placed (at) in src/shell/hercbuy.c 2026-11-09"
   },
   "HercBuyClose": {
    "va": "00416bfa",
@@ -875,12 +961,52 @@
    "mangled": "W?HercBuyClose$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "f_00416bfa": {
+   "va": "00416bfa",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_00416bfa$n(pnv)v",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "HercBuyExit": {
    "va": "00416c65",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?HercBuyExit$n(pn$Scene$$)ul",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "f_00416c65": {
+   "va": "00416c65",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_00416c65$n(pnv)v",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "placed (at) in src/shell/hercbuy.c 2026-11-09"
+  },
+  "f_00416d7f": {
+   "va": "00416d7f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_00416d7f$n(pnv)v",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_00416d9d": {
+   "va": "00416d9d",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_00416d9d$n(pnv)v",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_00416eae": {
+   "va": "00416eae",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_00416eae$n()v",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "placed (at) in src/shell/hercbuy.c 2026-11-09"
   },
   "HercBuyRender": {
    "va": "00416eec",
@@ -889,12 +1015,76 @@
    "mangled": "W?HercBuyRender$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "f_00416eec": {
+   "va": "00416eec",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_00416eec$n(pnv)v",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "placed (at) in src/shell/hercbuy.c 2026-11-09"
+  },
+  "f_004171ac": {
+   "va": "004171ac",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_004171ac$n(pnv)v",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_00417219": {
+   "va": "00417219",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_00417219$n(pnv)v",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "placed (at) in src/shell/hercbuy.c 2026-11-09"
+  },
+  "f_0041733c": {
+   "va": "0041733c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_0041733c$n(pnv)v",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "placed (at) in src/shell/hercbuy.c 2026-11-09"
+  },
+  "f_004176b1": {
+   "va": "004176b1",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_004176b1$n(pnv)v",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "placed (at) in src/shell/hercbuy.c 2026-11-09"
+  },
+  "f_00417732": {
+   "va": "00417732",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_00417732$n(pnvuc)v",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "placed (at) in src/shell/hercbuy.c 2026-11-09"
+  },
   "HercBuySelect": {
    "va": "004177af",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?HercBuySelect$n(pn$Scene$$uc)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "f_004177af": {
+   "va": "004177af",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_004177af$n(pnva)v",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_00417842": {
+   "va": "00417842",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_00417842$n(pnv)v",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "placed (at) in src/shell/hercbuy.c 2026-11-09"
   },
   "HercBuyRefresh": {
    "va": "0041791b",
@@ -903,12 +1093,68 @@
    "mangled": "W?HercBuyRefresh$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "f_0041791b": {
+   "va": "0041791b",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_0041791b$n(pn$HercBuyDataView$$)v",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "placed (at) in src/shell/hercbuy.c 2026-11-09"
+  },
+  "f_004179d7": {
+   "va": "004179d7",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_004179d7$n()v",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_004179ff": {
+   "va": "004179ff",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_004179ff$n()v",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "HercBuyCommit": {
    "va": "00417a27",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?HercBuyCommit$n(pn$Scene$$)i",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "f_00417a27": {
+   "va": "00417a27",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_00417a27$n(pnv)i",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "placed (at) in src/shell/hercbuy.c 2026-11-09"
+  },
+  "f_00417c72": {
+   "va": "00417c72",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_00417c72$n(pn$HercBuyDataView$$)v",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_00417c80": {
+   "va": "00417c80",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_00417c80$n(pnvpnxuc)v",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "placed (at) in src/shell/hercbuy.c 2026-11-09"
+  },
+  "f_00417cf9": {
+   "va": "00417cf9",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_00417cf9$n(pnvpnxuc)v",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "strict match 2026-11-09"
   },
   "HercBuyCancel": {
    "va": "00417d3d",
@@ -917,12 +1163,52 @@
    "mangled": "W?HercBuyCancel$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "f_00417d3d": {
+   "va": "00417d3d",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_00417d3d$n(pnv)v",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "HercBuyAccept": {
    "va": "00417d67",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?HercBuyAccept$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "f_00417d67": {
+   "va": "00417d67",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_00417d67$n(pnv)v",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_00417dd9": {
+   "va": "00417dd9",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_00417dd9$n(pnv)v",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_00417de7": {
+   "va": "00417de7",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_00417de7$n(pnv)v",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "W?$Wda0215$:MenuPrefixButton$n(ui)pnv": {
+   "va": "00417ee4",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$Wda0215$:MenuPrefixButton$n(ui)pnv",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ShellStorageOpen": {
    "va": "004180e3",
@@ -2325,6 +2611,13 @@
    "mangled": "BriefAdjust",
    "evidence": "implied by src/shell/missbrf.c 2026-11-09"
   },
+  "f_00429aa0": {
+   "va": "00429aa0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_00429aa0",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
+  },
   "BriefModuleInitD": {
    "va": "00429ab2",
    "kind": "func",
@@ -2502,6 +2795,13 @@
    "mangled": "W?RichTextDraw$n(llllpnxuclllpnlpnlpnxliiulll)v",
    "tu": "src/_unknown/tu_0042a5fc.c",
    "evidence": "placed (at) in src/_unknown/tu_0042a5fc.c 2026-11-09"
+  },
+  "RichTextDraw#W?RichTextDraw$n(llllpnxuclllpnlpnlpnxlliulll)v": {
+   "va": "0042a7cc",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?RichTextDraw$n(llllpnxuclllpnlpnlpnxlliulll)v",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
   },
   "MenuFormatNumber": {
    "va": "0042ac40",
@@ -3121,6 +3421,13 @@
    "mangled": "W?$dt:GameSession$n()_",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "f_0043ba3e": {
+   "va": "0043ba3e",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_0043ba3e",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
+  },
   "ProfileManager::Select": {
    "va": "0043be65",
    "kind": "func",
@@ -3204,6 +3511,13 @@
    "status": "hypothesis",
    "mangled": "W?HasContinuation$:ProfileManager$n()i",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "f_004418a9": {
+   "va": "004418a9",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_004418a9",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
   },
   "ActorActivate": {
    "va": "004424d4",
@@ -4585,6 +4899,209 @@
    "mangled": "LogicActorCommand",
    "evidence": "implied by src/logic/lsys.c 2026-11-09"
   },
+  "W?.fn_init$n()v@logic/sinterp.c": {
+   "va": "0046794c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/logic/sinterp.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "Script::$ct": {
+   "va": "00467971",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:Script$n()_",
+   "tu": "src/logic/sinterp.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "Script::$dt": {
+   "va": "0046797c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$dt:Script$n()_",
+   "tu": "src/logic/sinterp.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ScriptSetup": {
+   "va": "004679b6",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ScriptSetup$n(pn$Script$$)v",
+   "tu": "src/logic/sinterp.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SafeCopy": {
+   "va": "00467a4c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SafeCopy$n(pnapnxaui)v",
+   "tu": "src/logic/sinterp.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ScriptLoad": {
+   "va": "00467a86",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ScriptLoad$n(pn$Script$$iui)v",
+   "tu": "src/logic/sinterp.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ScriptRestore": {
+   "va": "00467d54",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ScriptRestore$n(pn$Script$$pn$FileRecord$$)i",
+   "tu": "src/logic/sinterp.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ScriptSave": {
+   "va": "00467dd7",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ScriptSave$n(pn$Script$$pn$FileRecord$$)i",
+   "tu": "src/logic/sinterp.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ScriptCode": {
+   "va": "00467e2e",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ScriptCode$n(pn$Script$$i)pnus",
+   "tu": "src/logic/sinterp.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ScriptGetVar": {
+   "va": "00467e4a",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ScriptGetVar$n(pn$Script$$i)l",
+   "tu": "src/logic/sinterp.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ScriptSetVar": {
+   "va": "00467ec0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ScriptSetVar$n(pn$Script$$il)v",
+   "tu": "src/logic/sinterp.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ScriptRef": {
+   "va": "00467ed7",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ScriptRef$n(pn$Script$$i)pn$ScriptPoint$$",
+   "evidence": "implied by src/logic/sinterp.c 2026-11-09"
+  },
+  "ScriptCommandTarget": {
+   "va": "00467fe0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ScriptCommandTarget$n(pn$Script$$ipnus)v",
+   "tu": "src/logic/sinterp.c",
+   "evidence": "placed (found) in src/logic/sinterp.c 2026-11-09"
+  },
+  "ScriptFormatArgs": {
+   "va": "00468135",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ScriptFormatArgs$n(pn$Script$$pnusi)pna",
+   "tu": "src/logic/sinterp.c",
+   "evidence": "placed (found) in src/logic/sinterp.c 2026-11-09"
+  },
+  "ScriptStep": {
+   "va": "004682dc",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ScriptStep$n(pn$Script$$pnuspnus)pnus",
+   "evidence": "implied by src/logic/sinterp.c 2026-11-09"
+  },
+  "ScriptAbort": {
+   "va": "00468fbb",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ScriptAbort$n(pn$Script$$)v",
+   "tu": "src/logic/sinterp.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ScriptTick": {
+   "va": "0046906a",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ScriptTick$n(pn$Script$$)v",
+   "tu": "src/logic/sinterp.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ScriptRunState": {
+   "va": "00469072",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ScriptRunState$n(pn$Script$$)v",
+   "tu": "src/logic/sinterp.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ScriptRun": {
+   "va": "004690b8",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ScriptRun$n(pn$Script$$)i",
+   "tu": "src/logic/sinterp.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "ScriptCall": {
+   "va": "0046915d",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ScriptCall$n(pn$Script$$uspnl)pnl",
+   "evidence": "implied by src/logic/sinterp.c 2026-11-09"
+  },
+  "ScriptEvalOp": {
+   "va": "004697a8",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ScriptEvalOp$n(pn$Script$$uspnl)pnl",
+   "tu": "src/logic/sinterp.c",
+   "evidence": "placed (found) in src/logic/sinterp.c 2026-11-09"
+  },
+  "ScriptEval": {
+   "va": "004699be",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ScriptEval$n(pn$Script$$i)l",
+   "evidence": "implied by src/logic/sinterp.c 2026-11-09"
+  },
+  "ScriptFormat": {
+   "va": "00469a95",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ScriptFormat$n(pn$Script$$pnaipnxa)i",
+   "evidence": "implied by src/logic/sinterp.c 2026-11-09"
+  },
+  "W?.fn_init$n()v@logic/lgen.c": {
+   "va": "00469c78",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/logic/lgen.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LogicGenSkill": {
+   "va": "00469c8d",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LogicGenSkill$n(pnvi)i",
+   "tu": "src/logic/lgen.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LogicGenFindType": {
+   "va": "00469d26",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LogicGenFindType$n(pnvilli)i",
+   "tu": "src/logic/lgen.c",
+   "evidence": "placed (at) in src/logic/lgen.c 2026-11-09"
+  },
   "LogicMapPointUpdate": {
    "va": "00469fc9",
    "kind": "func",
@@ -4592,12 +5109,76 @@
    "mangled": "LogicMapPointUpdate",
    "evidence": "implied by src/logic/lsys.c 2026-11-09"
   },
+  "LogicMapViewUpdate": {
+   "va": "0046a0ce",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LogicMapViewUpdate$n(pnvlpn$ScriptPoint$$)pnl",
+   "tu": "src/logic/lgen.c",
+   "evidence": "placed (at) in src/logic/lgen.c 2026-11-09"
+  },
+  "LogicGenVehicleRadius": {
+   "va": "0046a262",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?LogicGenVehicleRadius$n(i)l",
+   "tu": "src/logic/lgen.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "LogicGenSpawn": {
+   "va": "0046a289",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LogicGenSpawn$n(pnvipnlpn$ScriptPoint$$ipn$GenActor$$i)pn$2$",
+   "tu": "src/logic/lgen.c",
+   "evidence": "placed (at) in src/logic/lgen.c 2026-11-09"
+  },
+  "LogicGenVehicle": {
+   "va": "0046a33c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LogicGenVehicle$n(pnvilpn$ScriptPoint$$)l",
+   "tu": "src/logic/lgen.c",
+   "evidence": "placed (at) in src/logic/lgen.c 2026-11-09"
+  },
+  "LogicGenSetup": {
+   "va": "0046a8df",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LogicGenSetup$n(pn$GenActor$$)v",
+   "tu": "src/logic/lgen.c",
+   "evidence": "placed (at) in src/logic/lgen.c 2026-11-09"
+  },
+  "LogicGenSpawnActor": {
+   "va": "0046a97f",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LogicGenSpawnActor$n(pn$GenActor$$)v",
+   "tu": "src/logic/lgen.c",
+   "evidence": "placed (at) in src/logic/lgen.c 2026-11-09"
+  },
   "LogicDeleteActorFromList": {
    "va": "0046ab2e",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "LogicDeleteActorFromList",
    "evidence": "implied by src/logic/lsys.c 2026-11-09"
+  },
+  "GenAnchor::$dt": {
+   "va": "0046ac10",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$dt:GenAnchor$n()_",
+   "tu": "src/logic/lgen.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "GenAnchor::$ct": {
+   "va": "0046ac18",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:GenAnchor$n()_",
+   "tu": "src/logic/lgen.c",
+   "evidence": "strict match 2026-11-09"
   },
   "LogicNoop": {
    "va": "0046ac20",
@@ -4654,6 +5235,13 @@
    "mangled": "W?LogicActorUpdate$n(pnviiipni)v",
    "tu": "src/logic/lsys.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "LogicActorUpdate#W?LogicActorUpdate$n(pnvlilpn$ScriptPoint$$)v": {
+   "va": "0046af1c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LogicActorUpdate$n(pnvlilpn$ScriptPoint$$)v",
+   "evidence": "implied by src/logic/sinterp.c 2026-11-09"
   },
   "LogicConsoleResize": {
    "va": "0046afa3",
@@ -4854,6 +5442,13 @@
    "mangled": "W?LogicActorArraySet$n(pnviii)v",
    "tu": "src/logic/lsys.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "LogicActorArraySet#W?LogicActorArraySet$n(pnvlil)v": {
+   "va": "0046b749",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LogicActorArraySet$n(pnvlil)v",
+   "evidence": "implied by src/logic/sinterp.c 2026-11-09"
   },
   "LogicActorDelete": {
    "va": "0046b775",
@@ -6519,6 +7114,13 @@
    "mangled": "W?ExploIdle$n()v",
    "evidence": "implied by src/sim/explo.c 2026-11-09"
   },
+  "f_0047723b": {
+   "va": "0047723b",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_0047723b",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
+  },
   "LinkSelectDialog": {
    "va": "0047746f",
    "kind": "func",
@@ -6588,6 +7190,13 @@
    "status": "hypothesis",
    "mangled": "W?set_chat_menu_item$n(pnvii)v",
    "evidence": "implied by src/multi/chat.c 2026-11-09"
+  },
+  "f_004786d8": {
+   "va": "004786d8",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_004786d8",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
   },
   "LoadMission": {
    "va": "00478d52",
@@ -6874,6 +7483,13 @@
    "status": "hypothesis",
    "mangled": "W?AllocateMissionImage$n(pnvii)pnv",
    "evidence": "implied by src/multi/mstart.c (overload-safe migration 2026-11-09)"
+  },
+  "f_0047c350": {
+   "va": "0047c350",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_0047c350",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
   },
   "StrPool::GetSecondString": {
    "va": "0047c4f0",
@@ -7780,13 +8396,6 @@
    "mangled": "W?fileRootFormat$n[]a",
    "evidence": "implied by src/io/file.c (overload-safe migration 2026-11-09)"
   },
-  "CONST2": {
-   "va": "0048c82c",
-   "kind": "data",
-   "status": "hypothesis",
-   "mangled": "CONST2",
-   "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
-  },
   "W?$Wvf09o4:Shell$$nx[]pn()v": {
    "va": "0048c898",
    "kind": "data",
@@ -7969,13 +8578,6 @@
    "mangled": "W?gLinkThreadProc$nxpn(pnv)ui",
    "evidence": "implied by src/multi/linkdlg.c 2026-11-09"
   },
-  "_DATA": {
-   "va": "0048e4d0",
-   "kind": "data",
-   "status": "hypothesis",
-   "mangled": "_DATA",
-   "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
-  },
   "g48ea1c": {
    "va": "0048ea1c",
    "kind": "data",
@@ -8046,6 +8648,13 @@
    "mangled": "W?g48eb10$ni",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
   },
+  "gHercBuyControls": {
+   "va": "0048eb48",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gHercBuyControls$n[]pn$GuiControl$$",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
+  },
   "gMenuFonts": {
    "va": "0048f368",
    "kind": "data",
@@ -8095,6 +8704,13 @@
    "mangled": "W?weaponInfoTable$n[]$WeaponInfo$$",
    "evidence": "implied by src/sim/apply.c 2026-11-09"
   },
+  "gVehicleInfo": {
+   "va": "0049f958",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gVehicleInfo$n[]$UnitInfo$$",
+   "evidence": "implied by src/logic/lgen.c 2026-11-09"
+  },
   "link_data": {
    "va": "004a0000",
    "kind": "data",
@@ -8136,6 +8752,13 @@
    "status": "hypothesis",
    "mangled": "W?animationMetaAt0cbc$n[]i",
    "evidence": "implied by src/sim/anim.c 2026-11-09"
+  },
+  "animationMetaAt0cbc#W?animationMetaAt0cbc$n[]$AnimMeta$$": {
+   "va": "004a0cbc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?animationMetaAt0cbc$n[]$AnimMeta$$",
+   "evidence": "implied by src/logic/lgen.c 2026-11-09"
   },
   "animationMetaAt0cc0": {
    "va": "004a0cc0",
@@ -8206,6 +8829,13 @@
    "status": "hypothesis",
    "mangled": "W?missLimitByType$n[]i",
    "evidence": "implied by src/logic/miss.c 2026-11-09"
+  },
+  "skillTable": {
+   "va": "004a3cac",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?skillTable$n[][3]c",
+   "evidence": "implied by src/logic/lgen.c 2026-11-09"
   },
   "logicTextWrite": {
    "va": "004a3d0c",
@@ -8445,12 +9075,26 @@
    "mangled": "W?uiSystem$n$Shell$$",
    "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
   },
+  "g4a706d": {
+   "va": "004a706d",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4a706d$ni",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
+  },
   "gShellGame": {
    "va": "004a70b8",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gShellGame$n$GameSession$$",
    "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
+  },
+  "g4a70b8": {
+   "va": "004a70b8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4a70b8$ni",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
   },
   "gShellAnimationTimer": {
    "va": "004ae5ac",
@@ -8752,6 +9396,20 @@
    "status": "hypothesis",
    "mangled": "W?g4b37c4$n$HercBay$$",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "g4b392c": {
+   "va": "004b392c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b392c$ni",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
+  },
+  "g4b3fd0": {
+   "va": "004b3fd0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b3fd0$ni",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
   },
   "g4b416c": {
    "va": "004b416c",
@@ -9102,6 +9760,13 @@
    "status": "hypothesis",
    "mangled": "W?profileManager$n$ProfileManager$$",
    "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
+  },
+  "profileManager#W?profileManager$n[]i": {
+   "va": "004c934c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?profileManager$n[]i",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
   },
   "logicMode": {
    "va": "004c9772",
@@ -9733,6 +10398,13 @@
    "mangled": "W?g4dd0c0$n[]a",
    "evidence": "implied by src/multi/message.c 2026-11-09"
   },
+  "g4dd0c0#W?g4dd0c0$n$LogicSystem$$": {
+   "va": "004dd0c0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4dd0c0$n$LogicSystem$$",
+   "evidence": "implied by src/logic/lgen.c 2026-11-09"
+  },
   "eventCode": {
    "va": "004dd16c",
    "kind": "data",
@@ -9774,6 +10446,27 @@
    "status": "hypothesis",
    "mangled": "W?bestLocIndex$ni",
    "evidence": "implied by src/logic/bestloc.c 2026-11-09"
+  },
+  "scriptText": {
+   "va": "004f28a8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?scriptText$n[]a",
+   "evidence": "implied by src/logic/sinterp.c 2026-11-09"
+  },
+  "gScript": {
+   "va": "004f30b4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gScript$n$Script$$",
+   "evidence": "implied by src/logic/sinterp.c 2026-11-09"
+  },
+  "anchors": {
+   "va": "004f37a8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?anchors$n[]$GenAnchor$$",
+   "evidence": "implied by src/logic/lgen.c 2026-11-09"
   },
   "logicPointCache": {
    "va": "004f3990",
@@ -10118,6 +10811,13 @@
    "mangled": "W?gShellImages$npnv",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "gShellImages#W?gShellImages$ni": {
+   "va": "00511dd0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gShellImages$ni",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
+  },
   "g511dd4": {
    "va": "00511dd4",
    "kind": "data",
@@ -10166,6 +10866,13 @@
    "status": "hypothesis",
    "mangled": "W?gShellStrings$n$StrPool$$",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "gShellStrings#W?gShellStrings$ni": {
+   "va": "00511e68",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gShellStrings$ni",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
   },
   "resourcePool": {
    "va": "00511ea4",
@@ -10425,6 +11132,13 @@
    "status": "hypothesis",
    "mangled": "W?MissionRandomTable$n[]i",
    "evidence": "implied by src/logic/miss.c 2026-11-09"
+  },
+  "MissionRandomTable#W?MissionRandomTable$nui": {
+   "va": "0051445c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?MissionRandomTable$nui",
+   "evidence": "implied by src/logic/sinterp.c 2026-11-09"
   },
   "g_fileOpenCount": {
    "va": "00514460",

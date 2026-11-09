@@ -516,7 +516,8 @@ class Comparison:
                 if ov is not None:
                     disp = 0 if f.target[0] & 4 else f.disp
                     imp = ((((ov + site + 4) if f.self_rel else ov) - add - disp) & 0xFFFFFFFF)
-                unbound.setdefault(name, set()).add(imp)
+                # segment targets are not symbols: name them so implication never binds a segment name
+                unbound.setdefault(name if f.target[0] & 3 == 2 else f"<seg {name}>", set()).add(imp)
                 continue
             if how == "item":
                 val = (tva + add) & 0xFFFFFFFF

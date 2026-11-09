@@ -2927,6 +2927,251 @@
    },
    "data": {},
    "accepted": "2026-11-09"
+  },
+  "src/shell/hercbuy.c": {
+   "as": "shell\\hercbuy.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "W?.tdctor$:MenuPrefixButton$n()rn$1$": {
+     "va": "004085ac",
+     "size": 25,
+     "mangled": "W?.tdctor$:MenuPrefixButton$n()rn$1$"
+    },
+    "W?.tdctor$:MenuLabel$n()rn$1$": {
+     "va": "004122e8",
+     "size": 27,
+     "mangled": "W?.tdctor$:MenuLabel$n()rn$1$"
+    },
+    "f_004166de": {
+     "va": "004166de",
+     "size": 96,
+     "mangled": "W?f_004166de$n()v"
+    },
+    "HercBuyCtor::$ct": {
+     "va": "0041673e",
+     "size": 38,
+     "mangled": "W?$ct:HercBuyCtor$n()_"
+    },
+    "f_00416b76": {
+     "va": "00416b76",
+     "size": 55,
+     "mangled": "W?f_00416b76$n(pnv)v"
+    },
+    "f_00416bfa": {
+     "va": "00416bfa",
+     "size": 107,
+     "mangled": "W?f_00416bfa$n(pnv)v"
+    },
+    "f_00416d7f": {
+     "va": "00416d7f",
+     "size": 30,
+     "mangled": "W?f_00416d7f$n(pnv)v"
+    },
+    "f_00416d9d": {
+     "va": "00416d9d",
+     "size": 273,
+     "mangled": "W?f_00416d9d$n(pnv)v"
+    },
+    "f_004171ac": {
+     "va": "004171ac",
+     "size": 109,
+     "mangled": "W?f_004171ac$n(pnv)v"
+    },
+    "f_004177af": {
+     "va": "004177af",
+     "size": 147,
+     "mangled": "W?f_004177af$n(pnva)v"
+    },
+    "f_004179d7": {
+     "va": "004179d7",
+     "size": 40,
+     "mangled": "W?f_004179d7$n()v"
+    },
+    "f_004179ff": {
+     "va": "004179ff",
+     "size": 40,
+     "mangled": "W?f_004179ff$n()v"
+    },
+    "f_00417c72": {
+     "va": "00417c72",
+     "size": 14,
+     "mangled": "W?f_00417c72$n(pn$HercBuyDataView$$)v"
+    },
+    "f_00417cf9": {
+     "va": "00417cf9",
+     "size": 68,
+     "mangled": "W?f_00417cf9$n(pnvpnxuc)v"
+    },
+    "f_00417d3d": {
+     "va": "00417d3d",
+     "size": 42,
+     "mangled": "W?f_00417d3d$n(pnv)v"
+    },
+    "f_00417d67": {
+     "va": "00417d67",
+     "size": 114,
+     "mangled": "W?f_00417d67$n(pnv)v"
+    },
+    "f_00417dd9": {
+     "va": "00417dd9",
+     "size": 14,
+     "mangled": "W?f_00417dd9$n(pnv)v"
+    },
+    "f_00417de7": {
+     "va": "00417de7",
+     "size": 253,
+     "mangled": "W?f_00417de7$n(pnv)v"
+    },
+    "W?$Wda0215$:MenuPrefixButton$n(ui)pnv": {
+     "va": "00417ee4",
+     "size": 21,
+     "mangled": "W?$Wda0215$:MenuPrefixButton$n(ui)pnv"
+    }
+   },
+   "data": {
+    "W?$Wts0kn$MenuPrefixButton$$$nx[]uc": {
+     "va": "0048c9ec",
+     "size": 17
+    },
+    "W?$Wts0dn$MenuLabel$$$nx[]uc": {
+     "va": "0048c9b0",
+     "size": 17
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/logic/lgen.c": {
+   "as": "logic\\lgen.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "00469c78",
+     "size": 21,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "LogicGenSkill": {
+     "va": "00469c8d",
+     "size": 153,
+     "mangled": "W?LogicGenSkill$n(pnvi)i"
+    },
+    "LogicGenVehicleRadius": {
+     "va": "0046a262",
+     "size": 39,
+     "mangled": "W?LogicGenVehicleRadius$n(i)l"
+    },
+    "GenAnchor::$dt": {
+     "va": "0046ac10",
+     "size": 5,
+     "mangled": "W?$dt:GenAnchor$n()_"
+    },
+    "GenAnchor::$ct": {
+     "va": "0046ac18",
+     "size": 5,
+     "mangled": "W?$ct:GenAnchor$n()_"
+    }
+   },
+   "data": {
+    "W?$Wts0dn$GenAnchor$$$nx[]uc": {
+     "va": "0048e10c",
+     "size": 17
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/logic/sinterp.c": {
+   "as": "logic\\sinterp.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "0046794c",
+     "size": 37,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "Script::$ct": {
+     "va": "00467971",
+     "size": 11,
+     "mangled": "W?$ct:Script$n()_"
+    },
+    "Script::$dt": {
+     "va": "0046797c",
+     "size": 30,
+     "mangled": "W?$dt:Script$n()_"
+    },
+    "ScriptSetup": {
+     "va": "004679b6",
+     "size": 150,
+     "mangled": "W?ScriptSetup$n(pn$Script$$)v"
+    },
+    "SafeCopy": {
+     "va": "00467a4c",
+     "size": 58,
+     "mangled": "W?SafeCopy$n(pnapnxaui)v"
+    },
+    "ScriptLoad": {
+     "va": "00467a86",
+     "size": 718,
+     "mangled": "W?ScriptLoad$n(pn$Script$$iui)v"
+    },
+    "ScriptRestore": {
+     "va": "00467d54",
+     "size": 131,
+     "mangled": "W?ScriptRestore$n(pn$Script$$pn$FileRecord$$)i"
+    },
+    "ScriptSave": {
+     "va": "00467dd7",
+     "size": 87,
+     "mangled": "W?ScriptSave$n(pn$Script$$pn$FileRecord$$)i"
+    },
+    "ScriptCode": {
+     "va": "00467e2e",
+     "size": 28,
+     "mangled": "W?ScriptCode$n(pn$Script$$i)pnus"
+    },
+    "ScriptGetVar": {
+     "va": "00467e4a",
+     "size": 118,
+     "mangled": "W?ScriptGetVar$n(pn$Script$$i)l"
+    },
+    "ScriptSetVar": {
+     "va": "00467ec0",
+     "size": 23,
+     "mangled": "W?ScriptSetVar$n(pn$Script$$il)v"
+    },
+    "ScriptAbort": {
+     "va": "00468fbb",
+     "size": 175,
+     "mangled": "W?ScriptAbort$n(pn$Script$$)v"
+    },
+    "ScriptTick": {
+     "va": "0046906a",
+     "size": 8,
+     "mangled": "W?ScriptTick$n(pn$Script$$)v"
+    },
+    "ScriptRunState": {
+     "va": "00469072",
+     "size": 70,
+     "mangled": "W?ScriptRunState$n(pn$Script$$)v"
+    },
+    "ScriptRun": {
+     "va": "004690b8",
+     "size": 165,
+     "mangled": "W?ScriptRun$n(pn$Script$$)i"
+    }
+   },
+   "data": {
+    "CONST2": {
+     "va": "0048e0ec",
+     "size": 12
+    },
+    "_DATA": {
+     "va": "004a3c80",
+     "size": 12
+    }
+   },
+   "accepted": "2026-11-09"
   }
  },
  "accepted_losses": [
