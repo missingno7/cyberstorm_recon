@@ -32,6 +32,8 @@ python tools/cc.py --profile ot|plain --as 'misc\strpool.c' SRC.c -fo=build/LANE
 python tools/compare.py build/LANE/x.obj [--at Label=VA] [--find] [--imply] [-v]
 python tools/promote.py SRC.c --tu src/DIR/FILE.c --as 'DIR\FILE.c' --profile ot [--at Label=VA]   (dry run)
 python tools/verify.py [--secondary]          fresh rebuild of every accepted TU
+python tools/try.py SRC.c --as A --profile P  compile + compare + aligned instruction diff (worker loop)
+python tools/variants.py TPL.c --as A --profile P --fn F   test all choice-point combinations
 python tools/flagsweep.py SRC.c AS Label=VA   deliberate flag sweep (diagnostic)
 python tools/test_gate.py                     self-tests of the proof machinery
 python tools/accept.py candidates/L/REPORT.md [--publish]   integrator: re-run a report's promotions
