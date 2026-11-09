@@ -3326,9 +3326,36 @@
      "va": "004456f3",
      "size": 1,
      "mangled": "W?f_004456f3$n()v"
+    },
+    "HercControl::$dt": {
+     "va": "00446804",
+     "size": 67,
+     "mangled": "W?$dt:HercControl$n()_"
+    },
+    "HercDetailControl::$dt": {
+     "va": "00446848",
+     "size": 67,
+     "mangled": "W?$dt:HercDetailControl$n()_"
     }
    },
-   "data": {},
+   "data": {
+    "W?$Wvf0fos:HercControl$$nx[]pn()v": {
+     "va": "0048dd04",
+     "size": 4
+    },
+    "W?$Wvf0los:HercDetailControl$$nx[]pn()v": {
+     "va": "0048dcf0",
+     "size": 4
+    },
+    "W?$Wts0ln$HercDetailControl$$$nx[]uc": {
+     "va": "0048dcc8",
+     "size": 17
+    },
+    "W?$Wts0fn$HercControl$$$nx[]uc": {
+     "va": "0048dcdc",
+     "size": 17
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/multi/minipkt.c": {
@@ -5993,6 +6020,102 @@
     },
     "W?$Wts0en$MenuButton$$$nx[]uc": {
      "va": "0048c9d8",
+     "size": 17
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/pop/ppilot.c": {
+   "as": "pop\\ppilot.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "W?.tdctor$:MenuNumber$n()rn$1$": {
+     "va": "004085e0",
+     "size": 21,
+     "mangled": "W?.tdctor$:MenuNumber$n()rn$1$"
+    },
+    "PilotImageButton::$dt": {
+     "va": "0041235c",
+     "size": 67,
+     "mangled": "W?$dt:PilotImageButton$n()_"
+    },
+    "W?.tdctor$:MenuImageLabel$n()rn$1$": {
+     "va": "004467e4",
+     "size": 31,
+     "mangled": "W?.tdctor$:MenuImageLabel$n()rn$1$"
+    },
+    "PilotScreen::$ct": {
+     "va": "00446920",
+     "size": 469,
+     "mangled": "W?$ct:PilotScreen$n()_"
+    },
+    "PilotScreen::Begin": {
+     "va": "00446af5",
+     "size": 619,
+     "mangled": "W?Begin$:PilotScreen$n(pnv)v"
+    },
+    "PilotScreen::Select": {
+     "va": "00446d60",
+     "size": 223,
+     "mangled": "W?Select$:PilotScreen$n(pn$ActorRecord$$)v"
+    },
+    "PilotScreen::Close": {
+     "va": "00446e3f",
+     "size": 253,
+     "mangled": "W?Close$:PilotScreen$n()v"
+    },
+    "PilotScreen::Event": {
+     "va": "00446f3c",
+     "size": 443,
+     "mangled": "W?Event$:PilotScreen$n()i"
+    },
+    "PilotScreen::Refresh": {
+     "va": "004470f7",
+     "size": 939,
+     "mangled": "W?Refresh$:PilotScreen$n()v"
+    },
+    "PilotScreen::DrawValues": {
+     "va": "004474a2",
+     "size": 316,
+     "mangled": "W?DrawValues$:PilotScreen$n()v"
+    },
+    "PilotDrawFlashing": {
+     "va": "0044781b",
+     "size": 147,
+     "mangled": "W?PilotDrawFlashing$n(pn$PilotScreen$$iiiii)v"
+    },
+    "PilotScreen::Next": {
+     "va": "00447f36",
+     "size": 63,
+     "mangled": "W?Next$:PilotScreen$n()v"
+    },
+    "PilotScreen::Previous": {
+     "va": "00447f75",
+     "size": 73,
+     "mangled": "W?Previous$:PilotScreen$n()v"
+    },
+    "PilotScreenUpdate": {
+     "va": "0044815d",
+     "size": 98,
+     "mangled": "W?PilotScreenUpdate$n(pn$SimGame$$)v"
+    }
+   },
+   "data": {
+    "W?$Wts0kn$PilotImageButton$$$nx[]uc": {
+     "va": "0048cdb8",
+     "size": 17
+    },
+    "W?$Wts0en$MenuNumber$$$nx[]uc": {
+     "va": "0048c988",
+     "size": 17
+    },
+    "W?$Wts0in$MenuImageLabel$$$nx[]uc": {
+     "va": "0048d950",
+     "size": 17
+    },
+    "W?$Wts0en$MenuSpacer$$$nx[]uc": {
+     "va": "0048d964",
      "size": 17
     }
    },

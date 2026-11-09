@@ -503,6 +503,14 @@
    "tu": "src/_unknown/tu_0040f4e4.c",
    "evidence": "strict match 2026-11-09"
   },
+  "W?.tdctor$:MenuNumber$n()rn$1$": {
+   "va": "004085e0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.tdctor$:MenuNumber$n()rn$1$",
+   "tu": "src/pop/ppilot.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "MenuHelpRegion::$dt": {
    "va": "00408610",
    "kind": "func",
@@ -1292,6 +1300,14 @@
    "status": "hypothesis",
    "mangled": "W?$Wda018$:MenuLabel$n(ui)pnv",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "PilotImageButton::$dt": {
+   "va": "0041235c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$dt:PilotImageButton$n()_",
+   "tu": "src/pop/ppilot.c",
+   "evidence": "strict match 2026-11-09"
   },
   "W?.fn_init$n()v@shell/commscrn.c": {
    "va": "004123a0",
@@ -2832,6 +2848,13 @@
    "status": "hypothesis",
    "mangled": "HercSetMissionStart",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "PilotManagerPoll": {
+   "va": "0041c932",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PilotManagerPoll$n(pnv)v",
+   "evidence": "implied by src/pop/ppilot.c 2026-11-09"
   },
   "f_0041cab0": {
    "va": "0041cab0",
@@ -4873,6 +4896,13 @@
    "status": "hypothesis",
    "mangled": "W?GuiFilterPalette$n(pn$Palette$$i)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "GuiFilterPalette#W?GuiFilterPalette$n(pnvi)v": {
+   "va": "00429f65",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?GuiFilterPalette$n(pnvi)v",
+   "evidence": "implied by src/pop/ppilot.c 2026-11-09"
   },
   "BriefCloseWait": {
    "va": "0042a0e0",
@@ -7361,6 +7391,158 @@
    "tu": "src/pop/pherc.c",
    "evidence": "placed (at) in src/pop/pherc.c 2026-11-09"
   },
+  "W?.tdctor$:MenuImageLabel$n()rn$1$": {
+   "va": "004467e4",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.tdctor$:MenuImageLabel$n()rn$1$",
+   "tu": "src/pop/ppilot.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercControl::$dt": {
+   "va": "00446804",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$dt:HercControl$n()_",
+   "tu": "src/pop/pherc.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "HercDetailControl::$dt": {
+   "va": "00446848",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$dt:HercDetailControl$n()_",
+   "tu": "src/pop/pherc.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "W?.fn_init$n()v@pop/ppilot.c": {
+   "va": "0044688c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/pop/ppilot.c",
+   "evidence": "placed in src/pop/ppilot.c 2026-11-09; strict only with --at/search"
+  },
+  "PilotScreen::$ct": {
+   "va": "00446920",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:PilotScreen$n()_",
+   "tu": "src/pop/ppilot.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PilotScreen::Begin": {
+   "va": "00446af5",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Begin$:PilotScreen$n(pnv)v",
+   "tu": "src/pop/ppilot.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PilotScreen::Select": {
+   "va": "00446d60",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Select$:PilotScreen$n(pn$ActorRecord$$)v",
+   "tu": "src/pop/ppilot.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PilotScreen::Close": {
+   "va": "00446e3f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Close$:PilotScreen$n()v",
+   "tu": "src/pop/ppilot.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PilotScreen::Event": {
+   "va": "00446f3c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Event$:PilotScreen$n()i",
+   "tu": "src/pop/ppilot.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PilotScreen::Refresh": {
+   "va": "004470f7",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Refresh$:PilotScreen$n()v",
+   "tu": "src/pop/ppilot.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PilotScreen::DrawValues": {
+   "va": "004474a2",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?DrawValues$:PilotScreen$n()v",
+   "tu": "src/pop/ppilot.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PilotScreen::DrawDetails": {
+   "va": "004475de",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?DrawDetails$:PilotScreen$n()v",
+   "tu": "src/pop/ppilot.c",
+   "evidence": "placed (at) in src/pop/ppilot.c 2026-11-09"
+  },
+  "PilotDrawFlashing": {
+   "va": "0044781b",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PilotDrawFlashing$n(pn$PilotScreen$$iiiii)v",
+   "tu": "src/pop/ppilot.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PilotDrawFrame": {
+   "va": "004478ae",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PilotDrawFrame$n(pn$PilotScreen$$pn$GuiRect$$ii)v",
+   "tu": "src/pop/ppilot.c",
+   "evidence": "placed in src/pop/ppilot.c 2026-11-09; strict only with --at/search"
+  },
+  "PilotScreen::Draw": {
+   "va": "00447907",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Draw$:PilotScreen$n()v",
+   "tu": "src/pop/ppilot.c",
+   "evidence": "placed (at) in src/pop/ppilot.c 2026-11-09"
+  },
+  "PilotScreen::Next": {
+   "va": "00447f36",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Next$:PilotScreen$n()v",
+   "tu": "src/pop/ppilot.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PilotScreen::Previous": {
+   "va": "00447f75",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Previous$:PilotScreen$n()v",
+   "tu": "src/pop/ppilot.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "PilotScreen::DrawBar": {
+   "va": "00447fbe",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?DrawBar$:PilotScreen$n(pn$GuiRect$$iiii)v",
+   "tu": "src/pop/ppilot.c",
+   "evidence": "placed (at) in src/pop/ppilot.c 2026-11-09"
+  },
+  "PilotScreenUpdate": {
+   "va": "0044815d",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PilotScreenUpdate$n(pn$SimGame$$)v",
+   "tu": "src/pop/ppilot.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "SimPilotDraw": {
    "va": "00448460",
    "kind": "func",
@@ -7552,6 +7734,13 @@
    "tu": "src/_unknown/tu_00449bb4.c",
    "evidence": "strict match 2026-11-09"
   },
+  "PilotSetState": {
+   "va": "0044a190",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PilotSetState$n(pn$SimGame$$i)v",
+   "evidence": "implied by src/pop/ppilot.c 2026-11-09"
+  },
   "SimAmbientSound": {
    "va": "0044a600",
    "kind": "func",
@@ -7621,6 +7810,13 @@
    "mangled": "W?SimShortcutMode$n()i",
    "tu": "src/_unknown/tu_0044b8b0.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "SimShortcutMode#W?SimShortcutMode$n(pnv)i": {
+   "va": "0044bc90",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SimShortcutMode$n(pnv)i",
+   "evidence": "implied by src/pop/ppilot.c 2026-11-09"
   },
   "SimHandleCursor": {
    "va": "0044c940",
@@ -7969,6 +8165,20 @@
    "mangled": "W?SimDelayPhase$n(pn$SimGame$$)v",
    "tu": "src/sim/simdo.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "PilotNext": {
+   "va": "0044f6d0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PilotNext$n(pnvpn$ActorRecord$$ii)v",
+   "evidence": "implied by src/pop/ppilot.c 2026-11-09"
+  },
+  "PilotPrevious": {
+   "va": "0044f830",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PilotPrevious$n(pnvpn$ActorRecord$$ii)v",
+   "evidence": "implied by src/pop/ppilot.c 2026-11-09"
   },
   "IntelClearMode": {
    "va": "0044f990",
@@ -13813,6 +14023,13 @@
    "mangled": "W?PopDrawSurface$n(pnviiiiii)v",
    "evidence": "implied by src/sim/simgame.c 2026-11-09"
   },
+  "PopDrawSurface#W?PopDrawSurface$n(pnviillll)v": {
+   "va": "0047bfa0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PopDrawSurface$n(pnviillll)v",
+   "evidence": "implied by src/pop/ppilot.c 2026-11-09"
+  },
   "MenuDrawImage": {
    "va": "0047bff0",
    "kind": "func",
@@ -19092,6 +19309,20 @@
    "mangled": "W?g4c9234$na",
    "evidence": "implied by src/sim/simgame.c 2026-11-09"
   },
+  "statusColorLow": {
+   "va": "004c924b",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?statusColorLow$nuc",
+   "evidence": "implied by src/pop/ppilot.c 2026-11-09"
+  },
+  "statusColorEmpty": {
+   "va": "004c924c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?statusColorEmpty$nuc",
+   "evidence": "implied by src/pop/ppilot.c 2026-11-09"
+  },
   "g4c9338": {
    "va": "004c9338",
    "kind": "data",
@@ -19273,6 +19504,41 @@
    "status": "hypothesis",
    "mangled": "W?DAT_004d1fa4$ni",
    "evidence": "implied by src/pop/pherc.c 2026-11-09"
+  },
+  "pilotNext": {
+   "va": "004d1fa8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?pilotNext$n$PilotImageButton$$",
+   "evidence": "implied by src/pop/ppilot.c 2026-11-09"
+  },
+  "pilotPrevious": {
+   "va": "004d1fd4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?pilotPrevious$n$PilotImageButton$$",
+   "evidence": "implied by src/pop/ppilot.c 2026-11-09"
+  },
+  "pilotButtonA": {
+   "va": "004d2000",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?pilotButtonA$n$PilotImageButton$$",
+   "evidence": "implied by src/pop/ppilot.c 2026-11-09"
+  },
+  "pilotButtonB": {
+   "va": "004d202c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?pilotButtonB$n$PilotImageButton$$",
+   "evidence": "implied by src/pop/ppilot.c 2026-11-09"
+  },
+  "gPilotScreen": {
+   "va": "004d2058",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotScreen$npn$PilotScreen$$",
+   "evidence": "implied by src/pop/ppilot.c 2026-11-09"
   },
   "simPilot": {
    "va": "004d214c",
@@ -20688,6 +20954,20 @@
    "mangled": "W?hostDropFlag$ni",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
   },
+  "g4faf40": {
+   "va": "004faf40",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4faf40$ni",
+   "evidence": "implied by src/pop/ppilot.c 2026-11-09"
+  },
+  "g4faf44": {
+   "va": "004faf44",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4faf44$ni",
+   "evidence": "implied by src/pop/ppilot.c 2026-11-09"
+  },
   "modeLogName": {
    "va": "004faf48",
    "kind": "data",
@@ -20799,6 +21079,13 @@
    "status": "hypothesis",
    "mangled": "W?gMenuSavedSurface$n$Surface$$",
    "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
+  },
+  "savedSurfacePixels": {
+   "va": "00511960",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?savedSurfacePixels$nl",
+   "evidence": "implied by src/pop/ppilot.c 2026-11-09"
   },
   "gShellBackground": {
    "va": "00511968",
@@ -21227,12 +21514,26 @@
    "mangled": "W?gShellSurfacePixels$npnv",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "gShellSurfacePixels#W?gShellSurfacePixels$nl": {
+   "va": "00513890",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gShellSurfacePixels$nl",
+   "evidence": "implied by src/pop/ppilot.c 2026-11-09"
+  },
   "gShellDrawPixels": {
    "va": "00513898",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gShellDrawPixels$npnv",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "gShellDrawPixels#W?gShellDrawPixels$nl": {
+   "va": "00513898",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gShellDrawPixels$nl",
+   "evidence": "implied by src/pop/ppilot.c 2026-11-09"
   },
   "g5138ac": {
    "va": "005138ac",

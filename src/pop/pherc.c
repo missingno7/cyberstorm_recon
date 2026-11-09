@@ -5,6 +5,7 @@ struct GuiControl
 {
     char data[0x1c];
     GuiControl(unsigned long style, unsigned long flags);
+    virtual ~GuiControl();
 };
 
 extern void *PTR_f_00446804_0048dd04;
@@ -128,15 +129,12 @@ void f_00445238(void)
 
 struct HercControl : GuiControl
 {
-    void *dispatch;
     unsigned long value;
     HercControl();
 };
 
-HercControl::HercControl() : GuiControl(0x18, 0)
+HercControl::HercControl() : GuiControl(0x18, 0), value(0)
 {
-    value = 0;
-    dispatch = &PTR_f_00446804_0048dd04;
 }
 
 void f_004453fd(void *object)
@@ -226,13 +224,11 @@ uint f_00445633(void *param_1, int param_2, byte param_3)
 
 struct HercDetailControl : GuiControl
 {
-    void *dispatch;
     HercDetailControl();
 };
 
 HercDetailControl::HercDetailControl() : GuiControl(8, 0)
 {
-    dispatch = &PTR_f_00446848_0048dcf0;
 }
 
 void f_004456f3(void)
