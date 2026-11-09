@@ -1206,12 +1206,7 @@
   "src/gui/menu.c": {
    "as": "gui\\menu.c",
    "install": "wc106",
-   "flags": [
-    "-4s",
-    "-s",
-    "-bm"
-   ],
-   "tool": "wpp386",
+   "profile": "plain",
    "functions": {
     "MenuLabel::$ct": {
      "va": "00427e0c",
@@ -1556,6 +1551,84 @@
      "size": 20
     }
    },
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0042a5fc.c": {
+   "as": "_unknown\\tu_0042a5fc.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "RangeCounter::SetRange": {
+     "va": "0042a5fc",
+     "size": 28,
+     "mangled": "W?SetRange$:RangeCounter$n(ususus)v"
+    },
+    "RangeCounter::$ct": {
+     "va": "0042a618",
+     "size": 28,
+     "mangled": "W?$ct:RangeCounter$n()_"
+    },
+    "RangeCounter::$dt": {
+     "va": "0042a634",
+     "size": 5,
+     "mangled": "W?$dt:RangeCounter$n()_"
+    },
+    "RangeCounter::Set": {
+     "va": "0042a639",
+     "size": 28,
+     "mangled": "W?Set$:RangeCounter$n(us)v"
+    },
+    "RangeCounter::Increment": {
+     "va": "0042a655",
+     "size": 29,
+     "mangled": "W?Increment$:RangeCounter$n()v"
+    },
+    "RangeCounter::Decrement": {
+     "va": "0042a672",
+     "size": 29,
+     "mangled": "W?Decrement$:RangeCounter$n()v"
+    },
+    "RangeCounter::Next": {
+     "va": "0042a68f",
+     "size": 29,
+     "mangled": "W?Next$:RangeCounter$n()v"
+    },
+    "RichTextCommand": {
+     "va": "0042a6e8",
+     "size": 228,
+     "mangled": "W?RichTextCommand$n(pn$RichTextState$$pnxuc)ui"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048ad08",
+     "size": 10
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/_unknown/tu_0042a0e0.c": {
+   "as": "_unknown\\tu_0042a0e0.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "GuiFadeOut": {
+     "va": "0042a0e0",
+     "size": 316,
+     "mangled": "W?GuiFadeOut$n()v"
+    },
+    "GuiFadeOutRange": {
+     "va": "0042a21c",
+     "size": 323,
+     "mangled": "W?GuiFadeOutRange$n(ii)v"
+    },
+    "GuiFadeIn": {
+     "va": "0042a35f",
+     "size": 568,
+     "mangled": "W?GuiFadeIn$n()v"
+    }
+   },
+   "data": {},
    "accepted": "2026-11-09"
   }
  }

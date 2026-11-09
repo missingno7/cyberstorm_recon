@@ -1415,6 +1415,30 @@
    "mangled": "BriefCloseWait",
    "evidence": "implied by src/shell/missbrf.c 2026-11-09"
   },
+  "GuiFadeOut": {
+   "va": "0042a0e0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?GuiFadeOut$n()v",
+   "tu": "src/_unknown/tu_0042a0e0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "GuiFadeOutRange": {
+   "va": "0042a21c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?GuiFadeOutRange$n(ii)v",
+   "tu": "src/_unknown/tu_0042a0e0.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "GuiFadeIn": {
+   "va": "0042a35f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?GuiFadeIn$n()v",
+   "tu": "src/_unknown/tu_0042a0e0.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "Rate::$ct": {
    "va": "0042a598",
    "kind": "func",
@@ -1447,6 +1471,78 @@
    "tu": "src/_unknown/tu_0042a598.c",
    "evidence": "strict match 2026-11-09"
   },
+  "RangeCounter::SetRange": {
+   "va": "0042a5fc",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SetRange$:RangeCounter$n(ususus)v",
+   "tu": "src/_unknown/tu_0042a5fc.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "RangeCounter::$ct": {
+   "va": "0042a618",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:RangeCounter$n()_",
+   "tu": "src/_unknown/tu_0042a5fc.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "RangeCounter::$dt": {
+   "va": "0042a634",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$dt:RangeCounter$n()_",
+   "tu": "src/_unknown/tu_0042a5fc.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "RangeCounter::Set": {
+   "va": "0042a639",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Set$:RangeCounter$n(us)v",
+   "tu": "src/_unknown/tu_0042a5fc.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "RangeCounter::Increment": {
+   "va": "0042a655",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Increment$:RangeCounter$n()v",
+   "tu": "src/_unknown/tu_0042a5fc.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "RangeCounter::Decrement": {
+   "va": "0042a672",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Decrement$:RangeCounter$n()v",
+   "tu": "src/_unknown/tu_0042a5fc.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "RangeCounter::Next": {
+   "va": "0042a68f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Next$:RangeCounter$n()v",
+   "tu": "src/_unknown/tu_0042a5fc.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "RangeCounter::Previous": {
+   "va": "0042a6ac",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Previous$:RangeCounter$n()v",
+   "tu": "src/_unknown/tu_0042a5fc.c",
+   "evidence": "placed (at) in src/_unknown/tu_0042a5fc.c 2026-11-09"
+  },
+  "RichTextCommand": {
+   "va": "0042a6e8",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?RichTextCommand$n(pn$RichTextState$$pnxuc)ui",
+   "tu": "src/_unknown/tu_0042a5fc.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "BriefRender": {
    "va": "0042a7cc",
    "kind": "func",
@@ -1460,6 +1556,14 @@
    "status": "hypothesis",
    "mangled": "HercDraw16",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "RichTextDraw": {
+   "va": "0042a7cc",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?RichTextDraw$n(llllpnxuclllpnlpnlpnxliiulll)v",
+   "tu": "src/_unknown/tu_0042a5fc.c",
+   "evidence": "placed (at) in src/_unknown/tu_0042a5fc.c 2026-11-09"
   },
   "MenuFormatNumber": {
    "va": "0042ac40",
@@ -2863,12 +2967,26 @@
    "mangled": "W?MenuHelpSetTopic$n(l)v",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
   },
+  "HelpClearTopic": {
+   "va": "00476312",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HelpClearTopic$n()v",
+   "evidence": "implied by src/_unknown/tu_0042a0e0.c 2026-11-09"
+  },
   "MenuHelpOpenTopic": {
    "va": "00476528",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?MenuHelpOpenTopic$n(l)v",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "GuiPumpMessages": {
+   "va": "0047a3bd",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?GuiPumpMessages$n()v",
+   "evidence": "implied by src/_unknown/tu_0042a0e0.c 2026-11-09"
   },
   "BriefModuleConstruct": {
    "va": "0047ab8c",
@@ -2953,6 +3071,13 @@
    "status": "hypothesis",
    "mangled": "W?MenuSetClip$n(pn$GuiRect$$llll)v",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "SurfacePresent": {
+   "va": "0047b3a0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SurfacePresent$n(pnv)v",
+   "evidence": "implied by src/_unknown/tu_0042a0e0.c 2026-11-09"
   },
   "ApplyPaletteData": {
    "va": "0047b430",
@@ -3251,6 +3376,13 @@
    "status": "hypothesis",
    "mangled": "W?PlyGetKey$n(pn$PlyKey$$)v",
    "evidence": "implied by src/_unknown/tu_004297d4.c 2026-11-09"
+  },
+  "PaletteFade": {
+   "va": "0047dbc0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PaletteFade$n(pn$Palette$$iiipnxul)v",
+   "evidence": "implied by src/_unknown/tu_0042a0e0.c 2026-11-09"
   },
   "GuiReadKey": {
    "va": "0047df20",
@@ -3699,6 +3831,20 @@
    "mangled": "W?gMenuFonts$n[]pn$Font$$",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
   },
+  "gGuiFadeStep": {
+   "va": "0048f4c4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gGuiFadeStep$nl",
+   "evidence": "implied by src/_unknown/tu_0042a0e0.c 2026-11-09"
+  },
+  "gGuiFadeLast": {
+   "va": "0048f4c8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gGuiFadeLast$nl",
+   "evidence": "implied by src/_unknown/tu_0042a0e0.c 2026-11-09"
+  },
   "FogSourcePath": {
    "va": "004905ec",
    "kind": "data",
@@ -3782,6 +3928,13 @@
    "status": "hypothesis",
    "mangled": "W?logicTextCurrent$npna",
    "evidence": "implied by src/logic/lsys.c 2026-11-09"
+  },
+  "gRichTextFonts": {
+   "va": "004a40a8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gRichTextFonts$n[]pn$Font$$",
+   "evidence": "implied by src/_unknown/tu_0042a5fc.c 2026-11-09"
   },
   "assertProgram": {
    "va": "004a4264",
@@ -4175,6 +4328,34 @@
    "mangled": "W?gMenuColorMap$n[]ul",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
   },
+  "gGuiFadeFirst": {
+   "va": "004bc5ac",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gGuiFadeFirst$nl",
+   "evidence": "implied by src/_unknown/tu_0042a0e0.c 2026-11-09"
+  },
+  "gGuiPaletteFaded": {
+   "va": "004bc5b0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gGuiPaletteFaded$ni",
+   "evidence": "implied by src/_unknown/tu_0042a0e0.c 2026-11-09"
+  },
+  "gGuiPartialFade": {
+   "va": "004bc5b4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gGuiPartialFade$ni",
+   "evidence": "implied by src/_unknown/tu_0042a0e0.c 2026-11-09"
+  },
+  "gGuiFadeColor": {
+   "va": "004bc5b8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gGuiFadeColor$nul",
+   "evidence": "implied by src/_unknown/tu_0042a0e0.c 2026-11-09"
+  },
   "gFogGlobalMode": {
    "va": "004c6890",
    "kind": "data",
@@ -4525,6 +4706,13 @@
    "mangled": "W?gResMgr$n$ResMgr$$",
    "evidence": "implied by src/misc/strpool.c 2026-11-09"
   },
+  "gGuiEffectPriority": {
+   "va": "00512374",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gGuiEffectPriority$nl",
+   "evidence": "implied by src/_unknown/tu_0042a0e0.c 2026-11-09"
+  },
   "g_mainWindow": {
    "va": "0051253c",
    "kind": "data",
@@ -4601,6 +4789,20 @@
    "status": "hypothesis",
    "mangled": "W?g_assertCallbacks$n[]pn()v",
    "evidence": "implied by src/debug/assert.c 2026-11-09"
+  },
+  "gGuiPalette": {
+   "va": "00513a88",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gGuiPalette$n$Palette$$",
+   "evidence": "implied by src/_unknown/tu_0042a0e0.c 2026-11-09"
+  },
+  "gGuiFadePalette": {
+   "va": "00513edc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gGuiFadePalette$n$Palette$$",
+   "evidence": "implied by src/_unknown/tu_0042a0e0.c 2026-11-09"
   },
   "MissionRandomTable": {
    "va": "0051445c",
