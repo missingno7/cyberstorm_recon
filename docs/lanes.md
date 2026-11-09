@@ -83,3 +83,5 @@ Model: `luna` = gpt-6-luna xhigh, `sol` = gpt-6.1-sol high (Codex; all new lanes
 
 Unassigned large modules: sim\sim.c + simdo.c (0044950c, 30 KB), shell\mplaunch.c (0041f648), 0043b7e0, 00409408,
 0043ef34, 00435dec, 0041d774, 0044688c, 00433640, pop\pdeath.c, and the parked tails of finished lanes.
+| s48-s51 | sol | near-miss functions (<= 16 differing bytes), 4 disjoint TU sets (build/prompts/nm*.txt) | running |
+| s52 | sol | TU completion round 2 (5 TUs + linkdlg/chat literals + pdeath migration plan) | running |
