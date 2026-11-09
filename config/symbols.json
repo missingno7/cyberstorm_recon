@@ -62,6 +62,14 @@
    "tu": "src/shell/shell.c",
    "evidence": "placed (at) in src/shell/shell.c 2026-11-09"
   },
+  "ShellConfirmPurchasesCore": {
+   "va": "0040130b",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ShellConfirmPurchasesCore$n()v",
+   "tu": "src/shell/shell.c",
+   "evidence": "placed (found) in src/shell/shell.c 2026-11-09"
+  },
   "Shell::ProcessInput": {
    "va": "00401500",
    "kind": "func",
@@ -20928,16 +20936,18 @@
   "ResMgr::$ct": {
    "va": "0047c530",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?$ct:ResMgr$n()_",
-   "evidence": "implied by src/_unknown/tu_00475dc8.c 2026-11-09"
+   "tu": "src/io/resource.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ResMgr::$dt": {
    "va": "0047c580",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?$dt:ResMgr$n()_",
-   "evidence": "implied by src/_unknown/tu_00475dc8.c 2026-11-09"
+   "tu": "src/io/resource.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ResMgr::Init": {
    "va": "0047c5f0",
@@ -21041,9 +21051,10 @@
   "ResMgr::Load": {
    "va": "0047c920",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?Load$:ResMgr$n(liii)pnv",
-   "evidence": "implied by src/misc/strpool.c 2026-11-09"
+   "status": "matched",
+   "mangled": "W?Load$:ResMgr$n(pnauipniui)pni",
+   "tu": "src/io/resource.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ResMgr::Load#W?Load$:ResMgr$n(pnauipniui)pni": {
    "va": "0047c920",
@@ -21065,6 +21076,13 @@
    "status": "hypothesis",
    "mangled": "W?Load$:ResMgr$n(pnxaipnvi)pnv",
    "evidence": "implied by src/sim/hotbrief.c 2026-11-09"
+  },
+  "ResMgr::Load#W?Load$:ResMgr$n(liii)pnv": {
+   "va": "0047c920",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Load$:ResMgr$n(liii)pnv",
+   "evidence": "implied by src/misc/strpool.c 2026-11-09"
   },
   "ReleasePoolData": {
    "va": "0047cb80",
@@ -21154,6 +21172,14 @@
    "mangled": "RenderFormattedResourceText",
    "tu": "src/io/resource.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "W?.fn_init$n()v@io/resource.c": {
+   "va": "0047d0e0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/io/resource.c",
+   "evidence": "placed (at) in src/io/resource.c 2026-11-09"
   },
   "f_d110": {
    "va": "0047d110",
@@ -21852,6 +21878,13 @@
    "status": "hypothesis",
    "mangled": "FileInit",
    "evidence": "implied by src/_unknown/tu_00481360.c 2026-11-09"
+  },
+  "FileRecord::$ct": {
+   "va": "0047e450",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$ct:FileRecord$n()_",
+   "evidence": "implied by src/io/resource.c 2026-11-09"
   },
   "FileRecord::Release": {
    "va": "0047e470",
@@ -22664,6 +22697,13 @@
    "tu": "src/_unknown/tu_00481360.c",
    "evidence": "strict match 2026-11-09"
   },
+  "ResourceEntry::$ct": {
+   "va": "00481360",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$ct:ResourceEntry$n()_",
+   "evidence": "implied by src/io/resource.c 2026-11-09"
+  },
   "ResourceEntry::$dt": {
    "va": "004813a0",
    "kind": "func",
@@ -23067,6 +23107,14 @@
    "status": "hypothesis",
    "mangled": "W?fileRootFormat$n[]a",
    "evidence": "implied by src/io/file.c (overload-safe migration 2026-11-09)"
+  },
+  "W?$Wts09n$Shell$$$nx[]uc": {
+   "va": "0048c870",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts09n$Shell$$$nx[]uc",
+   "tu": "src/shell/shell.c",
+   "evidence": "own data placed in src/shell/shell.c 2026-11-09"
   },
   "W?$Wvf09o4:Shell$$nx[]pn()v": {
    "va": "0048c898",
@@ -23537,6 +23585,21 @@
    "mangled": "W?$Wts0dn$PeerQueue$$$nx[]uc",
    "tu": "src/_unknown/tu_004742bc.c",
    "evidence": "own data placed in src/_unknown/tu_004742bc.c 2026-11-09"
+  },
+  "W?$Wts0hn$ResourceEntry$$$nx[]uc": {
+   "va": "0048e2e8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0hn$ResourceEntry$$$nx[]uc",
+   "evidence": "implied by src/io/resource.c 2026-11-09"
+  },
+  "ShellSourceFile@shell/shell.c": {
+   "va": "0048e4dc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?ShellSourceFile$n[]xa",
+   "tu": "src/shell/shell.c",
+   "evidence": "own data placed in src/shell/shell.c 2026-11-09"
   },
   "screenSlideStep": {
    "va": "0048e588",
@@ -25207,12 +25270,28 @@
    "mangled": "W?fileSourcePath$n[]xa",
    "evidence": "implied by src/io/file.c 2026-11-09"
   },
+  "W?updateTimer$:.0$:?Update$n()v:Shell$n$Timer$$@shell/shell.c": {
+   "va": "004a7020",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?updateTimer$:.0$:?Update$n()v:Shell$n$Timer$$",
+   "tu": "src/shell/shell.c",
+   "evidence": "own data placed in src/shell/shell.c 2026-11-09"
+  },
   "gNetworkPlayerSelection": {
    "va": "004a7024",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?gNetworkPlayerSelection$nuc",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "W?$Wbi00$:.0$:?Update$n()v:Shell$n[]uc@shell/shell.c": {
+   "va": "004a702c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wbi00$:.0$:?Update$n()v:Shell$n[]uc",
+   "tu": "src/shell/shell.c",
+   "evidence": "own data placed in src/shell/shell.c 2026-11-09"
   },
   "gShellCreditStep": {
    "va": "004a7030",
@@ -33634,6 +33713,13 @@
    "status": "hypothesis",
    "mangled": "W?decodedImage$n$MenuImage$$",
    "evidence": "implied by src/_unknown/tu_0047b720.c 2026-11-09"
+  },
+  "gResourceFileSize": {
+   "va": "00513954",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "gResourceFileSize",
+   "evidence": "implied by src/io/resource.c 2026-11-09"
   },
   "gShellResources": {
    "va": "00513958",

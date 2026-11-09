@@ -5,9 +5,9 @@ extern "C" int MakePath(void *, const char *, const char *, int);
 extern "C" void AssertFail(const char *, int, const char *); extern "C" int sprintf(char *, const char *, ...); static const char ResourceSourcePath[] = "io\\resource.c"; static const char MissingResourceFormat[] = "Missing file: %s.  Possible cause: Bad installation, or CD removed at bad time.";
 extern "C" int vsprintf(char *, const char *, va_list);
 
-struct FileRecord { HANDLE handle; unsigned long open, flags, error; signed char direct, counted; unsigned char reserved[2]; unsigned long position, length; }; extern "C" FileRecord *FileRecordRelease(FileRecord *, int); struct ResourceEntry { unsigned long resource, type, size; void *buffer; unsigned char sourceFile[0x1c], outputFile[0x1c]; ~ResourceEntry(); };
+struct FileRecord { HANDLE handle; unsigned long open, flags, error; signed char direct, counted; unsigned char reserved[2]; unsigned long position, length; FileRecord(); ~FileRecord(); }; struct ResourceEntry { unsigned long resource, type, size; void *buffer; FileRecord sourceFile, outputFile; ResourceEntry(); ~ResourceEntry(); };
 struct ResMgr {
-    int count;
+    ResMgr(); int count;
     int types[10];
     const char *paths[10];
     ResourceEntry entries[10];
@@ -18,54 +18,54 @@ struct ResMgr {
     int IsOpen();
     int Init(const char ** volatile, const char *);
     void Close();
-    int FindPath(const char *, char * volatile, int);
+    int FindPath(const char *, char *, int);
     int CloseFile(); int *Load(char *, unsigned int = 0, int * = 0, unsigned int = 0); ~ResMgr();
 };
 
+struct MciState; extern "C" void ResetMciState(MciState *);
 struct MciState {
+    MciState() {ResetMciState(this);} ~MciState();
     unsigned int device;
     unsigned int pending;
     unsigned int openType;
     unsigned int element;
     unsigned int state;
     MciState *StopClose();
-    void Close(); int PlayTimeRange(int, int, unsigned int, int);
+    int Open(int,int); void Close(); int PlayTimeRange(int, int, unsigned int, int);
 };
 unsigned long IoRead(FileRecord *, long, long); unsigned long IoClose(FileRecord *); extern "C" void ResetMciState(MciState *);
 
-extern "C" void *PopConstructorArray(void *, int, unsigned int);
-#pragma aux FileRecordRelease "W?Release$:FileRecord$n()pn$1$";
-extern "C" void *FileInit(void *);
 
 extern "C" void *IORelease(void *);
 extern "C" char *FindChar(const char *, int);
-extern "C" ResMgr *ResMgrConstruct(ResMgr *self)
-{
-    register ResMgr *owner = self; register void *entryArray = (char *)owner + 0x54; void *firstEntry = PopConstructorArray(entryArray, 10, 0x48e2e8);
-    void *file = FileInit((char *)firstEntry + 0x2dc);
-    ResMgr *initializedOwner = (ResMgr *)((char *)file - 0x330);
-    initializedOwner->opened = 0;
-    int wasOpened = initializedOwner->opened;
-    initializedOwner->count = 0;
-    initializedOwner->loaded = wasOpened;
-    return initializedOwner;
-}
+ResMgr::ResMgr() { opened=0; loaded=opened; count=0; }
 ResMgr::~ResMgr()
-{
-    register ResMgr *owner = this; register ResMgr *openedOwner = this; register ResMgr *loadedOwner = this;
-    if (owner->opened) {
-        if (owner->opened)
-            IORelease((char *)owner + 0x330);
-        openedOwner->opened = 0;
-    }
-    if (loadedOwner->loaded)
-        loadedOwner->loaded = 0;
-    FileRecordRelease((FileRecord *)((char *)loadedOwner + 0x330), 0);
-    /* ResourceEntry[10] is destroyed by the compiler-generated array destructor. */
-}
+{ Close(); }
 /* Keep this source line aligned with the original assertion immediates. */
 int ResMgr::Init(const char ** volatile paths, const char *outDir)
 { if (this == 0 || loaded != 0 || opened != 0)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         AssertFail(ResourceSourcePath, __LINE__, 0);
     const char **source = paths;
     int i = 0;
@@ -103,32 +103,12 @@ extern "C" int FileExists(char *, char *, int);
 extern "C" int FileOpen(char *, const char *, char *, int);
 extern "C" char *StringCopy(char *, const char *);
 extern "C" char *StringAppend(char *, const char *);
-int ResMgr::FindPath(const char *suffix, char * volatile destination, int flags)
-{
-    char buffer[256];
-    register char *data;
-    register char *dest = destination;
-    int i = 0; register int n = count;
-    if (n <= 0)
-        return 0;
-    int *entry = (int *)this;
-    data = (char *)entries;
-    do {
-            if (entry[1] == 1) {
-                StringCopy(buffer, *(const char **)((char *)entry + 0x2c));
-                StringAppend(buffer, suffix);
-                if (FileExists(dest, buffer, 0))
-                    return 1;
-            } else if (entry[1] == 2) {
-                if (FileOpen(data, suffix, dest, flags))
-                    return 1;
-            }
-            ++entry;
-            ++i;
-            data += 0x48;
-    } while (i < count);
-    return 0;
-}
+int ResMgr::FindPath(const char *suffix, char * destination, int flags)
+{ char buffer[256]; int i; 
+    for(i=0;i<count;++i) {
+        if(types[i]==1) { StringCopy(buffer,paths[i]); StringAppend(buffer,suffix); if(FileExists(destination,buffer,0))return 1; }
+        else if(types[i]==2) { if(FileOpen((char*)&entries[i],suffix,destination,flags))return 1; }
+    } return 0; }
 /* Preserve the original AssertFail source line after reconstruction. */
 /* Keep the missing-resource assertion at its original line as declarations evolve. */
 inline void MissingResource(const char *name)
@@ -197,6 +177,26 @@ inline void MissingResource(const char *name)
     /* original line padding 60 */
     /* original line padding 61 */
     /* Preserve the original assertion line after loop-form experiments. */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     AssertFail(ResourceSourcePath, __LINE__, buffer);
 }
 extern "C" int ResMgrOpen(ResMgr *self, const char *name, int required)
@@ -354,17 +354,16 @@ int *ResMgr::Load(char *name, unsigned int flags, int *buffer, unsigned int buff
             /* preserve line 355 variant 8 */
             AssertFail(ResourceSourcePath, __LINE__, 0);
                     }
+                    result=0;
                     gResourceFileSize = header[5];
                     local.decodedSize = gResourceFileSize;
                     local.decodedBuffer = (int *)GlobalBlockAlloc(gResourceFileSize, 0);
                     if (local.decodedBuffer == 0 && (flags & 1)) {
                             /* preserve line 363 variant 1 */
-                            /* preserve line 363 variant 2 */
                             AssertFail(ResourceSourcePath, __LINE__, "Ran out of memory or disk space.  Try clearing more disk space and running again.");
                     }
-                    result = 0;
                     if (local.decodedBuffer != 0) {
-                        DecodeResourceBlock(header[3], (unsigned short *)(header + 6), &local.decodedSize);
+                        DecodeResourceBlock(header[3], (unsigned short *)(buffer + 6), &local.decodedSize);
                         result = local.decodedBuffer;
                     }
                     if (buffer != 0)
@@ -372,9 +371,10 @@ int *ResMgr::Load(char *name, unsigned int flags, int *buffer, unsigned int buff
                 }
             }
         }
+        ResMgr *closeOwner=this;
         if (opened)
             IORelease((char *)this + 0x330);
-        opened = 0;
+        closeOwner->opened = 0;
     }
     return result;
 }
@@ -413,8 +413,8 @@ extern "C" void ReleaseLoadedResource(void **p)
         *p = 0;
     }
 }
-struct ResourceHandle { void *resource; };
-extern "C" unsigned int MeasureResourceTextWidth(ResourceHandle *p, const unsigned char *name)
+struct Font { void *resource; };
+extern "C" unsigned int MeasureResourceTextWidth(Font *p, const unsigned char *name)
 {
     unsigned int sum;
     unsigned char ch;
@@ -444,33 +444,33 @@ extern "C" unsigned char *gGlyphColorTable;
 extern "C" unsigned int gGlyphBackgroundColor;
 extern "C" unsigned int gGlyphCurrentBackground;
 extern "C" unsigned char gGlyphSurface;
-extern "C" void DrawGlyphPixel(void *, int, int, char);
+extern "C" void DrawGlyphPixel(void *, int, int, unsigned char);
 extern "C" void DrawGlyphBackground(void *, int, int, int, int);
 extern "C" void BlitGlyphRows(int, int, unsigned int, int, unsigned char *, unsigned char *);
-extern "C" unsigned int RenderResourceGlyph(ResourceHandle *handle, int x, int y, signed char character)
+extern "C" unsigned int RenderResourceGlyph(Font *handle, int x, int y, signed char character)
 {
-    unsigned int code = (unsigned char)character;
     register int *font = (int *)handle->resource;
     unsigned int width;
     register unsigned char *bits;
     register int height;
-    register int opaque;
+    unsigned char packed;
     register int index;
     register int right;
     register unsigned int row;
 
     if (font == 0)
         return 0;
+    unsigned char code=(unsigned char)character;
     index = (int)code - font[5];
     if (index < 0 || font[6] <= index)
         return 0;
     width = *(unsigned char *)(code + (unsigned int)font[8]);
     if (width != 0 && code != 0x20) {
         register unsigned int savedColor;
-        height = font[3];
+        height = ((int*)handle->resource)[3];
         bits = (unsigned char *)(font[9] + *(int *)(font[7] + index * 4));
-        opaque = *(char *)((char *)font + 6) != 1;
-        if (opaque && gGlyphRenderFlags == 1) {
+        packed = *(unsigned char *)((char *)font + 6) == 1;
+        if (!packed && gGlyphRenderFlags == 1) {
             int bottom = y + height - 1;
             if (gGlyphClipLeft <= x && (int)(x + width - 1) <= gGlyphClipRight) {
                 if (y < gGlyphClipTop) {
@@ -490,9 +490,9 @@ extern "C" unsigned int RenderResourceGlyph(ResourceHandle *handle, int x, int y
 
         savedColor = gCurrentGlyphColor;
         if (gGlyphRenderFlags & 4)
-            x += font[3] >> 1;
+            x += ((int*)handle->resource)[3] >> 1;
         right = x + width;
-        for (row = 0; row < (unsigned int)font[3]; ++row) {
+        for (row = 0; row < (unsigned int)((int*)handle->resource)[3]; ++row) {
             if ((gGlyphRenderFlags & 1) == 0) {
                 gGlyphCurrentBackground = gGlyphBackgroundColor;
                 DrawGlyphBackground(&gGlyphSurface, x, y, right, y);
@@ -503,12 +503,13 @@ extern "C" unsigned int RenderResourceGlyph(ResourceHandle *handle, int x, int y
             if (width != 0) {
                 do {
                     unsigned char bit;
-                if (opaque) {
+                if (!packed) {
                     bit = *bits;
                     if (bit != 0) {
+                        unsigned int color=bit;
                         if (gGlyphColorTable != 0)
-                            bit = gGlyphColorTable[bit];
-                        gCurrentGlyphColor = bit;
+                            color = gGlyphColorTable[color];
+                        gCurrentGlyphColor = color;
                     }
                     if (column < width - 1)
                         ++bits;
@@ -521,14 +522,14 @@ extern "C" unsigned int RenderResourceGlyph(ResourceHandle *handle, int x, int y
                     mask >>= 1;
                 }
                 if (bit == 0) {
-                    if ((gGlyphRenderFlags & 8) && row == (unsigned int)font[4])
-                        DrawGlyphPixel(&gGlyphSurface, pixelX, y, (char)savedColor);
+                    if ((gGlyphRenderFlags & 8) && row == (unsigned int)((int*)handle->resource)[4])
+                        DrawGlyphPixel(&gGlyphSurface, pixelX, y, (unsigned char)savedColor);
                 } else {
-                    char color = (char)gCurrentGlyphColor;
+                    unsigned int color=gCurrentGlyphColor;
                     if ((gGlyphRenderFlags & 0x10) == 0) {
                         DrawGlyphPixel(&gGlyphSurface, pixelX, y, color);
                         if (gGlyphRenderFlags & 2)
-                            DrawGlyphPixel(&gGlyphSurface, pixelX + 1, y, (char)gCurrentGlyphColor);
+                            DrawGlyphPixel(&gGlyphSurface, pixelX + 1, y, (unsigned char)gCurrentGlyphColor);
                     } else if (((pixelX + y) & 1) == 0) {
                         if (gGlyphRenderFlags & 2)
                             DrawGlyphPixel(&gGlyphSurface, pixelX + 1, y, color);
@@ -547,13 +548,13 @@ extern "C" unsigned int RenderResourceGlyph(ResourceHandle *handle, int x, int y
             ++y;
             ++bits;
         }
+        gCurrentGlyphColor = savedColor;
         if (gGlyphRenderFlags & 2)
             ++width;
-        gCurrentGlyphColor = savedColor;
     }
     return width;
 }
-extern "C" void RenderResourceText(ResourceHandle *font, int x, int y, const signed char *text)
+void MenuDrawText(Font *font, long x, long y, const char *text)
 {
     if (text) {
         while (*text) {
@@ -562,33 +563,14 @@ extern "C" void RenderResourceText(ResourceHandle *font, int x, int y, const sig
         }
     }
 }
-extern "C" void RenderPositionedResourceText(ResourceHandle *font, int x, int y, int alignment, const signed char *text)
-{
-    if (alignment < 0) {
-        if (text) {
-            while (*text) {
-                x += RenderResourceGlyph(font, x, y, *text);
-                ++text;
-            }
-        }
-    } else {
-        register unsigned int width = 0;
-        if (font->resource && text) {
-            const unsigned char *p = (const unsigned char *)text;
-            register unsigned char *table = *(unsigned char **)((char *)font->resource + 0x20);
-            while (*p)
-                width += table[*p++];
-        }
-        int drawX = x - (int)width / ((alignment == 0) + 1);
-        if (text) {
-            while (*text) {
-                drawX += RenderResourceGlyph(font, drawX, y, *text);
-                ++text;
-            }
-        }
+void MenuDrawTextAt(Font *font, long x, long y, int alignment, const char *text)
+{ if(alignment<0) MenuDrawText(font,x,y,text);
+    else {
+        int width=(int)MeasureResourceTextWidth(font,(const unsigned char *)text);
+        MenuDrawText(font,x-width/((alignment==0)+1),y,text);
     }
 }
-extern "C" void RenderFormattedResourceText(ResourceHandle *font, int x, int y, const char *format, ...)
+extern "C" void RenderFormattedResourceText(Font *font, int x, int y, const char *format, ...)
 {
     char buffer[84];
     va_list arguments;
@@ -604,20 +586,12 @@ extern "C" void RenderFormattedResourceText(ResourceHandle *font, int x, int y, 
     char *text = buffer;
     if (text) {
         while (*text) {
-            drawX += RenderResourceGlyph((ResourceHandle *)drawFont, drawX, drawY, *text);
+            drawX += RenderResourceGlyph((Font *)drawFont, drawX, drawY, *text);
             ++text;
         }
     }
 }
-void PopObjectConstruct(void *);
-extern "C" MciState gMciState;
-extern "C" int gMciInitialized;
-extern "C" void InitializeMciState()
-{
-    PopObjectConstruct((void *)((char *)&gMciInitialized - 8));
-    ResetMciState(&gMciState);
-    gMciInitialized = 1;
-}
+MciState gShellResources;
 extern "C" void ResetMciState(MciState *);
 #pragma aux ResetMciState "f_d110";
 extern "C" void ResetMciState(MciState *s)
@@ -639,22 +613,22 @@ MciState *MciState::StopClose()
     }
     return this;
 }
-extern "C" int OpenMciDevice(MciState *s, unsigned int openType, unsigned int element)
+int MciState::Open(int openType, int element)
 {
-    s->openType = openType;
-    s->element = element;
-    if (s->device == 0) {
+    this->openType = openType;
+    this->element = element;
+    if (this->device == 0) {
         MCI_OPEN_PARMSA open;
-        open.wDeviceID = s->device;
+        open.wDeviceID = this->device;
         open.lpstrDeviceType = (LPCSTR)MCI_DEVTYPE_CD_AUDIO;
         if (mciSendCommandA(0, MCI_OPEN, MCI_OPEN_TYPE | MCI_OPEN_TYPE_ID, (unsigned long)&open) != 0)
             return 0;
-        s->device = open.wDeviceID;
+        this->device = open.wDeviceID;
     }
-    if (s->pending == 0) {
+    if (this->pending == 0) {
         MCI_STATUS_PARMS status;
         status.dwItem = 5;
-        mciSendCommandA(s->device, MCI_STATUS, MCI_STATUS_ITEM | MCI_WAIT, (unsigned long)&status);
+        mciSendCommandA(this->device, MCI_STATUS, MCI_STATUS_ITEM | MCI_WAIT, (unsigned long)&status);
         if (status.dwReturn == 0)
             return 0;
     }

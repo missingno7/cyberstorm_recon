@@ -633,8 +633,18 @@
   "src/io/resource.c": {
    "as": "io\\resource.c",
    "install": "wc106",
-   "profile": "ot",
+   "profile": "ot-oe",
    "functions": {
+    "ResMgr::$ct": {
+     "va": "0047c530",
+     "size": 80,
+     "mangled": "W?$ct:ResMgr$n()_"
+    },
+    "ResMgr::$dt": {
+     "va": "0047c580",
+     "size": 112,
+     "mangled": "W?$dt:ResMgr$n()_"
+    },
     "ResMgr::Close": {
      "va": "0047c6c0",
      "size": 80,
@@ -674,6 +684,11 @@
      "va": "0047c900",
      "size": 32,
      "mangled": "f_c900"
+    },
+    "ResMgr::Load": {
+     "va": "0047c920",
+     "size": 608,
+     "mangled": "W?Load$:ResMgr$n(pnauipniui)pni"
     },
     "f_cb80": {
      "va": "0047cb80",
@@ -731,7 +746,12 @@
      "mangled": "f_d2f0"
     }
    },
-   "data": {},
+   "data": {
+    "W?$Wts0hn$ResourceEntry$$$nx[]uc": {
+     "va": "0048e2e8",
+     "size": 17
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/shell/missbrf.c": {

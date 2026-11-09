@@ -339,9 +339,8 @@ inline void ShellConfirmPurchasesCore()
         subtotal+=SendEvent(current,0x75);
 
     }
-    long total=profileManager.PendingCost();
-    long pending=total;
-    total+=subtotal;
+    long pending=profileManager.PendingCost();
+    long total=subtotal+pending;
     long budget=profileManager.Credits();
     if(total>budget){
         ShellErrorMessage(ShellFormatText(gShellMessages.GetString(423,1),total,budget));
@@ -361,7 +360,7 @@ inline void ShellConfirmPurchasesCore()
 void ShellConfirmPurchases(){ShellConfirmPurchasesCore();}
 void Shell::ProcessInput()
 {
-    long key=ShellInputCommand();int i;
+    long key=ShellInputCommand();
     ShellInputSound(key);
     switch(key){
     case 30202:
@@ -387,23 +386,23 @@ void Shell::ProcessInput()
     case 32003:profileManager.credits+=10000;break;
     case 32004:profileManager.credits+=100000;break;
     case 32005:profileManager.credits=47000000;break;
-    case 32007:
+    case 32007:{
         profileManager.CommitPurchases();
-        for(i=1;i<=profileManager.Count();++i){
+        for(int i=1;i<=profileManager.Count();++i){
             void *item=profileManager.Select(i);
             if(item){SendEvent(item,0x74);SendEvent(item,0x76);SendEvent(item,0x78);}
         }
-        break;
-    case 32013:
-        for(i=101;i<1024;++i)profileManager.UnlockItem(i,1);
-        break;
-    case 32014:
-        for(i=51;i<=80;++i)profileManager.UnlockItem(i,1);
-        break;
-    case 32015:
+        break;}
+    case 32013:{
+        for(int i=101;i<1024;++i)profileManager.UnlockItem(i,1);
+        break;}
+    case 32014:{
+        for(int i=51;i<=80;++i)profileManager.UnlockItem(i,1);
+        break;}
+    case 32015:{
         profileManager.RestartCampaign();
-        for(i=101;i<1024;++i)profileManager.UnlockItem(i,1);
-        break;
+        for(int i=101;i<1024;++i)profileManager.UnlockItem(i,1);
+        break;}
     case 32011:{
         int unlocked=!gShellMissionStrings.IsLocked();
         if(unlocked)gShellMissionStrings.Lock();
@@ -468,6 +467,7 @@ char *Shell::DifficultyLabel()
     case 1:return gShellStrings.GetString(502,1);
     case 2:return gShellStrings.GetString(503,1);
     }
+
 
 
 
@@ -1211,7 +1211,7 @@ void Shell::UpdateMainMenu()
         case 16:
             profileManager.SetMode(3);
             if(LoadMission(0,1)){
-                gShellAttractReady=0;ShellIntroClose(&g4afa84);resumeReason=0;RestoreMenu(0);
+                gShellAttractReady=0;ShellIntroClose(&g4afa84);resumeReason=0;RestoreMenu(resumeReason);
             }
             break;
         case 17:
