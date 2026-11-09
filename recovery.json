@@ -2616,6 +2616,11 @@
      "size": 16,
      "mangled": "W?AnimActionClear$n(pnv)v"
     },
+    "AnimActionInitialize": {
+     "va": "004573a0",
+     "size": 80,
+     "mangled": "W?AnimActionInitialize$n(pnvucusucuc)v"
+    },
     "AnimActionIsSet": {
      "va": "00457420",
      "size": 16,
@@ -2631,6 +2636,16 @@
      "size": 112,
      "mangled": "W?AnimActionAssign$n(pnvulii)v"
     },
+    "AnimActionCreateBlock": {
+     "va": "004587d0",
+     "size": 76,
+     "mangled": "W?AnimActionCreateBlock$n(pnv)v"
+    },
+    "AnimActionFreeBlock": {
+     "va": "00458820",
+     "size": 32,
+     "mangled": "W?AnimActionFreeBlock$n(pnv)v"
+    },
     "AnimActionHasMetadata": {
      "va": "00458c60",
      "size": 48,
@@ -2645,6 +2660,11 @@
      "va": "00458d30",
      "size": 16,
      "mangled": "W?AnimActionMarkReady$n(pnv)v"
+    },
+    "AnimActionPublish": {
+     "va": "00458d40",
+     "size": 96,
+     "mangled": "W?AnimActionPublish$n(pnv)v"
     },
     "AnimActionChecksum": {
      "va": "00458da0",

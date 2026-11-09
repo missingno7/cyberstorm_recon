@@ -5801,10 +5801,10 @@
   "AnimActionInitialize": {
    "va": "004573a0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?AnimActionInitialize$n(pnvucusucuc)v",
    "tu": "src/sim/anim.c",
-   "evidence": "placed (at) in src/sim/anim.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "WorldActionNotify": {
    "va": "004573f0",
@@ -5890,6 +5890,30 @@
    "tu": "src/sim/anim.c",
    "evidence": "placed (at) in src/sim/anim.c 2026-11-09"
   },
+  "AnimActionUpdateTrajectory": {
+   "va": "004577d0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?AnimActionUpdateTrajectory$n(pnipni)v",
+   "tu": "src/sim/anim.c",
+   "evidence": "placed (at) in src/sim/anim.c 2026-11-09"
+  },
+  "AnimActionInterpolateDrawPos": {
+   "va": "004579e0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?AnimActionInterpolateDrawPos$n(pnvpniipnvpnv)v",
+   "tu": "src/sim/anim.c",
+   "evidence": "placed (at) in src/sim/anim.c 2026-11-09"
+  },
+  "AnimActionCommitTrajectory": {
+   "va": "00457af0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?AnimActionCommitTrajectory$n(pnv)ul",
+   "tu": "src/sim/anim.c",
+   "evidence": "placed (at) in src/sim/anim.c 2026-11-09"
+  },
   "ActorDrawEffect": {
    "va": "00457f90",
    "kind": "func",
@@ -5897,11 +5921,51 @@
    "mangled": "W?ActorDrawEffect$n(pnv)v",
    "evidence": "implied by src/sim/fxout.c 2026-11-09"
   },
+  "AnimActionDispatchState": {
+   "va": "00457f90",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?AnimActionDispatchState$n(pnv)ul",
+   "tu": "src/sim/anim.c",
+   "evidence": "placed (at) in src/sim/anim.c 2026-11-09"
+  },
+  "AnimActionCreateBlock": {
+   "va": "004587d0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?AnimActionCreateBlock$n(pnv)v",
+   "tu": "src/sim/anim.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "AnimActionFreeBlock": {
    "va": "00458820",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?AnimActionFreeBlock$n(pnv)v",
+   "tu": "src/sim/anim.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "AnimActionPrepareBlock": {
+   "va": "00458840",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?AnimActionPrepareBlock$n(pnvii)i",
+   "tu": "src/sim/anim.c",
+   "evidence": "placed (at) in src/sim/anim.c 2026-11-09"
+  },
+  "AnimActionSetExternalBlock": {
+   "va": "00458ad0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?AnimActionSetExternalBlock$n(pnviiul)v",
+   "tu": "src/sim/anim.c",
+   "evidence": "placed (at) in src/sim/anim.c 2026-11-09"
+  },
+  "AnimActionInitTargetActor": {
+   "va": "00458bf0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?AnimActionInitTargetActor$n(pnv)v",
    "tu": "src/sim/anim.c",
    "evidence": "placed (at) in src/sim/anim.c 2026-11-09"
   },
@@ -5940,10 +6004,10 @@
   "AnimActionPublish": {
    "va": "00458d40",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?AnimActionPublish$n(pnv)v",
    "tu": "src/sim/anim.c",
-   "evidence": "placed (at) in src/sim/anim.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "AnimActionChecksum": {
    "va": "00458da0",
@@ -12123,6 +12187,20 @@
    "status": "hypothesis",
    "mangled": "W?g4a045c$n$SimTrapezoid$$",
    "evidence": "implied by src/_unknown/tu_00452950.c 2026-11-09"
+  },
+  "animSourcePath": {
+   "va": "004a0534",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?animSourcePath$n[]a",
+   "evidence": "implied by src/sim/anim.c 2026-11-09"
+  },
+  "animationKindTable": {
+   "va": "004a0cb0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?animationKindTable$n[]ul",
+   "evidence": "implied by src/sim/anim.c 2026-11-09"
   },
   "animationMetaAt0cbc": {
    "va": "004a0cbc",
