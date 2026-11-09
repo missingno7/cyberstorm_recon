@@ -73,6 +73,19 @@ def main():
         p2.write_text(TIMER.read_text().replace("if (elapsed < t->duration)", "if (elapsed <= t->duration)"))
         st = statuses(p2, ["-4s", "-s", "-oxt"])
         check(st.get("W?TimerRemaining$n(pn$Timer$$)ul") == "DIFF", "changed comparison is DIFF")
+    # item-mode literal proof (CONST + 0 with the offset in the data field): a one-byte change in a literal
+    # must not stay STRICT (regression for the 2026-11-09 false positive found by lane b1)
+    shell = ROOT / "src" / "shell" / "shell.c"
+    text = shell.read_text(encoding="latin-1")
+    if "mainmenu.plx" in text:
+        with tempfile.TemporaryDirectory(dir=ROOT / "build") as td:
+            good = statuses(shell, ["-4s", "-s", "-bm", "-oe"], as_name="shell\shell.c")
+            p3 = Path(td) / "shell.c"
+            p3.write_text(text.replace("mainmenu.plx", "mainmenu.plz"), encoding="latin-1")
+            bad = statuses(p3, ["-4s", "-s", "-bm", "-oe"], as_name="shell\shell.c")
+            k = next((n for n in good if "PlayTakeoff" in n), None)
+            check(k is not None and good[k] == "STRICT" and bad.get(k) != "STRICT",
+                  "changed string literal is not STRICT (item-mode proof)")
     print("TEST GATE OK" if not fails else f"TEST GATE FAILED: {fails}")
     return 1 if fails else 0
 

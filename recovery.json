@@ -2268,6 +2268,26 @@
      "size": 42,
      "mangled": "W?ProfileValueTotal$:Shell$n()l"
     },
+    "Shell::UpdateMission": {
+     "va": "0040359c",
+     "size": 840,
+     "mangled": "W?UpdateMission$:Shell$n()v"
+    },
+    "Shell::UpdateHercBay": {
+     "va": "004038e4",
+     "size": 650,
+     "mangled": "W?UpdateHercBay$:Shell$n()v"
+    },
+    "Shell::UpdateHercBuy": {
+     "va": "00403b6e",
+     "size": 212,
+     "mangled": "W?UpdateHercBuy$:Shell$n()v"
+    },
+    "Shell::UpdateStorage": {
+     "va": "00403c42",
+     "size": 157,
+     "mangled": "W?UpdateStorage$:Shell$n()v"
+    },
     "Shell::ShowIntro": {
      "va": "0040605b",
      "size": 81,
@@ -2297,6 +2317,11 @@
      "va": "00406a54",
      "size": 503,
      "mangled": "W?Event$:Shell$n(uc)v"
+    },
+    "Shell::PlayTakeoff": {
+     "va": "00406c4b",
+     "size": 517,
+     "mangled": "W?PlayTakeoff$:Shell$n(i)i"
     },
     "Shell::UpdateCredits": {
      "va": "00406fc9",

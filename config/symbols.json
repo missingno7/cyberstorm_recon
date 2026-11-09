@@ -55,12 +55,28 @@
    "tu": "src/shell/shell.c",
    "evidence": "placed (at) in src/shell/shell.c 2026-11-09"
   },
+  "Shell::ProcessInput": {
+   "va": "00401500",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ProcessInput$:Shell$n()v",
+   "tu": "src/shell/shell.c",
+   "evidence": "placed (at) in src/shell/shell.c 2026-11-09"
+  },
   "Shell::Update": {
    "va": "00402230",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?Update$:Shell$n()v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "Shell::UpdateBriefing": {
+   "va": "00402c1c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?UpdateBriefing$:Shell$n()v",
+   "tu": "src/shell/shell.c",
+   "evidence": "placed (at) in src/shell/shell.c 2026-11-09"
   },
   "Shell::BeginBriefing": {
    "va": "00402e32",
@@ -69,6 +85,13 @@
    "mangled": "W?BeginBriefing$:Shell$n(uc)v",
    "tu": "src/shell/shell.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "Shell::WithinBudget": {
+   "va": "004033cc",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?WithinBudget$:Shell$n()i",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
   "Shell::SumRosterResponses": {
    "va": "00403503",
@@ -85,6 +108,46 @@
    "mangled": "W?ProfileValueTotal$:Shell$n()l",
    "tu": "src/shell/shell.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "Shell::UpdateMission": {
+   "va": "0040359c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?UpdateMission$:Shell$n()v",
+   "tu": "src/shell/shell.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "Shell::UpdateHercBay": {
+   "va": "004038e4",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?UpdateHercBay$:Shell$n()v",
+   "tu": "src/shell/shell.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "Shell::UpdateHercBuy": {
+   "va": "00403b6e",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?UpdateHercBuy$:Shell$n()v",
+   "tu": "src/shell/shell.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "Shell::UpdateStorage": {
+   "va": "00403c42",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?UpdateStorage$:Shell$n()v",
+   "tu": "src/shell/shell.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "Shell::UpdateMissionBrief": {
+   "va": "00405102",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?UpdateMissionBrief$:Shell$n()v",
+   "tu": "src/shell/shell.c",
+   "evidence": "placed (at) in src/shell/shell.c 2026-11-09"
   },
   "Shell::ShowIntro": {
    "va": "0040605b",
@@ -168,10 +231,10 @@
   "Shell::PlayTakeoff": {
    "va": "00406c4b",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?PlayTakeoff$:Shell$n(i)i",
    "tu": "src/shell/shell.c",
-   "evidence": "placed (at) in src/shell/shell.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "Shell::PlayTravel": {
    "va": "00406e50",
@@ -323,6 +386,13 @@
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?ShellIntroRender$n(pn$Scene$$)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "ShellMapOpen": {
+   "va": "004094b9",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ShellMapOpen$n(pn$Scene$$pn$InputReq$$l)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
   "ShellMapClose": {
@@ -509,6 +579,13 @@
    "mangled": "W?ShellMissionClose$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "ShellMissionExit": {
+   "va": "0041581d",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ShellMissionExit$n(pn$Scene$$)ul",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
   "ShellMissionRender": {
    "va": "0041584e",
    "kind": "func",
@@ -547,6 +624,20 @@
    "mangled": "W?HercBayConfigureControls$n()v",
    "tu": "src/shell/hercbay.c",
    "evidence": "placed (at) in src/shell/hercbay.c 2026-11-09"
+  },
+  "HercBayReturnFromPurchase": {
+   "va": "00415e1d",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HercBayReturnFromPurchase$n(pn$Scene$$pn$InputReq$$)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "HercBayOpen": {
+   "va": "00415edc",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HercBayOpen$n(pn$Scene$$pn$InputReq$$)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
   "HercBayAltStart": {
    "va": "00415f93",
@@ -594,6 +685,13 @@
    "tu": "src/shell/hercbay.c",
    "evidence": "strict match 2026-11-09"
   },
+  "HercBayNoStorage": {
+   "va": "00416195",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HercBayNoStorage$n(pn$HercBay$$)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
   "HercFrame::Draw": {
    "va": "0041635e",
    "kind": "func",
@@ -618,11 +716,25 @@
    "tu": "src/shell/hercbay.c",
    "evidence": "strict match 2026-11-09"
   },
+  "HercBuyOpen": {
+   "va": "00416764",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HercBuyOpen$n(pn$Scene$$pn$InputReq$$)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
   "HercBuyClose": {
    "va": "00416bfa",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?HercBuyClose$n(pn$Scene$$)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "HercBuyExit": {
+   "va": "00416c65",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HercBuyExit$n(pn$Scene$$)ul",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
   "HercBuyRender": {
@@ -632,6 +744,48 @@
    "mangled": "W?HercBuyRender$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "HercBuySelect": {
+   "va": "004177af",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HercBuySelect$n(pn$Scene$$uc)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "HercBuyRefresh": {
+   "va": "0041791b",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HercBuyRefresh$n(pn$Scene$$)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "HercBuyCommit": {
+   "va": "00417a27",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HercBuyCommit$n(pn$Scene$$)i",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "HercBuyCancel": {
+   "va": "00417d3d",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HercBuyCancel$n(pn$Scene$$)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "HercBuyAccept": {
+   "va": "00417d67",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HercBuyAccept$n(pn$Scene$$)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "ShellStorageOpen": {
+   "va": "004180e3",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ShellStorageOpen$n(pn$Scene$$pn$InputReq$$)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
   "ShellStorageClose": {
    "va": "00418536",
    "kind": "func",
@@ -639,11 +793,32 @@
    "mangled": "W?ShellStorageClose$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "ShellStorageExit": {
+   "va": "00418597",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ShellStorageExit$n(pn$Scene$$)ul",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "ShellStorageSelection": {
+   "va": "00418602",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ShellStorageSelection$n(pn$Scene$$)uc",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
   "ShellStorageRender": {
    "va": "00418844",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?ShellStorageRender$n(pn$Scene$$)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "HercUpgradeOpen": {
+   "va": "004194c4",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HercUpgradeOpen$n(pn$Scene$$pn$InputReq$$uc)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
   "HercUpgradeClose": {
@@ -665,6 +840,13 @@
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?ShellMultiplayerShutdown$n(pnv)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "ShellBriefingOpen": {
+   "va": "0041ce63",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ShellBriefingOpen$n(pn$Scene$$pn$InputReq$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
   "ShellBriefingClose": {
@@ -2626,6 +2808,13 @@
    "mangled": "W?Value$:ProfileManager$n(i)l",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "ProfileManager::SelectScenario": {
+   "va": "0043d6e3",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SelectScenario$:ProfileManager$n(i)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
   "GetPlayerInfo": {
    "va": "0043d9e8",
    "kind": "func",
@@ -2646,6 +2835,13 @@
    "status": "hypothesis",
    "mangled": "W?ApplyGameInfo$n(pnvpn$GameInfo$$)v",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "ProfileManager::HasContinuation": {
+   "va": "00441399",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HasContinuation$:ProfileManager$n()i",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
   "ActorActivate": {
    "va": "004424d4",
@@ -3966,6 +4162,13 @@
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?SoundClearContext$n()v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "SoundTrigger": {
+   "va": "0046cbc6",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SoundTrigger$n(uii)i",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
   "LinkDecoderOwner::decode_link_samples": {
@@ -6900,6 +7103,13 @@
    "mangled": "W?g4afbfc$n$Scene$$",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "gShellMapMode": {
+   "va": "004afc48",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gShellMapMode$nl",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
   "g4aff6c": {
    "va": "004aff6c",
    "kind": "data",
@@ -7445,6 +7655,13 @@
    "status": "hypothesis",
    "mangled": "W?g4d0413$ni",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
+  },
+  "gShellContinuationMap": {
+   "va": "004d044f",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gShellContinuationMap$nc",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
   "g4d1cfc": {
    "va": "004d1cfc",

@@ -264,7 +264,8 @@ class Comparison:
         bounds = {seg.size} | {o for n, s, o, _ in self.m.publics if s == d}
         for f in self.m.fixups:
             if f.target[0] & 3 == 0 and f.target[1] == d:
-                bounds.add(0 if f.target[0] & 4 else f.disp)
+                fa = self._addend(f.seg, f) if f.size() == 4 else 0
+                bounds.add(((0 if f.target[0] & 4 else f.disp) + fa) & 0xFFFFFFFF)
         end = min(b for b in bounds if b > disp) if any(b > disp for b in bounds) else seg.size
         raw = bytes(seg.data[disp:end])
         if 0 in raw and all(32 <= c < 127 or c in (9, 10, 13) for c in raw[:raw.index(0)]) and raw.index(0) > 0:
@@ -294,13 +295,16 @@ class Comparison:
                     return va & 0xFFFFFFFF, "seg:" + how, seg.name
                 return None, None, seg.name
             if d in self.data_conflict and site is not None:
+                # item proof: the referenced item is at segment offset disp + data-field addend (Watcom emits
+                # `CONST + 0` with the literal's offset in the field); the oracle field must point at bytes equal
+                # to that item. Return VA - addend so the caller's `target + addend` reproduces the field.
                 val = self._oracle_u32(site)
-                item = self._item_bytes(d, disp)
+                add = self._addend(f.seg, f) if f.size() == 4 else 0
+                item_off = (disp + add) & 0xFFFFFFFF
+                item = self._item_bytes(d, item_off) if not f.self_rel else None
                 if val is not None and item:
-                    tgt = (val + site + 4) & 0xFFFFFFFF if f.self_rel else val
-                    tgt = (tgt - self._addend(f.seg, f)) & 0xFFFFFFFF
-                    if self.img.read_va(tgt, len(item)) == item:
-                        return (tgt + 0) & 0xFFFFFFFF, "item", f"{seg.name}+{disp:x}"
+                    if self.img.read_va(val, len(item)) == item:
+                        return (val - add) & 0xFFFFFFFF, "item", f"{seg.name}+{item_off:x}"
             return None, None, seg.name
         if m & 3 == 2:
             name = self.m.externs[d]
@@ -348,8 +352,7 @@ class Comparison:
                 unbound.setdefault(name, set()).add(imp)
                 continue
             if how == "item":
-                val = (tva - (site + 4)) & 0xFFFFFFFF if f.self_rel else tva
-                val = (val + add) & 0xFFFFFFFF
+                val = (tva + add) & 0xFFFFFFFF
             else:
                 val = (tva + add - (site + 4)) & 0xFFFFFFFF if f.self_rel else (tva + add) & 0xFFFFFFFF
             exp[f.off - lo:f.off - lo + 4] = struct.pack("<I", val)

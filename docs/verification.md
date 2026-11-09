@@ -24,6 +24,11 @@ next public or the segment end, including compiler alignment filler and jump tab
    not counted (`tail_fill`).
 UNBOUND = all bytes equal but some fixup target unbound; DIFF = any byte, relocation or extent difference.
 
+Soundness note (2026-11-09): Watcom references into a segment as `SEG + 0` with the item offset in the
+fixup's data field. Both the code-segment resolution and the per-item data proof use offset = disp + data-field
+addend. An earlier item proof ignored the addend and compared the segment's first item, so a wrong literal could
+pass (found by lane b1 with a negative control; no accepted function was affected; test_gate now covers it).
+
 ## Bindings — `config/symbols.json`
 `matched` (written by promote for strict functions), `lib`, and `hypothesis`: an extern whose VA was implied
 by a byte-equal caller (`--imply`): unique across the TU, plausible (function start / data section), never

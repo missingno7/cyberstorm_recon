@@ -1,6 +1,6 @@
 #include <string.h>
 /* shell\shell.c, partial reconstruction of the single supported object cluster.
- * The census also contains switch blocks/tables: see REPORT.md before splitting.
+ * Corrected-map continuation: shared case blocks and tables belong to their owners.
  * Shell fields marked unknown are unobserved layout, not initialized storage. */
 typedef unsigned long U32;
 struct Surface {long width,height;unsigned char *pixels;U32 flags;Surface(U32);~Surface();};
@@ -66,7 +66,7 @@ extern void SurfaceRemapRect(void *,long,long,long,long);
 extern void GuiRemapClipRect(GuiRect *,long,long,long,long);
 
 /* Opaque screen instances are passed by address only in the close-all routine. */
-struct Scene;struct MissBrief {void Begin(void *,unsigned char);};extern MissBrief g4b3390;
+struct Scene;struct MissBrief {unsigned char unknown00[0x50];unsigned char choice;void Begin(void *,unsigned char);};extern MissBrief g4b3390;
 extern Scene g4aff6c,g4b2e30,g4b3598,g4b37c4,g4b416c,g4b5b50;
 extern Scene g4b700c,g4aebe0,g4afa84,g4afbfc,g4b7904,g4b82fc,g4ba2bc;
 extern Scene *gShellHotseat;
@@ -94,7 +94,7 @@ extern void InputPoll(InputReq *);
 extern void SurfaceClear(void *);
 extern void ShellPlayMovie(const char *);
 extern void ShellIntroStart(Scene *,InputReq *,int);
-struct ProfileManager {unsigned char unknown00[0x426];U32 mode;unsigned char unknown42a[0x6c9d];long credits;U32 Mode(){return mode;}long Credits(){return credits;}long PendingCost();void CommitPurchases();int HasContinuation();void SelectScenario(int);int Count();void *Select(int);void Advance(int);long Value(int);};
+struct ProfileManager {unsigned char unknown00[0x426];U32 mode;unsigned char unknown42a[0x15];unsigned char ready;unsigned char unknown440[0x6c87];long credits;U32 Mode(){return mode;}long Credits(){return credits;}void SetDifficulty(unsigned char);void RefreshMissions();void UnlockItem(int,int);void RestartCampaign();void ApplyCampaignCheat();void AdvanceCampaign();void PrepareRoster();void SetMissionChoice(unsigned char);int LaunchMission(void *);int IsReady(){return ready;}long PendingCost();void CommitPurchases();int HasContinuation();void SelectScenario(int);int Count();void *Select(int);void Advance(int);long Value(int);};
 extern ProfileManager profileManager;
 extern int g4d030f;
 extern long SendEvent(void *,int,void * =0,int=0,int=0);
@@ -153,6 +153,29 @@ public:
     InputReq input;
     long auxiliaryState,screen;
     U32 resumeReason;unsigned char unknown57[8];
+    int WithinBudget();
+    void ProcessInput();
+    void UpdateMainMenuSelection();
+    void UpdateComms();
+    void UpdateMainMenu();
+    void UpdateMission();
+    void UpdateBioderm();
+    void UpdateBriefing();
+    void UpdateHercBay();
+    void UpdateHercBuy();
+    void UpdateStorage();
+    void UpdateHercUpgrade();
+    void UpdateSelection();
+    void UpdateMap();
+    void UpdateMissionBrief();
+    void UpdateCampaignMenu();
+    void UpdateBiodermSkills();
+    void UpdateBiodermPanel();
+    void UpdateMultiplayer();
+    void UpdateMultiplayerMenu();
+    void UpdateNetworkSetup();
+    void UpdateLaunch();
+
     void RestoreMenu(int);
     void ResumeMenus();
     void BeginComms(unsigned char);
@@ -184,7 +207,7 @@ GameSession gShellGame;
 Timer gShellAnimationTimer(0);
 
 
-struct StrPool {void Lock();void Unlock();char *GetString(long,int);};
+struct PoolData;struct StrPool {long id;char *buffer;long capacity;PoolData *data;long size;int IsLocked(){return data!=0;}int Lock();void Unlock();char *GetString(long,int);};
 extern StrPool gShellStrings,missionImageName;
 extern void *gShellImages;
 extern char gShellFont,g4b74f4,gShellResources;
@@ -213,7 +236,7 @@ struct MenuImages;extern MenuImages *gMenuImages;
 extern char gShellDefaultName[];
 extern int gShellPlayIntro;
 extern int g4d0413;
-extern unsigned char gShellContinuationMap;
+extern signed char gShellContinuationMap;
 extern void ShellMapOpen(Scene *,InputReq *,long);
 extern void ShellMissionBegin(Scene *,InputReq *);
 extern int StopMultiplayer(int,int);
@@ -221,6 +244,57 @@ extern void CommsScreenOpen(Scene *,InputReq *,unsigned char);
 extern void ShellNetworkSetupOpen(Scene *,InputReq *,unsigned char);
 extern Scene g4ba9a8;
 
+extern long gIn7c;
+inline long ShellInputCommand(){return gIn7c;}
+extern void ShellInputSound(long);
+extern void ShellRefreshDifficulty();
+extern void ShellSelectionOpen(Scene *,InputReq *,const char *);
+struct HercBay {unsigned char unknown00[0x4c];long ownedCount,buyActive,storageActive;long OwnedCount(){return ownedCount;}long Buying(){return buyActive;}long Storing(){return storageActive;}void Start(void *);};
+extern StrPool gShellMissionStrings;
+extern void ShellMainMenuRefresh(Scene *);
+class GuiScreen:public GuiRect {public:InputReq *input;int IsActive(){return input!=0;}void Invalidate();};
+extern GuiRect gShellCurrentRect,gShellScreenRect;
+extern void MenuSetColors(void *,U32,long);
+extern void MenuFill(void *,long,long,long,long);
+extern void ShellSelectionActivate(Scene *,long);
+extern void MenuHelpSetTopic(long);
+extern void ShellMultiplayerTick(void *);
+extern int MissBriefExit(MissBrief *);
+extern U32 ShellStorageExit(Scene *);
+extern unsigned char ShellStorageSelection(Scene *);
+extern void HercUpgradeOpen(Scene *,InputReq *,unsigned char);
+extern void HercBayOpen(Scene *,InputReq *);
+extern int ShellBriefingExit(Scene *);
+extern void ShellBriefingContinue(Scene *);
+extern void ShellBriefingBack(Scene *);
+extern void ShellBriefingAbort(Scene *);
+extern char gShellBriefingMission;
+extern U32 gIn80;inline U32 ShellInputKey(){return gIn80;}
+struct PlayerInfo {
+    int Kind(){return kind;}
+    unsigned char kind;
+    char unknown01[39];
+    int value;
+    char unknown2c[4];
+};
+extern void GetPlayerInfo(void *,PlayerInfo *);
+extern long gShellMapMode;
+extern U32 ShellMissionExit(Scene *);
+extern void ShellBriefingOpen(Scene *,InputReq *);
+extern int SoundTrigger(unsigned,int);
+extern void HercBayClose(HercBay *);
+extern int HercBaySetStatus(HercBay *);
+struct HercBayActions {void Reactivate();};
+extern void HercBuyOpen(Scene *,InputReq *);
+extern void ShellStorageOpen(Scene *,InputReq *);
+extern void HercBayNoStorage(HercBay *);
+extern U32 HercBuyExit(Scene *);
+extern void HercBuySelect(Scene *,unsigned char);
+extern void HercBuyAccept(Scene *);
+extern void HercBuyCancel(Scene *);
+extern void HercBayReturnFromPurchase(Scene *,InputReq *);
+extern int HercBuyCommit(Scene *);
+extern void HercBuyRefresh(Scene *);
 void ShellClearFrame()
 {
     SigsStart(&g513888,0);
@@ -273,7 +347,7 @@ extern void ShellErrorMessage(const char *);
 extern int ShellConfirmMessage(const char *);
 extern int g4d0413;
 /* Six register-byte differences and an extent blocker remain. */
-void ShellConfirmPurchases()
+inline void ShellConfirmPurchasesCore()
 {
 
 
@@ -281,9 +355,9 @@ void ShellConfirmPurchases()
     int index=1;
     void *current;
     for(; (current=profileManager.Select(index))!=0; ++index){
-        subtotal+=SendEvent(current,0x73,0,0,0);
-        subtotal+=SendEvent(current,0x77,0,0,0);
-        subtotal+=SendEvent(current,0x75,0,0,0);
+        subtotal+=SendEvent(current,0x73);
+        subtotal+=SendEvent(current,0x77);
+        subtotal+=SendEvent(current,0x75);
 
     }
     long total=profileManager.PendingCost();
@@ -296,14 +370,128 @@ void ShellConfirmPurchases()
         profileManager.CommitPurchases();
         index=1;
         for(; (current=profileManager.Select(index))!=0; ++index){
-            SendEvent(current,0x74,0,0,0);
-            SendEvent(current,0x78,0,0,0);
-            SendEvent(current,0x76,0,0,0);
+            SendEvent(current,0x74);
+            SendEvent(current,0x78);
+            SendEvent(current,0x76);
     
         }
     }
 
 
+}
+void ShellConfirmPurchases(){ShellConfirmPurchasesCore();}
+void Shell::ProcessInput()
+{
+    long key=ShellInputCommand();int i;
+    ShellInputSound(key);
+    switch(key){
+    case 30202:
+        ShellCloseAllScreens();resumeReason=0;ResumeMenus();break;
+    case 30203:
+        if(screen!=8){ShellCloseAllScreens();ShellSelectionOpen(&g4aff6c,&input,"Bioderm");screen=8;}break;
+    case 30204:
+        if(screen!=9){ShellCloseAllScreens();((HercBay *)&g4b37c4)->Start(&input);screen=9;}break;
+    case 30205:
+        if(screen!=10){ShellCloseAllScreens();BeginComms(2);}break;
+    case 30206:
+        if(screen!=10){ShellCloseAllScreens();BeginComms(2);}break;
+    case 30207:
+        if(screen!=10){ShellCloseAllScreens();BeginComms(6);}break;
+    case 31995:
+        profileManager.SetDifficulty(0);profileManager.RefreshMissions();ShellRefreshDifficulty();break;
+    case 31996:
+        profileManager.SetDifficulty(1);profileManager.RefreshMissions();ShellRefreshDifficulty();break;
+    case 31997:
+        profileManager.SetDifficulty(2);profileManager.RefreshMissions();ShellRefreshDifficulty();break;
+    case 32001:++profileManager.credits;break;
+    case 32002:profileManager.credits+=1000;break;
+    case 32003:profileManager.credits+=10000;break;
+    case 32004:profileManager.credits+=100000;break;
+    case 32005:profileManager.credits=47000000;break;
+    case 32007:
+        profileManager.CommitPurchases();
+        for(i=1;i<=profileManager.Count();++i){
+            void *item=profileManager.Select(i);
+            if(item){SendEvent(item,0x74);SendEvent(item,0x76);SendEvent(item,0x78);}
+        }
+        break;
+    case 32013:
+        for(i=101;i<1024;++i)profileManager.UnlockItem(i,1);
+        break;
+    case 32014:
+        for(i=51;i<=80;++i)profileManager.UnlockItem(i,1);
+        break;
+    case 32015:
+        profileManager.RestartCampaign();
+        for(i=101;i<1024;++i)profileManager.UnlockItem(i,1);
+        break;
+    case 32011:{
+        int unlocked=!gShellMissionStrings.IsLocked();
+        if(unlocked)gShellMissionStrings.Lock();
+        profileManager.ApplyCampaignCheat();
+        if(unlocked)gShellMissionStrings.Unlock();
+        ShellCloseAllScreens();screen=5;ShellMainMenuOpen(&g4aebe0,&input,0);
+        break;}
+    case 32008:profileManager.RefreshMissions();break;
+    case 32010:profileManager.AdvanceCampaign();break;
+    case 32012:profileManager.RestartCampaign();break;
+    case 31992:
+        ShellConfirmPurchases();
+        if(((GuiScreen *)&g4aebe0)->IsActive())ShellMainMenuRefresh(&g4aebe0);
+        break;
+    case 31993:
+        profileManager.PrepareRoster();
+        if(((GuiScreen *)&g4aebe0)->IsActive()){
+            ShellMainMenuRefresh(&g4aebe0);((GuiScreen *)&g4aebe0)->Invalidate();
+            gShellCurrentRect=gShellScreenRect;
+            MenuSetColors(&g513888,196,196);MenuFill(&g513888,604,129,25,11);
+        }
+        break;
+    }
+    if(key>20000&&key<20199){long index=key-20000;if(index>0)ShellSelectionActivate(&g4b16a4,index);}
+}
+void Shell::Update()
+{
+    if(!IsActive())return;
+    MenuHelpSetTopic(0);gInDirty=1;InputPoll(&input);
+    if(ShellInputCommand()){ProcessInput();return;}
+    // The original constructs this function-local timer once, even though no later read survives here.
+    static Timer updateTimer(0);
+    ShellMultiplayerTick(&g4b74f4);
+    switch(screen){
+    case 2:case 3:case 4:case 6:case 7:case 11:case 13:case 14:case 18:case 19:case 20:case 21:case 22:case 23:case 24:case 26:case 29:case 33:case 36:default:break;
+    case 10:UpdateComms();break;
+    case 1:UpdateMainMenu();break;
+    case 31:UpdateMission();break;
+    case 5:UpdateMainMenuSelection();break;
+    case 8:UpdateBioderm();break;
+    case 28:UpdateBriefing();break;
+    case 9:UpdateHercBay();break;
+    case 25:UpdateHercBuy();break;
+    case 27:UpdateStorage();break;
+    case 30:UpdateHercUpgrade();break;
+    case 12:UpdateSelection();UpdateMap();break;
+    case 16:UpdateCampaignMenu();UpdateMap();break;
+    case 17:UpdateBiodermSkills();UpdateMap();break;
+    case 15:UpdateBiodermPanel();UpdateMap();break;
+    case 32:UpdateMultiplayer();break;
+    case 34:UpdateMissionBrief();break;
+    case 35:UpdateMultiplayerMenu();break;
+    case 37:UpdateNetworkSetup();break;
+    case 38:UpdateLaunch();break;
+    }
+}
+void Shell::UpdateBriefing()
+{
+    U32 result=MissBriefExit(&g4b3390);
+    if(!result)return;
+    switch(result){
+    case 1:MissBriefClose(&g4b3390);BeginComms(3);break;
+    case 2:
+        MissBriefClose(&g4b3390);unknown1d=g4b3390.choice;
+        profileManager.SetMissionChoice(g4b3390.choice);resumeReason=0;ResumeMenus();
+        break;
+    }
 }
 void Shell::BeginBriefing(unsigned char number)
 {
@@ -336,6 +524,121 @@ long Shell::ProfileValueTotal()
 }
 
 
+void Shell::UpdateMission()
+{
+
+    PlayerInfo player;
+    U32 result=ShellMissionExit(&g4b3598);
+    if(!result)return;
+    switch(result){
+    case 1:
+    ShellMissionClose(&g4b3598);
+    switch(profileManager.Mode()){
+    case 0:
+        profileManager.SelectScenario(1);displayedCredits=profileManager.Credits();
+        screen=34;ShellBriefingOpen(&g4b7904,&input);break;
+    case 1:
+        if(WithinBudget()){
+            GetPlayerInfo(&profileManager,&player);
+            int kind=player.Kind();
+            gShellMapMode=0;
+            screen=32;
+            switch(kind){
+            case 0:ShellMapOpen(&g4afbfc,&input,1000);break;
+            case 1:case 2:case 3:case 4:case 5:ShellMapOpen(&g4afbfc,&input,1001);break;
+            case 6:case 7:case 8:case 9:ShellMapOpen(&g4afbfc,&input,1002);break;
+            case 10:case 11:case 12:ShellMapOpen(&g4afbfc,&input,1003);break;
+            case 13:ShellMapOpen(&g4afbfc,&input,1004);break;
+            }
+        }else{resumeReason=0;unknown1d=999;ResumeMenus();}
+        break;
+    case 2:case 3:
+        displayedCredits=profileManager.Credits();TimerSet(&gShellIdleTimer,120000);RestoreMenu(0);break;
+    default:
+        profileManager.SelectScenario(1);displayedCredits=profileManager.Credits();
+        TimerSet(&gShellIdleTimer,120000);ShellIntroStart(&g4afa84,&input,0);screen=1;break;
+    }
+    }
+
+}
+void Shell::UpdateHercBay()
+{
+
+    if(gShellContinuationMap==1&&profileManager.IsReady()){
+        gShellContinuationMap=0;SoundTrigger(209,0);
+    }
+    if(((HercBay *)&g4b37c4)->Buying()){HercBayClose((HercBay *)&g4b37c4);screen=25;return;}
+    if(((HercBay *)&g4b37c4)->Storing()){HercBayClose((HercBay *)&g4b37c4);screen=27;return;}
+    U32 result=HercBaySetStatus((HercBay *)&g4b37c4);
+    if(!result&&ShellInputKey()==1)result=3;
+    if(!result)return;
+    switch(result){
+    case 1:HercBayClose((HercBay *)&g4b37c4);HercBuyOpen(&g4b416c,&input);screen=25;break;
+    case 2:
+        if(((HercBay *)&g4b37c4)->ownedCount){
+            HercBayClose((HercBay *)&g4b37c4);ShellStorageOpen(&g4b5b50,&input);screen=27;
+        }else HercBayNoStorage((HercBay *)&g4b37c4);
+        break;
+    case 3:HercBayShutdown(&g4b37c4);resumeReason=0;ResumeMenus();break;
+    case 4:((HercBayActions *)&g4b37c4)->Reactivate();break;
+    }
+}
+void Shell::UpdateHercBuy()
+{
+    U32 result=HercBuyExit(&g4b416c);
+    if(!result)return;
+    if(result<=15){HercBuySelect(&g4b416c,(unsigned char)result);return;}
+    switch(result){
+    case 31:
+        HercBuyAccept(&g4b416c);HercBuyClose(&g4b416c);
+        HercBayReturnFromPurchase(&g4b37c4,&input);screen=9;break;
+    case 32:
+        HercBuyCancel(&g4b416c);HercBuyClose(&g4b416c);
+        HercBayReturnFromPurchase(&g4b37c4,&input);screen=9;break;
+    case 33:case 38:HercBuyRefresh(&g4b416c);break;
+    case 39:
+        if(HercBuyCommit(&g4b416c)){screen=25;HercBuyRefresh(&g4b416c);}break;
+    }
+}
+void Shell::UpdateStorage()
+{
+    U32 result=ShellStorageExit(&g4b5b50);
+    if(!result){
+        long key=ShellInputKey();
+        if(key==1||key==28)result=50;
+    }
+    if(!result)return;
+    if(result<=24){
+        ShellStorageClose(&g4b5b50);
+        screen=30;
+        HercUpgradeOpen(&g4b700c,&input,ShellStorageSelection(&g4b5b50));
+        return;
+    }
+    switch(result){
+    case 50:
+        ShellStorageClose(&g4b5b50);
+        HercBayOpen(&g4b37c4,&input);
+        screen=9;
+        break;
+    }
+}
+void Shell::UpdateMissionBrief()
+{
+    U32 result=ShellBriefingExit(&g4b7904);
+    if(!result)return;
+    switch(result){
+    case 1:
+        ShellBriefingClose(&g4b7904);ShellIntroStart(&g4afa84,&input,1);
+        TimerSet(&gShellIdleTimer,120000);screen=1;break;
+    case 3:
+        if(profileManager.LaunchMission(&gShellBriefingMission)){
+            ShellBriefingClose(&g4b7904);Close(6);
+        }else ShellBriefingContinue(&g4b7904);
+        break;
+    case 2:ShellBriefingBack(&g4b7904);break;
+    case 21:ShellBriefingAbort(&g4b7904);break;
+    }
+}
 void Shell::ShowIntro()
 {
     ShellClearFrame();
@@ -2811,309 +3114,6 @@ void ShellLoadPalette(const char *name)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     if(!loaded)AssertFail(ShellSourceFile,__LINE__,0);
     SurfaceCopyRegion(&gMenuSavedSurface,&g511948,0,0);
     if(gShellOverlayPaletteActive)PaletteCopyRange(&palette,gShellOverlayColors,171,37);
@@ -3121,7 +3121,7 @@ void ShellLoadPalette(const char *name)
     ApplyPaletteData(&palette);
 }
 
-extern U32 gIn80;inline U32 ShellInputKey(){return gIn80;}
+
 extern void HelpClearTopic();
 extern void ShellSetMenuState(int);
 extern void MenuLoadBackground(const char *,void *);
@@ -3160,7 +3160,7 @@ void ShellShadeRect(long x,long y,long width,long height)
     gSurfaceColorRemap=0;
 }
 
-/* Recovered resource/state setup; global tail sharing still differs. */
+/* Resource/state setup; remaining differences are recorded in REPORT.md. */
 void Shell::Open()
 {
     if(IsActive())return;
@@ -3301,6 +3301,7 @@ void Shell::BeginComms(unsigned char kind)
 }
 void Shell::ResumeMenus()
 {
+
     switch(profileManager.Mode()){
     case 1:
         if(profileManager.HasContinuation()){
@@ -3310,8 +3311,9 @@ void Shell::ResumeMenus()
     case 2:case 3:
         RestoreMenu(resumeReason);
         return;
+    default:RestoreMenu(resumeReason);break;
     }
-    RestoreMenu(resumeReason);
+
 }
 void Shell::RestoreMenu(int reason)
 {
@@ -3514,6 +3516,12 @@ U32 Shell::NextCreditBreakpoint(U32 credits)
     if(credits<=7500000)return 7500000;
     return 15000000;
 }
+
+
+
+
+
+
 
 
 
