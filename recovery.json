@@ -6428,6 +6428,11 @@
    "install": "wc106",
    "profile": "ot",
    "functions": {
+    "W?.fn_init$n()v": {
+     "va": "0044d150",
+     "size": 432,
+     "mangled": "W?.fn_init$n()v"
+    },
     "SimAlert::$ct": {
      "va": "0044d300",
      "size": 32,
@@ -6458,9 +6463,14 @@
      "size": 160,
      "mangled": "W?SimAlertSetValue$n(pnvi)v"
     },
+    "SimAlertEvent": {
+     "va": "0044d580",
+     "size": 368,
+     "mangled": "W?SimAlertEvent$n(pn$SimGame$$)v"
+    },
     "W?$Wda013$:MenuSpacer$n(ui)pnv": {
      "va": "0044d6f0",
-     "size": 21,
+     "size": 32,
      "mangled": "W?$Wda013$:MenuSpacer$n(ui)pnv"
     },
     "SimAlert::$dt": {
@@ -6473,6 +6483,22 @@
     "CONST": {
      "va": "0048b480",
      "size": 13
+    },
+    "CONST2": {
+     "va": "0048defc",
+     "size": 116
+    },
+    "_DATA": {
+     "va": "004a0234",
+     "size": 12
+    },
+    "W?$Wts0kn$PilotImageButton$$$nx[]uc": {
+     "va": "0048cdb8",
+     "size": 17
+    },
+    "W?$Wts0en$MenuButton$$$nx[]uc": {
+     "va": "0048c9d8",
+     "size": 17
     },
     "W?$Wts0in$SimValueGadget$$$nx[]uc": {
      "va": "0048df88",
@@ -6510,6 +6536,11 @@
      "size": 224,
      "mangled": "W?SimSetView$n(pn$SimGame$$i)v"
     },
+    "f_44db70": {
+     "va": "0044db70",
+     "size": 272,
+     "mangled": "W?f_44db70$n(pn$SimGame$$i)v"
+    },
     "SimSaveBookmark": {
      "va": "0044dc80",
      "size": 48,
@@ -6544,6 +6575,11 @@
      "va": "0044e2c0",
      "size": 160,
      "mangled": "W?SimSpendOnActor$n(pn$SimGame$$pn$ActorRecord$$i)i"
+    },
+    "SimTrySpendFocus": {
+     "va": "0044e360",
+     "size": 192,
+     "mangled": "W?SimTrySpendFocus$n(pn$SimGame$$i)i"
     },
     "SimTargetAction": {
      "va": "0044e4e0",
@@ -9462,6 +9498,11 @@
      "va": "0044ce10",
      "size": 560,
      "mangled": "W?SimHoverObject$n(pn$SimGame$$i)v"
+    },
+    "SimWorldStep": {
+     "va": "0044d040",
+     "size": 257,
+     "mangled": "W?SimWorldStep$n(pn$SimGame$$)v"
     }
    },
    "data": {},
@@ -12401,6 +12442,13 @@
     "f_d270",
     "f_d2c0",
     "f_d2f0"
+   ],
+   "date": "2026-11-09"
+  },
+  {
+   "tu": "src/_unknown/tu_0044d150.c",
+   "functions": [
+    "W?$Wda013$:MenuSpacer$n(ui)pnv"
    ],
    "date": "2026-11-09"
   }

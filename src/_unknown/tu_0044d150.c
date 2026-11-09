@@ -20,17 +20,18 @@ public:
 struct GuiControlData:GuiRect {unsigned char style[4]; U32 attributes,shortcut;};
 class GuiControl:public GuiControlData {public: virtual ~GuiControl(); virtual void Reset(unsigned); virtual void Draw(unsigned); virtual int Event(unsigned,U32); virtual int HitTest(const GuiPoint *);};
 class SimMapGadget:public GuiControl {public:U32 state;long kind,data;SimMapGadget(U32,long,long,U32);virtual ~SimMapGadget();};
-class SimImageGadget:public GuiControl {public:U32 state;long image,repeat;SimImageGadget(long,long,U32);virtual ~SimImageGadget();};
+#pragma aux pilot_image_constructor "W?$ct:SimImageGadget$n(llul)_";
+class PilotImageButton:public GuiControl {public:U32 state;long image,repeat;__pragma("pilot_image_constructor") PilotImageButton(long,long,U32);virtual ~PilotImageButton();};
 class MenuNumber:public GuiControl {public:U32 unused;const char *text;long value;signed char font,color,flash,align;MenuNumber(signed char,signed char);virtual ~MenuNumber();};
-class MenuButton:public GuiControl {public:U32 state;const char *text;MenuButton(const char *,U32);virtual ~MenuButton();};
+class MenuButton:public GuiControl {public:U32 state;const char *text;MenuButton(const char * =0,U32=0);virtual ~MenuButton();};
 class SimValueGadget:public GuiControl {public:U32 state;long value;SimValueGadget(U32);void SetValue(long);};
 class MenuSpacer:public GuiControl {public:MenuSpacer();virtual ~MenuSpacer();};
 extern GuiControl *simAlertControls[];
 struct SimAlert:GuiScreen {SimAlert();~SimAlert();};
 SimMapGadget alertMap(16,6,0,0),alertMap2(16,7,0,0);
 MenuNumber alertPilot(-1,18),alertUnit(-1,18);
-SimImageGadget alertImage(127,1000,0),alertImage2(130,1000,0);
-MenuButton alertButton(0,0),alertButton2(0,0);
+PilotImageButton alertImage(127,1000,0),alertImage2(130,1000,0);
+MenuButton alertButton,alertButton2;
 SimValueGadget alertValue1(0),alertValue2(0),alertValue3(0),alertValue4(0);
 MenuSpacer alertSpacers[3];
 SimAlert g4d4094;
@@ -75,24 +76,28 @@ extern int SimCycleFocus(SimGame *,int);
 extern void SimFinishFocus(SimGame *),SimStartPhase(SimGame *);
 struct SoundSettings;extern int SoundPlay(unsigned,const SoundSettings *);
 extern int SoundTrigger(unsigned,int);
-inline int SimAlertReadEvent(){if(g4d4094.IsActive()){targetLimits=g4d4094.HitTest(&g4bb78c);return g4d4094.Update();}return 0;}
+inline int SimAlertReadEvent(){int active=g4d4094.IsActive();if(active){targetLimits=g4d4094.HitTest(&g4bb78c);return g4d4094.Update();}return active;}
 void SimAlertEvent(SimGame *s) {
  int event=SimAlertReadEvent();
- switch(event) {
- case 5:SoundPlay(3,0);PilotSetState(s,5);break;
- case 7:SoundPlay(3,0);PilotSetState(s,6);break;
- case 9:SimCycleFocus(s,-1);break;
- case 10:SimCycleFocus(s,1);break;
- case 11:SoundPlay(6,0);SimFinishFocus(s);break;
- case 12:SoundPlay(6,0);SimStartPhase(s);break;
- case 1:SoundPlay(3,0);SoundTrigger(212,0);PilotSetState(s,1);break;
- case 2:SoundPlay(3,0);SoundTrigger(214,0);PilotSetState(s,2);break;
- case 4:SoundPlay(3,0);SoundTrigger(216,0);PilotSetState(s,4);break;
- case 3:SoundPlay(3,0);SoundTrigger(215,0);PilotSetState(s,3);break;
+ event--;if(event<0)return;switch((unsigned)event) {
+ case 4:SoundPlay(3,0);PilotSetState(s,5);break;
+ case 6:SoundPlay(3,0);PilotSetState(s,6);break;
+ case 8:SimCycleFocus(s,-1);break;
+ case 9:SimCycleFocus(s,1);break;
+ case 10:SoundPlay(6,0);SimFinishFocus(s);break;
+ case 11:SoundPlay(6,0);SimStartPhase(s);break;
+ case 0:SoundPlay(3,0);SoundTrigger(212,0);PilotSetState(s,1);break;
+ case 1:SoundPlay(3,0);SoundTrigger(214,0);PilotSetState(s,2);break;
+ case 3:SoundPlay(3,0);SoundTrigger(216,0);PilotSetState(s,4);break;
+ case 2:SoundPlay(3,0);SoundTrigger(215,0);PilotSetState(s,3);break;
  }
 }
 
 
 SimAlert::~SimAlert() {input=0;}
+
+
+
+
 
 

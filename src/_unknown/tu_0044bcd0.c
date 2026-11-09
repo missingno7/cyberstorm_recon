@@ -317,7 +317,7 @@ void SimHoverObject(SimGame *s,int unit) {
 extern ActorRecord *ActorFindFree(),*ActorFindNext(ActorRecord *);
 extern void SimHandleInput(SimGame *);
 extern int SimPreviewCost(SimGame *,int,int);
-extern void SimActorStep(ActorRecord *);
+extern void ActorAdvanceState(ActorRecord *);
 extern char g4dd0c0[];
 extern void LogicDispatchIntel(unsigned char *);
 extern int SimHotChooseHotseatOwner(void *);
@@ -327,13 +327,12 @@ void SimWorldStep(SimGame *s) {
  if(s->mode!=s->player) {SimHandleInput(s);SimHandleCursor(s);}
  else if(s->focus) {
   SimHandleInput(s);SimHandleCursor(s);
-  int only,cost;
-  if(s->action<1 || s->action!=s->focus->target) {only=0;cost=0;}
-  else {only=1;cost=s->actionCost;}
-  SimPreviewCost(s,cost,only);
+if(s->action>0 && s->action==s->focus->target)SimPreviewCost(s,s->actionCost,1);else SimPreviewCost(s,0,0);
  }
  s->unknown98e=s->linked?simLimit1:simLimit2;
- for(ActorRecord *a=ActorFindFree();a;a=ActorFindNext(a)) SimActorStep(a);
+ for(ActorRecord *a=ActorFindFree();a;a=ActorFindNext(a)) ActorAdvanceState(a);
  LogicDispatchIntel((unsigned char *)g4dd0c0);
  if(s->extraSaved) {int owner=SimHotChooseHotseatOwner(s);if(owner){HotbriefMainLoop(s,owner);SimDelayPhase(s);s->deadline=s->tick;g4d35f4.Initialize(5,1);}}
 }
+
+

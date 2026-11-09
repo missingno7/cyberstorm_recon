@@ -12705,18 +12705,18 @@
   "SimWorldStep": {
    "va": "0044d040",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?SimWorldStep$n(pn$SimGame$$)v",
-   "tu": "src/_unknown/tu_0044b8b0.c",
-   "evidence": "placed (at) in src/_unknown/tu_0044b8b0.c 2026-11-09"
+   "tu": "src/_unknown/tu_0044bcd0.c",
+   "evidence": "strict match 2026-11-09"
   },
   "W?.fn_init$n()v@_unknown/tu_0044d150.c": {
    "va": "0044d150",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?.fn_init$n()v",
    "tu": "src/_unknown/tu_0044d150.c",
-   "evidence": "placed (at) in src/_unknown/tu_0044d150.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "SimAlert::$ct": {
    "va": "0044d300",
@@ -12769,10 +12769,10 @@
   "SimAlertEvent": {
    "va": "0044d580",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?SimAlertEvent$n(pn$SimGame$$)v",
    "tu": "src/_unknown/tu_0044d150.c",
-   "evidence": "placed (at) in src/_unknown/tu_0044d150.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "W?$Wda013$:MenuSpacer$n(ui)pnv": {
    "va": "0044d6f0",
@@ -12849,9 +12849,10 @@
   "f_44db70": {
    "va": "0044db70",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?f_44db70$n(pn$ModeSystem$$i)v",
-   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
+   "status": "matched",
+   "mangled": "W?f_44db70$n(pn$SimGame$$i)v",
+   "tu": "src/sim/simdo.c",
+   "evidence": "strict match 2026-11-09"
   },
   "f_44db70#W?f_44db70$n(pn$SimGame$$i)v": {
    "va": "0044db70",
@@ -12860,6 +12861,13 @@
    "mangled": "W?f_44db70$n(pn$SimGame$$i)v",
    "tu": "src/sim/simdo.c",
    "evidence": "placed (at) in src/sim/simdo.c 2026-11-09"
+  },
+  "f_44db70#W?f_44db70$n(pn$ModeSystem$$i)v": {
+   "va": "0044db70",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_44db70$n(pn$ModeSystem$$i)v",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-09"
   },
   "SimSaveBookmark": {
    "va": "0044dc80",
@@ -12927,10 +12935,10 @@
   "SimTrySpendFocus": {
    "va": "0044e360",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?SimTrySpendFocus$n(pn$SimGame$$i)i",
    "tu": "src/sim/simdo.c",
-   "evidence": "placed (at) in src/sim/simdo.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "SimFaceTarget": {
    "va": "0044e420",
@@ -25893,6 +25901,13 @@
    "mangled": "W?viewScales$n[]uc",
    "evidence": "implied by src/sim/simdo.c 2026-11-09"
   },
+  "viewMasks": {
+   "va": "004a02a0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?viewMasks$n[]$ViewMask$$",
+   "evidence": "implied by src/sim/simdo.c 2026-11-09"
+  },
   "SimDoSourceFile": {
    "va": "004a02f4",
    "kind": "data",
@@ -33227,6 +33242,14 @@
    "mangled": "W?bestLocEntries$n[]a",
    "evidence": "implied by src/_unknown/tu_00454990.c 2026-11-09"
   },
+  "bestLocEntries#W?bestLocEntries$n$BestLocState$$": {
+   "va": "004d3704",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?bestLocEntries$n$BestLocState$$",
+   "tu": "src/_unknown/tu_0044b8b0.c",
+   "evidence": "own data placed in src/_unknown/tu_0044b8b0.c 2026-11-09"
+  },
   "bestLocCursor": {
    "va": "004d3738",
    "kind": "data",
@@ -33261,6 +33284,20 @@
    "status": "hypothesis",
    "mangled": "W?gGameTime$ni",
    "evidence": "implied by src/sim/apply.c 2026-11-09"
+  },
+  "viewMaximum": {
+   "va": "004d377c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?viewMaximum$ni",
+   "evidence": "implied by src/sim/simdo.c 2026-11-09"
+  },
+  "viewMinimum": {
+   "va": "004d3780",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?viewMinimum$ni",
+   "evidence": "implied by src/sim/simdo.c 2026-11-09"
   },
   "gGameTurn": {
    "va": "004d3784",
@@ -33318,6 +33355,13 @@
    "mangled": "W?deathMovies$ni",
    "evidence": "implied by src/pop/pdeath.c 2026-11-09"
   },
+  "viewFog": {
+   "va": "004d37b0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?viewFog$ni",
+   "evidence": "implied by src/sim/simdo.c 2026-11-09"
+  },
   "g4d381c": {
    "va": "004d381c",
    "kind": "data",
@@ -33338,6 +33382,14 @@
    "status": "hypothesis",
    "mangled": "W?g4d385c$n$ViewRect$$",
    "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
+  "simHelp": {
+   "va": "004d386c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?simHelp$n$MenuHelpRegion$$",
+   "tu": "src/_unknown/tu_0044b8b0.c",
+   "evidence": "own data placed in src/_unknown/tu_0044b8b0.c 2026-11-09"
   },
   "targetLimits": {
    "va": "004d388c",
@@ -33430,6 +33482,22 @@
    "mangled": "W?gFxSeed$nui",
    "evidence": "implied by src/sim/fxout.c 2026-11-09"
   },
+  "gFxSeed#W?gFxSeed$n$SimRandomSeed$$": {
+   "va": "004d3e04",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gFxSeed$n$SimRandomSeed$$",
+   "tu": "src/_unknown/tu_0044b8b0.c",
+   "evidence": "own data placed in src/_unknown/tu_0044b8b0.c 2026-11-09"
+  },
+  "simItemSeed": {
+   "va": "004d3e08",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?simItemSeed$n$SimRandomSeed$$",
+   "tu": "src/_unknown/tu_0044b8b0.c",
+   "evidence": "own data placed in src/_unknown/tu_0044b8b0.c 2026-11-09"
+  },
   "W?timer$:.0$:?SimHoverObject$n(pn$SimGame$$i)vn$GameTimer$$": {
    "va": "004d3e20",
    "kind": "data",
@@ -33443,6 +33511,110 @@
    "status": "hypothesis",
    "mangled": "W?$Wbi00$:.0$:?SimHoverObject$n(pn$SimGame$$i)vn[]uc",
    "evidence": "implied by src/_unknown/tu_0044bcd0.c 2026-11-09"
+  },
+  "alertMap": {
+   "va": "004d3e34",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?alertMap$n$SimMapGadget$$",
+   "tu": "src/_unknown/tu_0044d150.c",
+   "evidence": "own data placed in src/_unknown/tu_0044d150.c 2026-11-09"
+  },
+  "alertMap2": {
+   "va": "004d3e60",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?alertMap2$n$SimMapGadget$$",
+   "tu": "src/_unknown/tu_0044d150.c",
+   "evidence": "own data placed in src/_unknown/tu_0044d150.c 2026-11-09"
+  },
+  "alertPilot": {
+   "va": "004d3e8c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?alertPilot$n$MenuNumber$$",
+   "tu": "src/_unknown/tu_0044d150.c",
+   "evidence": "own data placed in src/_unknown/tu_0044d150.c 2026-11-09"
+  },
+  "alertUnit": {
+   "va": "004d3ebc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?alertUnit$n$MenuNumber$$",
+   "tu": "src/_unknown/tu_0044d150.c",
+   "evidence": "own data placed in src/_unknown/tu_0044d150.c 2026-11-09"
+  },
+  "alertImage": {
+   "va": "004d3eec",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?alertImage$n$PilotImageButton$$",
+   "tu": "src/_unknown/tu_0044d150.c",
+   "evidence": "own data placed in src/_unknown/tu_0044d150.c 2026-11-09"
+  },
+  "alertImage2": {
+   "va": "004d3f18",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?alertImage2$n$PilotImageButton$$",
+   "tu": "src/_unknown/tu_0044d150.c",
+   "evidence": "own data placed in src/_unknown/tu_0044d150.c 2026-11-09"
+  },
+  "alertButton": {
+   "va": "004d3f44",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?alertButton$n$MenuButton$$",
+   "tu": "src/_unknown/tu_0044d150.c",
+   "evidence": "own data placed in src/_unknown/tu_0044d150.c 2026-11-09"
+  },
+  "alertButton2": {
+   "va": "004d3f6c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?alertButton2$n$MenuButton$$",
+   "tu": "src/_unknown/tu_0044d150.c",
+   "evidence": "own data placed in src/_unknown/tu_0044d150.c 2026-11-09"
+  },
+  "alertValue1": {
+   "va": "004d3f94",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?alertValue1$n$SimValueGadget$$",
+   "tu": "src/_unknown/tu_0044d150.c",
+   "evidence": "own data placed in src/_unknown/tu_0044d150.c 2026-11-09"
+  },
+  "alertValue2": {
+   "va": "004d3fbc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?alertValue2$n$SimValueGadget$$",
+   "tu": "src/_unknown/tu_0044d150.c",
+   "evidence": "own data placed in src/_unknown/tu_0044d150.c 2026-11-09"
+  },
+  "alertValue3": {
+   "va": "004d3fe4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?alertValue3$n$SimValueGadget$$",
+   "tu": "src/_unknown/tu_0044d150.c",
+   "evidence": "own data placed in src/_unknown/tu_0044d150.c 2026-11-09"
+  },
+  "alertValue4": {
+   "va": "004d400c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?alertValue4$n$SimValueGadget$$",
+   "tu": "src/_unknown/tu_0044d150.c",
+   "evidence": "own data placed in src/_unknown/tu_0044d150.c 2026-11-09"
+  },
+  "alertSpacers": {
+   "va": "004d4034",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?alertSpacers$n[]$MenuSpacer$$",
+   "tu": "src/_unknown/tu_0044d150.c",
+   "evidence": "own data placed in src/_unknown/tu_0044d150.c 2026-11-09"
   },
   "g4d4094": {
    "va": "004d4094",

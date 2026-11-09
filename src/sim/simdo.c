@@ -126,7 +126,7 @@ void SimPanBy(SimGame *s,GridPoint *d) {
 void SimCenterOn(SimGame *s,GridPoint *point) {
  if(s->view.point!=*point) {
   if(GridPointToIndex(&fallbackName,point)) { ExploCompact(1);
-   s->view.point=*point; ViewState *v=&s->view; ViewState *saved=&s->savedView; SetTerrainView(gView,v,0); *saved=*v; s->screen|=1;
+   s->view.point=*point; SetTerrainView(gView,&s->view,0);s->savedView=s->view; s->screen|=1;
   }
  }
 }
@@ -134,7 +134,7 @@ void SimSetMode(SimGame *s,int delta) {
  s->view.direction=(s->view.direction+delta)%6;
  if(s->view.direction<0) s->view.direction+=6;
  simTransform.direction=s->view.direction; SetFastView(&gFastTransform,&simTransform);
- ViewState *v=&s->view; ViewState *saved=&s->savedView; SetTerrainView(gView,v,0); *saved=*v; s->screen|=3;
+ SetTerrainView(gView,&s->view,0);s->savedView=s->view; s->screen|=3;
 }
 void SimSetView(SimGame *s,register int delta) {
  register int old=s->view.zoom; s->view.zoom+=delta;
@@ -143,7 +143,7 @@ void SimSetView(SimGame *s,register int delta) {
  if(old!=s->view.zoom || delta==0) {
   if(s->linked && delta) SoundPlay(6,0);
   f_44db70(s,0); s->view.scale=viewScales[s->view.zoom];
-  ViewState *v=&s->view; ViewState *saved=&s->savedView; SetTerrainView(gView,v,0); *saved=*v; s->screen|=1;
+  SetTerrainView(gView,&s->view,0);s->savedView=s->view; s->screen|=1;
  }
 }
 void f_44db70(SimGame *s,int toggle) {
@@ -151,12 +151,12 @@ void f_44db70(SimGame *s,int toggle) {
  int high=SimClamp(viewMaximum,0,100);
  low/=2; high=high/2+50; if(high<low) high=low;
  int level=((high-low)*s->view.zoom+4)/9+low;
- if(level<=low) level=low; else if(level>=100) level=100;
+ if(level>low){if(level>=100)low=100;else low=level;}level=low;
  U32 mask=0; for(int i=0;viewMasks[i].mask;i++) if(viewMasks[i].threshold<=level) mask|=viewMasks[i].mask;
  s->view.requested^=toggle;
  if(viewFog) s->view.requested|=16; else s->view.requested&=~16;
  s->view.flags=s->view.requested&mask;
- ViewState *v=&s->view; ViewState *saved=&s->savedView; SetTerrainView(gView,v,0); *saved=*v;
+ SetTerrainView(gView,&s->view,0);s->savedView=s->view;
 }
 void SimSaveBookmark(SimGame *s,int n) {ViewState *dst=s->bookmarks+n; ViewState *src=&s->view; *dst=*src;}
 void SimRestoreBookmark(SimGame *s,int n) {ViewState *src=s->bookmarks+n,*dst=&s->view; *dst=*src; f_44db70(s,0);s->screen=-1;}
@@ -172,97 +172,97 @@ void SimSetFocus(SimGame *s,ActorRecord *a) {
  if(s->multi && ModeCheck((const char *)s))modeLogName.Focus(a);
  if(s->linked)SimClosePopups(s);
  s->focus=a;s->focusPilot=a->pilot;s->focusUnit=a->unit;
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
  if(!s->focus || !s->focusUnit || !s->focusPilot)AssertFail(SimDoSourceFile,__LINE__,0);
  s->focus->done=0;s->focusIndex=a->id;ExploCompact(1);
  AnimBitmapSweep(60000,5000,s->automated?5000:60000,s->automated?60000:5000,15000);
@@ -323,12 +323,14 @@ int SimSpendOnActor(SimGame *s,ActorRecord *a,int cost) {
  return 0;
 }
 int SimTrySpendFocus(SimGame *s,int cost) {
- if(SimFocusReady(s)) {
-  if(StateInvoke(s->focus->unit,0,0)>=cost || !s->focus->spent) return SimSpendFocus(s,cost);
-  if(s->linked) SoundPlay(7,0);
- }
- return 0;
+ int ready=SimFocusReady(s);
+ return ready
+  ? ((StateInvoke(s->focus->unit,0,0)>=cost || !s->focus->spent)
+      ? SimSpendFocus(s,cost)
+      : (s->linked ? (SoundPlay(7,0),0) : 0))
+  : ready;
 }
+
 void SimFaceTarget(SimGame *s,int direction,int flags) {
  if(SimFocusReady(s)) {
   int facing=GridClamp(direction);ActorSetDirection(s->focus,facing);s->screen|=4;
@@ -474,9 +476,9 @@ int SimUseItem(SimGame *s,int item,int mode) {
  int result=SimExecuteItem(s,item,mode);
  ActorItem *entry=s->focus->unit->Item(item+19);
  U32 kind=entry->kind;
- if(kind==5 || kind==9) {
+ switch(kind) {default:return result;case 5:case 9:
   UnitRefresh(s->focus->unit);GridSetActor(&fallbackName,s->focus->unit,s->focus->pilot);SimRefreshFog(s,0);
-  int target=s->focus->target;if(target){SimTargetAction(s,target);return result;}
+  if(s->focus->target)SimTargetAction(s,s->focus->target);
  }
  return result;
 }
@@ -492,527 +494,525 @@ void SimSetReturnFire(SimGame *s,unsigned char index,int all,int value) {
 }
 void SimAdoptFocus(SimGame *s,ActorRecord *a) {
  s->focus=a;s->focusPilot=a->pilot;s->focusUnit=a->unit;
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
- // Preserve original sim\simdo.c assertion line.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
+// ASSERT source line padding.
  if(!s->focus || !s->focusUnit || !s->focusPilot)AssertFail(SimDoSourceFile,__LINE__,0);
  s->focus->done=0;s->focusIndex=a->id;
  ActorRecord *focus=s->focus;GetModePlayer(s,focus->owner)->actor=focus->id;
@@ -1215,6 +1215,12 @@ void SimSetUpdate(SimGame *s,int open) {
   }
  }
 }
+
+
+
+
+
+
 
 
 
