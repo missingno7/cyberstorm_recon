@@ -2222,7 +2222,7 @@
   "src/shell/shell.c": {
    "as": "shell\\shell.c",
    "install": "wc106",
-   "profile": "plain",
+   "profile": "plain-oe",
    "functions": {
     "W?.fn_init$n()v": {
      "va": "00401010",
@@ -2279,6 +2279,16 @@
      "size": 114,
      "mangled": "W?ShellApplyPalette$n(pn$Palette$$)v"
     },
+    "Shell::RestoreMenu": {
+     "va": "0040693b",
+     "size": 281,
+     "mangled": "W?RestoreMenu$:Shell$n(i)v"
+    },
+    "Shell::Event": {
+     "va": "00406a54",
+     "size": 503,
+     "mangled": "W?Event$:Shell$n(uc)v"
+    },
     "Shell::UpdateCredits": {
      "va": "00406fc9",
      "size": 230,
@@ -2293,6 +2303,11 @@
      "va": "0040717c",
      "size": 37,
      "mangled": "W?$ct:Shell$n()_"
+    },
+    "ProfileManager::Mode": {
+     "va": "004071a4",
+     "size": 11,
+     "mangled": "W?Mode$:ProfileManager$n()ul"
     }
    },
    "data": {

@@ -277,6 +277,16 @@ class Comparison:
         disp = 0 if m & 4 else f.disp
         if m & 3 == 0:
             seg = self.m.segments[d]
+            if is_code(seg) and f.size() == 4:
+                # Watcom: code-to-code references (jump tables, local pointers) are `_TEXT + 0` with the full
+                # target offset in the data field. With per-function placement the offset must be resolved
+                # through the extent that contains it; return VA - addend so callers' `target + addend` holds.
+                add = self._addend(f.seg, f)
+                tva = self.va_of(d, (disp + add) & 0xFFFFFFFF)
+                if tva is not None:
+                    how = self.ext_va.get((d, 0), (0, "code"))[1]
+                    return (tva - add) & 0xFFFFFFFF, "seg:" + how, seg.name
+                return None, None, seg.name
             if is_code(seg) or d in self.base:
                 va = self.va_of(d, disp)
                 if va is not None:

@@ -1,3 +1,4 @@
+#include <string.h>
 /* shell\shell.c, partial reconstruction of the single supported object cluster.
  * The census also contains switch blocks/tables: see REPORT.md before splitting.
  * Shell fields marked unknown are unobserved layout, not initialized storage. */
@@ -42,7 +43,7 @@ extern int TimerExpired(Timer *);
 extern long gGuiEffectPriority;
 extern long gShellCreditStep;
 extern Timer gShellCreditTimer;
-extern char g513888,g511948,gMenuSavedSurface;
+extern char g513888;extern Surface g511948,gMenuSavedSurface;
 extern GuiRect gMenuClip;
 extern Palette gGuiPalette;
 extern unsigned char *gSurfaceColorRemap;
@@ -93,10 +94,37 @@ extern void InputPoll(InputReq *);
 extern void SurfaceClear(void *);
 extern void ShellPlayMovie(const char *);
 extern void ShellIntroStart(Scene *,InputReq *,int);
-struct ProfileManager {int Count();void *Select(int);void Advance(int);long Value(int);};
+struct ProfileManager {unsigned char unknown00[0x426];U32 mode;unsigned char unknown42a[0x6c9d];long credits;U32 Mode(){return mode;}long Credits(){return credits;}long PendingCost();void CommitPurchases();int HasContinuation();void SelectScenario(int);int Count();void *Select(int);void Advance(int);long Value(int);};
 extern ProfileManager profileManager;
 extern int g4d030f;
 extern long SendEvent(void *,int,void * =0,int=0,int=0);
+extern void ShellMainMenuOpen(Scene *,InputReq *,int);
+extern void ShellMultiplayerOpen(Scene *,InputReq *,int);
+extern int gGuiPaletteFaded;
+extern void GuiFadeIn();
+extern Scene g4b16a4,g4b07f8,g4b0c50,g4b01c8,g4b0e18,g4ba9a8;
+extern void ShellIntroRender(Scene *);
+extern void ShellMainMenuRender(Scene *);
+extern void ShellSelectionRender(Scene *);
+extern void ShellSelectionControlsRender(Scene *);
+extern void ShellBiodermStatsRender(Scene *);
+extern void ShellBiodermSkillsRender(Scene *);
+extern void ShellBiodermListRender(Scene *);
+extern void ShellBiodermDetailsRender(Scene *);
+extern void MissBriefUpdate(MissBrief *);
+extern void CommsScreenRender(Scene *);
+extern void ShellMissionRender(Scene *);
+extern void HercBayRender(Scene *);
+extern void HercBuyRender(Scene *);
+extern void ShellStorageRender(Scene *);
+extern void HercUpgradeRender(Scene *);
+extern void ShellMapRender(Scene *);
+extern void ShellBriefingRender(Scene *);
+extern void ShellMultiplayerRender(Scene *);
+extern void ShellNetworkSetupRender(Scene *);
+extern void MultiplayerLaunchRender(Scene *);
+extern void HotseatRender(Scene *);
+
 class ShellBase {
 public:
     long active;long IsActive()const{return active;}
@@ -124,7 +152,10 @@ public:
     U32 unknown3f;
     InputReq input;
     long auxiliaryState,screen;
-    unsigned char unknown53[12];
+    U32 resumeReason;unsigned char unknown57[8];
+    void RestoreMenu(int);
+    void ResumeMenus();
+    void BeginComms(unsigned char);
     long SumRosterResponses();
     long ProfileValueTotal();
     InputReq *Request(){return &input;}
@@ -133,7 +164,6 @@ public:
     void BeginBriefing(unsigned char);
     void ShowIntro();
     void ReplayIntro();
-    void ShowIntroCore();
     int UpdateCredits();
     U32 NextCreditBreakpoint(U32);
 };
@@ -154,7 +184,7 @@ GameSession gShellGame;
 Timer gShellAnimationTimer(0);
 
 
-struct StrPool {void Unlock();};
+struct StrPool {void Lock();void Unlock();char *GetString(long,int);};
 extern StrPool gShellStrings,missionImageName;
 extern void *gShellImages;
 extern char gShellFont,g4b74f4,gShellResources;
@@ -165,33 +195,32 @@ extern void SurfaceFree(void *);
 extern "C" void f_cbf0(void *);
 extern "C" void f_d2c0(void *);
 extern "C" void f_cb80(void *);
-extern int gShellExitCode;
-inline void ShellCloseScreensCore() {
+extern int gShellExitCode;inline U32 ShellExitReason(){return gShellExitCode;}
 
-    ShellSelectionClose(&g4aff6c);
-    MissBriefClose(&g4b3390);
-    CommsScreenClose(&g4b2e30);
-    ShellMissionClose(&g4b3598);
-    HercBayShutdown(&g4b37c4);
-    HercBuyClose(&g4b416c);
-    ShellStorageClose(&g4b5b50);
-    HercUpgradeClose(&g4b700c);
-    ShellMainMenuClose(&g4aebe0);
-    ShellIntroClose(&g4afa84);
-    ShellMapClose(&g4afbfc);
-    ShellBriefingClose(&g4b7904);
-    ShellMultiplayerClose(&g4b82fc);
-    MultiplayerLaunchClose(&g4ba2bc);
-    if(gShellHotseat)HotseatClose(gShellHotseat);
-    SoundClearContext();
 
-}
 
-inline void ShellClearFrameCore(){
-    SigsStart(&g513888,0);
-    SurfacePresent(&g513888);
-    GuiResetClip(&gMenuClip);
-}
+extern void ShellMultiplayerInit(void *);
+extern void SurfaceAttach(void *,void *,long,long);
+extern void SurfaceCreate(void *,long,long);
+extern void *gShellSurfacePixels,*gShellDrawPixels;
+extern long gShellWidth,gShellHeight;inline long ShellWidth(){return gShellWidth;}inline long ShellHeight(){return gShellHeight;}
+extern void ShellRefreshResources();
+extern void FlicInitBuffers(U32,U32);
+extern StrPool gShellMiniStrings,gShellParaStrings;
+extern "C" void SetPointer(void *,void *);
+extern void FontLoad(void *,const char *);
+struct MenuImages;extern MenuImages *gMenuImages;
+extern char gShellDefaultName[];
+extern int gShellPlayIntro;
+extern int g4d0413;
+extern unsigned char gShellContinuationMap;
+extern void ShellMapOpen(Scene *,InputReq *,long);
+extern void ShellMissionBegin(Scene *,InputReq *);
+extern int StopMultiplayer(int,int);
+extern void CommsScreenOpen(Scene *,InputReq *,unsigned char);
+extern void ShellNetworkSetupOpen(Scene *,InputReq *,unsigned char);
+extern Scene g4ba9a8;
+
 void ShellClearFrame()
 {
     SigsStart(&g513888,0);
@@ -227,7 +256,7 @@ void Shell::Close(int exitCode)
         missionImageName.Unlock();
         f_cb80(gShellImages);gShellImages=0;
         f_cbf0(&gShellFont);
-        ShellCloseScreensCore();
+        ShellCloseAllScreens();
         ShellMultiplayerShutdown(&g4b74f4);
         f_d2c0(&gShellResources);
         ShellSoundShutdown();
@@ -238,6 +267,44 @@ void Shell::Close(int exitCode)
 }
 
 
+extern StrPool gShellMessages;
+extern const char *ShellFormatText(const char *,...);
+extern void ShellErrorMessage(const char *);
+extern int ShellConfirmMessage(const char *);
+extern int g4d0413;
+/* Six register-byte differences and an extent blocker remain. */
+void ShellConfirmPurchases()
+{
+
+
+    long subtotal=0;
+    int index=1;
+    void *current;
+    for(; (current=profileManager.Select(index))!=0; ++index){
+        subtotal+=SendEvent(current,0x73,0,0,0);
+        subtotal+=SendEvent(current,0x77,0,0,0);
+        subtotal+=SendEvent(current,0x75,0,0,0);
+
+    }
+    long total=profileManager.PendingCost();
+    long pending=total;
+    total+=subtotal;
+    long budget=profileManager.Credits();
+    if(total>budget){
+        ShellErrorMessage(ShellFormatText(gShellMessages.GetString(423,1),total,budget));
+    }else if(ShellConfirmMessage(ShellFormatText(gShellMessages.GetString(424,1),pending,subtotal,total,budget))){
+        profileManager.CommitPurchases();
+        index=1;
+        for(; (current=profileManager.Select(index))!=0; ++index){
+            SendEvent(current,0x74,0,0,0);
+            SendEvent(current,0x78,0,0,0);
+            SendEvent(current,0x76,0,0,0);
+    
+        }
+    }
+
+
+}
 void Shell::BeginBriefing(unsigned char number)
 {
     CommsScreenClose(&g4b2e30);
@@ -268,95 +335,28 @@ long Shell::ProfileValueTotal()
     return total;
 }
 
-inline void Shell::ShowIntroCore()
+
+void Shell::ShowIntro()
 {
-    ShellClearFrameCore();
+    ShellClearFrame();
     ShellPlayMovie("csintro");
     gInDirty=1;
     InputPoll(Request());
-}
-void Shell::ShowIntro()
-{
-    ShowIntroCore();
 }
 void Shell::ReplayIntro()
 {
     ShellIntroClose(&g4afa84);
     SurfaceClear(&g511948);
     SurfacePresent(&g513888);
-    ShowIntroCore();
+    ShowIntro();
     SurfaceClear(&g511948);
     SurfacePresent(&g513888);
     ShellIntroStart(&g4afa84,&input,0);
 }
-inline void ShellLoadPaletteCore(const char *name)
+void ShellLoadPalette(const char *name)
 {
     Palette palette;
     void *loaded=gResMgr.Load(name,1,&palette,sizeof(palette));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3120,7 +3120,7 @@ inline void ShellLoadPaletteCore(const char *name)
     GuiFilterPalette(&palette,gShellTintModeActive?3:1);
     ApplyPaletteData(&palette);
 }
-void ShellLoadPalette(const char *name){ShellLoadPaletteCore(name);}
+
 extern U32 gIn80;inline U32 ShellInputKey(){return gIn80;}
 extern void HelpClearTopic();
 extern void ShellSetMenuState(int);
@@ -3132,6 +3132,7 @@ extern void ShellLimitFrameRate(Shell *);
 extern void GuiFadeOut();
 extern void SoundStop(unsigned);
 struct SoundSettings;extern int SoundPlay(unsigned,const SoundSettings * =0);
+
 
 
 void ShellApplyPalette(Palette *palette)
@@ -3159,12 +3160,267 @@ void ShellShadeRect(long x,long y,long width,long height)
     gSurfaceColorRemap=0;
 }
 
+/* Recovered resource/state setup; global tail sharing still differs. */
+void Shell::Open()
+{
+    if(IsActive())return;
+    U32 reason=ShellExitReason();
+    active=1;
+    ShellMultiplayerInit(&g4b74f4);
+    TimerSet(&gShellIdleTimer,120000);
+    status=0;
+    SurfaceAttach(&g511948,gShellSurfacePixels,ShellWidth(),ShellHeight());
+    SurfaceCreate(&gMenuSavedSurface,ShellWidth(),ShellHeight());
+    gShellDrawPixels=gMenuSavedSurface.pixels;
+    FlicInitBuffers(0x4baf0,0x4baf0);
+    ShellRefreshResources();
+    gShellStrings.Lock();missionImageName.Lock();
+    SurfaceClear(&gMenuSavedSurface);GuiFadeOut();
+    gShellMiniStrings.Unlock();gShellParaStrings.Unlock();
+    SetPointer(&gShellMiniStrings,(void *)"minish.bin");
+    SetPointer(&gShellParaStrings,(void *)"parash.bin");
+    gShellMiniStrings.Lock();
+    gShellImages=gResMgr.Load("shellgui.bmx");gMenuImages=(MenuImages *)gShellImages;
+    FontLoad(&gShellFont,"Font3.fnx");GuiResetClip(&gMenuClip);
+    memset(sessionName,0,30);strncpy(sessionName,gShellDefaultName,13);
+    U32 mode=profileManager.Mode();
+    switch(reason){
+    case 0:case 2:
+        if(gShellPlayIntro)ShowIntro();
+    case 5:
+        screen=1;auxiliaryState=1;
+        ShellIntroStart(&g4afa84,&input,0);
+        profileManager.SelectScenario(0);difficulty=0;
+        displayedCredits=g4d0413;unknown1d=0;
+        break;
+    case 3:
+        screen=5;auxiliaryState=5;resumeReason=0;
+        ResumeMenus();
+        break;
+    case 4:
+        screen=31;auxiliaryState=31;
+        ShellMissionBegin(&g4b3598,&input);
+        if(mode==2||mode==3)StopMultiplayer(0,1);
+        break;
+    default:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        AssertFail(ShellSourceFile,__LINE__,"illegal exit code in shell.open");
+    }
+}
+void Shell::BeginComms(unsigned char kind)
+{
+
+    switch(profileManager.Mode()){
+    case 0:case 2:default:break;
+    case 1:CommsScreenOpen(&g4b2e30,&input,kind);screen=10;break;
+    case 3:ShellNetworkSetupOpen(&g4ba9a8,&input,kind);screen=36;break;
+    }
+
+}
+void Shell::ResumeMenus()
+{
+    switch(profileManager.Mode()){
+    case 1:
+        if(profileManager.HasContinuation()){
+            screen=32;ShellMapOpen(&g4afbfc,&input,999);gShellContinuationMap=1;
+        }else RestoreMenu(resumeReason);
+        return;
+    case 2:case 3:
+        RestoreMenu(resumeReason);
+        return;
+    }
+    RestoreMenu(resumeReason);
+}
+void Shell::RestoreMenu(int reason)
+{
+
+    switch(profileManager.Mode()){
+    case 1:
+        screen=5;
+        ShellMainMenuClose(&g4aebe0);
+        ShellMainMenuOpen(&g4aebe0,&input,reason);
+        auxiliaryState=5;
+        break;
+    case 2:case 3:
+        screen=35;
+        ShellMultiplayerClose(&g4b82fc);
+        ShellMultiplayerOpen(&g4b82fc,&input,reason);
+        auxiliaryState=35;
+        break;
+    }
+
+}
+/* Rendering dispatcher; canonical Event label retained pending coordinated rename. */
+void Shell::Event(unsigned char)
+{
+    if(IsActive()){
+        switch(screen){
+        case 1:
+            ShellIntroRender(&g4afa84);
+            break;
+        case 5:
+            ShellMainMenuRender(&g4aebe0);
+            break;
+        case 8:
+            ShellSelectionRender(&g4aff6c);
+            ShellSelectionControlsRender(&g4b16a4);
+            ShellBiodermStatsRender(&g4b07f8);
+            ShellBiodermSkillsRender(&g4b0c50);
+            ShellBiodermListRender(&g4b01c8);
+            ShellBiodermDetailsRender(&g4b0e18);
+            break;
+        case 28:
+            MissBriefUpdate(&g4b3390);
+            break;
+        case 10:
+            CommsScreenRender(&g4b2e30);
+            break;
+        case 31:
+            ShellMissionRender(&g4b3598);
+            break;
+        case 9:
+            HercBayRender(&g4b37c4);
+            break;
+        case 25:case 29:
+            HercBuyRender(&g4b416c);
+            break;
+        case 27:
+            ShellStorageRender(&g4b5b50);
+            break;
+        case 30:
+            HercUpgradeRender(&g4b700c);
+            break;
+        case 32:
+            ShellMapRender(&g4afbfc);
+            break;
+        case 12:
+            ShellSelectionRender(&g4aff6c);
+            ShellSelectionControlsRender(&g4b16a4);
+            ShellBiodermListRender(&g4b01c8);
+            break;
+        case 16:
+            ShellSelectionRender(&g4aff6c);
+            ShellSelectionControlsRender(&g4b16a4);
+            ShellBiodermDetailsRender(&g4b0e18);
+            break;
+        case 17:
+            ShellSelectionRender(&g4aff6c);
+            ShellSelectionControlsRender(&g4b16a4);
+            ShellBiodermStatsRender(&g4b07f8);
+            break;
+        case 15:
+            ShellSelectionRender(&g4aff6c);
+            ShellSelectionControlsRender(&g4b16a4);
+            ShellBiodermSkillsRender(&g4b0c50);
+            break;
+        case 34:
+            ShellBriefingRender(&g4b7904);
+            break;
+        case 35:
+            ShellMultiplayerRender(&g4b82fc);
+            break;
+        case 36:
+            ShellNetworkSetupRender(&g4ba9a8);
+            break;
+        case 37:
+            MultiplayerLaunchRender(&g4ba2bc);
+            break;
+        case 38:
+            HotseatRender(gShellHotseat);
+            break;
+        }
+        if(gGuiPaletteFaded){GuiFadeIn();gGuiPaletteFaded=0;}
+        else SurfaceFlush(&g513888);
+    }
+}
 /* Diagnostic: byte-equal, but the inlined palette literal is still UNBOUND. */
 int Shell::PlayTakeoff(int)
 {
     Flic movie;
     int skipped=0;
-    ShellLoadPaletteCore("mainmenu.plx");
+    ShellLoadPalette("mainmenu.plx");
     MenuLoadBackground("BGBASE.BMX",&gShellBackground);
     SurfaceCopyRegion(&gMenuSavedSurface,&g511948,0,0);
     movie.Open((long)"takeoff.flx");
@@ -3184,7 +3440,7 @@ int Shell::PlayTakeoff(int)
     }
     movie.Close();
     GuiFadeOut();
-    ShellClearFrameCore();
+    ShellClearFrame();
     SoundStop(13);
     return skipped;
 }
@@ -3258,4 +3514,8 @@ U32 Shell::NextCreditBreakpoint(U32 credits)
     if(credits<=7500000)return 7500000;
     return 15000000;
 }
+
+
+
+
 

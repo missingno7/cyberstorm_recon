@@ -60,7 +60,7 @@ PROLOGUE = (b"\x53", b"\x55", b"\x56", b"\x57", b"\x8b\x44\x24", b"\x8b\x54\x24"
             b"\x83\xec", b"\x2e\xff\x15", b"\x68", b"\x6a", b"\xa1", b"\xc7\x05")
 
 
-def analyse(img, known_data=frozenset()):
+def analyse(img, known_data=frozenset(), known_jt_sites=frozenset()):
     """known_data: addresses inside BEGTEXT used as memory operands (jump/lookup tables) by a previous pass;
     they are never function starts, and an uncovered gap that starts with one is skipped to the next
     prologue-like byte (Watcom puts switch tables in front of the function that uses them)."""
@@ -111,6 +111,7 @@ def analyse(img, known_data=frozenset()):
         add_func(va, seeds[va])
 
     def descend(start):
+        last_imm = {}
         stack = [start]
         while stack:
             pc = stack.pop()
@@ -124,6 +125,12 @@ def analyse(img, known_data=frozenset()):
                     insn_cover[off + k] = 1
                 insn_owner[pc] = start
                 m = x.mnemonic
+                if m == "mov" and len(x.operands) == 2 and x.operands[1].type == x86.X86_OP_IMM                         and in_text(x.operands[1].imm):
+                    last_imm[x.operands[0].reg] = x.operands[1].imm
+                if m.startswith("repne scas") or m.startswith("repe scas") or m.startswith("repnz scas"):
+                    v = last_imm.get(x86.X86_REG_EDI)
+                    if v is not None:
+                        data_refs.add(v)       # scan table addressed through EDI
                 for op in x.operands:
                     if op.type == x86.X86_OP_MEM and not op.mem.base and in_text(op.mem.disp):
                         data_refs.add(op.mem.disp)
@@ -158,7 +165,7 @@ def analyse(img, known_data=frozenset()):
         descend(work.pop())
 
     # relocated code pointers not inside jump tables and not already inside a descended instruction body
-    jt_sites = set()
+    jt_sites = set(known_jt_sites)
     for tab, (_, n) in jtables.items():
         jt_sites.update(range(tab, tab + 4 * n, 4))
     for v, sites in ptr_refs.items():
@@ -224,7 +231,11 @@ def analyse(img, known_data=frozenset()):
                       "ptr_refs": len([x for x in ptr_refs.get(s, []) if x not in jt_sites]),
                       "jumptables": [f"{t:08x}" for t, (o, n) in jtables.items() if o == s]})
     covered = sum(insn_cover)
+    all_jt = set()
+    for tab, (_, n) in jtables.items():
+        all_jt.update(range(tab, tab + 4 * n, 4))
     return {"oracle": img.name, "text": [f"{t0:08x}", f"{t1:08x}"], "functions": funcs,
+            "jt_sites": sorted(f"{v:08x}" for v in all_jt),
             "data_refs": sorted(f"{v:08x}" for v in data_refs),
             "covered_bytes": covered, "text_bytes": len(code)}, insn_cover, t0
 
@@ -237,7 +248,8 @@ def main(argv):
     img = pemod.load(name)
     res, cover, t0 = analyse(img)
     # second pass: tables found anywhere in pass 1 are data, never function starts
-    res, cover, t0 = analyse(img, frozenset(int(v, 16) for v in res["data_refs"]))
+    res, cover, t0 = analyse(img, frozenset(int(v, 16) for v in res["data_refs"]),
+                             frozenset(int(v, 16) for v in res["jt_sites"]))
     if "--gaps" in argv:
         code = img.section_bytes("BEGTEXT")
         i = 0
