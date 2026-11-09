@@ -936,6 +936,11 @@
      "size": 178,
      "mangled": "W?HercBayConfigureControls$n()v"
     },
+    "HercBayAltStart": {
+     "va": "00415f93",
+     "size": 145,
+     "mangled": "W?HercBayAltStart$n(pn$HercBay$$pnv)v"
+    },
     "HercBayClose": {
      "va": "00416024",
      "size": 40,
@@ -1090,6 +1095,11 @@
    "install": "wc106",
    "profile": "ot",
    "functions": {
+    "W?.fn_init$n()v": {
+     "va": "0045a600",
+     "size": 224,
+     "mangled": "W?.fn_init$n()v"
+    },
     "TargetLoadResource": {
      "va": "0045a6e0",
      "size": 32,
@@ -1109,6 +1119,16 @@
      "va": "0045a760",
      "size": 64,
      "mangled": "W?TargetClose$n(pnv)v"
+    },
+    "TargetUpdate": {
+     "va": "0045a7a0",
+     "size": 48,
+     "mangled": "W?TargetUpdate$n(pnv)v"
+    },
+    "TargetHandleEvent": {
+     "va": "0045a7d0",
+     "size": 304,
+     "mangled": "W?TargetHandleEvent$n(pnv)v"
     },
     "TargetEmpty": {
      "va": "0045a910",
@@ -1132,9 +1152,21 @@
     }
    },
    "data": {
+    "CONST2": {
+     "va": "0048e020",
+     "size": 52
+    },
+    "_DATA": {
+     "va": "004a256c",
+     "size": 12
+    },
     "XI": {
      "va": "004a6c7e",
      "size": 6
+    },
+    "W?$Wts0kn$PilotImageButton$$$nx[]uc": {
+     "va": "0048cdb8",
+     "size": 17
     }
    },
    "accepted": "2026-11-09"
@@ -7712,6 +7744,11 @@
      "va": "0042cb50",
      "size": 32,
      "mangled": "W?DisplaySetCandidate$n(pnii)v"
+    },
+    "DisplaySetRadius": {
+     "va": "0042cb70",
+     "size": 48,
+     "mangled": "W?DisplaySetRadius$n(pnii)i"
     }
    },
    "data": {
@@ -8622,6 +8659,16 @@
      "va": "00455d30",
      "size": 48,
      "mangled": "W?ActorIsSpecial$n(pn$ActorRecord$$)i"
+    },
+    "ActorCrouch": {
+     "va": "00455d60",
+     "size": 240,
+     "mangled": "W?ActorCrouch$n(pn$ActorRecord$$i)i"
+    },
+    "ActorStand": {
+     "va": "00455e50",
+     "size": 240,
+     "mangled": "W?ActorStand$n(pn$ActorRecord$$i)i"
     },
     "ActorSetExternal": {
      "va": "00455f40",
@@ -10348,6 +10395,16 @@
      "va": "004758ac",
      "size": 91,
      "mangled": "W?ShellLimitFrameRate$n()v"
+    },
+    "ShellRunScreen": {
+     "va": "00475907",
+     "size": 273,
+     "mangled": "W?ShellRunScreen$n(rn$UiSystem$$)i"
+    },
+    "ShellRun": {
+     "va": "00475a18",
+     "size": 941,
+     "mangled": "W?ShellRun$n(i)v"
     }
    },
    "data": {
@@ -11740,7 +11797,18 @@
    "as": "_unknown\\tu_00427c68.c",
    "install": "wc106",
    "profile": "plain",
-   "functions": {},
+   "functions": {
+    "MenuReadBitmap": {
+     "va": "00427c68",
+     "size": 270,
+     "mangled": "W?MenuReadBitmap$n(lpn$Surface$$pnv)i"
+    },
+    "MenuLoadBackground": {
+     "va": "00427d76",
+     "size": 147,
+     "mangled": "W?MenuLoadBackground$n(lpn$Palette$$)i"
+    }
+   },
    "data": {},
    "accepted": "2026-11-09"
   },

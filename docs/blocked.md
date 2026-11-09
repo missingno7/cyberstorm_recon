@@ -71,3 +71,6 @@ file.c); memory.c drops from COMPLETE to partial until the owner is settled. 10 
 their path in _DATA at the oracle address; unpack.c is COMPLETE.
 
 Resolved 2026-11-09 (integrator): the text belongs to debug\assert.c, which defines seven global error messages after its path string (004a4a44..004a4b8b: Problem!, Unable to initialize, Invalid data, Invalid state, Ran out of memory..., Missing file: %s..., Unable to write...); io\memory.c and io\resource.c reference errorMemory/errorData as extern. Their 4-byte spacing is reproduced only by wpp386, so assert.c moved from ot-c to ot with extern "C" definitions. memory.c is COMPLETE again; assert.c _DATA is STRICT as one segment.
+
+## sim\target.c data holds a second path (2026-11-09, s54)
+Right after target.c's module header in _DATA the oracle has the unreferenced path string "sim\mapalert.c", while target.c's asserts name "sim\target.c". The published file probably spans two adjacent original objects (mapalert.c, target.c); not split yet. s54 also found the ReportScreen destructor at 00448d74, which collides with the accepted label DeathScreenClose (tu_004481c0): identity still open.

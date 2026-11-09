@@ -1,7 +1,7 @@
 #include <string.h>
 typedef unsigned long U32;
 struct GuiRect {long left,top,right,bottom;};
-struct Surface {long width,height;void *pixels;U32 flags;};
+struct Surface {long width,height;void *pixels;U32 flags; void *Pixels(long row=0) { if (row) return (char*)pixels + row*width; return pixels; }};
 struct Palette {unsigned char bytes[0x452];};
 struct MenuImage {U32 offset;unsigned short width,height;U32 flags;};
 struct MenuImages {U32 count;MenuImage images[1];};
@@ -25,10 +25,12 @@ int MenuReadBitmap(long resource,Surface *surface,void *palette){
   if(f_c900(&gResMgr,&header,54)&&header.signature[0]=='B'&&header.signature[1]=='M'&&header.depth==8&&g5138ac==header.width&&g5138b0==header.height){
    if(palette){
     f_c900(&gResMgr,palette,1024);
-    for(int i=0;i<256;++i){unsigned char *color=(unsigned char *)palette+i*4;unsigned char b=color[0];color[0]=color[2];color[2]=b;}
+    for(int i=0;i<256;++i){unsigned char *color=(unsigned char *)palette+i*4;
+unsigned char b=color[0];color[0]=color[2];color[2]=b;
+}
     memset(palette,0,4);
    }else f_c8a0(&gResMgr,1024,1);
-   if(surface)f_c900(&gResMgr,surface->pixels,surface->width*surface->height);
+   if(surface)f_c900(&gResMgr,surface->Pixels(),surface->width*surface->height);
    error=0;
   }
   gResMgr.CloseFile();
@@ -47,3 +49,4 @@ int MenuLoadBackground(long resource,Palette *palette){
  ReleasePoolData(loaded);
  return 1;
 }
+

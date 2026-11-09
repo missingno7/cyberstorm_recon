@@ -162,36 +162,39 @@ void HercBayOpen(HercBay *bay, void *callback)
 {
     if (bay->IsActive())
         return;
-    register char *screen = (char *)bay;
+    
     register int selector = logicMode;
     if (selector == 1) { HercSelect(2); } else { HercSelect(9); }
     g4b37bc = -1;
-    ((GuiScreen *)screen)->LoadLayout((long)g48aa60);
+    bay->LoadLayout((long)g48aa60);
     register void *handler = callback;
-    ((GuiScreen *)screen)->Open((InputReq *)handler, &gShellStrings, 0x709, 1);
-    BriefStatus(screen);
-    screen += 0x58;
-    ((Flic *)screen)->Open((long)g48aa6c, 0x64, 0);
+    bay->Open((InputReq *)handler, &gShellStrings, 0x709, 1);
+    BriefStatus((char*)bay);
+    char *screen=(char*)bay+0x58;
+    ((Flic *)screen)->Open((long)g48aa6c);
     *(int *)(screen + 0x4c) = -1;
     ((MenuNumber *)&g4b3748)->SetValue(g4d0413, 0);
     *(int *)(screen - 0x58 + 0xec) = 1;
     *(int *)(screen - 0x58 + 0x54) = 0;
 }
 
-void HercBayAltStart(HercBay * volatile bay, void * volatile callback)
+void HercBayAltStart(HercBay *bay, void *callback)
 {
-    register HercBay *screen = bay;
+    
     register int selector = logicMode;
     if (selector == 1) { HercSelect(2); } else { HercSelect(9); }
     g4b37bc = -1;
-    screen->LoadLayout((long)g48aa60);
-    screen->Open((InputReq *)callback, &gShellStrings, 0x709, 1);
-    BriefStatus((char *)screen);
-    char *animation = (char *)screen + 0x58;
-    ((Flic *)animation)->Open((long)(const char *)g48aa6c, 0x64, 0);
+    bay->LoadLayout((long)g48aa60);
+    bay->Open((InputReq *)callback, &gShellStrings, 0x709, 1);
+    BriefStatus((char*)bay);
+    ((Flic *)((char *)bay+0x58))->Open((long)g48aa6c);
+    char *animation=(char*)bay+0x58;
     *(int *)(animation + 0x4c) = -1;
-    ((MenuNumber *)&g4b3748)->SetValue(g4d0413, 0);
+    int display = g4d0413;
+    ((MenuNumber *)&g4b3748)->SetValue(display, 0);
 }
+
+
 
 void HercBayClose(HercBay *bay)
 {
@@ -366,6 +369,7 @@ InitD seventhWidget(&g4b379c);
 State stateSeven(7);
 HercBay g4b37c4;
 State stateEight(8);
+
 
 
 

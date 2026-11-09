@@ -469,7 +469,9 @@ void DisplaySetCandidate(int *object, int value)
     BestLocSetData((void *)*object, object + 8, (void *)object[7]);
 }
 
-void DisplaySetRadius(int *object, int value) { object[5] = value; if (value < 0) { object[6] = 0; return; } object[6] = ((value + 1) * value >> 1) * 6 + 1; }
+int DisplaySetRadius(int *object,int value) {object[5]=value; if(value<0) value=0; else value=((value+1)*value>>1)*6+1; return object[6]=value;}
+
+
 
 
 

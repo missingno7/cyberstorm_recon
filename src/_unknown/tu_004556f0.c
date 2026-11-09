@@ -256,10 +256,11 @@ inline int ActorCrouchCost(ActorRecord *a) { return PopFindItem(a->unit,0,-1)->c
 inline int ActorStandCost(ActorRecord *a) { return PopFindItem(a->unit,0,-1)->standCost; }
 int ActorCrouch(ActorRecord *actor,int force)
 {
-    if (AnimActionHasMetadata(&actor->action)) {
+    if (!AnimActionHasMetadata(&actor->action)) return 0;
+    else {
         if (!force) {
             if (actor->action.IsMoving()) return 0;
-            if (actor->active == 0) return 0;
+            if (actor->active == 0) goto failed;
             if (actor->action.state == 7) return 0;
         }
         if (UnitSpend(actor->unit,actor->unit->CrouchCost()) || force) {
@@ -269,15 +270,17 @@ int ActorCrouch(ActorRecord *actor,int force)
             return 1;
         }
     }
+failed:
     return 0;
 }
 
 int ActorStand(ActorRecord *actor,int force)
 {
-    if (AnimActionHasMetadata(&actor->action)) {
+    if (!AnimActionHasMetadata(&actor->action)) return 0;
+    else {
         if (!force) {
             if (actor->action.IsMoving()) return 0;
-            if (actor->active == 0) return 0;
+            if (actor->active == 0) goto failed;
             if (actor->action.state == 1) return 0;
         }
         if (UnitSpend(actor->unit,actor->unit->StandCost()) || force) {
@@ -287,8 +290,11 @@ int ActorStand(ActorRecord *actor,int force)
             return 1;
         }
     }
+failed:
     return 0;
 }
+
+
 
 void ActorSetExternal(ActorRecord *actor,int target,unsigned long flags)
 {
@@ -348,4 +354,6 @@ void ActorUpdate(ActorRecord *actor,void *unit,ActorState *world,ActorWireState 
     f_00439438(actor->unit,unit);
     ActorCopyState(actor->world,world);
 }
+
+
 
