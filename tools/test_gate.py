@@ -32,6 +32,11 @@ def main():
         if not cond:
             fails.append(what)
 
+    import symbols
+    cases = {"W?get$:Foo$n()i": "Foo::get", "W?$ct:Foo$n()_": "Foo::$ct", "W?$dt:Foo$n()_": "Foo::$dt",
+             "W?gVar$ni": "gVar", "W?InputNop$n()v": "InputNop", "W?n$ni": "n", "cfunc": "cfunc",
+             "W?Load$:ResMgr$n(liii)pnv": "ResMgr::Load", "W?gResMgr$n$ResMgr$$": "gResMgr"}
+    check(all(symbols.label(k) == v for k, v in cases.items()), "symbol labels demangle correctly")
     st = statuses(TIMER, ["-4s", "-s", "-oxt"])
     check(all(v == "STRICT" for v in st.values()) and len(st) == 7, "positive control: timer TU strict (bound placement)")
     st = statuses(TIMER, ["-5s", "-s", "-oxt"])

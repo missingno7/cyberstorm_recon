@@ -20,7 +20,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import BUILD, CONFIG, dump_json, load_json  # noqa: E402
 
 PATH = CONFIG / "symbols.json"
-_MANGLED = re.compile(r"^W\?(\$?[A-Za-z_0-9]+)((?:\$:[A-Za-z_0-9]+)*)\$n")
+# W?name$n...   W?name$:Cls$n...   W?$ct:Cls$n...  (name is greedy; scopes are ':Cls$' groups)
+_MANGLED = re.compile(r"^W\?(\$?[A-Za-z_0-9]+)(?:\$((?::[A-Za-z_0-9]+\$)*)|((?::[A-Za-z_0-9]+\$)+))n")
 
 
 def label(sym):
@@ -31,8 +32,8 @@ def label(sym):
     m = _MANGLED.match(sym)
     if not m or sym.startswith("W?$W"):
         return sym
-    name, scopes = m.group(1), m.group(2)
-    parts = [s for s in scopes.split("$:") if s][::-1]
+    name, scopes = m.group(1), (m.group(2) or "") + (m.group(3) or "")
+    parts = [s for s in re.split(r"[:$]+", scopes) if s][::-1]
     return "::".join(parts + [name])
 
 

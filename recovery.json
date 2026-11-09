@@ -70,12 +70,12 @@
    "install": "wc106",
    "profile": "plain",
    "functions": {
-    "W?$ct:Rate$n(ul)_": {
+    "Rate::$ct": {
      "va": "0042a598",
      "size": 45,
      "mangled": "W?$ct:Rate$n(ul)_"
     },
-    "W?$dt:Rate$n()_": {
+    "Rate::$dt": {
      "va": "0042a5c5",
      "size": 5,
      "mangled": "W?$dt:Rate$n()_"

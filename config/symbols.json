@@ -79,7 +79,7 @@
    "tu": "src/_unknown/tu_004297d4.c",
    "evidence": "strict match 2026-11-09"
   },
-  "W?$ct:Rate$n(ul)_": {
+  "Rate::$ct": {
    "va": "0042a598",
    "kind": "func",
    "status": "matched",
@@ -87,7 +87,7 @@
    "tu": "src/_unknown/tu_0042a598.c",
    "evidence": "strict match 2026-11-09"
   },
-  "W?$dt:Rate$n()_": {
+  "Rate::$dt": {
    "va": "0042a5c5",
    "kind": "func",
    "status": "matched",
