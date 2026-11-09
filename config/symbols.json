@@ -3968,12 +3968,52 @@
    "mangled": "W?SoundClearContext$n()v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "LinkDecoderOwner::decode_link_samples": {
+   "va": "0046cdbc",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?decode_link_samples$:LinkDecoderOwner$n(uipn$LinkDecoderState$$ui)$LinkDecodeResult$$",
+   "tu": "src/multi/link.c",
+   "evidence": "placed (at) in src/multi/link.c 2026-11-09"
+  },
+  "reset_link_timer": {
+   "va": "0046ceec",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?reset_link_timer$n()v",
+   "tu": "src/multi/link.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "initialize_directplay": {
+   "va": "0046cefc",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?initialize_directplay$n()i",
+   "tu": "src/multi/link.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "shutdown_directplay": {
+   "va": "0046cfce",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?shutdown_directplay$n()v",
+   "tu": "src/multi/link.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "NetworkCreate": {
    "va": "0046d020",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?NetworkCreate$n(pnxa)i",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "open_link_connection": {
+   "va": "0046d020",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?open_link_connection$n(pnxa)i",
+   "tu": "src/multi/link.c",
+   "evidence": "placed (at) in src/multi/link.c 2026-11-09"
   },
   "NetworkStop": {
    "va": "0046d200",
@@ -3982,12 +4022,52 @@
    "mangled": "W?NetworkStop$n()v",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
   },
+  "close_link_connection": {
+   "va": "0046d200",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?close_link_connection$n()v",
+   "tu": "src/multi/link.c",
+   "evidence": "placed (at) in src/multi/link.c 2026-11-09"
+  },
   "NetworkSend": {
    "va": "0046d308",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?NetworkSend$n(ipnvuii)i",
    "evidence": "implied by src/multi/message.c 2026-11-09"
+  },
+  "send_link_packet": {
+   "va": "0046d308",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?send_link_packet$n(uiiii)ui",
+   "tu": "src/multi/link.c",
+   "evidence": "placed (at) in src/multi/link.c 2026-11-09"
+  },
+  "receive_link_packet": {
+   "va": "0046d3d8",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?receive_link_packet$n(pnipnipnuiuii)i",
+   "tu": "src/multi/link.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "dp_error_not_recognized": {
+   "va": "0046d449",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?dp_error_not_recognized$n()pnxa",
+   "tu": "src/multi/link.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "system_message_not_recognized": {
+   "va": "0046d44f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?system_message_not_recognized$n()pnxa",
+   "tu": "src/multi/link.c",
+   "evidence": "strict match 2026-11-09"
   },
   "NetworkRefresh": {
    "va": "0046d455",
@@ -3996,12 +4076,28 @@
    "mangled": "W?NetworkRefresh$n()v",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
   },
+  "disconnect_link_interface": {
+   "va": "0046d455",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?disconnect_link_interface$n()v",
+   "tu": "src/multi/link.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "LinkSetupPlayer": {
    "va": "0046d47a",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?LinkSetupPlayer$n()v",
    "evidence": "implied by src/multi/linkdlg.c 2026-11-09"
+  },
+  "reset_link_options": {
+   "va": "0046d47a",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?reset_link_options$n()v",
+   "tu": "src/multi/link.c",
+   "evidence": "strict match 2026-11-09"
   },
   "NetworkJoin": {
    "va": "0046d4a6",
@@ -4010,12 +4106,44 @@
    "mangled": "W?NetworkJoin$n(pnxa)i",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
   },
+  "request_link_connection": {
+   "va": "0046d4a6",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?request_link_connection$n(pnxa)i",
+   "tu": "src/multi/link.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "initialize_linkapp_globals": {
+   "va": "0046d538",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?initialize_linkapp_globals$n()v",
+   "tu": "src/multi/linkapp.c",
+   "evidence": "placed (at) in src/multi/linkapp.c 2026-11-09"
+  },
+  "wait_for_name_release": {
+   "va": "0046d588",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?wait_for_name_release$n(pnv)i",
+   "tu": "src/multi/linkapp.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "NetworkCallback": {
    "va": "0046d5c4",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?NetworkCallback$n()v",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "wait_for_link_shutdown": {
+   "va": "0046d5c4",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?wait_for_link_shutdown$n()v",
+   "tu": "src/multi/linkapp.c",
+   "evidence": "strict match 2026-11-09"
   },
   "NetworkReset": {
    "va": "0046d603",
@@ -4024,12 +4152,52 @@
    "mangled": "W?NetworkReset$n()v",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
   },
+  "clear_link_entries": {
+   "va": "0046d603",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?clear_link_entries$n()v",
+   "tu": "src/multi/linkapp.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "PeerAlive": {
    "va": "0046d61f",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?PeerAlive$n(i)i",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "retry_link_timer": {
+   "va": "0046d61f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?retry_link_timer$n(i)i",
+   "tu": "src/multi/linkapp.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "set_link_timer": {
+   "va": "0046d6d7",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?set_link_timer$n(i)v",
+   "tu": "src/multi/linkapp.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "process_link_events": {
+   "va": "0046d74c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?process_link_events$n()v",
+   "tu": "src/multi/linkapp.c",
+   "evidence": "placed (at) in src/multi/linkapp.c 2026-11-09"
+  },
+  "format_link_name": {
+   "va": "0046d86d",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?format_link_name$n(ii)v",
+   "tu": "src/multi/linkapp.c",
+   "evidence": "strict match 2026-11-09"
   },
   "NetworkBegin": {
    "va": "0046d8a6",
@@ -4038,12 +4206,36 @@
    "mangled": "W?NetworkBegin$n()v",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
   },
+  "save_link_tick": {
+   "va": "0046d8a6",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?save_link_tick$n()v",
+   "tu": "src/multi/linkapp.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "NetworkPoll": {
    "va": "0046d8bb",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?NetworkPoll$n()v",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "drain_link_queue": {
+   "va": "0046d8bb",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?drain_link_queue$n()v",
+   "tu": "src/multi/linkapp.c",
+   "evidence": "placed (at) in src/multi/linkapp.c 2026-11-09"
+  },
+  "cancel_current_link_entry": {
+   "va": "0046d93b",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?cancel_current_link_entry$n(ui)i",
+   "tu": "src/multi/linkapp.c",
+   "evidence": "strict match 2026-11-09"
   },
   "LinkPeerTimer::$ct": {
    "va": "0046d9ac",
@@ -4260,12 +4452,28 @@
    "mangled": "W?$ct:Chat$n()_",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
   },
+  "initialize_chat": {
+   "va": "0046e570",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?initialize_chat$n(pnv)pnv",
+   "tu": "src/multi/chat.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "Chat::Reset": {
    "va": "0046e58f",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?Reset$:Chat$n()i",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "reset_chat_history": {
+   "va": "0046e58f",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?reset_chat_history$n(pnv)i",
+   "tu": "src/multi/chat.c",
+   "evidence": "strict match 2026-11-09"
   },
   "Chat::Activate": {
    "va": "0046e5d3",
@@ -4274,12 +4482,123 @@
    "mangled": "W?Activate$:Chat$n()v",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
   },
+  "clear_chat": {
+   "va": "0046e5d3",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?clear_chat$n(pnv)v",
+   "tu": "src/multi/chat.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "core_chat": {
+   "va": "0046e5f9",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "core_chat",
+   "evidence": "implied by src/multi/chat.c 2026-11-09"
+  },
+  "process_chat": {
+   "va": "0046e5f9",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?process_chat$n(pnv)i",
+   "tu": "src/multi/chat.c",
+   "evidence": "placed (at) in src/multi/chat.c 2026-11-09"
+  },
+  "add_chat_message": {
+   "va": "0046e75a",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?add_chat_message$n(pnvpnvpnxa)i",
+   "tu": "src/multi/chat.c",
+   "evidence": "placed (at) in src/multi/chat.c 2026-11-09"
+  },
+  "flush_chat_log": {
+   "va": "0046e843",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?flush_chat_log$n()v",
+   "tu": "src/multi/chat.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "Chat::Log": {
    "va": "0046e869",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?Log$:Chat$n(ipnxa)v",
    "evidence": "implied by src/multi/mstart.c 2026-11-09"
+  },
+  "set_chat_mode": {
+   "va": "0046e869",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?set_chat_mode$n(pnvuipnxa)v",
+   "tu": "src/multi/chat.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "append_chat_history": {
+   "va": "0046e8a2",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?append_chat_history$n(pnvpnvpnxa)v",
+   "tu": "src/multi/chat.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "chat_ready": {
+   "va": "0046e938",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?chat_ready$n()i",
+   "tu": "src/multi/chat.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "create_chat_menu": {
+   "va": "0046e93e",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?create_chat_menu$n(pnv)v",
+   "tu": "src/multi/chat.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "update_chat_menu": {
+   "va": "0046e974",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?update_chat_menu$n(pnv)v",
+   "tu": "src/multi/chat.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "destroy_chat_menu": {
+   "va": "0046ea91",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?destroy_chat_menu$n(pnv)v",
+   "tu": "src/multi/chat.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "handle_chat_menu_command": {
+   "va": "0046eab9",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?handle_chat_menu_command$n(pnvui)v",
+   "tu": "src/multi/chat.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "refresh_chat_menu": {
+   "va": "0046eb7e",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?refresh_chat_menu$n(pnv)v",
+   "tu": "src/multi/chat.c",
+   "evidence": "placed (at) in src/multi/chat.c 2026-11-09"
+  },
+  "format_chat_entry": {
+   "va": "0046ebd2",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?format_chat_entry$n(pnvpnai)pna",
+   "tu": "src/multi/chat.c",
+   "evidence": "strict match 2026-11-09"
   },
   "W?.fn_init$n()v@multi/mstart.c": {
    "va": "0046ec5c",
@@ -4991,6 +5310,41 @@
    "mangled": "W?SigsStop$n()i",
    "evidence": "implied by src/multi/linkdlg.c 2026-11-09"
   },
+  "link_is_ready": {
+   "va": "00474c6a",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?link_is_ready$n(pnxa)i",
+   "evidence": "implied by src/multi/link.c 2026-11-09"
+  },
+  "link_force_shutdown": {
+   "va": "00474d7c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?link_force_shutdown$n()v",
+   "evidence": "implied by src/multi/link.c 2026-11-09"
+  },
+  "link_alt_receive": {
+   "va": "00474e11",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?link_alt_receive$n(pnvpnviii)i",
+   "evidence": "implied by src/multi/link.c 2026-11-09"
+  },
+  "alternate_link_disconnect": {
+   "va": "00474ea7",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?alternate_link_disconnect$n()v",
+   "evidence": "implied by src/multi/link.c 2026-11-09"
+  },
+  "link_load_settings": {
+   "va": "00474ea8",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?link_load_settings$n(pnv)v",
+   "evidence": "implied by src/multi/link.c 2026-11-09"
+  },
   "ShellPlayMovie": {
    "va": "0047520b",
    "kind": "func",
@@ -5053,6 +5407,55 @@
    "status": "hypothesis",
    "mangled": "W?LinkSelectDialog$n(pnapn(i)pnapnv)ul",
    "evidence": "implied by src/multi/linkdlg.c 2026-11-09"
+  },
+  "create_chat_popup": {
+   "va": "00477a08",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?create_chat_popup$n(pnvi)pnv",
+   "evidence": "implied by src/multi/chat.c 2026-11-09"
+  },
+  "chat_menu_valid": {
+   "va": "00477a69",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?chat_menu_valid$n(pnv)i",
+   "evidence": "implied by src/multi/chat.c 2026-11-09"
+  },
+  "build_chat_menu_line": {
+   "va": "00477b03",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?build_chat_menu_line$n(pnvuipnxaui)v",
+   "evidence": "implied by src/multi/chat.c 2026-11-09"
+  },
+  "enable_chat_menu": {
+   "va": "00477c76",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?enable_chat_menu$n(pnviii)v",
+   "evidence": "implied by src/multi/chat.c 2026-11-09"
+  },
+  "check_chat_menu": {
+   "va": "00477ccb",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?check_chat_menu$n(pnv)v",
+   "evidence": "implied by src/multi/chat.c 2026-11-09"
+  },
+  "chat_menu_state": {
+   "va": "00477d18",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?chat_menu_state$n(pnvii)i",
+   "evidence": "implied by src/multi/chat.c 2026-11-09"
+  },
+  "set_chat_menu_item": {
+   "va": "00477d6a",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?set_chat_menu_item$n(pnvii)v",
+   "evidence": "implied by src/multi/chat.c 2026-11-09"
   },
   "LoadMission": {
    "va": "00478d52",
@@ -5588,6 +5991,13 @@
    "mangled": "W?PopConstructorArray$n(pnvipnv)v",
    "evidence": "implied by src/pop/psystem.c 2026-11-09"
   },
+  "next_link_seed": {
+   "va": "0047e160",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "next_link_seed",
+   "evidence": "implied by src/multi/linkapp.c 2026-11-09"
+  },
   "RandomRange": {
    "va": "0047e1a0",
    "kind": "func",
@@ -5839,6 +6249,69 @@
    "mangled": "W?g48aa2c$n[]a",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
   },
+  "snw_valid_dll": {
+   "va": "0048b7ec",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?snw_valid_dll$n[]xa",
+   "evidence": "implied by src/multi/link.c 2026-11-09"
+  },
+  "directplay_dll": {
+   "va": "0048b7f9",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?directplay_dll$n[]xa",
+   "evidence": "implied by src/multi/link.c 2026-11-09"
+  },
+  "directplay_enumerate": {
+   "va": "0048b803",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?directplay_enumerate$n[]xa",
+   "evidence": "implied by src/multi/link.c 2026-11-09"
+  },
+  "directplay_create": {
+   "va": "0048b817",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?directplay_create$n[]xa",
+   "evidence": "implied by src/multi/link.c 2026-11-09"
+  },
+  "directplay_message": {
+   "va": "0048b828",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?directplay_message$n[]xa",
+   "evidence": "implied by src/multi/link.c 2026-11-09"
+  },
+  "directplay_error_text": {
+   "va": "0048b845",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?directplay_error_text$n[]xa",
+   "evidence": "implied by src/multi/link.c 2026-11-09"
+  },
+  "system_message_error_text": {
+   "va": "0048b85c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?system_message_error_text$n[]xa",
+   "evidence": "implied by src/multi/link.c 2026-11-09"
+  },
+  "reset_chat_wildcard": {
+   "va": "0048b8ac",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?reset_chat_wildcard$n[]xa",
+   "evidence": "implied by src/multi/chat.c 2026-11-09"
+  },
+  "chat_wildcard": {
+   "va": "0048b8b7",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?chat_wildcard$n[]xa",
+   "evidence": "implied by src/multi/chat.c 2026-11-09"
+  },
   "startFormat": {
    "va": "0048b8d0",
    "kind": "data",
@@ -6021,6 +6494,13 @@
    "mangled": "W?$Wts0fn$WorldAction$$$nx[]uc",
    "evidence": "implied by src/sim/worldact.c 2026-11-09"
   },
+  "link_thread_proc_anchor": {
+   "va": "0048e120",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?link_thread_proc_anchor$npnv",
+   "evidence": "implied by src/multi/link.c 2026-11-09"
+  },
   "startGuid": {
    "va": "0048e134",
    "kind": "data",
@@ -6139,6 +6619,20 @@
    "status": "hypothesis",
    "mangled": "W?actorListDescriptor$n[]xa",
    "evidence": "implied by src/sim/actorlst.c 2026-11-09"
+  },
+  "link_data": {
+   "va": "004a0000",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?link_data$n[]uc",
+   "evidence": "implied by src/multi/linkapp.c 2026-11-09"
+  },
+  "chat_data": {
+   "va": "004a0000",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?chat_data$n[]uc",
+   "evidence": "implied by src/multi/chat.c 2026-11-09"
   },
   "g4a0010": {
    "va": "004a0010",
@@ -6279,6 +6773,13 @@
    "status": "hypothesis",
    "mangled": "W?gEnumTimeout$nul",
    "evidence": "implied by src/multi/linkdlg.c 2026-11-09"
+  },
+  "chat_file_path": {
+   "va": "004a3f88",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?chat_file_path$n[]xa",
+   "evidence": "implied by src/multi/chat.c 2026-11-09"
   },
   "mstartFile": {
    "va": "004a3fa4",
@@ -7483,6 +7984,13 @@
    "status": "hypothesis",
    "mangled": "W?gMenuNetwork$n$MenuNetwork$$",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
+  },
+  "chat_player_state_table": {
+   "va": "004f6a14",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?chat_player_state_table$n[]xa",
+   "evidence": "implied by src/multi/chat.c 2026-11-09"
   },
   "multiplayerActive": {
    "va": "004faf38",
