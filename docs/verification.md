@@ -112,3 +112,26 @@ differences are explained:
   complete; the TU check now tests that code-adjacent objects' data segments abut (57 -> 55 complete).
 Confirmed: inter-object code fill/alignment and segment concatenation of CONST/_DATA follow object order as WLINK
 does it; no unexplained linker behaviour in the probed runs.
+
+## Image link model (2026-11-09, evidence from funcmap/libscan/modules/linkorder)
+- Entry point 0047fe98 = Watcom startup `cstrtwwt` (CLIB3S); the code section is named BEGTEXT because the startup's
+  (empty) BEGTEXT segment heads class CODE, as in the build/link1 header probe.
+- BEGTEXT has two parts:
+  A. 00401000..0047aae0 (~498 KB): explicit object files in makefile order, grouped by directory: shell (shell,
+     pilotgui, commscrn, missbrf, hercbay, hercbuy, hbupgrad, mplaunch, hotseat), gui (flic, menu), terr (tgrid,
+     tarea, tsurface, tfog, tfast), pop (psystem, pherc, pdeath), sim (sim, simgame, actorlst, actoradd, worldact,
+     anim, animbmp, target, apply, explo, simhot), logic (logic, lactor, lactors, miss, bestloc, intel, lgen,
+     lsys), multi (link, linkapp, linkdlg, chat, mstart, message, minipkt), main\WIN\winmain.c last; unnamed
+     objects sit between them. No runtime member lies inside part A (one 16-byte `_getmbcp` hit at 004765b1 is
+     suspect).
+  B. 0047aae0..end (~59 KB): library members in WLINK's on-demand resolution order: 26 engine modules
+     (misc\strpool, io\resource, debug\assert, io\file, io\memory, graph\gfx\g_cds, pack\unpack, timer, input,
+     palette, ...; ~23 KB) interleaved with Watcom runtime members (~35 KB). So the engine was a project library
+     linked with LIBRARY like CLIB3S/PLIBMT3S/MATH387S, not as FILE objects.
+- Consequence for the image proof: link = FILE <part-A objects in this order> + LIBRARY <engine lib>, CLIB3S,
+  PLIBMT3S, MATH387S (order to be tested). Part B's order is WLINK's resolution order and can only be reproduced
+  once every object and the engine library's member set exist; probes on part-A runs are possible earlier.
+- Several part-B engine modules (debug\assert, io\file, io\memory, pack\unpack) keep their literal data in the
+  _DATA region (004a4a34..004a54c0), unlike the C++ modules: different compiler/options or char-array spelling;
+  open for the TU level (tucheck flags them as segment-order outliers).
+- .rsrc (7 KB) is not reproduced yet (resource compiler and script unknown).
