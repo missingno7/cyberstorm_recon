@@ -60,6 +60,7 @@ Model: `luna` = gpt-6-luna xhigh, `sol` = gpt-6.1-sol high (Codex; all new lanes
 | s37 | sol | 2nd pass: logic\miss.c, lsys.c, multi\linkapp.c, chat.c | running |
 | s38 | sol | 2nd pass: unnamed 0041d774, 004413e0, 00433640, 00435130, 0047f060/0047f5e0, 00480ee0 | running |
 | r1 | sol | research: systemic blockers of parked functions | running |
+| s39 | sol | classify unmatched non-game code (runtime library, assembly) | running |
 | l1 | luna | shell\hercbuy.c | done (19) |
 | o1 | opus | multi\linkdlg.c, linkq.c, message.c | done |
 | o2 | opus | sim\apply.c, fxout.c, explo.c | done |
