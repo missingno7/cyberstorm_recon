@@ -23,3 +23,13 @@ multi\link.c, multi\linkapp.c, multi\chat.c model many globals as one fake zero-
 (`unsigned char[]`) at 004a0000. The oracle holds initialized, nonzero data there, so references through that
 array are no longer accepted; 16 functions were withdrawn (accepted losses). Rework: declare the real globals
 (initialized ones in _DATA/CONST, zero ones in BSS) with their own names.
+
+## Open: multi-file objects (lane o6, 2026-11-09)
+Object 00450b00..00452950 carries the path strings sim\simturn.c, sim\simout.c, sim\simmini.c, sim\simgame.c
+(each followed by that file's own data) and 00452950..00454210 carries sim\simfire.c, sim\simgad.c,
+sim\simmisc.c: several .c files compiled as ONE object via #include. tools/cc.py copies only the main file, and
+promote.py publishes only that file, so included files cannot be reproduced yet. Needed: cc copies the TU's
+sibling sources into the scratch dir (preserving relative paths so __FILE__ of included files reads
+"sim\simturn.c"), promote/gate policy-check and publish the included files, ledger records the include set.
+Until then those TUs are published as single files and functions whose __FILE__/__LINE__ come from an included
+file (e.g. 00452570, asserts on simgame.c lines 113/189) stay open.
