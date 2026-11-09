@@ -322,7 +322,7 @@ void FxRail(World *world, FxPoint from, FxPoint to, Weapon *weapon, int flags, F
     gFxSegments = ISqrt(Distance2(&target->src.pos, &target->dst.pos)) / def->segmentLength + 2;
     int speed = world->localOwner == target->src.owner->owner ? gLocalSpeed : gRemoteSpeed;
     int steps = speed * def->railSteps / 10 + 1;
-    int count = def->count;
+    signed char count=def->count;
     ASSERT(ExploStart(-3, target) != 0);
     for (int n = 0; n < count; n++) {
         if (n == 0 || def->repeatSound)
@@ -383,9 +383,9 @@ void FxSpray(World *world, FxPoint from, FxPoint to, Weapon *weapon, int flags, 
         PartInit(&parts[i], def, e, &from, &to, weapon, &aim, i);
         PartSetup(&parts[i], def->part[0], def->part[1], def->part[2], def->part[3], def->part[4]);
     }
-    int glow = def->railSteps;
+    int glow=def->railSteps; FxOwner *actor=target->src.owner;
     if (glow)
-        glow += target->src.owner->at26;
+        glow += actor->at26;
     ExploAddGlow(def->jitterMin, def->jitterMax, target->src.owner, flags, 0);
     ExploAddGlow(glow, def->glow, target->src.owner, flags, def->glowRepeat);
     for (;;) {

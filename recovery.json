@@ -1281,7 +1281,7 @@
   "src/sim/actorlst.c": {
    "as": "sim\\actorlst.c",
    "install": "wc106",
-   "profile": "ot",
+   "profile": "ot-oe",
    "functions": {
     "W?.fn_init$n()v": {
      "va": "004561d0",
@@ -1293,6 +1293,11 @@
      "size": 112,
      "mangled": "W?ActorListConstruct$n()i"
     },
+    "ActorListDestroy": {
+     "va": "00456270",
+     "size": 176,
+     "mangled": "W?ActorListDestroy$n()i"
+    },
     "ActorListRead": {
      "va": "00456320",
      "size": 176,
@@ -1302,6 +1307,41 @@
      "va": "00456550",
      "size": 64,
      "mangled": "W?ActorGetByIndex$n(i)pn$ActorRecord$$"
+    },
+    "ActorGetByUnit": {
+     "va": "00456590",
+     "size": 80,
+     "mangled": "W?ActorGetByUnit$n(i)pn$ActorRecord$$"
+    },
+    "ActorFindRelated": {
+     "va": "004569c0",
+     "size": 192,
+     "mangled": "W?ActorFindRelated$n(pn$ActorRecord$$)pn$1$"
+    },
+    "ActorFindRelatedOther": {
+     "va": "00456a80",
+     "size": 160,
+     "mangled": "W?ActorFindRelatedOther$n(pn$ActorRecord$$)pn$1$"
+    },
+    "ActorFindFree": {
+     "va": "00456b20",
+     "size": 64,
+     "mangled": "W?ActorFindFree$n()pn$ActorRecord$$"
+    },
+    "ActorFindByOwner": {
+     "va": "00456b60",
+     "size": 80,
+     "mangled": "W?ActorFindByOwner$n(i)pn$ActorRecord$$"
+    },
+    "ActorFindNext": {
+     "va": "00456bb0",
+     "size": 96,
+     "mangled": "W?ActorFindNext$n(pn$ActorRecord$$)pn$1$"
+    },
+    "ActorFindOwnerNext": {
+     "va": "00456c10",
+     "size": 112,
+     "mangled": "W?ActorFindOwnerNext$n(pn$ActorRecord$$i)pn$1$"
     },
     "ActorCloseRecord": {
      "va": "00456c80",
@@ -3082,7 +3122,12 @@
      "mangled": "W?$ct:FxPart$n()_"
     }
    },
-   "data": {},
+   "data": {
+    "W?$Wts0an$FxPart$$$nx[]uc": {
+     "va": "0048e068",
+     "size": 17
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/sim/explo.c": {
@@ -3206,7 +3251,16 @@
      "mangled": "W?$ct:ExploRecord$n()_"
     }
    },
-   "data": {},
+   "data": {
+    "_DATA": {
+     "va": "004a34b4",
+     "size": 12
+    },
+    "W?$Wts0fn$ExploRecord$$$nx[]uc": {
+     "va": "0048e07c",
+     "size": 17
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/shell/hercbuy.c": {
@@ -3906,7 +3960,14 @@
   "src/sim/simgame.c": {
    "as": "sim\\simgame.c",
    "install": "wc106",
-   "profile": "ot-oe",
+   "flags": [
+    "-4s",
+    "-s",
+    "-bm",
+    "-oxt",
+    "-oe=80"
+   ],
+   "tool": "wpp386",
    "functions": {
     "SimGameDrawPortrait": {
      "va": "00450eb0",
@@ -3947,6 +4008,11 @@
      "va": "004524c0",
      "size": 176,
      "mangled": "W?SimGameSave$n(pn$SimGame$$pn$FileRecord$$)i"
+    },
+    "SimGameNewGame": {
+     "va": "00452570",
+     "size": 768,
+     "mangled": "W?SimGameNewGame$n(pn$SimGame$$)v"
     },
     "SimGameLeave": {
      "va": "00452870",

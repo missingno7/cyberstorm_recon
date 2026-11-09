@@ -262,7 +262,7 @@ int WeaponAccuracy(Context *c,int index)
         AssertFail(__FILE__, __LINE__, 0);
     WeaponScore *r=&c->score[index];
     ActorRecord *target=c->target.targetActor, *source=c->target.sourceActor;
-    int skill=UnitCapability(source->pilot,r->weapon.skill);
+    void *pilot=source->pilot; int skill=UnitCapability(pilot,r->weapon.skill);
     int range=Interpolate(r->weapon.nearRange*1000,135,r->weapon.farRange*1000,0,c->target.distance);
     int sourceSkill=c->target.sourceSkill, targetSkill=c->target.targetSkill;
     if (source->action.mode==7) sourceSkill-=20;
@@ -371,9 +371,7 @@ int WeaponMaximum(Context *c,int index)
 }
 int WeaponExpected(Context *c,int index)
 {
-    ActorRecord *source=c->target.sourceActor;
-    ActorUnit *unit; if (!source || !(unit=source->unit)) return 0;
-    ActorRecord *target=c->target.targetActor; if (!target) return 0; ActorUnit *other=target->unit; if (!other) return 0;
+    ActorRecord *source=c->target.sourceActor; if(!source || !source->unit) return 0; ActorRecord *target=c->target.targetActor; if(!target || !target->unit) return 0; ActorUnit *unit=source->unit; ActorUnit *other=target->unit;
     WeaponScore *r=&c->score[index];
     int falloff=Interpolate(r->weapon.falloffNear,100,r->weapon.falloffFar,0,(c->target.distance+100)/1000);
     r->rangeFactor=Clamp(falloff,10,100);
@@ -398,6 +396,8 @@ int WeaponAmmoFactor(Context *c,int index)
     if (r->weapon.ammo) {
         ActorRecord *valid=c->target.sourceActor;
         if (!valid)
+
+
 
 
 

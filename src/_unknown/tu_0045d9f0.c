@@ -39,8 +39,7 @@ void WeaponSound(ApplyPoint *at, SoundDescriptor *s, int kind, int value, int to
 {
     SimSound settings;
     if (s) {
-        int volumeRange = s[kind].volumeRange;
-        int pitchRange = s[kind].pitchRange;
+        SoundDescriptor *entry=&s[kind]; int volumeRange=entry->volumeRange; int pitchRange=entry->pitchRange;
         settings.volume = s->volume - volumeRange;
         settings.pitch = s->pitch + pitchRange;
         settings.flags = 0;
@@ -55,3 +54,4 @@ void WeaponSound(ApplyPoint *at, SoundDescriptor *s, int kind, int value, int to
         SoundPlay(s[kind].id, (const SoundSettings *)&settings);
     }
 }
+

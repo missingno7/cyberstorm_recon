@@ -13123,6 +13123,14 @@
    "tu": "src/sim/simgame.c",
    "evidence": "placed (at) in src/sim/simgame.c 2026-11-09"
   },
+  "SimGameDrawFrames": {
+   "va": "004517c0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SimGameDrawFrames$n(pn$SimGame$$)v",
+   "tu": "src/sim/simgame.c",
+   "evidence": "placed (at) in src/sim/simgame.c 2026-11-09"
+  },
   "SimGameNothing": {
    "va": "00451b00",
    "kind": "func",
@@ -13183,6 +13191,14 @@
    "kind": "func",
    "status": "matched",
    "mangled": "W?SimGameSave$n(pn$SimGame$$pn$FileRecord$$)i",
+   "tu": "src/sim/simgame.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "SimGameNewGame": {
+   "va": "00452570",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SimGameNewGame$n(pn$SimGame$$)v",
    "tu": "src/sim/simgame.c",
    "evidence": "strict match 2026-11-09"
   },
@@ -13839,10 +13855,10 @@
   "ActorListDestroy": {
    "va": "00456270",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ActorListDestroy$n()i",
    "tu": "src/sim/actorlst.c",
-   "evidence": "placed (at) in src/sim/actorlst.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "ActorListDestroy#W?ActorListDestroy$n()v": {
    "va": "00456270",
@@ -13899,10 +13915,10 @@
   "ActorGetByUnit": {
    "va": "00456590",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ActorGetByUnit$n(i)pn$ActorRecord$$",
    "tu": "src/sim/actorlst.c",
-   "evidence": "placed (at) in src/sim/actorlst.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "ActorGetByUnit#W?ActorGetByUnit$n(i)pn$Unit$$": {
    "va": "00456590",
@@ -13922,34 +13938,34 @@
   "ActorFindRelated": {
    "va": "004569c0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ActorFindRelated$n(pn$ActorRecord$$)pn$1$",
    "tu": "src/sim/actorlst.c",
-   "evidence": "placed (at) in src/sim/actorlst.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "ActorFindRelatedOther": {
    "va": "00456a80",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ActorFindRelatedOther$n(pn$ActorRecord$$)pn$1$",
    "tu": "src/sim/actorlst.c",
-   "evidence": "placed (at) in src/sim/actorlst.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "ActorFindFree": {
    "va": "00456b20",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ActorFindFree$n()pn$ActorRecord$$",
    "tu": "src/sim/actorlst.c",
-   "evidence": "placed (at) in src/sim/actorlst.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "ActorFindByOwner": {
    "va": "00456b60",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?ActorFindByOwner$n(pn$ActorRecord$$)pn$1$",
+   "status": "matched",
+   "mangled": "W?ActorFindByOwner$n(i)pn$ActorRecord$$",
    "tu": "src/sim/actorlst.c",
-   "evidence": "placed (at) in src/sim/actorlst.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "ActorFindByOwner#W?ActorFindByOwner$n(i)pn$ActorRecord$$": {
    "va": "00456b60",
@@ -13958,21 +13974,29 @@
    "mangled": "W?ActorFindByOwner$n(i)pn$ActorRecord$$",
    "evidence": "implied by src/sim/simturn.c 2026-11-09"
   },
+  "ActorFindByOwner#W?ActorFindByOwner$n(pn$ActorRecord$$)pn$1$": {
+   "va": "00456b60",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ActorFindByOwner$n(pn$ActorRecord$$)pn$1$",
+   "tu": "src/sim/actorlst.c",
+   "evidence": "placed (at) in src/sim/actorlst.c 2026-11-09"
+  },
   "ActorFindNext": {
    "va": "00456bb0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ActorFindNext$n(pn$ActorRecord$$)pn$1$",
    "tu": "src/sim/actorlst.c",
-   "evidence": "placed (at) in src/sim/actorlst.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "ActorFindOwnerNext": {
    "va": "00456c10",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?ActorFindOwnerNext$n(pn$ActorRecord$$pn$1$)pn$1$",
+   "status": "matched",
+   "mangled": "W?ActorFindOwnerNext$n(pn$ActorRecord$$i)pn$1$",
    "tu": "src/sim/actorlst.c",
-   "evidence": "placed (at) in src/sim/actorlst.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "ActorFindOwnerNext#W?ActorFindOwnerNext$n(pn$ActorRecord$$i)pn$1$": {
    "va": "00456c10",
@@ -13980,6 +14004,14 @@
    "status": "hypothesis",
    "mangled": "W?ActorFindOwnerNext$n(pn$ActorRecord$$i)pn$1$",
    "evidence": "implied by src/sim/simturn.c 2026-11-09"
+  },
+  "ActorFindOwnerNext#W?ActorFindOwnerNext$n(pn$ActorRecord$$pn$1$)pn$1$": {
+   "va": "00456c10",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ActorFindOwnerNext$n(pn$ActorRecord$$pn$1$)pn$1$",
+   "tu": "src/sim/actorlst.c",
+   "evidence": "placed (at) in src/sim/actorlst.c 2026-11-09"
   },
   "ActorCloseRecord": {
    "va": "00456c80",
@@ -15025,6 +15057,14 @@
    "tu": "src/sim/fxout.c",
    "evidence": "strict match 2026-11-09"
   },
+  "FxDrawBolt": {
+   "va": "0045dbe0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?FxDrawBolt$n(iiiiiipnuc)v",
+   "tu": "src/sim/fxout.c",
+   "evidence": "placed (at) in src/sim/fxout.c 2026-11-09"
+  },
   "FxDrawCurrent": {
    "va": "0045e190",
    "kind": "func",
@@ -15056,6 +15096,46 @@
    "mangled": "W?FxRedraw$n(pnv)v",
    "tu": "src/sim/fxout.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "FxBeam": {
+   "va": "0045e430",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?FxBeam$n(pn$World$$$FxPoint$$$2$pn$Weapon$$ipn$FxTarget$$pn$2$i)v",
+   "tu": "src/sim/fxout.c",
+   "evidence": "placed (at) in src/sim/fxout.c 2026-11-09"
+  },
+  "FxRail": {
+   "va": "0045e7d0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?FxRail$n(pn$World$$$FxPoint$$$2$pn$Weapon$$ipn$FxTarget$$pn$2$i)v",
+   "tu": "src/sim/fxout.c",
+   "evidence": "placed (at) in src/sim/fxout.c 2026-11-09"
+  },
+  "FxSpray": {
+   "va": "0045ea20",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?FxSpray$n(pn$World$$$FxPoint$$$2$pn$Weapon$$ipn$FxTarget$$pn$2$i)v",
+   "tu": "src/sim/fxout.c",
+   "evidence": "placed (at) in src/sim/fxout.c 2026-11-09"
+  },
+  "FxBurst": {
+   "va": "0045f010",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?FxBurst$n(pn$World$$$FxPoint$$$2$pn$Weapon$$ipn$FxTarget$$pn$2$i)v",
+   "tu": "src/sim/fxout.c",
+   "evidence": "placed (at) in src/sim/fxout.c 2026-11-09"
+  },
+  "FxFire": {
+   "va": "0045f560",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?FxFire$n(pn$World$$$FxPoint$$$2$pn$Weapon$$ipn$FxTarget$$pn$2$i)v",
+   "tu": "src/sim/fxout.c",
+   "evidence": "placed (at) in src/sim/fxout.c 2026-11-09"
   },
   "FxPart::$dt": {
    "va": "0045f880",
@@ -24030,6 +24110,14 @@
    "mangled": "W?$Wts0fn$WorldAction$$$nx[]uc",
    "evidence": "implied by src/sim/worldact.c 2026-11-09"
   },
+  "W?$Wts0an$FxPart$$$nx[]uc": {
+   "va": "0048e068",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0an$FxPart$$$nx[]uc",
+   "tu": "src/sim/fxout.c",
+   "evidence": "own data placed in src/sim/fxout.c 2026-11-09"
+  },
   "W?$Wts0fn$ExploRecord$$$nx[]uc": {
    "va": "0048e07c",
    "kind": "data",
@@ -25489,6 +25577,14 @@
    "status": "hypothesis",
    "mangled": "W?exploSourcePath$n[]xa",
    "evidence": "implied by src/sim/explo.c 2026-11-09"
+  },
+  "exploSourcePath@sim/explo.c": {
+   "va": "004a34b4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?exploSourcePath$n[]xa",
+   "tu": "src/sim/explo.c",
+   "evidence": "own data placed in src/sim/explo.c 2026-11-09"
   },
   "fxHitDefinitions": {
    "va": "004a35d8",
@@ -31377,6 +31473,13 @@
    "mangled": "W?profileManager$n$GameSession$$",
    "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
   },
+  "missionScripts": {
+   "va": "004c9354",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?missionScripts$n[][22]ul",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
   "mainSelectedMission": {
    "va": "004c975c",
    "kind": "data",
@@ -31397,6 +31500,13 @@
    "status": "hypothesis",
    "mangled": "W?bioOtherVisible$nuc",
    "evidence": "implied by src/shell/biomenu.c 2026-11-09"
+  },
+  "selectedMissionUnits": {
+   "va": "004d028b",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?selectedMissionUnits$n[][2]uc",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
   },
   "g4d030f": {
    "va": "004d030f",
@@ -33264,12 +33374,44 @@
    "mangled": "W?hidden$:.2$:?ExploSetupFrame$n(pn$ExploRecord$$pn$ExploPoint$$)vn$ExploRect$$",
    "evidence": "implied by src/sim/explo.c 2026-11-09"
   },
+  "W?hidden$:.2$:?ExploSetupFrame$n(pn$ExploRecord$$pn$ExploPoint$$)vn$ExploRect$$@sim/explo.c": {
+   "va": "004dcc5c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?hidden$:.2$:?ExploSetupFrame$n(pn$ExploRecord$$pn$ExploPoint$$)vn$ExploRect$$",
+   "tu": "src/sim/explo.c",
+   "evidence": "own data placed in src/sim/explo.c 2026-11-09"
+  },
   "W?$Wbi00$:.2$:?ExploSetupFrame$n(pn$ExploRecord$$pn$ExploPoint$$)vn[]uc": {
    "va": "004dcc6c",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?$Wbi00$:.2$:?ExploSetupFrame$n(pn$ExploRecord$$pn$ExploPoint$$)vn[]uc",
    "evidence": "implied by src/sim/explo.c 2026-11-09"
+  },
+  "W?$Wbi00$:.2$:?ExploSetupFrame$n(pn$ExploRecord$$pn$ExploPoint$$)vn[]uc@sim/explo.c": {
+   "va": "004dcc6c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wbi00$:.2$:?ExploSetupFrame$n(pn$ExploRecord$$pn$ExploPoint$$)vn[]uc",
+   "tu": "src/sim/explo.c",
+   "evidence": "own data placed in src/sim/explo.c 2026-11-09"
+  },
+  "W?spot$:.5$:?ExploPosition$n(pn$ExploRecord$$)in$ExploPoint$$@sim/explo.c": {
+   "va": "004dcc70",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?spot$:.5$:?ExploPosition$n(pn$ExploRecord$$)in$ExploPoint$$",
+   "tu": "src/sim/explo.c",
+   "evidence": "own data placed in src/sim/explo.c 2026-11-09"
+  },
+  "W?$Wbi00$:.5$:?ExploPosition$n(pn$ExploRecord$$)in[]uc@sim/explo.c": {
+   "va": "004dcc78",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wbi00$:.5$:?ExploPosition$n(pn$ExploRecord$$)in[]uc",
+   "tu": "src/sim/explo.c",
+   "evidence": "own data placed in src/sim/explo.c 2026-11-09"
   },
   "exploCount": {
    "va": "004dcc7c",
