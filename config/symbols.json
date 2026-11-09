@@ -805,6 +805,13 @@
    "tu": "src/shell/hercbuy.c",
    "evidence": "strict match 2026-11-09"
   },
+  "W?$Wda018$:MenuLabel$n(ui)pnv": {
+   "va": "00412304",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$Wda018$:MenuLabel$n(ui)pnv",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
   "W?.fn_init$n()v@shell/commscrn.c": {
    "va": "004123a0",
    "kind": "func",
@@ -1221,6 +1228,20 @@
    "mangled": "W?LoadBackground$:MissBrief$n()v",
    "tu": "src/shell/missbrf.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "UpgradeBar::$dt": {
+   "va": "00415554",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:UpgradeBar$n()_",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "UpgradeArrow::$dt": {
+   "va": "00415598",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:UpgradeArrow$n()_",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
   "ShellMissionBegin": {
    "va": "004156f8",
@@ -1789,6 +1810,22 @@
    "mangled": "W?ShellStorageRender$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "W?.fn_init$n()v@shell/hbupgrad.c": {
+   "va": "00418ef0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_004193a2": {
+   "va": "004193a2",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_004193a2$n(i)i",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "placed (at) in src/shell/hbupgrad.c 2026-11-09"
+  },
   "f_004193fa": {
    "va": "004193fa",
    "kind": "func",
@@ -1805,12 +1842,28 @@
    "tu": "src/shell/hbupgrad.c",
    "evidence": "strict match 2026-11-09"
   },
+  "f_00419413": {
+   "va": "00419413",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_00419413$n(pn$UpgradeRect$$)i",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "placed (at) in src/shell/hbupgrad.c 2026-11-09"
+  },
   "HercUpgradeOpen": {
    "va": "004194c4",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?HercUpgradeOpen$n(pn$Scene$$pn$InputReq$$uc)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "f_004194c4": {
+   "va": "004194c4",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_004194c4$n(pnapn$InputReq$$uc)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "placed (at) in src/shell/hbupgrad.c 2026-11-09"
   },
   "HercUpgradeClose": {
    "va": "00419875",
@@ -1825,6 +1878,14 @@
    "status": "hypothesis",
    "mangled": "W?HercUpgradeClose$n(pn$Scene$$)i",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "f_00419875": {
+   "va": "00419875",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_00419875$n(pna)ul",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
   },
   "f_004198c3": {
    "va": "004198c3",
@@ -1842,12 +1903,44 @@
    "tu": "src/shell/hbupgrad.c",
    "evidence": "strict match 2026-11-09"
   },
+  "f_00419901": {
+   "va": "00419901",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_00419901$n(pna)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "placed (at) in src/shell/hbupgrad.c 2026-11-09"
+  },
+  "f_004199e8": {
+   "va": "004199e8",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_004199e8$n(pna)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "placed (at) in src/shell/hbupgrad.c 2026-11-09"
+  },
+  "f_00419ae3": {
+   "va": "00419ae3",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_00419ae3$n(pna)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "placed (at) in src/shell/hbupgrad.c 2026-11-09"
+  },
   "HercUpgradeRender": {
    "va": "00419b3c",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?HercUpgradeRender$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "f_00419b3c": {
+   "va": "00419b3c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_00419b3c$n(pna)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "placed (at) in src/shell/hbupgrad.c 2026-11-09"
   },
   "f_00419d21": {
    "va": "00419d21",
@@ -1856,6 +1949,14 @@
    "mangled": "W?f_00419d21$n(pnv)v",
    "tu": "src/shell/hbupgrad.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "f_00419d52": {
+   "va": "00419d52",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_00419d52$n(pna)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "placed (at) in src/shell/hbupgrad.c 2026-11-09"
   },
   "f_00419ee4": {
    "va": "00419ee4",
@@ -1912,6 +2013,134 @@
    "tu": "src/shell/hbupgrad.c",
    "evidence": "strict match 2026-11-09"
   },
+  "f_0041abb5": {
+   "va": "0041abb5",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0041abb5$n()v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0041ac2a": {
+   "va": "0041ac2a",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0041ac2a$n()v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0041ad58": {
+   "va": "0041ad58",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0041ad58$n(pna)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0041ae95": {
+   "va": "0041ae95",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0041ae95$n()v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0041af22": {
+   "va": "0041af22",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0041af22$n()v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0041af6c": {
+   "va": "0041af6c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0041af6c$n()v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0041afaa": {
+   "va": "0041afaa",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0041afaa$n()v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0041b004": {
+   "va": "0041b004",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0041b004$n(pna)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0041b061": {
+   "va": "0041b061",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0041b061$n()v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0041b089": {
+   "va": "0041b089",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0041b089$n(pna)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0041b0d2": {
+   "va": "0041b0d2",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_0041b0d2$n(pna)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "placed (at) in src/shell/hbupgrad.c 2026-11-09"
+  },
+  "f_0041b13b": {
+   "va": "0041b13b",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0041b13b$n(pna)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0041b28c": {
+   "va": "0041b28c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0041b28c$n(pna)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0041b2f9": {
+   "va": "0041b2f9",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0041b2f9$n(pna)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0041b349": {
+   "va": "0041b349",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0041b349$n(pna)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0041b37c": {
+   "va": "0041b37c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "f_0041b37c",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "f_0041b539": {
    "va": "0041b539",
    "kind": "func",
@@ -1960,18 +2189,115 @@
    "tu": "src/shell/hbupgrad.c",
    "evidence": "strict match 2026-11-09"
   },
+  "f_0041b7a1": {
+   "va": "0041b7a1",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_0041b7a1$n(pnai)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "placed (at) in src/shell/hbupgrad.c 2026-11-09"
+  },
+  "f_0041b912": {
+   "va": "0041b912",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_0041b912$n(pna)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "placed (at) in src/shell/hbupgrad.c 2026-11-09"
+  },
+  "f_0041bb4c": {
+   "va": "0041bb4c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_0041bb4c$n(pna)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "placed (at) in src/shell/hbupgrad.c 2026-11-09"
+  },
+  "f_0041bcaf": {
+   "va": "0041bcaf",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0041bcaf$n(pnai)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0041bdda": {
+   "va": "0041bdda",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_0041bdda$n(pna)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "placed (at) in src/shell/hbupgrad.c 2026-11-09"
+  },
+  "f_0041be20": {
+   "va": "0041be20",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_0041be20$n(pna)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "placed (at) in src/shell/hbupgrad.c 2026-11-09"
+  },
   "f_0041c096": {
    "va": "0041c096",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "f_0041c096",
-   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0041c1e5": {
+   "va": "0041c1e5",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_0041c1e5",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "placed (at) in src/shell/hbupgrad.c 2026-11-09"
+  },
+  "f_0041c3ca": {
+   "va": "0041c3ca",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_0041c3ca$n(pna)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "placed (at) in src/shell/hbupgrad.c 2026-11-09"
+  },
+  "f_0041c456": {
+   "va": "0041c456",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0041c456$n(pnapnuc)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0041c4ea": {
+   "va": "0041c4ea",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0041c4ea$n(pnvpnuc)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0041c52e": {
+   "va": "0041c52e",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0041c52e$n(pna)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
   },
   "f_0041c66e": {
    "va": "0041c66e",
    "kind": "func",
    "status": "matched",
    "mangled": "W?f_0041c66e$n(pna)v",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "f_0041c6dc": {
+   "va": "0041c6dc",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?f_0041c6dc$n(pna)v",
    "tu": "src/shell/hbupgrad.c",
    "evidence": "strict match 2026-11-09"
   },
@@ -1982,6 +2308,35 @@
    "mangled": "W?f_0041c7a3$n(pni)v",
    "tu": "src/shell/hbupgrad.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "W?$Wda0223$:MenuPrefixButton$n(ui)pnv": {
+   "va": "0041c7c0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$Wda0223$:MenuPrefixButton$n(ui)pnv",
+   "tu": "src/shell/hbupgrad.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "W?$Wda018$:MenuPrefixButton$n(ui)pnv": {
+   "va": "0041c7d8",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$Wda018$:MenuPrefixButton$n(ui)pnv",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "UpgradeInitScreen::$dt": {
+   "va": "0041c7f0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:UpgradeInitScreen$n()_",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "UpgradeCanvas::$dt": {
+   "va": "0041c820",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:UpgradeCanvas$n()_",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
   "ShellMultiplayerInit": {
    "va": "0041c86a",
@@ -2912,6 +3267,13 @@
    "mangled": "W?f_0042604d$n(pnvpn$GuiPoint$$)i",
    "evidence": "implied by src/sim/hotbrief.c 2026-11-09"
   },
+  "f_0042604d#f_0042604d": {
+   "va": "0042604d",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_0042604d",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
   "FlicInitBuffers": {
    "va": "004260c4",
    "kind": "func",
@@ -3736,6 +4098,13 @@
    "mangled": "W?SetPrefix$:MenuPrefixButton$n(c)v",
    "tu": "src/gui/menu.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "MenuPrefixButton::SetPrefix#W?SetPrefix$:MenuPrefixButton$n(uc)v": {
+   "va": "00428ccf",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SetPrefix$:MenuPrefixButton$n(uc)v",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
   "MenuPrefixButton::Reset": {
    "va": "00428cdf",
@@ -5855,6 +6224,27 @@
    "status": "hypothesis",
    "mangled": "f_00441ca7",
    "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
+  "f_00441ce1": {
+   "va": "00441ce1",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_00441ce1",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "f_00441d1f": {
+   "va": "00441d1f",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_00441d1f",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "f_00442045": {
+   "va": "00442045",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_00442045",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
   "ActorActivate": {
    "va": "004424d4",
@@ -11836,6 +12226,13 @@
    "mangled": "W?MenuDrawImage$n(pnvpn$MenuImage$$ll)v",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
   },
+  "MenuDrawImage#W?MenuDrawImage$n(pnvpn$MenuImage$$ii)v": {
+   "va": "0047bff0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?MenuDrawImage$n(pnvpn$MenuImage$$ii)v",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
   "DrawSprite": {
    "va": "0047c0f0",
    "kind": "func",
@@ -12829,6 +13226,27 @@
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g48ab43$n[]a",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g48ab4b": {
+   "va": "0048ab4b",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g48ab4b$n[]a",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g48ab4f": {
+   "va": "0048ab4f",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g48ab4f$n[]a",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g48ab51": {
+   "va": "0048ab51",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g48ab51$n[]a",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
   "snw_valid_dll": {
@@ -14196,6 +14614,13 @@
    "mangled": "W?gShellGame$n[]a",
    "evidence": "implied by src/shell/commscrn.c 2026-11-09"
   },
+  "g4ae07b": {
+   "va": "004ae07b",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4ae07b$nl",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
   "g4ae17f": {
    "va": "004ae17f",
    "kind": "data",
@@ -15071,6 +15496,13 @@
    "mangled": "W?g4b5b50$n$Scene$$",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "g4b5ba1": {
+   "va": "004b5ba1",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b5ba1$n[]uc",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
   "g4b5dc0": {
    "va": "004b5dc0",
    "kind": "data",
@@ -15104,6 +15536,41 @@
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4b5e94$n[]a",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b5eb8": {
+   "va": "004b5eb8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b5eb8$n[]a",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b5f1c": {
+   "va": "004b5f1c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b5f1c$nul",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b5f44": {
+   "va": "004b5f44",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b5f44$nul",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b5f6c": {
+   "va": "004b5f6c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b5f6c$nul",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b5f94": {
+   "va": "004b5f94",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b5f94$nul",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
   "g4b5fd0": {
@@ -15211,6 +15678,27 @@
    "mangled": "W?g4b6c78$nul",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
+  "g4b6ca8": {
+   "va": "004b6ca8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6ca8$nul",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b6cd0": {
+   "va": "004b6cd0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6cd0$nul",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b6cf8": {
+   "va": "004b6cf8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6cf8$nul",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
   "g4b6d2c": {
    "va": "004b6d2c",
    "kind": "data",
@@ -15232,6 +15720,34 @@
    "mangled": "W?g4b6d73$nuc",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
+  "g4b6dac": {
+   "va": "004b6dac",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6dac$ni",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b6dc8": {
+   "va": "004b6dc8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6dc8$nul",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b6df0": {
+   "va": "004b6df0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6df0$nul",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b6e1c": {
+   "va": "004b6e1c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6e1c$nul",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
   "g4b6e50": {
    "va": "004b6e50",
    "kind": "data",
@@ -15251,6 +15767,62 @@
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4b6ea4$nul",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b6ed0": {
+   "va": "004b6ed0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6ed0$nul",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b6ee0": {
+   "va": "004b6ee0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6ee0$npna",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b6f00": {
+   "va": "004b6f00",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6f00$nul",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b6f10": {
+   "va": "004b6f10",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6f10$npna",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b6f30": {
+   "va": "004b6f30",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6f30$nul",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b6f40": {
+   "va": "004b6f40",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6f40$npna",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b6fc0": {
+   "va": "004b6fc0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6fc0$nul",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b6ff0": {
+   "va": "004b6ff0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b6ff0$nul",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
   "g4b700c": {
@@ -17380,6 +17952,13 @@
    "status": "hypothesis",
    "mangled": "W?gShellImages$ni",
    "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
+  },
+  "gShellImages#W?gShellImages$npna": {
+   "va": "00511dd0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gShellImages$npna",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
   },
   "g511dd4": {
    "va": "00511dd4",

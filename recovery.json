@@ -4395,6 +4395,11 @@
    "install": "wc106",
    "profile": "plain",
    "functions": {
+    "W?.fn_init$n()v": {
+     "va": "00418ef0",
+     "size": 1202,
+     "mangled": "W?.fn_init$n()v"
+    },
     "f_004193fa": {
      "va": "004193fa",
      "size": 24,
@@ -4404,6 +4409,11 @@
      "va": "00419412",
      "size": 1,
      "mangled": "W?f_00419412$n()v"
+    },
+    "f_00419875": {
+     "va": "00419875",
+     "size": 78,
+     "mangled": "W?f_00419875$n(pna)ul"
     },
     "f_004198c3": {
      "va": "004198c3",
@@ -4445,6 +4455,81 @@
      "size": 61,
      "mangled": "W?f_0041ab78$n()v"
     },
+    "f_0041abb5": {
+     "va": "0041abb5",
+     "size": 117,
+     "mangled": "W?f_0041abb5$n()v"
+    },
+    "f_0041ac2a": {
+     "va": "0041ac2a",
+     "size": 302,
+     "mangled": "W?f_0041ac2a$n()v"
+    },
+    "f_0041ad58": {
+     "va": "0041ad58",
+     "size": 317,
+     "mangled": "W?f_0041ad58$n(pna)v"
+    },
+    "f_0041ae95": {
+     "va": "0041ae95",
+     "size": 141,
+     "mangled": "W?f_0041ae95$n()v"
+    },
+    "f_0041af22": {
+     "va": "0041af22",
+     "size": 74,
+     "mangled": "W?f_0041af22$n()v"
+    },
+    "f_0041af6c": {
+     "va": "0041af6c",
+     "size": 62,
+     "mangled": "W?f_0041af6c$n()v"
+    },
+    "f_0041afaa": {
+     "va": "0041afaa",
+     "size": 90,
+     "mangled": "W?f_0041afaa$n()v"
+    },
+    "f_0041b004": {
+     "va": "0041b004",
+     "size": 93,
+     "mangled": "W?f_0041b004$n(pna)v"
+    },
+    "f_0041b061": {
+     "va": "0041b061",
+     "size": 40,
+     "mangled": "W?f_0041b061$n()v"
+    },
+    "f_0041b089": {
+     "va": "0041b089",
+     "size": 73,
+     "mangled": "W?f_0041b089$n(pna)v"
+    },
+    "f_0041b13b": {
+     "va": "0041b13b",
+     "size": 337,
+     "mangled": "W?f_0041b13b$n(pna)v"
+    },
+    "f_0041b28c": {
+     "va": "0041b28c",
+     "size": 109,
+     "mangled": "W?f_0041b28c$n(pna)v"
+    },
+    "f_0041b2f9": {
+     "va": "0041b2f9",
+     "size": 80,
+     "mangled": "W?f_0041b2f9$n(pna)v"
+    },
+    "f_0041b349": {
+     "va": "0041b349",
+     "size": 51,
+     "mangled": "W?f_0041b349$n(pna)v"
+    },
+    "f_0041b37c": {
+     "va": "0041b37c",
+     "size": 445,
+     "mangled": "f_0041b37c"
+    },
     "f_0041b539": {
      "va": "0041b539",
      "size": 42,
@@ -4475,18 +4560,70 @@
      "size": 85,
      "mangled": "W?f_0041b74c$n(pni)v"
     },
+    "f_0041bcaf": {
+     "va": "0041bcaf",
+     "size": 299,
+     "mangled": "W?f_0041bcaf$n(pnai)v"
+    },
+    "f_0041c096": {
+     "va": "0041c096",
+     "size": 335,
+     "mangled": "f_0041c096"
+    },
+    "f_0041c456": {
+     "va": "0041c456",
+     "size": 148,
+     "mangled": "W?f_0041c456$n(pnapnuc)v"
+    },
+    "f_0041c4ea": {
+     "va": "0041c4ea",
+     "size": 68,
+     "mangled": "W?f_0041c4ea$n(pnvpnuc)v"
+    },
+    "f_0041c52e": {
+     "va": "0041c52e",
+     "size": 320,
+     "mangled": "W?f_0041c52e$n(pna)v"
+    },
     "f_0041c66e": {
      "va": "0041c66e",
      "size": 110,
      "mangled": "W?f_0041c66e$n(pna)v"
     },
+    "f_0041c6dc": {
+     "va": "0041c6dc",
+     "size": 199,
+     "mangled": "W?f_0041c6dc$n(pna)v"
+    },
     "f_0041c7a3": {
      "va": "0041c7a3",
      "size": 27,
      "mangled": "W?f_0041c7a3$n(pni)v"
+    },
+    "W?$Wda0223$:MenuPrefixButton$n(ui)pnv": {
+     "va": "0041c7c0",
+     "size": 21,
+     "mangled": "W?$Wda0223$:MenuPrefixButton$n(ui)pnv"
     }
    },
-   "data": {},
+   "data": {
+    "CONST2": {
+     "va": "0048d220",
+     "size": 332
+    },
+    "_DATA": {
+     "va": "0048ed1c",
+     "size": 12
+    },
+    "W?$Wts0dn$MenuLabel$$$nx[]uc": {
+     "va": "0048c9b0",
+     "size": 17
+    },
+    "W?$Wts0kn$MenuPrefixButton$$$nx[]uc": {
+     "va": "0048c9ec",
+     "size": 17
+    }
+   },
    "accepted": "2026-11-09"
   },
   "src/_unknown/tu_0043b7e0.c": {
