@@ -3387,12 +3387,17 @@
   "src/pop/pherc.c": {
    "as": "pop\\pherc.c",
    "install": "wc106",
-   "profile": "plain",
+   "profile": "plain-oe",
    "functions": {
     "f_00445238": {
      "va": "00445238",
      "size": 81,
      "mangled": "W?f_00445238$n()v"
+    },
+    "HercModule::$ct": {
+     "va": "00445289",
+     "size": 340,
+     "mangled": "W?$ct:HercModule$n()_"
     },
     "HercControl::$ct": {
      "va": "004453dd",
@@ -3419,6 +3424,21 @@
      "size": 1,
      "mangled": "W?f_004456f3$n()v"
     },
+    "f_00445c81": {
+     "va": "00445c81",
+     "size": 125,
+     "mangled": "W?f_00445c81$n(i)v"
+    },
+    "HercModule::Update": {
+     "va": "004466d6",
+     "size": 171,
+     "mangled": "W?Update$:HercModule$n()v"
+    },
+    "f_00446781": {
+     "va": "00446781",
+     "size": 98,
+     "mangled": "W?f_00446781$n(i)v"
+    },
     "HercControl::$dt": {
      "va": "00446804",
      "size": 67,
@@ -3439,12 +3459,16 @@
      "va": "0048dcf0",
      "size": 4
     },
-    "W?$Wts0ln$HercDetailControl$$$nx[]uc": {
-     "va": "0048dcc8",
+    "W?$Wts0in$MenuImageLabel$$$nx[]uc": {
+     "va": "0048d950",
      "size": 17
     },
     "W?$Wts0fn$HercControl$$$nx[]uc": {
      "va": "0048dcdc",
+     "size": 17
+    },
+    "W?$Wts0ln$HercDetailControl$$$nx[]uc": {
+     "va": "0048dcc8",
      "size": 17
     }
    },
@@ -11094,6 +11118,157 @@
     "CONST": {
      "va": "0048c20c",
      "size": 5
+    }
+   },
+   "accepted": "2026-11-09"
+  },
+  "src/shell/biomenu.c": {
+   "as": "shell\\biomenu.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "0040bec0",
+     "size": 146,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "BioScreen::$ct": {
+     "va": "0040bf52",
+     "size": 38,
+     "mangled": "W?$ct:BioScreen$n()_"
+    },
+    "BioScreen::Open": {
+     "va": "0040bf78",
+     "size": 404,
+     "mangled": "W?Open$:BioScreen$n(pn$InputReq$$)v"
+    },
+    "BioScreen::OpenVatExit": {
+     "va": "0040c10c",
+     "size": 214,
+     "mangled": "W?OpenVatExit$:BioScreen$n(pn$InputReq$$)v"
+    },
+    "BioScreen::OpenMedExit": {
+     "va": "0040c1e2",
+     "size": 190,
+     "mangled": "W?OpenMedExit$:BioScreen$n(pn$InputReq$$)v"
+    },
+    "BioScreen::OpenVrExit": {
+     "va": "0040c2a0",
+     "size": 212,
+     "mangled": "W?OpenVrExit$:BioScreen$n(pn$InputReq$$)v"
+    },
+    "BioScreen::OpenStandbyExit": {
+     "va": "0040c374",
+     "size": 178,
+     "mangled": "W?OpenStandbyExit$:BioScreen$n(pn$InputReq$$)v"
+    },
+    "BioScreen::Setup": {
+     "va": "0040c426",
+     "size": 273,
+     "mangled": "W?Setup$:BioScreen$n(pn$InputReq$$)v"
+    },
+    "BioScreen::Suppress": {
+     "va": "0040c537",
+     "size": 13,
+     "mangled": "W?Suppress$:BioScreen$n(us)v"
+    },
+    "BioScreen::Close": {
+     "va": "0040c544",
+     "size": 212,
+     "mangled": "W?Close$:BioScreen$n()v"
+    },
+    "BioScreen::Deactivate": {
+     "va": "0040c618",
+     "size": 38,
+     "mangled": "W?Deactivate$:BioScreen$n()v"
+    },
+    "BioScreen::DrawRegions": {
+     "va": "0040c63e",
+     "size": 398,
+     "mangled": "W?DrawRegions$:BioScreen$n(ii)v"
+    },
+    "BioScreen::Event": {
+     "va": "0040c7cc",
+     "size": 293,
+     "mangled": "W?Event$:BioScreen$n()i"
+    },
+    "BioScreen::Render": {
+     "va": "0040c8f1",
+     "size": 697,
+     "mangled": "W?Render$:BioScreen$n()v"
+    },
+    "BioScreen::IsVatOpening": {
+     "va": "0040cbaa",
+     "size": 19,
+     "mangled": "W?IsVatOpening$:BioScreen$n()i"
+    },
+    "BioScreen::Finish": {
+     "va": "0040cbbd",
+     "size": 14,
+     "mangled": "W?Finish$:BioScreen$n()v"
+    },
+    "BioScreen::ToggleVat": {
+     "va": "0040cbcb",
+     "size": 405,
+     "mangled": "W?ToggleVat$:BioScreen$n()v"
+    },
+    "BioScreen::ToggleMed": {
+     "va": "0040cd60",
+     "size": 274,
+     "mangled": "W?ToggleMed$:BioScreen$n()v"
+    },
+    "BioScreen::ToggleStandby": {
+     "va": "0040ce72",
+     "size": 307,
+     "mangled": "W?ToggleStandby$:BioScreen$n()v"
+    },
+    "BioScreen::ToggleVr": {
+     "va": "0040cfa5",
+     "size": 336,
+     "mangled": "W?ToggleVr$:BioScreen$n()v"
+    },
+    "BioScreen::StartVat": {
+     "va": "0040d0f5",
+     "size": 152,
+     "mangled": "W?StartVat$:BioScreen$n()v"
+    },
+    "BioScreen::PlayOnce": {
+     "va": "0040d18d",
+     "size": 79,
+     "mangled": "W?PlayOnce$:BioScreen$n(pnxapn$FlicSound$$pnxa)v"
+    },
+    "BioScreen::PlayLoop": {
+     "va": "0040d1dc",
+     "size": 88,
+     "mangled": "W?PlayLoop$:BioScreen$n(pnxapn$FlicSound$$pnxa)v"
+    },
+    "MenuCaption::$dt": {
+     "va": "0040d24c",
+     "size": 67,
+     "mangled": "W?$dt:MenuCaption$n()_"
+    },
+    "BioScreen::$dt": {
+     "va": "0040d290",
+     "size": 29,
+     "mangled": "W?$dt:BioScreen$n()_"
+    }
+   },
+   "data": {
+    "CONST2": {
+     "va": "0048ca7c",
+     "size": 44
+    },
+    "_DATA": {
+     "va": "0048e690",
+     "size": 12
+    },
+    "W?$Wts0kn$MenuPrefixButton$$$nx[]uc": {
+     "va": "0048c9ec",
+     "size": 17
+    },
+    "W?$Wts0fn$MenuCaption$$$nx[]uc": {
+     "va": "0048cabc",
+     "size": 17
     }
    },
    "accepted": "2026-11-09"

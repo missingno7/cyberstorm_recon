@@ -992,12 +992,84 @@
    "tu": "src/_unknown/tu_00409408.c",
    "evidence": "strict match 2026-11-09"
   },
+  "W?.fn_init$n()v@shell/biomenu.c": {
+   "va": "0040bec0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/shell/biomenu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BioScreen::$ct": {
+   "va": "0040bf52",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:BioScreen$n()_",
+   "tu": "src/shell/biomenu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BioScreen::Open": {
+   "va": "0040bf78",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Open$:BioScreen$n(pn$InputReq$$)v",
+   "tu": "src/shell/biomenu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BioScreen::OpenVatExit": {
+   "va": "0040c10c",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?OpenVatExit$:BioScreen$n(pn$InputReq$$)v",
+   "tu": "src/shell/biomenu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BioScreen::OpenMedExit": {
+   "va": "0040c1e2",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?OpenMedExit$:BioScreen$n(pn$InputReq$$)v",
+   "tu": "src/shell/biomenu.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "ShellSelectionStats": {
    "va": "0040c2a0",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?ShellSelectionStats$n(pn$Scene$$pn$InputReq$$pnxa)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "BioScreen::OpenVrExit": {
+   "va": "0040c2a0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?OpenVrExit$:BioScreen$n(pn$InputReq$$)v",
+   "tu": "src/shell/biomenu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BioScreen::OpenStandbyExit": {
+   "va": "0040c374",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?OpenStandbyExit$:BioScreen$n(pn$InputReq$$)v",
+   "tu": "src/shell/biomenu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BioScreen::Setup": {
+   "va": "0040c426",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Setup$:BioScreen$n(pn$InputReq$$)v",
+   "tu": "src/shell/biomenu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BioScreen::Suppress": {
+   "va": "0040c537",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Suppress$:BioScreen$n(us)v",
+   "tu": "src/shell/biomenu.c",
+   "evidence": "strict match 2026-11-09"
   },
   "ShellSelectionClose": {
    "va": "0040c544",
@@ -1006,6 +1078,22 @@
    "mangled": "W?ShellSelectionClose$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "BioScreen::Close": {
+   "va": "0040c544",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Close$:BioScreen$n()v",
+   "tu": "src/shell/biomenu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BioScreen::Deactivate": {
+   "va": "0040c618",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Deactivate$:BioScreen$n()v",
+   "tu": "src/shell/biomenu.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "f_0040c63e": {
    "va": "0040c63e",
    "kind": "func",
@@ -1013,12 +1101,108 @@
    "mangled": "f_0040c63e",
    "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
   },
+  "BioScreen::DrawRegions": {
+   "va": "0040c63e",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?DrawRegions$:BioScreen$n(ii)v",
+   "tu": "src/shell/biomenu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BioScreen::Event": {
+   "va": "0040c7cc",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Event$:BioScreen$n()i",
+   "tu": "src/shell/biomenu.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "ShellSelectionRender": {
    "va": "0040c8f1",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?ShellSelectionRender$n(pn$Scene$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "BioScreen::Render": {
+   "va": "0040c8f1",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Render$:BioScreen$n()v",
+   "tu": "src/shell/biomenu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BioScreen::IsVatOpening": {
+   "va": "0040cbaa",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?IsVatOpening$:BioScreen$n()i",
+   "tu": "src/shell/biomenu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BioScreen::Finish": {
+   "va": "0040cbbd",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?Finish$:BioScreen$n()v",
+   "tu": "src/shell/biomenu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BioScreen::ToggleVat": {
+   "va": "0040cbcb",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ToggleVat$:BioScreen$n()v",
+   "tu": "src/shell/biomenu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BioScreen::ToggleMed": {
+   "va": "0040cd60",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ToggleMed$:BioScreen$n()v",
+   "tu": "src/shell/biomenu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BioScreen::ToggleStandby": {
+   "va": "0040ce72",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ToggleStandby$:BioScreen$n()v",
+   "tu": "src/shell/biomenu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BioScreen::ToggleVr": {
+   "va": "0040cfa5",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ToggleVr$:BioScreen$n()v",
+   "tu": "src/shell/biomenu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BioScreen::StartVat": {
+   "va": "0040d0f5",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?StartVat$:BioScreen$n()v",
+   "tu": "src/shell/biomenu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BioScreen::PlayOnce": {
+   "va": "0040d18d",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PlayOnce$:BioScreen$n(pnxapn$FlicSound$$pnxa)v",
+   "tu": "src/shell/biomenu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BioScreen::PlayLoop": {
+   "va": "0040d1dc",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?PlayLoop$:BioScreen$n(pnxapn$FlicSound$$pnxa)v",
+   "tu": "src/shell/biomenu.c",
+   "evidence": "strict match 2026-11-09"
   },
   "W?$Wda015$:MenuPrefixButton$n(ui)pnv": {
    "va": "0040d234",
@@ -1031,9 +1215,18 @@
   "MenuCaption::$dt": {
    "va": "0040d24c",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?$dt:MenuCaption$n()_",
-   "evidence": "implied by src/gui/menu.c 2026-11-09"
+   "tu": "src/shell/biomenu.c",
+   "evidence": "strict match 2026-11-09"
+  },
+  "BioScreen::$dt": {
+   "va": "0040d290",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$dt:BioScreen$n()_",
+   "tu": "src/shell/biomenu.c",
+   "evidence": "strict match 2026-11-09"
   },
   "W?.fn_init$n()v@_unknown/tu_0040d2b0.c": {
    "va": "0040d2b0",
@@ -1649,6 +1842,13 @@
    "mangled": "W?$ct:PilotGuiModule$n()_",
    "tu": "src/shell/pilotgui.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "PilotGuiOpen": {
+   "va": "00410bc2",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?PilotGuiOpen$n(pnvpnv)v",
+   "evidence": "implied by src/shell/biomenu.c 2026-11-09"
   },
   "PilotGuiCloseResources": {
    "va": "00411027",
@@ -4819,6 +5019,13 @@
    "tu": "src/_unknown/tu_00425978.c",
    "evidence": "strict match 2026-11-09"
   },
+  "GuiScreen::Reset#W?Reset$:GuiScreen$n(pnpn$GuiControl$$uiul)v": {
+   "va": "004259c1",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Reset$:GuiScreen$n(pnpn$GuiControl$$uiul)v",
+   "evidence": "implied by src/pop/pherc.c 2026-11-09"
+  },
   "BriefObjectOpen": {
    "va": "004259f7",
    "kind": "func",
@@ -5660,6 +5867,13 @@
    "tu": "src/gui/menu.c",
    "evidence": "strict match 2026-11-09"
   },
+  "MenuCaption::$ct#W?$ct:MenuCaption$n(pnxaciii)_": {
+   "va": "00428018",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$ct:MenuCaption$n(pnxaciii)_",
+   "evidence": "implied by src/shell/biomenu.c 2026-11-09"
+  },
   "MenuCaption::SetText": {
    "va": "00428043",
    "kind": "func",
@@ -6173,6 +6387,13 @@
    "mangled": "W?$dt:MenuImageButton$n()_",
    "tu": "src/gui/menu.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "BioLoadRegions": {
+   "va": "004297fd",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?BioLoadRegions$n(pnxa)v",
+   "evidence": "implied by src/shell/biomenu.c 2026-11-09"
   },
   "PlyFind": {
    "va": "00429863",
@@ -9177,6 +9398,13 @@
    "mangled": "f_00439d48",
    "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
   },
+  "f_00439d48#W?f_00439d48$n(i)i": {
+   "va": "00439d48",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_00439d48$n(i)i",
+   "evidence": "implied by src/pop/pherc.c 2026-11-09"
+  },
   "f_00439daf": {
    "va": "00439daf",
    "kind": "func",
@@ -11178,6 +11406,14 @@
    "tu": "src/pop/pherc.c",
    "evidence": "strict match 2026-11-09"
   },
+  "HercModule::$ct": {
+   "va": "00445289",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:HercModule$n()_",
+   "tu": "src/pop/pherc.c",
+   "evidence": "strict match 2026-11-09"
+  },
   "HercControl::$ct": {
    "va": "004453dd",
    "kind": "func",
@@ -11199,6 +11435,14 @@
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?f_0044540f$n(pnuli)v",
+   "tu": "src/pop/pherc.c",
+   "evidence": "placed (at) in src/pop/pherc.c 2026-11-09"
+  },
+  "f_0044540f#W?f_0044540f$n(pn$HercControl$$i)v": {
+   "va": "0044540f",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_0044540f$n(pn$HercControl$$i)v",
    "tu": "src/pop/pherc.c",
    "evidence": "placed (at) in src/pop/pherc.c 2026-11-09"
   },
@@ -11242,19 +11486,43 @@
    "tu": "src/pop/pherc.c",
    "evidence": "placed (at) in src/pop/pherc.c 2026-11-09"
   },
+  "f_0044579c#W?f_0044579c$n(pnipnv)v": {
+   "va": "0044579c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_0044579c$n(pnipnv)v",
+   "tu": "src/pop/pherc.c",
+   "evidence": "placed (at) in src/pop/pherc.c 2026-11-09"
+  },
+  "f_0044591f": {
+   "va": "0044591f",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_0044591f$n(pn$HercModule$$i)v",
+   "tu": "src/pop/pherc.c",
+   "evidence": "placed (at) in src/pop/pherc.c 2026-11-09"
+  },
   "f_00445c81": {
    "va": "00445c81",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?f_00445c81$n(i)v",
    "tu": "src/pop/pherc.c",
-   "evidence": "placed (at) in src/pop/pherc.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "f_00445cfe": {
    "va": "00445cfe",
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?f_00445cfe$n(i)v",
+   "tu": "src/pop/pherc.c",
+   "evidence": "placed (at) in src/pop/pherc.c 2026-11-09"
+  },
+  "f_00445e23": {
+   "va": "00445e23",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_00445e23$n(pn$HercModule$$)i",
    "tu": "src/pop/pherc.c",
    "evidence": "placed (at) in src/pop/pherc.c 2026-11-09"
   },
@@ -11301,18 +11569,18 @@
   "HercModule::Update": {
    "va": "004466d6",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?Update$:HercModule$n()v",
    "tu": "src/pop/pherc.c",
-   "evidence": "placed (at) in src/pop/pherc.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "f_00446781": {
    "va": "00446781",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?f_00446781$n(i)v",
    "tu": "src/pop/pherc.c",
-   "evidence": "placed (at) in src/pop/pherc.c 2026-11-09"
+   "evidence": "strict match 2026-11-09"
   },
   "W?.tdctor$:MenuImageLabel$n()rn$1$": {
    "va": "004467e4",
@@ -22844,6 +23112,14 @@
    "mangled": "W?$Wts0kn$MenuPrefixButton$$$nx[]uc",
    "evidence": "implied by src/shell/commscrn.c 2026-11-09"
   },
+  "W?$Wts0fn$MenuCaption$$$nx[]uc": {
+   "va": "0048cabc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0fn$MenuCaption$$$nx[]uc",
+   "tu": "src/shell/biomenu.c",
+   "evidence": "own data placed in src/shell/biomenu.c 2026-11-09"
+  },
   "W?$Wts0kn$PilotImageButton$$$nx[]uc": {
    "va": "0048cdb8",
    "kind": "data",
@@ -23276,6 +23552,13 @@
    "mangled": "W?gPilotGuiFrameStep$nuc",
    "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
   },
+  "bioAnimationEnabled": {
+   "va": "0048e58c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?bioAnimationEnabled$ni",
+   "evidence": "implied by src/shell/biomenu.c 2026-11-09"
+  },
   "mainMenuLastHover": {
    "va": "0048e5a0",
    "kind": "data",
@@ -23303,6 +23586,20 @@
    "status": "hypothesis",
    "mangled": "W?promoControls$n[]pn$GuiControl$$",
    "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "bioLastRegion": {
+   "va": "0048e69c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?bioLastRegion$ni",
+   "evidence": "implied by src/shell/biomenu.c 2026-11-09"
+  },
+  "bioControls": {
+   "va": "0048e6b0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?bioControls$n[]pn$GuiControl$$",
+   "evidence": "implied by src/shell/biomenu.c 2026-11-09"
   },
   "biodermListControls": {
    "va": "0048e6d8",
@@ -23856,6 +24153,69 @@
    "status": "hypothesis",
    "mangled": "W?promoSounds_0048fcb0$n[]$FlicSound$$",
    "evidence": "implied by src/_unknown/tu_00409408.c 2026-11-09"
+  },
+  "bioVatStart": {
+   "va": "0048fe88",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?bioVatStart$n[]$FlicSound$$",
+   "evidence": "implied by src/shell/biomenu.c 2026-11-09"
+  },
+  "bioVatClose": {
+   "va": "0048fea0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?bioVatClose$n[]$FlicSound$$",
+   "evidence": "implied by src/shell/biomenu.c 2026-11-09"
+  },
+  "bioLoopSounds": {
+   "va": "0048feb8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?bioLoopSounds$n[]$FlicSound$$",
+   "evidence": "implied by src/shell/biomenu.c 2026-11-09"
+  },
+  "bioStandbyStart": {
+   "va": "0048fed8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?bioStandbyStart$n[]$FlicSound$$",
+   "evidence": "implied by src/shell/biomenu.c 2026-11-09"
+  },
+  "bioStandbyEnd": {
+   "va": "0048fef0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?bioStandbyEnd$n[]$FlicSound$$",
+   "evidence": "implied by src/shell/biomenu.c 2026-11-09"
+  },
+  "bioVrStart": {
+   "va": "0048ff08",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?bioVrStart$n[]$FlicSound$$",
+   "evidence": "implied by src/shell/biomenu.c 2026-11-09"
+  },
+  "bioVrEnd": {
+   "va": "0048ff20",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?bioVrEnd$n[]$FlicSound$$",
+   "evidence": "implied by src/shell/biomenu.c 2026-11-09"
+  },
+  "bioMedStart": {
+   "va": "0048ff38",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?bioMedStart$n[]$FlicSound$$",
+   "evidence": "implied by src/shell/biomenu.c 2026-11-09"
+  },
+  "bioMedEnd": {
+   "va": "0048ff48",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?bioMedEnd$n[]$FlicSound$$",
+   "evidence": "implied by src/shell/biomenu.c 2026-11-09"
   },
   "promoSounds_0048ff68": {
    "va": "0048ff68",
@@ -25330,6 +25690,41 @@
    "mangled": "W?gShellMapMode$nl",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "bioPanel": {
+   "va": "004afe1c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?bioPanel$n$MenuPanel$$",
+   "evidence": "implied by src/shell/biomenu.c 2026-11-09"
+  },
+  "bioButtons": {
+   "va": "004afe40",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?bioButtons$n[]$MenuPrefixButton$$",
+   "evidence": "implied by src/shell/biomenu.c 2026-11-09"
+  },
+  "bioHelp": {
+   "va": "004aff1c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?bioHelp$n$MenuHelpRegion$$",
+   "evidence": "implied by src/shell/biomenu.c 2026-11-09"
+  },
+  "bioListState": {
+   "va": "004aff3c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?bioListState$ni",
+   "evidence": "implied by src/shell/biomenu.c 2026-11-09"
+  },
+  "bioCaption": {
+   "va": "004aff44",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?bioCaption$n$MenuCaption$$",
+   "evidence": "implied by src/shell/biomenu.c 2026-11-09"
+  },
   "g4aff6c": {
    "va": "004aff6c",
    "kind": "data",
@@ -25343,6 +25738,13 @@
    "status": "hypothesis",
    "mangled": "W?g4aff6c$nul",
    "evidence": "implied by src/_unknown/tu_0040ffb8.c 2026-11-09"
+  },
+  "g4aff6c#W?g4aff6c$n$BioScreen$$": {
+   "va": "004aff6c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4aff6c$n$BioScreen$$",
+   "evidence": "implied by src/shell/biomenu.c 2026-11-09"
   },
   "g4affb8": {
    "va": "004affb8",
@@ -25462,6 +25864,13 @@
    "status": "hypothesis",
    "mangled": "W?g4b01c8$n$BiodermListScreen$$",
    "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
+  },
+  "bioListMode": {
+   "va": "004b0214",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?bioListMode$nus",
+   "evidence": "implied by src/shell/biomenu.c 2026-11-09"
   },
   "statsText0": {
    "va": "004b022c",
@@ -25631,6 +26040,13 @@
    "mangled": "W?g4b07f8$n$BiodermStatsScreen$$",
    "evidence": "implied by src/_unknown/tu_0040e7a0.c 2026-11-09"
   },
+  "bioVrMode": {
+   "va": "004b0844",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?bioVrMode$nus",
+   "evidence": "implied by src/shell/biomenu.c 2026-11-09"
+  },
   "medlabCreditText": {
    "va": "004b0854",
    "kind": "data",
@@ -25757,6 +26173,13 @@
    "mangled": "W?g4b0c50$n$MedlabScreen$$",
    "evidence": "implied by src/_unknown/tu_0040f4e4.c 2026-11-09"
   },
+  "bioMedlabState": {
+   "va": "004b0c9c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?bioMedlabState$nus",
+   "evidence": "implied by src/shell/biomenu.c 2026-11-09"
+  },
   "gBriefButtonA": {
    "va": "004b0cac",
    "kind": "data",
@@ -25840,6 +26263,20 @@
    "status": "hypothesis",
    "mangled": "W?g4b0e18$n$Scene$$",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "g4b0e18#W?g4b0e18$na": {
+   "va": "004b0e18",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b0e18$na",
+   "evidence": "implied by src/shell/biomenu.c 2026-11-09"
+  },
+  "bioStandbyState": {
+   "va": "004b0e64",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?bioStandbyState$nus",
+   "evidence": "implied by src/shell/biomenu.c 2026-11-09"
   },
   "gPilotGuiOpenA": {
    "va": "004b0ef8",
@@ -26127,6 +26564,13 @@
    "status": "hypothesis",
    "mangled": "W?gShellOverlayColors$n[]$PaletteColor$$",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "bioRoomHandle": {
+   "va": "004b1d94",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?bioRoomHandle$ni",
+   "evidence": "implied by src/shell/biomenu.c 2026-11-09"
   },
   "screenChanged": {
    "va": "004b1d99",
@@ -29375,6 +29819,13 @@
    "status": "hypothesis",
    "mangled": "W?logicMode$ni",
    "evidence": "implied by src/logic/lsys.c 2026-11-09"
+  },
+  "bioOtherVisible": {
+   "va": "004ca662",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?bioOtherVisible$nuc",
+   "evidence": "implied by src/shell/biomenu.c 2026-11-09"
   },
   "g4d030f": {
    "va": "004d030f",
