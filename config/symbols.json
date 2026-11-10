@@ -2603,26 +2603,34 @@
   "W?.fn_init$n()v@_unknown/tu_004155fc.c": {
    "va": "004155fc",
    "kind": "func",
-   "status": "matched",
+   "status": "hypothesis",
    "mangled": "W?.fn_init$n()v",
    "tu": "src/_unknown/tu_004155fc.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "moved to src/shell/dbrief.c 2026-11-11"
+  },
+  "W?.fn_init$n()v@shell/dbrief.c": {
+   "va": "004155fc",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?.fn_init$n()v",
+   "tu": "src/shell/dbrief.c",
+   "evidence": "strict match 2026-11-11"
   },
   "MissionDebrief::$ct": {
    "va": "004156c2",
    "kind": "func",
    "status": "matched",
    "mangled": "W?$ct:MissionDebrief$n()_",
-   "tu": "src/_unknown/tu_004155fc.c",
-   "evidence": "strict match 2026-11-09"
+   "tu": "src/shell/dbrief.c",
+   "evidence": "strict match 2026-11-11"
   },
   "ShellMissionBegin": {
    "va": "004156f8",
    "kind": "func",
    "status": "matched",
    "mangled": "ShellMissionBegin",
-   "tu": "src/_unknown/tu_004155fc.c",
-   "evidence": "strict match 2026-11-09"
+   "tu": "src/shell/dbrief.c",
+   "evidence": "strict match 2026-11-11"
   },
   "ShellMissionBegin#W?ShellMissionBegin$n(pn$Scene$$pn$InputReq$$)v": {
    "va": "004156f8",
@@ -2636,8 +2644,8 @@
    "kind": "func",
    "status": "matched",
    "mangled": "ShellMissionClose",
-   "tu": "src/_unknown/tu_004155fc.c",
-   "evidence": "strict match 2026-11-09"
+   "tu": "src/shell/dbrief.c",
+   "evidence": "strict match 2026-11-11"
   },
   "ShellMissionClose#W?ShellMissionClose$n(pn$Scene$$)v": {
    "va": "004157eb",
@@ -2651,8 +2659,8 @@
    "kind": "func",
    "status": "matched",
    "mangled": "ShellMissionExit",
-   "tu": "src/_unknown/tu_004155fc.c",
-   "evidence": "strict match 2026-11-09"
+   "tu": "src/shell/dbrief.c",
+   "evidence": "strict match 2026-11-11"
   },
   "ShellMissionExit#W?ShellMissionExit$n(pn$Scene$$)ul": {
    "va": "0041581d",
@@ -2666,8 +2674,8 @@
    "kind": "func",
    "status": "matched",
    "mangled": "ShellMissionRender",
-   "tu": "src/_unknown/tu_004155fc.c",
-   "evidence": "strict match 2026-11-09"
+   "tu": "src/shell/dbrief.c",
+   "evidence": "strict match 2026-11-11"
   },
   "ShellMissionRender#W?ShellMissionRender$n(pn$Scene$$)v": {
    "va": "0041584e",
@@ -2681,32 +2689,32 @@
    "kind": "func",
    "status": "matched",
    "mangled": "W?DebriefSetPolygon$n()v",
-   "tu": "src/_unknown/tu_004155fc.c",
-   "evidence": "strict match 2026-11-09"
+   "tu": "src/shell/dbrief.c",
+   "evidence": "strict match 2026-11-11"
   },
   "MissionDebrief::DrawMap": {
    "va": "004158e4",
    "kind": "func",
    "status": "matched",
    "mangled": "W?DrawMap$:MissionDebrief$n()v",
-   "tu": "src/_unknown/tu_004155fc.c",
-   "evidence": "strict match 2026-11-09"
+   "tu": "src/shell/dbrief.c",
+   "evidence": "strict match 2026-11-11"
   },
   "MissionDebrief::LoadBackground": {
    "va": "00415985",
    "kind": "func",
    "status": "matched",
    "mangled": "W?LoadBackground$:MissionDebrief$n()v",
-   "tu": "src/_unknown/tu_004155fc.c",
-   "evidence": "strict match 2026-11-09"
+   "tu": "src/shell/dbrief.c",
+   "evidence": "strict match 2026-11-11"
   },
   "MissionDebrief::$dt": {
    "va": "00415a68",
    "kind": "func",
    "status": "matched",
    "mangled": "W?$dt:MissionDebrief$n()_",
-   "tu": "src/_unknown/tu_004155fc.c",
-   "evidence": "strict match 2026-11-09"
+   "tu": "src/shell/dbrief.c",
+   "evidence": "strict match 2026-11-11"
   },
   "HercBayModuleInit": {
    "va": "00415a88",
@@ -24617,6 +24625,14 @@
    "mangled": "W?$Wts0en$UpgradeBar$$$nx[]uc",
    "tu": "src/_unknown/tu_00429a44.c",
    "evidence": "own data placed in src/_unknown/tu_00429a44.c 2026-11-09"
+  },
+  "W?$Wts0in$MissionDebrief$$$nx[]uc": {
+   "va": "0048d06c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0in$MissionDebrief$$$nx[]uc",
+   "tu": "src/shell/dbrief.c",
+   "evidence": "own data placed in src/shell/dbrief.c 2026-11-11"
   },
   "W?$Wts0hn$UpgradeCanvas$$$nx[]uc": {
    "va": "0048d380",

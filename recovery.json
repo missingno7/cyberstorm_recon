@@ -11378,78 +11378,6 @@
    },
    "accepted": "2026-11-09"
   },
-  "src/_unknown/tu_004155fc.c": {
-   "as": "_unknown\\tu_004155fc.c",
-   "install": "wc106",
-   "profile": "plain",
-   "functions": {
-    "W?.fn_init$n()v": {
-     "va": "004155fc",
-     "size": 198,
-     "mangled": "W?.fn_init$n()v"
-    },
-    "MissionDebrief::$ct": {
-     "va": "004156c2",
-     "size": 54,
-     "mangled": "W?$ct:MissionDebrief$n()_"
-    },
-    "ShellMissionBegin": {
-     "va": "004156f8",
-     "size": 243,
-     "mangled": "ShellMissionBegin"
-    },
-    "ShellMissionClose": {
-     "va": "004157eb",
-     "size": 50,
-     "mangled": "ShellMissionClose"
-    },
-    "ShellMissionExit": {
-     "va": "0041581d",
-     "size": 49,
-     "mangled": "ShellMissionExit"
-    },
-    "ShellMissionRender": {
-     "va": "0041584e",
-     "size": 136,
-     "mangled": "ShellMissionRender"
-    },
-    "DebriefSetPolygon": {
-     "va": "004158d6",
-     "size": 14,
-     "mangled": "W?DebriefSetPolygon$n()v"
-    },
-    "MissionDebrief::DrawMap": {
-     "va": "004158e4",
-     "size": 161,
-     "mangled": "W?DrawMap$:MissionDebrief$n()v"
-    },
-    "MissionDebrief::LoadBackground": {
-     "va": "00415985",
-     "size": 227,
-     "mangled": "W?LoadBackground$:MissionDebrief$n()v"
-    },
-    "MissionDebrief::$dt": {
-     "va": "00415a68",
-     "size": 29,
-     "mangled": "W?$dt:MissionDebrief$n()_"
-    }
-   },
-   "data": {
-    "CONST": {
-     "va": "0048aa14",
-     "size": 38
-    },
-    "CONST2": {
-     "va": "0048d038",
-     "size": 52
-    },
-    "_DATA": {
-     "va": "0048ea88",
-     "size": 12
-    }
-   },
-   "accepted": "2026-11-09"
-  },
   "src/_unknown/tu_00426cdc.c": {
    "as": "_unknown\\tu_00426cdc.c",
    "install": "wc106",
@@ -13194,6 +13122,98 @@
     }
    },
    "accepted": "2026-11-11"
+  },
+  "src/shell/dbrief.c": {
+   "as": "shell\\dbrief.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "004155fc",
+     "size": 198,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "MissionDebrief::$ct": {
+     "va": "004156c2",
+     "size": 54,
+     "mangled": "W?$ct:MissionDebrief$n()_"
+    },
+    "ShellMissionBegin": {
+     "va": "004156f8",
+     "size": 243,
+     "mangled": "ShellMissionBegin"
+    },
+    "ShellMissionClose": {
+     "va": "004157eb",
+     "size": 50,
+     "mangled": "ShellMissionClose"
+    },
+    "ShellMissionExit": {
+     "va": "0041581d",
+     "size": 49,
+     "mangled": "ShellMissionExit"
+    },
+    "ShellMissionRender": {
+     "va": "0041584e",
+     "size": 136,
+     "mangled": "ShellMissionRender"
+    },
+    "DebriefSetPolygon": {
+     "va": "004158d6",
+     "size": 14,
+     "mangled": "W?DebriefSetPolygon$n()v"
+    },
+    "MissionDebrief::DrawMap": {
+     "va": "004158e4",
+     "size": 161,
+     "mangled": "W?DrawMap$:MissionDebrief$n()v"
+    },
+    "MissionDebrief::LoadBackground": {
+     "va": "00415985",
+     "size": 227,
+     "mangled": "W?LoadBackground$:MissionDebrief$n()v"
+    },
+    "MissionDebrief::$dt": {
+     "va": "00415a68",
+     "size": 29,
+     "mangled": "W?$dt:MissionDebrief$n()_"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048aa14",
+     "size": 38
+    },
+    "CONST2": {
+     "va": "0048d038",
+     "size": 52
+    },
+    "_DATA": {
+     "va": "0048ea88",
+     "size": 12
+    },
+    "XI": {
+     "va": "004a6ba0",
+     "size": 6
+    },
+    "W?$Wts0in$MenuHelpRegion$$$nx[]uc": {
+     "va": "0048c9c4",
+     "size": 17
+    },
+    "W?$Wts0en$UpgradeBar$$$nx[]uc": {
+     "va": "0048d024",
+     "size": 17
+    },
+    "W?$Wts0gn$UpgradeArrow$$$nx[]uc": {
+     "va": "0048d010",
+     "size": 17
+    },
+    "W?$Wts0in$MissionDebrief$$$nx[]uc": {
+     "va": "0048d06c",
+     "size": 17
+    }
+   },
+   "accepted": "2026-11-11"
   }
  },
  "accepted_losses": [
@@ -13536,6 +13556,23 @@
     "f_00445238"
    ],
    "date": "2026-11-11"
+  },
+  {
+   "tu": "src/_unknown/tu_004155fc.c",
+   "functions": [
+    "DebriefSetPolygon",
+    "MissionDebrief::$ct",
+    "MissionDebrief::$dt",
+    "MissionDebrief::DrawMap",
+    "MissionDebrief::LoadBackground",
+    "ShellMissionBegin",
+    "ShellMissionClose",
+    "ShellMissionExit",
+    "ShellMissionRender",
+    "W?.fn_init$n()v"
+   ],
+   "date": "2026-11-11",
+   "moved_to": "src/shell/dbrief.c"
   }
  ]
 }

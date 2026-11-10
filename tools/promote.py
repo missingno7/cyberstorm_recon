@@ -2,7 +2,13 @@
 
     python tools/promote.py CANDIDATE.c --tu src/DIR/FILE.c [--as DIR\\FILE.c] [--profile P | --flags "-4s -s -oxt"]
                             [--at LABEL=VA ...] [--accept-loss LABEL ...] [--publish]
+                            [--from src/DIR/OLD.c ...]
     python tools/promote.py --retire src/DIR/OLD.c [--publish]     (object split: functions move to new files)
+
+--from OLD.c (repeatable): functions currently accepted in OLD.c may be claimed by this TU at the SAME VA (rename of
+a file to its real path name, or cutting a combined file into its objects). On --publish they leave OLD's ledger
+entry; an OLD entry left without functions is removed and its source file deleted. Works in a dry run, so a worker
+can prove a rename or split without touching the ledger.
 
 Steps: source policy check -> fresh compile with the TU's pinned toolchain -> strict comparison (placement from
 bound symbols, --at, or a unique masked search) -> no previously accepted function may lose STRICT (unless named
@@ -73,6 +79,8 @@ def main(argv):
             opts["at"][k] = int(v, 16)
         elif key == "--accept-loss":
             opts["loss"].append(val)
+        elif key == "--from":
+            opts.setdefault("from", []).append(val.replace("\\", "/"))
         else:
             opts[key[2:]] = val
     if "retire" in opts and not argv:
@@ -88,12 +96,20 @@ def main(argv):
     cand = norm_dir / orig_cand.name
     cand.write_bytes(orig_cand.read_bytes().replace(b"\r\n", b"\n"))
     tu = opts["tu"].replace("\\", "/")
+    frm = [f for f in opts.get("from", []) if f != tu]
     ledger = gate.load_ledger()
+    for f in frm:
+        if f not in ledger["tus"]:
+            print(f"--from {f}: not in the ledger")
+            return 1
     old = ledger["tus"].get(tu, {})
     entry = {"as": opts.get("as", old.get("as")), "install": "wc106"}
     if "flags" in opts:
         entry["flags"] = opts["flags"].split()
         entry["tool"] = opts.get("tool", old.get("tool", "wpp386"))
+    elif "profile" not in opts and old.get("flags"):
+        entry["flags"] = old["flags"]            # the TU's recorded explicit flags stay unless overridden
+        entry["tool"] = old.get("tool", "wpp386")
     else:
         entry["profile"] = opts.get("profile", old.get("profile", "ot"))
         entry["flags"] = None
@@ -153,18 +169,20 @@ def main(argv):
     # same mangled name is one linked copy: it stays counted once, by its first owner
     for n in [n for n, e in strict.items() if e["seg"] == n and any(
             v.get("mangled") == n and v["va"] == e["va"] and v["status"] == "matched" and v.get("tu") != tu
-            for v in syms.values())]:
+            and v.get("tu") not in frm for v in syms.values())]:
         print(f"  shared COMDAT {symbols.label(n)} already counted by another TU")
         del strict[n]
     for n, e in strict.items():
         lab = skey(n, e)
         cur = syms.get(lab)
         moved = cur and cur.get("tu") == tu and lkey(n) in opts["loss"]    # this TU's own function, accepted at a new VA
+        moved = moved or (cur and cur.get("tu") in frm and cur["va"] == e["va"])    # taken over from a --from TU
         if cur and cur["status"] == "matched" and (cur["va"] != e["va"] or cur.get("tu") != tu) and not moved:
             print(f"symbol {lab} already matched at {cur['va']} in {cur.get('tu')}; refusing")
             return 1
         clash = [k for k, v in syms.items() if v["va"] == e["va"] and v["status"] == "matched" and k != lab
-                 and not (v.get("tu") == tu and k in opts["loss"])]   # a renamed function of this TU
+                 and not (v.get("tu") == tu and k in opts["loss"])    # a renamed function of this TU
+                 and v.get("tu") not in frm]                          # or one taken over from a --from TU
         if clash:
             print(f"{e['va']} already matched as {clash}; refusing")
             return 1
@@ -194,6 +212,11 @@ def main(argv):
                     print(f"      {e['status']:8s} {e['va']} {symbols.label(e['names'][0])}")
     print(f"{tu}: {len(strict)} strict functions ({sbytes} bytes), new {len(gain)}, lost {len(lost)}"
           f"{' (accepted: ' + ', '.join(lost) + ')' if lost else ''}")
+    new_vas = {e["va"] for e in strict.values()}
+    moves = {f: sorted(n for n, x in ledger["tus"][f]["functions"].items() if x["va"] in new_vas) for f in frm}
+    for f, names in moves.items():
+        rest = len(ledger["tus"][f]["functions"]) - len(names)
+        print(f"  takes {len(names)} functions from {f}" + (f" ({rest} stay there)" if rest else " (file is retired)"))
     if not publish:
         print("dry run OK (add --publish to accept)")
         return 0
@@ -211,6 +234,21 @@ def main(argv):
     ledger["tus"][tu] = rec
     if lost:
         ledger.setdefault("accepted_losses", []).append({"tu": tu, "functions": lost, "date": now})
+    new_keys = {skey(n, e) for n, e in strict.items()}
+    for k, v in syms.items():
+        if v.get("tu") in frm and v["status"] == "matched" and v["va"] in new_vas and k not in new_keys:
+            v["status"] = "hypothesis"                  # the old owner's name for a function that moved
+            v["evidence"] = f"moved to {tu} {now}"
+    for f, names in moves.items():
+        old_rec = ledger["tus"][f]
+        for n in names:
+            del old_rec["functions"][n]
+        for seg, d in list((old_rec.get("data") or {}).items()):
+            if any(s["seg"] == seg and s["base"] == d["va"] for s in data_strict) or not old_rec["functions"]:
+                del old_rec["data"][seg]
+        ledger.setdefault("accepted_losses", []).append({"tu": f, "functions": names, "date": now, "moved_to": tu})
+        if not old_rec["functions"]:
+            del ledger["tus"][f]
     for n, e in strict.items():
         k = skey(n, e)
         prev = syms.get(k)
@@ -321,6 +359,10 @@ def main(argv):
                 p.write_bytes(b)
         print(f"ROLLED BACK: not strict without --at/search: {bad}")
         return 1
+    for f in frm:
+        if f not in ledger["tus"]:
+            (ROOT / f).unlink(missing_ok=True)
+            print(f"  retired {f}")
     print(f"published: {len(rec['functions'])} strict functions")
     return 0
 

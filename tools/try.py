@@ -97,7 +97,7 @@ def main(argv):
     flags_all = "--all" in argv
     if flags_all:
         argv.remove("--all")
-    for key in ("--as", "--profile", "--context", "--at", "--fn"):
+    for key in ("--as", "--profile", "--flags", "--tool", "--context", "--at", "--fn"):
         while key in argv:
             i = argv.index(key)
             v = argv[i + 1]
@@ -109,10 +109,13 @@ def main(argv):
                 opts["fn"].append(v)
             else:
                 opts[key[2:]] = v
-    if len(argv) != 1 or "profile" not in opts:
+    if len(argv) != 1 or ("profile" not in opts and "flags" not in opts):
         print(__doc__)
         return 2
-    prof = load_json(CONFIG / "toolchain.json")["profiles"][opts["profile"]]
+    if "flags" in opts:         # a TU recorded with explicit flags (recovery.json "flags"), e.g. "-4s -s -bm -oxt -oe=80"
+        prof = {"flags": opts["flags"].split(), "install": "wc106", "tool": opts.get("tool", "wpp386")}
+    else:
+        prof = load_json(CONFIG / "toolchain.json")["profiles"][opts["profile"]]
     src = Path(argv[0])
     context = int(opts.get("context", 6))
     with tempfile.TemporaryDirectory(prefix="try", dir=ROOT / "build") as td:
