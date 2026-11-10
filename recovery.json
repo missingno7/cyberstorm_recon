@@ -12784,10 +12784,10 @@
      "size": 224,
      "mangled": "W?.fn_init$n()v"
     },
-    "TargetLoadResource": {
+    "TargetPopup::$ct": {
      "va": "0045a6e0",
      "size": 32,
-     "mangled": "W?TargetLoadResource$n(pnv)v"
+     "mangled": "W?$ct:TargetPopup$n()_"
     },
     "TargetMapAlert": {
      "va": "0045a700",
@@ -12816,7 +12816,7 @@
     },
     "TargetPopup::$dt": {
      "va": "0045a900",
-     "size": 12,
+     "size": 16,
      "mangled": "W?$dt:TargetPopup$n()_"
     }
    },
@@ -12839,6 +12839,10 @@
     },
     "W?$Wts0kn$PilotImageButton$$$nx[]uc": {
      "va": "0048cdb8",
+     "size": 17
+    },
+    "W?$Wts0fn$TargetPopup$$$nx[]uc": {
+     "va": "0048e054",
      "size": 17
     }
    },
@@ -13573,6 +13577,14 @@
    ],
    "date": "2026-11-11",
    "moved_to": "src/shell/dbrief.c"
+  },
+  {
+   "tu": "src/sim/mapalert.c",
+   "functions": [
+    "TargetLoadResource",
+    "TargetPopup::$dt"
+   ],
+   "date": "2026-11-11"
   }
  ]
 }

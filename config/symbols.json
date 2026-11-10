@@ -15036,8 +15036,16 @@
   "TargetLoadResource": {
    "va": "0045a6e0",
    "kind": "func",
-   "status": "matched",
+   "status": "hypothesis",
    "mangled": "W?TargetLoadResource$n(pnv)v",
+   "tu": "src/sim/mapalert.c",
+   "evidence": "lost strict 2026-11-11"
+  },
+  "TargetPopup::$ct": {
+   "va": "0045a6e0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?$ct:TargetPopup$n()_",
    "tu": "src/sim/mapalert.c",
    "evidence": "strict match 2026-11-11"
   },
@@ -25098,6 +25106,14 @@
    "mangled": "W?$Wts0fn$WorldAction$$$nx[]uc",
    "evidence": "implied by src/sim/worldact.c 2026-11-09"
   },
+  "W?$Wts0fn$TargetPopup$$$nx[]uc": {
+   "va": "0048e054",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0fn$TargetPopup$$$nx[]uc",
+   "tu": "src/sim/mapalert.c",
+   "evidence": "own data placed in src/sim/mapalert.c 2026-11-11"
+  },
   "W?$Wts0an$FxPart$$$nx[]uc": {
    "va": "0048e068",
    "kind": "data",
@@ -26821,6 +26837,14 @@
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?targetSavedObject$n[]pnv",
+   "tu": "src/sim/mapalert.c",
+   "evidence": "own data placed in src/sim/mapalert.c 2026-11-11"
+  },
+  "targetControls@sim/mapalert.c": {
+   "va": "004a2588",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?targetControls$n[]pn$GuiControl$$",
    "tu": "src/sim/mapalert.c",
    "evidence": "own data placed in src/sim/mapalert.c 2026-11-11"
   },

@@ -33,15 +33,6 @@ its object, placed right before the next object's static initializer (see codege
 `GuiScreen::ResetInput` 004087e0 in src/_unknown/tu_004087e0.c and `GuiScreen::$dt` 0041d774 in
 src/_unknown/tu_0041d774.c. In plain-profile objects the bytes match either way; the ownership and names are wrong.
 
-### sim\mapalert.c: 4 filler bytes after the popup destructor (2026-11-11)
-The oracle has compiler filler `8d 44 20 00` after `TargetPopup::$dt` (0045a900), the candidate object ends at the
-`ret`. A function gets trailing filler only when more code follows in the object's emission stream, also when
-that code is a COMDAT (measured: `FxPart::$ct` in fxout.obj is 0x10 bytes because a COMDAT thunk follows it). So
-the original emitted another inline function after the destructor which the linker dropped as a duplicate or
-placed elsewhere. With the destructor in-class (`build/int1/ma_d.c`) the order is constructor COMDAT, destructor
-COMDAT last: still no filler. Also open there: the candidate emits an out-of-line `TargetPopup::$ct` COMDAT that
-has no oracle counterpart.
-
 ### Unowned data between sim objects (2026-11-11)
 004a0360..004a0368 (`b7 00 00 00 00 00 00 00`, unreferenced) lies between simmini.c's last item and simgame.c's
 path string: owner unknown (simmini tail or a leading table of simgame.c). simturn.c records only its path string.
@@ -57,6 +48,12 @@ core\\*.c, main\\*.c, graph\\*.c). A census tool (path strings + XI targets + mo
 TU ranges) is the next infrastructure step; `tools/promote.py --retire` moves functions out of a combined file.
 
 ## Resolved
+
+- 2026-11-11 **sim\\mapalert.c filler after the popup destructor**: the popup is `class TargetPopup : public
+  GuiScreen` with an out-of-line constructor (0045a6e0, was `TargetLoadResource`) and a generated destructor; the
+  filler exists because the gadget classes' destructor COMDATs are emitted after it and dropped at link. With the
+  gadget classes declared through their real virtual interface the object is COMPLETE (rule in codegen_rules.md,
+  "screen/popup module shape"). The same shape applies to the other screen modules.
 
 - 2026-11-11 **Multi-file objects (lane o6)**: not a thing. 00450b00..00452950 is three ordinary objects
   (sim\\simout.c 00450b00, sim\\simmini.c 00451b00 starting with an empty static initializer, sim\\simgame.c 00452340)

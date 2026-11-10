@@ -16,15 +16,16 @@ extern char targetFallbackName[], targetMenuResource[], targetBriefResource[];
 void TargetEmpty(void);
 typedef unsigned long U32; struct GuiControl;
 // Opaque class storage sizes are evidence from the six constructor destinations.
-class SimMapGadget { public: char objectBytes[0x2c]; SimMapGadget(U32,long,long,U32); ~SimMapGadget(); };
+struct GuiRect { long x,y,width,height; }; struct GuiPoint; struct GuiControlData:GuiRect { unsigned char style[4]; U32 attributes,shortcut; };
+class GuiControl:public GuiControlData { public: GuiControl(U32,U32); virtual ~GuiControl(); virtual void Reset(unsigned); virtual void Draw(unsigned); virtual int Event(unsigned,U32); virtual int HitTest(const GuiPoint *); }; class SimMapGadget:public GuiControl { public: U32 state; long kind,data; SimMapGadget(U32,long,long,U32); void Reset(unsigned); void Draw(unsigned); int Event(unsigned,U32); int HitTest(const GuiPoint *); };
 #pragma aux target_image_constructor "W?$ct:SimImageGadget$n(llul)_";
-class PilotImageButton { public: char objectBytes[0x2c]; __pragma("target_image_constructor") PilotImageButton(long,long,U32); ~PilotImageButton(); };
-void TargetLoadResource(void *resource);
-class TargetPopup { public: char objectBytes[0x54]; TargetPopup() { TargetLoadResource(this); } ~TargetPopup(); };
+class PilotImageButton:public GuiControl { public: U32 state; long image,repeat; __pragma("target_image_constructor") PilotImageButton(long,long,U32); void Reset(unsigned); void Draw(unsigned); int Event(unsigned,U32); int HitTest(const GuiPoint *); };
+// The alert popup: a screen over five static gadgets. Its destructor is compiler generated (last function, 0045a900).
+struct InputReq; class GuiScreen : public GuiRect { public: InputReq *input; unsigned char unknown14[0x38]; GuiScreen(GuiControl **, unsigned, U32); ~GuiScreen() { input = 0; } }; class TargetPopup : public GuiScreen { public: TargetPopup(); };
 SimMapGadget targetPrompt(13,1,0,0);
 PilotImageButton targetPrompt1(133,500,0),targetPrompt2(136,500,0),targetPrompt3(139,500,0),targetPrompt4(142,500,0);
-TargetPopup targetPrompt5; static void *targetSavedObject[5] = { &targetPrompt, &targetPrompt1, &targetPrompt2, &targetPrompt4, &targetPrompt3 };
-void TargetLoadResource(void *resource) { PopLoadResource(resource,targetSavedObject,5,0); }
+TargetPopup targetPrompt5; static GuiControl *targetControls[5] = { &targetPrompt, &targetPrompt1, &targetPrompt2, &targetPrompt4, &targetPrompt3 };
+TargetPopup::TargetPopup() : GuiScreen(targetControls, 5, 0) { }
 void TargetMapAlert(void *object, int callback)
 {
     if (!((TargetBriefObject *)object)->IsActive()) { BriefObjectOpen(object, "MAPALERT.BOX"); BriefObjectLoadResource(object, callback, targetBriefResource, 0xc9, 0); }
@@ -47,4 +48,4 @@ void TargetHandleEvent(void *object)
     default: return;
     }
 }
-TargetPopup::~TargetPopup() { *(int *)(objectBytes+0x10)=0; }
+
