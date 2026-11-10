@@ -1,61 +1,18 @@
-extern void PopObjectConstruct(void *);
-extern unsigned long gBriefInitState;
-extern unsigned char gBriefModuleBase;
-extern unsigned char gBriefButtonA;
-extern unsigned char gBriefButtonB;
-extern unsigned char gBriefButtonC;
-extern unsigned char gBriefButtonD;
-extern unsigned char gBriefButtonE;
-extern unsigned char gBriefButtonF;
-extern unsigned char gBriefHelpRegion;
-extern unsigned char gBriefNumber;
-extern unsigned char gBriefPanel;
-extern unsigned char gBriefResourceDesc;
-class Scene {};
-extern Scene g4b0e18;
-extern void BriefMenuButtonCtor(void *, unsigned long, unsigned long);
-#pragma aux BriefMenuButtonCtor "W?$ct:MenuButton$n(pnxaul)_";
-extern void BriefMenuHelpCtor(void *);
-#pragma aux BriefMenuHelpCtor "W?$ct:MenuHelpRegion$n()_";
-extern void BriefMenuNumberCtor(void *, signed char, signed char);
-#pragma aux BriefMenuNumberCtor "W?$ct:MenuNumber$n(cc)_";
-extern void BriefMenuPanelCtor(void *);
-#pragma aux BriefMenuPanelCtor "W?$ct:MenuPanel$n()_";
-extern int BriefLoadResource(void *, void *, int, int);
-#pragma aux BriefLoadResource "W?PopLoadResource$n(ipnxaii)i";
-
-void PilotBriefLoadResources(void *);
-
-void PilotBriefStaticInit(void)
-{
-    PopObjectConstruct(&gBriefModuleBase);
-    BriefMenuButtonCtor(&gBriefButtonA, 0, 0);
-    gBriefInitState = 1;
-    BriefMenuButtonCtor(&gBriefButtonB, 0, 0);
-    gBriefInitState = 2;
-    BriefMenuButtonCtor(&gBriefButtonC, 0, 0);
-    gBriefInitState = 3;
-    BriefMenuButtonCtor(&gBriefButtonD, 0, 0);
-    gBriefInitState = 4;
-    BriefMenuButtonCtor(&gBriefButtonE, 0, 0);
-    gBriefInitState = 5;
-    BriefMenuButtonCtor(&gBriefButtonF, 0, 0);
-    gBriefInitState = 6;
-    BriefMenuHelpCtor(&gBriefHelpRegion);
-    gBriefInitState = 7;
-    BriefMenuNumberCtor(&gBriefNumber, (signed char)0xff, 0x12);
-    gBriefInitState = 8;
-    BriefMenuPanelCtor(&gBriefPanel);
-    gBriefInitState = 9;
-    PilotBriefLoadResources(&g4b0e18);
-    gBriefInitState = 10;
-}
-
-void PilotBriefLoadResources(void *p)
-{
-    BriefLoadResource(p, &gBriefResourceDesc, 9, 0);
-}
-
+/* Standby screen: constructor destinations and CONST2 establish these object sizes. */
+class MenuButton { public: char data[40]; MenuButton(const char *,unsigned long); ~MenuButton(); };
+class MenuHelpRegion { public: char data[40]; MenuHelpRegion(); ~MenuHelpRegion(); };
+class MenuNumber { public: char data[48]; MenuNumber(signed char,signed char); ~MenuNumber(); };
+class MenuPanel { public: char data[36]; MenuPanel(); ~MenuPanel(); };
+class Scene; class GuiControl;
+class GuiScreen { public: char data[0x4c]; GuiScreen(GuiControl **,unsigned,unsigned long); ~GuiScreen(){*(long *)(data+0x10)=0;} };
+class StandbyScreen : public GuiScreen { public: char state[8]; StandbyScreen(); ~StandbyScreen(){} };
+extern MenuButton gBriefButtonA,gBriefButtonB,gBriefButtonC,gBriefButtonD,gBriefButtonE,gBriefButtonF;
+extern MenuHelpRegion gBriefHelpRegion;
+extern MenuNumber gBriefNumber;
+extern MenuPanel gBriefPanel;
+extern StandbyScreen g4b0e18;
+extern void *gBriefResourceDesc[9];
+StandbyScreen::StandbyScreen() : GuiScreen((GuiControl **)gBriefResourceDesc,9,0) {}
 static inline int PilotBriefIsOpen(void *p)
 {
     return *(long *)((char *)p + 0x10) != 0;
@@ -368,3 +325,11 @@ void PilotBriefSaveOrRestore(void)
 
 
 
+
+MenuButton gBriefButtonA(0,0),gBriefButtonB(0,0),gBriefButtonC(0,0),gBriefButtonD(0,0),gBriefButtonE(0,0),gBriefButtonF(0,0);
+MenuHelpRegion gBriefHelpRegion;
+MenuNumber gBriefNumber(-1,18);
+MenuPanel gBriefPanel;
+StandbyScreen g4b0e18;
+static char standbySourceFile[] = __FILE__;
+void *gBriefResourceDesc[9] = { &gBriefButtonA,&gBriefButtonB,&gBriefButtonC,&gBriefButtonD,&gBriefButtonF,&gBriefButtonE,&gBriefPanel,&gBriefNumber,&gBriefHelpRegion };

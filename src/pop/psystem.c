@@ -52,7 +52,7 @@ extern int PopSelectionIsReady(void *selection); extern int PopGetActiveIndex(vo
 extern void AssertFail(const char *file, int line, const char *message);
 
 extern void *g4d2498;  extern int g4d1d24[]; extern int g4d1d28[];
-extern int targetLimits; extern char g4a001c[];
+extern int targetLimits; char g4a001c[] = __FILE__;
 extern SimGame modeCheckName; extern char gDebugText[]; extern int g4bb78c;
 extern int gIn80; extern long gInA4;
 extern int g5138fc[4], g51390c[4], g51391c[4], g513888;
@@ -65,14 +65,10 @@ inline char *PopGetItemManager()
 
 /* Plain object: pop\psystem.c, initializer 00443f64 through callback 004444cd.
  * Generated array destructor at 00444538 and screen destructor at 00444550.
- * PopNodeReset at 00443f58 is retained for the published ownership ledger.
+ * The preceding WeaponPopup destructor belongs to pweapon.c.
  * 004443d0 is the switch table for the chooser routine, not a separate object.
  */
 
-void PopNodeReset(PopNode *node)
-{
-    node->active = 0;
-}
 
 class WeaponControl:public GuiControl {
 public: U32 state; const char *text; long font,value,kind,cost,condition;
@@ -81,7 +77,7 @@ public: U32 state; const char *text; long font,value,kind,cost,condition;
 };
 WeaponControl g4d1cfc[4];
 PopNode g4d1dec;
-extern char gPopItemName[];
+GuiControl *gPopItemName[] = {&g4d1cfc[0],&g4d1cfc[1],&g4d1cfc[2],&g4d1cfc[3]};
 PopNode::PopNode():GuiScreen((GuiControl **)gPopItemName,4,0){}
 
 struct PopListItem {
@@ -208,6 +204,10 @@ int PopNode::GetValue(int index)
     if (SimFocusReady((SimGame *)&modeCheckName) == 0)
         return 0;
     if (g4d2498 == 0 || *(void **)((char *)g4d2498 + 0x18) == 0) {
+
+
+
+
         AssertFail(g4a001c, 211, 0);
     }
     void *manager = *(void **)((char *)g4d2498 + 0x18);

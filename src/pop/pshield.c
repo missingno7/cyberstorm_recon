@@ -80,8 +80,10 @@ extern int DAT_004bc560,DAT_004bc4e8;
 extern SimAnim shieldAnim;
 extern ActorUnit shieldPreview;
 extern GuiControl *shieldControls[];
-extern int shieldLabelX[6],shieldLabelY[6];
-extern signed char shieldLabelAlign[6];
+int shieldLabelX[6] = {65,-4,-4,65,134,134};
+int shieldLabelY[6] = {-13,19,84,114,84,19};
+signed char shieldLabelAlign[6] = {1,0,0,1,2,2};
+static char pshieldSourceFile[] = __FILE__;
 extern int MenuControlChanged(void *,unsigned,U32 *);
 extern int SoundPlay(unsigned,const SoundSettings *);
 extern void SoundStop(unsigned); extern void SoundSetSettings(unsigned,const SoundSettings *);
@@ -290,3 +292,5 @@ void SimInventoryEvent(SimGame *s) {
 }
 
 
+
+GuiControl *shieldControls[] = {&shieldNumber,&shieldButton,&shieldControl};

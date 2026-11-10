@@ -1,5 +1,5 @@
-// Working labels for the small terrain map view; no embedded source path.
-struct GridPoint { int x, y; };
+// terr\trender.c: XI-anchored map view and its two initialized color tables.
+struct GridPoint { int x, y; GridPoint() {} };
 struct ViewRect { GridPoint top; int width, height; ViewRect() {} ViewRect(int x, int y, int w, int h) { top.x=x; top.y=y; width=w; height=h; } void Center(GridPoint *p) { p->x=top.x+(width>>1); p->y=top.y+(height>>1); } };
 struct ViewState { int mode; GridPoint position; int scale, rotation, extra1, extra2; };
 struct FastCoord {
@@ -24,7 +24,9 @@ extern unsigned long gMenuColors[];
 extern unsigned char worldColorInfo[];
 extern char g513888[];
 extern unsigned char *MapDetails;
-extern unsigned char MapHeightColors[8], MapThreatColors[11];
+static char trenderSourceFile[] = __FILE__;
+unsigned char MapHeightColors[8] = {237,238,239,240,241,242,243,244};
+unsigned char MapThreatColors[11] = {241,239,238,237,236,235,234,234,234,0,0};
 // BSS fields belong to this object. Addresses are inferred only by the comparator.
 int MapPick, MapBestDistance;
 GridPoint MapPickPoint;
@@ -32,7 +34,7 @@ FastCoord *MapView;
 void *MapVisibility;
 int MapDrawScale;
 
-void MapStaticInitialize() {}
+// MapPickPoint is a global class object; its constructor generates the XI initializer.
 extern "C" void SetFastView(FastCoord *, const ViewState *);
 
 FastCoord *MapInitialize(FastCoord *self, const char *name, int radius)

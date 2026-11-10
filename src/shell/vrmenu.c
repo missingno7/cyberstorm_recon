@@ -138,3 +138,29 @@ void BiodermStatsClose(BiodermStatsScreen *){if(g4affb8){f_0043ba3e(profileManag
 void BiodermStatsApply(BiodermStatsScreen *){if(g4affb8){if(f_0047723b(gShellStrings.GetString(3981,0))){g4affb8=1;f_0043ba3e(profileManager,gShellGame);g4affb8=0;}else{f_0043ba3e(gShellGame,profileManager);g4affb8=0;f_0041170c(&g4b16a4);g4a706d=g4ae17f-1;}}}
 
 
+
+static char vrmenuSourceFile[] = __FILE__;
+GuiControl *statsControls[22] = {
+    (GuiControl *)&statsButtons[0],
+    (GuiControl *)&statsButtons[1],
+    (GuiControl *)&statsButtons[2],
+    (GuiControl *)&statsButtons[3],
+    (GuiControl *)&statsButtons[4],
+    (GuiControl *)&statsButtons[5],
+    (GuiControl *)&statsButtons[6],
+    (GuiControl *)&statsButtons[7],
+    (GuiControl *)&statsButtons[8],
+    (GuiControl *)&statsButtons[9],
+    (GuiControl *)&statsPanel,
+    (GuiControl *)&statsConfirm,
+    (GuiControl *)&statsLabel0,
+    (GuiControl *)&statsLabel1,
+    (GuiControl *)&statsLabel2,
+    (GuiControl *)&statsLabel3,
+    (GuiControl *)&statsLabel4,
+    (GuiControl *)&statsLabel5,
+    (GuiControl *)&statsLabel6,
+    (GuiControl *)&statsLabel7,
+    (GuiControl *)&statsCredits,
+    (GuiControl *)&statsHelp
+};

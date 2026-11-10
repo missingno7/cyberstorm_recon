@@ -52,7 +52,7 @@ extern unsigned SimLogicFlags(void *);
 extern "C" unsigned f_00436dcc(Pilot *,int);
 extern long SendEvent(void *,int,void *,int,int);
 
-extern int g4941d8,g4941dc,g4941e0,g4941e4,g4941e8;
+
 extern void *g4c9338,*g4c933c,*g4c9340,*g4c9344,*g4c9348;
 extern "C" void f_0043bac3(GameSession *);
 extern "C" int f_0043bbcc(GameSession *,const char *,Pilot *);
@@ -90,7 +90,7 @@ extern int g4d0840;
 extern char g4c929c[],g4c92b8[];
 /* Existing adjacent width values are copied as one aggregate. */
 struct Columns { int widths[2]; };
-extern Columns g4941ec;
+
 extern int g4941f0;
 extern int (*g512500)(HWND,const char *,char *,int,int);
 extern int (*dialogExport9)(HWND,const char *,int,int,int,int *,int);
@@ -117,6 +117,29 @@ extern "C" void f_0043b7e0(GameSession *,int);
 int windowHeight=window.bottom-window.top;int clientHeight=client.bottom-client.top;int top=window.top; \
 point->x+=window.left;point->y+=top+(windowHeight-clientHeight);}
 GameSession profileManager;
+// Own initialized data, 00494170..00494234; labels are working names.
+static char mcpSourceFile[] = __FILE__;
+char reportToken_0049417c[] = "\x80\x31\x36\x8f";
+char reportToken_00494184[] = "\x80\x31\x35\x8f";
+char reportToken_0049418c[] = "\x80\x31\x36\x8f";
+char reportToken_00494194[] = "\x80\x31\x34\x8f";
+char reportToken_0049419c[] = "\x81\x32\x8f";
+char reportToken_004941a0[] = "\x81\x33\x8f";
+char reportToken_004941a4[] = "\x81\x34\x8f";
+char reportToken_004941a8[] = "\x85\x31\x8f\x86\x31\x8f";
+char reportToken_004941b0[] = "\x85\x32\x8f\x86\x32\x8f";
+char reportToken_004941b8[] = "\x85\x33\x8f\x86\x33\x8f";
+char reportToken_004941c0[] = "\x85\x34\x8f\x86\x34\x8f";
+char reportToken_004941c8[] = "\x80\x31\x36\x8f\x81\x31\x8f\x83\x30\x8f\x86\x30\x8f";
+int g4941d8=1,g4941dc=1,g4941e0=1,g4941e4=1,g4941e8=1;
+Columns g4941ec = {{25,40}};
+struct MissionCategory { int name; char *text; };
+MissionCategory missionCategories[] = {
+ {200,reportToken_00494184},{202,reportToken_00494184},
+ {203,reportToken_00494184},{204,reportToken_00494194},
+ {203,reportToken_00494184},{202,reportToken_00494184},
+ {202,reportToken_00494184},{202,reportToken_00494184}
+};
 
 Snapshot::Snapshot() {}
 

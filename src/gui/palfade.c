@@ -1,4 +1,4 @@
-/* Palette fades used by the shared GUI; original source filename unknown. */
+/* Palette fades used by the shared GUI; identified by palfade path and its two initialized globals. */
 typedef unsigned long U32;
 struct PaletteColor {unsigned char red,green,blue,flags;};
 struct Palette {PaletteColor entries[256];unsigned char unknown[82];};
@@ -8,7 +8,10 @@ extern U32 TimeNow();
 extern void HelpClearTopic();
 extern long gGuiEffectPriority;
 extern Palette gGuiPalette,gGuiFadePalette;
-extern long gGuiFadeStep,gGuiFadeFirst,gGuiFadeLast;
+static char palfadeSourceFile[] = __FILE__;
+long gGuiFadeStep=64;
+long gGuiFadeLast=255;
+extern long gGuiFadeFirst;
 extern int gGuiPaletteFaded,gGuiPartialFade;
 extern U32 gGuiFadeColor;
 extern char g513888;

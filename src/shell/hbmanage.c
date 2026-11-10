@@ -210,7 +210,8 @@ void SurfacePresent(void *);
 void MenuSetClip(GuiRect *,long,long,long,long);
 extern "C" void BriefBlit(void *,int,int,long,long,long,long,unsigned,unsigned);
 extern "C" void BriefDone(const char *);
-/* Storage screen; no embedded source-path evidence. */
+/* Herc bay storage management screen. */
+static char hbmanageSourceFile[]=__FILE__;
 #pragma aux range_ctor "BriefModuleInitC";
 #pragma aux bar_ctor "BriefModuleInitD";
 #pragma aux step_ctor "BriefModulePlace";
@@ -271,7 +272,66 @@ MenuPanel storagePanel;
 MenuNumber storageNumberA,storageNumberB,storageNumberC;
 MenuHelpRegion storageHelp;
 StorageScreen g4b5b50;
-extern GuiControl *storageControls[];
+GuiControl *storageControls[]={
+ (GuiControl *)&storageLeft[0],
+ (GuiControl *)&storageLeft[1],
+ (GuiControl *)&storageLeft[2],
+ (GuiControl *)&storageLeft[3],
+ (GuiControl *)&storageLeft[4],
+ (GuiControl *)&storageLeft[5],
+ (GuiControl *)&storageLeft[6],
+ (GuiControl *)&storageLeft[7],
+ (GuiControl *)&storageLeft[8],
+ (GuiControl *)&storageLeft[9],
+ (GuiControl *)&storageLeft[10],
+ (GuiControl *)&storageLeft[11],
+ (GuiControl *)&storageLeft[12],
+ (GuiControl *)&storageLeft[13],
+ (GuiControl *)&storageLeft[14],
+ (GuiControl *)&storageLeft[15],
+ (GuiControl *)&storageLeft[16],
+ (GuiControl *)&storageLeft[17],
+ (GuiControl *)&storageLeft[18],
+ (GuiControl *)&storageLeft[19],
+ (GuiControl *)&storageLeft[20],
+ (GuiControl *)&storageLeft[21],
+ (GuiControl *)&storageLeft[22],
+ (GuiControl *)&storageLeft[23],
+ (GuiControl *)&storageRight[0],
+ (GuiControl *)&storageRight[1],
+ (GuiControl *)&storageRight[2],
+ (GuiControl *)&storageRight[3],
+ (GuiControl *)&storageRight[4],
+ (GuiControl *)&storageRight[5],
+ (GuiControl *)&storageRight[6],
+ (GuiControl *)&storageRight[7],
+ (GuiControl *)&storageRight[8],
+ (GuiControl *)&storageRight[9],
+ (GuiControl *)&storageRight[10],
+ (GuiControl *)&storageRight[11],
+ (GuiControl *)&storageRight[12],
+ (GuiControl *)&storageRight[13],
+ (GuiControl *)&storageRight[14],
+ (GuiControl *)&storageRight[15],
+ (GuiControl *)&storageRight[16],
+ (GuiControl *)&storageRight[17],
+ (GuiControl *)&storageRight[18],
+ (GuiControl *)&storageRight[19],
+ (GuiControl *)&storageRight[20],
+ (GuiControl *)&storageRight[21],
+ (GuiControl *)&storageRight[22],
+ (GuiControl *)&storageRight[23],
+ (GuiControl *)&storageNumber,
+ (GuiControl *)&storageButton,
+ (GuiControl *)&storagePrevious,
+ (GuiControl *)&storageBar,
+ (GuiControl *)&storageNext,
+ (GuiControl *)&storagePanel,
+ (GuiControl *)&storageNumberA,
+ (GuiControl *)&storageNumberB,
+ (GuiControl *)&storageNumberC,
+ (GuiControl *)&storageHelp
+};
 extern FlicSound storageSounds[];
 void StorageSetup();
 void StorageVisibility(StorageScreen *);

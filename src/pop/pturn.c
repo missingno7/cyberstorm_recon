@@ -1,4 +1,4 @@
-/* pop\pdeath.c: names and partial class layouts inferred from callers. */
+/* pop\pturn.c: names and partial class layouts inferred from callers. */
 #include <stdio.h>
 typedef unsigned long U32; typedef unsigned char U8;
 struct InputReq { U32 mask,state; int LeftPressed(){return (state&0x50)==0x10;} int RightPressed(){return (state&0xa0)==0x20;} int LeftReleased(){return (state&0x50)==0x40;} int RightReleased(){return (state&0xa0)==0x80;} };
@@ -78,3 +78,5 @@ void DeathSummary(Shell *shell)
 
 
 
+
+static char pturnSourceFile[] = __FILE__;

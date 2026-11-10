@@ -1,18 +1,18 @@
-/* shell\hotseat.c: packed fields and control names are working labels.
- * Three inherited prefix stubs are retained to protect the published acceptance ledger;
- * the initializer's boundary experiment and ownership debt are described in REPORT.md. */
-extern "C" void f_004243e4(void)
-{
-}
+/* shell\hotseat.c: object begins at XI target 004243e8. */
 
-extern "C" int f_004243e5(void)
-{
-    return 0;
-}
 
-extern "C" void f_004243e7(void)
-{
-}
+
+
+
+
+
+
+
+
+
+
+
+
 
 struct GuiControl;
 struct GuiPoint { long x, y; }; struct MenuImage { long value[3]; };
@@ -611,3 +611,84 @@ void f_00425906(int param_1)
 }
 
 
+
+GuiControl *PTR_DAT_0048f1dc[]={
+ (GuiControl *)&hotPanel,
+ (GuiControl *)&hotMode,
+ (GuiControl *)&hotFunds,
+ (GuiControl *)&hotOption,
+ (GuiControl *)&hotNumber0,
+ (GuiControl *)&hotNumber1,
+ (GuiControl *)&hotNumber2,
+ (GuiControl *)&hotNumber3,
+ (GuiControl *)&hotNumber4,
+ (GuiControl *)&hotNumber5,
+ (GuiControl *)&hotNumber6,
+ (GuiControl *)&hotNumber7,
+ (GuiControl *)&hotNumber8,
+ (GuiControl *)&hotNumber9,
+ (GuiControl *)&hotNumber10,
+ (GuiControl *)&hotNumber11,
+ (GuiControl *)&hotTeamLabels[0],
+ (GuiControl *)&hotTeamLabels[1],
+ (GuiControl *)&hotTeamLabels[2],
+ (GuiControl *)&hotTeamLabels[3],
+ (GuiControl *)&hotTeamLabels[4],
+ (GuiControl *)&hotTeamLabels[5],
+ (GuiControl *)&hotTeamLabels[6],
+ (GuiControl *)&hotTeamLabels[7],
+ (GuiControl *)&hotValueLabels[0],
+ (GuiControl *)&hotValueLabels[1],
+ (GuiControl *)&hotValueLabels[2],
+ (GuiControl *)&hotValueLabels[3],
+ (GuiControl *)&hotValueLabels[4],
+ (GuiControl *)&hotValueLabels[5],
+ (GuiControl *)&hotValueLabels[6],
+ (GuiControl *)&hotValueLabels[7],
+ (GuiControl *)&hotNames[0],
+ (GuiControl *)&hotNames[1],
+ (GuiControl *)&hotNames[2],
+ (GuiControl *)&hotNames[3],
+ (GuiControl *)&hotNames[4],
+ (GuiControl *)&hotNames[5],
+ (GuiControl *)&hotNames[6],
+ (GuiControl *)&hotNames[7],
+ (GuiControl *)&hotProfiles[0],
+ (GuiControl *)&hotProfiles[1],
+ (GuiControl *)&hotProfiles[2],
+ (GuiControl *)&hotProfiles[3],
+ (GuiControl *)&hotProfiles[4],
+ (GuiControl *)&hotProfiles[5],
+ (GuiControl *)&hotProfiles[6],
+ (GuiControl *)&hotProfiles[7],
+ (GuiControl *)&hotActions[0],
+ (GuiControl *)&hotActions[1],
+ (GuiControl *)&hotActions[2],
+ (GuiControl *)&hotActions[3],
+ (GuiControl *)&hotActions[4],
+ (GuiControl *)&hotActions[5],
+ (GuiControl *)&hotActions[6],
+ (GuiControl *)&hotActions[7],
+ (GuiControl *)&hotSetting0,
+ (GuiControl *)&hotSetting1,
+ (GuiControl *)&hotNext0,
+ (GuiControl *)&hotBar0,
+ (GuiControl *)&hotPrevious0,
+ (GuiControl *)&hotNext1,
+ (GuiControl *)&hotBar1,
+ (GuiControl *)&hotPrevious1,
+ (GuiControl *)&hotNext2,
+ (GuiControl *)&hotBar2,
+ (GuiControl *)&hotPrevious2,
+ (GuiControl *)&hotNext3,
+ (GuiControl *)&hotBar3,
+ (GuiControl *)&hotPrevious3,
+ (GuiControl *)&hotMapPrevious,
+ (GuiControl *)&hotMapBar,
+ (GuiControl *)&hotMapNext,
+ (GuiControl *)&hotDone,
+ (GuiControl *)&hotHelp,
+ (GuiControl *)&hotSetting2
+};
+int DAT_0048f30c[]={20000,50000,100000,200000,400000,750000,1000000,3000000,7500000,15000000};
+short DAT_0048f334[]={30,45,60,90,120,180,240,300,480,600,900,1200,-1};

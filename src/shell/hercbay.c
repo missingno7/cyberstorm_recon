@@ -1,7 +1,7 @@
 struct GuiControl; struct InputReq; struct StrPool; struct MenuPrefixButton; struct MenuNumber; struct MenuImage; struct Palette; typedef unsigned long U32;
-class GuiScreen { char pad00[0x10]; public: int active; char pad14[0x44]; GuiScreen(GuiControl **, unsigned, U32); void LoadLayout(long); void Open(InputReq *, StrPool *, long, int); };
-struct Flic { char body[0x80]; Flic(); int Open(long source, int priority = 0x64, int sourceMode = 0); };
-class HercBay : public GuiScreen { public: Flic animation; int IsActive() const { return active != 0; } void Start(void *callback); void DrawImage(void *image); void StartVariantA(void *callback); HercBay(); };
+class GuiScreen { char pad00[0x10]; public: int active; char pad14[0x44]; GuiScreen(GuiControl **, unsigned, U32); ~GuiScreen(){active=0;} void LoadLayout(long); void Open(InputReq *, StrPool *, long, int); };
+struct Flic { char body[0x90]; Flic(); ~Flic(); int Open(long source, int priority = 0x64, int sourceMode = 0); };
+class HercBay : public GuiScreen { public: Flic animation; int state,previous; int IsActive() const { return active != 0; } void Start(void *callback); void DrawImage(void *image); void StartVariantA(void *callback); HercBay(); };
  static char hercbaySourceFile[] = __FILE__;
 
 
@@ -17,8 +17,11 @@ extern ResMgr gResMgr;
 struct StrPool { int Lock(); void Unlock(); };
 extern StrPool g511e18;
 extern void *AllocateMissionImage(const char *image, int bytes, int mode);
-struct MenuPrefixButton { void SetText(char *text); void SetAlign(char alignment); };
-struct MenuNumber { void SetValue(long value, char mode); };
+struct MenuPrefixButton { char data[40]; MenuPrefixButton(const char * =0,signed char=1,signed char=2,signed char=-1); virtual ~MenuPrefixButton(); void SetText(char *text); void SetAlign(char alignment); };
+struct MenuNumber { char data[44]; MenuNumber(signed char=-1,signed char=18); virtual ~MenuNumber(); void SetValue(long value, char mode); };
+struct MenuButton {char data[36]; MenuButton(const char * =0,U32=0); virtual ~MenuButton();};
+struct MenuPanel {char data[32]; MenuPanel(); virtual ~MenuPanel();};
+struct MenuHelpRegion {char data[36]; MenuHelpRegion(); virtual ~MenuHelpRegion();};
 void VoicePlay(int id, int flags);
 extern "C" void HercSetMission(void *control, int value); extern "C" void HercSetMissionStart(void *control, int value);
 void AssertFail(const char *file, int line, const char *message);
@@ -35,16 +38,16 @@ extern "C" void f_cb80(void *data);
 
 
 
-extern int g4b3748; extern int g48eb10;
+extern MenuNumber g4b3748; extern GuiControl *g48eb10[7];
 extern int g4b37bc; extern int g4bb78c;
 extern int logicMode; extern StrPool gShellStrings;
 extern int g4d030f; extern int g4d0413;
 extern int g4b36b0; extern int g4b36dc;
 extern int g4b3708;
 extern int g4b3734;
-extern int g4b369c;
-extern int g4b36c8;
-extern int g4b36f4;
+extern MenuPrefixButton g4b369c;
+extern MenuPrefixButton g4b36c8;
+extern MenuPrefixButton g4b36f4;
 extern char g4b3777;
 extern int g511dd4;
 extern void *gShellImages;
@@ -52,13 +55,7 @@ extern int g511948;
 extern int g513888;
 extern int g4b74f4;
 extern char g48aa2c[]; extern char g48aa3c[], g48aa48[], g48aa54[], g48aa60[], g48aa6c[], g48aa78[];
-extern int g48eaf4, g48eafc, g4b3720, g4b3778, g4b379c;
-extern "C" void HercModuleConstruct(void *object);
-extern "C" void HercModuleInitWidget(void *object, int a, int b, int c, int d);
-extern "C" void HercModuleInitA(void *object, int a, int b);
-extern "C" void HercModuleInitB(void *object, int a, int b);
-extern "C" void HercModuleInitC(void *object);
-extern "C" void HercModuleInitD(void *object);
+extern MenuButton g4b3720; extern MenuPanel g4b3778; extern MenuHelpRegion g4b379c;
 HercBay::HercBay() : GuiScreen((GuiControl **)&g48eb10, 7, 0), animation() {}
 
 
@@ -98,7 +95,10 @@ void HercBay::Start(void *callback)
         /* source line pad */
         /* source line pad */
 
-        AssertFail(hercbaySourceFile, 101, 0);
+
+
+
+        AssertFail(hercbaySourceFile, __LINE__, 0);
     }
     LoadLayout((long)g48aa48);
     Open((InputReq *)callback, &gShellStrings, 0x709, 1);
@@ -345,33 +345,11 @@ void HercBayDone()
     HercDone(g48aa2c);
 }
 
-struct ModuleConstruct { ModuleConstruct(void *p) { HercModuleConstruct(p); } };
-struct InitWidget { InitWidget(void *p, int a, int b, int c, int d) { HercModuleInitWidget(p, a, b, c, d); } };
-struct InitA { InitA(void *p, int a, int b) { HercModuleInitA(p, a, b); } };
-struct InitB { InitB(void *p, int a, int b) { HercModuleInitB(p, a, b); } };
-struct InitC { InitC(void *p) { HercModuleInitC(p); } };
-struct InitD { InitD(void *p) { HercModuleInitD(p); } };
-struct State { State(int value) { g48eafc = value; } };
-ModuleConstruct moduleConstruct(&g48eaf4);
-InitWidget firstWidget(&g4b369c, 0, 1, 2, -1);
-State stateOne(1);
-InitWidget secondWidget(&g4b36c8, 0, 1, 2, -1);
-State stateTwo(2);
-InitWidget thirdWidget(&g4b36f4, 0, 1, 2, -1);
-State stateThree(3);
-InitA fourthWidget(&g4b3720, 0, 0);
-State stateFour(4);
-InitB fifthWidget(&g4b3748, -1, 0x12);
-State stateFive(5);
-InitC sixthWidget(&g4b3778);
-State stateSix(6);
-InitD seventhWidget(&g4b379c);
-State stateSeven(7);
+// Real widgets generate module registration, lifetime state and the destructor table.
+MenuPrefixButton g4b369c, g4b36c8, g4b36f4;
+MenuButton g4b3720;
+MenuNumber g4b3748;
+MenuPanel g4b3778;
+MenuHelpRegion g4b379c;
 HercBay g4b37c4;
-State stateEight(8);
-
-
-
-
-
-
+GuiControl *g48eb10[7]={(GuiControl *)&g4b369c,(GuiControl *)&g4b36c8,(GuiControl *)&g4b36f4,(GuiControl *)&g4b3720,(GuiControl *)&g4b3748,(GuiControl *)&g4b3778,(GuiControl *)&g4b379c};

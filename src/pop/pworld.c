@@ -68,3 +68,6 @@ int PopWorldEvent(SimGame *) { if(popWorld.IsActive()) { long n=popWorld.HitTest
 PopWorld::~PopWorld() { input=0; }
 
 
+
+static char pworldSourceFile[] = __FILE__;
+GuiControl *popWorldControls[] = {(GuiControl *)&popWorldNumber,(GuiControl *)&popWorldFrame};

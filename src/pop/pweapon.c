@@ -252,7 +252,8 @@ extern void DrawSprite(void *,MenuImage *,int,int,int,int,int);
 extern "C" void f_0042f490(void *,int,int,int);
 extern "C" void *f_0045bb30(ActorUnit *,int,ActorUnit *);
 extern int PointAngle(ApplyPoint *,ApplyPoint *);
-extern signed char weaponMarkerOffsets[][2];
+signed char weaponMarkerOffsets[][2] = {{35,-10},{0,5},{0,55},{35,70},{65,55},{65,5}};
+static char pweaponSourceFile[] = __FILE__;
 extern void SetTerrainView(void *,const FogData *,int);
 extern "C" void f_0042d640(void *,U32,GuiPoint,int);
 struct PlayerSlot;
@@ -263,15 +264,13 @@ extern char simInventory[];
 extern "C" int f_00444f8f(void *);
 extern "C" int f_0044f290(SimGame *,int=-1,int=1);
 extern void SimSetReturnFire(SimGame *,int,int,int);
-struct PopNode;
-#pragma aux weapon_screen_destructor "W?PopNodeReset$n(pn$PopNode$$)v";
 class WeaponPopup:public GuiScreen {
     public:int changed;
     Timer detailTimer,previewTimer;
     int mode,a,b,top;
     char labels[8][60];
     WeaponPopup();
-    __pragma("weapon_screen_destructor") ~WeaponPopup() { input=0; }
+    ~WeaponPopup() { input=0; }
     void OpenWeapons(InputReq *);
     void Close();
     void UpdateWeapons();
@@ -525,3 +524,7 @@ void WeaponCommand(SimGame *s) {
     }
 }
 
+
+GuiControl *weaponControls[] = {
+&weaponRows[0],&weaponRows[1],&weaponRows[2],&weaponRows[3],&weaponRows[4],&weaponRows[5],&weaponRows[6],&weaponRows[7],
+&weaponButtons[0],&weaponButtons[1],&weaponButtons[2],&weaponButtons[3],&weaponButtons[4],&weaponButtons[5],&weaponButtons[6],&weaponButtons[7],&weaponMap};

@@ -160,3 +160,22 @@ void MedlabScreen::Dismiss(){
 
 
 
+
+static char medlabSourceFile[] = __FILE__;
+GuiControl *medlabControls[15] = {
+    (GuiControl *)&medlabButtons[0],
+    (GuiControl *)&medlabButtons[1],
+    (GuiControl *)&medlabButtons[2],
+    (GuiControl *)&medlabButtons[3],
+    (GuiControl *)&medlabButtons[4],
+    (GuiControl *)&medlabButtons[5],
+    (GuiControl *)&medlabButtons[6],
+    (GuiControl *)&medlabHealth,
+    (GuiControl *)&medlabRepair,
+    (GuiControl *)&medlabTraining,
+    (GuiControl *)&medlabTotal,
+    (GuiControl *)&medlabValue,
+    (GuiControl *)&medlabCredits,
+    (GuiControl *)&medlabPanel,
+    (GuiControl *)&medlabHelp
+};

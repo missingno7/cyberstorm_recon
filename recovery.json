@@ -1011,30 +1011,58 @@
      "va": "00416415",
      "size": 14,
      "mangled": "W?HercBayDone$n()v"
+    },
+    "HercBay::$dt": {
+     "va": "00416424",
+     "size": 29,
+     "mangled": "W?$dt:HercBay$n()_"
     }
    },
    "data": {
+    "CONST2": {
+     "va": "0048d080",
+     "size": 68
+    },
     "_DATA": {
-     "va": "0048eb00",
-     "size": 16
+     "va": "0048eaf4",
+     "size": 56
     },
     "XI": {
      "va": "004a6ba6",
      "size": 6
+    },
+    "W?$Wts0kn$MenuPrefixButton$$$nx[]uc": {
+     "va": "0048c9ec",
+     "size": 17
+    },
+    "W?$Wts0en$MenuButton$$$nx[]uc": {
+     "va": "0048c9d8",
+     "size": 17
+    },
+    "W?$Wts0en$MenuNumber$$$nx[]uc": {
+     "va": "0048c988",
+     "size": 17
+    },
+    "W?$Wts0dn$MenuPanel$$$nx[]uc": {
+     "va": "0048c99c",
+     "size": 17
+    },
+    "W?$Wts0in$MenuHelpRegion$$$nx[]uc": {
+     "va": "0048c9c4",
+     "size": 17
+    },
+    "W?$Wts0bn$HercBay$$$nx[]uc": {
+     "va": "0048d0c4",
+     "size": 17
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/pop/psystem.c": {
    "as": "pop\\psystem.c",
    "install": "wc106",
    "profile": "plain",
    "functions": {
-    "PopNodeReset": {
-     "va": "00443f58",
-     "size": 12,
-     "mangled": "W?PopNodeReset$n(pn$PopNode$$)v"
-    },
     "W?.fn_init$n()v": {
      "va": "00443f64",
      "size": 67,
@@ -1102,14 +1130,22 @@
     },
     "_DATA": {
      "va": "004a0010",
-     "size": 12
+     "size": 44
+    },
+    "XI": {
+     "va": "004a6c24",
+     "size": 6
     },
     "W?$Wts0hn$WeaponControl$$$nx[]uc": {
      "va": "0048dc00",
      "size": 17
+    },
+    "W?$Wts0bn$PopNode$$$nx[]uc": {
+     "va": "0048dc40",
+     "size": 17
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/sim/target.c": {
    "as": "sim\\target.c",
@@ -1526,70 +1562,6 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-11"
-  },
-  "src/_unknown/tu_00425978.c": {
-   "as": "_unknown\\tu_00425978.c",
-   "install": "wc106",
-   "profile": "plain",
-   "functions": {
-    "GuiScreen::$ct": {
-     "va": "00425978",
-     "size": 73,
-     "mangled": "W?$ct:GuiScreen$n(pnpn$GuiControl$$uiul)_"
-    },
-    "GuiScreen::Reset": {
-     "va": "004259c1",
-     "size": 54,
-     "mangled": "W?Reset$:GuiScreen$n(pnpn$GuiControl$$uiul)pn$1$"
-    },
-    "GuiScreen::LoadLayout": {
-     "va": "004259f7",
-     "size": 227,
-     "mangled": "W?LoadLayout$:GuiScreen$n(l)v"
-    },
-    "GuiScreen::SetLayout": {
-     "va": "00425ada",
-     "size": 110,
-     "mangled": "W?SetLayout$:GuiScreen$n(iipnx$GuiRect$$pnx$2$)v"
-    },
-    "GuiScreen::Activate": {
-     "va": "00425b48",
-     "size": 89,
-     "mangled": "W?Activate$:GuiScreen$n(ui)i"
-    },
-    "GuiScreen::Update": {
-     "va": "00425ba1",
-     "size": 633,
-     "mangled": "W?Update$:GuiScreen$n()i"
-    },
-    "GuiScreen::SetStrings": {
-     "va": "00425ec6",
-     "size": 86,
-     "mangled": "W?SetStrings$:GuiScreen$n(l)v"
-    },
-    "GuiScreen::Invalidate": {
-     "va": "00425f1c",
-     "size": 43,
-     "mangled": "W?Invalidate$:GuiScreen$n()v"
-    },
-    "GuiScreen::ResetControls": {
-     "va": "00425f47",
-     "size": 64,
-     "mangled": "W?ResetControls$:GuiScreen$n()v"
-    },
-    "GuiScreen::Open": {
-     "va": "00425f87",
-     "size": 198,
-     "mangled": "W?Open$:GuiScreen$n(pn$InputReq$$pn$StrPool$$li)v"
-    },
-    "GuiScreen::HitTest": {
-     "va": "0042604d",
-     "size": 117,
-     "mangled": "W?HitTest$:GuiScreen$n(pnx$GuiPoint$$)l"
-    }
-   },
-   "data": {},
    "accepted": "2026-11-11"
   },
   "src/gui/flic.c": {
@@ -2088,44 +2060,10 @@
      "va": "0042a68f",
      "size": 29,
      "mangled": "W?Next$:RangeCounter$n()v"
-    },
-    "RichTextCommand": {
-     "va": "0042a6e8",
-     "size": 228,
-     "mangled": "W?RichTextCommand$n(pn$RichTextState$$pnxuc)ui"
-    }
-   },
-   "data": {
-    "CONST": {
-     "va": "0048ad08",
-     "size": 10
-    }
-   },
-   "accepted": "2026-11-09"
-  },
-  "src/_unknown/tu_0042a0e0.c": {
-   "as": "_unknown\\tu_0042a0e0.c",
-   "install": "wc106",
-   "profile": "plain",
-   "functions": {
-    "GuiFadeOut": {
-     "va": "0042a0e0",
-     "size": 316,
-     "mangled": "W?GuiFadeOut$n()v"
-    },
-    "GuiFadeOutRange": {
-     "va": "0042a21c",
-     "size": 323,
-     "mangled": "W?GuiFadeOutRange$n(ii)v"
-    },
-    "GuiFadeIn": {
-     "va": "0042a35f",
-     "size": 568,
-     "mangled": "W?GuiFadeIn$n()v"
     }
    },
    "data": {},
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/multi/mstart.c": {
    "as": "multi\\mstart.c",
@@ -3830,20 +3768,10 @@
    "install": "wc106",
    "profile": "plain-oe",
    "functions": {
-    "f_004243e4": {
-     "va": "004243e4",
-     "size": 1,
-     "mangled": "f_004243e4"
-    },
-    "f_004243e5": {
-     "va": "004243e5",
-     "size": 2,
-     "mangled": "f_004243e5"
-    },
-    "f_004243e7": {
-     "va": "004243e7",
-     "size": 1,
-     "mangled": "f_004243e7"
+    "W?.fn_init$n()v": {
+     "va": "004243e8",
+     "size": 1295,
+     "mangled": "W?.fn_init$n()v"
     },
     "HotseatScreen::$ct": {
      "va": "004248f7",
@@ -3923,7 +3851,7 @@
     },
     "_DATA": {
      "va": "0048f1c0",
-     "size": 28
+     "size": 398
     },
     "XI": {
      "va": "004a6bd6",
@@ -3962,7 +3890,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/pop/pherc.c": {
    "as": "pop\\pherc.c",
@@ -5651,466 +5579,6 @@
    "data": {},
    "accepted": "2026-11-11"
   },
-  "src/_unknown/tu_0043b8e8.c": {
-   "as": "_unknown\\tu_0043b8e8.c",
-   "install": "wc106",
-   "profile": "plain-oe",
-   "functions": {
-    "W?.fn_init$n()v": {
-     "va": "0043b8e8",
-     "size": 37,
-     "mangled": "W?.fn_init$n()v"
-    },
-    "Snapshot::$ct": {
-     "va": "0043b90d",
-     "size": 5,
-     "mangled": "W?$ct:Snapshot$n()_"
-    },
-    "f_0043b912": {
-     "va": "0043b912",
-     "size": 68,
-     "mangled": "f_0043b912"
-    },
-    "f_0043b956": {
-     "va": "0043b956",
-     "size": 88,
-     "mangled": "f_0043b956"
-    },
-    "GameSession::$ct": {
-     "va": "0043b9ae",
-     "size": 80,
-     "mangled": "W?$ct:GameSession$n()_"
-    },
-    "GameSession::$dt": {
-     "va": "0043b9fe",
-     "size": 64,
-     "mangled": "W?$dt:GameSession$n()_"
-    },
-    "f_0043ba3e": {
-     "va": "0043ba3e",
-     "size": 133,
-     "mangled": "f_0043ba3e"
-    },
-    "f_0043bac3": {
-     "va": "0043bac3",
-     "size": 265,
-     "mangled": "f_0043bac3"
-    },
-    "f_0043bced": {
-     "va": "0043bced",
-     "size": 114,
-     "mangled": "f_0043bced"
-    },
-    "f_0043bd5f": {
-     "va": "0043bd5f",
-     "size": 25,
-     "mangled": "f_0043bd5f"
-    },
-    "f_0043bd78": {
-     "va": "0043bd78",
-     "size": 237,
-     "mangled": "f_0043bd78"
-    },
-    "ProfileManager::Select": {
-     "va": "0043be65",
-     "size": 114,
-     "mangled": "W?Select$:ProfileManager$n(i)pn$ActorListObject$$"
-    },
-    "f_0043bed7": {
-     "va": "0043bed7",
-     "size": 35,
-     "mangled": "f_0043bed7"
-    },
-    "f_0043befa": {
-     "va": "0043befa",
-     "size": 135,
-     "mangled": "f_0043befa"
-    },
-    "f_0043bf81": {
-     "va": "0043bf81",
-     "size": 96,
-     "mangled": "f_0043bf81"
-    },
-    "f_0043bfe1": {
-     "va": "0043bfe1",
-     "size": 27,
-     "mangled": "f_0043bfe1"
-    },
-    "f_0043bffc": {
-     "va": "0043bffc",
-     "size": 58,
-     "mangled": "f_0043bffc"
-    },
-    "f_0043c036": {
-     "va": "0043c036",
-     "size": 37,
-     "mangled": "f_0043c036"
-    },
-    "f_0043c05b": {
-     "va": "0043c05b",
-     "size": 268,
-     "mangled": "f_0043c05b"
-    },
-    "f_0043c167": {
-     "va": "0043c167",
-     "size": 21,
-     "mangled": "f_0043c167"
-    },
-    "f_0043c17c": {
-     "va": "0043c17c",
-     "size": 318,
-     "mangled": "f_0043c17c"
-    },
-    "f_0043c2ba": {
-     "va": "0043c2ba",
-     "size": 109,
-     "mangled": "f_0043c2ba"
-    },
-    "f_0043c327": {
-     "va": "0043c327",
-     "size": 21,
-     "mangled": "f_0043c327"
-    },
-    "f_0043c33c": {
-     "va": "0043c33c",
-     "size": 210,
-     "mangled": "f_0043c33c"
-    },
-    "ProfileManager::Mission": {
-     "va": "0043c40e",
-     "size": 51,
-     "mangled": "W?Mission$:ProfileManager$n(i)pn$ActorUnit$$"
-    },
-    "f_0043c441": {
-     "va": "0043c441",
-     "size": 15,
-     "mangled": "f_0043c441"
-    },
-    "f_0043c450": {
-     "va": "0043c450",
-     "size": 64,
-     "mangled": "f_0043c450"
-    },
-    "f_0043c490": {
-     "va": "0043c490",
-     "size": 47,
-     "mangled": "f_0043c490"
-    },
-    "f_0043c4bf": {
-     "va": "0043c4bf",
-     "size": 279,
-     "mangled": "f_0043c4bf"
-    },
-    "f_0043c6ed": {
-     "va": "0043c6ed",
-     "size": 77,
-     "mangled": "f_0043c6ed"
-    },
-    "f_0043c73a": {
-     "va": "0043c73a",
-     "size": 177,
-     "mangled": "f_0043c73a"
-    },
-    "f_0043c7eb": {
-     "va": "0043c7eb",
-     "size": 89,
-     "mangled": "f_0043c7eb"
-    },
-    "f_0043ca71": {
-     "va": "0043ca71",
-     "size": 72,
-     "mangled": "f_0043ca71"
-    },
-    "f_0043ccc6": {
-     "va": "0043ccc6",
-     "size": 29,
-     "mangled": "f_0043ccc6"
-    },
-    "f_0043cce3": {
-     "va": "0043cce3",
-     "size": 28,
-     "mangled": "f_0043cce3"
-    },
-    "f_0043ccff": {
-     "va": "0043ccff",
-     "size": 41,
-     "mangled": "f_0043ccff"
-    },
-    "f_0043cd28": {
-     "va": "0043cd28",
-     "size": 68,
-     "mangled": "f_0043cd28"
-    },
-    "f_0043cd6c": {
-     "va": "0043cd6c",
-     "size": 38,
-     "mangled": "f_0043cd6c"
-    },
-    "f_0043cd92": {
-     "va": "0043cd92",
-     "size": 58,
-     "mangled": "f_0043cd92"
-    },
-    "f_0043cdcc": {
-     "va": "0043cdcc",
-     "size": 145,
-     "mangled": "f_0043cdcc"
-    },
-    "f_0043ce5d": {
-     "va": "0043ce5d",
-     "size": 105,
-     "mangled": "f_0043ce5d"
-    },
-    "f_0043cec6": {
-     "va": "0043cec6",
-     "size": 48,
-     "mangled": "f_0043cec6"
-    },
-    "f_0043cef6": {
-     "va": "0043cef6",
-     "size": 55,
-     "mangled": "f_0043cef6"
-    },
-    "f_0043cf2d": {
-     "va": "0043cf2d",
-     "size": 207,
-     "mangled": "f_0043cf2d"
-    },
-    "f_0043cffc": {
-     "va": "0043cffc",
-     "size": 106,
-     "mangled": "f_0043cffc"
-    },
-    "f_0043d066": {
-     "va": "0043d066",
-     "size": 98,
-     "mangled": "f_0043d066"
-    },
-    "f_0043d0c8": {
-     "va": "0043d0c8",
-     "size": 138,
-     "mangled": "f_0043d0c8"
-    },
-    "f_0043d152": {
-     "va": "0043d152",
-     "size": 84,
-     "mangled": "f_0043d152"
-    },
-    "f_0043d1a6": {
-     "va": "0043d1a6",
-     "size": 87,
-     "mangled": "f_0043d1a6"
-    },
-    "f_0043d1fd": {
-     "va": "0043d1fd",
-     "size": 98,
-     "mangled": "f_0043d1fd"
-    },
-    "f_0043d3cc": {
-     "va": "0043d3cc",
-     "size": 453,
-     "mangled": "f_0043d3cc"
-    },
-    "f_0043d6b1": {
-     "va": "0043d6b1",
-     "size": 50,
-     "mangled": "f_0043d6b1"
-    },
-    "f_0043d6e3": {
-     "va": "0043d6e3",
-     "size": 355,
-     "mangled": "f_0043d6e3"
-    },
-    "f_0043d846": {
-     "va": "0043d846",
-     "size": 418,
-     "mangled": "f_0043d846"
-    },
-    "f_0043d9e8": {
-     "va": "0043d9e8",
-     "size": 201,
-     "mangled": "f_0043d9e8"
-    },
-    "f_0043dab1": {
-     "va": "0043dab1",
-     "size": 38,
-     "mangled": "f_0043dab1"
-    },
-    "f_0043dad7": {
-     "va": "0043dad7",
-     "size": 219,
-     "mangled": "f_0043dad7"
-    },
-    "f_0043dcfd": {
-     "va": "0043dcfd",
-     "size": 494,
-     "mangled": "f_0043dcfd"
-    },
-    "f_0043deeb": {
-     "va": "0043deeb",
-     "size": 85,
-     "mangled": "f_0043deeb"
-    },
-    "f_0043df40": {
-     "va": "0043df40",
-     "size": 199,
-     "mangled": "f_0043df40"
-    },
-    "f_0043e007": {
-     "va": "0043e007",
-     "size": 70,
-     "mangled": "f_0043e007"
-    },
-    "f_0043e1dd": {
-     "va": "0043e1dd",
-     "size": 11,
-     "mangled": "f_0043e1dd"
-    },
-    "f_0043e1e8": {
-     "va": "0043e1e8",
-     "size": 12,
-     "mangled": "f_0043e1e8"
-    },
-    "f_0043e1f4": {
-     "va": "0043e1f4",
-     "size": 29,
-     "mangled": "f_0043e1f4"
-    },
-    "f_0043e211": {
-     "va": "0043e211",
-     "size": 9,
-     "mangled": "f_0043e211"
-    },
-    "f_0043e38f": {
-     "va": "0043e38f",
-     "size": 28,
-     "mangled": "f_0043e38f"
-    }
-   },
-   "data": {
-    "CONST2": {
-     "va": "0048db28",
-     "size": 12
-    },
-    "_DATA": {
-     "va": "00494164",
-     "size": 12
-    },
-    "XI": {
-     "va": "004a6c12",
-     "size": 6
-    },
-    "W?$Wts0fn$GameSession$$$nx[]uc": {
-     "va": "0048c85c",
-     "size": 17
-    },
-    "W?$Wts0jn$ActorListObject$$$nx[]uc": {
-     "va": "0048db34",
-     "size": 17
-    }
-   },
-   "accepted": "2026-11-11"
-  },
-  "src/_unknown/tu_00409408.c": {
-   "as": "_unknown\\tu_00409408.c",
-   "install": "wc106",
-   "profile": "plain",
-   "functions": {
-    "W?.fn_init$n()v": {
-     "va": "00409408",
-     "size": 118,
-     "mangled": "W?.fn_init$n()v"
-    },
-    "PromoScreen::$ct": {
-     "va": "0040947e",
-     "size": 59,
-     "mangled": "W?$ct:PromoScreen$n()_"
-    },
-    "PromoScreen::Open": {
-     "va": "004094b9",
-     "size": 587,
-     "mangled": "W?Open$:PromoScreen$n(pn$InputReq$$i)v"
-    },
-    "PromoScreen::SetPage": {
-     "va": "00409704",
-     "size": 8690,
-     "mangled": "W?SetPage$:PromoScreen$n()v"
-    },
-    "PromoScreen::NextPage": {
-     "va": "0040b8f6",
-     "size": 188,
-     "mangled": "W?NextPage$:PromoScreen$n()i"
-    },
-    "PromoScreen::SetLayout": {
-     "va": "0040b9b2",
-     "size": 135,
-     "mangled": "W?SetLayout$:PromoScreen$n()v"
-    },
-    "PromoScreen::Play": {
-     "va": "0040ba39",
-     "size": 213,
-     "mangled": "W?Play$:PromoScreen$n(pnxa)v"
-    },
-    "PromoScreen::PlayOnce": {
-     "va": "0040bb0e",
-     "size": 280,
-     "mangled": "W?PlayOnce$:PromoScreen$n(pnxapn$FlicSound$$)v"
-    },
-    "PromoScreen::DrawText": {
-     "va": "0040bc26",
-     "size": 333,
-     "mangled": "W?DrawText$:PromoScreen$n()v"
-    },
-    "PromoScreen::Close": {
-     "va": "0040bd73",
-     "size": 66,
-     "mangled": "W?Close$:PromoScreen$n()v"
-    },
-    "PromoScreen::Update": {
-     "va": "0040bdb5",
-     "size": 102,
-     "mangled": "W?Update$:PromoScreen$n()i"
-    },
-    "PromoScreen::Render": {
-     "va": "0040be1b",
-     "size": 113,
-     "mangled": "W?Render$:PromoScreen$n()v"
-    },
-    "PromoScreen::Finish": {
-     "va": "0040be8c",
-     "size": 14,
-     "mangled": "W?Finish$:PromoScreen$n()v"
-    },
-    "PromoScreen::$dt": {
-     "va": "0040be9c",
-     "size": 33,
-     "mangled": "W?$dt:PromoScreen$n()_"
-    }
-   },
-   "data": {
-    "CONST": {
-     "va": "0048a2e8",
-     "size": 731
-    },
-    "CONST2": {
-     "va": "0048ca44",
-     "size": 36
-    },
-    "_DATA": {
-     "va": "0048e668",
-     "size": 12
-    },
-    "XI": {
-     "va": "004a6b6a",
-     "size": 6
-    },
-    "W?$Wts0in$MenuHelpRegion$$$nx[]uc": {
-     "va": "0048c9c4",
-     "size": 17
-    }
-   },
-   "accepted": "2026-11-09"
-  },
   "src/_unknown/tu_0043ef34.c": {
    "as": "_unknown\\tu_0043ef34.c",
    "install": "wc106",
@@ -6183,147 +5651,6 @@
     }
    },
    "data": {},
-   "accepted": "2026-11-09"
-  },
-  "src/_unknown/tu_0044950c.c": {
-   "as": "_unknown\\tu_0044950c.c",
-   "install": "wc106",
-   "profile": "plain-oe",
-   "functions": {
-    "W?.fn_init$n()v": {
-     "va": "0044950c",
-     "size": 110,
-     "mangled": "W?.fn_init$n()v"
-    },
-    "PopInfo::$ct": {
-     "va": "0044957a",
-     "size": 30,
-     "mangled": "W?$ct:PopInfo$n()_"
-    },
-    "PopInfoOpen": {
-     "va": "00449598",
-     "size": 68,
-     "mangled": "W?PopInfoOpen$n(pn$PopInfo$$pn$InputReq$$)v"
-    },
-    "PopInfoClose": {
-     "va": "004495dc",
-     "size": 26,
-     "mangled": "W?PopInfoClose$n(pn$PopInfo$$)v"
-    },
-    "PopInfoUpdate": {
-     "va": "004495f6",
-     "size": 58,
-     "mangled": "W?PopInfoUpdate$n(pn$PopInfo$$)v"
-    },
-    "PopInfoDraw": {
-     "va": "00449aa7",
-     "size": 145,
-     "mangled": "W?PopInfoDraw$n(pn$PopInfo$$)v"
-    },
-    "PopInfoSelect": {
-     "va": "00449b38",
-     "size": 49,
-     "mangled": "W?PopInfoSelect$n(pn$PopInfo$$i)v"
-    },
-    "PopInfoEvent": {
-     "va": "00449b69",
-     "size": 63,
-     "mangled": "W?PopInfoEvent$n()i"
-    },
-    "PopInfo::$dt": {
-     "va": "00449ba8",
-     "size": 12,
-     "mangled": "W?$dt:PopInfo$n()_"
-    }
-   },
-   "data": {
-    "CONST2": {
-     "va": "0048dda0",
-     "size": 36
-    },
-    "_DATA": {
-     "va": "004a0154",
-     "size": 12
-    },
-    "W?$Wts0en$MenuSpacer$$$nx[]uc": {
-     "va": "0048d964",
-     "size": 17
-    }
-   },
-   "accepted": "2026-11-09"
-  },
-  "src/_unknown/tu_00449bb4.c": {
-   "as": "_unknown\\tu_00449bb4.c",
-   "install": "wc106",
-   "profile": "plain-oe",
-   "functions": {
-    "W?.fn_init$n()v": {
-     "va": "00449bb4",
-     "size": 87,
-     "mangled": "W?.fn_init$n()v"
-    },
-    "PopWorld::$ct": {
-     "va": "00449c0b",
-     "size": 23,
-     "mangled": "W?$ct:PopWorld$n()_"
-    },
-    "PopWorldOpen": {
-     "va": "00449c22",
-     "size": 68,
-     "mangled": "W?PopWorldOpen$n(pn$PopWorld$$pn$InputReq$$)v"
-    },
-    "PopWorldClose": {
-     "va": "00449c66",
-     "size": 26,
-     "mangled": "W?PopWorldClose$n(pn$PopWorld$$)v"
-    },
-    "PopWorldUpdate": {
-     "va": "00449c80",
-     "size": 58,
-     "mangled": "W?PopWorldUpdate$n(pn$PopWorld$$)v"
-    },
-    "PopWorldDrawText": {
-     "va": "00449cba",
-     "size": 188,
-     "mangled": "W?PopWorldDrawText$n(pn$PopWorld$$)v"
-    },
-    "PopWorldEvent": {
-     "va": "00449eb5",
-     "size": 63,
-     "mangled": "W?PopWorldEvent$n()i"
-    },
-    "PopWorld::$dt": {
-     "va": "00449ef4",
-     "size": 12,
-     "mangled": "W?$dt:PopWorld$n()_"
-    }
-   },
-   "data": {
-    "CONST": {
-     "va": "0048b430",
-     "size": 32
-    },
-    "CONST2": {
-     "va": "0048ddec",
-     "size": 28
-    },
-    "_DATA": {
-     "va": "004a0178",
-     "size": 12
-    },
-    "XI": {
-     "va": "004a6c48",
-     "size": 6
-    },
-    "W?$Wts0en$MenuSpacer$$$nx[]uc": {
-     "va": "0048d964",
-     "size": 17
-    },
-    "W?$Wts0cn$PopWorld$$$nx[]uc": {
-     "va": "0048de08",
-     "size": 17
-    }
-   },
    "accepted": "2026-11-09"
   },
   "src/sim/sim.c": {
@@ -7001,128 +6328,10 @@
     },
     "_DATA": {
      "va": "0048e6cc",
-     "size": 12
-    }
-   },
-   "accepted": "2026-11-09"
-  },
-  "src/_unknown/tu_0040e7a0.c": {
-   "as": "_unknown\\tu_0040e7a0.c",
-   "install": "wc106",
-   "flags": [
-    "-4s",
-    "-s",
-    "-bm",
-    "-oe=80"
-   ],
-   "tool": "wpp386",
-   "functions": {
-    "W?.fn_init$n()v": {
-     "va": "0040e7a0",
-     "size": 431,
-     "mangled": "W?.fn_init$n()v"
-    },
-    "BiodermStatsScreen::$ct": {
-     "va": "0040e94f",
-     "size": 23,
-     "mangled": "W?$ct:BiodermStatsScreen$n()_"
-    },
-    "BiodermStatsScreen::Open": {
-     "va": "0040e966",
-     "size": 248,
-     "mangled": "W?Open$:BiodermStatsScreen$n(pn$InputReq$$)v"
-    },
-    "BiodermStatsScreen::Close": {
-     "va": "0040ea5e",
-     "size": 26,
-     "mangled": "W?Close$:BiodermStatsScreen$n()v"
-    },
-    "BiodermStatsExit": {
-     "va": "0040ea78",
-     "size": 128,
-     "mangled": "W?BiodermStatsExit$n(pn$BiodermStatsScreen$$)ul"
-    },
-    "ShellBiodermStatsRender": {
-     "va": "0040eaf8",
-     "size": 421,
-     "mangled": "W?ShellBiodermStatsRender$n(pn$BiodermStatsScreen$$)v"
-    },
-    "BiodermStatsScreen::UpdateText": {
-     "va": "0040ec9d",
-     "size": 707,
-     "mangled": "W?UpdateText$:BiodermStatsScreen$n()v"
-    },
-    "BiodermStatsScreen::SetControls": {
-     "va": "0040ef60",
-     "size": 190,
-     "mangled": "W?SetControls$:BiodermStatsScreen$n()v"
-    },
-    "BiodermStatsScreen::UpdateCredits": {
-     "va": "0040f01e",
-     "size": 40,
-     "mangled": "W?UpdateCredits$:BiodermStatsScreen$n()v"
-    },
-    "BiodermStatsScreen::Room": {
-     "va": "0040f046",
-     "size": 46,
-     "mangled": "W?Room$:BiodermStatsScreen$n()i"
-    },
-    "BiodermStatsSelect": {
-     "va": "0040f074",
-     "size": 507,
-     "mangled": "W?BiodermStatsSelect$n(pn$BiodermStatsScreen$$ui)v"
-    },
-    "BiodermStatsAction": {
-     "va": "0040f26f",
-     "size": 101,
-     "mangled": "W?BiodermStatsAction$n(pn$BiodermStatsScreen$$)v"
-    },
-    "BiodermStatsScreen::Message": {
-     "va": "0040f2d4",
-     "size": 243,
-     "mangled": "W?Message$:BiodermStatsScreen$n(pnxa)v"
-    },
-    "BiodermStatsScreen::DrawMessage": {
-     "va": "0040f3c7",
-     "size": 68,
-     "mangled": "W?DrawMessage$:BiodermStatsScreen$n(pnxa)v"
-    },
-    "BiodermStatsClose": {
-     "va": "0040f40b",
-     "size": 38,
-     "mangled": "W?BiodermStatsClose$n(pn$BiodermStatsScreen$$)v"
-    },
-    "BiodermStatsApply": {
-     "va": "0040f431",
-     "size": 140,
-     "mangled": "W?BiodermStatsApply$n(pn$BiodermStatsScreen$$)v"
-    },
-    "W?$Wda0221$:MenuButton$n(ui)pnv": {
-     "va": "0040f4c0",
-     "size": 21,
-     "mangled": "W?$Wda0221$:MenuButton$n(ui)pnv"
-    },
-    "BiodermStatsScreen::$dt": {
-     "va": "0040f4d8",
-     "size": 12,
-     "mangled": "W?$dt:BiodermStatsScreen$n()_"
-    }
-   },
-   "data": {
-    "CONST": {
-     "va": "0048a794",
-     "size": 67
-    },
-    "CONST2": {
-     "va": "0048cb30",
-     "size": 116
-    },
-    "_DATA": {
-     "va": "0048e6f8",
-     "size": 12
+     "size": 44
     },
     "XI": {
-     "va": "004a6b7c",
+     "va": "004a6b76",
      "size": 6
     },
     "W?$Wts0en$MenuButton$$$nx[]uc": {
@@ -7138,144 +6347,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-09"
-  },
-  "src/_unknown/tu_0040f4e4.c": {
-   "as": "_unknown\\tu_0040f4e4.c",
-   "install": "wc106",
-   "profile": "plain-oe",
-   "functions": {
-    "W?.tdctor$:MenuButton$n()rn$1$": {
-     "va": "004085c8",
-     "size": 21,
-     "mangled": "W?.tdctor$:MenuButton$n()rn$1$"
-    },
-    "W?.fn_init$n()v": {
-     "va": "0040f4e4",
-     "size": 305,
-     "mangled": "W?.fn_init$n()v"
-    },
-    "MedlabScreen::$ct": {
-     "va": "0040f615",
-     "size": 23,
-     "mangled": "W?$ct:MedlabScreen$n()_"
-    },
-    "MedlabScreen::Open": {
-     "va": "0040f62c",
-     "size": 228,
-     "mangled": "W?Open$:MedlabScreen$n(pn$InputReq$$)v"
-    },
-    "MedlabScreen::Close": {
-     "va": "0040f710",
-     "size": 26,
-     "mangled": "W?Close$:MedlabScreen$n()v"
-    },
-    "MedlabScreen::Update": {
-     "va": "0040f72a",
-     "size": 118,
-     "mangled": "W?Update$:MedlabScreen$n()i"
-    },
-    "ShellBiodermSkillsRender": {
-     "va": "0040f7a0",
-     "size": 416,
-     "mangled": "W?ShellBiodermSkillsRender$n(pn$MedlabScreen$$)v"
-    },
-    "MedlabScreen::Invalidate": {
-     "va": "0040f940",
-     "size": 14,
-     "mangled": "W?Invalidate$:MedlabScreen$n()v"
-    },
-    "MedlabScreen::UpdateText": {
-     "va": "0040f94e",
-     "size": 471,
-     "mangled": "W?UpdateText$:MedlabScreen$n()v"
-    },
-    "MedlabScreen::UpdateCredits": {
-     "va": "0040fb25",
-     "size": 64,
-     "mangled": "W?UpdateCredits$:MedlabScreen$n()v"
-    },
-    "MedlabScreen::Room": {
-     "va": "0040fb65",
-     "size": 14,
-     "mangled": "W?Room$:MedlabScreen$n()i"
-    },
-    "MedlabScreen::Cancel": {
-     "va": "0040fb73",
-     "size": 38,
-     "mangled": "W?Cancel$:MedlabScreen$n()v"
-    },
-    "MedlabScreen::Apply": {
-     "va": "0040fb99",
-     "size": 129,
-     "mangled": "W?Apply$:MedlabScreen$n()v"
-    },
-    "MedlabScreen::Treat": {
-     "va": "0040fc1a",
-     "size": 302,
-     "mangled": "W?Treat$:MedlabScreen$n(uiui)v"
-    },
-    "MedlabScreen::TotalCost": {
-     "va": "0040fd48",
-     "size": 152,
-     "mangled": "W?TotalCost$:MedlabScreen$n()i"
-    },
-    "MedlabScreen::TreatAll": {
-     "va": "0040fde0",
-     "size": 243,
-     "mangled": "W?TreatAll$:MedlabScreen$n()v"
-    },
-    "MedlabScreen::Dismiss": {
-     "va": "0040fed3",
-     "size": 192,
-     "mangled": "W?Dismiss$:MedlabScreen$n()v"
-    },
-    "W?$Wda0214$:MenuButton$n(ui)pnv": {
-     "va": "0040ff94",
-     "size": 21,
-     "mangled": "W?$Wda0214$:MenuButton$n(ui)pnv"
-    },
-    "MedlabScreen::$dt": {
-     "va": "0040ffac",
-     "size": 12,
-     "mangled": "W?$dt:MedlabScreen$n()_"
-    }
-   },
-   "data": {
-    "CONST": {
-     "va": "0048a7d8",
-     "size": 49
-    },
-    "CONST2": {
-     "va": "0048cbbc",
-     "size": 84
-    },
-    "_DATA": {
-     "va": "0048e76c",
-     "size": 12
-    },
-    "XI": {
-     "va": "004a6b82",
-     "size": 6
-    },
-    "W?$Wts0en$MenuButton$$$nx[]uc": {
-     "va": "0048c9d8",
-     "size": 17
-    },
-    "W?$Wts0in$MenuHelpRegion$$$nx[]uc": {
-     "va": "0048c9c4",
-     "size": 17
-    },
-    "W?$Wts0dn$MenuPanel$$$nx[]uc": {
-     "va": "0048c99c",
-     "size": 17
-    },
-    "W?$Wts0gn$MedlabScreen$$$nx[]uc": {
-     "va": "0048cc10",
-     "size": 17
-    }
-   },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/pop/ppilot.c": {
    "as": "pop\\ppilot.c",
@@ -7847,175 +6919,6 @@
    },
    "accepted": "2026-11-09"
   },
-  "src/_unknown/tu_0041d774.c": {
-   "as": "_unknown\\tu_0041d774.c",
-   "install": "wc106",
-   "profile": "plain-oe",
-   "functions": {
-    "W?$Wda0211$:MenuPrefixButton$n(ui)pnv": {
-     "va": "004085f8",
-     "size": 21,
-     "mangled": "W?$Wda0211$:MenuPrefixButton$n(ui)pnv"
-    },
-    "GuiScreen::$dt": {
-     "va": "0041d774",
-     "size": 12,
-     "mangled": "W?$dt:GuiScreen$n()_"
-    },
-    "W?.fn_init$n()v": {
-     "va": "0041d780",
-     "size": 1127,
-     "mangled": "W?.fn_init$n()v"
-    },
-    "MultiplayerBase::$ct": {
-     "va": "0041dbe7",
-     "size": 94,
-     "mangled": "W?$ct:MultiplayerBase$n()_"
-    },
-    "MultiplayerConfigure": {
-     "va": "0041e527",
-     "size": 353,
-     "mangled": "W?MultiplayerConfigure$n(pn$MultiplayerBase$$)v"
-    },
-    "MultiplayerRelease": {
-     "va": "0041e688",
-     "size": 92,
-     "mangled": "W?MultiplayerRelease$n(pn$MultiplayerBase$$)v"
-    },
-    "ShellMultiplayerClose": {
-     "va": "0041e6e4",
-     "size": 150,
-     "mangled": "W?ShellMultiplayerClose$n(pn$MultiplayerBase$$)v"
-    },
-    "ValidateMultiplayer": {
-     "va": "0041e77a",
-     "size": 411,
-     "mangled": "W?ValidateMultiplayer$n(pn$MultiplayerBase$$)v"
-    },
-    "MultiplayerEnter": {
-     "va": "0041e915",
-     "size": 70,
-     "mangled": "W?MultiplayerEnter$n(pn$MultiplayerBase$$)v"
-    },
-    "MultiplayerBusy": {
-     "va": "0041e95b",
-     "size": 11,
-     "mangled": "W?MultiplayerBusy$n(pn$MultiplayerBase$$)i"
-    },
-    "MultiplayerRequest": {
-     "va": "0041ea50",
-     "size": 15,
-     "mangled": "W?MultiplayerRequest$n(pn$MultiplayerBase$$)v"
-    },
-    "MultiplayerBase::GetName": {
-     "va": "0041ea5f",
-     "size": 85,
-     "mangled": "W?GetName$:MultiplayerBase$n()i"
-    },
-    "MultiplayerSearch": {
-     "va": "0041eb76",
-     "size": 150,
-     "mangled": "W?MultiplayerSearch$n(pn$MultiplayerBase$$)v"
-    },
-    "SigsJoin": {
-     "va": "0041ec0c",
-     "size": 150,
-     "mangled": "W?SigsJoin$n(pna)v"
-    },
-    "MultiplayerDrawText": {
-     "va": "0041f020",
-     "size": 108,
-     "mangled": "W?MultiplayerDrawText$n(pn$MultiplayerBase$$pnxa)v"
-    },
-    "MultiplayerDrawHover": {
-     "va": "0041f08c",
-     "size": 276,
-     "mangled": "W?MultiplayerDrawHover$n(pn$MultiplayerBase$$ii)v"
-    },
-    "MultiplayerUpdate": {
-     "va": "0041f1a0",
-     "size": 358,
-     "mangled": "W?MultiplayerUpdate$n(pn$MultiplayerBase$$)v"
-    },
-    "ShellMultiplayerRender": {
-     "va": "0041f306",
-     "size": 405,
-     "mangled": "W?ShellMultiplayerRender$n(pn$MultiplayerBase$$)v"
-    },
-    "MultiplayerDone": {
-     "va": "0041f49b",
-     "size": 33,
-     "mangled": "W?MultiplayerDone$n(pn$MultiplayerBase$$)i"
-    },
-    "MultiplayerSetMoneyValues": {
-     "va": "0041f4bc",
-     "size": 99,
-     "mangled": "W?MultiplayerSetMoneyValues$n(pn$MultiplayerBase$$)v"
-    },
-    "MultiplayerUpdateValues": {
-     "va": "0041f51f",
-     "size": 176,
-     "mangled": "W?MultiplayerUpdateValues$n(pn$MultiplayerBase$$)v"
-    },
-    "MultiplayerSaveOptions": {
-     "va": "0041f5cf",
-     "size": 64,
-     "mangled": "W?MultiplayerSaveOptions$n(pn$MultiplayerBase$$)v"
-    },
-    "MultiplayerBase::$dt": {
-     "va": "0041f610",
-     "size": 54,
-     "mangled": "W?$dt:MultiplayerBase$n()_"
-    }
-   },
-   "data": {
-    "CONST": {
-     "va": "0048ab6c",
-     "size": 157
-    },
-    "CONST2": {
-     "va": "0048d480",
-     "size": 292
-    },
-    "_DATA": {
-     "va": "0048ef50",
-     "size": 12
-    },
-    "XI": {
-     "va": "004a6bca",
-     "size": 6
-    },
-    "W?$Wts0kn$MenuPrefixButton$$$nx[]uc": {
-     "va": "0048c9ec",
-     "size": 17
-    },
-    "W?$Wts0en$UpgradeBar$$$nx[]uc": {
-     "va": "0048d024",
-     "size": 17
-    },
-    "W?$Wts0gn$UpgradeArrow$$$nx[]uc": {
-     "va": "0048d010",
-     "size": 17
-    },
-    "W?$Wts0in$MenuHelpRegion$$$nx[]uc": {
-     "va": "0048c9c4",
-     "size": 17
-    },
-    "W?$Wts0dn$MenuPanel$$$nx[]uc": {
-     "va": "0048c99c",
-     "size": 17
-    },
-    "W?$Wts0jn$MultiplayerBase$$$nx[]uc": {
-     "va": "0048d5a4",
-     "size": 17
-    },
-    "W?$Wts08n$Flic$$$nx[]uc": {
-     "va": "0048c848",
-     "size": 17
-    }
-   },
-   "accepted": "2026-11-09"
-  },
   "src/_unknown/tu_00407204.c": {
    "as": "_unknown\\tu_00407204.c",
    "install": "wc106",
@@ -8135,6 +7038,11 @@
      "va": "004087a8",
      "size": 54,
      "mangled": "W?$dt:MainMenuScreen$n()_"
+    },
+    "GuiScreen::ResetInput": {
+     "va": "004087e0",
+     "size": 12,
+     "mangled": "W?ResetInput$:GuiScreen$n()v"
     }
    },
    "data": {
@@ -8148,7 +7056,11 @@
     },
     "_DATA": {
      "va": "0048e594",
-     "size": 12
+     "size": 112
+    },
+    "XI": {
+     "va": "004a6b5e",
+     "size": 6
     },
     "W?$Wts0dn$MenuLabel$$$nx[]uc": {
      "va": "0048c9b0",
@@ -8177,20 +7089,19 @@
     "W?$Wts08n$Flic$$$nx[]uc": {
      "va": "0048c848",
      "size": 17
+    },
+    "W?$Wts0in$MainMenuScreen$$$nx[]uc": {
+     "va": "0048c974",
+     "size": 17
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/_unknown/tu_004087e0.c": {
    "as": "_unknown\\tu_004087e0.c",
    "install": "wc106",
    "profile": "plain-oe",
    "functions": {
-    "GuiScreen::ResetInput": {
-     "va": "004087e0",
-     "size": 12,
-     "mangled": "W?ResetInput$:GuiScreen$n()v"
-    },
     "W?.fn_init$n()v": {
      "va": "004087ec",
      "size": 146,
@@ -8278,7 +7189,7 @@
     },
     "_DATA": {
      "va": "0048e604",
-     "size": 12
+     "size": 100
     },
     "XI": {
      "va": "004a6b64",
@@ -8305,7 +7216,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/_unknown/tu_00454210.c": {
    "as": "_unknown\\tu_00454210.c",
@@ -8493,100 +7404,11 @@
    "data": {},
    "accepted": "2026-11-09"
   },
-  "src/_unknown/tu_0040ffb8.c": {
-   "as": "_unknown\\tu_0040ffb8.c",
-   "install": "wc106",
-   "profile": "plain",
-   "functions": {
-    "PilotBriefStaticInit": {
-     "va": "0040ffb8",
-     "size": 272,
-     "mangled": "W?PilotBriefStaticInit$n()v"
-    },
-    "PilotBriefLoadResources": {
-     "va": "004100c8",
-     "size": 23,
-     "mangled": "W?PilotBriefLoadResources$n(pnv)v"
-    },
-    "PilotBriefOpenStandby": {
-     "va": "004100df",
-     "size": 169,
-     "mangled": "W?PilotBriefOpenStandby$n(pnvpnv)v"
-    },
-    "PilotBriefResetIfOpen": {
-     "va": "00410188",
-     "size": 26,
-     "mangled": "W?PilotBriefResetIfOpen$n(pnv)v"
-    },
-    "PilotBriefAcceptProfile": {
-     "va": "004101a2",
-     "size": 101,
-     "mangled": "W?PilotBriefAcceptProfile$n(pnv)i"
-    },
-    "PilotBriefDoneRoom": {
-     "va": "00410207",
-     "size": 33,
-     "mangled": "W?PilotBriefDoneRoom$n()v"
-    },
-    "ShellBiodermDetailsRender": {
-     "va": "00410228",
-     "size": 455,
-     "mangled": "W?ShellBiodermDetailsRender$n(pnv)v"
-    },
-    "PilotBriefRefreshSelection": {
-     "va": "004103ef",
-     "size": 62,
-     "mangled": "W?PilotBriefRefreshSelection$n(pnv)v"
-    },
-    "PilotBriefReviewKey": {
-     "va": "0041042d",
-     "size": 195,
-     "mangled": "W?PilotBriefReviewKey$n()v"
-    },
-    "PilotBriefModule::InstallMissionProfile": {
-     "va": "004104f0",
-     "size": 173,
-     "mangled": "W?InstallMissionProfile$:PilotBriefModule$n()v"
-    },
-    "PilotBriefSwitchProfileMode": {
-     "va": "0041059d",
-     "size": 111,
-     "mangled": "W?PilotBriefSwitchProfileMode$n()v"
-    },
-    "PilotBriefResetProfileMode": {
-     "va": "0041060c",
-     "size": 98,
-     "mangled": "W?PilotBriefResetProfileMode$n()v"
-    },
-    "PilotBriefRestoreProfile": {
-     "va": "0041066e",
-     "size": 38,
-     "mangled": "W?PilotBriefRestoreProfile$n()v"
-    },
-    "PilotBriefSaveOrRestore": {
-     "va": "00410694",
-     "size": 152,
-     "mangled": "W?PilotBriefSaveOrRestore$n()v"
-    }
-   },
-   "data": {
-    "CONST": {
-     "va": "0048a80c",
-     "size": 20
-    }
-   },
-   "accepted": "2026-11-09"
-  },
   "src/shell/pilotgui.c": {
    "as": "shell\\pilotgui.c",
    "install": "wc106",
    "profile": "plain",
    "functions": {
-    "PilotGuiBriefReset": {
-     "va": "0041072c",
-     "size": 12,
-     "mangled": "W?PilotGuiBriefReset$n(pna)v"
-    },
     "W?.fn_init$n()v": {
      "va": "00410738",
      "size": 1092,
@@ -8715,7 +7537,7 @@
     },
     "_DATA": {
      "va": "0048e804",
-     "size": 12
+     "size": 208
     },
     "XI": {
      "va": "004a6b8e",
@@ -9115,548 +7937,6 @@
    "data": {},
    "accepted": "2026-11-11"
   },
-  "src/_unknown/tu_004425d4.c": {
-   "as": "_unknown\\tu_004425d4.c",
-   "install": "wc106",
-   "profile": "plain-oe",
-   "functions": {
-    "MovementPopup::$ct": {
-     "va": "0044276c",
-     "size": 23,
-     "mangled": "W?$ct:MovementPopup$n()_"
-    },
-    "MovementPopup::OpenMove": {
-     "va": "00442783",
-     "size": 68,
-     "mangled": "W?OpenMove$:MovementPopup$n(pn$InputReq$$)v"
-    },
-    "SimPanelDraw": {
-     "va": "004429dc",
-     "size": 28,
-     "mangled": "W?SimPanelDraw$n(pn$MovementPopup$$)v"
-    },
-    "MovementPopup::Invalidate": {
-     "va": "004429f8",
-     "size": 12,
-     "mangled": "W?Invalidate$:MovementPopup$n()v"
-    },
-    "MovementPopup::$dt": {
-     "va": "00443100",
-     "size": 12,
-     "mangled": "W?$dt:MovementPopup$n()_"
-    }
-   },
-   "data": {
-    "CONST": {
-     "va": "0048b29c",
-     "size": 12
-    },
-    "XI": {
-     "va": "004a6c18",
-     "size": 6
-    },
-    "W?$Wts0hn$MovementPopup$$$nx[]uc": {
-     "va": "0048db9c",
-     "size": 17
-    }
-   },
-   "accepted": "2026-11-09"
-  },
-  "src/_unknown/tu_0044310c.c": {
-   "as": "_unknown\\tu_0044310c.c",
-   "install": "wc106",
-   "profile": "plain-oe",
-   "functions": {
-    "W?.fn_init$n()v": {
-     "va": "0044310c",
-     "size": 128,
-     "mangled": "W?.fn_init$n()v"
-    },
-    "WeaponControl::$ct": {
-     "va": "0044318c",
-     "size": 39,
-     "mangled": "W?$ct:WeaponControl$n()_"
-    },
-    "WeaponControl::Reset": {
-     "va": "004431b3",
-     "size": 18,
-     "mangled": "W?Reset$:WeaponControl$n(ui)v"
-    },
-    "WeaponControl::SetText": {
-     "va": "004431c5",
-     "size": 12,
-     "mangled": "W?SetText$:WeaponControl$n(pnxa)v"
-    },
-    "WeaponControl::Draw": {
-     "va": "004431d1",
-     "size": 343,
-     "mangled": "W?Draw$:WeaponControl$n(ui)v"
-    },
-    "WeaponControl::Event": {
-     "va": "00443328",
-     "size": 6,
-     "mangled": "W?Event$:WeaponControl$n(uiul)i"
-    },
-    "WeaponPopup::$ct": {
-     "va": "0044332e",
-     "size": 56,
-     "mangled": "W?$ct:WeaponPopup$n()_"
-    },
-    "WeaponPopup::Close": {
-     "va": "0044346f",
-     "size": 26,
-     "mangled": "W?Close$:WeaponPopup$n()v"
-    },
-    "WeaponPopup::Process": {
-     "va": "004435e5",
-     "size": 445,
-     "mangled": "W?Process$:WeaponPopup$n()i"
-    },
-    "SimActionsDraw": {
-     "va": "00443cec",
-     "size": 28,
-     "mangled": "W?SimActionsDraw$n(pn$WeaponPopup$$)v"
-    },
-    "WeaponPopup::Invalidate": {
-     "va": "00443d08",
-     "size": 12,
-     "mangled": "W?Invalidate$:WeaponPopup$n()v"
-    },
-    "WeaponPopup::SetMode": {
-     "va": "00443d14",
-     "size": 27,
-     "mangled": "W?SetMode$:WeaponPopup$n(iii)v"
-    },
-    "W?.tdctor$:MenuImageButton$n()rn$1$": {
-     "va": "00443e88",
-     "size": 23,
-     "mangled": "W?.tdctor$:MenuImageButton$n()rn$1$"
-    },
-    "W?$Wda018$:WeaponControl$n(ui)pnv": {
-     "va": "00443ea0",
-     "size": 21,
-     "mangled": "W?$Wda018$:WeaponControl$n(ui)pnv"
-    },
-    "W?$Wda018$:MenuImageButton$n(ui)pnv": {
-     "va": "00443eb8",
-     "size": 21,
-     "mangled": "W?$Wda018$:MenuImageButton$n(ui)pnv"
-    },
-    "SimMapGadget::$dt": {
-     "va": "00443ed0",
-     "size": 67,
-     "mangled": "W?$dt:SimMapGadget$n()_"
-    },
-    "WeaponControl::$dt": {
-     "va": "00443f14",
-     "size": 67,
-     "mangled": "W?$dt:WeaponControl$n()_"
-    }
-   },
-   "data": {
-    "CONST2": {
-     "va": "0048dbb0",
-     "size": 36
-    },
-    "_DATA": {
-     "va": "0049ffa4",
-     "size": 12
-    },
-    "XI": {
-     "va": "004a6c1e",
-     "size": 6
-    },
-    "W?$Wvf0hos:WeaponControl$$nx[]pn()v": {
-     "va": "0048dc18",
-     "size": 20
-    },
-    "W?$Wts0jn$WeaponMapGadget$$$nx[]uc": {
-     "va": "0048dbe8",
-     "size": 17
-    },
-    "W?$Wts0hn$WeaponControl$$$nx[]uc": {
-     "va": "0048dc00",
-     "size": 17
-    },
-    "W?$Wts0jn$MenuImageButton$$$nx[]uc": {
-     "va": "0048d978",
-     "size": 17
-    }
-   },
-   "accepted": "2026-11-09"
-  },
-  "src/_unknown/tu_00417f34.c": {
-   "as": "_unknown\\tu_00417f34.c",
-   "install": "wc106",
-   "profile": "plain-oe",
-   "functions": {
-    "W?.fn_init$n()v": {
-     "va": "00417f34",
-     "size": 389,
-     "mangled": "W?.fn_init$n()v"
-    },
-    "StorageScreen::$ct": {
-     "va": "004180b9",
-     "size": 42,
-     "mangled": "W?$ct:StorageScreen$n()_"
-    },
-    "StorageClose": {
-     "va": "00418536",
-     "size": 97,
-     "mangled": "W?StorageClose$n(pn$StorageScreen$$)v"
-    },
-    "StorageInput": {
-     "va": "00418597",
-     "size": 107,
-     "mangled": "W?StorageInput$n(pn$StorageScreen$$)v"
-    },
-    "StorageImage": {
-     "va": "00418602",
-     "size": 31,
-     "mangled": "W?StorageImage$n(pn$StorageScreen$$)uc"
-    },
-    "StorageDetails": {
-     "va": "00418621",
-     "size": 256,
-     "mangled": "W?StorageDetails$n(pn$StorageScreen$$)v"
-    },
-    "StorageStart": {
-     "va": "00418721",
-     "size": 85,
-     "mangled": "W?StorageStart$n(pn$StorageScreen$$)v"
-    },
-    "StorageAnimate": {
-     "va": "00418776",
-     "size": 206,
-     "mangled": "W?StorageAnimate$n(pn$StorageScreen$$)v"
-    },
-    "StorageSetup": {
-     "va": "00418ae9",
-     "size": 116,
-     "mangled": "W?StorageSetup$n()v"
-    },
-    "StorageVisibility": {
-     "va": "00418b5d",
-     "size": 260,
-     "mangled": "W?StorageVisibility$n(pn$StorageScreen$$)v"
-    },
-    "StorageColors": {
-     "va": "00418c61",
-     "size": 140,
-     "mangled": "W?StorageColors$n(pn$StorageScreen$$)v"
-    },
-    "StorageScreen::Names": {
-     "va": "00418ced",
-     "size": 111,
-     "mangled": "W?Names$:StorageScreen$n(uc)v"
-    },
-    "StorageVisibleNames": {
-     "va": "00418d5c",
-     "size": 115,
-     "mangled": "W?StorageVisibleNames$n(pn$StorageScreen$$uc)v"
-    },
-    "StorageRedraw": {
-     "va": "00418dcf",
-     "size": 32,
-     "mangled": "W?StorageRedraw$n(pn$StorageScreen$$)v"
-    },
-    "StorageCredits": {
-     "va": "00418def",
-     "size": 23,
-     "mangled": "W?StorageCredits$n()v"
-    },
-    "StorageSave": {
-     "va": "00418e06",
-     "size": 42,
-     "mangled": "W?StorageSave$n(pn$StorageScreen$$)v"
-    },
-    "StorageRestore": {
-     "va": "00418e30",
-     "size": 42,
-     "mangled": "W?StorageRestore$n(pn$StorageScreen$$)v"
-    },
-    "StorageScreen::Ramp": {
-     "va": "00418e5a",
-     "size": 67,
-     "mangled": "W?Ramp$:StorageScreen$n()v"
-    },
-    "StorageSelected": {
-     "va": "00418e9d",
-     "size": 8,
-     "mangled": "W?StorageSelected$n(pn$StorageScreen$$)uc"
-    },
-    "StorageDone": {
-     "va": "00418ea5",
-     "size": 14,
-     "mangled": "W?StorageDone$n()v"
-    },
-    "W?$Wda0224$:MenuPrefixButton$n(ui)pnv": {
-     "va": "00418eb4",
-     "size": 21,
-     "mangled": "W?$Wda0224$:MenuPrefixButton$n(ui)pnv"
-    },
-    "StorageScreen::$dt": {
-     "va": "00418ecc",
-     "size": 33,
-     "mangled": "W?$dt:StorageScreen$n()_"
-    }
-   },
-   "data": {
-    "CONST2": {
-     "va": "0048d1a0",
-     "size": 108
-    },
-    "_DATA": {
-     "va": "0048ec14",
-     "size": 12
-    },
-    "XI": {
-     "va": "004a6bb2",
-     "size": 6
-    },
-    "W?$Wts0kn$MenuPrefixButton$$$nx[]uc": {
-     "va": "0048c9ec",
-     "size": 17
-    },
-    "W?$Wts0en$MenuNumber$$$nx[]uc": {
-     "va": "0048c988",
-     "size": 17
-    },
-    "W?$Wts0en$MenuButton$$$nx[]uc": {
-     "va": "0048c9d8",
-     "size": 17
-    },
-    "W?$Wts0en$UpgradeBar$$$nx[]uc": {
-     "va": "0048d024",
-     "size": 17
-    },
-    "W?$Wts0gn$UpgradeArrow$$$nx[]uc": {
-     "va": "0048d010",
-     "size": 17
-    },
-    "W?$Wts0dn$MenuPanel$$$nx[]uc": {
-     "va": "0048c99c",
-     "size": 17
-    },
-    "W?$Wts0in$MenuHelpRegion$$$nx[]uc": {
-     "va": "0048c9c4",
-     "size": 17
-    }
-   },
-   "accepted": "2026-11-09"
-  },
-  "src/_unknown/tu_004481c0.c": {
-   "as": "_unknown\\tu_004481c0.c",
-   "install": "wc106",
-   "profile": "plain-oe",
-   "functions": {
-    "W?.fn_init$n()v": {
-     "va": "004481c0",
-     "size": 187,
-     "mangled": "W?.fn_init$n()v"
-    },
-    "ReportScreen::$ct": {
-     "va": "0044827b",
-     "size": 42,
-     "mangled": "W?$ct:ReportScreen$n()_"
-    },
-    "ReportOpen": {
-     "va": "004482a5",
-     "size": 223,
-     "mangled": "W?ReportOpen$n(pn$ReportScreen$$pn$InputReq$$)v"
-    },
-    "ReportMission": {
-     "va": "00448384",
-     "size": 104,
-     "mangled": "W?ReportMission$n(pn$ReportScreen$$i)v"
-    },
-    "ReportClose": {
-     "va": "004483ec",
-     "size": 58,
-     "mangled": "W?ReportClose$n(pn$ReportScreen$$)v"
-    },
-    "ReportInput": {
-     "va": "00448426",
-     "size": 58,
-     "mangled": "W?ReportInput$n(pn$ReportScreen$$)v"
-    },
-    "SimPilotDraw": {
-     "va": "00448460",
-     "size": 165,
-     "mangled": "W?SimPilotDraw$n(pn$ReportScreen$$)v"
-    },
-    "ReportDirty": {
-     "va": "00448505",
-     "size": 12,
-     "mangled": "W?ReportDirty$n(pn$ReportScreen$$)v"
-    },
-    "ReportSelect": {
-     "va": "00448511",
-     "size": 395,
-     "mangled": "W?ReportSelect$n(pn$ReportScreen$$pn$ActorRecord$$)v"
-    },
-    "ReportScreen::SetOther": {
-     "va": "0044869c",
-     "size": 61,
-     "mangled": "W?SetOther$:ReportScreen$n(pn$ActorRecord$$ii)v"
-    },
-    "ReportGlobalInput": {
-     "va": "00448d34",
-     "size": 63,
-     "mangled": "W?ReportGlobalInput$n()v"
-    },
-    "ReportScreen::$dt": {
-     "va": "00448d74",
-     "size": 12,
-     "mangled": "W?$dt:ReportScreen$n()_"
-    }
-   },
-   "data": {
-    "CONST2": {
-     "va": "0048dd3c",
-     "size": 60
-    },
-    "_DATA": {
-     "va": "004a00e4",
-     "size": 12
-    },
-    "XI": {
-     "va": "004a6c3c",
-     "size": 6
-    },
-    "W?$Wts0en$MenuNumber$$$nx[]uc": {
-     "va": "0048c988",
-     "size": 17
-    },
-    "W?$Wts0en$MenuSpacer$$$nx[]uc": {
-     "va": "0048d964",
-     "size": 17
-    }
-   },
-   "accepted": "2026-11-11"
-  },
-  "src/_unknown/tu_0041c864.c": {
-   "as": "_unknown\\tu_0041c864.c",
-   "install": "wc106",
-   "profile": "plain-oe",
-   "functions": {
-    "W?.fn_init$n()v": {
-     "va": "0041c864",
-     "size": 1,
-     "mangled": "W?.fn_init$n()v"
-    },
-    "AudioModule::$dt": {
-     "va": "0041c865",
-     "size": 5,
-     "mangled": "W?$dt:AudioModule$n()_"
-    },
-    "ShellMultiplayerInit": {
-     "va": "0041c86a",
-     "size": 39,
-     "mangled": "W?ShellMultiplayerInit$n(pn$AudioSettings$$)v"
-    },
-    "HercSetMissionStart": {
-     "va": "0041c891",
-     "size": 161,
-     "mangled": "HercSetMissionStart"
-    },
-    "PilotManagerPoll": {
-     "va": "0041c932",
-     "size": 382,
-     "mangled": "W?PilotManagerPoll$n(pnv)v"
-    },
-    "f_0041cab0": {
-     "va": "0041cab0",
-     "size": 73,
-     "mangled": "W?f_0041cab0$n(pn$AudioSettings$$)v"
-    },
-    "HercSetMission": {
-     "va": "0041caf9",
-     "size": 64,
-     "mangled": "HercSetMission"
-    },
-    "ShellMultiplayerShutdown": {
-     "va": "0041cb39",
-     "size": 14,
-     "mangled": "W?ShellMultiplayerShutdown$n(pnv)v"
-    }
-   },
-   "data": {},
-   "accepted": "2026-11-09"
-  },
-  "src/_unknown/tu_0041cb48.c": {
-   "as": "_unknown\\tu_0041cb48.c",
-   "install": "wc106",
-   "profile": "plain-oe",
-   "functions": {
-    "QuickStartScreen::$ct": {
-     "va": "0041ce4c",
-     "size": 23,
-     "mangled": "W?$ct:QuickStartScreen$n()_"
-    },
-    "ShellBriefingOpen": {
-     "va": "0041ce63",
-     "size": 541,
-     "mangled": "W?ShellBriefingOpen$n(pn$QuickStartScreen$$pn$InputReq$$)v"
-    },
-    "ShellBriefingClose": {
-     "va": "0041d080",
-     "size": 53,
-     "mangled": "W?ShellBriefingClose$n(pn$QuickStartScreen$$)v"
-    },
-    "ShellBriefingExit": {
-     "va": "0041d0b5",
-     "size": 233,
-     "mangled": "W?ShellBriefingExit$n(pn$QuickStartScreen$$)v"
-    },
-    "ShellBriefingRender": {
-     "va": "0041d19e",
-     "size": 39,
-     "mangled": "W?ShellBriefingRender$n(pn$QuickStartScreen$$)v"
-    },
-    "ShellBriefingBack": {
-     "va": "0041d1c5",
-     "size": 174,
-     "mangled": "W?ShellBriefingBack$n(pn$QuickStartScreen$$)v"
-    },
-    "QuickDrawOptions": {
-     "va": "0041d273",
-     "size": 417,
-     "mangled": "W?QuickDrawOptions$n(pn$QuickStartScreen$$)v"
-    },
-    "ShellBriefingContinue": {
-     "va": "0041d414",
-     "size": 398,
-     "mangled": "W?ShellBriefingContinue$n(pn$QuickStartScreen$$)v"
-    },
-    "QuickShowMessage": {
-     "va": "0041d5a2",
-     "size": 115,
-     "mangled": "W?QuickShowMessage$n(pn$QuickStartScreen$$pnxa)v"
-    },
-    "QuickDrawText": {
-     "va": "0041d615",
-     "size": 8,
-     "mangled": "W?QuickDrawText$n(pn$QuickStartScreen$$pnxa)v"
-    },
-    "ShellBriefingAbort": {
-     "va": "0041d61d",
-     "size": 342,
-     "mangled": "W?ShellBriefingAbort$n(pn$QuickStartScreen$$)v"
-    }
-   },
-   "data": {
-    "W?$Wts0en$UpgradeBar$$$nx[]uc": {
-     "va": "0048d024",
-     "size": 17
-    },
-    "W?$Wts0gn$UpgradeArrow$$$nx[]uc": {
-     "va": "0048d010",
-     "size": 17
-    }
-   },
-   "accepted": "2026-11-09"
-  },
   "src/_unknown/tu_0046b918.c": {
    "as": "_unknown\\tu_0046b918.c",
    "install": "wc106",
@@ -9795,106 +8075,6 @@
    "profile": "ot-oe",
    "functions": {},
    "data": {},
-   "accepted": "2026-11-09"
-  },
-  "src/_unknown/tu_0042e210.c": {
-   "as": "_unknown\\tu_0042e210.c",
-   "install": "wc106",
-   "flags": [
-    "-4s",
-    "-s",
-    "-bm",
-    "-oxt",
-    "-oe=150"
-   ],
-   "tool": "wpp386",
-   "functions": {
-    "MapStaticInitialize": {
-     "va": "0042e210",
-     "size": 16,
-     "mangled": "W?MapStaticInitialize$n()v"
-    },
-    "MapInitialize": {
-     "va": "0042e220",
-     "size": 96,
-     "mangled": "W?MapInitialize$n(pn$FastCoord$$pnxai)pn$1$"
-    },
-    "MapIdentity": {
-     "va": "0042e280",
-     "size": 16,
-     "mangled": "W?MapIdentity$n(pnv)pnv"
-    },
-    "MapSetVisibility": {
-     "va": "0042e290",
-     "size": 16,
-     "mangled": "W?MapSetVisibility$n(pn$FastCoord$$pnv)v"
-    },
-    "MapGetView": {
-     "va": "0042e2a0",
-     "size": 48,
-     "mangled": "W?MapGetView$n(pn$FastCoord$$pn$ViewState$$)v"
-    },
-    "MapPointScale": {
-     "va": "0042e390",
-     "size": 32,
-     "mangled": "W?MapPointScale$n(pn$FastCoord$$i)i"
-    },
-    "MapPointToScreen": {
-     "va": "0042e3b0",
-     "size": 160,
-     "mangled": "W?MapPointToScreen$n(pn$FastCoord$$pn$GridPoint$$pn$2$)v"
-    },
-    "PrepareDeathMap": {
-     "va": "0042e760",
-     "size": 64,
-     "mangled": "PrepareDeathMap"
-    },
-    "MapContainsPoint": {
-     "va": "0042e900",
-     "size": 240,
-     "mangled": "W?MapContainsPoint$n(pn$FastCoord$$pn$GridPoint$$i)i"
-    },
-    "MapPickVisit": {
-     "va": "0042e9f0",
-     "size": 256,
-     "mangled": "W?MapPickVisit$n(pnv)i"
-    },
-    "MapPickAt": {
-     "va": "0042eaf0",
-     "size": 144,
-     "mangled": "W?MapPickAt$n(pn$FastCoord$$pn$GridPoint$$)i"
-    },
-    "MapNearestVisit": {
-     "va": "0042eb80",
-     "size": 192,
-     "mangled": "W?MapNearestVisit$n(pnv)i"
-    },
-    "MapNearestAt": {
-     "va": "0042ec40",
-     "size": 96,
-     "mangled": "W?MapNearestAt$n(pn$FastCoord$$pn$GridPoint$$)i"
-    }
-   },
-   "data": {},
-   "accepted": "2026-11-09"
-  },
-  "src/_unknown/tu_0042eca0.c": {
-   "as": "_unknown\\tu_0042eca0.c",
-   "install": "wc106",
-   "profile": "ot",
-   "functions": {
-    "W?.fn_init$n()v": {
-     "va": "0042eca0",
-     "size": 16,
-     "mangled": "W?.fn_init$n()v"
-    }
-   },
-   "data": {
-    "XI": {
-     "va": "004a6bfa",
-     "size": 6
-    }
-   },
    "accepted": "2026-11-09"
   },
   "src/_unknown/tu_004742bc.c": {
@@ -11256,128 +9436,6 @@
    "data": {},
    "accepted": "2026-11-09"
   },
-  "src/_unknown/tu_0044455c.c": {
-   "as": "_unknown\\tu_0044455c.c",
-   "install": "wc106",
-   "profile": "plain-oe",
-   "functions": {
-    "W?.fn_init$n()v": {
-     "va": "0044455c",
-     "size": 114,
-     "mangled": "W?.fn_init$n()v"
-    },
-    "ShieldControl::$ct": {
-     "va": "004445ce",
-     "size": 69,
-     "mangled": "W?$ct:ShieldControl$n()_"
-    },
-    "ShieldControl::Reset": {
-     "va": "00444613",
-     "size": 25,
-     "mangled": "W?Reset$:ShieldControl$n(ui)v"
-    },
-    "ShieldControl::Draw": {
-     "va": "0044462c",
-     "size": 314,
-     "mangled": "W?Draw$:ShieldControl$n(ui)v"
-    },
-    "ShieldControl::Commit": {
-     "va": "0044495a",
-     "size": 92,
-     "mangled": "W?Commit$:ShieldControl$n()v"
-    },
-    "ShieldControl::IsPressed": {
-     "va": "004449b6",
-     "size": 17,
-     "mangled": "W?IsPressed$:ShieldControl$n()i"
-    },
-    "ShieldPopup::$ct": {
-     "va": "004449c7",
-     "size": 23,
-     "mangled": "W?$ct:ShieldPopup$n()_"
-    },
-    "ShieldPopup::OpenShield": {
-     "va": "004449de",
-     "size": 166,
-     "mangled": "W?OpenShield$:ShieldPopup$n(pn$InputReq$$)v"
-    },
-    "SimInventoryClose": {
-     "va": "00444a84",
-     "size": 156,
-     "mangled": "W?SimInventoryClose$n(pn$ShieldPopup$$)v"
-    },
-    "ShieldPopup::SetAim": {
-     "va": "00444dc6",
-     "size": 155,
-     "mangled": "W?SetAim$:ShieldPopup$n(ii)v"
-    },
-    "ShieldPopup::Process": {
-     "va": "00444e61",
-     "size": 201,
-     "mangled": "W?Process$:ShieldPopup$n()i"
-    },
-    "SimInventoryDraw": {
-     "va": "00444f2a",
-     "size": 28,
-     "mangled": "W?SimInventoryDraw$n(pn$ShieldPopup$$)v"
-    },
-    "ShieldPopup::Commit": {
-     "va": "00444f46",
-     "size": 73,
-     "mangled": "W?Commit$:ShieldPopup$n()v"
-    },
-    "ShieldPopup::AllowsWeapons": {
-     "va": "00444f8f",
-     "size": 44,
-     "mangled": "W?AllowsWeapons$:ShieldPopup$n()i"
-    },
-    "ShieldPopup::$dt": {
-     "va": "004451e8",
-     "size": 12,
-     "mangled": "W?$dt:ShieldPopup$n()_"
-    },
-    "ShieldControl::$dt": {
-     "va": "004451f4",
-     "size": 67,
-     "mangled": "W?$dt:ShieldControl$n()_"
-    }
-   },
-   "data": {
-    "CONST2": {
-     "va": "0048dc54",
-     "size": 36
-    },
-    "_DATA": {
-     "va": "004a003c",
-     "size": 12
-    },
-    "XI": {
-     "va": "004a6c2a",
-     "size": 6
-    },
-    "W?$Wvf0hos:ShieldControl$$nx[]pn()v": {
-     "va": "0048dca0",
-     "size": 20
-    },
-    "W?$Wts0hn$ShieldControl$$$nx[]uc": {
-     "va": "0048dc8c",
-     "size": 17
-    },
-    "W?$Wts0en$MenuNumber$$$nx[]uc": {
-     "va": "0048c988",
-     "size": 17
-    },
-    "W?$Wts0en$MenuButton$$$nx[]uc": {
-     "va": "0048c9d8",
-     "size": 17
-    },
-    "W?$Wts0fn$ShieldPopup$$$nx[]uc": {
-     "va": "0048dc78",
-     "size": 17
-    }
-   },
-   "accepted": "2026-11-09"
-  },
   "src/_unknown/tu_00426cdc.c": {
    "as": "_unknown\\tu_00426cdc.c",
    "install": "wc106",
@@ -11545,87 +9603,6 @@
     }
    },
    "data": {},
-   "accepted": "2026-11-09"
-  },
-  "src/_unknown/tu_00429a44.c": {
-   "as": "_unknown\\tu_00429a44.c",
-   "install": "wc106",
-   "profile": "plain-oe",
-   "functions": {
-    "UpgradeBar::$dt": {
-     "va": "00415554",
-     "size": 67,
-     "mangled": "W?$dt:UpgradeBar$n()_"
-    },
-    "UpgradeArrow::$dt": {
-     "va": "00415598",
-     "size": 67,
-     "mangled": "W?$dt:UpgradeArrow$n()_"
-    },
-    "UpgradeRange::$ct": {
-     "va": "00429a44",
-     "size": 49,
-     "mangled": "W?$ct:UpgradeRange$n(ii)_"
-    },
-    "UpgradeRange::Set": {
-     "va": "00429a75",
-     "size": 43,
-     "mangled": "W?Set$:UpgradeRange$n(i)v"
-    },
-    "UpgradeRange::Resize": {
-     "va": "00429aa0",
-     "size": 18,
-     "mangled": "W?Resize$:UpgradeRange$n(i)v"
-    },
-    "UpgradeBar::$ct": {
-     "va": "00429ab2",
-     "size": 39,
-     "mangled": "W?$ct:UpgradeBar$n(pn$UpgradeRange$$i)_"
-    },
-    "UpgradeBar::Draw": {
-     "va": "00429ad9",
-     "size": 452,
-     "mangled": "W?Draw$:UpgradeBar$n(ui)v"
-    },
-    "UpgradeBar::Event": {
-     "va": "00429c9d",
-     "size": 139,
-     "mangled": "W?Event$:UpgradeBar$n(uiul)i"
-    },
-    "UpgradeArrow::$ct": {
-     "va": "00429d28",
-     "size": 46,
-     "mangled": "W?$ct:UpgradeArrow$n(pn$UpgradeRange$$ii)_"
-    },
-    "UpgradeArrow::Draw": {
-     "va": "00429d56",
-     "size": 136,
-     "mangled": "W?Draw$:UpgradeArrow$n(ui)v"
-    },
-    "UpgradeArrow::Event": {
-     "va": "00429dde",
-     "size": 197,
-     "mangled": "W?Event$:UpgradeArrow$n(uiul)i"
-    }
-   },
-   "data": {
-    "W?$Wvf0eos:UpgradeBar$$nx[]pn()v": {
-     "va": "0048dae0",
-     "size": 20
-    },
-    "W?$Wvf0gos:UpgradeArrow$$nx[]pn()v": {
-     "va": "0048dacc",
-     "size": 20
-    },
-    "W?$Wts0en$UpgradeBar$$$nx[]uc": {
-     "va": "0048d024",
-     "size": 17
-    },
-    "W?$Wts0gn$UpgradeArrow$$$nx[]uc": {
-     "va": "0048d010",
-     "size": 17
-    }
-   },
    "accepted": "2026-11-09"
   },
   "src/_unknown/tu_00429ea4.c": {
@@ -12755,25 +10732,6 @@
    "data": {},
    "accepted": "2026-11-09"
   },
-  "src/_unknown/tu_00449148.c": {
-   "as": "_unknown\\tu_00449148.c",
-   "install": "wc106",
-   "profile": "plain",
-   "functions": {
-    "DeathSummary": {
-     "va": "00449148",
-     "size": 963,
-     "mangled": "W?DeathSummary$n(pn$Shell$$)v"
-    }
-   },
-   "data": {
-    "CONST": {
-     "va": "0048b3dc",
-     "size": 23
-    }
-   },
-   "accepted": "2026-11-09"
-  },
   "src/sim/mapalert.c": {
    "as": "sim\\mapalert.c",
    "install": "wc106",
@@ -13194,7 +11152,7 @@
     },
     "_DATA": {
      "va": "0048ea88",
-     "size": 12
+     "size": 108
     },
     "XI": {
      "va": "004a6ba0",
@@ -13214,6 +11172,2245 @@
     },
     "W?$Wts0in$MissionDebrief$$$nx[]uc": {
      "va": "0048d06c",
+     "size": 17
+    }
+   },
+   "accepted": "2026-11-11"
+  },
+  "src/shell/hbmanage.c": {
+   "as": "shell\\hbmanage.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "00417f34",
+     "size": 389,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "StorageScreen::$ct": {
+     "va": "004180b9",
+     "size": 42,
+     "mangled": "W?$ct:StorageScreen$n()_"
+    },
+    "StorageClose": {
+     "va": "00418536",
+     "size": 97,
+     "mangled": "W?StorageClose$n(pn$StorageScreen$$)v"
+    },
+    "StorageInput": {
+     "va": "00418597",
+     "size": 107,
+     "mangled": "W?StorageInput$n(pn$StorageScreen$$)v"
+    },
+    "StorageImage": {
+     "va": "00418602",
+     "size": 31,
+     "mangled": "W?StorageImage$n(pn$StorageScreen$$)uc"
+    },
+    "StorageDetails": {
+     "va": "00418621",
+     "size": 256,
+     "mangled": "W?StorageDetails$n(pn$StorageScreen$$)v"
+    },
+    "StorageStart": {
+     "va": "00418721",
+     "size": 85,
+     "mangled": "W?StorageStart$n(pn$StorageScreen$$)v"
+    },
+    "StorageAnimate": {
+     "va": "00418776",
+     "size": 206,
+     "mangled": "W?StorageAnimate$n(pn$StorageScreen$$)v"
+    },
+    "StorageSetup": {
+     "va": "00418ae9",
+     "size": 116,
+     "mangled": "W?StorageSetup$n()v"
+    },
+    "StorageVisibility": {
+     "va": "00418b5d",
+     "size": 260,
+     "mangled": "W?StorageVisibility$n(pn$StorageScreen$$)v"
+    },
+    "StorageColors": {
+     "va": "00418c61",
+     "size": 140,
+     "mangled": "W?StorageColors$n(pn$StorageScreen$$)v"
+    },
+    "StorageScreen::Names": {
+     "va": "00418ced",
+     "size": 111,
+     "mangled": "W?Names$:StorageScreen$n(uc)v"
+    },
+    "StorageVisibleNames": {
+     "va": "00418d5c",
+     "size": 115,
+     "mangled": "W?StorageVisibleNames$n(pn$StorageScreen$$uc)v"
+    },
+    "StorageRedraw": {
+     "va": "00418dcf",
+     "size": 32,
+     "mangled": "W?StorageRedraw$n(pn$StorageScreen$$)v"
+    },
+    "StorageCredits": {
+     "va": "00418def",
+     "size": 23,
+     "mangled": "W?StorageCredits$n()v"
+    },
+    "StorageSave": {
+     "va": "00418e06",
+     "size": 42,
+     "mangled": "W?StorageSave$n(pn$StorageScreen$$)v"
+    },
+    "StorageRestore": {
+     "va": "00418e30",
+     "size": 42,
+     "mangled": "W?StorageRestore$n(pn$StorageScreen$$)v"
+    },
+    "StorageScreen::Ramp": {
+     "va": "00418e5a",
+     "size": 67,
+     "mangled": "W?Ramp$:StorageScreen$n()v"
+    },
+    "StorageSelected": {
+     "va": "00418e9d",
+     "size": 8,
+     "mangled": "W?StorageSelected$n(pn$StorageScreen$$)uc"
+    },
+    "StorageDone": {
+     "va": "00418ea5",
+     "size": 14,
+     "mangled": "W?StorageDone$n()v"
+    },
+    "W?$Wda0224$:MenuPrefixButton$n(ui)pnv": {
+     "va": "00418eb4",
+     "size": 21,
+     "mangled": "W?$Wda0224$:MenuPrefixButton$n(ui)pnv"
+    },
+    "StorageScreen::$dt": {
+     "va": "00418ecc",
+     "size": 33,
+     "mangled": "W?$dt:StorageScreen$n()_"
+    }
+   },
+   "data": {
+    "CONST2": {
+     "va": "0048d1a0",
+     "size": 108
+    },
+    "_DATA": {
+     "va": "0048ec14",
+     "size": 264
+    },
+    "XI": {
+     "va": "004a6bb2",
+     "size": 6
+    },
+    "W?$Wts0kn$MenuPrefixButton$$$nx[]uc": {
+     "va": "0048c9ec",
+     "size": 17
+    },
+    "W?$Wts0en$MenuNumber$$$nx[]uc": {
+     "va": "0048c988",
+     "size": 17
+    },
+    "W?$Wts0en$MenuButton$$$nx[]uc": {
+     "va": "0048c9d8",
+     "size": 17
+    },
+    "W?$Wts0en$UpgradeBar$$$nx[]uc": {
+     "va": "0048d024",
+     "size": 17
+    },
+    "W?$Wts0gn$UpgradeArrow$$$nx[]uc": {
+     "va": "0048d010",
+     "size": 17
+    },
+    "W?$Wts0dn$MenuPanel$$$nx[]uc": {
+     "va": "0048c99c",
+     "size": 17
+    },
+    "W?$Wts0in$MenuHelpRegion$$$nx[]uc": {
+     "va": "0048c9c4",
+     "size": 17
+    }
+   },
+   "accepted": "2026-11-11"
+  },
+  "src/shell/muzak.c": {
+   "as": "shell\\muzak.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "0041c864",
+     "size": 1,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "AudioModule::$dt": {
+     "va": "0041c865",
+     "size": 5,
+     "mangled": "W?$dt:AudioModule$n()_"
+    },
+    "ShellMultiplayerInit": {
+     "va": "0041c86a",
+     "size": 39,
+     "mangled": "W?ShellMultiplayerInit$n(pn$AudioSettings$$)v"
+    },
+    "HercSetMissionStart": {
+     "va": "0041c891",
+     "size": 161,
+     "mangled": "HercSetMissionStart"
+    },
+    "PilotManagerPoll": {
+     "va": "0041c932",
+     "size": 382,
+     "mangled": "W?PilotManagerPoll$n(pnv)v"
+    },
+    "f_0041cab0": {
+     "va": "0041cab0",
+     "size": 73,
+     "mangled": "W?f_0041cab0$n(pn$AudioSettings$$)v"
+    },
+    "HercSetMission": {
+     "va": "0041caf9",
+     "size": 64,
+     "mangled": "HercSetMission"
+    },
+    "ShellMultiplayerShutdown": {
+     "va": "0041cb39",
+     "size": 14,
+     "mangled": "W?ShellMultiplayerShutdown$n(pnv)v"
+    }
+   },
+   "data": {
+    "_DATA": {
+     "va": "0048eecc",
+     "size": 14
+    },
+    "XI": {
+     "va": "004a6bbe",
+     "size": 6
+    }
+   },
+   "accepted": "2026-11-11"
+  },
+  "src/shell/qstart.c": {
+   "as": "shell\\qstart.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "QuickStartScreen::$ct": {
+     "va": "0041ce4c",
+     "size": 23,
+     "mangled": "W?$ct:QuickStartScreen$n()_"
+    },
+    "ShellBriefingOpen": {
+     "va": "0041ce63",
+     "size": 541,
+     "mangled": "W?ShellBriefingOpen$n(pn$QuickStartScreen$$pn$InputReq$$)v"
+    },
+    "ShellBriefingClose": {
+     "va": "0041d080",
+     "size": 53,
+     "mangled": "W?ShellBriefingClose$n(pn$QuickStartScreen$$)v"
+    },
+    "ShellBriefingExit": {
+     "va": "0041d0b5",
+     "size": 233,
+     "mangled": "W?ShellBriefingExit$n(pn$QuickStartScreen$$)v"
+    },
+    "ShellBriefingRender": {
+     "va": "0041d19e",
+     "size": 39,
+     "mangled": "W?ShellBriefingRender$n(pn$QuickStartScreen$$)v"
+    },
+    "ShellBriefingBack": {
+     "va": "0041d1c5",
+     "size": 174,
+     "mangled": "W?ShellBriefingBack$n(pn$QuickStartScreen$$)v"
+    },
+    "QuickDrawOptions": {
+     "va": "0041d273",
+     "size": 417,
+     "mangled": "W?QuickDrawOptions$n(pn$QuickStartScreen$$)v"
+    },
+    "ShellBriefingContinue": {
+     "va": "0041d414",
+     "size": 398,
+     "mangled": "W?ShellBriefingContinue$n(pn$QuickStartScreen$$)v"
+    },
+    "QuickShowMessage": {
+     "va": "0041d5a2",
+     "size": 115,
+     "mangled": "W?QuickShowMessage$n(pn$QuickStartScreen$$pnxa)v"
+    },
+    "QuickDrawText": {
+     "va": "0041d615",
+     "size": 8,
+     "mangled": "W?QuickDrawText$n(pn$QuickStartScreen$$pnxa)v"
+    },
+    "ShellBriefingAbort": {
+     "va": "0041d61d",
+     "size": 342,
+     "mangled": "W?ShellBriefingAbort$n(pn$QuickStartScreen$$)v"
+    },
+    "QuickStartScreen::$dt": {
+     "va": "0041d774",
+     "size": 12,
+     "mangled": "W?$dt:QuickStartScreen$n()_"
+    }
+   },
+   "data": {
+    "CONST2": {
+     "va": "0048d3a8",
+     "size": 196
+    },
+    "_DATA": {
+     "va": "0048eedc",
+     "size": 116
+    },
+    "XI": {
+     "va": "004a6bc4",
+     "size": 6
+    },
+    "W?$Wts0dn$MenuPanel$$$nx[]uc": {
+     "va": "0048c99c",
+     "size": 17
+    },
+    "W?$Wts0in$MenuHelpRegion$$$nx[]uc": {
+     "va": "0048c9c4",
+     "size": 17
+    },
+    "W?$Wts0en$UpgradeBar$$$nx[]uc": {
+     "va": "0048d024",
+     "size": 17
+    },
+    "W?$Wts0gn$UpgradeArrow$$$nx[]uc": {
+     "va": "0048d010",
+     "size": 17
+    }
+   },
+   "accepted": "2026-11-11"
+  },
+  "src/shell/mphbase.c": {
+   "as": "shell\\mphbase.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "W?$Wda0211$:MenuPrefixButton$n(ui)pnv": {
+     "va": "004085f8",
+     "size": 21,
+     "mangled": "W?$Wda0211$:MenuPrefixButton$n(ui)pnv"
+    },
+    "W?.fn_init$n()v": {
+     "va": "0041d780",
+     "size": 1127,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "MultiplayerBase::$ct": {
+     "va": "0041dbe7",
+     "size": 94,
+     "mangled": "W?$ct:MultiplayerBase$n()_"
+    },
+    "MultiplayerConfigure": {
+     "va": "0041e527",
+     "size": 353,
+     "mangled": "W?MultiplayerConfigure$n(pn$MultiplayerBase$$)v"
+    },
+    "MultiplayerRelease": {
+     "va": "0041e688",
+     "size": 92,
+     "mangled": "W?MultiplayerRelease$n(pn$MultiplayerBase$$)v"
+    },
+    "ShellMultiplayerClose": {
+     "va": "0041e6e4",
+     "size": 150,
+     "mangled": "W?ShellMultiplayerClose$n(pn$MultiplayerBase$$)v"
+    },
+    "ValidateMultiplayer": {
+     "va": "0041e77a",
+     "size": 411,
+     "mangled": "W?ValidateMultiplayer$n(pn$MultiplayerBase$$)v"
+    },
+    "MultiplayerEnter": {
+     "va": "0041e915",
+     "size": 70,
+     "mangled": "W?MultiplayerEnter$n(pn$MultiplayerBase$$)v"
+    },
+    "MultiplayerBusy": {
+     "va": "0041e95b",
+     "size": 11,
+     "mangled": "W?MultiplayerBusy$n(pn$MultiplayerBase$$)i"
+    },
+    "MultiplayerRequest": {
+     "va": "0041ea50",
+     "size": 15,
+     "mangled": "W?MultiplayerRequest$n(pn$MultiplayerBase$$)v"
+    },
+    "MultiplayerBase::GetName": {
+     "va": "0041ea5f",
+     "size": 85,
+     "mangled": "W?GetName$:MultiplayerBase$n()i"
+    },
+    "MultiplayerSearch": {
+     "va": "0041eb76",
+     "size": 150,
+     "mangled": "W?MultiplayerSearch$n(pn$MultiplayerBase$$)v"
+    },
+    "SigsJoin": {
+     "va": "0041ec0c",
+     "size": 150,
+     "mangled": "W?SigsJoin$n(pna)v"
+    },
+    "MultiplayerDrawText": {
+     "va": "0041f020",
+     "size": 108,
+     "mangled": "W?MultiplayerDrawText$n(pn$MultiplayerBase$$pnxa)v"
+    },
+    "MultiplayerDrawHover": {
+     "va": "0041f08c",
+     "size": 276,
+     "mangled": "W?MultiplayerDrawHover$n(pn$MultiplayerBase$$ii)v"
+    },
+    "MultiplayerUpdate": {
+     "va": "0041f1a0",
+     "size": 358,
+     "mangled": "W?MultiplayerUpdate$n(pn$MultiplayerBase$$)v"
+    },
+    "ShellMultiplayerRender": {
+     "va": "0041f306",
+     "size": 405,
+     "mangled": "W?ShellMultiplayerRender$n(pn$MultiplayerBase$$)v"
+    },
+    "MultiplayerDone": {
+     "va": "0041f49b",
+     "size": 33,
+     "mangled": "W?MultiplayerDone$n(pn$MultiplayerBase$$)i"
+    },
+    "MultiplayerSetMoneyValues": {
+     "va": "0041f4bc",
+     "size": 99,
+     "mangled": "W?MultiplayerSetMoneyValues$n(pn$MultiplayerBase$$)v"
+    },
+    "MultiplayerUpdateValues": {
+     "va": "0041f51f",
+     "size": 176,
+     "mangled": "W?MultiplayerUpdateValues$n(pn$MultiplayerBase$$)v"
+    },
+    "MultiplayerSaveOptions": {
+     "va": "0041f5cf",
+     "size": 64,
+     "mangled": "W?MultiplayerSaveOptions$n(pn$MultiplayerBase$$)v"
+    },
+    "MultiplayerBase::$dt": {
+     "va": "0041f610",
+     "size": 54,
+     "mangled": "W?$dt:MultiplayerBase$n()_"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048ab6c",
+     "size": 157
+    },
+    "CONST2": {
+     "va": "0048d480",
+     "size": 292
+    },
+    "_DATA": {
+     "va": "0048ef50",
+     "size": 156
+    },
+    "XI": {
+     "va": "004a6bca",
+     "size": 6
+    },
+    "W?$Wts0kn$MenuPrefixButton$$$nx[]uc": {
+     "va": "0048c9ec",
+     "size": 17
+    },
+    "W?$Wts0en$UpgradeBar$$$nx[]uc": {
+     "va": "0048d024",
+     "size": 17
+    },
+    "W?$Wts0gn$UpgradeArrow$$$nx[]uc": {
+     "va": "0048d010",
+     "size": 17
+    },
+    "W?$Wts0in$MenuHelpRegion$$$nx[]uc": {
+     "va": "0048c9c4",
+     "size": 17
+    },
+    "W?$Wts0dn$MenuPanel$$$nx[]uc": {
+     "va": "0048c99c",
+     "size": 17
+    },
+    "W?$Wts0jn$MultiplayerBase$$$nx[]uc": {
+     "va": "0048d5a4",
+     "size": 17
+    },
+    "W?$Wts08n$Flic$$$nx[]uc": {
+     "va": "0048c848",
+     "size": 17
+    }
+   },
+   "accepted": "2026-11-11"
+  },
+  "src/shell/mpcomm.c": {
+   "as": "shell\\mpcomm.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "f_004243e4": {
+     "va": "004243e4",
+     "size": 1,
+     "mangled": "f_004243e4"
+    },
+    "f_004243e5": {
+     "va": "004243e5",
+     "size": 2,
+     "mangled": "f_004243e5"
+    },
+    "f_004243e7": {
+     "va": "004243e7",
+     "size": 1,
+     "mangled": "f_004243e7"
+    }
+   },
+   "data": {
+    "_DATA": {
+     "va": "0048f1b0",
+     "size": 15
+    }
+   },
+   "accepted": "2026-11-11"
+  },
+  "src/core/mcp.c": {
+   "as": "core\\mcp.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "0043b8e8",
+     "size": 37,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "Snapshot::$ct": {
+     "va": "0043b90d",
+     "size": 5,
+     "mangled": "W?$ct:Snapshot$n()_"
+    },
+    "f_0043b912": {
+     "va": "0043b912",
+     "size": 68,
+     "mangled": "f_0043b912"
+    },
+    "f_0043b956": {
+     "va": "0043b956",
+     "size": 88,
+     "mangled": "f_0043b956"
+    },
+    "GameSession::$ct": {
+     "va": "0043b9ae",
+     "size": 80,
+     "mangled": "W?$ct:GameSession$n()_"
+    },
+    "GameSession::$dt": {
+     "va": "0043b9fe",
+     "size": 64,
+     "mangled": "W?$dt:GameSession$n()_"
+    },
+    "f_0043ba3e": {
+     "va": "0043ba3e",
+     "size": 133,
+     "mangled": "f_0043ba3e"
+    },
+    "f_0043bac3": {
+     "va": "0043bac3",
+     "size": 265,
+     "mangled": "f_0043bac3"
+    },
+    "f_0043bced": {
+     "va": "0043bced",
+     "size": 114,
+     "mangled": "f_0043bced"
+    },
+    "f_0043bd5f": {
+     "va": "0043bd5f",
+     "size": 25,
+     "mangled": "f_0043bd5f"
+    },
+    "f_0043bd78": {
+     "va": "0043bd78",
+     "size": 237,
+     "mangled": "f_0043bd78"
+    },
+    "ProfileManager::Select": {
+     "va": "0043be65",
+     "size": 114,
+     "mangled": "W?Select$:ProfileManager$n(i)pn$ActorListObject$$"
+    },
+    "f_0043bed7": {
+     "va": "0043bed7",
+     "size": 35,
+     "mangled": "f_0043bed7"
+    },
+    "f_0043befa": {
+     "va": "0043befa",
+     "size": 135,
+     "mangled": "f_0043befa"
+    },
+    "f_0043bf81": {
+     "va": "0043bf81",
+     "size": 96,
+     "mangled": "f_0043bf81"
+    },
+    "f_0043bfe1": {
+     "va": "0043bfe1",
+     "size": 27,
+     "mangled": "f_0043bfe1"
+    },
+    "f_0043bffc": {
+     "va": "0043bffc",
+     "size": 58,
+     "mangled": "f_0043bffc"
+    },
+    "f_0043c036": {
+     "va": "0043c036",
+     "size": 37,
+     "mangled": "f_0043c036"
+    },
+    "f_0043c05b": {
+     "va": "0043c05b",
+     "size": 268,
+     "mangled": "f_0043c05b"
+    },
+    "f_0043c167": {
+     "va": "0043c167",
+     "size": 21,
+     "mangled": "f_0043c167"
+    },
+    "f_0043c17c": {
+     "va": "0043c17c",
+     "size": 318,
+     "mangled": "f_0043c17c"
+    },
+    "f_0043c2ba": {
+     "va": "0043c2ba",
+     "size": 109,
+     "mangled": "f_0043c2ba"
+    },
+    "f_0043c327": {
+     "va": "0043c327",
+     "size": 21,
+     "mangled": "f_0043c327"
+    },
+    "f_0043c33c": {
+     "va": "0043c33c",
+     "size": 210,
+     "mangled": "f_0043c33c"
+    },
+    "ProfileManager::Mission": {
+     "va": "0043c40e",
+     "size": 51,
+     "mangled": "W?Mission$:ProfileManager$n(i)pn$ActorUnit$$"
+    },
+    "f_0043c441": {
+     "va": "0043c441",
+     "size": 15,
+     "mangled": "f_0043c441"
+    },
+    "f_0043c450": {
+     "va": "0043c450",
+     "size": 64,
+     "mangled": "f_0043c450"
+    },
+    "f_0043c490": {
+     "va": "0043c490",
+     "size": 47,
+     "mangled": "f_0043c490"
+    },
+    "f_0043c4bf": {
+     "va": "0043c4bf",
+     "size": 279,
+     "mangled": "f_0043c4bf"
+    },
+    "f_0043c6ed": {
+     "va": "0043c6ed",
+     "size": 77,
+     "mangled": "f_0043c6ed"
+    },
+    "f_0043c73a": {
+     "va": "0043c73a",
+     "size": 177,
+     "mangled": "f_0043c73a"
+    },
+    "f_0043c7eb": {
+     "va": "0043c7eb",
+     "size": 89,
+     "mangled": "f_0043c7eb"
+    },
+    "f_0043ca71": {
+     "va": "0043ca71",
+     "size": 72,
+     "mangled": "f_0043ca71"
+    },
+    "f_0043ccc6": {
+     "va": "0043ccc6",
+     "size": 29,
+     "mangled": "f_0043ccc6"
+    },
+    "f_0043cce3": {
+     "va": "0043cce3",
+     "size": 28,
+     "mangled": "f_0043cce3"
+    },
+    "f_0043ccff": {
+     "va": "0043ccff",
+     "size": 41,
+     "mangled": "f_0043ccff"
+    },
+    "f_0043cd28": {
+     "va": "0043cd28",
+     "size": 68,
+     "mangled": "f_0043cd28"
+    },
+    "f_0043cd6c": {
+     "va": "0043cd6c",
+     "size": 38,
+     "mangled": "f_0043cd6c"
+    },
+    "f_0043cd92": {
+     "va": "0043cd92",
+     "size": 58,
+     "mangled": "f_0043cd92"
+    },
+    "f_0043cdcc": {
+     "va": "0043cdcc",
+     "size": 145,
+     "mangled": "f_0043cdcc"
+    },
+    "f_0043ce5d": {
+     "va": "0043ce5d",
+     "size": 105,
+     "mangled": "f_0043ce5d"
+    },
+    "f_0043cec6": {
+     "va": "0043cec6",
+     "size": 48,
+     "mangled": "f_0043cec6"
+    },
+    "f_0043cef6": {
+     "va": "0043cef6",
+     "size": 55,
+     "mangled": "f_0043cef6"
+    },
+    "f_0043cf2d": {
+     "va": "0043cf2d",
+     "size": 207,
+     "mangled": "f_0043cf2d"
+    },
+    "f_0043cffc": {
+     "va": "0043cffc",
+     "size": 106,
+     "mangled": "f_0043cffc"
+    },
+    "f_0043d066": {
+     "va": "0043d066",
+     "size": 98,
+     "mangled": "f_0043d066"
+    },
+    "f_0043d0c8": {
+     "va": "0043d0c8",
+     "size": 138,
+     "mangled": "f_0043d0c8"
+    },
+    "f_0043d152": {
+     "va": "0043d152",
+     "size": 84,
+     "mangled": "f_0043d152"
+    },
+    "f_0043d1a6": {
+     "va": "0043d1a6",
+     "size": 87,
+     "mangled": "f_0043d1a6"
+    },
+    "f_0043d1fd": {
+     "va": "0043d1fd",
+     "size": 98,
+     "mangled": "f_0043d1fd"
+    },
+    "f_0043d3cc": {
+     "va": "0043d3cc",
+     "size": 453,
+     "mangled": "f_0043d3cc"
+    },
+    "f_0043d6b1": {
+     "va": "0043d6b1",
+     "size": 50,
+     "mangled": "f_0043d6b1"
+    },
+    "f_0043d6e3": {
+     "va": "0043d6e3",
+     "size": 355,
+     "mangled": "f_0043d6e3"
+    },
+    "f_0043d846": {
+     "va": "0043d846",
+     "size": 418,
+     "mangled": "f_0043d846"
+    },
+    "f_0043d9e8": {
+     "va": "0043d9e8",
+     "size": 201,
+     "mangled": "f_0043d9e8"
+    },
+    "f_0043dab1": {
+     "va": "0043dab1",
+     "size": 38,
+     "mangled": "f_0043dab1"
+    },
+    "f_0043dad7": {
+     "va": "0043dad7",
+     "size": 219,
+     "mangled": "f_0043dad7"
+    },
+    "f_0043dcfd": {
+     "va": "0043dcfd",
+     "size": 494,
+     "mangled": "f_0043dcfd"
+    },
+    "f_0043deeb": {
+     "va": "0043deeb",
+     "size": 85,
+     "mangled": "f_0043deeb"
+    },
+    "f_0043df40": {
+     "va": "0043df40",
+     "size": 199,
+     "mangled": "f_0043df40"
+    },
+    "f_0043e007": {
+     "va": "0043e007",
+     "size": 70,
+     "mangled": "f_0043e007"
+    },
+    "f_0043e1dd": {
+     "va": "0043e1dd",
+     "size": 11,
+     "mangled": "f_0043e1dd"
+    },
+    "f_0043e1e8": {
+     "va": "0043e1e8",
+     "size": 12,
+     "mangled": "f_0043e1e8"
+    },
+    "f_0043e1f4": {
+     "va": "0043e1f4",
+     "size": 29,
+     "mangled": "f_0043e1f4"
+    },
+    "f_0043e211": {
+     "va": "0043e211",
+     "size": 9,
+     "mangled": "f_0043e211"
+    },
+    "f_0043e38f": {
+     "va": "0043e38f",
+     "size": 28,
+     "mangled": "f_0043e38f"
+    }
+   },
+   "data": {
+    "CONST2": {
+     "va": "0048db28",
+     "size": 12
+    },
+    "_DATA": {
+     "va": "00494164",
+     "size": 208
+    },
+    "XI": {
+     "va": "004a6c12",
+     "size": 6
+    },
+    "W?$Wts0fn$GameSession$$$nx[]uc": {
+     "va": "0048c85c",
+     "size": 17
+    },
+    "W?$Wts0jn$ActorListObject$$$nx[]uc": {
+     "va": "0048db34",
+     "size": 17
+    }
+   },
+   "accepted": "2026-11-11"
+  },
+  "src/pop/pmove.c": {
+   "as": "pop\\pmove.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "MovementPopup::$ct": {
+     "va": "0044276c",
+     "size": 23,
+     "mangled": "W?$ct:MovementPopup$n()_"
+    },
+    "MovementPopup::OpenMove": {
+     "va": "00442783",
+     "size": 68,
+     "mangled": "W?OpenMove$:MovementPopup$n(pn$InputReq$$)v"
+    },
+    "SimPanelDraw": {
+     "va": "004429dc",
+     "size": 28,
+     "mangled": "W?SimPanelDraw$n(pn$MovementPopup$$)v"
+    },
+    "MovementPopup::Invalidate": {
+     "va": "004429f8",
+     "size": 12,
+     "mangled": "W?Invalidate$:MovementPopup$n()v"
+    },
+    "MovementPopup::$dt": {
+     "va": "00443100",
+     "size": 12,
+     "mangled": "W?$dt:MovementPopup$n()_"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048b29c",
+     "size": 12
+    },
+    "CONST2": {
+     "va": "0048db48",
+     "size": 84
+    },
+    "_DATA": {
+     "va": "0049ff68",
+     "size": 60
+    },
+    "XI": {
+     "va": "004a6c18",
+     "size": 6
+    },
+    "W?$Wts0hn$MovementPopup$$$nx[]uc": {
+     "va": "0048db9c",
+     "size": 17
+    }
+   },
+   "accepted": "2026-11-11"
+  },
+  "src/pop/pweapon.c": {
+   "as": "pop\\pweapon.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "0044310c",
+     "size": 128,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "WeaponControl::$ct": {
+     "va": "0044318c",
+     "size": 39,
+     "mangled": "W?$ct:WeaponControl$n()_"
+    },
+    "WeaponControl::Reset": {
+     "va": "004431b3",
+     "size": 18,
+     "mangled": "W?Reset$:WeaponControl$n(ui)v"
+    },
+    "WeaponControl::SetText": {
+     "va": "004431c5",
+     "size": 12,
+     "mangled": "W?SetText$:WeaponControl$n(pnxa)v"
+    },
+    "WeaponControl::Draw": {
+     "va": "004431d1",
+     "size": 343,
+     "mangled": "W?Draw$:WeaponControl$n(ui)v"
+    },
+    "WeaponControl::Event": {
+     "va": "00443328",
+     "size": 6,
+     "mangled": "W?Event$:WeaponControl$n(uiul)i"
+    },
+    "WeaponPopup::$ct": {
+     "va": "0044332e",
+     "size": 56,
+     "mangled": "W?$ct:WeaponPopup$n()_"
+    },
+    "WeaponPopup::Close": {
+     "va": "0044346f",
+     "size": 26,
+     "mangled": "W?Close$:WeaponPopup$n()v"
+    },
+    "WeaponPopup::Process": {
+     "va": "004435e5",
+     "size": 445,
+     "mangled": "W?Process$:WeaponPopup$n()i"
+    },
+    "SimActionsDraw": {
+     "va": "00443cec",
+     "size": 28,
+     "mangled": "W?SimActionsDraw$n(pn$WeaponPopup$$)v"
+    },
+    "WeaponPopup::Invalidate": {
+     "va": "00443d08",
+     "size": 12,
+     "mangled": "W?Invalidate$:WeaponPopup$n()v"
+    },
+    "WeaponPopup::SetMode": {
+     "va": "00443d14",
+     "size": 27,
+     "mangled": "W?SetMode$:WeaponPopup$n(iii)v"
+    },
+    "W?.tdctor$:MenuImageButton$n()rn$1$": {
+     "va": "00443e88",
+     "size": 23,
+     "mangled": "W?.tdctor$:MenuImageButton$n()rn$1$"
+    },
+    "W?$Wda018$:WeaponControl$n(ui)pnv": {
+     "va": "00443ea0",
+     "size": 21,
+     "mangled": "W?$Wda018$:WeaponControl$n(ui)pnv"
+    },
+    "W?$Wda018$:MenuImageButton$n(ui)pnv": {
+     "va": "00443eb8",
+     "size": 21,
+     "mangled": "W?$Wda018$:MenuImageButton$n(ui)pnv"
+    },
+    "SimMapGadget::$dt": {
+     "va": "00443ed0",
+     "size": 67,
+     "mangled": "W?$dt:SimMapGadget$n()_"
+    },
+    "WeaponControl::$dt": {
+     "va": "00443f14",
+     "size": 67,
+     "mangled": "W?$dt:WeaponControl$n()_"
+    },
+    "WeaponPopup::$dt": {
+     "va": "00443f58",
+     "size": 12,
+     "mangled": "W?$dt:WeaponPopup$n()_"
+    }
+   },
+   "data": {
+    "CONST2": {
+     "va": "0048dbb0",
+     "size": 36
+    },
+    "_DATA": {
+     "va": "0049ffa4",
+     "size": 108
+    },
+    "XI": {
+     "va": "004a6c1e",
+     "size": 6
+    },
+    "W?$Wvf0hos:WeaponControl$$nx[]pn()v": {
+     "va": "0048dc18",
+     "size": 20
+    },
+    "W?$Wts0jn$WeaponMapGadget$$$nx[]uc": {
+     "va": "0048dbe8",
+     "size": 17
+    },
+    "W?$Wts0hn$WeaponControl$$$nx[]uc": {
+     "va": "0048dc00",
+     "size": 17
+    },
+    "W?$Wts0jn$MenuImageButton$$$nx[]uc": {
+     "va": "0048d978",
+     "size": 17
+    }
+   },
+   "accepted": "2026-11-11"
+  },
+  "src/pop/pshield.c": {
+   "as": "pop\\pshield.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "0044455c",
+     "size": 114,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "ShieldControl::$ct": {
+     "va": "004445ce",
+     "size": 69,
+     "mangled": "W?$ct:ShieldControl$n()_"
+    },
+    "ShieldControl::Reset": {
+     "va": "00444613",
+     "size": 25,
+     "mangled": "W?Reset$:ShieldControl$n(ui)v"
+    },
+    "ShieldControl::Draw": {
+     "va": "0044462c",
+     "size": 314,
+     "mangled": "W?Draw$:ShieldControl$n(ui)v"
+    },
+    "ShieldControl::Commit": {
+     "va": "0044495a",
+     "size": 92,
+     "mangled": "W?Commit$:ShieldControl$n()v"
+    },
+    "ShieldControl::IsPressed": {
+     "va": "004449b6",
+     "size": 17,
+     "mangled": "W?IsPressed$:ShieldControl$n()i"
+    },
+    "ShieldPopup::$ct": {
+     "va": "004449c7",
+     "size": 23,
+     "mangled": "W?$ct:ShieldPopup$n()_"
+    },
+    "ShieldPopup::OpenShield": {
+     "va": "004449de",
+     "size": 166,
+     "mangled": "W?OpenShield$:ShieldPopup$n(pn$InputReq$$)v"
+    },
+    "SimInventoryClose": {
+     "va": "00444a84",
+     "size": 156,
+     "mangled": "W?SimInventoryClose$n(pn$ShieldPopup$$)v"
+    },
+    "ShieldPopup::SetAim": {
+     "va": "00444dc6",
+     "size": 155,
+     "mangled": "W?SetAim$:ShieldPopup$n(ii)v"
+    },
+    "ShieldPopup::Process": {
+     "va": "00444e61",
+     "size": 201,
+     "mangled": "W?Process$:ShieldPopup$n()i"
+    },
+    "SimInventoryDraw": {
+     "va": "00444f2a",
+     "size": 28,
+     "mangled": "W?SimInventoryDraw$n(pn$ShieldPopup$$)v"
+    },
+    "ShieldPopup::Commit": {
+     "va": "00444f46",
+     "size": 73,
+     "mangled": "W?Commit$:ShieldPopup$n()v"
+    },
+    "ShieldPopup::AllowsWeapons": {
+     "va": "00444f8f",
+     "size": 44,
+     "mangled": "W?AllowsWeapons$:ShieldPopup$n()i"
+    },
+    "ShieldPopup::$dt": {
+     "va": "004451e8",
+     "size": 12,
+     "mangled": "W?$dt:ShieldPopup$n()_"
+    },
+    "ShieldControl::$dt": {
+     "va": "004451f4",
+     "size": 67,
+     "mangled": "W?$dt:ShieldControl$n()_"
+    }
+   },
+   "data": {
+    "CONST2": {
+     "va": "0048dc54",
+     "size": 36
+    },
+    "_DATA": {
+     "va": "004a003c",
+     "size": 96
+    },
+    "XI": {
+     "va": "004a6c2a",
+     "size": 6
+    },
+    "W?$Wvf0hos:ShieldControl$$nx[]pn()v": {
+     "va": "0048dca0",
+     "size": 20
+    },
+    "W?$Wts0hn$ShieldControl$$$nx[]uc": {
+     "va": "0048dc8c",
+     "size": 17
+    },
+    "W?$Wts0en$MenuNumber$$$nx[]uc": {
+     "va": "0048c988",
+     "size": 17
+    },
+    "W?$Wts0en$MenuButton$$$nx[]uc": {
+     "va": "0048c9d8",
+     "size": 17
+    },
+    "W?$Wts0fn$ShieldPopup$$$nx[]uc": {
+     "va": "0048dc78",
+     "size": 17
+    }
+   },
+   "accepted": "2026-11-11"
+  },
+  "src/pop/preport.c": {
+   "as": "pop\\preport.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "004481c0",
+     "size": 187,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "ReportScreen::$ct": {
+     "va": "0044827b",
+     "size": 42,
+     "mangled": "W?$ct:ReportScreen$n()_"
+    },
+    "ReportOpen": {
+     "va": "004482a5",
+     "size": 223,
+     "mangled": "W?ReportOpen$n(pn$ReportScreen$$pn$InputReq$$)v"
+    },
+    "ReportMission": {
+     "va": "00448384",
+     "size": 104,
+     "mangled": "W?ReportMission$n(pn$ReportScreen$$i)v"
+    },
+    "ReportClose": {
+     "va": "004483ec",
+     "size": 58,
+     "mangled": "W?ReportClose$n(pn$ReportScreen$$)v"
+    },
+    "ReportInput": {
+     "va": "00448426",
+     "size": 58,
+     "mangled": "W?ReportInput$n(pn$ReportScreen$$)v"
+    },
+    "SimPilotDraw": {
+     "va": "00448460",
+     "size": 165,
+     "mangled": "W?SimPilotDraw$n(pn$ReportScreen$$)v"
+    },
+    "ReportDirty": {
+     "va": "00448505",
+     "size": 12,
+     "mangled": "W?ReportDirty$n(pn$ReportScreen$$)v"
+    },
+    "ReportSelect": {
+     "va": "00448511",
+     "size": 395,
+     "mangled": "W?ReportSelect$n(pn$ReportScreen$$pn$ActorRecord$$)v"
+    },
+    "ReportScreen::SetOther": {
+     "va": "0044869c",
+     "size": 61,
+     "mangled": "W?SetOther$:ReportScreen$n(pn$ActorRecord$$ii)v"
+    },
+    "ReportGlobalInput": {
+     "va": "00448d34",
+     "size": 63,
+     "mangled": "W?ReportGlobalInput$n()v"
+    },
+    "ReportScreen::$dt": {
+     "va": "00448d74",
+     "size": 12,
+     "mangled": "W?$dt:ReportScreen$n()_"
+    }
+   },
+   "data": {
+    "CONST2": {
+     "va": "0048dd3c",
+     "size": 60
+    },
+    "_DATA": {
+     "va": "004a00e4",
+     "size": 84
+    },
+    "XI": {
+     "va": "004a6c3c",
+     "size": 6
+    },
+    "W?$Wts0en$MenuNumber$$$nx[]uc": {
+     "va": "0048c988",
+     "size": 17
+    },
+    "W?$Wts0en$MenuSpacer$$$nx[]uc": {
+     "va": "0048d964",
+     "size": 17
+    }
+   },
+   "accepted": "2026-11-11"
+  },
+  "src/pop/pturn.c": {
+   "as": "pop\\pturn.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "DeathSummary": {
+     "va": "00449148",
+     "size": 963,
+     "mangled": "W?DeathSummary$n(pn$Shell$$)v"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048b3dc",
+     "size": 23
+    },
+    "_DATA": {
+     "va": "004a0148",
+     "size": 12
+    }
+   },
+   "accepted": "2026-11-11"
+  },
+  "src/pop/pinfo.c": {
+   "as": "pop\\pinfo.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "0044950c",
+     "size": 110,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "PopInfo::$ct": {
+     "va": "0044957a",
+     "size": 30,
+     "mangled": "W?$ct:PopInfo$n()_"
+    },
+    "PopInfoOpen": {
+     "va": "00449598",
+     "size": 68,
+     "mangled": "W?PopInfoOpen$n(pn$PopInfo$$pn$InputReq$$)v"
+    },
+    "PopInfoClose": {
+     "va": "004495dc",
+     "size": 26,
+     "mangled": "W?PopInfoClose$n(pn$PopInfo$$)v"
+    },
+    "PopInfoUpdate": {
+     "va": "004495f6",
+     "size": 58,
+     "mangled": "W?PopInfoUpdate$n(pn$PopInfo$$)v"
+    },
+    "PopInfoDraw": {
+     "va": "00449aa7",
+     "size": 145,
+     "mangled": "W?PopInfoDraw$n(pn$PopInfo$$)v"
+    },
+    "PopInfoSelect": {
+     "va": "00449b38",
+     "size": 49,
+     "mangled": "W?PopInfoSelect$n(pn$PopInfo$$i)v"
+    },
+    "PopInfoEvent": {
+     "va": "00449b69",
+     "size": 63,
+     "mangled": "W?PopInfoEvent$n()i"
+    },
+    "PopInfo::$dt": {
+     "va": "00449ba8",
+     "size": 12,
+     "mangled": "W?$dt:PopInfo$n()_"
+    }
+   },
+   "data": {
+    "CONST2": {
+     "va": "0048dda0",
+     "size": 36
+    },
+    "_DATA": {
+     "va": "004a0154",
+     "size": 36
+    },
+    "XI": {
+     "va": "004a6c42",
+     "size": 6
+    },
+    "W?$Wts0en$MenuSpacer$$$nx[]uc": {
+     "va": "0048d964",
+     "size": 17
+    },
+    "W?$Wts0bn$PopInfo$$$nx[]uc": {
+     "va": "0048ddd8",
+     "size": 17
+    },
+    "W?$Wts0bn$StrPool$$$nx[]uc": {
+     "va": "0048ddc4",
+     "size": 17
+    }
+   },
+   "accepted": "2026-11-11"
+  },
+  "src/pop/pworld.c": {
+   "as": "pop\\pworld.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "00449bb4",
+     "size": 87,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "PopWorld::$ct": {
+     "va": "00449c0b",
+     "size": 23,
+     "mangled": "W?$ct:PopWorld$n()_"
+    },
+    "PopWorldOpen": {
+     "va": "00449c22",
+     "size": 68,
+     "mangled": "W?PopWorldOpen$n(pn$PopWorld$$pn$InputReq$$)v"
+    },
+    "PopWorldClose": {
+     "va": "00449c66",
+     "size": 26,
+     "mangled": "W?PopWorldClose$n(pn$PopWorld$$)v"
+    },
+    "PopWorldUpdate": {
+     "va": "00449c80",
+     "size": 58,
+     "mangled": "W?PopWorldUpdate$n(pn$PopWorld$$)v"
+    },
+    "PopWorldDrawText": {
+     "va": "00449cba",
+     "size": 188,
+     "mangled": "W?PopWorldDrawText$n(pn$PopWorld$$)v"
+    },
+    "PopWorldEvent": {
+     "va": "00449eb5",
+     "size": 63,
+     "mangled": "W?PopWorldEvent$n()i"
+    },
+    "PopWorld::$dt": {
+     "va": "00449ef4",
+     "size": 12,
+     "mangled": "W?$dt:PopWorld$n()_"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048b430",
+     "size": 32
+    },
+    "CONST2": {
+     "va": "0048ddec",
+     "size": 28
+    },
+    "_DATA": {
+     "va": "004a0178",
+     "size": 36
+    },
+    "XI": {
+     "va": "004a6c48",
+     "size": 6
+    },
+    "W?$Wts0en$MenuSpacer$$$nx[]uc": {
+     "va": "0048d964",
+     "size": 17
+    },
+    "W?$Wts0cn$PopWorld$$$nx[]uc": {
+     "va": "0048de08",
+     "size": 17
+    }
+   },
+   "accepted": "2026-11-11"
+  },
+  "src/gui/alert.c": {
+   "as": "gui\\alert.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "GuiScreen::$ct": {
+     "va": "00425978",
+     "size": 73,
+     "mangled": "W?$ct:GuiScreen$n(pnpn$GuiControl$$uiul)_"
+    },
+    "GuiScreen::Reset": {
+     "va": "004259c1",
+     "size": 54,
+     "mangled": "W?Reset$:GuiScreen$n(pnpn$GuiControl$$uiul)pn$1$"
+    },
+    "GuiScreen::LoadLayout": {
+     "va": "004259f7",
+     "size": 227,
+     "mangled": "W?LoadLayout$:GuiScreen$n(l)v"
+    },
+    "GuiScreen::SetLayout": {
+     "va": "00425ada",
+     "size": 110,
+     "mangled": "W?SetLayout$:GuiScreen$n(iipnx$GuiRect$$pnx$2$)v"
+    },
+    "GuiScreen::Activate": {
+     "va": "00425b48",
+     "size": 89,
+     "mangled": "W?Activate$:GuiScreen$n(ui)i"
+    },
+    "GuiScreen::Update": {
+     "va": "00425ba1",
+     "size": 633,
+     "mangled": "W?Update$:GuiScreen$n()i"
+    },
+    "GuiScreen::SetStrings": {
+     "va": "00425ec6",
+     "size": 86,
+     "mangled": "W?SetStrings$:GuiScreen$n(l)v"
+    },
+    "GuiScreen::Invalidate": {
+     "va": "00425f1c",
+     "size": 43,
+     "mangled": "W?Invalidate$:GuiScreen$n()v"
+    },
+    "GuiScreen::ResetControls": {
+     "va": "00425f47",
+     "size": 64,
+     "mangled": "W?ResetControls$:GuiScreen$n()v"
+    },
+    "GuiScreen::Open": {
+     "va": "00425f87",
+     "size": 198,
+     "mangled": "W?Open$:GuiScreen$n(pn$InputReq$$pn$StrPool$$li)v"
+    },
+    "GuiScreen::HitTest": {
+     "va": "0042604d",
+     "size": 117,
+     "mangled": "W?HitTest$:GuiScreen$n(pnx$GuiPoint$$)l"
+    }
+   },
+   "data": {
+    "_DATA": {
+     "va": "0048f350",
+     "size": 12
+    }
+   },
+   "accepted": "2026-11-11"
+  },
+  "src/gui/slider.c": {
+   "as": "gui\\slider.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "UpgradeBar::$dt": {
+     "va": "00415554",
+     "size": 67,
+     "mangled": "W?$dt:UpgradeBar$n()_"
+    },
+    "UpgradeArrow::$dt": {
+     "va": "00415598",
+     "size": 67,
+     "mangled": "W?$dt:UpgradeArrow$n()_"
+    },
+    "UpgradeRange::$ct": {
+     "va": "00429a44",
+     "size": 49,
+     "mangled": "W?$ct:UpgradeRange$n(ii)_"
+    },
+    "UpgradeRange::Set": {
+     "va": "00429a75",
+     "size": 43,
+     "mangled": "W?Set$:UpgradeRange$n(i)v"
+    },
+    "UpgradeRange::Resize": {
+     "va": "00429aa0",
+     "size": 18,
+     "mangled": "W?Resize$:UpgradeRange$n(i)v"
+    },
+    "UpgradeBar::$ct": {
+     "va": "00429ab2",
+     "size": 39,
+     "mangled": "W?$ct:UpgradeBar$n(pn$UpgradeRange$$i)_"
+    },
+    "UpgradeBar::Draw": {
+     "va": "00429ad9",
+     "size": 452,
+     "mangled": "W?Draw$:UpgradeBar$n(ui)v"
+    },
+    "UpgradeBar::Event": {
+     "va": "00429c9d",
+     "size": 139,
+     "mangled": "W?Event$:UpgradeBar$n(uiul)i"
+    },
+    "UpgradeArrow::$ct": {
+     "va": "00429d28",
+     "size": 46,
+     "mangled": "W?$ct:UpgradeArrow$n(pn$UpgradeRange$$ii)_"
+    },
+    "UpgradeArrow::Draw": {
+     "va": "00429d56",
+     "size": 136,
+     "mangled": "W?Draw$:UpgradeArrow$n(ui)v"
+    },
+    "UpgradeArrow::Event": {
+     "va": "00429dde",
+     "size": 197,
+     "mangled": "W?Event$:UpgradeArrow$n(uiul)i"
+    }
+   },
+   "data": {
+    "_DATA": {
+     "va": "0048f3fc",
+     "size": 13
+    },
+    "W?$Wvf0eos:UpgradeBar$$nx[]pn()v": {
+     "va": "0048dae0",
+     "size": 20
+    },
+    "W?$Wvf0gos:UpgradeArrow$$nx[]pn()v": {
+     "va": "0048dacc",
+     "size": 20
+    },
+    "W?$Wts0en$UpgradeBar$$$nx[]uc": {
+     "va": "0048d024",
+     "size": 17
+    },
+    "W?$Wts0gn$UpgradeArrow$$$nx[]uc": {
+     "va": "0048d010",
+     "size": 17
+    }
+   },
+   "accepted": "2026-11-11"
+  },
+  "src/gui/palfade.c": {
+   "as": "gui\\palfade.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "GuiFadeOut": {
+     "va": "0042a0e0",
+     "size": 316,
+     "mangled": "W?GuiFadeOut$n()v"
+    },
+    "GuiFadeOutRange": {
+     "va": "0042a21c",
+     "size": 323,
+     "mangled": "W?GuiFadeOutRange$n(ii)v"
+    },
+    "GuiFadeIn": {
+     "va": "0042a35f",
+     "size": 568,
+     "mangled": "W?GuiFadeIn$n()v"
+    }
+   },
+   "data": {
+    "_DATA": {
+     "va": "0048f4b4",
+     "size": 24
+    }
+   },
+   "accepted": "2026-11-11"
+  },
+  "src/gui/wrapper.c": {
+   "as": "gui\\wrapper.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "RichTextCommand": {
+     "va": "0042a6e8",
+     "size": 228,
+     "mangled": "W?RichTextCommand$n(pn$RichTextState$$pnxuc)ui"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048ad08",
+     "size": 10
+    },
+    "_DATA": {
+     "va": "0048f4cc",
+     "size": 14
+    }
+   },
+   "accepted": "2026-11-11"
+  },
+  "src/terr/trender.c": {
+   "as": "terr\\trender.c",
+   "install": "wc106",
+   "flags": [
+    "-4s",
+    "-s",
+    "-bm",
+    "-oxt",
+    "-oe=150"
+   ],
+   "tool": "wpp386",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "0042e210",
+     "size": 16,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "MapInitialize": {
+     "va": "0042e220",
+     "size": 96,
+     "mangled": "W?MapInitialize$n(pn$FastCoord$$pnxai)pn$1$"
+    },
+    "MapIdentity": {
+     "va": "0042e280",
+     "size": 16,
+     "mangled": "W?MapIdentity$n(pnv)pnv"
+    },
+    "MapSetVisibility": {
+     "va": "0042e290",
+     "size": 16,
+     "mangled": "W?MapSetVisibility$n(pn$FastCoord$$pnv)v"
+    },
+    "MapGetView": {
+     "va": "0042e2a0",
+     "size": 48,
+     "mangled": "W?MapGetView$n(pn$FastCoord$$pn$ViewState$$)v"
+    },
+    "MapPointScale": {
+     "va": "0042e390",
+     "size": 32,
+     "mangled": "W?MapPointScale$n(pn$FastCoord$$i)i"
+    },
+    "MapPointToScreen": {
+     "va": "0042e3b0",
+     "size": 160,
+     "mangled": "W?MapPointToScreen$n(pn$FastCoord$$pn$GridPoint$$pn$2$)v"
+    },
+    "PrepareDeathMap": {
+     "va": "0042e760",
+     "size": 64,
+     "mangled": "PrepareDeathMap"
+    },
+    "MapContainsPoint": {
+     "va": "0042e900",
+     "size": 240,
+     "mangled": "W?MapContainsPoint$n(pn$FastCoord$$pn$GridPoint$$i)i"
+    },
+    "MapPickVisit": {
+     "va": "0042e9f0",
+     "size": 256,
+     "mangled": "W?MapPickVisit$n(pnv)i"
+    },
+    "MapPickAt": {
+     "va": "0042eaf0",
+     "size": 144,
+     "mangled": "W?MapPickAt$n(pn$FastCoord$$pn$GridPoint$$)i"
+    },
+    "MapNearestVisit": {
+     "va": "0042eb80",
+     "size": 192,
+     "mangled": "W?MapNearestVisit$n(pnv)i"
+    },
+    "MapNearestAt": {
+     "va": "0042ec40",
+     "size": 96,
+     "mangled": "W?MapNearestAt$n(pn$FastCoord$$pn$GridPoint$$)i"
+    }
+   },
+   "data": {
+    "_DATA": {
+     "va": "00490494",
+     "size": 35
+    },
+    "XI": {
+     "va": "004a6bf4",
+     "size": 6
+    }
+   },
+   "accepted": "2026-11-11"
+  },
+  "src/terr/tlos.c": {
+   "as": "terr\\tlos.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "0042eca0",
+     "size": 16,
+     "mangled": "W?.fn_init$n()v"
+    }
+   },
+   "data": {
+    "_DATA": {
+     "va": "004904b8",
+     "size": 28
+    },
+    "XI": {
+     "va": "004a6bfa",
+     "size": 6
+    }
+   },
+   "accepted": "2026-11-11"
+  },
+  "src/shell/promosh.c": {
+   "as": "shell\\promosh.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "00409408",
+     "size": 118,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "PromoScreen::$ct": {
+     "va": "0040947e",
+     "size": 59,
+     "mangled": "W?$ct:PromoScreen$n()_"
+    },
+    "PromoScreen::Open": {
+     "va": "004094b9",
+     "size": 587,
+     "mangled": "W?Open$:PromoScreen$n(pn$InputReq$$i)v"
+    },
+    "PromoScreen::SetPage": {
+     "va": "00409704",
+     "size": 8690,
+     "mangled": "W?SetPage$:PromoScreen$n()v"
+    },
+    "PromoScreen::NextPage": {
+     "va": "0040b8f6",
+     "size": 188,
+     "mangled": "W?NextPage$:PromoScreen$n()i"
+    },
+    "PromoScreen::SetLayout": {
+     "va": "0040b9b2",
+     "size": 135,
+     "mangled": "W?SetLayout$:PromoScreen$n()v"
+    },
+    "PromoScreen::Play": {
+     "va": "0040ba39",
+     "size": 213,
+     "mangled": "W?Play$:PromoScreen$n(pnxa)v"
+    },
+    "PromoScreen::PlayOnce": {
+     "va": "0040bb0e",
+     "size": 280,
+     "mangled": "W?PlayOnce$:PromoScreen$n(pnxapn$FlicSound$$)v"
+    },
+    "PromoScreen::DrawText": {
+     "va": "0040bc26",
+     "size": 333,
+     "mangled": "W?DrawText$:PromoScreen$n()v"
+    },
+    "PromoScreen::Close": {
+     "va": "0040bd73",
+     "size": 66,
+     "mangled": "W?Close$:PromoScreen$n()v"
+    },
+    "PromoScreen::Update": {
+     "va": "0040bdb5",
+     "size": 102,
+     "mangled": "W?Update$:PromoScreen$n()i"
+    },
+    "PromoScreen::Render": {
+     "va": "0040be1b",
+     "size": 113,
+     "mangled": "W?Render$:PromoScreen$n()v"
+    },
+    "PromoScreen::Finish": {
+     "va": "0040be8c",
+     "size": 14,
+     "mangled": "W?Finish$:PromoScreen$n()v"
+    },
+    "PromoScreen::$dt": {
+     "va": "0040be9c",
+     "size": 33,
+     "mangled": "W?$dt:PromoScreen$n()_"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048a2e8",
+     "size": 731
+    },
+    "CONST2": {
+     "va": "0048ca44",
+     "size": 36
+    },
+    "_DATA": {
+     "va": "0048e668",
+     "size": 40
+    },
+    "XI": {
+     "va": "004a6b6a",
+     "size": 6
+    },
+    "W?$Wts0in$MenuHelpRegion$$$nx[]uc": {
+     "va": "0048c9c4",
+     "size": 17
+    }
+   },
+   "accepted": "2026-11-11"
+  },
+  "src/shell/vrmenu.c": {
+   "as": "shell\\vrmenu.c",
+   "install": "wc106",
+   "flags": [
+    "-4s",
+    "-s",
+    "-bm",
+    "-oe=80"
+   ],
+   "tool": "wpp386",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "0040e7a0",
+     "size": 431,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "BiodermStatsScreen::$ct": {
+     "va": "0040e94f",
+     "size": 23,
+     "mangled": "W?$ct:BiodermStatsScreen$n()_"
+    },
+    "BiodermStatsScreen::Open": {
+     "va": "0040e966",
+     "size": 248,
+     "mangled": "W?Open$:BiodermStatsScreen$n(pn$InputReq$$)v"
+    },
+    "BiodermStatsScreen::Close": {
+     "va": "0040ea5e",
+     "size": 26,
+     "mangled": "W?Close$:BiodermStatsScreen$n()v"
+    },
+    "BiodermStatsExit": {
+     "va": "0040ea78",
+     "size": 128,
+     "mangled": "W?BiodermStatsExit$n(pn$BiodermStatsScreen$$)ul"
+    },
+    "ShellBiodermStatsRender": {
+     "va": "0040eaf8",
+     "size": 421,
+     "mangled": "W?ShellBiodermStatsRender$n(pn$BiodermStatsScreen$$)v"
+    },
+    "BiodermStatsScreen::UpdateText": {
+     "va": "0040ec9d",
+     "size": 707,
+     "mangled": "W?UpdateText$:BiodermStatsScreen$n()v"
+    },
+    "BiodermStatsScreen::SetControls": {
+     "va": "0040ef60",
+     "size": 190,
+     "mangled": "W?SetControls$:BiodermStatsScreen$n()v"
+    },
+    "BiodermStatsScreen::UpdateCredits": {
+     "va": "0040f01e",
+     "size": 40,
+     "mangled": "W?UpdateCredits$:BiodermStatsScreen$n()v"
+    },
+    "BiodermStatsScreen::Room": {
+     "va": "0040f046",
+     "size": 46,
+     "mangled": "W?Room$:BiodermStatsScreen$n()i"
+    },
+    "BiodermStatsSelect": {
+     "va": "0040f074",
+     "size": 507,
+     "mangled": "W?BiodermStatsSelect$n(pn$BiodermStatsScreen$$ui)v"
+    },
+    "BiodermStatsAction": {
+     "va": "0040f26f",
+     "size": 101,
+     "mangled": "W?BiodermStatsAction$n(pn$BiodermStatsScreen$$)v"
+    },
+    "BiodermStatsScreen::Message": {
+     "va": "0040f2d4",
+     "size": 243,
+     "mangled": "W?Message$:BiodermStatsScreen$n(pnxa)v"
+    },
+    "BiodermStatsScreen::DrawMessage": {
+     "va": "0040f3c7",
+     "size": 68,
+     "mangled": "W?DrawMessage$:BiodermStatsScreen$n(pnxa)v"
+    },
+    "BiodermStatsClose": {
+     "va": "0040f40b",
+     "size": 38,
+     "mangled": "W?BiodermStatsClose$n(pn$BiodermStatsScreen$$)v"
+    },
+    "BiodermStatsApply": {
+     "va": "0040f431",
+     "size": 140,
+     "mangled": "W?BiodermStatsApply$n(pn$BiodermStatsScreen$$)v"
+    },
+    "W?$Wda0221$:MenuButton$n(ui)pnv": {
+     "va": "0040f4c0",
+     "size": 21,
+     "mangled": "W?$Wda0221$:MenuButton$n(ui)pnv"
+    },
+    "BiodermStatsScreen::$dt": {
+     "va": "0040f4d8",
+     "size": 12,
+     "mangled": "W?$dt:BiodermStatsScreen$n()_"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048a794",
+     "size": 67
+    },
+    "CONST2": {
+     "va": "0048cb30",
+     "size": 116
+    },
+    "_DATA": {
+     "va": "0048e6f8",
+     "size": 116
+    },
+    "XI": {
+     "va": "004a6b7c",
+     "size": 6
+    },
+    "W?$Wts0en$MenuButton$$$nx[]uc": {
+     "va": "0048c9d8",
+     "size": 17
+    },
+    "W?$Wts0in$MenuHelpRegion$$$nx[]uc": {
+     "va": "0048c9c4",
+     "size": 17
+    },
+    "W?$Wts0dn$MenuPanel$$$nx[]uc": {
+     "va": "0048c99c",
+     "size": 17
+    }
+   },
+   "accepted": "2026-11-11"
+  },
+  "src/shell/medlab.c": {
+   "as": "shell\\medlab.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "W?.tdctor$:MenuButton$n()rn$1$": {
+     "va": "004085c8",
+     "size": 21,
+     "mangled": "W?.tdctor$:MenuButton$n()rn$1$"
+    },
+    "W?.fn_init$n()v": {
+     "va": "0040f4e4",
+     "size": 305,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "MedlabScreen::$ct": {
+     "va": "0040f615",
+     "size": 23,
+     "mangled": "W?$ct:MedlabScreen$n()_"
+    },
+    "MedlabScreen::Open": {
+     "va": "0040f62c",
+     "size": 228,
+     "mangled": "W?Open$:MedlabScreen$n(pn$InputReq$$)v"
+    },
+    "MedlabScreen::Close": {
+     "va": "0040f710",
+     "size": 26,
+     "mangled": "W?Close$:MedlabScreen$n()v"
+    },
+    "MedlabScreen::Update": {
+     "va": "0040f72a",
+     "size": 118,
+     "mangled": "W?Update$:MedlabScreen$n()i"
+    },
+    "ShellBiodermSkillsRender": {
+     "va": "0040f7a0",
+     "size": 416,
+     "mangled": "W?ShellBiodermSkillsRender$n(pn$MedlabScreen$$)v"
+    },
+    "MedlabScreen::Invalidate": {
+     "va": "0040f940",
+     "size": 14,
+     "mangled": "W?Invalidate$:MedlabScreen$n()v"
+    },
+    "MedlabScreen::UpdateText": {
+     "va": "0040f94e",
+     "size": 471,
+     "mangled": "W?UpdateText$:MedlabScreen$n()v"
+    },
+    "MedlabScreen::UpdateCredits": {
+     "va": "0040fb25",
+     "size": 64,
+     "mangled": "W?UpdateCredits$:MedlabScreen$n()v"
+    },
+    "MedlabScreen::Room": {
+     "va": "0040fb65",
+     "size": 14,
+     "mangled": "W?Room$:MedlabScreen$n()i"
+    },
+    "MedlabScreen::Cancel": {
+     "va": "0040fb73",
+     "size": 38,
+     "mangled": "W?Cancel$:MedlabScreen$n()v"
+    },
+    "MedlabScreen::Apply": {
+     "va": "0040fb99",
+     "size": 129,
+     "mangled": "W?Apply$:MedlabScreen$n()v"
+    },
+    "MedlabScreen::Treat": {
+     "va": "0040fc1a",
+     "size": 302,
+     "mangled": "W?Treat$:MedlabScreen$n(uiui)v"
+    },
+    "MedlabScreen::TotalCost": {
+     "va": "0040fd48",
+     "size": 152,
+     "mangled": "W?TotalCost$:MedlabScreen$n()i"
+    },
+    "MedlabScreen::TreatAll": {
+     "va": "0040fde0",
+     "size": 243,
+     "mangled": "W?TreatAll$:MedlabScreen$n()v"
+    },
+    "MedlabScreen::Dismiss": {
+     "va": "0040fed3",
+     "size": 192,
+     "mangled": "W?Dismiss$:MedlabScreen$n()v"
+    },
+    "W?$Wda0214$:MenuButton$n(ui)pnv": {
+     "va": "0040ff94",
+     "size": 21,
+     "mangled": "W?$Wda0214$:MenuButton$n(ui)pnv"
+    },
+    "MedlabScreen::$dt": {
+     "va": "0040ffac",
+     "size": 12,
+     "mangled": "W?$dt:MedlabScreen$n()_"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048a7d8",
+     "size": 49
+    },
+    "CONST2": {
+     "va": "0048cbbc",
+     "size": 84
+    },
+    "_DATA": {
+     "va": "0048e76c",
+     "size": 88
+    },
+    "XI": {
+     "va": "004a6b82",
+     "size": 6
+    },
+    "W?$Wts0en$MenuButton$$$nx[]uc": {
+     "va": "0048c9d8",
+     "size": 17
+    },
+    "W?$Wts0in$MenuHelpRegion$$$nx[]uc": {
+     "va": "0048c9c4",
+     "size": 17
+    },
+    "W?$Wts0dn$MenuPanel$$$nx[]uc": {
+     "va": "0048c99c",
+     "size": 17
+    },
+    "W?$Wts0gn$MedlabScreen$$$nx[]uc": {
+     "va": "0048cc10",
+     "size": 17
+    }
+   },
+   "accepted": "2026-11-11"
+  },
+  "src/shell/standby.c": {
+   "as": "shell\\standby.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "0040ffb8",
+     "size": 272,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "StandbyScreen::$ct": {
+     "va": "004100c8",
+     "size": 23,
+     "mangled": "W?$ct:StandbyScreen$n()_"
+    },
+    "PilotBriefOpenStandby": {
+     "va": "004100df",
+     "size": 169,
+     "mangled": "W?PilotBriefOpenStandby$n(pnvpnv)v"
+    },
+    "PilotBriefResetIfOpen": {
+     "va": "00410188",
+     "size": 26,
+     "mangled": "W?PilotBriefResetIfOpen$n(pnv)v"
+    },
+    "PilotBriefAcceptProfile": {
+     "va": "004101a2",
+     "size": 101,
+     "mangled": "W?PilotBriefAcceptProfile$n(pnv)i"
+    },
+    "PilotBriefDoneRoom": {
+     "va": "00410207",
+     "size": 33,
+     "mangled": "W?PilotBriefDoneRoom$n()v"
+    },
+    "ShellBiodermDetailsRender": {
+     "va": "00410228",
+     "size": 455,
+     "mangled": "W?ShellBiodermDetailsRender$n(pnv)v"
+    },
+    "PilotBriefRefreshSelection": {
+     "va": "004103ef",
+     "size": 62,
+     "mangled": "W?PilotBriefRefreshSelection$n(pnv)v"
+    },
+    "PilotBriefReviewKey": {
+     "va": "0041042d",
+     "size": 195,
+     "mangled": "W?PilotBriefReviewKey$n()v"
+    },
+    "PilotBriefModule::InstallMissionProfile": {
+     "va": "004104f0",
+     "size": 173,
+     "mangled": "W?InstallMissionProfile$:PilotBriefModule$n()v"
+    },
+    "PilotBriefSwitchProfileMode": {
+     "va": "0041059d",
+     "size": 111,
+     "mangled": "W?PilotBriefSwitchProfileMode$n()v"
+    },
+    "PilotBriefResetProfileMode": {
+     "va": "0041060c",
+     "size": 98,
+     "mangled": "W?PilotBriefResetProfileMode$n()v"
+    },
+    "PilotBriefRestoreProfile": {
+     "va": "0041066e",
+     "size": 38,
+     "mangled": "W?PilotBriefRestoreProfile$n()v"
+    },
+    "PilotBriefSaveOrRestore": {
+     "va": "00410694",
+     "size": 152,
+     "mangled": "W?PilotBriefSaveOrRestore$n()v"
+    },
+    "StandbyScreen::$dt": {
+     "va": "0041072c",
+     "size": 12,
+     "mangled": "W?$dt:StandbyScreen$n()_"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048a80c",
+     "size": 20
+    },
+    "CONST2": {
+     "va": "0048cc24",
+     "size": 84
+    },
+    "_DATA": {
+     "va": "0048e7c4",
+     "size": 64
+    },
+    "XI": {
+     "va": "004a6b88",
+     "size": 6
+    },
+    "W?$Wts0in$MenuHelpRegion$$$nx[]uc": {
+     "va": "0048c9c4",
+     "size": 17
+    },
+    "W?$Wts0dn$MenuPanel$$$nx[]uc": {
+     "va": "0048c99c",
      "size": 17
     }
    },
@@ -13583,6 +13780,560 @@
    "functions": [
     "TargetLoadResource",
     "TargetPopup::$dt"
+   ],
+   "date": "2026-11-11"
+  },
+  {
+   "tu": "src/shell/dbrief.c",
+   "functions": [
+    "data:_DATA"
+   ],
+   "date": "2026-11-11"
+  },
+  {
+   "tu": "src/shell/hercbay.c",
+   "functions": [
+    "data:_DATA"
+   ],
+   "date": "2026-11-11"
+  },
+  {
+   "tu": "src/_unknown/tu_00417f34.c",
+   "functions": [
+    "StorageAnimate",
+    "StorageClose",
+    "StorageColors",
+    "StorageCredits",
+    "StorageDetails",
+    "StorageDone",
+    "StorageImage",
+    "StorageInput",
+    "StorageRedraw",
+    "StorageRestore",
+    "StorageSave",
+    "StorageScreen::$ct",
+    "StorageScreen::$dt",
+    "StorageScreen::Names",
+    "StorageScreen::Ramp",
+    "StorageSelected",
+    "StorageSetup",
+    "StorageStart",
+    "StorageVisibility",
+    "StorageVisibleNames",
+    "W?$Wda0224$:MenuPrefixButton$n(ui)pnv",
+    "W?.fn_init$n()v"
+   ],
+   "date": "2026-11-11",
+   "moved_to": "src/shell/hbmanage.c"
+  },
+  {
+   "tu": "src/_unknown/tu_0041c864.c",
+   "functions": [
+    "AudioModule::$dt",
+    "HercSetMission",
+    "HercSetMissionStart",
+    "PilotManagerPoll",
+    "ShellMultiplayerInit",
+    "ShellMultiplayerShutdown",
+    "W?.fn_init$n()v",
+    "f_0041cab0"
+   ],
+   "date": "2026-11-11",
+   "moved_to": "src/shell/muzak.c"
+  },
+  {
+   "tu": "src/_unknown/tu_0041cb48.c",
+   "functions": [
+    "QuickDrawOptions",
+    "QuickDrawText",
+    "QuickShowMessage",
+    "QuickStartScreen::$ct",
+    "ShellBriefingAbort",
+    "ShellBriefingBack",
+    "ShellBriefingClose",
+    "ShellBriefingContinue",
+    "ShellBriefingExit",
+    "ShellBriefingOpen",
+    "ShellBriefingRender"
+   ],
+   "date": "2026-11-11",
+   "moved_to": "src/shell/qstart.c"
+  },
+  {
+   "tu": "src/_unknown/tu_0041d774.c",
+   "functions": [
+    "GuiScreen::$dt"
+   ],
+   "date": "2026-11-11",
+   "moved_to": "src/shell/qstart.c"
+  },
+  {
+   "tu": "src/_unknown/tu_0041d774.c",
+   "functions": [
+    "MultiplayerBase::$ct",
+    "MultiplayerBase::$dt",
+    "MultiplayerBase::GetName",
+    "MultiplayerBusy",
+    "MultiplayerConfigure",
+    "MultiplayerDone",
+    "MultiplayerDrawHover",
+    "MultiplayerDrawText",
+    "MultiplayerEnter",
+    "MultiplayerRelease",
+    "MultiplayerRequest",
+    "MultiplayerSaveOptions",
+    "MultiplayerSearch",
+    "MultiplayerSetMoneyValues",
+    "MultiplayerUpdate",
+    "MultiplayerUpdateValues",
+    "ShellMultiplayerClose",
+    "ShellMultiplayerRender",
+    "SigsJoin",
+    "ValidateMultiplayer",
+    "W?$Wda0211$:MenuPrefixButton$n(ui)pnv",
+    "W?.fn_init$n()v"
+   ],
+   "date": "2026-11-11",
+   "moved_to": "src/shell/mphbase.c"
+  },
+  {
+   "tu": "src/shell/hotseat.c",
+   "functions": [
+    "f_004243e4",
+    "f_004243e5",
+    "f_004243e7"
+   ],
+   "date": "2026-11-11",
+   "moved_to": "src/shell/mpcomm.c"
+  },
+  {
+   "tu": "src/shell/hotseat.c",
+   "functions": [
+    "data:_DATA"
+   ],
+   "date": "2026-11-11"
+  },
+  {
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "functions": [
+    "GameSession::$ct",
+    "GameSession::$dt",
+    "ProfileManager::Mission",
+    "ProfileManager::Select",
+    "Snapshot::$ct",
+    "W?.fn_init$n()v",
+    "f_0043b912",
+    "f_0043b956",
+    "f_0043ba3e",
+    "f_0043bac3",
+    "f_0043bced",
+    "f_0043bd5f",
+    "f_0043bd78",
+    "f_0043bed7",
+    "f_0043befa",
+    "f_0043bf81",
+    "f_0043bfe1",
+    "f_0043bffc",
+    "f_0043c036",
+    "f_0043c05b",
+    "f_0043c167",
+    "f_0043c17c",
+    "f_0043c2ba",
+    "f_0043c327",
+    "f_0043c33c",
+    "f_0043c441",
+    "f_0043c450",
+    "f_0043c490",
+    "f_0043c4bf",
+    "f_0043c6ed",
+    "f_0043c73a",
+    "f_0043c7eb",
+    "f_0043ca71",
+    "f_0043ccc6",
+    "f_0043cce3",
+    "f_0043ccff",
+    "f_0043cd28",
+    "f_0043cd6c",
+    "f_0043cd92",
+    "f_0043cdcc",
+    "f_0043ce5d",
+    "f_0043cec6",
+    "f_0043cef6",
+    "f_0043cf2d",
+    "f_0043cffc",
+    "f_0043d066",
+    "f_0043d0c8",
+    "f_0043d152",
+    "f_0043d1a6",
+    "f_0043d1fd",
+    "f_0043d3cc",
+    "f_0043d6b1",
+    "f_0043d6e3",
+    "f_0043d846",
+    "f_0043d9e8",
+    "f_0043dab1",
+    "f_0043dad7",
+    "f_0043dcfd",
+    "f_0043deeb",
+    "f_0043df40",
+    "f_0043e007",
+    "f_0043e1dd",
+    "f_0043e1e8",
+    "f_0043e1f4",
+    "f_0043e211",
+    "f_0043e38f"
+   ],
+   "date": "2026-11-11",
+   "moved_to": "src/core/mcp.c"
+  },
+  {
+   "tu": "src/_unknown/tu_004425d4.c",
+   "functions": [
+    "MovementPopup::$ct",
+    "MovementPopup::$dt",
+    "MovementPopup::Invalidate",
+    "MovementPopup::OpenMove",
+    "SimPanelDraw"
+   ],
+   "date": "2026-11-11",
+   "moved_to": "src/pop/pmove.c"
+  },
+  {
+   "tu": "src/_unknown/tu_0044310c.c",
+   "functions": [
+    "SimActionsDraw",
+    "SimMapGadget::$dt",
+    "W?$Wda018$:MenuImageButton$n(ui)pnv",
+    "W?$Wda018$:WeaponControl$n(ui)pnv",
+    "W?.fn_init$n()v",
+    "W?.tdctor$:MenuImageButton$n()rn$1$",
+    "WeaponControl::$ct",
+    "WeaponControl::$dt",
+    "WeaponControl::Draw",
+    "WeaponControl::Event",
+    "WeaponControl::Reset",
+    "WeaponControl::SetText",
+    "WeaponPopup::$ct",
+    "WeaponPopup::Close",
+    "WeaponPopup::Invalidate",
+    "WeaponPopup::Process",
+    "WeaponPopup::SetMode"
+   ],
+   "date": "2026-11-11",
+   "moved_to": "src/pop/pweapon.c"
+  },
+  {
+   "tu": "src/pop/psystem.c",
+   "functions": [
+    "PopNodeReset"
+   ],
+   "date": "2026-11-11",
+   "moved_to": "src/pop/pweapon.c"
+  },
+  {
+   "tu": "src/pop/psystem.c",
+   "functions": [
+    "data:_DATA"
+   ],
+   "date": "2026-11-11"
+  },
+  {
+   "tu": "src/_unknown/tu_0044455c.c",
+   "functions": [
+    "ShieldControl::$ct",
+    "ShieldControl::$dt",
+    "ShieldControl::Commit",
+    "ShieldControl::Draw",
+    "ShieldControl::IsPressed",
+    "ShieldControl::Reset",
+    "ShieldPopup::$ct",
+    "ShieldPopup::$dt",
+    "ShieldPopup::AllowsWeapons",
+    "ShieldPopup::Commit",
+    "ShieldPopup::OpenShield",
+    "ShieldPopup::Process",
+    "ShieldPopup::SetAim",
+    "SimInventoryClose",
+    "SimInventoryDraw",
+    "W?.fn_init$n()v"
+   ],
+   "date": "2026-11-11",
+   "moved_to": "src/pop/pshield.c"
+  },
+  {
+   "tu": "src/_unknown/tu_004481c0.c",
+   "functions": [
+    "ReportClose",
+    "ReportDirty",
+    "ReportGlobalInput",
+    "ReportInput",
+    "ReportMission",
+    "ReportOpen",
+    "ReportScreen::$ct",
+    "ReportScreen::$dt",
+    "ReportScreen::SetOther",
+    "ReportSelect",
+    "SimPilotDraw",
+    "W?.fn_init$n()v"
+   ],
+   "date": "2026-11-11",
+   "moved_to": "src/pop/preport.c"
+  },
+  {
+   "tu": "src/_unknown/tu_00449148.c",
+   "functions": [
+    "DeathSummary"
+   ],
+   "date": "2026-11-11",
+   "moved_to": "src/pop/pturn.c"
+  },
+  {
+   "tu": "src/_unknown/tu_0044950c.c",
+   "functions": [
+    "PopInfo::$ct",
+    "PopInfo::$dt",
+    "PopInfoClose",
+    "PopInfoDraw",
+    "PopInfoEvent",
+    "PopInfoOpen",
+    "PopInfoSelect",
+    "PopInfoUpdate",
+    "W?.fn_init$n()v"
+   ],
+   "date": "2026-11-11",
+   "moved_to": "src/pop/pinfo.c"
+  },
+  {
+   "tu": "src/_unknown/tu_00449bb4.c",
+   "functions": [
+    "PopWorld::$ct",
+    "PopWorld::$dt",
+    "PopWorldClose",
+    "PopWorldDrawText",
+    "PopWorldEvent",
+    "PopWorldOpen",
+    "PopWorldUpdate",
+    "W?.fn_init$n()v"
+   ],
+   "date": "2026-11-11",
+   "moved_to": "src/pop/pworld.c"
+  },
+  {
+   "tu": "src/_unknown/tu_00425978.c",
+   "functions": [
+    "GuiScreen::$ct",
+    "GuiScreen::Activate",
+    "GuiScreen::HitTest",
+    "GuiScreen::Invalidate",
+    "GuiScreen::LoadLayout",
+    "GuiScreen::Open",
+    "GuiScreen::Reset",
+    "GuiScreen::ResetControls",
+    "GuiScreen::SetLayout",
+    "GuiScreen::SetStrings",
+    "GuiScreen::Update"
+   ],
+   "date": "2026-11-11",
+   "moved_to": "src/gui/alert.c"
+  },
+  {
+   "tu": "src/_unknown/tu_00429a44.c",
+   "functions": [
+    "UpgradeArrow::$ct",
+    "UpgradeArrow::$dt",
+    "UpgradeArrow::Draw",
+    "UpgradeArrow::Event",
+    "UpgradeBar::$ct",
+    "UpgradeBar::$dt",
+    "UpgradeBar::Draw",
+    "UpgradeBar::Event",
+    "UpgradeRange::$ct",
+    "UpgradeRange::Resize",
+    "UpgradeRange::Set"
+   ],
+   "date": "2026-11-11",
+   "moved_to": "src/gui/slider.c"
+  },
+  {
+   "tu": "src/_unknown/tu_0042a0e0.c",
+   "functions": [
+    "GuiFadeIn",
+    "GuiFadeOut",
+    "GuiFadeOutRange"
+   ],
+   "date": "2026-11-11",
+   "moved_to": "src/gui/palfade.c"
+  },
+  {
+   "tu": "src/_unknown/tu_0042a5fc.c",
+   "functions": [
+    "RichTextCommand"
+   ],
+   "date": "2026-11-11",
+   "moved_to": "src/gui/wrapper.c"
+  },
+  {
+   "tu": "src/_unknown/tu_0042e210.c",
+   "functions": [
+    "MapContainsPoint",
+    "MapGetView",
+    "MapIdentity",
+    "MapInitialize",
+    "MapNearestAt",
+    "MapNearestVisit",
+    "MapPickAt",
+    "MapPickVisit",
+    "MapPointScale",
+    "MapPointToScreen",
+    "MapSetVisibility",
+    "MapStaticInitialize",
+    "PrepareDeathMap"
+   ],
+   "date": "2026-11-11",
+   "moved_to": "src/terr/trender.c"
+  },
+  {
+   "tu": "src/_unknown/tu_0042eca0.c",
+   "functions": [
+    "W?.fn_init$n()v"
+   ],
+   "date": "2026-11-11",
+   "moved_to": "src/terr/tlos.c"
+  },
+  {
+   "tu": "src/_unknown/tu_00407204.c",
+   "functions": [
+    "data:_DATA"
+   ],
+   "date": "2026-11-11"
+  },
+  {
+   "tu": "src/_unknown/tu_004087e0.c",
+   "functions": [
+    "GuiScreen::ResetInput"
+   ],
+   "date": "2026-11-11",
+   "moved_to": "src/_unknown/tu_00407204.c"
+  },
+  {
+   "tu": "src/_unknown/tu_004087e0.c",
+   "functions": [
+    "data:_DATA"
+   ],
+   "date": "2026-11-11"
+  },
+  {
+   "tu": "src/_unknown/tu_00409408.c",
+   "functions": [
+    "PromoScreen::$ct",
+    "PromoScreen::$dt",
+    "PromoScreen::Close",
+    "PromoScreen::DrawText",
+    "PromoScreen::Finish",
+    "PromoScreen::NextPage",
+    "PromoScreen::Open",
+    "PromoScreen::Play",
+    "PromoScreen::PlayOnce",
+    "PromoScreen::Render",
+    "PromoScreen::SetLayout",
+    "PromoScreen::SetPage",
+    "PromoScreen::Update",
+    "W?.fn_init$n()v"
+   ],
+   "date": "2026-11-11",
+   "moved_to": "src/shell/promosh.c"
+  },
+  {
+   "tu": "src/_unknown/tu_0040d2b0.c",
+   "functions": [
+    "data:_DATA"
+   ],
+   "date": "2026-11-11"
+  },
+  {
+   "tu": "src/_unknown/tu_0040e7a0.c",
+   "functions": [
+    "BiodermStatsAction",
+    "BiodermStatsApply",
+    "BiodermStatsClose",
+    "BiodermStatsExit",
+    "BiodermStatsScreen::$ct",
+    "BiodermStatsScreen::$dt",
+    "BiodermStatsScreen::Close",
+    "BiodermStatsScreen::DrawMessage",
+    "BiodermStatsScreen::Message",
+    "BiodermStatsScreen::Open",
+    "BiodermStatsScreen::Room",
+    "BiodermStatsScreen::SetControls",
+    "BiodermStatsScreen::UpdateCredits",
+    "BiodermStatsScreen::UpdateText",
+    "BiodermStatsSelect",
+    "ShellBiodermStatsRender",
+    "W?$Wda0221$:MenuButton$n(ui)pnv",
+    "W?.fn_init$n()v"
+   ],
+   "date": "2026-11-11",
+   "moved_to": "src/shell/vrmenu.c"
+  },
+  {
+   "tu": "src/_unknown/tu_0040f4e4.c",
+   "functions": [
+    "MedlabScreen::$ct",
+    "MedlabScreen::$dt",
+    "MedlabScreen::Apply",
+    "MedlabScreen::Cancel",
+    "MedlabScreen::Close",
+    "MedlabScreen::Dismiss",
+    "MedlabScreen::Invalidate",
+    "MedlabScreen::Open",
+    "MedlabScreen::Room",
+    "MedlabScreen::TotalCost",
+    "MedlabScreen::Treat",
+    "MedlabScreen::TreatAll",
+    "MedlabScreen::Update",
+    "MedlabScreen::UpdateCredits",
+    "MedlabScreen::UpdateText",
+    "ShellBiodermSkillsRender",
+    "W?$Wda0214$:MenuButton$n(ui)pnv",
+    "W?.fn_init$n()v",
+    "W?.tdctor$:MenuButton$n()rn$1$"
+   ],
+   "date": "2026-11-11",
+   "moved_to": "src/shell/medlab.c"
+  },
+  {
+   "tu": "src/_unknown/tu_0040ffb8.c",
+   "functions": [
+    "PilotBriefAcceptProfile",
+    "PilotBriefDoneRoom",
+    "PilotBriefLoadResources",
+    "PilotBriefModule::InstallMissionProfile",
+    "PilotBriefOpenStandby",
+    "PilotBriefRefreshSelection",
+    "PilotBriefResetIfOpen",
+    "PilotBriefResetProfileMode",
+    "PilotBriefRestoreProfile",
+    "PilotBriefReviewKey",
+    "PilotBriefSaveOrRestore",
+    "PilotBriefStaticInit",
+    "PilotBriefSwitchProfileMode",
+    "ShellBiodermDetailsRender"
+   ],
+   "date": "2026-11-11",
+   "moved_to": "src/shell/standby.c"
+  },
+  {
+   "tu": "src/shell/pilotgui.c",
+   "functions": [
+    "PilotGuiBriefReset"
+   ],
+   "date": "2026-11-11",
+   "moved_to": "src/shell/standby.c"
+  },
+  {
+   "tu": "src/shell/pilotgui.c",
+   "functions": [
+    "data:_DATA"
    ],
    "date": "2026-11-11"
   }

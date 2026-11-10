@@ -18,7 +18,7 @@ extern "C" void BriefModulePlace(void *,void *,int,int);
 #pragma aux quick_selection_ctor "BriefModuleInitC"
 #pragma aux quick_bar_ctor "BriefModuleInitD"
 #pragma aux quick_arrow_ctor "BriefModulePlace"
-struct QuickSelection {U32 current; int maximum; __pragma("quick_selection_ctor") QuickSelection(unsigned,int=0); U32 Get(){return current&255;}};
+struct QuickSelection {U32 current; int maximum; __pragma("quick_selection_ctor") QuickSelection(int,int=0); U32 Get(){return current&255;}};
 struct UpgradeBar:GuiControl {char rest[8]; __pragma("quick_bar_ctor") UpgradeBar(QuickSelection *,int=0); virtual ~UpgradeBar();};
 struct UpgradeArrow:GuiControl {char rest[12]; __pragma("quick_arrow_ctor") UpgradeArrow(QuickSelection *,int,int); virtual ~UpgradeArrow();};
 extern GuiControl *quickControls[22];
@@ -37,6 +37,7 @@ QuickSelection quickChoice1(23); UpgradeBar quickBar1(&quickChoice1); UpgradeArr
 QuickSelection quickChoice2(14); UpgradeBar quickBar2(&quickChoice2); UpgradeArrow quickNext2(&quickChoice2,1,54),quickPrev2(&quickChoice2,-1,51);
 QuickSelection quickChoice3(3); UpgradeBar quickBar3(&quickChoice3); UpgradeArrow quickNext3(&quickChoice3,1,54),quickPrev3(&quickChoice3,-1,51);
 QuickStartScreen g4b7904;
+static char qstartSourceFile[]=__FILE__;
 GuiControl *quickControls[22]={
  (GuiControl *)&quickBack,(GuiControl *)&quickRandom,(GuiControl *)&quickLaunch,
  (GuiControl *)&quickNumber1,(GuiControl *)&quickNumber2,(GuiControl *)&quickNumber3,(GuiControl *)&quickNumber4,
@@ -153,6 +154,7 @@ void ShellBriefingAbort(Scene *s) {
  s->Invalidate();BriefBlit(&g513888,1,0,200,150,200,150,250,150);
  for(int i=0;i<4;i++){s->changed[i]=0;s->previous[i]=99;}
 }
+
 
 
 

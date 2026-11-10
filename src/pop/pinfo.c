@@ -110,3 +110,6 @@ void PopInfoDraw(PopInfo *p) {
 void PopInfoSelect(PopInfo *p,int n) { p->dirty=1; p->index=n; if(SimTypeUnavailable(p->index)) p->index=0; }
 int PopInfoEvent(SimGame *) { if(popInfo.IsActive()) { long n=popInfo.HitTest(&g4bb78c); if(n>=0) targetLimits=n+900; return popInfo.Update(); } return 0; }
 PopInfo::~PopInfo() { input=0; }
+
+static char pinfoSourceFile[] = __FILE__;
+GuiControl *popInfoControls[] = {(GuiControl *)&popInfoNumber,(GuiControl *)&popInfoFrame,(GuiControl *)&popInfoTextFrame};

@@ -1,8 +1,8 @@
-/* Unnamed multiplayer base screen. Layout and names are provisional. */
+/* Multiplayer host base screen. Layout and names are provisional. */
 typedef unsigned long U32;
 struct InputReq; struct StrPool { char *GetString(long, int = 1); };
 struct GuiPoint { long x,y; }; struct GuiControl; struct Timer; void TimerSet(Timer *, U32); struct Timer { U32 start,end,duration; Timer(U32 n) { TimerSet(this,n); } };
-struct GuiScreen { char layout[0x10]; InputReq *input; char rest[0x38]; GuiScreen(GuiControl **,unsigned,U32); ~GuiScreen(); void Invalidate(); int Update(); void Draw(); long HitTest(const GuiPoint *); void LoadLayout(long); void Open(InputReq *, StrPool *, long, int); int IsActive() { return input != 0; } };
+struct GuiScreen { char layout[0x10]; InputReq *input; char rest[0x38]; GuiScreen(GuiControl **,unsigned,U32); ~GuiScreen(){input=0;} void Invalidate(); int Update(); void Draw(); long HitTest(const GuiPoint *); void LoadLayout(long); void Open(InputReq *, StrPool *, long, int); int IsActive() { return input != 0; } };
 struct MenuButton { char prefix[20]; U32 flags; void SetVisibility(U32 state) { flags = (flags & 0xff1fffffUL) + (state << 21); } char rest[16]; MenuButton(const char *,U32); ~MenuButton(); };
 struct MenuImage { char bytes[12]; };
 struct Surface; struct Flic { char bytes[0x90]; Flic(); ~Flic(); int CurrentFrame() const { return *(const int *)(bytes + 0x44); } U32 Update(Surface *); void Close(); int Open(long,int = 100,int = 0); void SetLoops(long n) { *(long *)(bytes+0x4c)=n; } }; typedef Flic BriefPage;
@@ -72,10 +72,11 @@ extern GuiRect gMenuClip;
 extern ViewRect viewportClipLeft,gBriefDrawSource;
 void GuiResetClip(void *);
 extern GuiPoint g4bb78c;
-extern int multiplayerHover;
+int multiplayerHover=-999;
+static char mphbaseSourceFile[]=__FILE__;
 void MultiplayerUpdateValues(MultiplayerBase *);
 
-GuiScreen::~GuiScreen() { input = 0; }
+
 
 extern "C" void BriefModuleInitC(void *,int,int);
 extern "C" void BriefModuleInitD(void *,void *,int);
@@ -106,6 +107,39 @@ MenuLabel g4b7f9c(0,-1,1,11,1),g4b7fd0(0,-1,1,11,1),g4b8004(0,-1,1,11,1),g4b8038
 MenuPanel multiplayerPanel;
 MenuNumber g4b82cc(-1,18);
 MultiplayerBase g4b82fc;
+GuiControl *multiplayerControlList[31]={
+ (GuiControl *)&multiplayerPanel,
+ (GuiControl *)&multiplayerButtons[0],
+ (GuiControl *)&multiplayerButtons[1],
+ (GuiControl *)&multiplayerButtons[2],
+ (GuiControl *)&multiplayerButtons[3],
+ (GuiControl *)&multiplayerButtons[4],
+ (GuiControl *)&g4b7d34,
+ (GuiControl *)&g4b7d5c,
+ (GuiControl *)&g4b7d84,
+ (GuiControl *)&g4b7d0c,
+ (GuiControl *)&g4b7ce4,
+ (GuiControl *)&g4b7cbc,
+ (GuiControl *)&g4b7dac,
+ (GuiControl *)&g4b7e04,
+ (GuiControl *)&multiplayerMoneyControl,
+ (GuiControl *)&g4b7e30,
+ (GuiControl *)&g4b7e8c,
+ (GuiControl *)&multiplayerPlayerControl,
+ (GuiControl *)&g4b7eb8,
+ (GuiControl *)&g4b7ee4,
+ (GuiControl *)&g4b7f14,
+ (GuiControl *)&multiplayerHelpRegion,
+ (GuiControl *)&g4b7f6c,
+ (GuiControl *)&g4b7f9c,
+ (GuiControl *)&g4b82cc,
+ (GuiControl *)&g4b8038,
+ (GuiControl *)&g4b806c,
+ (GuiControl *)&g4b80a0,
+ (GuiControl *)&g4b80d4,
+ (GuiControl *)&g4b8108,
+ (GuiControl *)&g4b813c
+};
 MultiplayerBase::MultiplayerBase() : GuiScreen(multiplayerControlList,31,0),timerA(0),timerB(0) {}
 void MultiplayerSetMoneyValues(MultiplayerBase *);
 void MultiplayerWait(MultiplayerBase *);

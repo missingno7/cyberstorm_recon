@@ -52,7 +52,7 @@ public:U32 unused;const char *text;long value;signed char font,color,flash,align
 class GuiScreen:public GuiRect {
 public:
     InputReq *input;byte unknown14[56];
-    GuiScreen(GuiControl **,unsigned,U32);~GuiScreen(){input=0;}
+    GuiScreen(GuiControl **,unsigned,U32);~GuiScreen(){ResetInput();}void ResetInput(){input=0;}
     int IsActive() const{return input!=0;} void LoadLayout(long);void Open(InputReq *,StrPool *,long,int);
     void Invalidate();void ResetControls();long HitTest(const GuiPoint *);int Update();void Draw();
 };
@@ -109,7 +109,7 @@ extern "C" void BriefRender(int,int,int,int,const char *,int,int,int,int *,int *
 struct ViewRect {long left,top,right,bottom;};
 extern ViewRect viewportClipLeft,gBriefDrawSource;
 extern GuiRect gMenuClip;extern void GuiResetClip(void *);
-extern int mainMenuLastHover;
+int mainMenuLastHover = -999;
 #pragma pack(push,1)
 class MainMenuScreen:public GuiScreen {
 public:
@@ -288,3 +288,30 @@ MenuPanel mainPanel;MenuNumber mainNumber;MainMenuScreen g4aebe0;
 
 
 
+
+GuiControl *mainMenuControls[24] = {
+    (GuiControl *)&mainPanel,
+    (GuiControl *)&mainMenuButtons[0],
+    (GuiControl *)&mainMenuButtons[1],
+    (GuiControl *)&mainMenuButtons[2],
+    (GuiControl *)&mainMenuButtons[3],
+    (GuiControl *)&mainMenuButtons[4],
+    (GuiControl *)&mainButton3,
+    (GuiControl *)&mainButton4,
+    (GuiControl *)&mainButton5,
+    (GuiControl *)&mainButton2,
+    (GuiControl *)&mainButton1,
+    (GuiControl *)&mainButton0,
+    (GuiControl *)&mainHelp,
+    (GuiControl *)&mainLabel0,
+    (GuiControl *)&mainLabel1,
+    (GuiControl *)&mainNumber,
+    (GuiControl *)&mainLabel3,
+    (GuiControl *)&mainLabel4,
+    (GuiControl *)&mainLabel5,
+    (GuiControl *)&mainLabel6,
+    (GuiControl *)&mainLabel7,
+    (GuiControl *)&mainLabel8,
+    (GuiControl *)&mainLabel9,
+    (GuiControl *)&mainLabel10
+};

@@ -127,3 +127,14 @@ void BiodermListScreen::Message(const char *text){
 }
 void BiodermListScreen::DrawMessage(const char *text){int x,y;BriefRender(300,190,210,120,text,0,-1,0,&x,&y,0,15);}
 
+
+GuiControl *biodermListControls[8] = {
+    (GuiControl *)&biodermListBuy,
+    (GuiControl *)&biodermListPrevious,
+    (GuiControl *)&biodermListNext,
+    (GuiControl *)&biodermListConfirm,
+    (GuiControl *)&biodermListCredits,
+    (GuiControl *)&biodermListPrice,
+    (GuiControl *)&biodermListPanel,
+    (GuiControl *)&biodermListHelp
+};

@@ -53,7 +53,7 @@ public:U32 unused;const char *text;long value;signed char font,color,flash,align
 class GuiScreen:public GuiRect {
 public:
     InputReq *input;byte unknown14[56];
-    GuiScreen(GuiControl **,unsigned,U32);~GuiScreen(){ResetInput();}void ResetInput(){input=0;}
+    GuiScreen(GuiControl **,unsigned,U32);~GuiScreen(){input=0;}
     int IsActive() const{return input!=0;} void LoadLayout(long);void Open(InputReq *,StrPool *,long,int);
     void Invalidate();void ResetControls();long HitTest(const GuiPoint *);int Update();void Draw();
 };
@@ -106,8 +106,7 @@ extern TopMenuScreen g4afa84;
 extern long topMenuStatus;
 extern const char *topMenuText;
 
-/* Base cleanup is an inline COMDAT before this object's main range.
- * The main initializer begins at 004087ec; ResetInput remains STRICT at 004087e0. */
+/* XI 004087ec starts this object; the preceding cleanup belongs to the main menu. */
 
 
 TopMenuScreen::TopMenuScreen():GuiScreen(topMenuControls,22,0),animation(),counter(){}
@@ -212,3 +211,28 @@ TopMenuScreen g4afa84;
 
 
 
+
+GuiControl *topMenuControls[22] = {
+    (GuiControl *)&topMenuButtons[0],
+    (GuiControl *)&topMenuButtons[1],
+    (GuiControl *)&topMenuButtons[2],
+    (GuiControl *)&topMenuButtons[3],
+    (GuiControl *)&topMenuButtons[4],
+    (GuiControl *)&topMenuButtons[5],
+    (GuiControl *)&topMenuButtons[6],
+    (GuiControl *)&topMenuButtons[7],
+    (GuiControl *)&topMenuButtons[8],
+    (GuiControl *)&topMenuButtons[9],
+    (GuiControl *)&topMenuButtons[10],
+    (GuiControl *)&topMenuButtons[11],
+    (GuiControl *)&topMenuButtons[12],
+    (GuiControl *)&topMenuButtons[13],
+    (GuiControl *)&topMenuButtons[14],
+    (GuiControl *)&topMenuButtons[15],
+    (GuiControl *)&topMenuButtons[16],
+    (GuiControl *)&topMenuButtons[17],
+    (GuiControl *)&topMenuButtons[18],
+    (GuiControl *)&topMenuHelp,
+    (GuiControl *)&topMenuLabel,
+    (GuiControl *)&topMenuPanel
+};

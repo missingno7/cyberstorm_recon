@@ -3,7 +3,7 @@
 #pragma aux pilot_gui_flic_dtor "W?$dt:Flic$n()_";
 #pragma aux pilot_gui_surface_ctor "W?$ct:Surface$n(ul)_";
 #pragma aux pilot_gui_surface_dtor "W?$dt:Surface$n()_";
-extern unsigned char gPilotGuiResourceTemplate;
+int gPilotGuiBarImageIds[4] = {0,32,75,119}; static char pilotguiSourceFile[] = __FILE__; class GuiControl; extern GuiControl *gPilotGuiResourceTemplate[40];
 struct GuiRect { long x, y, width, height; }; struct GuiControlData : GuiRect { unsigned char style[4]; unsigned long attributes, shortcut; }; class GuiControl : public GuiControlData { public:     virtual ~GuiControl();     virtual void Reset(unsigned);     virtual void Draw(unsigned);     virtual int Event(unsigned, unsigned long);     virtual int HitTest(const void *); };
 struct GuiScreen {     char data[0x4c];     __pragma("pilot_gui_screen_ctor") GuiScreen(GuiControl *, unsigned long, unsigned long);     int IsActive() {return *(long *)((char *)this+0x10)!=0;}     ~GuiScreen() { *(long *)((char *)this + 0x10) = 0; } };
 struct Flic {     char data[0x90];     __pragma("pilot_gui_flic_ctor") Flic();     __pragma("pilot_gui_flic_dtor") ~Flic(); };
@@ -61,20 +61,20 @@ extern int gPilotGuiBarImageIds[];
 extern int g4affc2;
 
 extern "C" void BriefModuleOpen(void *, int, unsigned long, int);
-extern void PilotMenuHelpRegionCtor(void *);
-#pragma aux PilotMenuHelpRegionCtor "W?$ct:MenuHelpRegion$n()_";
-extern void PilotMenuLabelCtor(void *, int, int, int, int, int);
-#pragma aux PilotMenuLabelCtor "W?$ct:MenuLabel$n(pnxalucli)_";
-extern void PilotMenuPrefixButtonCtor(void *, int, int, int, int);
-#pragma aux PilotMenuPrefixButtonCtor "W?$ct:MenuPrefixButton$n(pnxaccc)_";
-extern void PilotGuiCtorArray(void *, int, void *);
-#pragma aux PilotGuiCtorArray "W?PopConstructorArray$n(pnvipnv)v";
-extern void PilotGuiModuleConstructor(void *);
-#pragma aux PilotGuiModuleConstructor "W?$ct:PilotGuiModule$n()_";
-void PilotGuiBriefReset(char *p)
-{
-    *(long *)(p + 0x10) = 0;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 PilotGuiModule::PilotGuiModule()
     : GuiScreen((GuiControl *)&gPilotGuiResourceTemplate, 0x28, 0), first_flic(), second_flic(), palette_surface(0)
 {
@@ -134,7 +134,7 @@ void PilotGuiOpen(void *p, void *input)
 
 
 
-    if(!made) AssertFail(__FILE__,__LINE__,(const char *)made);
+    if(!made) AssertFail(pilotguiSourceFile,__LINE__,(const char *)made);
     SurfaceGetFrame((Surface *)((char *)p+0x17e),(char *)p+0x18e);
     *(void **)((char *)p+0x5ec)=gResMgr.Load((long)"BGMPALS.PLX");
     *(long *)((char *)p+0x6f0)=-1;
@@ -697,3 +697,46 @@ void PilotGuiSetProfileModified(void *p)
 
 
 
+
+GuiControl *gPilotGuiResourceTemplate[40] = {
+    (GuiControl *)&gPilotGuiOpenB,
+    (GuiControl *)&gPilotGuiOpenA,
+    (GuiControl *)&gPilotGuiLabel01,
+    (GuiControl *)&gPilotGuiLabel02,
+    (GuiControl *)&gPilotGuiLabel03,
+    (GuiControl *)&gPilotGuiLabel04,
+    (GuiControl *)&gPilotGuiLabel05,
+    (GuiControl *)&gPilotGuiLabel06,
+    (GuiControl *)&gPilotGuiLabel07,
+    (GuiControl *)&gPilotGuiLabel08,
+    (GuiControl *)&gPilotGuiLabel09,
+    (GuiControl *)&gPilotGuiLabel10,
+    (GuiControl *)&gPilotGuiLabel11,
+    (GuiControl *)&gPilotGuiLabel12,
+    (GuiControl *)&gPilotGuiLabel13,
+    (GuiControl *)&gPilotGuiLabel14,
+    (GuiControl *)&gPilotGuiLabel15,
+    (GuiControl *)&gPilotGuiLabel16,
+    (GuiControl *)&gPilotGuiLabel17,
+    (GuiControl *)&gPilotGuiLabel18,
+    (GuiControl *)&gPilotGuiLabel19,
+    (GuiControl *)&gPilotGuiLabelArray[0],
+    (GuiControl *)&gPilotGuiLabelArray[1],
+    (GuiControl *)&gPilotGuiLabelArray[2],
+    (GuiControl *)&gPilotGuiLabelArray[3],
+    (GuiControl *)&gPilotGuiLabelArray[4],
+    (GuiControl *)&gPilotGuiLabelArray[5],
+    (GuiControl *)&gPilotGuiLabelArray[6],
+    (GuiControl *)&gPilotGuiLabelArray[7],
+    (GuiControl *)&gPilotGuiLabel22,
+    (GuiControl *)&gPilotGuiLabel20,
+    (GuiControl *)&gPilotGuiLabel21,
+    (GuiControl *)&gPilotGuiLabel23,
+    (GuiControl *)&gPilotGuiLabel24,
+    (GuiControl *)&gPilotGuiLabel25,
+    (GuiControl *)&gPilotGuiLabel26,
+    (GuiControl *)&gPilotGuiLabel27,
+    (GuiControl *)&gPilotGuiLabel28,
+    (GuiControl *)&gPilotGuiLabel29,
+    (GuiControl *)&gPilotGuiHelpRegion
+};

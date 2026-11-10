@@ -1,3 +1,4 @@
+static char sliderSourceFile[] = __FILE__;
 /* Shared range widgets; legacy C bindings BriefModuleInitC/D, BriefSetMode,
  * BriefAdjust and BriefModulePlace are reconstructed as native C++ members. */
 typedef unsigned long U32;

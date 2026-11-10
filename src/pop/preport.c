@@ -239,7 +239,9 @@ extern void GuiResetClip(void *);
 struct Font;
 extern Font reportFont,g511dc0,gDefaultFont;
 extern U32 reportTextColor,reportPlayerTextColor[],reportTextMap[],deathTextColor,deathTextMap[],gMenuColorMap[],gMenuTextColor,*gMenuTextMap,gMenuTextMode;
-extern long reportBarY[3],reportHeadingY,reportNameY,reportValueY1,reportValueY2,reportErrorY;
+long reportBarY[3] = {0,22,44};
+long reportHeadingY=8,reportNameY=18,reportValueY1=38,reportValueY2=53,reportErrorY=44;
+static char preportSourceFile[] = __FILE__;
 void MenuDrawText(Font *,long,long,const char *);
 void MenuDrawTextAt(Font *,long,long,int,const char *);
 extern "C" char *BriefFormat(const char *,...);
@@ -470,3 +472,5 @@ void ReportGlobalInput() {
         simPilot.Update();
     }
 }
+
+GuiControl *reportControls[] = {&reportNumber,&reportUnit,&reportPilot,&reportHeading,&reportDiagram,&reportStats};

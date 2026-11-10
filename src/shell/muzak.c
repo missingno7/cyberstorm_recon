@@ -87,3 +87,4 @@ void ShellMultiplayerShutdown(void *p) {
 }
 
 
+static char muzakSourceFile[]=__FILE__;

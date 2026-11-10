@@ -1197,3 +1197,10 @@ PromoScreen g4afbfc;
 
 
 
+
+static char promoSourceFile[] = __FILE__;
+GuiControl *promoControls[3] = {
+    (GuiControl *)&promoNumber,
+    (GuiControl *)&promoHelp,
+    (GuiControl *)&promoButton
+};

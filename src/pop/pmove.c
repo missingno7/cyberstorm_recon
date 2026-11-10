@@ -142,6 +142,7 @@ extern StrPool targetBriefResource;
 extern char fallbackName[];
 struct ModeSystem;
 extern ModeSystem modeCheckName;
+static char pmoveSourceFile[] = __FILE__;
 extern GuiControl *moveControls[];
 class MovementPopup:public GuiScreen {
     public:int changed;
@@ -364,3 +365,5 @@ void MovementCommand(SimGame *s) {
 MovementPopup::~MovementPopup() {
     input=0;
 }
+
+GuiControl *moveControls[] = {&moveImageA,&moveImageB,&moveImageC,&moveImageD,&moveJump,&moveLand,&moveButton2,&moveButton3,&moveButton4};

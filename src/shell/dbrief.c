@@ -1,4 +1,4 @@
-/* Mission debriefing screen. No embedded source-path evidence. */
+/* Mission debriefing screen (shell\dbrief.c). */
 typedef unsigned long U32;typedef unsigned char byte;
 struct GuiControl;struct InputReq;struct StrPool;struct ProfileManager;
 struct ViewRect{long left,top,right,bottom;};
@@ -16,7 +16,10 @@ class MissionDebrief:public GuiScreen{public:
 extern GuiControl *debriefControls[5];extern StrPool gShellStrings;extern ProfileManager profileManager;
 extern ViewRect viewportClipLeft,gBriefDrawSource;extern Palette gShellBackground;
 extern long g5138ac,g5138b0;extern char g513888,g511948;extern int g4bb78c;
-extern long debriefResult;extern long debriefTiles[];extern char debriefTextStyle;
+extern long debriefResult;long debriefTiles[]={-1,1,1,-1,1,1,2,2,0,0};
+struct DebriefTextStyle {long flags,spacing,low,middle,high;};
+DebriefTextStyle debriefTextStyle={0,10,80,150,230};
+static char dbriefSourceFile[]=__FILE__;
 extern int ProfileValue(ProfileManager *);
 extern "C" void BriefWaitA(int);extern "C" void BriefWaitB(int);extern "C" void BriefCloseAudio();extern "C" void BriefCloseWait();
 extern "C" void BriefCloseScreen(char *);extern "C" int BriefGetHandle(void *,void *);extern "C" void BriefStateSet(void *);
@@ -40,6 +43,7 @@ class UpgradeArrow{public:char data[44];__pragma("debrief_arrow_constructor") Up
 MenuButton debriefButton(0,0);MenuHelpRegion debriefHelp;UpgradeRange debriefRange(50,0);UpgradeBar debriefBar(&debriefRange,0);
 UpgradeArrow debriefNext(&debriefRange,20,48),debriefPrevious(&debriefRange,-20,45);
 MissionDebrief g4b3598;
+GuiControl *debriefControls[5]={(GuiControl *)&debriefButton,(GuiControl *)&debriefPrevious,(GuiControl *)&debriefBar,(GuiControl *)&debriefNext,(GuiControl *)&debriefHelp};
 MissionDebrief::MissionDebrief():GuiScreen(debriefControls,5,0),timer(0),animation(){}
 extern "C" void ShellMissionBegin(MissionDebrief *screen,InputReq *input){
  if(screen->IsActive())return;

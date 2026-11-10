@@ -1,4 +1,5 @@
-/* 00425978..004260c4. No original source-path/class-name string survives here.
+static char alertSourceFile[] = __FILE__;
+/* 00425978..004260c4. Object identified by gui\alert.c in link order; class names are working labels.
  * GuiScreen/GuiControl are shared working names, replacing shell-specific aliases.
  * Layouts and methods follow the common control-list, input, and drawing callers. */
 typedef unsigned long U32;
