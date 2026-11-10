@@ -53,6 +53,12 @@ You reconstruct C++ source that Watcom 10.6 compiles to the exact bytes of `CSTO
 - Statement order is visible in store order; operand order in `a < b` vs `b > a` is visible.
 - Struct layouts and global addresses are evidence: use `char pad[N]` only as a temporary, say so.
 
+## Structure work
+Lanes that rename files to their path strings, cut combined files or complete `_DATA` follow
+`docs/structure_brief.md` (census tool, `promote.py --from`, what "done" means for an object).
+`tools/try.py` accepts `--flags "-4s -s ..."` for TUs recorded with explicit flags; `tools/hexdump.py` dumps
+oracle data.
+
 ## Report (final message)
 Module(s), STRICT functions with VA, remaining DIFF functions with the best hypothesis and what was tried,
 implied bindings, new codegen facts (with evidence), and the candidate file path.
