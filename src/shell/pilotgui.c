@@ -59,7 +59,7 @@ extern unsigned char gPilotGuiLabel32;
 extern unsigned char gPilotGuiLabel33;
 extern int gPilotGuiBarImageIds[];
 extern int g4affc2;
-extern "C" void BriefModuleConstruct(void *);
+
 extern "C" void BriefModuleOpen(void *, int, unsigned long, int);
 extern void PilotMenuHelpRegionCtor(void *);
 #pragma aux PilotMenuHelpRegionCtor "W?$ct:MenuHelpRegion$n()_";

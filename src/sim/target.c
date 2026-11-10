@@ -1,4 +1,4 @@
-struct TargetTriple { int x, y, z; };
+static char targetSourceFile[] = __FILE__; struct TargetTriple { int x, y, z; };
 struct TargetRecord { unsigned char bytes[0xb4]; };
 struct TargetBriefObject { char pad[0x10]; int active; int IsActive() const { return active != 0; } };
 inline int TargetSpecialFlag(const unsigned char &x) { return (x & 16) != 0; } inline int TargetInput(int x) { return x; } struct TargetModuleState { int mode; int IsOpen() const { return mode != 0; } };
@@ -13,42 +13,42 @@ extern long gInA4; extern unsigned char targetFlag;
 extern TargetModuleState targetMode;
 extern TargetTriple *targetDefinitionTable;
 extern char targetFallbackName[], targetMenuResource[], targetBriefResource[];
-void TargetEmpty(void);
-typedef unsigned long U32; struct GuiControl;
-// Opaque class storage sizes are evidence from the six constructor destinations.
-class SimMapGadget { public: char objectBytes[0x2c]; SimMapGadget(U32,long,long,U32); ~SimMapGadget(); };
-#pragma aux target_image_constructor "W?$ct:SimImageGadget$n(llul)_";
-class PilotImageButton { public: char objectBytes[0x2c]; __pragma("target_image_constructor") PilotImageButton(long,long,U32); ~PilotImageButton(); };
-void TargetLoadResource(void *resource);
-class TargetPopup { public: char objectBytes[0x54]; TargetPopup() { TargetLoadResource(this); } ~TargetPopup(); };
-SimMapGadget targetPrompt(13,1,0,0);
-PilotImageButton targetPrompt1(133,500,0),targetPrompt2(136,500,0),targetPrompt3(139,500,0),targetPrompt4(142,500,0);
-TargetPopup targetPrompt5;
-void TargetLoadResource(void *resource) { PopLoadResource(resource,(void **)&targetSavedObject,5,0); }
-void TargetMapAlert(void *object, int callback)
-{
-    if (!((TargetBriefObject *)object)->IsActive()) { BriefObjectOpen(object, "MAPALERT.BOX"); BriefObjectLoadResource(object, callback, targetBriefResource, 0xc9, 0); }
-}
-void TargetClearActive(void *object) { if (((TargetBriefObject *)object)->IsActive()) *(int *)((char *)object + 0x10) = 0; }
-void TargetClose(void *object) { if (((TargetBriefObject *)object)->IsActive()) { int handle = BriefGetHandle(object, &targetSharedState); if (handle >= 0) targetLimits = handle + 100; BriefStateSet(object); } }
-void TargetUpdate(void *object) { if (((TargetBriefObject *)object)->IsActive()) BriefRenderUpdate(object); }
-void TargetHandleEvent(void *object)
-{
-    int state; if (targetMode.IsOpen()) { int handle = BriefGetHandle(&targetPrompt5, &targetSharedState); if (handle >= 0) targetLimits = handle + 100; state = BriefStateSet(&targetPrompt5); } else state = 0;
-    if (--state < 0) return;
-    switch (state) {
-    case 0:
-        if (!TargetSpecialFlag(targetFlag)) { int mode = 0xb; if (TargetInput(gInA4) != 0) mode = 6; else if (TargetInput(gInA0) != 0) mode = 7; SimSetCursor(mode, 0); targetLimits = mode + 0xf; return; }
-        { int target = MapPickAt((void *)&gFastTransform, &targetSharedState); if (target == 0) target = MapNearestAt((void *)&gFastTransform, &targetSharedState); SimHoverActor(object, target, 0xb); return; }
-    case 1: SimSetMode(object, 1); LogicCallMode(9, (void *)0); return;
-    case 2: SimSetMode(object, -1); LogicCallMode(9, (void *)0); return;
-    case 3: SimSetView(object, -1); return;
-    case 4: SimSetView(object, 1); return;
-    default: return;
-    }
-}
-TargetPopup::~TargetPopup() { *(int *)(objectBytes+0x10)=0; }
-void TargetEmpty(void) { }
+// sim\mapalert.c (the alert popup and its static gadgets) is the preceding object: src/sim/mapalert.c.
+// The object starts with an empty static initializer (0045a910, XI record 004a6c84): a global whose class has an
+// empty inline constructor. Which global is unknown; only the initializer is evidence.
+struct TargetPoint { long x, y; TargetPoint() {} };
+TargetPoint targetStaticPoint;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 int TargetFillRecord(void *unused, TargetRecord *record, int index)
 {
     if (index == 0) return 0;
@@ -79,14 +79,14 @@ void TargetInitializeRecord(void *unused, register TargetRecord *record,
     if (type != 0) { TargetObjectInit(targetFallbackName, &record->bytes[0xc], type); BestLocSetData(targetFallbackName, &record->bytes[4], (void *)type); TargetInitAt(targetFallbackName, &record->bytes[0x38], type, 0); *(TargetTriple *)&record->bytes[0x2c] = targetDefinitionTable[type]; }
     if (*(int *)&record->bytes[0x44] == 0 || *(int *)&record->bytes[0] == 0)
     // Original assertion source-line padding.
-        AssertFail("sim\\target.c", 0x52, 0);
+        AssertFail(targetSourceFile, __LINE__, 0);
     /* Source line spacing before the second original assertion. */
     if (destination < 0) { int opposite = -destination;
         if (opposite > 0) { int stateObject = CreateState(opposite); if (stateObject != 0) { TargetRecord *other = (TargetRecord *)&record->bytes[0x54];
             *(int *)&other->bytes[0x48] = opposite; *(int *)&other->bytes[0x44] = stateObject; *(int *)&other->bytes[0x4c] = *(int *)(stateObject + 0x46); *(int *)&other->bytes[0] = *(int *)(stateObject + 0x42); *(int *)&other->bytes[0x50] = GridClamp(*(int *)&other->bytes[0x4c]); } }
         int otherType = *(int *)&record->bytes[0x54]; if (otherType != 0) { TargetObjectInit(targetFallbackName, &record->bytes[0x60], otherType); BestLocSetData(targetFallbackName, &record->bytes[0x58], (void *)otherType); TargetInitAt(targetFallbackName, &record->bytes[0x8c], otherType, 0); *(TargetTriple *)&record->bytes[0x80] = targetDefinitionTable[otherType]; }
         if (*(int *)&record->bytes[0x98] != 0 && *(int *)&record->bytes[0x54] == 0)
-            AssertFail("sim\\target.c", 0x59, 0);
+            AssertFail(targetSourceFile, __LINE__, 0);
     } else {
         *(int *)&record->bytes[0x54] = destination;
         TargetObjectInit(targetFallbackName, &record->bytes[0x60], destination);

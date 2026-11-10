@@ -551,8 +551,13 @@
      "mangled": "W?FogWrite$n(pn$FogBuffer$$pnv)i"
     }
    },
-   "data": {},
-   "accepted": "2026-11-09"
+   "data": {
+    "_DATA": {
+     "va": "004905ec",
+     "size": 12
+    }
+   },
+   "accepted": "2026-11-11"
   },
   "src/terr/tfast.c": {
    "as": "terr\\tfast.c",
@@ -601,7 +606,7 @@
      "size": 13
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/logic/lactor.c": {
    "as": "logic\\lactor.c",
@@ -907,9 +912,25 @@
     "_DATA": {
      "va": "0048ea1c",
      "size": 12
+    },
+    "XI": {
+     "va": "004a6b9a",
+     "size": 6
+    },
+    "W?$Wts0in$MenuHelpRegion$$$nx[]uc": {
+     "va": "0048c9c4",
+     "size": 17
+    },
+    "W?$Wts0en$UpgradeBar$$$nx[]uc": {
+     "va": "0048d024",
+     "size": 17
+    },
+    "W?$Wts0gn$UpgradeArrow$$$nx[]uc": {
+     "va": "0048d010",
+     "size": 17
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/shell/hercbay.c": {
    "as": "shell\\hercbay.c",
@@ -1096,44 +1117,9 @@
    "profile": "ot",
    "functions": {
     "W?.fn_init$n()v": {
-     "va": "0045a600",
-     "size": 224,
-     "mangled": "W?.fn_init$n()v"
-    },
-    "TargetLoadResource": {
-     "va": "0045a6e0",
-     "size": 32,
-     "mangled": "W?TargetLoadResource$n(pnv)v"
-    },
-    "TargetMapAlert": {
-     "va": "0045a700",
-     "size": 64,
-     "mangled": "W?TargetMapAlert$n(pnvi)v"
-    },
-    "TargetClearActive": {
-     "va": "0045a740",
-     "size": 32,
-     "mangled": "W?TargetClearActive$n(pnv)v"
-    },
-    "TargetClose": {
-     "va": "0045a760",
-     "size": 64,
-     "mangled": "W?TargetClose$n(pnv)v"
-    },
-    "TargetUpdate": {
-     "va": "0045a7a0",
-     "size": 48,
-     "mangled": "W?TargetUpdate$n(pnv)v"
-    },
-    "TargetHandleEvent": {
-     "va": "0045a7d0",
-     "size": 304,
-     "mangled": "W?TargetHandleEvent$n(pnv)v"
-    },
-    "TargetEmpty": {
      "va": "0045a910",
      "size": 16,
-     "mangled": "W?TargetEmpty$n()v"
+     "mangled": "W?.fn_init$n()v"
     },
     "TargetFillRecord": {
      "va": "0045a920",
@@ -1152,24 +1138,12 @@
     }
    },
    "data": {
-    "CONST2": {
-     "va": "0048e020",
-     "size": 52
-    },
-    "_DATA": {
-     "va": "004a256c",
-     "size": 12
-    },
     "XI": {
-     "va": "004a6c7e",
+     "va": "004a6c84",
      "size": 6
-    },
-    "W?$Wts0kn$PilotImageButton$$$nx[]uc": {
-     "va": "0048cdb8",
-     "size": 17
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/logic/lsys.c": {
    "as": "logic\\lsys.c",
@@ -1455,10 +1429,10 @@
      "size": 112,
      "mangled": "W?ActorFindOwnerNext$n(pn$ActorRecord$$i)pn$1$"
     },
-    "ActorCloseRecord": {
+    "ActorRecord::$ct": {
      "va": "00456c80",
      "size": 20,
-     "mangled": "W?ActorCloseRecord$n(pn$ActorRecord$$)pn$1$"
+     "mangled": "W?$ct:ActorRecord$n()_"
     }
    },
    "data": {
@@ -1479,7 +1453,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/sim/actoradd.c": {
    "as": "sim\\actoradd.c",
@@ -1552,7 +1526,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/_unknown/tu_00425978.c": {
    "as": "_unknown\\tu_00425978.c",
@@ -1616,7 +1590,7 @@
     }
    },
    "data": {},
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/gui/flic.c": {
    "as": "gui\\flic.c",
@@ -3995,10 +3969,10 @@
    "install": "wc106",
    "profile": "plain-oe",
    "functions": {
-    "f_00445238": {
+    "W?.fn_init$n()v": {
      "va": "00445238",
      "size": 81,
-     "mangled": "W?f_00445238$n()v"
+     "mangled": "W?.fn_init$n()v"
     },
     "HercModule::$ct": {
      "va": "00445289",
@@ -4062,6 +4036,18 @@
     }
    },
    "data": {
+    "CONST2": {
+     "va": "0048dcb4",
+     "size": 20
+    },
+    "_DATA": {
+     "va": "004a009c",
+     "size": 12
+    },
+    "XI": {
+     "va": "004a6c30",
+     "size": 6
+    },
     "W?$Wvf0fos:HercControl$$nx[]pn()v": {
      "va": "0048dd04",
      "size": 4
@@ -4083,7 +4069,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/multi/minipkt.c": {
    "as": "multi\\minipkt.c",
@@ -4284,36 +4270,6 @@
    ],
    "tool": "wpp386",
    "functions": {
-    "SimGameDrawPortrait": {
-     "va": "00450eb0",
-     "size": 336,
-     "mangled": "W?SimGameDrawPortrait$n(pn$SimGame$$)v"
-    },
-    "SimGameRefresh": {
-     "va": "00451000",
-     "size": 112,
-     "mangled": "W?SimGameRefresh$n(pn$SimGame$$)v"
-    },
-    "SimGameDrawPanel": {
-     "va": "004511d0",
-     "size": 416,
-     "mangled": "W?SimGameDrawPanel$n(pn$SimGame$$)v"
-    },
-    "SimGameNothing": {
-     "va": "00451b00",
-     "size": 16,
-     "mangled": "W?SimGameNothing$n()v"
-    },
-    "SimGameBlink": {
-     "va": "00451b10",
-     "size": 208,
-     "mangled": "W?SimGameBlink$n()v"
-    },
-    "SimDrawHLine": {
-     "va": "00451be0",
-     "size": 144,
-     "mangled": "W?SimDrawHLine$n(lll)v"
-    },
     "SimGameLoad": {
      "va": "00452340",
      "size": 384,
@@ -4345,179 +4301,13 @@
      "mangled": "W?SimGameEnd$n()v"
     }
    },
-   "data": {},
-   "accepted": "2026-11-09"
-  },
-  "src/_unknown/tu_00452950.c": {
-   "as": "_unknown\\tu_00452950.c",
-   "install": "wc106",
-   "profile": "ot-oe",
-   "functions": {
-    "SimValueGadget::$dt": {
-     "va": "0044d710",
-     "size": 80,
-     "mangled": "W?$dt:SimValueGadget$n()_"
-    },
-    "SimFireAt": {
-     "va": "00452950",
-     "size": 48,
-     "mangled": "W?SimFireAt$n(pn$SimGame$$pnvpnll)i"
-    },
-    "SimInTrapezoid": {
-     "va": "00453310",
-     "size": 128,
-     "mangled": "W?SimInTrapezoid$n(pnx$SimTrapezoid$$pnx$GuiPoint$$)i"
-    },
-    "SimDrawTrapezoid": {
-     "va": "00453390",
-     "size": 160,
-     "mangled": "W?SimDrawTrapezoid$n(pnx$SimTrapezoid$$ll)v"
-    },
-    "SimImagePixel": {
-     "va": "00453430",
-     "size": 64,
-     "mangled": "W?SimImagePixel$n(pnx$MenuImage$$ll)i"
-    },
-    "SimMapGadget::$ct": {
-     "va": "00453470",
-     "size": 64,
-     "mangled": "W?$ct:SimMapGadget$n(ulllul)_"
-    },
-    "SimMapGadget::HitTest": {
-     "va": "004534b0",
-     "size": 208,
-     "mangled": "W?HitTest$:SimMapGadget$n(pnx$GuiPoint$$)i"
-    },
-    "SimMapGadget::Draw": {
-     "va": "00453580",
-     "size": 496,
-     "mangled": "W?Draw$:SimMapGadget$n(ui)v"
-    },
-    "SimMapGadget::Reset": {
-     "va": "00453770",
-     "size": 32,
-     "mangled": "W?Reset$:SimMapGadget$n(ui)v"
-    },
-    "SimMapGadget::Event": {
-     "va": "00453790",
-     "size": 96,
-     "mangled": "W?Event$:SimMapGadget$n(uiul)i"
-    },
-    "SimValueGadget::Event": {
-     "va": "004537f0",
-     "size": 16,
-     "mangled": "W?Event$:SimValueGadget$n(uiul)i"
-    },
-    "SimImageGadget::$ct": {
-     "va": "00453800",
-     "size": 64,
-     "mangled": "W?$ct:SimImageGadget$n(llul)_"
-    },
-    "SimImageGadget::HitTest": {
-     "va": "00453840",
-     "size": 176,
-     "mangled": "W?HitTest$:SimImageGadget$n(pnx$GuiPoint$$)i"
-    },
-    "SimImageGadget::Draw": {
-     "va": "004538f0",
-     "size": 272,
-     "mangled": "W?Draw$:SimImageGadget$n(ui)v"
-    },
-    "SimImageGadget::Reset": {
-     "va": "00453a00",
-     "size": 16,
-     "mangled": "W?Reset$:SimImageGadget$n(ui)v"
-    },
-    "SimImageGadget::Event": {
-     "va": "00453a10",
-     "size": 224,
-     "mangled": "W?Event$:SimImageGadget$n(uiul)i"
-    },
-    "SimValueGadget::$ct": {
-     "va": "00453af0",
-     "size": 48,
-     "mangled": "W?$ct:SimValueGadget$n(ul)_"
-    },
-    "SimValueGadget::Reset": {
-     "va": "00453b20",
-     "size": 32,
-     "mangled": "W?Reset$:SimValueGadget$n(ui)v"
-    },
-    "SimValueGadget::Draw": {
-     "va": "00453b40",
-     "size": 272,
-     "mangled": "W?Draw$:SimValueGadget$n(ui)v"
-    },
-    "SimValueGadget::Value": {
-     "va": "00453c50",
-     "size": 16,
-     "mangled": "W?Value$:SimValueGadget$n()l"
-    },
-    "SimValueGadget::SetValue": {
-     "va": "00453c60",
-     "size": 16,
-     "mangled": "W?SetValue$:SimValueGadget$n(l)v"
-    },
-    "Interpolate": {
-     "va": "00453c70",
-     "size": 64,
-     "mangled": "W?Interpolate$n(iiiii)i"
-    },
-    "SimDamageActor": {
-     "va": "00453cb0",
-     "size": 144,
-     "mangled": "W?SimDamageActor$n(pn$SimGame$$pn$ActorRecord$$i)v"
-    },
-    "ModeEvent": {
-     "va": "00453d40",
-     "size": 256,
-     "mangled": "W?ModeEvent$n(pn$SimGame$$pn$ActorRecord$$ii)v"
-    },
-    "SimActorKilled": {
-     "va": "00453e40",
-     "size": 224,
-     "mangled": "W?SimActorKilled$n(pn$SimGame$$pn$ActorRecord$$ii)v"
-    },
-    "SimMessage": {
-     "va": "00453f20",
-     "size": 48,
-     "mangled": "W?SimMessage$n(pn$SimGame$$pnxa)v"
-    },
-    "SimSoundAtActor": {
-     "va": "00453f50",
-     "size": 80,
-     "mangled": "W?SimSoundAtActor$n(pn$SimSound$$pn$ActorRecord$$)v"
-    },
-    "SimSoundAtTile": {
-     "va": "00453fa0",
-     "size": 48,
-     "mangled": "W?SimSoundAtTile$n(pn$SimSound$$i)v"
-    },
-    "SimSoundSetup": {
-     "va": "00453fd0",
-     "size": 432,
-     "mangled": "W?SimSoundSetup$n(pn$SimSound$$pn$ExploPoint$$)v"
-    }
-   },
    "data": {
-    "W?$Wvf0gos:SimMapGadget$$nx[]pn()v": {
-     "va": "0048dfc4",
-     "size": 20
-    },
-    "W?$Wvf0ios:SimImageGadget$$nx[]pn()v": {
-     "va": "0048dfb0",
-     "size": 20
-    },
-    "W?$Wvf0ios:SimValueGadget$$nx[]pn()v": {
-     "va": "0048df9c",
-     "size": 20
-    },
-    "W?$Wts0in$SimValueGadget$$$nx[]uc": {
-     "va": "0048df88",
-     "size": 17
+    "_DATA": {
+     "va": "004a0368",
+     "size": 14
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/shell/commscrn.c": {
    "as": "shell\\commscrn.c",
@@ -5859,7 +5649,7 @@
     }
    },
    "data": {},
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/_unknown/tu_0043b8e8.c": {
    "as": "_unknown\\tu_0043b8e8.c",
@@ -6219,7 +6009,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/_unknown/tu_00409408.c": {
    "as": "_unknown\\tu_00409408.c",
@@ -7036,9 +6826,13 @@
     "_DATA": {
      "va": "004905f8",
      "size": 12
+    },
+    "XI": {
+     "va": "004a6c06",
+     "size": 6
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/_unknown/tu_004349c0.c": {
    "as": "_unknown\\tu_004349c0.c",
@@ -7074,11 +6868,6 @@
    "install": "wc106",
    "profile": "plain",
    "functions": {
-    "DeathScreenClose": {
-     "va": "00448d74",
-     "size": 12,
-     "mangled": "W?DeathScreenClose$n(pn$DeathScreen$$)v"
-    },
     "DeathMovie": {
      "va": "00448d80",
      "size": 952,
@@ -7108,7 +6897,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/_unknown/tu_0040d2b0.c": {
    "as": "_unknown\\tu_0040d2b0.c",
@@ -7867,7 +7656,7 @@
      "size": 16
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/_unknown/tu_00435dec.c": {
    "as": "_unknown\\tu_00435dec.c",
@@ -8949,7 +8738,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/_unknown/tu_00438374.c": {
    "as": "_unknown\\tu_00438374.c",
@@ -9324,7 +9113,7 @@
     }
    },
    "data": {},
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/_unknown/tu_004425d4.c": {
    "as": "_unknown\\tu_004425d4.c",
@@ -9715,6 +9504,11 @@
      "va": "00448d34",
      "size": 63,
      "mangled": "W?ReportGlobalInput$n()v"
+    },
+    "ReportScreen::$dt": {
+     "va": "00448d74",
+     "size": 12,
+     "mangled": "W?$dt:ReportScreen$n()_"
     }
    },
    "data": {
@@ -9726,12 +9520,20 @@
      "va": "004a00e4",
      "size": 12
     },
+    "XI": {
+     "va": "004a6c3c",
+     "size": 6
+    },
+    "W?$Wts0en$MenuNumber$$$nx[]uc": {
+     "va": "0048c988",
+     "size": 17
+    },
     "W?$Wts0en$MenuSpacer$$$nx[]uc": {
      "va": "0048d964",
      "size": 17
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/_unknown/tu_0041c864.c": {
    "as": "_unknown\\tu_0041c864.c",
@@ -9985,7 +9787,7 @@
     }
    },
    "data": {},
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/_unknown/tu_0042d3d0.c": {
    "as": "_unknown\\tu_0042d3d0.c",
@@ -12830,7 +12632,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/_unknown/tu_0046cdbc.c": {
    "as": "_unknown\\tu_0046cdbc.c",
@@ -13043,6 +12845,355 @@
     }
    },
    "accepted": "2026-11-09"
+  },
+  "src/sim/mapalert.c": {
+   "as": "sim\\mapalert.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "0045a600",
+     "size": 224,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "TargetLoadResource": {
+     "va": "0045a6e0",
+     "size": 32,
+     "mangled": "W?TargetLoadResource$n(pnv)v"
+    },
+    "TargetMapAlert": {
+     "va": "0045a700",
+     "size": 64,
+     "mangled": "W?TargetMapAlert$n(pnvi)v"
+    },
+    "TargetClearActive": {
+     "va": "0045a740",
+     "size": 32,
+     "mangled": "W?TargetClearActive$n(pnv)v"
+    },
+    "TargetClose": {
+     "va": "0045a760",
+     "size": 64,
+     "mangled": "W?TargetClose$n(pnv)v"
+    },
+    "TargetUpdate": {
+     "va": "0045a7a0",
+     "size": 48,
+     "mangled": "W?TargetUpdate$n(pnv)v"
+    },
+    "TargetHandleEvent": {
+     "va": "0045a7d0",
+     "size": 304,
+     "mangled": "W?TargetHandleEvent$n(pnv)v"
+    },
+    "TargetPopup::$dt": {
+     "va": "0045a900",
+     "size": 12,
+     "mangled": "W?$dt:TargetPopup$n()_"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048b544",
+     "size": 13
+    },
+    "CONST2": {
+     "va": "0048e020",
+     "size": 52
+    },
+    "_DATA": {
+     "va": "004a256c",
+     "size": 48
+    },
+    "XI": {
+     "va": "004a6c7e",
+     "size": 6
+    },
+    "W?$Wts0kn$PilotImageButton$$$nx[]uc": {
+     "va": "0048cdb8",
+     "size": 17
+    }
+   },
+   "accepted": "2026-11-11"
+  },
+  "src/sim/simout.c": {
+   "as": "sim\\simout.c",
+   "install": "wc106",
+   "flags": [
+    "-4s",
+    "-s",
+    "-bm",
+    "-oxt",
+    "-oe=80"
+   ],
+   "tool": "wpp386",
+   "functions": {
+    "SimGameDrawPortrait": {
+     "va": "00450eb0",
+     "size": 336,
+     "mangled": "W?SimGameDrawPortrait$n(pn$SimGame$$)v"
+    },
+    "SimGameRefresh": {
+     "va": "00451000",
+     "size": 112,
+     "mangled": "W?SimGameRefresh$n(pn$SimGame$$)v"
+    },
+    "SimGameDrawPanel": {
+     "va": "004511d0",
+     "size": 416,
+     "mangled": "W?SimGameDrawPanel$n(pn$SimGame$$)v"
+    }
+   },
+   "data": {
+    "_DATA": {
+     "va": "004a031c",
+     "size": 36
+    }
+   },
+   "accepted": "2026-11-11"
+  },
+  "src/sim/simmini.c": {
+   "as": "sim\\simmini.c",
+   "install": "wc106",
+   "flags": [
+    "-4s",
+    "-s",
+    "-bm",
+    "-oxt",
+    "-oe=80"
+   ],
+   "tool": "wpp386",
+   "functions": {
+    "W?.fn_init$n()v": {
+     "va": "00451b00",
+     "size": 16,
+     "mangled": "W?.fn_init$n()v"
+    },
+    "SimGameBlink": {
+     "va": "00451b10",
+     "size": 208,
+     "mangled": "W?SimGameBlink$n()v"
+    },
+    "SimDrawHLine": {
+     "va": "00451be0",
+     "size": 144,
+     "mangled": "W?SimDrawHLine$n(lll)v"
+    }
+   },
+   "data": {
+    "_DATA": {
+     "va": "004a0340",
+     "size": 25
+    },
+    "XI": {
+     "va": "004a6c60",
+     "size": 6
+    }
+   },
+   "accepted": "2026-11-11"
+  },
+  "src/sim/simgad.c": {
+   "as": "sim\\simgad.c",
+   "install": "wc106",
+   "profile": "ot-oe",
+   "functions": {
+    "SimValueGadget::$dt": {
+     "va": "0044d710",
+     "size": 80,
+     "mangled": "W?$dt:SimValueGadget$n()_"
+    },
+    "SimInTrapezoid": {
+     "va": "00453310",
+     "size": 128,
+     "mangled": "W?SimInTrapezoid$n(pnx$SimTrapezoid$$pnx$GuiPoint$$)i"
+    },
+    "SimDrawTrapezoid": {
+     "va": "00453390",
+     "size": 160,
+     "mangled": "W?SimDrawTrapezoid$n(pnx$SimTrapezoid$$ll)v"
+    },
+    "SimImagePixel": {
+     "va": "00453430",
+     "size": 64,
+     "mangled": "W?SimImagePixel$n(pnx$MenuImage$$ll)i"
+    },
+    "SimMapGadget::$ct": {
+     "va": "00453470",
+     "size": 64,
+     "mangled": "W?$ct:SimMapGadget$n(ulllul)_"
+    },
+    "SimMapGadget::HitTest": {
+     "va": "004534b0",
+     "size": 208,
+     "mangled": "W?HitTest$:SimMapGadget$n(pnx$GuiPoint$$)i"
+    },
+    "SimMapGadget::Draw": {
+     "va": "00453580",
+     "size": 496,
+     "mangled": "W?Draw$:SimMapGadget$n(ui)v"
+    },
+    "SimMapGadget::Reset": {
+     "va": "00453770",
+     "size": 32,
+     "mangled": "W?Reset$:SimMapGadget$n(ui)v"
+    },
+    "SimMapGadget::Event": {
+     "va": "00453790",
+     "size": 96,
+     "mangled": "W?Event$:SimMapGadget$n(uiul)i"
+    },
+    "SimValueGadget::Event": {
+     "va": "004537f0",
+     "size": 16,
+     "mangled": "W?Event$:SimValueGadget$n(uiul)i"
+    },
+    "SimImageGadget::$ct": {
+     "va": "00453800",
+     "size": 64,
+     "mangled": "W?$ct:SimImageGadget$n(llul)_"
+    },
+    "SimImageGadget::HitTest": {
+     "va": "00453840",
+     "size": 176,
+     "mangled": "W?HitTest$:SimImageGadget$n(pnx$GuiPoint$$)i"
+    },
+    "SimImageGadget::Draw": {
+     "va": "004538f0",
+     "size": 272,
+     "mangled": "W?Draw$:SimImageGadget$n(ui)v"
+    },
+    "SimImageGadget::Reset": {
+     "va": "00453a00",
+     "size": 16,
+     "mangled": "W?Reset$:SimImageGadget$n(ui)v"
+    },
+    "SimImageGadget::Event": {
+     "va": "00453a10",
+     "size": 224,
+     "mangled": "W?Event$:SimImageGadget$n(uiul)i"
+    },
+    "SimValueGadget::$ct": {
+     "va": "00453af0",
+     "size": 48,
+     "mangled": "W?$ct:SimValueGadget$n(ul)_"
+    },
+    "SimValueGadget::Reset": {
+     "va": "00453b20",
+     "size": 32,
+     "mangled": "W?Reset$:SimValueGadget$n(ui)v"
+    },
+    "SimValueGadget::Draw": {
+     "va": "00453b40",
+     "size": 272,
+     "mangled": "W?Draw$:SimValueGadget$n(ui)v"
+    },
+    "SimValueGadget::Value": {
+     "va": "00453c50",
+     "size": 16,
+     "mangled": "W?Value$:SimValueGadget$n()l"
+    },
+    "SimValueGadget::SetValue": {
+     "va": "00453c60",
+     "size": 16,
+     "mangled": "W?SetValue$:SimValueGadget$n(l)v"
+    }
+   },
+   "data": {
+    "_DATA": {
+     "va": "004a03bc",
+     "size": 184
+    },
+    "W?$Wvf0gos:SimMapGadget$$nx[]pn()v": {
+     "va": "0048dfc4",
+     "size": 20
+    },
+    "W?$Wvf0ios:SimImageGadget$$nx[]pn()v": {
+     "va": "0048dfb0",
+     "size": 20
+    },
+    "W?$Wvf0ios:SimValueGadget$$nx[]pn()v": {
+     "va": "0048df9c",
+     "size": 20
+    },
+    "W?$Wts0in$SimValueGadget$$$nx[]uc": {
+     "va": "0048df88",
+     "size": 17
+    }
+   },
+   "accepted": "2026-11-11"
+  },
+  "src/sim/simfire.c": {
+   "as": "sim\\simfire.c",
+   "install": "wc106",
+   "profile": "ot-oe",
+   "functions": {
+    "SimFireAt": {
+     "va": "00452950",
+     "size": 48,
+     "mangled": "W?SimFireAt$n(pn$SimGame$$pnvpnll)i"
+    }
+   },
+   "data": {
+    "_DATA": {
+     "va": "004a0378",
+     "size": 66
+    }
+   },
+   "accepted": "2026-11-11"
+  },
+  "src/sim/simmisc.c": {
+   "as": "sim\\simmisc.c",
+   "install": "wc106",
+   "profile": "ot-oe",
+   "functions": {
+    "Interpolate": {
+     "va": "00453c70",
+     "size": 64,
+     "mangled": "W?Interpolate$n(iiiii)i"
+    },
+    "SimDamageActor": {
+     "va": "00453cb0",
+     "size": 144,
+     "mangled": "W?SimDamageActor$n(pn$SimGame$$pn$ActorRecord$$i)v"
+    },
+    "ModeEvent": {
+     "va": "00453d40",
+     "size": 256,
+     "mangled": "W?ModeEvent$n(pn$SimGame$$pn$ActorRecord$$ii)v"
+    },
+    "SimActorKilled": {
+     "va": "00453e40",
+     "size": 224,
+     "mangled": "W?SimActorKilled$n(pn$SimGame$$pn$ActorRecord$$ii)v"
+    },
+    "SimMessage": {
+     "va": "00453f20",
+     "size": 48,
+     "mangled": "W?SimMessage$n(pn$SimGame$$pnxa)v"
+    },
+    "SimSoundAtActor": {
+     "va": "00453f50",
+     "size": 80,
+     "mangled": "W?SimSoundAtActor$n(pn$SimSound$$pn$ActorRecord$$)v"
+    },
+    "SimSoundAtTile": {
+     "va": "00453fa0",
+     "size": 48,
+     "mangled": "W?SimSoundAtTile$n(pn$SimSound$$i)v"
+    },
+    "SimSoundSetup": {
+     "va": "00453fd0",
+     "size": 432,
+     "mangled": "W?SimSoundSetup$n(pn$SimSound$$pn$ExploPoint$$)v"
+    }
+   },
+   "data": {
+    "_DATA": {
+     "va": "004a0474",
+     "size": 14
+    }
+   },
+   "accepted": "2026-11-11"
   }
  },
  "accepted_losses": [
@@ -13294,6 +13445,97 @@
     "data:_DATA"
    ],
    "date": "2026-11-09"
+  },
+  {
+   "tu": "src/sim/actorlst.c",
+   "functions": [
+    "ActorCloseRecord"
+   ],
+   "date": "2026-11-11"
+  },
+  {
+   "tu": "src/sim/target.c",
+   "functions": [
+    "W?.fn_init$n()v",
+    "TargetLoadResource",
+    "TargetMapAlert",
+    "TargetClearActive",
+    "TargetClose",
+    "TargetUpdate",
+    "TargetHandleEvent",
+    "TargetEmpty",
+    "data:CONST2",
+    "data:_DATA",
+    "data:XI",
+    "data:W?$Wts0kn$PilotImageButton$$$nx[]uc"
+   ],
+   "date": "2026-11-11"
+  },
+  {
+   "tu": "src/sim/simgame.c",
+   "functions": [
+    "SimGameDrawPortrait",
+    "SimGameRefresh",
+    "SimGameDrawPanel",
+    "SimGameNothing",
+    "SimGameBlink",
+    "SimDrawHLine"
+   ],
+   "date": "2026-11-11"
+  },
+  {
+   "tu": "src/_unknown/tu_00452950.c",
+   "functions": [
+    "Interpolate",
+    "ModeEvent",
+    "SimActorKilled",
+    "SimDamageActor",
+    "SimDrawTrapezoid",
+    "SimFireAt",
+    "SimImageGadget::$ct",
+    "SimImageGadget::Draw",
+    "SimImageGadget::Event",
+    "SimImageGadget::HitTest",
+    "SimImageGadget::Reset",
+    "SimImagePixel",
+    "SimInTrapezoid",
+    "SimMapGadget::$ct",
+    "SimMapGadget::Draw",
+    "SimMapGadget::Event",
+    "SimMapGadget::HitTest",
+    "SimMapGadget::Reset",
+    "SimMessage",
+    "SimSoundAtActor",
+    "SimSoundAtTile",
+    "SimSoundSetup",
+    "SimValueGadget::$ct",
+    "SimValueGadget::$dt",
+    "SimValueGadget::Draw",
+    "SimValueGadget::Event",
+    "SimValueGadget::Reset",
+    "SimValueGadget::SetValue",
+    "SimValueGadget::Value",
+    "data:W?$Wvf0gos:SimMapGadget$$nx[]pn()v",
+    "data:W?$Wvf0ios:SimImageGadget$$nx[]pn()v",
+    "data:W?$Wvf0ios:SimValueGadget$$nx[]pn()v",
+    "data:W?$Wts0in$SimValueGadget$$$nx[]uc"
+   ],
+   "date": "2026-11-11",
+   "retired": true
+  },
+  {
+   "tu": "src/pop/pdeath.c",
+   "functions": [
+    "DeathScreenClose"
+   ],
+   "date": "2026-11-11"
+  },
+  {
+   "tu": "src/pop/pherc.c",
+   "functions": [
+    "f_00445238"
+   ],
+   "date": "2026-11-11"
   }
  ]
 }

@@ -39,7 +39,7 @@ int WorldActionInitialize()
     return worldActions != 0;
 }
 
-extern "C" void MemoryRelease(void *);
+
 extern "C" int StreamRead(void *, void *, unsigned int);
 extern "C" int StreamWrite(void *, void *, unsigned int);
 extern "C" int WorldActionNotify(void *, int);
@@ -48,7 +48,7 @@ extern "C" int WorldActionFinalize(void *);
 int WorldActionShutdown()
 {
     if (worldActions != 0)
-        MemoryRelease(worldActions);
+        delete[] worldActions;
     worldActions = 0;
     worldActionCount = 0;
     return 1;

@@ -51,7 +51,7 @@ extern "C" int f_00439d48(Herc *);
 extern unsigned SimLogicFlags(void *);
 extern "C" unsigned f_00436dcc(Pilot *,int);
 extern long SendEvent(void *,int,void *,int,int);
-extern "C" void MemoryRelease(void *);
+
 extern int g4941d8,g4941dc,g4941e0,g4941e4,g4941e8;
 extern void *g4c9338,*g4c933c,*g4c9340,*g4c9344,*g4c9348;
 extern "C" void f_0043bac3(GameSession *);

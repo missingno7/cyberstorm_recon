@@ -59,6 +59,10 @@ only flags `~mangle`, it does not unbind.
 Dry run by default. Policy check -> fresh compile (pinned toolchain) -> comparison with `--find --imply` ->
 no previously accepted function may lose STRICT, VA or size (unless `--accept-loss`, logged) -> no symbol
 or VA conflict. `--publish` (integrator only) writes `src/`, `recovery.json` and `symbols.json`.
+Object splits: `--retire src/DIR/OLD.c` removes a combined file from the ledger (its matched symbols become
+hypothesis bindings, the loss is logged, the file is deleted) before the real per-object files are promoted; a
+function named with `--accept-loss` may be re-accepted at another VA inside its own TU (e.g. a static initializer
+that moves when the file is cut at the real object boundary).
 
 ## TU COMPLETE (diagnostic level, reported by verify) — `tools/tucheck.py`
 A TU is COMPLETE when, in verify's view: every extent of its main code segment is STRICT and contiguous at

@@ -118,8 +118,8 @@ extern "C" char *BriefFormat(const char *,...);
 extern void DebugTextClear();
 extern void DebugTextAppend(char *);
 extern void f_00477295(char *);
-extern "C" void MemoryRelease(void *);
-extern void *MemoryAllocationRetry(U32);
+
+
 extern int g494290,playerCount,gRemoteActorKind,modeSwitch,g4d3551,gLaunchBudget;
 extern U8 g4c978a;
 extern char modeCheckName[];

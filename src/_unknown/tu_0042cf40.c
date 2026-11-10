@@ -19,8 +19,8 @@ extern int AreaIndexToPoint(int *, int);
 void SearchRelease(SearchWorkspace *);
 extern int *AreaGetPoint(int *, int *, int);
 extern "C" int ResolveName(const char *, const char *);
-extern "C" void MemoryRelease(void *);
-extern void *MemoryAllocationRetry(unsigned long);
+
+
 extern int f_00432c00(void *, int, int);
 extern SearchPoint pathDirections[6];
 

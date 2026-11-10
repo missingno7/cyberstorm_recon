@@ -37,8 +37,8 @@ extern "C" void SetFastView(FastCoord *,const ViewState *);extern "C" void Prepa
 extern void SimGameDrawActors(SimGame *,int);extern void *LogicGetScriptData(void *);
 extern void DeathTimerDraw(Shell *,int,int,int,int);extern int SimHotReadTimer(char *);extern "C" void DeathInput(Shell *);
 extern "C" void AssertFail(const char *,int,const char *);
-struct DeathScreen {int fields[4];int active;};
-void DeathScreenClose(DeathScreen *screen){screen->active=0;}
+// 00448d74 (12 bytes before DeathMovie) is ReportScreen::~ReportScreen, the last function of the preceding object
+// (src/_unknown/tu_004481c0.c: its static-destructor table at 0048dd70 names it). This object starts at DeathMovie.
 
 void DeathMovie(Shell *shell,void *actor)
 {

@@ -9,7 +9,7 @@ struct Search { int words[10]; };
 struct Visit { TerrainGrid *grid; Point point; int index; };
 struct Range { int lo,hi; }; inline int TerrainMin(int a,int b){return a<b?a:b;} inline int TerrainMax(int a,int b){return a>b?a:b;}
 extern "C" void AssertFail(const char *,int,const char *);
-extern "C" void BriefModuleConstruct(void *);
+
 extern "C" void NoiseConstruct(Noise *);
 extern "C" void NoiseDestroy(Noise *,int);
 extern "C" void NoiseClear(Noise *);

@@ -16,8 +16,8 @@ struct ResMgr { int OpenFile(long id, int flags); int CloseFile(); };
 extern ResMgr gResMgr;
 extern "C" U32 f_c8e0(ResMgr *);
 extern "C" U32 f_c900(ResMgr *, void *, U32);
-extern void *MemoryAllocationRetry(U32);
-extern void MemoryRelease(void *);
+
+
 extern void TimerSet(Timer *, U32);
 extern int TimerExpired(Timer *);
 extern U32 InputGetHi(InputReq *);
@@ -136,7 +136,7 @@ void GuiScreen::LoadLayout(long resource)
 {
     gResMgr.OpenFile(resource, 0);
     U32 size = f_c8e0(&gResMgr);
-    void *storage = MemoryAllocationRetry(size);
+    void *storage = new char[size];
     unsigned char *cursor = (unsigned char *)storage;
     f_c900(&gResMgr, storage, size);
     gResMgr.CloseFile();
@@ -153,7 +153,7 @@ void GuiScreen::LoadLayout(long resource)
         for (int j = 0; j < 4; ++j)
             item->style[j] = *cursor++;
     }
-    MemoryRelease(storage);
+    delete[] storage;
 }
 
 void GuiScreen::SetLayout(int first, int last, const GuiRect *bounds, const GuiRect *rects)

@@ -31,7 +31,7 @@ extern int MenuControlChanged(void *, unsigned long, unsigned long *); extern lo
 extern "C" void RenderFormattedResourceText(void *,int,int,const char *,const char *,const char *); extern "C" void LogicCallMode(int, int); extern uint f_0043a7e8(int, uint); extern long GridClamp(unsigned long);
 struct GuiScreen {char header[16];int active;char rest[56];GuiScreen(GuiControl **,unsigned,uint);void Reset(GuiControl **,unsigned,uint);long HitTest(const void *);void Invalidate();int IsActive(){return active!=0;}int Update();};
 inline long AutoAdvanceEnabled() { return gInA4; }
-extern void PopObjectConstruct(void *object); extern "C" void BriefModuleOpen(void *object, int id, int delay, int flags); extern int f_00439d48(int); struct HercModule;extern void f_00446350(HercModule *);
+extern "C" void BriefModuleOpen(void *object, int id, int delay, int flags); extern int f_00439d48(int); struct HercModule;extern void f_00446350(HercModule *);
 extern void f_00425e1a(int); struct SimGame;struct ActorRecord;extern void SimDrawTimer(SimGame *,int,int,int=1,int=-1); extern void f_0047ae20(unsigned long *); struct HercModule;extern int f_00445e23(HercModule *); extern void PilotSetState(SimGame *,int);
 extern void SimSetFocus(SimGame *,ActorRecord *); extern void f_0047e670(void *, void *, unsigned long); extern int f_0047fce0(int); extern void f_0047fca0(int *, int);
 extern void f_0043ac02(int, int *, int *, int *, int *); extern void f_0047c320(void *); extern void SigsStart(void *,int); extern void SurfacePresent(void *); extern void SetGameWindowSize(int=-1,int=-1);
@@ -39,7 +39,7 @@ extern void f_004272cd(void *, long, long, long); extern void f_0042732e(void *,
 extern void f_0041caf9(void *, int); extern void f_00445c81(int); extern char DAT_00511df0, DAT_00511948, DAT_00511958;
 extern long DAT_00513890, DAT_00513898, g5138ac, DAT_005138b0, DAT_00511960; extern int DAT_004faf44; extern "C" void ReleasePoolData(void *); extern "C" void GlobalBlockFree(void *);
 extern char g4b74f4; extern char g511948, gMenuSavedSurface; extern void GuiResetClip(void *); extern "C" void BriefRenderUpdate(void *); extern char modeCheckName[]; inline int SurfaceWidth(){return g5138ac;}inline int SurfaceHeight(){return DAT_005138b0;}inline void *SurfacePixels(){return (void *)DAT_00513890;}
-extern char DAT_004a009c; extern char DAT_004d1f4c, DAT_004d1f78; extern int _DAT_004a00a4; extern int modeSwitch; extern char DAT_004faf48;
+extern int modeSwitch; extern char DAT_004faf48;
 struct ActorRecordCopy {byte data[267];};
 struct ActorRecord;struct PacketList {void Repair(ActorRecord *,char,char,int);};extern PacketList modeLogName;
 extern int DAT_004faf40; extern int TimeSleep(unsigned long); extern void f_004259f7(void *, const char *); extern void f_00425f87(void *, void *, void *, int, int); extern int f_0046c461(int, int *);
@@ -86,16 +86,16 @@ void f_004465d6(int);
 inline int Percent(int n,int p){return n*p/100;}inline int ClampValue(int n,int lo,int hi){if(n<=lo)return lo;if(n>=hi)return hi;return n;}
 inline void GuiControl::Clip(){int left=x;int top=y;int w=width;int h=height;MenuSetClip(&gMenuClip,left,top,w,h);}
 inline void GuiControl::Background(){PopDrawSurface(&g513888,1,0,x,y,width,height);}
-void f_00445238(void) {
-    PopObjectConstruct(&DAT_004a009c);
-    BriefModuleOpen(&DAT_004d1f4c, 0x7f, 1000, 0x33);
-    _DAT_004a00a4 = 1;
-    BriefModuleOpen(&DAT_004d1f78, 0x82, 1000, 0x34);
-    _DAT_004a00a4 = 2;
-}
+// Two static image buttons: the compiler generates the initializer at 00445238 (module registration, two
+// constructor calls, state counter), the destructor table in CONST2 and the XI record.
+class SimImageGadget { public: char objectBytes[0x2c]; SimImageGadget(long, long, unsigned long); ~SimImageGadget(); };
+SimImageGadget hercPrevButton(0x7f, 1000, 0x33), hercNextButton(0x82, 1000, 0x34);
+
+
+
 HercModule::HercModule():GuiScreen(0,0,0),timer(0),file(),button(),help(),detail(),number() {
  controlList[2]=&number;controlList[1]=&detail;controlList[0]=&help;
- controlList[27]=(GuiControl *)&DAT_004d1f4c;controlList[28]=(GuiControl *)&DAT_004d1f78;controlList[29]=&button;
+ controlList[27]=(GuiControl *)&hercPrevButton;controlList[28]=(GuiControl *)&hercNextButton;controlList[29]=&button;
  for(int i=0;i<24;i++)controlList[i+3]=&controls[i];
  for(i=0;i<4;i++){labels[i].SetStyle(-1,-1,0,0,11,0);controlList[i+30]=&labels[i];}
  Reset(controlList,34,0);

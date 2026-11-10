@@ -1,6 +1,6 @@
-typedef signed char Bool8;
+typedef signed char Bool8; struct AnimAction { char head[0x32]; int block; char tail[0x31]; AnimAction(); };
 struct ActorRecord {
-    ActorRecord() : id(0) {}
+    /* default constructor is compiler generated: it constructs `action` (oracle typesig, 00456c80) */
     int id;
     int unused;
     int owner; int Owner() const {return owner;} int RelatedIndex() const {return relatedIndex;}
@@ -9,9 +9,9 @@ struct ActorRecord {
     int at14;
     void *at18;
     void *at1c;
-    char pad20[0x32];
-    int at52;
-    char pad56[0x31];
+    AnimAction action;
+
+
     Bool8 flag87;
     Bool8 flag88;
     Bool8 flag89;
@@ -49,7 +49,7 @@ int ActorListConstruct()
     return actorTable != 0;
 }
 
-extern "C" void MemoryRelease(void *);
+
 extern "C" void *ActorIdentity(void *, int); struct ActorUnitBlob { char bytes[0x10b]; }; struct ProfileManager { void *Mission(int); }; extern ProfileManager profileManager; extern "C" void *f_0043c6ed(void *,void *); struct ActorListObject { char bytes[0x7e]; ActorListObject(); };
 
 int ActorListDestroy()
@@ -63,7 +63,7 @@ int ActorListDestroy()
                 if(entry->at1c) delete (ActorListGlobalObject *)entry->at1c;
             }
         }
-        MemoryRelease(actorTable);
+        delete[] actorTable;
     }
     actorTable=0; actorCount=0;
     return 1;
@@ -91,8 +91,8 @@ int ActorListRead(void *stream)
         } else if (entry->at10 == 0) {
             StreamWrite(stream, entry->at18, 0x10b);
         }
-        if (entry->at52 != 0)
-            StreamWrite(stream, (void *)(unsigned long)entry->at52, 0x494);
+        if (entry->action.block != 0)
+            StreamWrite(stream, (void *)(unsigned long)entry->action.block, 0x494);
         ++i;
     }
     return 1;
@@ -153,11 +153,11 @@ int ActorListWrite(void *stream)
                                             ;
             entry->at1c = f_0043c6ed(&profileManager, entry->at18);
         }
-        if (entry->at52 != 0) {
-            entry->at52 = 0;
+        if (entry->action.block != 0) {
+            entry->action.block = 0;
             AnimActionCreateBlock((char *)entry + 0x20);
-            StreamRead(stream, (void *)(unsigned long)entry->at52, 0x494);
-            *(void **)((char *)(unsigned long)entry->at52 + 0x490) = entry;
+            StreamRead(stream, (void *)(unsigned long)entry->action.block, 0x494);
+            *(void **)((char *)(unsigned long)entry->action.block + 0x490) = entry;
         }
     }
     return 1;
@@ -340,10 +340,3 @@ ActorRecord *ActorFindOwnerNext(ActorRecord *actor,int owner)
     }
     return 0;
 }
-ActorRecord *ActorCloseRecord(ActorRecord *actor)
-{
-    return (ActorRecord *)((char *)ActorClose((char *)actor + 0x20) - 0x20);
-}
-
-
-

@@ -1,11 +1,11 @@
 struct FogSource { long unused[10]; long count; };
 struct FogBuffer { long mode; FogSource *source; long count; signed char *lower; signed char *upper; long state; int Resize(); void Initialize(int mode = 0, int initialize = 1);  };
-extern "C" void AssertFail(const char *, int, const char *); static const char FogSourcePath[] = "terr\\tfog.c"; extern "C" void MemoryRelease(void *); extern "C" void *MemoryAllocationRetry(unsigned long); extern "C" void *memcpy(void *, const void *, unsigned long); extern "C" void *memset(void *, int, unsigned long); void FogInitialize(FogBuffer *, int mode = 0, int initialize = 1);
+extern "C" void AssertFail(const char *, int, const char *); static const char FogSourcePath[] = "terr\\tfog.c"; extern "C" void *memcpy(void *, const void *, unsigned long); extern "C" void *memset(void *, int, unsigned long); void FogInitialize(FogBuffer *, int mode = 0, int initialize = 1);
 
 
 void FogNoOp() {}
 FogBuffer *FogSetSource(FogBuffer *p, FogSource *source) { p->lower = 0; p->upper = 0; p->source = source; return p; }
-void FogRelease(FogBuffer *p) { if (p->lower) MemoryRelease(p->lower); if (p->upper) MemoryRelease(p->upper); p->lower = 0; p->upper = 0; }
+void FogRelease(FogBuffer *p) { if (p->lower) delete[] p->lower; if (p->upper) delete[] p->upper; p->lower = 0; p->upper = 0; }
 
 
 
@@ -60,7 +60,7 @@ void FogRelease(FogBuffer *p) { if (p->lower) MemoryRelease(p->lower); if (p->up
 
 
 
-int FogBuffer::Resize() { FogBuffer *releaseTarget = this; if (releaseTarget->lower) MemoryRelease(releaseTarget->lower); if (releaseTarget->upper) MemoryRelease(releaseTarget->upper); releaseTarget->lower = 0; releaseTarget->upper = 0; count = source->count; lower = (signed char *)MemoryAllocationRetry(count + 1); upper = (signed char *)MemoryAllocationRetry(count + 1); if (!lower || !upper) AssertFail(FogSourcePath, __LINE__, 0); Initialize(); return 1; }
+int FogBuffer::Resize() { FogBuffer *releaseTarget = this; if (releaseTarget->lower) delete[] releaseTarget->lower; if (releaseTarget->upper) delete[] releaseTarget->upper; releaseTarget->lower = 0; releaseTarget->upper = 0; count = source->count; lower = (signed char *)new char[count + 1]; upper = (signed char *)new char[count + 1]; if (!lower || !upper) AssertFail(FogSourcePath, __LINE__, 0); Initialize(); return 1; }
 
 
 

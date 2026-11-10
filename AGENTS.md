@@ -31,6 +31,7 @@ python tools/show.py --module VA              disassembly of one module with rel
 python tools/cc.py --profile ot|plain --as 'misc\strpool.c' SRC.c -fo=build/LANE/x.obj
 python tools/compare.py build/LANE/x.obj [--at Label=VA] [--find] [--imply] [-v]
 python tools/promote.py SRC.c --tu src/DIR/FILE.c --as 'DIR\FILE.c' --profile ot [--at Label=VA]   (dry run)
+python tools/promote.py --retire src/DIR/OLD.c   integrator: drop a combined file before promoting the real objects
 python tools/verify.py [--secondary]          fresh rebuild of every accepted TU
 python tools/try.py SRC.c --as A --profile P  compile + compare + aligned instruction diff (worker loop)
 python tools/variants.py TPL.c --as A --profile P --fn F   test all choice-point combinations

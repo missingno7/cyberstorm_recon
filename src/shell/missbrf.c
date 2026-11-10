@@ -24,7 +24,7 @@ extern char gShellBackground[]; extern int g5138ac, g5138b0;
 extern char g48a9df[]; extern char g48a9d0[]; extern char g48ea60[];
 extern int g48ea1c, g48ea24, g4b3290, g4b32b8, g4b32e0;
 extern int g4b3308, g4b3310, g4b3338, g4b3364;
-extern "C" void BriefModuleConstruct(void *object);
+
 extern "C" void BriefModuleInitA(void *object, int a, int b);
 extern "C" void BriefModuleInitB(void *object);
 extern "C" void BriefModuleInitC(void *object, int a, int b);

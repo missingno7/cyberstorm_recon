@@ -103,7 +103,7 @@ extern "C" void f_0043ba3e(void *,void *);
 void MenuLoadBackground(const char *,void *);void SurfaceCopyRegion(void *,void *,long=0,long=0);
 void GuiResetClip(void *);void SurfacePresent(void *);void MenuDrawImage(void *,const MenuImage *,long,long);
 extern "C" void f_cb80(void *);
-void PopObjectConstruct(void *);
+
 extern "C" int BriefDone(const char *);
 void BioLoadRegions(const char *);
 struct SoundSettings;int SoundPlay(unsigned,const SoundSettings *);int SoundTrigger(unsigned,int=0);

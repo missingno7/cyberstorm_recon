@@ -2,6 +2,7 @@
 
     python tools/promote.py CANDIDATE.c --tu src/DIR/FILE.c [--as DIR\\FILE.c] [--profile P | --flags "-4s -s -oxt"]
                             [--at LABEL=VA ...] [--accept-loss LABEL ...] [--publish]
+    python tools/promote.py --retire src/DIR/OLD.c [--publish]     (object split: functions move to new files)
 
 Steps: source policy check -> fresh compile with the TU's pinned toolchain -> strict comparison (placement from
 bound symbols, --at, or a unique masked search) -> no previously accepted function may lose STRICT (unless named
@@ -26,6 +27,37 @@ def img_section(va_hex):
     return sec.name if sec else None
 
 
+def retire(tu, publish):
+    """Remove a TU whose functions move to other files (an object split under its real names). Its matched symbols
+    become hypothesis bindings, the loss is logged, the source file is deleted. The new owners are promoted next."""
+    ledger = gate.load_ledger()
+    rec = ledger["tus"].get(tu)
+    if not rec:
+        print(f"{tu}: not in the ledger")
+        return 1
+    print(f"retire {tu}: {len(rec['functions'])} strict functions leave the ledger")
+    if not publish:
+        print("dry run OK (add --publish to accept)")
+        return 0
+    now = datetime.date.today().isoformat()
+    db = symbols.load()
+    for v in db["symbols"].values():
+        if v.get("tu") == tu:
+            if v["status"] == "matched":
+                v["status"] = "hypothesis"
+                v["evidence"] = f"retired with {tu} {now}"
+            del v["tu"]
+    del ledger["tus"][tu]
+    ledger.setdefault("accepted_losses", []).append(
+        {"tu": tu, "functions": sorted(rec["functions"]) + [f"data:{k}" for k in rec.get("data", {})],
+         "date": now, "retired": True})
+    symbols.save(db)
+    dump_json(gate.LEDGER, ledger)
+    (ROOT / tu).unlink(missing_ok=True)
+    print("retired")
+    return 0
+
+
 def main(argv):
     argv = list(argv[1:])
     opts = {"at": {}, "loss": []}
@@ -43,6 +75,8 @@ def main(argv):
             opts["loss"].append(val)
         else:
             opts[key[2:]] = val
+    if "retire" in opts and not argv:
+        return retire(opts["retire"].replace("\\", "/"), publish)
     if len(argv) != 1 or "tu" not in opts:
         print(__doc__)
         return 2
@@ -125,7 +159,8 @@ def main(argv):
     for n, e in strict.items():
         lab = skey(n, e)
         cur = syms.get(lab)
-        if cur and cur["status"] == "matched" and (cur["va"] != e["va"] or cur.get("tu") != tu):
+        moved = cur and cur.get("tu") == tu and lkey(n) in opts["loss"]    # this TU's own function, accepted at a new VA
+        if cur and cur["status"] == "matched" and (cur["va"] != e["va"] or cur.get("tu") != tu) and not moved:
             print(f"symbol {lab} already matched at {cur['va']} in {cur.get('tu')}; refusing")
             return 1
         clash = [k for k, v in syms.items() if v["va"] == e["va"] and v["status"] == "matched" and k != lab

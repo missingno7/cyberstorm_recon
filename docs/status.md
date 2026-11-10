@@ -22,7 +22,15 @@ Numbers come from `python tools/verify.py`; this file only summarises them.
   stays). Resources: `.rsrc` rebuilt from `src/res/` with WRC 10.6, 21 of 21 resources STRICT, section layout equal
   except the bind stamp and 88 bytes of original slack garbage (UNKNOWN).
 
+- 2026-11-11: structural blockers of docs/blocked.md worked off. 1,949 STRICT functions, 284,690 bytes (54.64%) in
+  182 TUs; 66 TUs COMPLETE (80,231 code bytes). The "multi-file objects" were ordinary separate objects: six sim
+  files published under their real names (simout, simmini, simgame, simfire, simgad, simmisc), mapalert.c cut from
+  target.c, identities fixed (ActorRecord constructor, ReportScreen destructor), `new[]`/`delete[]` restored in ten
+  TUs. Object boundaries now follow from XI records and `_DATA` path strings (codegen_rules.md).
+
 ## Next
+- Object census: path strings + XI records + module headers against the ledger's TU ranges; cut the remaining
+  combined files (sim.c/simdo.c first). Then the three hand-written static initializers (blocked.md).
 - Near-miss functions (s48-s51), TU completion (s52), pdeath object split.
 - Image level: startup/BEGTEXT and library member order, .rsrc, then a full link once enough objects are complete.
 - Name the assert function, resource manager and other hubs from strings and call counts.

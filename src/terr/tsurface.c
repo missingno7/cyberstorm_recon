@@ -1,8 +1,8 @@
 typedef unsigned int uint; typedef int SurfaceDepth; extern signed char SurfaceNoiseTable[491]; extern unsigned short SurfaceScaleValues[];
 
 extern "C" int RandomRange(unsigned int *, int, int);
-extern "C" void MemoryRelease(void *);
-extern void *MemoryAllocationRetry(unsigned long);
+
+
 extern int MissionRandomTable[];
 extern unsigned short SurfaceAverage(unsigned short, unsigned short, unsigned short, unsigned short);
 extern unsigned short SurfaceMidpoint(unsigned short, unsigned short);
@@ -156,8 +156,8 @@ unsigned short SurfaceAverage(unsigned short first, unsigned short second,
 }
 
 extern "C" int RandomRange(unsigned int *seed, int low, int high);
-extern "C" void MemoryRelease(void *memory);
-extern void *MemoryAllocationRetry(unsigned long bytes);
+
+
 extern int MissionRandomTable[];
 struct ResMgr { int *Load(char *, unsigned int = 1, int * = 0, unsigned int = 0); };
 extern ResMgr gResMgr;

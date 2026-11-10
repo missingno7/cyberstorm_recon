@@ -9,7 +9,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import ROOT  # noqa: E402
 
-TRAILER = "\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
+TRAILER = "\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>"
 
 
 def main(argv):

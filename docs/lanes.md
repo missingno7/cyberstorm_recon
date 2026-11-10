@@ -94,3 +94,4 @@ Unassigned large modules: sim\sim.c + simdo.c (0044950c, 30 KB), shell\mplaunch.
 | s54 | sol | non-allocation blockers: switch layout, shared tails, EBP frames, control flow (88 functions, build/prompts/s54_targets.txt) | done (+11 in 6 TUs; 78 parked with residues in its report) |
 | s55 | sol | allocation cluster with the r3 model (final-use order), first half of 242 targets (build/prompts/s55_targets.txt) | done (+1: f_004423d7 via immutable recursive input; 107 triaged) |
 | s56 | sol | same, second half incl. sim\simdo.c (build/prompts/s56_targets.txt) | done (0 new; 113 triaged, 39 variants) |
+| int1 | integrator | blocked.md structural items (2026-11-11): object splits (mapalert/target, simout/simmini/simgame, simfire/simgad/simmisc), ActorRecord ctor, ReportScreen dtor, new[]/delete[], pherc static objects | done (candidates/int1; open items in blocked.md) |

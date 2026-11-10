@@ -51,7 +51,7 @@ extern "C" int f_00439d48(Herc *);
 extern unsigned SimLogicFlags(void *);
 extern "C" unsigned f_00436dcc(Pilot *,int);
 extern long SendEvent(void *,int,void *,int,int);
-extern "C" void MemoryRelease(void *);
+
 extern int g4941d8,g4941dc,g4941e0,g4941e4,g4941e8;
 extern void *g4c9338,*g4c933c,*g4c9340,*g4c9344,*g4c9348;
 extern "C" void f_0043bac3(GameSession *);
@@ -163,11 +163,11 @@ extern "C" void f_0043bac3(GameSession *s)
     Snapshot *node=s->snapshots;
     while(node) {Snapshot *old=node;node=node->next;delete old;}
     s->snapshots=0;
-    if(!g4941d8) MemoryRelease(g4c9338);g4941d8=1;g4c9338=0;
-    if(!g4941dc) MemoryRelease(g4c933c);g4941dc=1;g4c933c=0;
-    if(!g4941e0) MemoryRelease(g4c9340);g4941e0=1;g4c9340=0;
-    if(!g4941e4) MemoryRelease(g4c9344);g4941e4=1;g4c9344=0;
-    if(!g4941e8) MemoryRelease(g4c9348);g4941e8=1;g4c9348=0;
+    if(!g4941d8) delete[] g4c9338;g4941d8=1;g4c9338=0;
+    if(!g4941dc) delete[] g4c933c;g4941dc=1;g4c933c=0;
+    if(!g4941e0) delete[] g4c9340;g4941e0=1;g4c9340=0;
+    if(!g4941e4) delete[] g4c9344;g4941e4=1;g4c9344=0;
+    if(!g4941e8) delete[] g4c9348;g4941e8=1;g4c9348=0;
     memset(s,0,sizeof(*s));
 }
 extern "C" int f_0043bbcc(GameSession *s,const char *name,Pilot *pilot)
@@ -551,7 +551,7 @@ extern "C" int f_0043d2b9(GameSession *s,POINT *point)
     for(int i=0;i<s->pilotCount;++i) {sprintf(g4c92b8,"%s\n",s->pilots[i].name);strcat(list,g4c92b8);}
     int result=dialogExport9(g_mainWindow,list,point->x,point->y,16,0,0);
     if(result<0 || result>=s->pilotCount) result=-1;
-    MemoryRelease(list);return result;
+    delete[] list;return result;
 }
 extern "C" int f_0043d3cc(GameSession *s,POINT *point)
 {
