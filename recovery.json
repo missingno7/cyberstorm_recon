@@ -5133,17 +5133,33 @@
     },
     "HotbriefClearActive": {
      "va": "004625f0",
-     "size": 16,
+     "size": 12,
      "mangled": "W?HotbriefClearActive$n(pnv)v"
     }
    },
    "data": {
+    "XI": {
+     "va": "004a6ca2",
+     "size": 6
+    },
     "W?$Wts0en$MenuSpacer$$$nx[]uc": {
      "va": "0048d964",
      "size": 17
+    },
+    "W?$Wts0in$MenuHelpRegion$$$nx[]uc": {
+     "va": "0048c9c4",
+     "size": 17
+    },
+    "W?$Wts0dn$MenuPanel$$$nx[]uc": {
+     "va": "0048c99c",
+     "size": 17
+    },
+    "W?$Wts0ln$HotbriefResources$$$nx[]uc": {
+     "va": "0048e0c4",
+     "size": 17
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/logic/logic.c": {
    "as": "logic\\logic.c",
@@ -15029,6 +15045,13 @@
    ],
    "date": "2026-11-11",
    "moved_to": "src/noise/noise.c"
+  },
+  {
+   "tu": "src/sim/hotbrief.c",
+   "functions": [
+    "HotbriefClearActive"
+   ],
+   "date": "2026-11-11"
   }
  ]
 }

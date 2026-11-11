@@ -16342,7 +16342,7 @@
    "status": "matched",
    "mangled": "W?$ct:HotbriefResources$n()_",
    "tu": "src/sim/hotbrief.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "HotbriefOpen": {
    "va": "00461e60",
@@ -16350,7 +16350,7 @@
    "status": "matched",
    "mangled": "W?HotbriefOpen$n(pnvpnvi)v",
    "tu": "src/sim/hotbrief.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "HotbriefRelease": {
    "va": "00461f50",
@@ -16358,7 +16358,7 @@
    "status": "matched",
    "mangled": "W?HotbriefRelease$n(pnv)v",
    "tu": "src/sim/hotbrief.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "HotbriefUpdate": {
    "va": "00461fb0",
@@ -16366,7 +16366,7 @@
    "status": "matched",
    "mangled": "W?HotbriefUpdate$n(pnv)i",
    "tu": "src/sim/hotbrief.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "HotbriefUpdate#W?HotbriefUpdate$n(pnv)v": {
    "va": "00461fb0",
@@ -16382,7 +16382,7 @@
    "status": "matched",
    "mangled": "W?HotbriefTimerUpdate$n(pnv)v",
    "tu": "src/sim/hotbrief.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "HotbriefSetup": {
    "va": "004620e0",
@@ -16398,7 +16398,7 @@
    "status": "matched",
    "mangled": "W?HotbriefMainLoop$n(pnvi)v",
    "tu": "src/sim/hotbrief.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "HotbriefClearActive": {
    "va": "004625f0",
@@ -16406,7 +16406,14 @@
    "status": "matched",
    "mangled": "W?HotbriefClearActive$n(pnv)v",
    "tu": "src/sim/hotbrief.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "strict match 2026-11-11"
+  },
+  "HotbriefResources::$dt": {
+   "va": "004625f0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:HotbriefResources$n()_",
+   "evidence": "implied by src/sim/hotbrief.c 2026-11-11"
   },
   "HotbriefCanSelectAction": {
    "va": "00462600",
@@ -25600,6 +25607,14 @@
    "status": "hypothesis",
    "mangled": "W?$Wts0fn$ExploRecord$$$nx[]uc",
    "evidence": "implied by src/sim/explo.c 2026-11-09"
+  },
+  "W?$Wts0ln$HotbriefResources$$$nx[]uc": {
+   "va": "0048e0c4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0ln$HotbriefResources$$$nx[]uc",
+   "tu": "src/sim/hotbrief.c",
+   "evidence": "own data placed in src/sim/hotbrief.c 2026-11-11"
   },
   "W?$Wts0en$LogicActor$$$nx[]uc": {
    "va": "0048e0d8",

@@ -6,48 +6,50 @@ holds the structural blockers. Open items first, resolved history below.
 
 ## Open
 
-### Hand-written static initializers (cleanup debt, 2026-11-11)
-Three published sources still spell a compiler-generated static initializer by hand: a function (or wrapper
-objects) that calls `__wcpp_2_mod_register_` under an invented name and then the constructors one by one.
-- `src/shell/hercbay.c`: `ModuleConstruct`/`InitWidget`/`InitA..D`/`State` wrapper objects, `HercModuleConstruct`.
-- `src/_unknown/tu_0040ffb8.c`: `PilotBriefStaticInit` with `PopObjectConstruct` and `#pragma aux` name aliases for
-  the constructors of ten objects.
-- `src/shell/pilotgui.c`: `PilotGuiCtorArray` (= `__wcpp_2_ctor_array_`) and `PilotGuiModuleConstructor` aliases.
-Recipe (worked examples: `src/sim/mapalert.c`, `src/pop/pherc.c`): define the real global objects with their
-constructor arguments; the compiler then emits the initializer, the 12-byte module header in `_DATA`, the destructor
-table in CONST2 and the XI record, and all four become STRICT. Destructor addresses come from the CONST2 table.
-`#pragma aux NAME "W?..."` aliases elsewhere are the same kind of debt (census: `candidates/s40/ALIASES.md`).
+### Register-assignment residue (the dominant blocker; state 2026-11-11)
+About 370 of the ~390 parked functions are roots (`python tools/blockers.py`): only 27 wait for a neighbour
+(shared tails, jump distances). Ruled out as global causes, all recorded in codegen_rules.md: compiler release
+(10.5, 10.0a, 11.0), CPU switch, every single optimisation/code option per TU (`tools/flagcensus.py`), build noise
+(the 1.00A build agrees wherever both can be read), declaration order, types, helper spelling
+(`tools/variants.py` runs). What is left is the shape of each expression tree and of the surrounding function; the
+r3 allocation model predicts synthetic probes but not these functions. Next evidence worth getting: the exact
+conflict-graph order of 10.6 on one two-temporary case (IoClose, src/io/file.c: `esi`/`edi` swapped, 96 bytes).
 
-### One class under two names: SimImageGadget = PilotImageButton (2026-11-11)
-Constructor 00453800 (`SimImageGadget::$ct`, src/sim/simgad.c), destructor 0041235c (`PilotImageButton::$dt`,
-src/pop/ppilot.c), type signature 0048cdb8 (size 0x2c). `src/sim/mapalert.c` still declares `PilotImageButton` with a
-pragma alias to the SimImageGadget constructor; `src/pop/pherc.c` declares `SimImageGadget` and binds its destructor
-with `--at`. Unify on one name. The hypothesis bindings of `W?$Wts0gn$SimMapGadget...` and
-`W?$Wts0in$SimImageGadget...` to 0048df88 in symbols.json are wrong: that signature is SimValueGadget's
-(destructor 0044d710, size 0x28). SimMapGadget's destructor is 00443ed0.
+### Objects not yet named or cut (2026-11-11, after lanes n1-n6)
+32 path strings have no published file (`python tools/objcensus.py`): gui\comma.c (object 0042ac40..0042acf0,
+no source body yet), terr\tmask.c, tcell.c, tfeature.c, triver.c, ttable.c, clifftex.c, bmprgb.c, core\herc.c,
+hercsh.c, hercsim.c, mcpbrfs.c, mcpio.c, mcpcamp.c, mcphmisc.c, sim\actorver.c, multi\gameparm.c, main\main.c,
+hint.c, prefs.c, mcursor.c, main\WIN\menus.c, main\testrbx.c, graph\dirty.c, font.c, pal.c, misc\format.c,
+graph\gfx\g_func.c, g_pal.c, io\resblock.c. In each group the number of unnamed objects differs from the number
+of strings, or several share tables, so link order alone cannot pair them (reports: candidates/n3, n4, n6
+REPORT.md list what would decide each). sim\simbug.c and logic\slog.c are published as data-only files (path
+string STRICT): simbug's code is either nothing (debug code compiled out) or `SimDistanceToDepot`
+(00454180..00454210, now in simmisc.c). Compiler filler after simmisc's `SimSoundSetup` favours "same object as
+simmisc"; four strings for four code ranges favours "simbug". Undecided.
 
-### 12-byte screen destructors attributed to the following object (2026-11-11)
-A screen/popup object's inline destructor (`mov eax,[esp+4]; mov dword [eax+0x10],0; ret`) is the LAST function of
-its object, placed right before the next object's static initializer (see codegen_rules.md). Fixed for 00448d74
-(ReportScreen, was `DeathScreenClose` in pdeath.c). Still attributed to the following object:
-`GuiScreen::ResetInput` 004087e0 in src/_unknown/tu_004087e0.c and `GuiScreen::$dt` 0041d774 in
-src/_unknown/tu_0041d774.c. In plain-profile objects the bytes match either way; the ownership and names are wrong.
+### Screen modules still in the old shape (2026-11-11)
+`mapalert.c` is the model (codegen_rules.md, "screen/popup module shape"). Still with an opaque popup class or a
+free function standing for the destructor, visible as a 12-byte last function without its trailing filler:
+src/sim/hotbrief.c (`HotbriefClearActive`, 004625f0), and the `#pragma aux NAME "W?..."` constructor aliases that
+survive in dbrief.c, hbmanage.c, hotseat.c, qstart.c and others (census: candidates/s40/ALIASES.md). One class
+still has two names: `SimImageGadget` = `PilotImageButton` (constructor 00453800 in simgad.c, destructor 0041235c,
+type signature 0048cdb8); the symbols.json hypothesis bindings of `W?$Wts0gn$SimMapGadget...` and
+`W?$Wts0in$SimImageGadget...` to 0048df88 are wrong (that signature is SimValueGadget's).
 
-### Unowned data between sim objects (2026-11-11)
-004a0360..004a0368 (`b7 00 00 00 00 00 00 00`, unreferenced) lies between simmini.c's last item and simgame.c's
-path string: owner unknown (simmini tail or a leading table of simgame.c). simturn.c records only its path string.
-sim\target.c: `_DATA` (path) is not placed and `TargetInitializeRecord` (0045a9f0, 660 bytes differ) is parked; the
-global behind its empty static initializer is a placeholder (`targetStaticPoint`).
-
-### Objects still published as one file (2026-11-11)
-Path strings in `_DATA` and XI records (one per object with static initialization) mark object boundaries. Files
-that still cover several original objects: `src/sim/sim.c` + `simdo.c` (paths sim.c, simglob.c, simmain.c,
-simalert.c, simdo.c between 004a01a8 and 004a030c), and probably others among the 60+ path strings without a TU
-(shell\\promosh.c, vrmenu.c, medlab.c, standby.c, dbrief.c, hbmanage.c, ..., pop\\pmove.c, pweapon.c, pshield.c,
-core\\*.c, main\\*.c, graph\\*.c). A census tool (path strings + XI targets + module headers against the ledger's
-TU ranges) is the next infrastructure step; `tools/promote.py --retire` moves functions out of a combined file.
+### Unowned data
+004a0360..004a0368 (`b7 00 00 00 00 00 00 00`, unreferenced) between simmini.c's last item and simgame.c's path
+string. sim\target.c: `_DATA` (path) is not placed and `TargetInitializeRecord` (0045a9f0) is parked; the global
+behind its empty static initializer is a placeholder (`targetStaticPoint`).
 
 ## Resolved
+
+- 2026-11-11 **Hand-written static initializers, destructor ownership, combined files** (lanes n1-n6, Sol): 43
+  objects published under their path names (74 unnamed path strings -> 32), `_DATA` STRICT in each; `PopObjectConstruct`/`HercModuleConstruct`/
+  `PilotGuiCtorArray` are gone (real global objects in hercbay.c, standby.c, pilotgui.c); the 12-byte screen
+  destructors at 004087e0, 0041072c, 0041d774, 00443f58 moved to the preceding objects; mpcomm.c (two stub
+  functions at 004243e4) cut from hotseat.c; opfire.c cut from hotbrief.c.
+- 2026-11-11 **Functions failing only through a neighbour's switch table**: verifier rule "table ownership"
+  (verification.md); 16 functions STRICT.
 
 - 2026-11-11 **sim\\mapalert.c filler after the popup destructor**: the popup is `class TargetPopup : public
   GuiScreen` with an out-of-line constructor (0045a6e0, was `TargetLoadResource`) and a generated destructor; the
