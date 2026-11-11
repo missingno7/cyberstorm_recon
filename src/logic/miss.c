@@ -44,7 +44,7 @@ extern int RandomRange(int *seed, int low, int high);
 
 int MissionRef::Resolve()
 {
-    int offset=MissionItemAddress(type,item);
+    int offset=Address();
     SimLoadPalette(offset,g4c9234);
     missionCurrentOffset=offset;
     return offset;
@@ -65,7 +65,7 @@ extern int MissionRandomTable[];
 extern int missionPlayerCount;
 extern int missionEstimateTable[];
 extern void MissionDataInit(MissionRecord *, int, int, int, int, int, int);
-extern void AssertFail(const char *file, int line, int condition);
+extern void AssertFail(const char *file, int line, const char *condition);
 struct ResMgr { void *Load(const char *,int,void *,unsigned long); }; extern ResMgr gResMgr;
 extern "C" unsigned int next_link_seed(unsigned int *);
 extern char g4dd0c0[]; void LogicLoadActorState(unsigned long *,const unsigned long *,unsigned long *);
@@ -78,12 +78,12 @@ extern int missionRank;
 extern int ClampRange(int value, int low=0, int high=2);
 #include <stdio.h>
 extern unsigned char missionStateOutput[];
-extern char missionImageString[];
+extern char g511ddc[];
 extern char missionImageBuffer[];
 extern unsigned char missionCopyView[];
 extern unsigned char missionCopyLayout[];
 extern unsigned char missionCopyHeader[];
-extern int missionCopyIndex;
+extern int HercMassScale;
 extern unsigned char missionCopySeedA;
 extern unsigned char missionCopySeedB;
 extern unsigned char missionCopySeedC;
@@ -109,8 +109,8 @@ int MissionEstimate(MissionRecord *record, int difficulty, int *baseOut)
     int row = difficulty-1;
     int players=missionPlayerCount;
     if(players<=1) players=1; else if(players>=5) players=5;
-    int column=players-1;
-    int base=missionEstimateTable[column+row*5];
+    int column=--players;
+    column+=row*5; int base=missionEstimateTable[column];
     int spread=base/10;
     int low, high;
     switch(record->field10) {
@@ -209,25 +209,25 @@ void MissionDataInit(MissionRecord *record, int field28, int field2c, int field3
 
     if (record->mode == 3) {
         int group=record->type;
-        int bounded=group<=0?0:(group>=2?2:group);
-        iVar2=bounded*8;
+        if (group<=0) group=0; else if (group>=2) group=2;
+        iVar2=group*8;
         iVar6=iVar2+7;
     }
 
     unsigned char *pbVar7 = localTable + record->mode * 0x20;
     unsigned int uVar5 = (unsigned int)next_link_seed((unsigned int *)MissionRandomTable) % 100;
     pbVar7 += iVar2;
-    int index=iVar2-1;
-    while (++index<=iVar6) {
+    int index;
+    for (index=iVar2; index<=iVar6; index++, pbVar7++) {
         int probability=*pbVar7;
+        int id=index+1;
         if ((int)uVar5<probability) {
-            record->field1c=(record->mode+1)*100+index+1;
+            record->field1c=(record->mode+1)*100+id;
             break;
         }
         uVar5-=probability;
-        ++pbVar7;
     }
-    if (iVar6 < index) AssertFail(__FILE__, __LINE__, 0);
+    if (index > iVar6) AssertFail(__FILE__, __LINE__, 0);
     int rank = missionRank;
     if (rank <= 0)
         rank = 0;
@@ -235,7 +235,7 @@ void MissionDataInit(MissionRecord *record, int field28, int field2c, int field3
         rank = 2;
     record->field20 = rank;
     if (record->mode == 1)
-        record->field20 = rank + 3;
+        record->field20 = record->field20 + 3;
     LogicLoadActorState((unsigned long *)g4dd0c0, (const unsigned long *)record, (unsigned long *)workArea);
     record->field24 = *(int *)(workArea + 4);
     type = record->type;
@@ -245,9 +245,9 @@ void MissionDataInit(MissionRecord *record, int field28, int field2c, int field3
     offset = missOffsetByType[type] + item;
     SimLoadPalette(offset, g4c9234);
     missionCurrentOffset = offset;
-    int estimate = MissionEstimate(record, record->field34, &record->field48);
-    record->field4c = estimate;
-    record->field50 = estimate / 0x14;
+    record->field4c = MissionEstimate(record, record->field34, &record->field48);
+
+    record->field50 = record->field4c / 0x14;
     int factor;
     int secondary;
     switch(record->field0c) {
@@ -260,8 +260,8 @@ void MissionDataInit(MissionRecord *record, int field28, int field2c, int field3
         secondary = record->field34 + 0x82 + record->type * 10;
         break;
     default:
-        factor = record->type * 2 + record->field34 / 2 + 0x5f;
-        secondary = record->type * 4 + record->field34 / 2 + 0x5a;
+        factor = record->type * 2 + (record->field34 / 2 + 0x5f);
+        secondary = record->type * 4 + (record->field34 / 2 + 0x5a);
         break;
     }
 missionScales:
@@ -278,36 +278,41 @@ missionScales:
     record->field54 = 1000;
 }
 
-void MissionCopy(MissionRecord *record,int *destination)
+inline int MissionSelect(MissionRecord *record)
 {
-    int *source=(int*)record;
-    int item = source[1];
-    int type = ClampRange(source[0]);
+    int type = record->type;
+    int item = record->item;
+    type = ClampRange(type);
     item = ClampRange(item, 0, missLimitByType[type] - 1);
     int offset = missOffsetByType[type] + item;
     SimLoadPalette(offset,g4c9234);
     missionCurrentOffset = offset;
-    LogicLoadActorState((unsigned long *)g4dd0c0, (const unsigned long *)source, (unsigned long *)missionStateOutput);
+    return offset;
+}
+void MissionCopy(MissionRecord *record,int *destination)
+{
+    int offset = MissionSelect(record);
+    LogicLoadActorState((unsigned long *)g4dd0c0, (const unsigned long *)record, (unsigned long *)missionStateOutput);
 
-    destination[0] = source[0];
-    destination[1] = source[1];
-    destination[2] = source[2];
-    destination[3] = source[3];
-    destination[4] = source[4];
-    destination[5] = source[10];
-    destination[6] = source[6];
-    destination[7] = source[0x13];
-    destination[8] = source[0x15];
+    destination[0] = record->type;
+    destination[1] = record->item;
+    destination[2] = record->mode;
+    destination[3] = record->field0c;
+    destination[4] = record->field10;
+    destination[5] = record->field28;
+    destination[6] = record->image;
+    destination[7] = record->field4c;
+    destination[8] = record->field54;
 
     char *banner;
-    if (source[8] == 0) {
-        banner = 0;
-    } else {
+    if (record->field20 != 0) {
         sprintf(missionImageBuffer,
-                (const char *)AllocateMissionImage(missionImageString, 0xf5, 0), source[8]);
+                (const char *)AllocateMissionImage(g511ddc, 0xf5, 0), record->field20);
         banner = missionImageBuffer;
+    } else {
+        banner = 0;
     }
-    int scale = (source[0x13] * 6 + 200000) / 150000;
+    int scale = (record->field4c * 6 + 200000) / 150000;
     if (scale <= 1)
         scale = 1;
     else if (scale >= 6)
@@ -317,7 +322,7 @@ void MissionCopy(MissionRecord *record,int *destination)
     destination[11] = (int)missionCopyLayout;
     destination[12] = (int)AllocateMissionImage(missionImageName, scale + 0x22b);
     destination[13] = (int)missionCopyHeader;
-    int index = missionCopyIndex;
+    int index = HercMassScale;
     destination[14] = index;
     destination[15] = (int)AllocateMissionImage(missionImageName, index + 0x35);
     destination[16] = (int)AllocateMissionImage(missionImageName, offset + 1);
@@ -331,13 +336,13 @@ void MissionCopy(MissionRecord *record,int *destination)
 
 int MissionRef::Address()
 {
-    int type = this->type;
-    int item = this->item;
-    int boundedType = MissionBound(type, 0, 2);
-    int last = missLimitByType[boundedType] - 1;
-    int boundedItem = MissionBound(item, 0, last);
-    return missOffsetByType[boundedType] + boundedItem;
+    int t = type;
+    int i = item;
+    t = MissionBound(t, 0, 2);
+    i = MissionBound(i, 0, missLimitByType[t] - 1);
+    return missOffsetByType[t] + i;
 }
+
 
 int MissionBaseType(void)
 {

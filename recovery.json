@@ -682,10 +682,35 @@
    "install": "wc106",
    "profile": "plain-oe",
    "functions": {
+    "MissionRef::Resolve": {
+     "va": "004654cc",
+     "size": 89,
+     "mangled": "W?Resolve$:MissionRef$n()i"
+    },
     "MissionRecordInitialize": {
      "va": "00465525",
      "size": 91,
      "mangled": "W?MissionRecordInitialize$n(pn$MissionRecord$$iiiii)v"
+    },
+    "MissionEstimate": {
+     "va": "00465580",
+     "size": 292,
+     "mangled": "W?MissionEstimate$n(pn$MissionRecord$$ipni)i"
+    },
+    "MissionDataInit": {
+     "va": "004656a4",
+     "size": 752,
+     "mangled": "W?MissionDataInit$n(pn$MissionRecord$$iiiiii)v"
+    },
+    "MissionCopy": {
+     "va": "00465994",
+     "size": 550,
+     "mangled": "W?MissionCopy$n(pn$MissionRecord$$pni)v"
+    },
+    "MissionRef::Address": {
+     "va": "00465bba",
+     "size": 67,
+     "mangled": "W?Address$:MissionRef$n()i"
     },
     "MissionBaseType": {
      "va": "00465bfd",
@@ -719,7 +744,7 @@
     }
    },
    "data": {},
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/logic/bestloc.c": {
    "as": "logic\\bestloc.c",
@@ -3418,6 +3443,11 @@
      "size": 27,
      "mangled": "W?.tdctor$:MenuLabel$n()rn$1$"
     },
+    "W?.fn_init$n()v": {
+     "va": "00416444",
+     "size": 666,
+     "mangled": "W?.fn_init$n()v"
+    },
     "f_004166de": {
      "va": "004166de",
      "size": 96,
@@ -3428,15 +3458,35 @@
      "size": 38,
      "mangled": "W?$ct:HercBuyCtor$n()_"
     },
+    "f_00416764": {
+     "va": "00416764",
+     "size": 267,
+     "mangled": "W?f_00416764$n(pnvpnv)v"
+    },
+    "f_0041686f": {
+     "va": "0041686f",
+     "size": 775,
+     "mangled": "W?f_0041686f$n(pnv)v"
+    },
     "f_00416b76": {
      "va": "00416b76",
      "size": 55,
      "mangled": "W?f_00416b76$n(pnv)v"
     },
+    "f_00416bad": {
+     "va": "00416bad",
+     "size": 77,
+     "mangled": "W?f_00416bad$n(pnv)v"
+    },
     "f_00416bfa": {
      "va": "00416bfa",
      "size": 107,
      "mangled": "W?f_00416bfa$n(pnv)v"
+    },
+    "f_00416c65": {
+     "va": "00416c65",
+     "size": 282,
+     "mangled": "W?f_00416c65$n(pnv)v"
     },
     "f_00416d7f": {
      "va": "00416d7f",
@@ -3452,6 +3502,11 @@
      "va": "00416eae",
      "size": 36,
      "mangled": "W?f_00416eae$n()v"
+    },
+    "f_00416eec": {
+     "va": "00416eec",
+     "size": 700,
+     "mangled": "W?f_00416eec$n(pnv)v"
     },
     "f_004171ac": {
      "va": "004171ac",
@@ -3482,6 +3537,11 @@
      "va": "004177af",
      "size": 147,
      "mangled": "W?f_004177af$n(pnva)v"
+    },
+    "f_00417842": {
+     "va": "00417842",
+     "size": 217,
+     "mangled": "W?f_00417842$n(pnv)v"
     },
     "f_0041791b": {
      "va": "0041791b",
@@ -3555,9 +3615,29 @@
     }
    },
    "data": {
+    "CONST2": {
+     "va": "0048d0d8",
+     "size": 180
+    },
+    "_DATA": {
+     "va": "0048eb2c",
+     "size": 12
+    },
     "XI": {
      "va": "004a6bac",
      "size": 6
+    },
+    "W?$Wts0en$MenuNumber$$$nx[]uc": {
+     "va": "0048c988",
+     "size": 17
+    },
+    "W?$Wts0in$HercBuyInitBar$$$nx[]uc": {
+     "va": "0048d024",
+     "size": 17
+    },
+    "W?$Wts0kn$HercBuyInitChild$$$nx[]uc": {
+     "va": "0048d010",
+     "size": 17
     },
     "W?$Wts0kn$MenuPrefixButton$$$nx[]uc": {
      "va": "0048c9ec",
@@ -3565,6 +3645,14 @@
     },
     "W?$Wts0dn$MenuLabel$$$nx[]uc": {
      "va": "0048c9b0",
+     "size": 17
+    },
+    "W?$Wts0jn$HercBuyInitHelp$$$nx[]uc": {
+     "va": "0048c9c4",
+     "size": 17
+    },
+    "W?$Wts0kn$HercBuyInitPanel$$$nx[]uc": {
+     "va": "0048c99c",
      "size": 17
     }
    },
@@ -4703,10 +4791,30 @@
      "size": 619,
      "mangled": "W?IntelStateCommon$n(pni)i"
     },
+    "IntelSpawnTimer": {
+     "va": "004673b4",
+     "size": 173,
+     "mangled": "W?IntelSpawnTimer$n(pni)i"
+    },
     "IntelStateLink": {
      "va": "00467461",
      "size": 237,
      "mangled": "W?IntelStateLink$n(pni)i"
+    },
+    "IntelActorCommand": {
+     "va": "00467560",
+     "size": 249,
+     "mangled": "W?IntelActorCommand$n(pniiipni)v"
+    },
+    "IntelActorDispatch": {
+     "va": "00467690",
+     "size": 407,
+     "mangled": "W?IntelActorDispatch$n(pni)i"
+    },
+    "IntelIsAvailable": {
+     "va": "00467827",
+     "size": 291,
+     "mangled": "W?IntelIsAvailable$n(pni)i"
     }
    },
    "data": {},
@@ -4761,6 +4869,11 @@
      "va": "00420695",
      "size": 122,
      "mangled": "W?LaunchShuffleSlots$n(pn$Scene$$)v"
+    },
+    "LaunchRefreshSlots": {
+     "va": "0042070f",
+     "size": 202,
+     "mangled": "W?LaunchRefreshSlots$n(pn$Scene$$)v"
     },
     "LaunchSetupControlStyles": {
      "va": "004207d9",
@@ -4867,6 +4980,11 @@
      "size": 30,
      "mangled": "W?LaunchClearPlayerFlags$n(pn$Scene$$)v"
     },
+    "ShellNetworkSetupRefresh": {
+     "va": "00423664",
+     "size": 765,
+     "mangled": "W?ShellNetworkSetupRefresh$n(pn$Scene$$)v"
+    },
     "LaunchReadyCount": {
      "va": "00423961",
      "size": 124,
@@ -4882,6 +5000,16 @@
      "size": 352,
      "mangled": "W?LaunchRefreshPlayerLabels$n(pn$Scene$$)v"
     },
+    "ShellNetworkSetupSelectPlayer": {
+     "va": "00423b84",
+     "size": 459,
+     "mangled": "W?ShellNetworkSetupSelectPlayer$n(pn$Scene$$i)v"
+    },
+    "ShellNetworkSetupJoinPlayer": {
+     "va": "00423d4f",
+     "size": 249,
+     "mangled": "W?ShellNetworkSetupJoinPlayer$n(pn$Scene$$i)v"
+    },
     "LaunchCanJoin": {
      "va": "00423e48",
      "size": 64,
@@ -4891,6 +5019,16 @@
      "va": "00423e88",
      "size": 34,
      "mangled": "W?LaunchMarkPlayerGone$n(pn$Scene$$)v"
+    },
+    "LaunchSetPlayerName": {
+     "va": "00423eaa",
+     "size": 106,
+     "mangled": "W?LaunchSetPlayerName$n(pn$Scene$$uipnxa)v"
+    },
+    "ShellNetworkSetupAction70": {
+     "va": "00423f14",
+     "size": 152,
+     "mangled": "W?ShellNetworkSetupAction70$n(pn$Scene$$)v"
     },
     "LaunchAdvanceTeam": {
      "va": "00423fac",
@@ -5317,6 +5455,11 @@
      "size": 26,
      "mangled": "W?f_004198e7$n()v"
     },
+    "f_00419901": {
+     "va": "00419901",
+     "size": 204,
+     "mangled": "W?f_00419901$n(pna)v"
+    },
     "f_004199e8": {
      "va": "004199e8",
      "size": 247,
@@ -5326,6 +5469,11 @@
      "va": "00419ae3",
      "size": 65,
      "mangled": "W?f_00419ae3$n(pna)v"
+    },
+    "f_00419b3c": {
+     "va": "00419b3c",
+     "size": 481,
+     "mangled": "W?f_00419b3c$n(pna)v"
     },
     "f_00419d21": {
      "va": "00419d21",
@@ -5477,10 +5625,25 @@
      "size": 85,
      "mangled": "W?f_0041b74c$n(pni)v"
     },
+    "f_0041b912": {
+     "va": "0041b912",
+     "size": 570,
+     "mangled": "W?f_0041b912$n(pna)v"
+    },
+    "f_0041bb4c": {
+     "va": "0041bb4c",
+     "size": 355,
+     "mangled": "W?f_0041bb4c$n(pna)v"
+    },
     "f_0041bcaf": {
      "va": "0041bcaf",
      "size": 299,
      "mangled": "W?f_0041bcaf$n(pnai)v"
+    },
+    "f_0041bdda": {
+     "va": "0041bdda",
+     "size": 70,
+     "mangled": "W?f_0041bdda$n(pna)v"
     },
     "f_0041be20": {
      "va": "0041be20",
@@ -8396,6 +8559,11 @@
    "install": "wc106",
    "profile": "ot-oe",
    "functions": {
+    "WeaponEnabled": {
+     "va": "0045cc00",
+     "size": 80,
+     "mangled": "W?WeaponEnabled$n(pn$Context$$i)i"
+    },
     "WeaponAlwaysEnabled": {
      "va": "0045cc50",
      "size": 16,
@@ -8405,6 +8573,26 @@
      "va": "0045d120",
      "size": 160,
      "mangled": "W?WeaponPower$n(pn$Context$$i)i"
+    },
+    "WeaponMaximum": {
+     "va": "0045d1c0",
+     "size": 64,
+     "mangled": "W?WeaponMaximum$n(pn$Context$$i)i"
+    },
+    "WeaponExpected": {
+     "va": "0045d200",
+     "size": 400,
+     "mangled": "W?WeaponExpected$n(pn$Context$$i)i"
+    },
+    "WeaponAmmoFactor": {
+     "va": "0045d390",
+     "size": 160,
+     "mangled": "W?WeaponAmmoFactor$n(pn$Context$$i)i"
+    },
+    "WeaponEvaluate": {
+     "va": "0045d430",
+     "size": 336,
+     "mangled": "W?WeaponEvaluate$n(pn$Context$$ii)i"
     },
     "WeaponPrepare": {
      "va": "0045d6b0",
@@ -8420,10 +8608,15 @@
      "va": "0045d790",
      "size": 160,
      "mangled": "W?WeaponAreaValue$n(ipn$Weapon$$i)i"
+    },
+    "WeaponChoose": {
+     "va": "0045d830",
+     "size": 447,
+     "mangled": "W?WeaponChoose$n(pn$Context$$pn$TargetRecord$$ii)i"
     }
    },
    "data": {},
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/_unknown/tu_0047ab81.c": {
    "as": "_unknown\\tu_0047ab81.c",

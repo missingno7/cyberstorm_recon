@@ -65,7 +65,7 @@ class MenuButton:public GuiControl {public: U32 state;const char *text; MenuButt
 typedef MenuButton LaunchReadyLabel;
 class MenuLabel:public GuiControl {public:const char *text;long align;unsigned char font;int background;long color;MenuLabel(const char * =0,long=-1,unsigned char=1,long=0xb,int=1);virtual ~MenuLabel(); void Invalidate(){flags&=~1;} void SetControlState(unsigned state){attributes=(attributes&0xff1fffffUL)+(state<<21);} void SetText(const char *);void SetColor(long);void SetAlign(long);void SetBackground(int);void SetFont(unsigned char);};
 class MenuNumber:public GuiControl {public: U32 unused; const char *text;long value;signed char font,color,flash,align;MenuNumber(signed char=-1,signed char=0x12);virtual ~MenuNumber(); void Invalidate(){flags&=~1;} void SetControlState(unsigned state){attributes=(attributes&0xff1fffffUL)+(state<<21);} void SetValue(long,signed char);void SetFont(signed char);};
-class MenuTextButton:public GuiControl {public:U32 state,style;const char *text;signed char font,color,align;MenuTextButton(const char * =0,U32=0,signed char=1,signed char=2,signed char=-1);void Invalidate(){flags&=~1;} void SetControlState(unsigned state){attributes=(attributes&0xff1fffffUL)+(state<<21);}void SetColor(signed char);};
+class MenuTextButton:public GuiControl {public:U32 state,style;const char *text;signed char font,color,align;MenuTextButton(const char * =0,U32=0,signed char=1,signed char=2,signed char=-1);void Invalidate(){flags&=~1;} void SetStyle(U32 s){style=s;} void SetText(const char *s){text=s;} void SetControlState(unsigned state){attributes=(attributes&0xff1fffffUL)+(state<<21);}void SetColor(signed char);};
 typedef MenuTextButton LaunchStatusLabel;
 class MenuPrefixButton:public GuiControl {public:const char *text;U32 state;signed char font,color,align,prefix;MenuPrefixButton(const char * =0,signed char=1,signed char=2,signed char=-1);virtual ~MenuPrefixButton();void Invalidate(){flags&=~1;} void SetControlState(unsigned state){attributes=(attributes&0xff1fffffUL)+(state<<21);}void SetAlign(signed char);};
 #pragma pack(pop)
@@ -396,13 +396,13 @@ void LaunchShuffleSlots(Scene *screen)
 
 void LaunchRefreshSlots(Scene *screen)
 {
-    int i;
+    int i;unsigned team;
     for(i=0;i<8;++i){
         if(chat_player_state_table[i+1].state==1||chat_player_state_table[i+1].state==2){unsigned team=gLaunchTeams[i+1];screen->teamSlots[team]=(unsigned char)(i+1);}
     }
     if(screen->mode==1){
         for(i=1;i<=8;++i){
-            unsigned team=gLaunchTeams[i];
+            team=gLaunchTeams[i];
             if(team!=screen->teamValues[i-1]&&team<8){
                 screen->teamValues[i-1]=team;
                 if(!screen->twoPlayersOnly||i<=2)MenuDrawImage(&g513888,&((MenuImages *)screen->resource)->images[team+25],139,i*26+24);
@@ -1335,11 +1335,11 @@ void LaunchRefreshBudgetLabels(Scene *screen)
             if(TimerExpired(&screen->refreshTimer)){
                 refresh=1;
                 if(screen->mode==1){
-                    long y=(player-1)*26+45;
-                    BriefBlit(&g513888,1,0,442,y,442,y,190,22);
-                    MenuLabel *label=&gLaunchNameLabels[player-1];label->SetText(" ");label->flags&=~1;
+
+                    BriefBlit(&g513888,1,0,442,(player-1)*26+45,442,(player-1)*26+45,190,22);
+                    gLaunchNameLabels[player-1].SetText(" ");gLaunchNameLabels[player-1].Invalidate();
                     gLaunchReadyLabels[player-1].SetControlState(5);
-                    BriefBlit(&g513888,1,0,1,y,1,y,25,24);
+                    BriefBlit(&g513888,1,0,1,(player-1)*26+45,1,(player-1)*26+45,25,24);
                 }
             }
         }
@@ -1624,20 +1624,21 @@ void ShellNetworkSetupRefresh(Scene *screen)
     }else if(!screen->affordable[screen->selectedIndex]){
         screen->mode=6;LaunchShowMessage(screen,(const unsigned char *)gShellStrings.GetString(3878,1));gLaunchReadyErrorCancel&=~1;return;
     }
-    if(screen->eligible[screen->selectedIndex]&&screen->affordable[screen->selectedIndex])switch(chat_player_state_table[screen->selectedPlayer].ready){
+    if(screen->eligible[screen->selectedIndex]&&screen->affordable[screen->selectedIndex]){switch(chat_player_state_table[screen->selectedPlayer].ready){
     case 0:
         chat_player_state_table[screen->selectedPlayer].ready=1;
-        gLaunchReadyLabels[screen->selectedIndex].text="X";gLaunchReadyLabels[screen->selectedIndex].flags&=~1;
-        SoundTrigger(420,0);screen->loaded=1;break;
+        gLaunchReadyLabels[screen->selectedIndex].SetText("X");gLaunchReadyLabels[screen->selectedIndex].Invalidate();
+        SoundTrigger(420,0);break;
     case 1:
         chat_player_state_table[screen->selectedPlayer].ready=0;
-        gLaunchReadyLabels[screen->selectedIndex].text=" ";gLaunchReadyLabels[screen->selectedIndex].flags&=~1;
-        SoundTrigger(417,0);screen->loaded=1;break;
+        gLaunchReadyLabels[screen->selectedIndex].SetText(" ");gLaunchReadyLabels[screen->selectedIndex].Invalidate();
+        SoundTrigger(417,0);break;
     default:
         chat_player_state_table[screen->selectedPlayer].ready=0;
-        gLaunchReadyLabels[screen->selectedIndex].text=" ";gLaunchReadyLabels[screen->selectedIndex].flags&=~1;
-        screen->loaded=1;break;
+        gLaunchReadyLabels[screen->selectedIndex].SetText(" ");gLaunchReadyLabels[screen->selectedIndex].Invalidate();
+        break;
     }
+    screen->loaded=1;}
 
 
 }
@@ -1726,14 +1727,14 @@ void ShellNetworkSetupJoinPlayer(Scene *,int argument)
 {
     unsigned char index=argument;
     MenuMessage message;MenuMessageBasic(&message,0x101f);
-    unsigned player=index+1;
-    MenuSend(&message,chat_player_state_table[player].peer);
-    chat_player_state_table[player].state=7;
+
+    MenuSend(&message,chat_player_state_table[(index+1)].peer);
+    chat_player_state_table[(index+1)].state=7;
     LaunchStatusLabel *status=&gLaunchStatusLabels[index];status->style=3;
     status->text=gShellStrings.GetString(3851,1);
-    chat_player_state_table[player].ready=0;
-    LaunchReadyLabel *label=&gLaunchReadyLabels[index];label->text=" ";label->flags&=~1;
-    gMenuNetwork.BroadcastSlot(chat_player_state_table[player].peer,&chat_player_state_table[player]);
+    chat_player_state_table[(index+1)].ready=0;
+    gLaunchReadyLabels[index].SetText(" ");gLaunchReadyLabels[index].Invalidate();
+    gMenuNetwork.BroadcastSlot(chat_player_state_table[(index+1)].peer,&chat_player_state_table[(index+1)]);
     BriefBlit(&g513888,1,0,459,index*26+45,459,index*26+45,170,22);
 }
 
@@ -1757,23 +1758,26 @@ void LaunchSetPlayerName(Scene *screen,unsigned player,const char *name)
 {
     if(screen->IsActive()&&player<=8){
         if(!player)player=1;
-        strcpy(gLaunchPlayerNames[--player],name);
-        gLaunchNameLabels[player].SetText(gLaunchPlayerNames[player]);gLaunchNameLabels[player].Invalidate();
+        strcpy(gLaunchPlayerNames[player-1],name);
+        gLaunchNameLabels[player-1].SetText(gLaunchPlayerNames[player-1]);gLaunchNameLabels[player-1].Invalidate();
     }
 }
 
+inline void LaunchTakeFreeTeam(Scene *screen)
+{
+    int player=screen->selectedPlayer;
+    int next=LaunchFindFreeTeamSlot(screen,player);
+    if(next>=0){
+        for(int i=1;i<=8;++i){
+            if(gLaunchTeams[i]==next){gLaunchTeams[i]=gLaunchTeams[player];break;}
+        }
+        gLaunchTeams[player]=next;screen->dirty=1;
+    }
+}
 void ShellNetworkSetupAction70(Scene *screen)
 {
-    if(gMenuNetwork.host){
-        int player=screen->SelectedPlayer();
-        int next=LaunchFindFreeTeamSlot(screen,player);
-        if(next>=0){
-            for(int i=1;i<=8;++i){
-                if(gLaunchTeams[i]==next){gLaunchTeams[i]=gLaunchTeams[player];break;}
-            }
-            gLaunchTeams[player]=next;screen->dirty=1;
-        }
-    }else{
+    if(gMenuNetwork.host)LaunchTakeFreeTeam(screen);
+    else{
         MenuMessage message;MenuMessageBasic(&message,0x1020);MenuSend(&message,hostPeer);
     }
 }

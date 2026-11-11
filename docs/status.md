@@ -28,6 +28,13 @@ Numbers come from `python tools/verify.py`; this file only summarises them.
   target.c, identities fixed (ActorRecord constructor, ReportScreen destructor), `new[]`/`delete[]` restored in ten
   TUs. Object boundaries now follow from XI records and `_DATA` path strings (codegen_rules.md).
 
+- 2026-11-11 (later): 2,001 STRICT functions, 299,578 bytes (57.50%) in 187 TUs. Six Sol structure lanes named 43
+  more objects from path strings and static-init records; verifier rule "table ownership" (+16); a four-arm trial
+  on 44 long-parked functions (Sol high 2, Fable low 20, medium 26, high 11; union 33 published) showed that most
+  of the "register allocation" residue in those files was source shape: alias/capture locals added by earlier
+  lanes, statement placement around switches, inline member calls vs field stores, callee spelling at the `-oe`
+  limit (21 rows in codegen_rules.md). Compiler-option and second-oracle censuses are negative.
+
 ## Next
 - Object census: path strings + XI records + module headers against the ledger's TU ranges; cut the remaining
   combined files (sim.c/simdo.c first). Then the three hand-written static initializers (blocked.md).

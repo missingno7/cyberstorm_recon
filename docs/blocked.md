@@ -7,13 +7,21 @@ holds the structural blockers. Open items first, resolved history below.
 ## Open
 
 ### Register-assignment residue (the dominant blocker; state 2026-11-11)
-About 370 of the ~390 parked functions are roots (`python tools/blockers.py`): only 27 wait for a neighbour
-(shared tails, jump distances). Ruled out as global causes, all recorded in codegen_rules.md: compiler release
-(10.5, 10.0a, 11.0), CPU switch, every single optimisation/code option per TU (`tools/flagcensus.py`), build noise
-(the 1.00A build agrees wherever both can be read), declaration order, types, helper spelling
-(`tools/variants.py` runs). What is left is the shape of each expression tree and of the surrounding function; the
-r3 allocation model predicts synthetic probes but not these functions. Next evidence worth getting: the exact
-conflict-graph order of 10.6 on one two-temporary case (IoClose, src/io/file.c: `esi`/`edi` swapped, 96 bytes).
+About 355 functions are parked; nearly all are roots (`python tools/blockers.py`). Ruled out as global causes,
+all recorded in codegen_rules.md: compiler release (10.5, 10.0a, 11.0), CPU switch, every single optimisation/code
+option per TU (`tools/flagcensus.py`), build noise (the 1.00A build agrees wherever both can be read).
+What worked on 33 of 44 long-parked functions (lanes t1fl/t1fm/t1fh): the residue was source shape after all.
+Try in this order: (1) remove locals that only alias or capture a value (`T *screen = (T *)object`, `int id`,
+`sound`, `current`), or add the one real one: each shifts a rotating register choice; (2) asserts as
+`if (!p->m) AssertFail(__FILE__, __LINE__, 0)` where a captured local leaves a dead copy; (3) statements common
+to all switch cases once after the switch, case bodies in source order; (4) inline member calls vs direct field
+stores; (5) a small callee in typed/array spelling so the default `-oe` inlines it; (6) per-branch calls with
+immediates instead of a variable and one call. Still invariant under 800 variants including these: IoClose
+(src/io/file.c, `esi`/`edi`). Open with a known cause: `MissionItemAddress` (00465c27, miss.c): its out-of-line
+body wants the short spelling, its two inlined copies the accumulating one; a second helper with the other
+spelling makes all three STRICT but is a copy that exists only to move bytes, so it was not accepted.
+`f_00419413` (hbupgrad.c, 164 vs 177 bytes) blocks `f_0041b7a1` by one byte; `CommsLogView::Event` (00412a75) has
+identical bytes, one fix serves both.
 
 ### Objects not yet named or cut (2026-11-11, after lanes n1-n6)
 32 path strings have no published file (`python tools/objcensus.py`): gui\comma.c (object 0042ac40..0042acf0,

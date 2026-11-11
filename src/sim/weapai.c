@@ -51,8 +51,7 @@ inline int HealthPercent(ActorUnit *u) { return u->slot[0].health; }
 static inline int Clamp(int value,int low,int high) { if(value<=low) return low; if(value>=high) return high; return value; }
 int WeaponEnabled(Context *c,int index)
 {
-    ActorRecord *valid=c->target.sourceActor;
-    if (!valid)
+    if (c->target.sourceActor == 0)
 
 
 
@@ -132,7 +131,8 @@ int WeaponEnabled(Context *c,int index)
 
 
 
-        AssertFail(__FILE__, __LINE__, (const char *)valid);
+
+        AssertFail(__FILE__, __LINE__, 0);
     return c->target.sourceActor->enabled & ((1 << index) != 0);
 }
 int WeaponAlwaysEnabled() { return 1; }
@@ -159,11 +159,11 @@ int WeaponStatus(Context *c,int index)
 
     }
     if (!modeSwitch && gRemoteActorKind == c->target.sourceActor->owner) {
-        int kind=f_00439d02(c->target.sourceActor->unit); int hidden=IsTypeHidden(c->target.sourceActor->type);
+        int kind=f_00439d02(c->target.sourceActor->unit); int visible=!IsTypeHidden(c->target.sourceActor->type);
         int range=weaponClassRanges[kind]+weaponMissionRanges[gMissionKind]+weaponRangeBase;
         if (gMission==410) range+=2;
         if (gMission==418) range+=3;
-        if (!hidden) range+=weaponVisibleRanges[kind];
+        if (visible) range+=weaponVisibleRanges[kind];
         if (HealthPercent(c->target.sourceActor->unit)!=100) range+=100;
         if (c->target.distance-100 > range*1000) return 8;
     }
@@ -362,40 +362,44 @@ int WeaponPower(Context *c,int index)
     if (r->weapon.power == 0) value-=weaponTerrainPenalty;
     return Clamp(value,0,100);
 }
+inline int Larger(int a,const int &b) { if (a > b) return a; return b; }
 int WeaponMaximum(Context *c,int index)
 {
-    Weapon *w=&c->score[index].weapon;
-    int damage=w->armorDamage+w->penetrationDamage;
-    if (w->directDamage > damage) damage=w->directDamage;
-    return damage*w->ringCount;
+    WeaponScore *r=&c->score[index];
+    int damage=r->weapon.armorDamage+r->weapon.penetrationDamage;
+    int direct=r->weapon.directDamage;
+    int best=Larger(damage,direct);
+    best*=r->weapon.ringCount;
+    return best;
 }
 int WeaponExpected(Context *c,int index)
 {
-    ActorRecord *source=c->target.sourceActor; if(!source || !source->unit) return 0; ActorRecord *target=c->target.targetActor; if(!target || !target->unit) return 0; ActorUnit *unit=source->unit; ActorUnit *other=target->unit;
+    ActorUnit *unit; int direction; ActorUnit *other;
+    if (!c->target.sourceActor || !c->target.sourceActor->unit || !c->target.targetActor || !c->target.targetActor->unit) return 0;
+    unit=c->target.sourceActor->unit; other=c->target.targetActor->unit;
     WeaponScore *r=&c->score[index];
     int falloff=Interpolate(r->weapon.falloffNear,100,r->weapon.falloffFar,0,(c->target.distance+100)/1000);
-    r->rangeFactor=Clamp(falloff,10,100);
-    int direction=c->target.targetDirection+0x80000034-target->direction;
+    int factor=Clamp(falloff,10,100);
+    r->rangeFactor=factor;
+    direction=c->target.modifier+0x80000034-c->target.targetActor->direction;
+    int damage=factor*r->weapon.ringCount;
     int armor,body;
-    UnitDamageSplit(other,direction,r->rangeFactor*r->weapon.ringCount,(Weapon *)PopFindItem(unit,index+11),armor,body);
-
+    UnitDamageSplit(other,direction,damage,(Weapon *)PopFindItem(unit,index+11),armor,body);
     int result=((armor+body)*r->chance+50)/100;
-    if (c->target.sourceActor->owner==leaderPlayer && r->weapon.directDamage < r->weapon.armorDamage) {
-        if (armor==0) result/=2;
-        else {
+    if (c->target.sourceActor->owner==leaderPlayer && r->weapon.armorDamage > r->weapon.directDamage) {
+        if (armor) {
             result=r->weapon.armorDamage*4*r->chance/100;
-            if (((int *)((char *)other+0xcb))[GridClamp(direction)]<=armor) result*=4;
-        }
+            if (armor >= ((int *)((char *)other+0xcb))[GridClamp(direction)]) result*=4;
+        } else result/=2;
     }
     return result;
 }
 int WeaponAmmoFactor(Context *c,int index)
 {
-    WeaponScore &record=c->score[index]; WeaponScore *r=&record;
+    WeaponScore *r=&c->score[index];
     int ammo=100;
     if (r->weapon.ammo) {
-        ActorRecord *valid=c->target.sourceActor;
-        if (!valid)
+        if (c->target.sourceActor == 0)
 
 
 
@@ -465,12 +469,10 @@ int WeaponAmmoFactor(Context *c,int index)
 
 
 
-
-
-
-
-            AssertFail(__FILE__, __LINE__, (const char *)valid);
-        ammo=*(int *)((char *)c->target.sourceActor->unit+0x6d+index*8)*100/r->weapon.ammo+r->weapon.ammo/2;
+            AssertFail(__FILE__, __LINE__, 0);
+#define LEFT c->target.sourceActor->unit->slot[index+11].ammo
+        int left=LEFT;
+        ammo=left*100/r->weapon.ammo+r->weapon.ammo/2;
     }
     int factor=0;
     if (r->maximum) factor=ammo*r->expected/r->maximum;
@@ -504,13 +506,12 @@ int WeaponTerrain(int source,int target)
         unsigned int height=targetDefinitionTable[target].height;
         Point *offset=weaponNeighborOffsets, *end=offset+6;
         int weightIndex=facing*6;
-        do {
+        for (; offset!=end; ++offset,++weightIndex) {
             Point neighbor=targetGrid;
             neighbor.x+=offset->x;neighbor.y+=offset->y;
             int cell=ResolveName(fallbackName,(const char *)&neighbor);
             if (cell) { int delta=targetDefinitionTable[cell].height-height; if (delta>0) total+=delta*weaponTerrainWeights[weightIndex]; }
-            ++offset;++weightIndex;
-        } while(offset!=end);
+        }
     }
     return total;
 }
@@ -680,19 +681,20 @@ int WeaponChoose(Context *c,TargetRecord *target,int minimum,int checkEnabled)
 
 
 
-
         AssertFail(__FILE__, __LINE__, 0);
     unsigned int total=0;
     for(int i=0;i<8;i++) {
         int weight=c->score[i].ammoFactor;
         weights[i]=0;
-        if (minimum<=weight) {
-            Weapon *w=(Weapon *)PopFindItem(actor->unit,i+11);
-            if (w->rings<=1 || WeaponAreaValue(actor->owner,w,target->targetId)<0) { weights[i]=weight; total+=weight; }
+        if (weight>=minimum) {
+            ActorUnit *unit=actor->unit; Weapon *w=(Weapon *)PopFindItem(unit,i+11);
+            if (w->rings<=1 || WeaponAreaValue(actor->owner,w,target->targetId)<0)
+            { weights[i]=weight; total+=weight; }
         }
     }
     if(total) {
-        int choice=next_link_seed(&MissionRandomTable)%total;
+        unsigned int roll=next_link_seed(&MissionRandomTable)%total;
+        int choice=roll;
         for(int i=0;i<8;i++) { choice-=weights[i]; if(choice<0) return i; }
     }
     return -1;

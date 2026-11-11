@@ -29,7 +29,7 @@ public:
 class MenuNumber {
     char data[0x2c];
 public:
-    void SetValue(long value, signed char flash); MenuNumber(signed char font, signed char color); virtual ~MenuNumber();
+    void SetValue(long value, signed char flash); MenuNumber(signed char font = -1, signed char color = 0x12); virtual ~MenuNumber();
 };
 struct MenuImage { int value[3]; }; struct MenuImageSet { int count; MenuImage images[1]; };
 struct MenuPrefixButton {
@@ -176,9 +176,9 @@ void f_00416764(void *object, void *input)
     g4b3f78 = -1;
     *(HercRect *)&g5138fc = *(HercRect *)&g51390c;
     SurfaceCopyRegion(&gMenuSavedSurface, &g511948, 0, 0);
-    void *resource = gResMgr.Load((long)"SHELLHRC.bmx");
-    *(int *)((char *)object + 0x4c) = (int)resource;
-    if (resource == 0) {
+    *(void **)((char *)object + 0x4c) = gResMgr.Load((long)"SHELLHRC.bmx");
+    if (*(void **)((char *)object + 0x4c) == 0) {
+// Original source-line padding.
 // Original source-line padding.
 // Original source-line padding.
 // Original source-line padding.
@@ -195,21 +195,22 @@ void f_00416764(void *object, void *input)
 
 void f_0041686f(void *object)
 {
-    HercBuyDataView *screen=(HercBuyDataView*)object;
+// pad
     int count;
-    screen->records=(unsigned char*)f_00441456(&g4a70b8,&count); screen->entryCount=(unsigned char)count;
+    ((HercBuyDataView*)object)->records=(unsigned char*)f_00441456(&g4a70b8,&count); ((HercBuyDataView*)object)->entryCount=(unsigned char)count;
     BriefSetMode(&g4b395c,0);
     if(count>15) {
-        f_00429aa0(&g4b395c,count-14); screen->base=0; screen->previousBase=screen->base;
+        f_00429aa0(&g4b395c,count-14); ((HercBuyDataView*)object)->base=0; ((HercBuyDataView*)object)->previousBase=((HercBuyDataView*)object)->base;
     } else {
         g4b39cc=(g4b39cc&0xff1fffff)+0xa00000; g4b3978=(g4b3978&0xff1fffff)+0xa00000; g4b39a0=(g4b39a0&0xff1fffff)+0xa00000;
     }
-    BriefSetMode(&g4b3fd0,0); screen->textTop=0; screen->previousTop=99;
-    *(int*)((char*)screen+0x55)=0; screen->currentIndex=0; screen->lastSelected=99; screen->selected=1;
-    f_00417219(screen);
+    BriefSetMode(&g4b3fd0,0); ((HercBuyDataView*)object)->textTop=0; ((HercBuyDataView*)object)->previousTop=99;
+    *(int*)((char*)object+0x55)=0; ((HercBuyDataView*)object)->currentIndex=0; ((HercBuyDataView*)object)->lastSelected=99; ((HercBuyDataView*)object)->selected=1;
+    f_00417219(object);
     if(((Shell*)uiSystem)->UpdateCredits())((MenuNumber*)&g4b392c)->SetValue(g4a706d,0);
-    f_004176b1(screen); f_00416b76(screen); f_00416bad(screen); f_0041733c(screen);
+    f_004176b1(object); f_00416b76(object); f_00416bad(object); f_0041733c(object);
 }
+
 
 void f_0041686f(void *object);
 void f_00416b76(void *object)
@@ -224,10 +225,10 @@ void f_00416b76(void *object)
 
 void f_00416bad(void *object)
 {
-    HercBuyDataView *screen=(HercBuyDataView*)object;
-    for(unsigned char i=0;i<screen->entryCount;i++) {
-        screen->units[i]=screen->Records()[i].units;
-        screen->pilots[i]=screen->Records()[i].pilots;
+// Original source-line padding.
+    for(unsigned char i=0;i<((HercBuyDataView*)object)->entryCount;i++) {
+        ((HercBuyDataView*)object)->units[i]=((HercBuyDataView*)object)->Records()[i].units;
+        ((HercBuyDataView*)object)->pilots[i]=((HercBuyDataView*)object)->Records()[i].pilots;
     }
 }
 
@@ -247,10 +248,10 @@ inline long HercRangeValue(){return g4b395c;}
 void f_00416c65(void *object)
 {
     if (((HercBuyDataView *)object)->IsActive()) {
-        long current=HercRangeValue();
-        *((char *)object + 0xfd5) = (char)current;
-        if ((char)current != *((char *)object + 0xfd6)) {
-            *((char *)object + 0xfd6) = (char)current;
+        *((char *)object + 0xfd5) = (char)HercRangeValue();
+// pad
+        if (*((char *)object + 0xfd5) != *((char *)object + 0xfd6)) {
+            *((char *)object + 0xfd6) = *((char *)object + 0xfd5);
             *(int *)((char *)object + 0x55) = 1;
         }
         ((MenuLabel *)&g4b3c78[*(int *)((char *)object + 0xee)])->SetColor(2);
@@ -313,9 +314,9 @@ void f_00416eec(void *object)
 {
     long totalHeight;
     long visibleHeight;
-    HercBuyDataView *screenCopy;
-    unsigned char baseIndex;
-    unsigned char i;
+// Original source-line padding.
+// Original source-line padding.
+// Original source-line padding.
 
     if (((HercBuyDataView *)object)->IsActive()) {
     switch (*((unsigned char *)object + 0x50)) {
@@ -326,15 +327,18 @@ void f_00416eec(void *object)
     case 1:
         f_00416d9d(object);
         return;
+    case 3:
+        f_00417842(object);
+        break;
     case 2:
         if (((Shell *)uiSystem)->UpdateCredits() != 0)
             ((MenuNumber *)&g4b392c)->SetValue(g4a706d, 0);
 
         if (*(int *)((char *)object + 0x55) != 0) {
             *(int *)((char *)object + 0x55) = 0;
-            screenCopy = (HercBuyDataView *)object;
-            f_00417732(object, screenCopy->base);
-            ((GuiScreen *)screenCopy)->Invalidate();
+// Original source-line padding.
+            f_00417732(object, ((HercBuyDataView *)object)->base);
+            ((GuiScreen *)object)->Invalidate();
             BriefBlit(&g513888, 1, 0, 0, 0x26, 0, 0x26, 0x104, 0x192);
         }
 
@@ -346,9 +350,9 @@ void f_00416eec(void *object)
             BriefBlit(&g513888, 1, 0, 0, 0x145, 0, 0x145, 0xe9, 0x4b);
             MenuDrawImage(&g513888, (const MenuImage *)(*(int *)((char *)object + 0x4c) + 4), 0, 0);
             MenuDrawImage(&g513888,
-                          (const MenuImage *)(*(int *)((char *)object + 0x4c) + 4 +
-                                              *((unsigned char *)object + 0x79a +
-                                                *((unsigned char *)object + 0xfd2)) * 0xc),
+                          (const MenuImage *)(*((unsigned char *)object + 0x79a +
+                                                *((unsigned char *)object + 0xfd2)) * 0xc +
+                                              (*(int *)((char *)object + 0x4c) + 4)),
                           0, 0);
             ((MenuNumber *)&g4b40dc)->SetValue(
                 *(long *)((char *)object + 0xe3e + *((unsigned char *)object + 0xfd2) * 4), 0);
@@ -364,9 +368,6 @@ void f_00416eec(void *object)
             }
             SurfacePresent(&g513888);
         }
-        break;
-    case 3:
-        f_00417842(object);
         break;
     case 4:
     case 5:
@@ -389,10 +390,10 @@ void f_004171ac(void *object)
 }
 inline void HercBuyRefreshLabels(void *object,unsigned char baseIndex)
 {
-    HercBuyDataView *screen=(HercBuyDataView*)object;
+// pad
     for(char i=0;i<15;i++) {
-        g4b39e4[i].SetText((const char *)((baseIndex+i)*17+(unsigned long)screen->names));
-        g4b3c78[i].SetText(screen->prices[baseIndex+i]);
+        g4b39e4[i].SetText(((HercBuyDataView*)object)->names[baseIndex+i]);
+        g4b3c78[i].SetText(((HercBuyDataView*)object)->prices[baseIndex+i]);
     }
 }
 void f_00417219(void *object)
@@ -482,24 +483,23 @@ void f_004176b1(void *object)
 {
     unsigned char i;
 
-    for (i = 0; i < *((unsigned char *)object + 0xed); ++i) {
-        strncpy((char *)((unsigned long)i*17+(unsigned long)((HercBuyDataView *)object)->names),
-                *(const char **)(*(int *)((char *)object + 0xfce) +
-                                 (unsigned long)i * 0x19), 0x10);
-        MenuFormatNumber(*(int *)(*(int *)((char *)object + 0xfce) + 8 +
-                                  (unsigned long)i * 0x19),
-                         (long)(unsigned long)((unsigned char *)object + 0x7fe +
-                                               (unsigned long)i * 0xc),
-                         0xb);
+    for (i = 0; i < ((HercBuyDataView *)object)->entryCount; ++i) {
+        strncpy(((HercBuyDataView *)object)->names[i], ((HercBuyRecord *)((HercBuyDataView *)object)->records)[i].name, 0x10);
+        MenuFormatNumber(((HercBuyRecord *)((HercBuyDataView *)object)->records)[i].price, (long)((HercBuyDataView *)object)->prices[i], 0xb);
+// pad
+// pad
+// pad
+// pad
+// pad
     }
 }
 
 void f_00417732(void *object,unsigned char baseIndex)
 {
-    HercBuyDataView *screen=(HercBuyDataView*)object;
+// Original source-line padding.
     for(char i=0;i<15;i++) {
-        g4b39e4[i].SetText(screen->names[baseIndex+i]);
-        g4b3c78[i].SetText((const char*)((baseIndex+i)*12+(unsigned long)screen->prices));
+        g4b39e4[i].SetText(((HercBuyDataView*)object)->names[baseIndex+i]);
+        g4b3c78[i].SetText(((HercBuyDataView*)object)->prices[baseIndex+i]);
     }
 }
 
@@ -1023,7 +1023,7 @@ public:
 HercBuyInitButton initButton0(0, 0);
 HercBuyInitButton initButton1(0, 0);
 HercBuyInitButton initButton2(0, 0);
-MenuNumber initNumber0(-1, 0x12);
+MenuNumber initNumber0;
 HercBuyInitRange initRange0(0x32, 0);
 HercBuyInitBar initBar0(&initRange0, 0);
 HercBuyInitChild initChild0(&initRange0, 1, 0x30);
@@ -1039,11 +1039,11 @@ HercBuyInitBar initBar1(&initRange1, 0);
 HercBuyInitChild initChild2(&initRange1, 10, 0x30);
 HercBuyInitChild initChild3(&initRange1, -10, 0x2d);
 HercBuyInitPanel initPanel;
-MenuNumber initNumber1(-1, 0x12);
-MenuNumber initNumber2(-1, 0x12);
-MenuNumber initNumber3(-1, 0x12);
-MenuNumber initNumber4(-1, 0x12);
-MenuNumber initNumber5(-1, 0x12);
+MenuNumber initNumber1;
+MenuNumber initNumber2;
+MenuNumber initNumber3;
+MenuNumber initNumber4;
+MenuNumber initNumber5;
 HercBuyInitScreen initScreen;
 
 

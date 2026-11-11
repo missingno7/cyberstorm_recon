@@ -670,6 +670,13 @@
    "tu": "src/_unknown/tu_00407204.c",
    "evidence": "strict match 2026-11-11"
   },
+  "HercBuyInitHelp::$dt": {
+   "va": "00408610",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:HercBuyInitHelp$n()_",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-11"
+  },
   "MenuLabel::$dt": {
    "va": "00408654",
    "kind": "func",
@@ -694,6 +701,13 @@
    "tu": "src/_unknown/tu_00407204.c",
    "evidence": "strict match 2026-11-11"
   },
+  "HercBuyInitPanel::$dt": {
+   "va": "004086dc",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:HercBuyInitPanel$n()_",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-11"
+  },
   "MenuNumber::$dt": {
    "va": "00408720",
    "kind": "func",
@@ -709,6 +723,13 @@
    "mangled": "W?$dt:MenuButton$n()_",
    "tu": "src/_unknown/tu_00407204.c",
    "evidence": "strict match 2026-11-11"
+  },
+  "HercBuyInitButton::$dt": {
+   "va": "00408764",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:HercBuyInitButton$n()_",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-11"
   },
   "MainMenuScreen::$dt": {
    "va": "004087a8",
@@ -2765,6 +2786,13 @@
    "tu": "src/gui/slider.c",
    "evidence": "strict match 2026-11-11"
   },
+  "HercBuyInitBar::$dt": {
+   "va": "00415554",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:HercBuyInitBar$n()_",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-11"
+  },
   "UpgradeArrow::$dt": {
    "va": "00415598",
    "kind": "func",
@@ -2772,6 +2800,13 @@
    "mangled": "W?$dt:UpgradeArrow$n()_",
    "tu": "src/gui/slider.c",
    "evidence": "strict match 2026-11-11"
+  },
+  "HercBuyInitChild::$dt": {
+   "va": "00415598",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:HercBuyInitChild$n()_",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-11"
   },
   "MissBrief::$dt": {
    "va": "004155dc",
@@ -3101,10 +3136,10 @@
   "W?.fn_init$n()v@shell/hercbuy.c": {
    "va": "00416444",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?.fn_init$n()v",
    "tu": "src/shell/hercbuy.c",
-   "evidence": "placed (at) in src/shell/hercbuy.c 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "f_004166de": {
    "va": "004166de",
@@ -3122,6 +3157,13 @@
    "tu": "src/shell/hercbuy.c",
    "evidence": "strict match 2026-11-11"
   },
+  "HercBuyInitScreen::$ct": {
+   "va": "0041673e",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$ct:HercBuyInitScreen$n()_",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-11"
+  },
   "HercBuyOpen": {
    "va": "00416764",
    "kind": "func",
@@ -3132,18 +3174,18 @@
   "f_00416764": {
    "va": "00416764",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?f_00416764$n(pnvpnv)v",
    "tu": "src/shell/hercbuy.c",
-   "evidence": "placed (at) in src/shell/hercbuy.c 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "f_0041686f": {
    "va": "0041686f",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?f_0041686f$n(pnv)v",
    "tu": "src/shell/hercbuy.c",
-   "evidence": "placed (at) in src/shell/hercbuy.c 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "f_00416b76": {
    "va": "00416b76",
@@ -3156,10 +3198,10 @@
   "f_00416bad": {
    "va": "00416bad",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?f_00416bad$n(pnv)v",
    "tu": "src/shell/hercbuy.c",
-   "evidence": "placed (at) in src/shell/hercbuy.c 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "HercBuyClose": {
    "va": "00416bfa",
@@ -3186,10 +3228,10 @@
   "f_00416c65": {
    "va": "00416c65",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?f_00416c65$n(pnv)v",
    "tu": "src/shell/hercbuy.c",
-   "evidence": "placed (at) in src/shell/hercbuy.c 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "f_00416d7f": {
    "va": "00416d7f",
@@ -3225,10 +3267,10 @@
   "f_00416eec": {
    "va": "00416eec",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?f_00416eec$n(pnv)v",
    "tu": "src/shell/hercbuy.c",
-   "evidence": "placed (at) in src/shell/hercbuy.c 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "f_004171ac": {
    "va": "004171ac",
@@ -3288,10 +3330,10 @@
   "f_00417842": {
    "va": "00417842",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?f_00417842$n(pnv)v",
    "tu": "src/shell/hercbuy.c",
-   "evidence": "placed (at) in src/shell/hercbuy.c 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "HercBuyRefresh": {
    "va": "0041791b",
@@ -3432,6 +3474,13 @@
    "mangled": "W?$dt:HercBuyCtor$n()_",
    "tu": "src/shell/hercbuy.c",
    "evidence": "strict match 2026-11-11"
+  },
+  "HercBuyInitScreen::$dt": {
+   "va": "00417f14",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$dt:HercBuyInitScreen$n()_",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-11"
   },
   "W?.fn_init$n()v@_unknown/tu_00417f34.c": {
    "va": "00417f34",
@@ -3786,10 +3835,10 @@
   "f_00419901": {
    "va": "00419901",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?f_00419901$n(pna)v",
    "tu": "src/shell/hbupgrad.c",
-   "evidence": "placed (at) in src/shell/hbupgrad.c 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "f_004199e8": {
    "va": "004199e8",
@@ -3817,10 +3866,10 @@
   "f_00419b3c": {
    "va": "00419b3c",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?f_00419b3c$n(pna)v",
    "tu": "src/shell/hbupgrad.c",
-   "evidence": "placed (at) in src/shell/hbupgrad.c 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "f_00419d21": {
    "va": "00419d21",
@@ -4081,18 +4130,18 @@
   "f_0041b912": {
    "va": "0041b912",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?f_0041b912$n(pna)v",
    "tu": "src/shell/hbupgrad.c",
-   "evidence": "placed (at) in src/shell/hbupgrad.c 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "f_0041bb4c": {
    "va": "0041bb4c",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?f_0041bb4c$n(pna)v",
    "tu": "src/shell/hbupgrad.c",
-   "evidence": "placed (at) in src/shell/hbupgrad.c 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "f_0041bcaf": {
    "va": "0041bcaf",
@@ -4105,10 +4154,10 @@
   "f_0041bdda": {
    "va": "0041bdda",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?f_0041bdda$n(pna)v",
    "tu": "src/shell/hbupgrad.c",
-   "evidence": "placed (at) in src/shell/hbupgrad.c 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "f_0041be20": {
    "va": "0041be20",
@@ -4796,10 +4845,10 @@
   "LaunchRefreshSlots": {
    "va": "0042070f",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?LaunchRefreshSlots$n(pn$Scene$$)v",
    "tu": "src/shell/mplaunch.c",
-   "evidence": "placed (at) in src/shell/mplaunch.c 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "LaunchSetupControlStyles": {
    "va": "004207d9",
@@ -4986,9 +5035,10 @@
   "ShellNetworkSetupRefresh": {
    "va": "00423664",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ShellNetworkSetupRefresh$n(pn$Scene$$)v",
-   "evidence": "implied by src/shell/shell.c 2026-11-09"
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-11"
   },
   "LaunchReadyCount": {
    "va": "00423961",
@@ -5017,16 +5067,18 @@
   "ShellNetworkSetupSelectPlayer": {
    "va": "00423b84",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ShellNetworkSetupSelectPlayer$n(pn$Scene$$i)v",
-   "evidence": "implied by src/shell/shell.c 2026-11-09"
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-11"
   },
   "ShellNetworkSetupJoinPlayer": {
    "va": "00423d4f",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ShellNetworkSetupJoinPlayer$n(pn$Scene$$i)v",
-   "evidence": "implied by src/shell/shell.c 2026-11-09"
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-11"
   },
   "LaunchCanJoin": {
    "va": "00423e48",
@@ -5047,17 +5099,18 @@
   "LaunchSetPlayerName": {
    "va": "00423eaa",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?LaunchSetPlayerName$n(pn$Scene$$uipnxa)v",
    "tu": "src/shell/mplaunch.c",
-   "evidence": "placed (at) in src/shell/mplaunch.c 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "ShellNetworkSetupAction70": {
    "va": "00423f14",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ShellNetworkSetupAction70$n(pn$Scene$$)v",
-   "evidence": "implied by src/shell/shell.c 2026-11-09"
+   "tu": "src/shell/mplaunch.c",
+   "evidence": "strict match 2026-11-11"
   },
   "LaunchAdvanceTeam": {
    "va": "00423fac",
@@ -5673,6 +5726,13 @@
    "status": "hypothesis",
    "mangled": "f_0042604d",
    "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+  },
+  "GuiScreen::HitTest#W?HitTest$:GuiScreen$n(pn$GuiPoint$$)l": {
+   "va": "0042604d",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HitTest$:GuiScreen$n(pn$GuiPoint$$)l",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-11"
   },
   "FlicInitBuffers": {
    "va": "004260c4",
@@ -6322,6 +6382,13 @@
    "mangled": "W?.tdctor$:MenuHelpRegion$n()rn$1$",
    "evidence": "implied by src/shell/missbrf.c 2026-11-11"
   },
+  "HercBuyInitHelp::$ct": {
+   "va": "00427f89",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$ct:HercBuyInitHelp$n()_",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-11"
+  },
   "MenuHelpRegion::Draw": {
    "va": "00427fb0",
    "kind": "func",
@@ -6438,6 +6505,13 @@
    "mangled": "W?$ct:MenuButton$n(pnxaul)_",
    "tu": "src/gui/menu.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "HercBuyInitButton::$ct": {
+   "va": "004284d5",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$ct:HercBuyInitButton$n(pnxaul)_",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-11"
   },
   "MenuButton::Reset": {
    "va": "00428501",
@@ -6726,6 +6800,13 @@
    "tu": "src/gui/menu.c",
    "evidence": "strict match 2026-11-09"
   },
+  "HercBuyInitPanel::$ct": {
+   "va": "00428e3b",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$ct:HercBuyInitPanel$n()_",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-11"
+  },
   "MenuPanel::Draw": {
    "va": "00428e5b",
    "kind": "func",
@@ -6989,6 +7070,13 @@
    "tu": "src/gui/slider.c",
    "evidence": "strict match 2026-11-11"
   },
+  "HercBuyInitRange::$ct": {
+   "va": "00429a44",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$ct:HercBuyInitRange$n(ii)_",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-11"
+  },
   "BriefSetMode": {
    "va": "00429a75",
    "kind": "func",
@@ -7041,6 +7129,13 @@
    "tu": "src/gui/slider.c",
    "evidence": "strict match 2026-11-11"
   },
+  "HercBuyInitBar::$ct": {
+   "va": "00429ab2",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$ct:HercBuyInitBar$n(pnvi)_",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-11"
+  },
   "UpgradeBar::Draw": {
    "va": "00429ad9",
    "kind": "func",
@@ -7071,6 +7166,13 @@
    "mangled": "W?$ct:UpgradeArrow$n(pn$UpgradeRange$$ii)_",
    "tu": "src/gui/slider.c",
    "evidence": "strict match 2026-11-11"
+  },
+  "HercBuyInitChild::$ct": {
+   "va": "00429d28",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?$ct:HercBuyInitChild$n(pnvuii)_",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-11"
   },
   "UpgradeArrow::Draw": {
    "va": "00429d56",
@@ -7423,6 +7525,13 @@
    "status": "hypothesis",
    "mangled": "ResolveName",
    "evidence": "implied by src/logic/lsys.c 2026-11-09"
+  },
+  "ResolveName#W?ResolveName$n(pnxapnxi)i": {
+   "va": "0042b230",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ResolveName$n(pnxapnxi)i",
+   "evidence": "implied by src/logic/intel.c 2026-11-11"
   },
   "BestLocSetData": {
    "va": "0042b290",
@@ -10450,6 +10559,13 @@
    "mangled": "W?f_0043ac9c$n(pn$ActorUnit$$ii)i",
    "evidence": "implied by src/_unknown/tu_00438374.c 2026-11-09"
   },
+  "IntelUnitQuery": {
+   "va": "0043ac9c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?IntelUnitQuery$n(iii)i",
+   "evidence": "implied by src/logic/intel.c 2026-11-11"
+  },
   "f_0043ad4f": {
    "va": "0043ad4f",
    "kind": "func",
@@ -10473,6 +10589,13 @@
    "mangled": "W?HercSelectHit$n(pn$ActorUnit$$i)i",
    "tu": "src/_unknown/tu_0043a294.c",
    "evidence": "placed (at) in src/_unknown/tu_0043a294.c 2026-11-09"
+  },
+  "ClampRange": {
+   "va": "0043b024",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ClampRange$n(iii)i",
+   "evidence": "implied by src/logic/miss.c 2026-11-11"
   },
   "UnitFogObject": {
    "va": "0043b044",
@@ -10508,6 +10631,13 @@
    "status": "hypothesis",
    "mangled": "W?SimLoadPalette$n(ipnv)v",
    "evidence": "implied by src/sim/simgame.c 2026-11-09"
+  },
+  "SimLoadPalette#W?SimLoadPalette$n(ipnxa)v": {
+   "va": "0043b74c",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SimLoadPalette$n(ipnxa)v",
+   "evidence": "implied by src/logic/miss.c 2026-11-11"
   },
   "HercPrepareAssets": {
    "va": "0043b7a4",
@@ -15640,6 +15770,13 @@
    "tu": "src/_unknown/tu_0045b7d0.c",
    "evidence": "placed (at) in src/_unknown/tu_0045b7d0.c 2026-11-09"
   },
+  "UnitDamageSplit#W?UnitDamageSplit$n(pn$ActorUnit$$iipn$Weapon$$rnirni)v": {
+   "va": "0045b7d0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?UnitDamageSplit$n(pn$ActorUnit$$iipn$Weapon$$rnirni)v",
+   "evidence": "implied by src/sim/weapai.c 2026-11-11"
+  },
   "UnitDamage": {
    "va": "0045b8c0",
    "kind": "func",
@@ -15721,10 +15858,10 @@
   "WeaponEnabled": {
    "va": "0045cc00",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?WeaponEnabled$n(pn$Context$$i)i",
    "tu": "src/sim/weapai.c",
-   "evidence": "placed (at) in src/sim/weapai.c 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "WeaponAlwaysEnabled": {
    "va": "0045cc50",
@@ -15732,7 +15869,7 @@
    "status": "matched",
    "mangled": "W?WeaponAlwaysEnabled$n()i",
    "tu": "src/sim/weapai.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "WeaponStatus": {
    "va": "0045cc60",
@@ -15756,39 +15893,39 @@
    "status": "matched",
    "mangled": "W?WeaponPower$n(pn$Context$$i)i",
    "tu": "src/sim/weapai.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "WeaponMaximum": {
    "va": "0045d1c0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?WeaponMaximum$n(pn$Context$$i)i",
    "tu": "src/sim/weapai.c",
-   "evidence": "placed (at) in src/sim/weapai.c 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "WeaponExpected": {
    "va": "0045d200",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?WeaponExpected$n(pn$Context$$i)i",
    "tu": "src/sim/weapai.c",
-   "evidence": "placed (at) in src/sim/weapai.c 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "WeaponAmmoFactor": {
    "va": "0045d390",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?WeaponAmmoFactor$n(pn$Context$$i)i",
    "tu": "src/sim/weapai.c",
-   "evidence": "placed (at) in src/sim/weapai.c 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "WeaponEvaluate": {
    "va": "0045d430",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?WeaponEvaluate$n(pn$Context$$ii)i",
    "tu": "src/sim/weapai.c",
-   "evidence": "placed (at) in src/sim/weapai.c 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "WeaponTerrain": {
    "va": "0045d580",
@@ -15804,7 +15941,7 @@
    "status": "matched",
    "mangled": "W?WeaponPrepare$n(pn$Context$$pn$TargetRecord$$i)v",
    "tu": "src/sim/weapai.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "WeaponAreaCallback": {
    "va": "0045d750",
@@ -15812,7 +15949,7 @@
    "status": "matched",
    "mangled": "W?WeaponAreaCallback$n(pn$AreaCandidate$$)i",
    "tu": "src/sim/weapai.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "WeaponAreaValue": {
    "va": "0045d790",
@@ -15820,7 +15957,7 @@
    "status": "matched",
    "mangled": "W?WeaponAreaValue$n(ipn$Weapon$$i)i",
    "tu": "src/sim/weapai.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "f_0045d830": {
    "va": "0045d830",
@@ -15832,10 +15969,10 @@
   "WeaponChoose": {
    "va": "0045d830",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?WeaponChoose$n(pn$Context$$pn$TargetRecord$$ii)i",
    "tu": "src/sim/weapai.c",
-   "evidence": "placed (at) in src/sim/weapai.c 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "SoundAtPoint": {
    "va": "0045d9f0",
@@ -16746,6 +16883,13 @@
    "mangled": "ActorArrayGet",
    "evidence": "implied by src/logic/lsys.c (overload-safe migration 2026-11-09)"
   },
+  "ActorArrayGet#W?ActorArrayGet$n(pnii)i": {
+   "va": "00463fbf",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ActorArrayGet$n(pnii)i",
+   "evidence": "implied by src/logic/intel.c 2026-11-11"
+  },
   "ActorArraySet": {
    "va": "00463fda",
    "kind": "func",
@@ -16768,6 +16912,13 @@
    "mangled": "W?ActorIsAvailable$n(pn$LogicActor$$)i",
    "tu": "src/logic/lactor.c",
    "evidence": "strict match 2026-11-09"
+  },
+  "ActorIsAvailable#W?ActorIsAvailable$n(pni)i": {
+   "va": "00464022",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ActorIsAvailable$n(pni)i",
+   "evidence": "implied by src/logic/intel.c 2026-11-11"
   },
   "W?.fn_init$n()v@logic/lactors.c": {
    "va": "00464054",
@@ -16896,6 +17047,13 @@
    "status": "hypothesis",
    "mangled": "W?CreateActor$:LogicActorList$n(ipn$ActorPoint$$ipnxc)pn$LogicActor$$",
    "evidence": "implied by src/logic/lgen.c 2026-11-09"
+  },
+  "LogicActorList::CreateActor#W?CreateActor$:LogicActorList$n(ipn$ActorPoint$$ipnxa)pni": {
+   "va": "00464218",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?CreateActor$:LogicActorList$n(ipn$ActorPoint$$ipnxa)pni",
+   "evidence": "implied by src/logic/intel.c 2026-11-11"
   },
   "LogicActorIndexAt": {
    "va": "0046437c",
@@ -17060,6 +17218,13 @@
    "tu": "src/logic/lfire.c",
    "evidence": "strict match 2026-11-11"
   },
+  "IntelClearReservation": {
+   "va": "004651fd",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?IntelClearReservation$n(pnii)i",
+   "evidence": "implied by src/logic/intel.c 2026-11-11"
+  },
   "IntelResetOne": {
    "va": "00465391",
    "kind": "func",
@@ -17085,10 +17250,10 @@
   "MissionRef::Resolve": {
    "va": "004654cc",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?Resolve$:MissionRef$n()i",
    "tu": "src/logic/miss.c",
-   "evidence": "placed (at) in src/logic/miss.c 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "MissionRecordInitialize": {
    "va": "00465525",
@@ -17096,22 +17261,23 @@
    "status": "matched",
    "mangled": "W?MissionRecordInitialize$n(pn$MissionRecord$$iiiii)v",
    "tu": "src/logic/miss.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "MissionEstimate": {
    "va": "00465580",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?MissionEstimate$n(pn$MissionRecord$$ipni)i",
    "tu": "src/logic/miss.c",
-   "evidence": "placed (at) in src/logic/miss.c 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "MissionDataInit": {
    "va": "004656a4",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?MissionDataInit$n(pn$MissionRecord$$iiiiii)v",
-   "evidence": "implied by src/logic/miss.c 2026-11-09"
+   "tu": "src/logic/miss.c",
+   "evidence": "strict match 2026-11-11"
   },
   "DecodeMission": {
    "va": "00465994",
@@ -17123,18 +17289,18 @@
   "MissionCopy": {
    "va": "00465994",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?MissionCopy$n(pn$MissionRecord$$pni)v",
    "tu": "src/logic/miss.c",
-   "evidence": "placed (at) in src/logic/miss.c 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "MissionRef::Address": {
    "va": "00465bba",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?Address$:MissionRef$n()i",
    "tu": "src/logic/miss.c",
-   "evidence": "placed (at) in src/logic/miss.c 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "MissionBaseType": {
    "va": "00465bfd",
@@ -17142,7 +17308,7 @@
    "status": "matched",
    "mangled": "W?MissionBaseType$n()i",
    "tu": "src/logic/miss.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "MissionCountVariants": {
    "va": "00465c03",
@@ -17157,7 +17323,7 @@
    "status": "matched",
    "mangled": "W?MissionRowCount$n()i",
    "tu": "src/logic/miss.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "MissionCountForType": {
    "va": "00465c09",
@@ -17165,7 +17331,7 @@
    "status": "matched",
    "mangled": "W?MissionCountForType$n(i)i",
    "tu": "src/logic/miss.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "MissionItemAddress": {
    "va": "00465c27",
@@ -17181,7 +17347,7 @@
    "status": "matched",
    "mangled": "W?MissionAllocateType$n(i)pnv",
    "tu": "src/logic/miss.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "MissionAllocateType#MissionAllocateType": {
    "va": "00465c67",
@@ -17203,7 +17369,7 @@
    "status": "matched",
    "mangled": "W?MissionAllocateItem$n(ii)v",
    "tu": "src/logic/miss.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "MissionLoadItem": {
    "va": "00465ce2",
@@ -17211,7 +17377,7 @@
    "status": "matched",
    "mangled": "W?MissionLoadItem$n(ii)v",
    "tu": "src/logic/miss.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "BestLocEmpty": {
    "va": "00465d30",
@@ -17355,10 +17521,10 @@
   "IntelSpawnTimer": {
    "va": "004673b4",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?IntelSpawnTimer$n(pni)i",
    "tu": "src/logic/intel.c",
-   "evidence": "placed (at) in src/logic/intel.c 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "IntelStateLink": {
    "va": "00467461",
@@ -17378,26 +17544,26 @@
   "IntelActorCommand": {
    "va": "00467560",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?IntelActorCommand$n(pniiipni)v",
    "tu": "src/logic/intel.c",
-   "evidence": "placed (at) in src/logic/intel.c 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "IntelActorDispatch": {
    "va": "00467690",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?IntelActorDispatch$n(pni)i",
    "tu": "src/logic/intel.c",
-   "evidence": "placed (at) in src/logic/intel.c 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "IntelIsAvailable": {
    "va": "00467827",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?IntelIsAvailable$n(pni)i",
    "tu": "src/logic/intel.c",
-   "evidence": "placed (at) in src/logic/intel.c 2026-11-09"
+   "evidence": "strict match 2026-11-11"
   },
   "W?.fn_init$n()v@logic/sinterp.c": {
    "va": "0046794c",
@@ -17654,6 +17820,13 @@
    "tu": "src/logic/lgen.c",
    "evidence": "placed (at) in src/logic/lgen.c 2026-11-09"
   },
+  "IntelChooseSpawnPos": {
+   "va": "00469d26",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?IntelChooseSpawnPos$n(pnviiii)i",
+   "evidence": "implied by src/logic/intel.c 2026-11-11"
+  },
   "LogicMapPointUpdate": {
    "va": "00469fc9",
    "kind": "func",
@@ -17730,6 +17903,13 @@
    "status": "hypothesis",
    "mangled": "W?LogicGenSpawnActor$n(pnv)v",
    "evidence": "implied by src/logic/logic.c 2026-11-09"
+  },
+  "IntelFinalizeActor": {
+   "va": "0046a97f",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?IntelFinalizeActor$n(pni)i",
+   "evidence": "implied by src/logic/intel.c 2026-11-11"
   },
   "LogicDeleteActorFromList": {
    "va": "0046ab2e",
@@ -21193,6 +21373,13 @@
    "status": "hypothesis",
    "mangled": "W?BriefWaitA$n(i)pnv",
    "evidence": "implied by src/sim/hotbrief.c 2026-11-09"
+  },
+  "f_00477798": {
+   "va": "00477798",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_00477798",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-11"
   },
   "create_chat_popup": {
    "va": "00477a08",
@@ -24705,6 +24892,13 @@
    "tu": "src/sim/animbmp.c",
    "evidence": "own data placed in src/sim/animbmp.c 2026-11-09"
   },
+  "missionTableFilename": {
+   "va": "0048b668",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?missionTableFilename$n[]a",
+   "evidence": "implied by src/logic/miss.c 2026-11-11"
+  },
   "snw_valid_dll": {
    "va": "0048b7ec",
    "kind": "data",
@@ -24931,6 +25125,14 @@
    "tu": "src/_unknown/tu_004087e0.c",
    "evidence": "own data placed in src/_unknown/tu_004087e0.c 2026-11-09"
   },
+  "W?$Wts0kn$HercBuyInitPanel$$$nx[]uc": {
+   "va": "0048c99c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0kn$HercBuyInitPanel$$$nx[]uc",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "own data placed in src/shell/hercbuy.c 2026-11-11"
+  },
   "W?$Wts0dn$MenuLabel$$$nx[]uc": {
    "va": "0048c9b0",
    "kind": "data",
@@ -24946,6 +25148,14 @@
    "mangled": "W?$Wts0in$MenuHelpRegion$$$nx[]uc",
    "tu": "src/_unknown/tu_004087e0.c",
    "evidence": "own data placed in src/_unknown/tu_004087e0.c 2026-11-09"
+  },
+  "W?$Wts0jn$HercBuyInitHelp$$$nx[]uc": {
+   "va": "0048c9c4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0jn$HercBuyInitHelp$$$nx[]uc",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "own data placed in src/shell/hercbuy.c 2026-11-11"
   },
   "W?$Wts0en$MenuButton$$$nx[]uc": {
    "va": "0048c9d8",
@@ -25049,6 +25259,14 @@
    "tu": "src/_unknown/tu_00429a44.c",
    "evidence": "own data placed in src/_unknown/tu_00429a44.c 2026-11-09"
   },
+  "W?$Wts0kn$HercBuyInitChild$$$nx[]uc": {
+   "va": "0048d010",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0kn$HercBuyInitChild$$$nx[]uc",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "own data placed in src/shell/hercbuy.c 2026-11-11"
+  },
   "W?$Wts0en$UpgradeBar$$$nx[]uc": {
    "va": "0048d024",
    "kind": "data",
@@ -25056,6 +25274,14 @@
    "mangled": "W?$Wts0en$UpgradeBar$$$nx[]uc",
    "tu": "src/_unknown/tu_00429a44.c",
    "evidence": "own data placed in src/_unknown/tu_00429a44.c 2026-11-09"
+  },
+  "W?$Wts0in$HercBuyInitBar$$$nx[]uc": {
+   "va": "0048d024",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wts0in$HercBuyInitBar$$$nx[]uc",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "own data placed in src/shell/hercbuy.c 2026-11-11"
   },
   "W?$Wts0in$MissionDebrief$$$nx[]uc": {
    "va": "0048d06c",
@@ -26087,6 +26313,13 @@
    "status": "hypothesis",
    "mangled": "W?gHercBuyControls$n[]pn$GuiControl$$",
    "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
+  },
+  "g48ec0c": {
+   "va": "0048ec0c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g48ec0c$ni",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-11"
   },
   "hbmanageSourceFile@shell/hbmanage.c": {
    "va": "0048ec20",
@@ -27191,6 +27424,13 @@
    "status": "hypothesis",
    "mangled": "W?gVehicleInfo$n[]$UnitInfo$$",
    "evidence": "implied by src/logic/lgen.c 2026-11-09"
+  },
+  "actorStateTable": {
+   "va": "0049f958",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?actorStateTable$n[]a",
+   "evidence": "implied by src/logic/intel.c 2026-11-11"
   },
   "pmoveSourceFile@pop/pmove.c": {
    "va": "0049ff74",
@@ -28726,6 +28966,27 @@
    "mangled": "W?lfireSourceFile$n[]a",
    "tu": "src/logic/lfire.c",
    "evidence": "own data placed in src/logic/lfire.c 2026-11-11"
+  },
+  "missionCurrentOffset": {
+   "va": "004a3b04",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?missionCurrentOffset$ni",
+   "evidence": "implied by src/logic/miss.c 2026-11-11"
+  },
+  "missionBonusByRank": {
+   "va": "004a3b08",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?missionBonusByRank$n[]i",
+   "evidence": "implied by src/logic/miss.c 2026-11-11"
+  },
+  "missionEstimateTable": {
+   "va": "004a3b44",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?missionEstimateTable$n[]i",
+   "evidence": "implied by src/logic/miss.c 2026-11-11"
   },
   "missOffsetByType": {
    "va": "004a3c48",
@@ -31907,6 +32168,14 @@
    "mangled": "W?g4b37c4$n$HercBay$$",
    "evidence": "implied by src/shell/hercbay.c 2026-11-09"
   },
+  "initButton0": {
+   "va": "004b38b4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?initButton0$n$HercBuyInitButton$$",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "own data placed in src/shell/hercbuy.c 2026-11-11"
+  },
   "g4b38c8": {
    "va": "004b38c8",
    "kind": "data",
@@ -31914,12 +32183,28 @@
    "mangled": "W?g4b38c8$ni",
    "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
   },
+  "initButton1": {
+   "va": "004b38dc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?initButton1$n$HercBuyInitButton$$",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "own data placed in src/shell/hercbuy.c 2026-11-11"
+  },
   "g4b38f0": {
    "va": "004b38f0",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4b38f0$ni",
    "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
+  },
+  "initButton2": {
+   "va": "004b3904",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?initButton2$n$HercBuyInitButton$$",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "own data placed in src/shell/hercbuy.c 2026-11-11"
   },
   "g4b3918": {
    "va": "004b3918",
@@ -31935,6 +32220,37 @@
    "mangled": "W?g4b392c$ni",
    "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
   },
+  "initNumber0": {
+   "va": "004b392c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?initNumber0$n$MenuNumber$$",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "own data placed in src/shell/hercbuy.c 2026-11-11"
+  },
+  "g4b395c": {
+   "va": "004b395c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b395c$ni",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-11"
+  },
+  "initRange0": {
+   "va": "004b395c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?initRange0$n$HercBuyInitRange$$",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "own data placed in src/shell/hercbuy.c 2026-11-11"
+  },
+  "initBar0": {
+   "va": "004b3964",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?initBar0$n$HercBuyInitBar$$",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "own data placed in src/shell/hercbuy.c 2026-11-11"
+  },
   "g4b3978": {
    "va": "004b3978",
    "kind": "data",
@@ -31942,12 +32258,28 @@
    "mangled": "W?g4b3978$ni",
    "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
   },
+  "initChild0": {
+   "va": "004b398c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?initChild0$n$HercBuyInitChild$$",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "own data placed in src/shell/hercbuy.c 2026-11-11"
+  },
   "g4b39a0": {
    "va": "004b39a0",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4b39a0$ni",
    "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
+  },
+  "initChild1": {
+   "va": "004b39b8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?initChild1$n$HercBuyInitChild$$",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "own data placed in src/shell/hercbuy.c 2026-11-11"
   },
   "g4b39cc": {
    "va": "004b39cc",
@@ -31970,12 +32302,43 @@
    "mangled": "W?g4b3c78$n[]$MenuLabel$$",
    "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
   },
+  "initHelp": {
+   "va": "004b3f58",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?initHelp$n$HercBuyInitHelp$$",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "own data placed in src/shell/hercbuy.c 2026-11-11"
+  },
+  "g4b3f78": {
+   "va": "004b3f78",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b3f78$ni",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-11"
+  },
+  "initButton3": {
+   "va": "004b3f80",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?initButton3$n$HercBuyInitButton$$",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "own data placed in src/shell/hercbuy.c 2026-11-11"
+  },
   "g4b3f94": {
    "va": "004b3f94",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4b3f94$ni",
    "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
+  },
+  "initButton4": {
+   "va": "004b3fa8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?initButton4$n$HercBuyInitButton$$",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "own data placed in src/shell/hercbuy.c 2026-11-11"
   },
   "g4b3fbc": {
    "va": "004b3fbc",
@@ -31991,12 +32354,36 @@
    "mangled": "W?g4b3fd0$ni",
    "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
   },
+  "initRange1": {
+   "va": "004b3fd0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?initRange1$n$HercBuyInitRange$$",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "own data placed in src/shell/hercbuy.c 2026-11-11"
+  },
+  "initBar1": {
+   "va": "004b3fd8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?initBar1$n$HercBuyInitBar$$",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "own data placed in src/shell/hercbuy.c 2026-11-11"
+  },
   "g4b3fec": {
    "va": "004b3fec",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4b3fec$ni",
    "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
+  },
+  "initChild2": {
+   "va": "004b4000",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?initChild2$n$HercBuyInitChild$$",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "own data placed in src/shell/hercbuy.c 2026-11-11"
   },
   "g4b4014": {
    "va": "004b4014",
@@ -32005,12 +32392,36 @@
    "mangled": "W?g4b4014$ni",
    "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
   },
+  "initChild3": {
+   "va": "004b402c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?initChild3$n$HercBuyInitChild$$",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "own data placed in src/shell/hercbuy.c 2026-11-11"
+  },
   "g4b4040": {
    "va": "004b4040",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4b4040$ni",
    "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
+  },
+  "initPanel": {
+   "va": "004b4058",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?initPanel$n$HercBuyInitPanel$$",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "own data placed in src/shell/hercbuy.c 2026-11-11"
+  },
+  "initNumber1": {
+   "va": "004b407c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?initNumber1$n$MenuNumber$$",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "own data placed in src/shell/hercbuy.c 2026-11-11"
   },
   "g4b4090": {
    "va": "004b4090",
@@ -32019,12 +32430,58 @@
    "mangled": "W?g4b4090$ni",
    "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
   },
+  "initNumber2": {
+   "va": "004b40ac",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?initNumber2$n$MenuNumber$$",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "own data placed in src/shell/hercbuy.c 2026-11-11"
+  },
   "g4b40c0": {
    "va": "004b40c0",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4b40c0$ni",
    "evidence": "implied by src/shell/hercbuy.c 2026-11-09"
+  },
+  "g4b40dc": {
+   "va": "004b40dc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b40dc$ni",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-11"
+  },
+  "initNumber3": {
+   "va": "004b40dc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?initNumber3$n$MenuNumber$$",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "own data placed in src/shell/hercbuy.c 2026-11-11"
+  },
+  "g4b410c": {
+   "va": "004b410c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b410c$ni",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-11"
+  },
+  "initNumber4": {
+   "va": "004b410c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?initNumber4$n$MenuNumber$$",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "own data placed in src/shell/hercbuy.c 2026-11-11"
+  },
+  "initNumber5": {
+   "va": "004b413c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?initNumber5$n$MenuNumber$$",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "own data placed in src/shell/hercbuy.c 2026-11-11"
   },
   "g4b4150": {
    "va": "004b4150",
@@ -32039,6 +32496,14 @@
    "status": "hypothesis",
    "mangled": "W?g4b416c$n$Scene$$",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
+  "initScreen": {
+   "va": "004b416c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?initScreen$n$HercBuyInitScreen$$",
+   "tu": "src/shell/hercbuy.c",
+   "evidence": "own data placed in src/shell/hercbuy.c 2026-11-11"
   },
   "storageLeft": {
    "va": "004b5154",
@@ -32868,6 +33333,20 @@
    "mangled": "W?upgradeScreen$n$UpgradeInitScreen$$",
    "tu": "src/shell/hbupgrad.c",
    "evidence": "own data placed in src/shell/hbupgrad.c 2026-11-09"
+  },
+  "g4b71ae": {
+   "va": "004b71ae",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b71ae$nuc",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-11"
+  },
+  "g4b71af": {
+   "va": "004b71af",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4b71af$nuc",
+   "evidence": "implied by src/shell/hbupgrad.c 2026-11-11"
   },
   "W?timer$:.0$:?PilotManagerPoll$n(pnv)vn$Timer$$": {
    "va": "004b74e4",
@@ -33972,6 +34451,13 @@
    "mangled": "W?gLaunchReadyErrorCancelStyle$n$LaunchControlStyle$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
+  "gLaunchReadyErrorCancel": {
+   "va": "004b9f6f",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchReadyErrorCancel$nuc",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-11"
+  },
   "gLaunchPlayerCancelButton": {
    "va": "004b9f80",
    "kind": "data",
@@ -33986,6 +34472,13 @@
    "mangled": "W?gLaunchPlayerCancelStyle$n$LaunchControlStyle$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
   },
+  "gLaunchPlayerCancel": {
+   "va": "004b9f97",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchPlayerCancel$nuc",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-11"
+  },
   "gLaunchPlayerAcceptButton": {
    "va": "004b9fa8",
    "kind": "data",
@@ -33999,6 +34492,13 @@
    "status": "hypothesis",
    "mangled": "W?gLaunchPlayerAcceptStyle$n$LaunchControlStyle$$",
    "evidence": "implied by src/shell/mplaunch.c 2026-11-09"
+  },
+  "gLaunchPlayerAccept": {
+   "va": "004b9fbf",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gLaunchPlayerAccept$nuc",
+   "evidence": "implied by src/shell/mplaunch.c 2026-11-11"
   },
   "gLaunchCostChoice": {
    "va": "004b9fd0",
@@ -35135,6 +35635,13 @@
    "mangled": "W?deathMapColor$nul",
    "evidence": "implied by src/pop/pdeath.c 2026-11-09"
   },
+  "g4bc4f8": {
+   "va": "004bc4f8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4bc4f8$ni",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-11"
+  },
   "gMenuColorMap": {
    "va": "004bc534",
    "kind": "data",
@@ -35162,6 +35669,13 @@
    "status": "hypothesis",
    "mangled": "W?DAT_004bc560$ni",
    "evidence": "implied by src/pop/pherc.c 2026-11-09"
+  },
+  "g4bc570": {
+   "va": "004bc570",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4bc570$ni",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-11"
   },
   "gGuiFadeFirst": {
    "va": "004bc5ac",
@@ -35548,12 +36062,40 @@
    "mangled": "W?g4c9234$n[]a",
    "evidence": "implied by src/logic/logic.c 2026-11-09"
   },
+  "missionCopySeedA": {
+   "va": "004c9242",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?missionCopySeedA$nuc",
+   "evidence": "implied by src/logic/miss.c 2026-11-11"
+  },
+  "missionCopySeedB": {
+   "va": "004c9243",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?missionCopySeedB$nuc",
+   "evidence": "implied by src/logic/miss.c 2026-11-11"
+  },
+  "missionCopySeedC": {
+   "va": "004c9245",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?missionCopySeedC$nuc",
+   "evidence": "implied by src/logic/miss.c 2026-11-11"
+  },
   "g4c9248": {
    "va": "004c9248",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?g4c9248$nuc",
    "evidence": "implied by src/logic/lsys.c 2026-11-09"
+  },
+  "missionCopySeedD": {
+   "va": "004c924a",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?missionCopySeedD$nuc",
+   "evidence": "implied by src/logic/miss.c 2026-11-11"
   },
   "statusColorLow": {
    "va": "004c924b",
@@ -35568,6 +36110,13 @@
    "status": "hypothesis",
    "mangled": "W?statusColorEmpty$nuc",
    "evidence": "implied by src/pop/ppilot.c 2026-11-09"
+  },
+  "missionCopySeedE": {
+   "va": "004c924d",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?missionCopySeedE$nuc",
+   "evidence": "implied by src/logic/miss.c 2026-11-11"
   },
   "HercEfficiency": {
    "va": "004c924e",
@@ -35603,6 +36152,20 @@
    "status": "hypothesis",
    "mangled": "W?HercMassScale$ni",
    "evidence": "implied by src/_unknown/tu_00438374.c 2026-11-09"
+  },
+  "missionPlayerCount": {
+   "va": "004c9290",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?missionPlayerCount$ni",
+   "evidence": "implied by src/logic/miss.c 2026-11-11"
+  },
+  "missionRank": {
+   "va": "004c9294",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?missionRank$ni",
+   "evidence": "implied by src/logic/miss.c 2026-11-11"
   },
   "g4c92b8": {
    "va": "004c92b8",
@@ -37805,6 +38368,41 @@
    "mangled": "W?logicActors$n$ActorGlobals$$",
    "evidence": "implied by src/logic/lactors.c 2026-11-09"
   },
+  "missionStateOutput": {
+   "va": "004f218c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?missionStateOutput$n[]uc",
+   "evidence": "implied by src/logic/miss.c 2026-11-11"
+  },
+  "missionCopyLayout": {
+   "va": "004f2194",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?missionCopyLayout$n[]uc",
+   "evidence": "implied by src/logic/miss.c 2026-11-11"
+  },
+  "missionCopyView": {
+   "va": "004f24b4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?missionCopyView$n[]uc",
+   "evidence": "implied by src/logic/miss.c 2026-11-11"
+  },
+  "missionCopyHeader": {
+   "va": "004f2504",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?missionCopyHeader$n[]uc",
+   "evidence": "implied by src/logic/miss.c 2026-11-11"
+  },
+  "missionImageBuffer": {
+   "va": "004f2824",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?missionImageBuffer$n[]a",
+   "evidence": "implied by src/logic/miss.c 2026-11-11"
+  },
   "bestLocActor": {
    "va": "004f2874",
    "kind": "data",
@@ -38749,6 +39347,13 @@
    "status": "hypothesis",
    "mangled": "W?gMenuSavedSurface$n$Surface$$",
    "evidence": "implied by src/shell/shell.c (overload-safe migration 2026-11-09)"
+  },
+  "gMenuSavedSurface#W?gMenuSavedSurface$ni": {
+   "va": "00511958",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gMenuSavedSurface$ni",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-11"
   },
   "savedSurfacePixels": {
    "va": "00511960",
@@ -39709,6 +40314,13 @@
    "mangled": "W?gMenuTextColor$nul",
    "evidence": "implied by src/gui/menu.c 2026-11-09"
   },
+  "gMenuTextColor#W?gMenuTextColor$ni": {
+   "va": "005138f4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gMenuTextColor$ni",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-11"
+  },
   "gMenuTextMap": {
    "va": "005138f8",
    "kind": "data",
@@ -39743,6 +40355,13 @@
    "status": "hypothesis",
    "mangled": "W?viewportClipLeft$n$GuiRect$$",
    "evidence": "implied by src/_unknown/tu_00427c68.c 2026-11-09"
+  },
+  "g5138fc": {
+   "va": "005138fc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g5138fc$ni",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-11"
   },
   "viewportClipTop": {
    "va": "00513900",
@@ -39792,6 +40411,13 @@
    "status": "hypothesis",
    "mangled": "W?gBriefDrawSource$n$GuiRect$$",
    "evidence": "implied by src/_unknown/tu_00427c68.c 2026-11-09"
+  },
+  "g51390c": {
+   "va": "0051390c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g51390c$ni",
+   "evidence": "implied by src/shell/hercbuy.c 2026-11-11"
   },
   "gMenuClip": {
    "va": "0051391c",

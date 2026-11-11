@@ -512,13 +512,6 @@ extern MenuPrefixButton upgradeNames[23], upgradeValues[23], weaponNames[8];
 extern MenuLabel weaponValues[8];
 
 struct UpgradeEntry { int id; const char *name; int cost; int Cost() const {return cost;} int Id() const {return id;} };
-inline void UpgradeNameList(char *screen)
-{
-    for (unsigned char i = 0; (int)i < *(int *)(screen + 0x3d8); ++i) {
-        upgradeNames[i].SetText(((UpgradeEntry *)*(void **)(screen + 0x3cc))[i].name);
-    }
-}
-
 inline UpgradeEntry *UpgradeEntryAt(char *screen, int index) {
     return &((UpgradeEntry *)*(void **)(screen + 0x3cc))[index];
 }
@@ -528,8 +521,18 @@ static inline char *UpgradeCostText(char *text, const UpgradeEntry *entry) {
 }
 inline void UpgradeCostList(char *screen) {
     for (unsigned char i = 0; (int)i < *(int *)(screen + 0x3d8); ++i)
-        upgradeValues[i].SetText(UpgradeCostText(g4b5dd4 + i * 4, UpgradeEntryAt(screen, i)));
+    {
+        sprintf(g4b5dd4 + i * 4, g48ab34, UpgradeEntryAt(screen, i)->cost);
+        upgradeValues[i].SetText(g4b5dd4 + i * 4);
+    }
 }
+inline void UpgradeNameList(char *screen)
+{
+    for (unsigned char i = 0; (int)i < *(int *)(screen + 0x3d8); ++i) {
+        upgradeNames[i].SetText(((UpgradeEntry *)*(void **)(screen + 0x3cc))[i].name);
+    }
+}
+
 extern char *g4b6ee0, *g4b6f10, *g4b6f40;
 extern unsigned char g4b6033;
 struct UpgradeChoice { const char *name; int item, type, cost, flags; const char *Name() const {return name;} int Cost() const {return cost;} };
@@ -1079,12 +1082,8 @@ void f_00419d21(void *param_1)
     f_0041c096((char *)param_1);
 }
 
-
-void f_00419d52(char *screen)
+inline void UpgradeStreamStep(char *screen)
 {
-    if (*(int *)(screen + 0x6c)) {
-        if (*(int *)(screen + 0x90) == 0) {
-            {
     if (*(int *)(screen + 0x70) < *(int *)(screen + 0x6c)) {
         int amount = *(int *)(screen + 0x6c) - *(int *)(screen + 0x70);
         if (amount > 0x4000) amount = 0x4000;
@@ -1095,6 +1094,12 @@ void f_00419d52(char *screen)
         *(int *)(screen + 0x90) = 1;
     }
 }
+
+void f_00419d52(char *screen)
+{
+    if (*(int *)(screen + 0x6c)) {
+        if (*(int *)(screen + 0x90) == 0) {
+            UpgradeStreamStep(screen);
             if (*(unsigned short *)(screen + 0x194) < 12) return;
             if (*(int *)(screen + 0x70) - 0x7fff < (int)(&(*(MovieHeader **)(screen+0x8c))->images[*(int *)(screen+0x74)])->offset) return;
         }
@@ -1107,11 +1112,12 @@ void f_00419d52(char *screen)
             gDrawRemap = screen + 0x94;
             MenuDrawImage(&g513888, (&(*(MovieHeader **)(screen+0x8c))->images[*(int *)(screen+0x74)]), 0x104, 10);
             gDrawRemap = 0;
-            if (*(int *)(screen + 0x78) > 0) {
+            int direction = *(int *)(screen + 0x78);
+            if (direction > 0) {
                 unsigned index = *(unsigned *)(screen + 0x74) + 1;
                 *(unsigned *)(screen + 0x74) = index;
                 if (index >= (*(MovieHeader **)(screen + 0x8c))->count) *(int *)(screen + 0x74) = 0;
-            } else if (*(int *)(screen + 0x78) < 0) {
+            } else if (direction < 0) {
                 int index = *(int *)(screen + 0x74) - 1;
                 *(int *)(screen + 0x74) = index;
                 if (index < 0) *(int *)(screen + 0x74) = (*(MovieHeader **)(screen + 0x8c))->count - 1;
@@ -1119,7 +1125,6 @@ void f_00419d52(char *screen)
         }
     }
 }
-
 
 void f_00419ee4(void *param_1)
 {
@@ -1647,9 +1652,8 @@ void f_0041b74c(int *param_1)
 
 void f_0041b7a1(char *screen, int selected)
 {
-    int id = ((UpgradeEntry *)*(void **)(screen + 0x3cc))[selected].id;
-    *(int *)(screen + 0x3e7) = id;
-    f_0043cffc(&gShellGame, (unsigned)*(unsigned char *)(screen + 0x3dc), id);
+    *(int *)(screen + 0x3e7) = ((UpgradeEntry *)*(void **)(screen + 0x3cc))[selected].id;
+    f_0043cffc(&gShellGame, (unsigned)*(unsigned char *)(screen + 0x3dc), *(int *)(screen + 0x3e7));
     BriefBlit(&g513888, 1, 0, 0, 0, 0, 0, 0x104, 0x1bf);
     BriefStatus(screen);
     UpgradeRefreshList(screen);
@@ -1661,7 +1665,6 @@ void f_0041b7a1(char *screen, int selected)
 
 void f_0041b912(char *screen)
 {
-    int sound;
     int price = f_0043cec6(&gShellGame, (unsigned)*(unsigned char *)(screen + 0x3dc));
     if (UpgradeAvailableCredits() >= price) {
         f_0043d066(&gShellGame, (unsigned)*(unsigned char *)(screen + 0x3dc));
@@ -1672,17 +1675,15 @@ void f_0041b912(char *screen)
         *(int *)(screen + 0x4ca) = 1;
         UpgradeChangeState(screen, 2);
         LogicCallMode(0x196, 0);
-        sound = 0x78;
+        SoundTrigger(0x78, 0);
     } else {
         UpgradeMessage(screen, (unsigned char *)f_0047c350(gShellStrings, 0x8fa, 1));
-        sound = 0x36;
+        SoundTrigger(0x36, 0);
     }
-    SoundTrigger(sound, 0);
 }
 
 void f_0041bb4c(char *screen)
 {
-    int sound;
     int price = f_0043cef6(&gShellGame);
     if (UpgradeAvailableCredits() >= price) {
         f_0043d0c8(&gShellGame);
@@ -1695,12 +1696,11 @@ void f_0041bb4c(char *screen)
         g4b71ae = 2;
         extern Scene g4b700c;
         f_00419f3c((char *)&g4b700c);
-        sound = 0x79;
+        SoundTrigger(0x79, 0);
     } else {
         UpgradeMessage(screen, (unsigned char *)f_0047c350(gShellStrings, 0x8fa, 1));
-        sound = 0x36;
+        SoundTrigger(0x36, 0);
     }
-    SoundTrigger(sound, 0);
 }
 
 void f_0041bcaf(char *screen, int selected)
