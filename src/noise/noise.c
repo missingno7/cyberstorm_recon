@@ -3,7 +3,7 @@
 #include <mmsystem.h>
 #include <stdio.h>
 #include <string.h>
-typedef unsigned long U32;
+typedef unsigned long U32; static char noiseSourceFile[]=__FILE__;
 struct SoundBuffer; struct SoundDevice; struct BufferDesc;
 struct SoundBufferVTable {
  void *query,*addRef; U32 (__stdcall *Release)(SoundBuffer *);
@@ -42,8 +42,8 @@ HMODULE soundLibrary; SoundCreateProc soundCreate;
 SoundVoice soundVoices[32]; SoundQueueItem soundCurrent,soundQueue[4]; int soundQueueCount;
 extern void *g_mainWindow;
 extern int soundEffectsVolume,soundVoiceVolume,soundMasterVolume,soundMusicVolume;
-extern SoundSettings soundDefaults;
-extern short soundAttenuation[101];
+SoundSettings soundDefaults={0,100,0,100},shieldSoundDefaults={1,100,0,100};
+short soundAttenuation[101]={100,93,87,80,73,67,60,56,52,48,44,40,40,38,36,34,32,30,28,27,26,25,24,23,22,20,20,19,19,18,18,17,17,17,16,16,16,15,15,14,14,14,13,13,13,12,12,12,11,11,10,10,10,9,9,9,9,8,8,8,8,8,7,7,7,7,7,6,6,6,6,6,5,5,5,5,4,4,4,4,3,3,3,3,2,2,2,2,2,1,1,1,1,1,0,0,0,0,0,0,0};
 struct ResMgr {void *Load(long,int=1,int=0,int=0);}; extern ResMgr gResMgr;
 void *GlobalBlockAlloc(U32,unsigned); void *GlobalBlockFree(void *); void ReleasePoolData(void *);
 U32 TimeNow();

@@ -245,3 +245,5 @@ void SurfaceFlush(GuiCanvas *s)
     if(!useDirtyRects) { SurfacePresent(s); return; }
     SimClipRestore(&s->dirty); SimClipFlush(&s->dirty);
 }
+
+static char xSourceFile[] = __FILE__;

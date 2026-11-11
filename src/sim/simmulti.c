@@ -1,5 +1,6 @@
 /* 00454210..00454990. Working names; unknown structure ranges are padding.
  * The constructor entry at 00454210 initializes the repeat timer. */
+static char simmultiSourceFile[]=__FILE__;
 #include <string.h>
 #include <stdio.h>
 #pragma pack(push, 1)

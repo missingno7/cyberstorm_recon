@@ -140,3 +140,6 @@ void SimPaletteCycle(Palette *p)
 }
 
 
+
+static char xSourceFile[] = __FILE__;
+SurfaceDesc defaultSurfaceDesc = {scanlineStorage,640,640,480,256,8,1,640,307200,0,0,{0,0,0}};

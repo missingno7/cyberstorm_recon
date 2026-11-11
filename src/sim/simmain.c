@@ -1,7 +1,7 @@
-// Unknown input TU, 0044bcd0..0044d150; split from world globals by BSS ordering evidence.
+// sim/simmain.c, 0044bcd0..0044d150; split from world globals by BSS ordering evidence.
 // Gaps are temporary unnamed layout fields, not reconstructed payloads.
 #pragma pack(push,1)
-typedef unsigned long U32;struct SoundSettings;
+typedef unsigned long U32; static char simmainSourceFile[]=__FILE__;struct SoundSettings;
 struct GridPoint { long x,y;
  GridPoint(){} GridPoint(long a,long b){x=a;y=b;} GridPoint(const GridPoint &p){x=p.x;y=p.y;}
  int operator!=(const GridPoint &p) const { return x!=p.x || y!=p.y; }

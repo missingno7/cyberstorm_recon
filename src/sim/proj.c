@@ -1,3 +1,4 @@
+static char projSourceFile[]=__FILE__;
 // Unit directional armor, redistribution and indicator colors. Names are provisional.
 #pragma pack(1)
 struct UnitArmor { int at00, total; };
@@ -12,7 +13,7 @@ extern long GridClamp(unsigned long);
 extern unsigned int ISqrt(unsigned int);
 extern void PointPolar(DamagePoint *, int, int);
 extern unsigned int TimerNow();
-extern unsigned char damageLevelColors[], damageFlashColors[];
+unsigned char damageLevelColors[]={224,223,222,221,220,219,218,217,216,215}, damageFlashColors[]={79,78};
 extern unsigned char damageIndicator[];
 inline int UnitScaledDamage(Unit *u, int damage, Weapon *w) { return PopFindItem((ActorUnit *)u, 7)->typeFactor[w->kind] * damage / 50; }
 void UnitDamageSplit(Unit *u, int range, register int damage, register Weapon *w, int &armor, int &body)

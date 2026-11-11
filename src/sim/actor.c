@@ -1,5 +1,6 @@
 /* 004556f0..004561d0. Working names. Packed offsets come from the code;
  * unknown ranges are temporary structure padding, not data definitions. */
+static char actorSourceFile[]=__FILE__;
 #include <string.h>
 #pragma pack(push,1)
 struct GridPoint { int x,y; GridPoint() {} GridPoint(const GridPoint &p) { x=p.x; y=p.y; } };
@@ -75,7 +76,7 @@ extern int bestLocCursor,bestLocCount;
 extern TerrainGrid fallbackName;
 extern FogBuffer gFogBufferSource;
 extern int actorFollowSelection,actorFogPending;
-extern SimSound defaultActorSound;
+SimSound defaultActorSound={{0,100,0,100}};
 int ModeCheck(const char *);
 void AnimActionMarkReady(void *);
 extern "C" void WorldActionNotify(void *,unsigned char);

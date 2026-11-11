@@ -1,6 +1,6 @@
-// Unknown original TU: SIMALERT.BOX screen, 0044d150..0044d770.
+// sim/simalert.c: SIMALERT.BOX screen, 0044d150..0044d770.
 // Class and function names are working labels. Partial field layout is evidence-based.
-typedef unsigned long U32;
+typedef unsigned long U32; static char simalertSourceFile[]=__FILE__;
 struct GuiRect { long x,y,width,height; };
 struct GuiPoint { long x,y; };
 struct InputReq; struct GuiControl;
@@ -34,8 +34,8 @@ PilotImageButton alertImage(127,1000,0),alertImage2(130,1000,0);
 MenuButton alertButton,alertButton2;
 SimValueGadget alertValue1(0),alertValue2(0),alertValue3(0),alertValue4(0);
 MenuSpacer alertSpacers[3];
-SimAlert g4d4094;
-extern StrPool targetBriefResource;
+SimAlert g4d4094; 
+class MenuHelpRegion; extern MenuHelpRegion simHelp; GuiControl *simAlertControls[]={&alertValue1,&alertValue2,&alertValue3,&alertValue4,&alertMap,&alertPilot,&alertMap2,&alertUnit,&alertImage,&alertImage2,&alertButton,&alertButton2,&alertSpacers[0],&alertSpacers[1],&alertSpacers[2],(GuiControl *)&simHelp}; extern StrPool targetBriefResource;
 extern GuiPoint g4bb78c;
 extern long targetLimits,g5138b0,screenHeight;
 SimAlert::SimAlert():GuiScreen(simAlertControls,16,0) {}

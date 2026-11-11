@@ -1,3 +1,4 @@
+static char animoutSourceFile[]=__FILE__;
 #include <string.h>
 
 extern volatile unsigned long animDrawState[10];
@@ -288,7 +289,7 @@ extern void f_00459020(int *point, int phase);
 
 struct AnimDrawAction {
     AnimDrawAction();
-    ~AnimDrawAction();
+
     unsigned char bytes[0x12];
 };
 

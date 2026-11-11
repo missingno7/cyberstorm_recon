@@ -1,3 +1,4 @@
+static char lfireSourceFile[]=__FILE__;
 #include <string.h>
 typedef unsigned char u8;
 struct Point { int x, y; };

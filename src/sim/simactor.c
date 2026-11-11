@@ -70,7 +70,7 @@ struct MenuImages { unsigned long count; MenuImage images[1]; };
 struct DrawGaps { int value[5]; };
 struct AnimType { char unknown00[0x14]; int period; char unknown18[0x3c-0x18]; };
 #pragma pack(pop)
-extern unsigned char drawOverlayFlags;
+signed char drawDetailRates[]={40,35,30,25,20,15,10,10,10,10,8,8,8,6,6,4}; static char simactorSourceFile[]=__FILE__; extern unsigned char drawOverlayFlags;
 extern unsigned char *simVisibleTypes,*simActorVisibility;
 extern char fallbackName[],gView[],g513888,g4dd0c0[];
 extern TargetTriple *targetDefinitionTable;
@@ -84,9 +84,9 @@ extern int actorCount,worldActionCount,exploCount;
 extern ActorRecord *actorTable;
 extern WorldAction *worldActions;
 extern ExploRecord *explos;
-extern DrawEntry **drawQueue;
-extern DrawGaps drawSortGaps;
-extern signed char drawDetailRates[];
+extern char smallDebugText[]; DrawEntry **drawQueue=(DrawEntry **)smallDebugText;
+DrawGaps drawSortGaps={{9,5,3,2,1}};
+
 extern AnimType drawAnimationTypes[];
 extern int drawCursorTarget;
 static int drawPreviousTick;

@@ -22,6 +22,15 @@ next public or the segment end, including compiler alignment filler and jump tab
 5. the extent ends where the original function ends (next function start); the last extent of a segment may
    end before zero linker fill, or — partial TU only — before original compiler filler, whose bytes are then
    not counted (`tail_fill`).
+6. table ownership (2026-11-11): without `-ot` Watcom puts a switch table in FRONT of its function, so it lies
+   at the end of the previous public's range, behind 0..3 filler bytes that depend on the absolute address. Such
+   a trailing table that the extent itself does not reference (`foreign_table`) is not part of that extent: the
+   extent ends at its own last byte (`end`; `full_end` keeps the range to the next public), and the original must
+   continue with at most 3 filler bytes and whole relocated dwords up to the next function start. The table is
+   proven by the function that jumps through it (an external jump table must be STRICT at the oracle address,
+   audit v1 F3) and is addressed backwards from that function's start. Effect: a function no longer fails
+   because the NEXT function's switch is wrong or because earlier functions shift the table's alignment filler;
+   table and filler bytes are not counted in any function's size. test_gate covers both directions.
 UNBOUND = all bytes equal but some fixup target unbound; DIFF = any byte, relocation or extent difference.
 
 Soundness note (2026-11-09): Watcom references into a segment as `SEG + 0` with the item offset in the

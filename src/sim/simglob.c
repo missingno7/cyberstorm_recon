@@ -1,4 +1,4 @@
-// Unknown world TU, 0044b8b0..0044bcd0. Global construction order follows the oracle.
+// sim/simglob.c, 0044b8b0..0044bcd0. Global construction order follows the oracle.
 // Gaps are temporary unnamed layout fields, not reconstructed payloads.
 #pragma pack(push,1)
 typedef unsigned long U32;
@@ -33,7 +33,7 @@ struct SimGame {
 struct GameSettings {unsigned char bytes[211];};
 extern GameSettings gGameSettings,simSettings;
 struct DifficultyLimit { int threshold; signed char first,second,third,fourth; };
-extern DifficultyLimit difficultyLimits[];
+DifficultyLimit difficultyLimits[]={{30,3,4,0,0},{45,2,4,25,0},{60,1,3,50,25},{90,0,3,75,25},{180,0,2,100,50},{180,0,2,100,50},{180,0,1,100,75},{300,0,0,100,100},{0,0,0,0,0}}; static char simglobSourceFile[]=__FILE__; signed char simShortcutModes[]={0,5,6,9,1,2,3,4,0,0,0,0};
 extern int retryTimeout,simLimit1,simLimit2,simLimit3,simLimit4;
 struct FastCoord;
 struct TerrainGrid;struct FogSource;struct FogBuffer;struct FastBuffer;
@@ -49,7 +49,7 @@ struct BestLocState {unsigned char bytes[280];BestLocState(TerrainGrid *,int);~B
 extern void SetFastView(FastCoord *,const ViewState *);
 extern int gIn80,gInA0;extern long gInA4;
 inline int SimShiftDown(){return gInA4;} inline int SimAltDown(){return gInA0;}
-extern signed char simShortcutModes[];
+
 struct GuiRect {long x,y,width,height;};struct GuiPoint {long x,y;};
 struct GuiControlData:GuiRect {unsigned char style[4];U32 attributes,shortcut;};
 class GuiControl:public GuiControlData {public:virtual ~GuiControl();virtual void Reset(unsigned);virtual void Draw(unsigned);virtual int Event(unsigned,U32);virtual int HitTest(const GuiPoint *);};

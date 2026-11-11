@@ -91,6 +91,16 @@ def is_bss(seg):
 _STARTS = {}
 
 
+def _table_tail(gap, va, relsites):
+    """gap (original bytes from va to the next function start) = 0..3 filler bytes + one or more relocated dwords."""
+    for pad in range(0, 4):
+        rest = len(gap) - pad
+        if rest >= 4 and rest % 4 == 0 and (pad == 0 or _all_filler(gap[:pad])) and \
+                all(va + pad + k in relsites for k in range(0, rest, 4)):
+            return True
+    return False
+
+
 def _all_filler(gap):
     """True if gap is a sequence of Watcom no-op filler instructions (see funcmap.pad_len)."""
     from funcmap import pad_len
@@ -149,6 +159,7 @@ class Comparison:
         self.tables = oracle_tables(img)
         self.relsites = img.reloc_sites()
         self.conflicts = []
+        self._ftail = {}
         self.fx_by_seg = {}
         for f in mod.fixups:
             self.fx_by_seg.setdefault(f.seg, []).append(f)
@@ -361,9 +372,45 @@ class Comparison:
         if not is_code(seg):
             return self.base[si][0] + off if si in self.base else None
         for o, e, _ in self.extents.get(si, []):
-            if o <= off < max(e, o + 1) and (si, o) in self.ext_va:
-                return self.ext_va[(si, o)][0] + off - o
+            if o <= off < max(e, o + 1):
+                ft = self._foreign_tail(si, o, e)
+                if ft and off >= ft[1]:
+                    # a switch table in front of the NEXT function: it ends where that function starts
+                    return self.ext_va[(si, e)][0] - (e - off) if (si, e) in self.ext_va else None
+                if (si, o) in self.ext_va:
+                    return self.ext_va[(si, o)][0] + off - o
         return None
+
+    def _foreign_tail(self, si, o, e):
+        """(own_end, table_start) when code extent [o, e) ends with a jump table that the extent itself does not
+        reference: without -ot Watcom puts a switch table in FRONT of its function, so it lands at the end of
+        the previous public's range, after 0..3 bytes of filler that depend on the absolute address. Those
+        bytes belong to the next function (which must prove the table: audit v1 F3), not to this one. None if
+        the extent has no such tail."""
+        key = (si, o)
+        if key in self._ftail:
+            return self._ftail[key]
+        res = None
+        seg = self.m.segments[si]
+        if is_code(seg) and getattr(seg, "comdat", None) is None and e - o > 4 and e < seg.size:
+            ptrs = {f.off: f for f in self.fx_by_seg.get(si, []) if f.size() == 4 and not f.self_rel
+                    and f.target[0] & 3 == 0 and is_code(self.m.segments[f.target[1]])}
+            t = e
+            while t - 4 > o and (t - 4) in ptrs:
+                t -= 4
+            if t < e:
+                own = False
+                for f in self.fx_by_seg.get(si, []):
+                    if o <= f.off < t and f.off in ptrs and f.target[1] == si:
+                        toff = ((0 if f.target[0] & 4 else f.disp) + self._addend(si, f)) & 0xFFFFFFFF
+                        if t <= toff < e:
+                            own = True          # the extent's own table (referenced by its own jmp)
+                            break
+                if not own:
+                    pad = next((k for k in (3, 2, 1) if t - k > o and _all_filler(bytes(seg.data[t - k:t]))), 0)
+                    res = (t - pad, t)
+        self._ftail[key] = res
+        return res
 
     def _oracle_u32(self, va):
         rva = va - self.img.image_base
@@ -541,9 +588,11 @@ class Comparison:
             return (va + disp) & 0xFFFFFFFF, how, name
         return None, None, f"method{m}"
 
-    def _evaluate(self, si, lo, hi, va0, extent_rules=True):
+    def _evaluate(self, si, lo, hi, va0, extent_rules=True, foreign_tail=False):
         """Compare segment si bytes [lo,hi) placed at va0. Returns dict. extent_rules=False for ranges that are
-        not functions (jump tables): no function start/end checks."""
+        not functions (jump tables): no function start/end checks. foreign_tail=True: [lo,hi) is a function
+        without the next function's switch table that follows it; the original must then continue with at most
+        3 filler bytes and whole relocated dwords up to the next function start."""
         seg = self.m.segments[si]
         n = hi - lo
         exp = bytearray(seg.data[lo:hi])
@@ -596,7 +645,9 @@ class Comparison:
             tail_fill = 0
             if nxt is not None and end != nxt:
                 gap = self.img.read_va(end, nxt - end) if end < nxt else b""
-                if last and gap and not any(gap):
+                if foreign_tail and end < nxt and _table_tail(gap, end, self.relsites):
+                    pass                      # filler + the next function's switch table (proven by that function)
+                elif last and gap and not any(gap):
                     pass                      # zero linker fill after the object's last function
                 elif last and gap and _all_filler(gap):
                     tail_fill = len(gap)      # partial TU: compiler filler of the original, not produced here
@@ -678,7 +729,11 @@ class Comparison:
                 if va is None:
                     ext.update(status="UNPLACED", va=None)
                 else:
-                    ext.update(self._evaluate(si, o, e, va), va=f"{va:08x}",
+                    ft = self._foreign_tail(si, o, e) if code else None
+                    if ft:
+                        # the extent ends before the next function's switch table (and its alignment filler)
+                        ext.update(end=ft[0], full_end=e, foreign_table=e - ft[1])
+                    ext.update(self._evaluate(si, o, ext["end"], va, foreign_tail=bool(ft)), va=f"{va:08x}",
                                placed=(self.ext_va.get((si, o), (0, "segment"))[1] if code else rep["placed"]))
                 rep["extents"].append(ext)
             sts = {x["status"] for x in rep["extents"]}

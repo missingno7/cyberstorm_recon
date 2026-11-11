@@ -54,6 +54,10 @@ def audit_v1_f3_f5(check):
     good = build(shell, shell_entry)
     check(good.get('Shell::Event', {}).get('status') == 'STRICT',
           'F3 positive: unchanged switch owner is STRICT')
+    prev = good.get('Shell::RestoreMenu', {})
+    check(prev.get('status') == 'STRICT' and prev.get('foreign_table', 0) >= 4 and
+          prev['end'] < prev.get('full_end', 0),
+          'table ownership: the extent in front of a switch function ends before that function\'s table')
     text = shell.read_text(encoding='latin-1')
     head, marker, tail = text.partition('void Shell::Event(unsigned char)')
     buy = 'case 25:case 29:'
@@ -70,8 +74,9 @@ def audit_v1_f3_f5(check):
         bad = build(candidate, shell_entry)
         check(bad.get('Shell::Event', {}).get('status') != 'STRICT',
               'F3 negative: case swap invalidates Event itself, including its external table')
-        check(bad.get('Shell::RestoreMenu', {}).get('status') == 'DIFF',
-              'F3 fixture changes the table in the predecessor extent')
+        check(bad.get('Shell::RestoreMenu', {}).get('status') == 'STRICT' and
+              bad['Shell::RestoreMenu']['end'] - bad['Shell::RestoreMenu']['off'] == prev['end'] - prev['off'],
+              'table ownership: a changed table does not touch the predecessor (same STRICT extent); its owner fails')
         rc, output = dry_promote(candidate, shell_tu, shell_entry)
         check(rc == 1 and 'LOSS' in output and 'Shell::Event' in output,
               'F3 promotion reports loss of the switch owner')
@@ -117,18 +122,18 @@ def audit_v1_r2_scalars(check):
     """R2.1/R2.2: a named scalar's initializer is proven in full and a zero (BSS) object must be zero in the oracle."""
     import gate
     from common import ROOT
-    tu = "src/_unknown/tu_0042a0e0.c"
+    tu = "src/gui/palfade.c"
     entry = gate.load_ledger()["tus"][tu]
     text = (ROOT / tu).read_text(encoding="latin-1")
-    decl = "extern long gGuiFadeStep,"
-    check(decl in text, "R2 fixture: fade TU declares gGuiFadeStep extern")
-    if decl not in text:
+    decl = "long gGuiFadeStep=64;"
+    check(text.count(decl) == 1, "R2 fixture: fade TU defines gGuiFadeStep with its initializer")
+    if text.count(decl) != 1:
         return
     res = {}
     for tag, init in (("good", "64"), ("high", "65600"), ("zero", "0")):
         with tempfile.TemporaryDirectory(dir=ROOT / "build") as td:
-            p = Path(td) / "tu_0042a0e0.c"
-            p.write_text(text.replace(decl, "long gGuiFadeStep=%s; extern long " % init, 1), encoding="latin-1")
+            p = Path(td) / "palfade.c"
+            p.write_text(text.replace(decl, "long gGuiFadeStep=%s;" % init, 1), encoding="latin-1")
             r, _, _ = gate.build_and_compare(p, entry, find=True, imply=True)
             ext = gate.by_label(gate.extents(r))
             res[tag] = [ext.get(n, {}).get("status") for n in ("GuiFadeOut", "GuiFadeOutRange", "GuiFadeIn")]

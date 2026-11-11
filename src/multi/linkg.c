@@ -97,3 +97,4 @@ void QueueAcks(char *object,int peer,int *high,int *low) {
  if(peer) { int a,b; QueueStatus(object,peer,&a,&b,high,low); }
  else { *low=0; *high=0; }
 }
+static char xSourceFile[] = __FILE__;

@@ -1,6 +1,6 @@
 // sim\sim.c, full function bodies. Unbound names and unnamed fields are provisional.
 #pragma pack(push,1)
-typedef unsigned long U32;
+typedef unsigned long U32; static char simSourceFile[]=__FILE__;
 struct GuiRect { long x,y,width,height; };
 struct GridPoint {long x,y;GridPoint(){}GridPoint(long a,long b){x=a;y=b;}};
 struct ClipState { long words[10]; };
@@ -553,10 +553,10 @@ void SimGame::Open() {
 
 
 
-  if(!paletteData)AssertFail(__FILE__,__LINE__,(const char *)paletteData);
+  if(!paletteData)AssertFail(simSourceFile,__LINE__,(const char *)paletteData);
   void *images=gResMgr.Load("simgui.bmx");drawCursorImages=(MenuImages *)images;gMenuImages=(MenuImages *)images;
 
-  if(!images)AssertFail(__FILE__,__LINE__,(const char *)images);
+  if(!images)AssertFail(simSourceFile,__LINE__,(const char *)images);
   ShellRestore(this);
   gShellMiniStrings.Unlock();gShellParaStrings.Unlock();SetPointer(&gShellMiniStrings,"miniSim.bin");SetPointer(&gShellParaStrings,"paraSim.bin");gShellMiniStrings.Unlock();gShellMiniStrings.Lock();BriefWaitB(28);targetBriefResource.Lock();
   GridInitialize(&fallbackName,1000,31);FastBufferCreate(&g4d35e4,fallbackName.Count());g4d35f4.Resize();SimBestLocOpen(bestLocEntries);simFogSource=&g4d35f4;SimFastSetFog(&gFastTransform,&g4d35f4);bestLocCursor=0;bestLocCount=0;
