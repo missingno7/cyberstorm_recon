@@ -634,7 +634,7 @@ extern "C" void f_004120fe(void *p, int menu)
 {
     char item[128];
     char profileName[64];
-    volatile int selected;
+    int selected;
     int count = PilotProfileCount(&gShellGame);
     if (count < 2) {
         if (gPilotChatMenu != 0) {

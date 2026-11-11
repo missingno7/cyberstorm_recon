@@ -52,7 +52,7 @@ class GuiControl:public GuiRect {
     virtual void Draw(unsigned);
     virtual int Event(unsigned,U32);
     virtual int HitTest(const GuiPoint *);
-    void Clip();
+    void Clip(); void SetVisibility(U32 n) { attributes=(attributes&0xff1fffffUL)+(n<<21); }
     int GetFlags() {
         return attributes;
     }
@@ -334,23 +334,10 @@ void WeaponPopup::OpenWeapons(InputReq *request) {
         ActorUnit *unit=g4d2498->unit;
         for(int i=0; i<8; ++i) {
             int ready=HercMountAllowed(unit,i+11);
-            MenuImageButton *button=&weaponButtons[i];
-            WeaponControl *row=&weaponRows[i];
-            if(!ready) {
-                int flags=row->GetFlags();
-                flags=(flags&0xff1fffff)+0xa00000;
-                row->attributes=flags;
-                flags=button->GetFlags();
-                flags=(flags&0xff1fffff)+0xa00000;
-                button->attributes=flags;
-            }
-            else {
-                int flags=row->GetFlags();
-                flags=flags&0xff1fffff;
-                row->attributes=flags;
-                flags=button->GetFlags();
-                flags=flags&0xff1fffff;
-                button->attributes=flags;
+            
+            
+            if(!ready) {weaponRows[i].SetVisibility(5);weaponButtons[i].SetVisibility(5);}
+            else {weaponRows[i].SetVisibility(0);weaponButtons[i].SetVisibility(0);
                 int bottom=weaponRows[i].y+weaponRows[i].height+1;
                 if(top<bottom)top=bottom;
             }
@@ -366,7 +353,7 @@ void WeaponPopup::UpdateWeapons() {
     f_0045d6b0(&weaponReport,&targetScene,0);
     for(int i=0; i<8; ++i) {
         int kind=weaponReport.weapons[i].kind;
-        sprintf(labels[i],"%d - %s",i+1,PopItemValue(PopFindItem(unit,i+11)));
+        sprintf(labels[i],"%d: %s",i+1,PopItemValue(PopFindItem(unit,i+11)));
         weaponRows[i].text=labels[i];
         weaponRows[i].font=kind?1:3;
         weaponRows[i].value=-1;

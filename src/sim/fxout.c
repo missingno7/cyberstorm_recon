@@ -442,8 +442,8 @@ void FxSpray(World *world, FxPoint from, FxPoint to, Weapon *weapon, int flags, 
 
 void FxBurst(World *world, FxPoint from, FxPoint to, Weapon *weapon, int flags, FxTarget *target, FxPoint *impact, int quiet)
 {
-    FxDef *def = fxDefs[weapon->type];
-    int sound = weaponSoundTable[weapon->type];
+    int type=weapon->type; FxDef *def = fxDefs[type];
+    int sound = weaponSoundTable[type];
     if (!def->repeatSound)
         WeaponSound(&from, sound, 0, 0, MAX(weapon->at33, weapon->at2f));
     FxTarget aim = *target;

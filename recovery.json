@@ -83,7 +83,7 @@
     }
    },
    "data": {},
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/_unknown/tu_0042a598.c": {
    "as": "tu_0042a598.c",
@@ -276,7 +276,7 @@
      "size": 346
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/io/memory.c": {
    "as": "io\\memory.c",
@@ -394,7 +394,7 @@
     }
    },
    "data": {},
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/terr/tgrid.c": {
    "as": "terr\\tgrid.c",
@@ -486,9 +486,13 @@
     "_DATA": {
      "va": "00490450",
      "size": 13
+    },
+    "XI": {
+     "va": "004a6be8",
+     "size": 6
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/terr/tfog.c": {
    "as": "terr\\tfog.c",
@@ -524,6 +528,11 @@
      "va": "004330b0",
      "size": 80,
      "mangled": "W?FogMerge$n(pn$FogBuffer$$pn$1$)v"
+    },
+    "FogBuffer::Initialize": {
+     "va": "00433100",
+     "size": 160,
+     "mangled": "W?Initialize$:FogBuffer$n(ii)v"
     },
     "FogResetMode": {
      "va": "004331a0",
@@ -768,7 +777,7 @@
     }
    },
    "data": {},
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/io/resource.c": {
    "as": "io\\resource.c",
@@ -867,7 +876,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/shell/missbrf.c": {
    "as": "shell\\missbrf.c",
@@ -1538,7 +1547,7 @@
     }
    },
    "data": {},
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/sim/worldact.c": {
    "as": "sim\\worldact.c",
@@ -1564,6 +1573,11 @@
      "va": "00457200",
      "size": 80,
      "mangled": "W?WorldActionRemove$n(pnv)i"
+    },
+    "WorldActionClear": {
+     "va": "00457250",
+     "size": 128,
+     "mangled": "W?WorldActionClear$n(pnv)i"
     },
     "WorldActionCallback": {
      "va": "004572d0",
@@ -1613,6 +1627,11 @@
      "va": "004262b0",
      "size": 99,
      "mangled": "W?Rewind$:Flic$n()v"
+    },
+    "Flic::Open": {
+     "va": "00426313",
+     "size": 815,
+     "mangled": "W?Open$:Flic$n(lii)i"
     },
     "Flic::Close": {
      "va": "00426642",
@@ -1666,7 +1685,7 @@
      "size": 11
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/gui/menu.c": {
    "as": "gui\\menu.c",
@@ -2044,7 +2063,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/_unknown/tu_0042a5fc.c": {
    "as": "_unknown\\tu_0042a5fc.c",
@@ -2309,7 +2328,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/multi/linkdlg.c": {
    "as": "multi\\linkdlg.c",
@@ -2561,6 +2580,11 @@
      "size": 155,
      "mangled": "W?MessageChecksum$n(pn$MenuMessage$$)ui"
     },
+    "MessageValid": {
+     "va": "0047161b",
+     "size": 297,
+     "mangled": "W?MessageValid$n(pn$MenuMessage$$)i"
+    },
     "IsSystemMessage": {
      "va": "00471744",
      "size": 43,
@@ -2647,7 +2671,7 @@
      "size": 16
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/shell/shell.c": {
    "as": "shell\\shell.c",
@@ -2982,7 +3006,7 @@
      "size": 11
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/multi/linkapp.c": {
    "as": "multi\\linkapp.c",
@@ -3054,12 +3078,20 @@
      "va": "004a3f00",
      "size": 12
     },
+    "XI": {
+     "va": "004a6ccc",
+     "size": 6
+    },
+    "W?$Wts09n$Queue$$$nx[]uc": {
+     "va": "0048e19c",
+     "size": 17
+    },
     "W?$Wts0hn$LinkPeerTimer$$$nx[]uc": {
      "va": "0048e188",
      "size": 17
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/multi/link.c": {
    "as": "multi\\link.c",
@@ -3128,7 +3160,7 @@
      "size": 13
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/multi/chat.c": {
    "as": "multi\\chat.c",
@@ -3240,8 +3272,13 @@
      "mangled": "W?ApplyDamage$n(iiipn$Weapon$$)v"
     }
    },
-   "data": {},
-   "accepted": "2026-11-09"
+   "data": {
+    "XI": {
+     "va": "004a6c8a",
+     "size": 6
+    }
+   },
+   "accepted": "2026-11-11"
   },
   "src/sim/fxout.c": {
    "as": "sim\\fxout.c",
@@ -3273,6 +3310,11 @@
      "size": 128,
      "mangled": "W?FxRedraw$n(pnv)v"
     },
+    "FxBurst": {
+     "va": "0045f010",
+     "size": 1360,
+     "mangled": "W?FxBurst$n(pn$World$$$FxPoint$$$2$pn$Weapon$$ipn$FxTarget$$pn$2$i)v"
+    },
     "FxPart::$dt": {
      "va": "0045f880",
      "size": 5,
@@ -3294,7 +3336,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/sim/explo.c": {
    "as": "sim\\explo.c",
@@ -3724,7 +3766,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/logic/sinterp.c": {
    "as": "logic\\sinterp.c",
@@ -4021,10 +4063,25 @@
      "size": 125,
      "mangled": "W?f_00445c81$n(i)v"
     },
+    "f_00446253": {
+     "va": "00446253",
+     "size": 253,
+     "mangled": "W?f_00446253$n(i)v"
+    },
     "f_00446350": {
      "va": "00446350",
      "size": 323,
      "mangled": "W?f_00446350$n(pn$HercModule$$)v"
+    },
+    "f_00446493": {
+     "va": "00446493",
+     "size": 221,
+     "mangled": "W?f_00446493$n(iipnipni)i"
+    },
+    "f_004465d6": {
+     "va": "004465d6",
+     "size": 256,
+     "mangled": "W?f_004465d6$n(i)v"
     },
     "HercModule::Update": {
      "va": "004466d6",
@@ -4361,6 +4418,11 @@
      "size": 1,
      "mangled": "W?Draw$:CommsLogView$n(ui)v"
     },
+    "CommsScreenOpen": {
+     "va": "00412b26",
+     "size": 722,
+     "mangled": "W?CommsScreenOpen$n(pn$CommsScreen$$pn$InputReq$$uc)v"
+    },
     "CommsScreenClose": {
      "va": "00412df8",
      "size": 153,
@@ -4651,7 +4713,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/logic/lactors.c": {
    "as": "logic\\lactors.c",
@@ -4693,10 +4755,25 @@
      "size": 70,
      "mangled": "W?Reserve$:LogicActorList$n()pn$LogicActor$$"
     },
+    "LogicActorList::CreateActor": {
+     "va": "00464218",
+     "size": 356,
+     "mangled": "W?CreateActor$:LogicActorList$n(ipn$ActorPoint$$ipnxa)pn$LogicActor$$"
+    },
     "LogicActorList::FindByUnit": {
      "va": "0046437c",
      "size": 75,
      "mangled": "W?FindByUnit$:LogicActorList$n(pnv)pn$LogicActor$$"
+    },
+    "LogicDeleteFromMap": {
+     "va": "0046461b",
+     "size": 217,
+     "mangled": "LogicDeleteFromMap"
+    },
+    "LogicRefreshMap": {
+     "va": "004646f4",
+     "size": 208,
+     "mangled": "LogicRefreshMap"
     },
     "LogicActorList::ResetActorValues": {
      "va": "004648a7",
@@ -4737,9 +4814,13 @@
     "_DATA": {
      "va": "004a3ae4",
      "size": 16
+    },
+    "XI": {
+     "va": "004a6ca8",
+     "size": 6
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/logic/intel.c": {
    "as": "logic\\intel.c",
@@ -5227,12 +5308,16 @@
     }
    },
    "data": {
+    "XI": {
+     "va": "004a6c9c",
+     "size": 6
+    },
     "W?$Wts0dn$ViewState$$$nx[]uc": {
      "va": "0048de28",
      "size": 17
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/sim/hotbrief.c": {
    "as": "sim\\hotbrief.c",
@@ -5371,7 +5456,7 @@
     }
    },
    "data": {},
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/_unknown/tu_004599a0.c": {
    "as": "_unknown\\tu_004599a0.c",
@@ -5846,7 +5931,7 @@
     }
    },
    "data": {},
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/sim/sim.c": {
    "as": "sim\\sim.c",
@@ -6046,6 +6131,11 @@
      "size": 192,
      "mangled": "W?SimRefreshFog$n(pn$SimGame$$i)v"
     },
+    "SimSelectTarget": {
+     "va": "0044ea00",
+     "size": 256,
+     "mangled": "W?SimSelectTarget$n(pn$SimGame$$i)i"
+    },
     "SimAdoptFocus": {
      "va": "0044f220",
      "size": 112,
@@ -6157,7 +6247,7 @@
      "size": 14
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/terr/tbuild.c": {
    "as": "terr\\tbuild.c",
@@ -6257,8 +6347,13 @@
      "mangled": "W?TerrainNoAction$n()i"
     }
    },
-   "data": {},
-   "accepted": "2026-11-09"
+   "data": {
+    "XI": {
+     "va": "004a6c0c",
+     "size": 6
+    }
+   },
+   "accepted": "2026-11-11"
   },
   "src/pop/pdeath.c": {
    "as": "pop\\pdeath.c",
@@ -6559,7 +6654,7 @@
      "size": 13
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/terr/tdisplay.c": {
    "as": "terr\\tdisplay.c",
@@ -6666,6 +6761,11 @@
      "size": 48,
      "mangled": "W?DisplayWalkInit$n(pn$AreaWalk$$ui)v"
     },
+    "DisplayStep": {
+     "va": "0042ca30",
+     "size": 192,
+     "mangled": "DisplayStep"
+    },
     "DisplayCount": {
      "va": "0042cb30",
      "size": 32,
@@ -6704,7 +6804,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/terr/tsurface.c": {
    "as": "terr\\tsurface.c",
@@ -7573,7 +7673,7 @@
     }
    },
    "data": {},
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/_unknown/tu_004394d8.c": {
    "as": "_unknown\\tu_004394d8.c",
@@ -7659,6 +7759,11 @@
      "size": 23,
      "mangled": "f_00439d31"
     },
+    "f_00439d48": {
+     "va": "00439d48",
+     "size": 103,
+     "mangled": "f_00439d48"
+    },
     "f_00439daf": {
      "va": "00439daf",
      "size": 71,
@@ -7676,7 +7781,7 @@
     }
    },
    "data": {},
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/_unknown/tu_0043a294.c": {
    "as": "_unknown\\tu_0043a294.c",
@@ -7859,9 +7964,15 @@
    "as": "_unknown\\tu_0042d3d0.c",
    "install": "wc106",
    "profile": "ot-oe",
-   "functions": {},
+   "functions": {
+    "TerrainVisibleDrop": {
+     "va": "0042dd70",
+     "size": 192,
+     "mangled": "W?TerrainVisibleDrop$n(pnipn$Point$$ii)i"
+    }
+   },
    "data": {},
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/_unknown/tu_00474900.c": {
    "as": "_unknown\\tu_00474900.c",
@@ -8171,6 +8282,16 @@
      "va": "004765e6",
      "size": 195,
      "mangled": "W?f_4765e6$n()i"
+    },
+    "HelpTextDisplay": {
+     "va": "004766a9",
+     "size": 191,
+     "mangled": "W?HelpTextDisplay$n(pnxa)v"
+    },
+    "HelpTextDraw": {
+     "va": "00476768",
+     "size": 96,
+     "mangled": "W?HelpTextDraw$n(pnxa)v"
     },
     "HelpTextWindowTitle": {
      "va": "004767c8",
@@ -8496,6 +8617,11 @@
    "install": "wc106",
    "profile": "ot",
    "functions": {
+    "ActorPalette": {
+     "va": "0045a290",
+     "size": 848,
+     "mangled": "W?ActorPalette$n(pn$PaletteActor$$)v"
+    },
     "ActorPaletteLoad": {
      "va": "0045a5e0",
      "size": 31,
@@ -8508,7 +8634,7 @@
      "size": 12
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/_unknown/tu_0045ad00.c": {
    "as": "tu_0045ad00.c",
@@ -8552,7 +8678,7 @@
     }
    },
    "data": {},
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/sim/weapai.c": {
    "as": "sim\\weapai.c",
@@ -8807,7 +8933,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/_unknown/tu_0042726c.c": {
    "as": "_unknown\\tu_0042726c.c",
@@ -8866,7 +8992,7 @@
     }
    },
    "data": {},
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/_unknown/tu_004275bc.c": {
    "as": "_unknown\\tu_004275bc.c",
@@ -8874,7 +9000,7 @@
    "profile": "plain",
    "functions": {},
    "data": {},
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/_unknown/tu_00427c68.c": {
    "as": "_unknown\\tu_00427c68.c",
@@ -8950,7 +9076,7 @@
     }
    },
    "data": {},
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/_unknown/tu_00432930.c": {
    "as": "_unknown\\tu_00432930.c",
@@ -9012,7 +9138,7 @@
    "profile": "plain",
    "functions": {},
    "data": {},
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/_unknown/tu_00435130.c": {
    "as": "_unknown\\tu_00435130.c",
@@ -9041,7 +9167,7 @@
     }
    },
    "data": {},
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/_unknown/tu_004358b8.c": {
    "as": "_unknown\\tu_004358b8.c",
@@ -9049,7 +9175,7 @@
    "profile": "plain",
    "functions": {},
    "data": {},
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/_unknown/tu_00435b5c.c": {
    "as": "_unknown\\tu_00435b5c.c",
@@ -9057,7 +9183,7 @@
    "profile": "plain",
    "functions": {},
    "data": {},
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/_unknown/tu_0043e3ac.c": {
    "as": "_unknown\\tu_0043e3ac.c",
@@ -9613,7 +9739,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/pack/unpack.c": {
    "as": "pack\\unpack.c",
@@ -9845,7 +9971,7 @@
    "profile": "plain",
    "functions": {},
    "data": {},
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-11"
   },
   "src/_unknown/tu_0047d0e0.c": {
    "as": "_unknown\\tu_0047d0e0.c",
@@ -10526,6 +10652,11 @@
      "size": 190,
      "mangled": "W?StorageAnimate$n(pn$StorageScreen$$)v"
     },
+    "ShellStorageRender": {
+     "va": "00418844",
+     "size": 673,
+     "mangled": "W?ShellStorageRender$n(pn$StorageScreen$$)v"
+    },
     "StorageSetup": {
      "va": "00418ae9",
      "size": 116,
@@ -10704,6 +10835,11 @@
    "install": "wc106",
    "profile": "plain-oe",
    "functions": {
+    "W?.fn_init$n()v": {
+     "va": "0041cb48",
+     "size": 772,
+     "mangled": "W?.fn_init$n()v"
+    },
     "QuickStartScreen::$ct": {
      "va": "0041ce4c",
      "size": 23,
@@ -10777,6 +10913,10 @@
     "XI": {
      "va": "004a6bc4",
      "size": 6
+    },
+    "W?$Wts0en$MenuNumber$$$nx[]uc": {
+     "va": "0048c988",
+     "size": 17
     },
     "W?$Wts0dn$MenuPanel$$$nx[]uc": {
      "va": "0048c99c",
@@ -11355,6 +11495,11 @@
    "install": "wc106",
    "profile": "plain-oe",
    "functions": {
+    "W?.fn_init$n()v": {
+     "va": "004425d4",
+     "size": 408,
+     "mangled": "W?.fn_init$n()v"
+    },
     "MovementPopup::$ct": {
      "va": "0044276c",
      "size": 23,
@@ -11413,6 +11558,10 @@
      "va": "004a6c18",
      "size": 6
     },
+    "W?$Wts0en$MenuButton$$$nx[]uc": {
+     "va": "0048c9d8",
+     "size": 17
+    },
     "W?$Wts0hn$MovementPopup$$$nx[]uc": {
      "va": "0048db9c",
      "size": 17
@@ -11460,10 +11609,20 @@
      "size": 56,
      "mangled": "W?$ct:WeaponPopup$n()_"
     },
+    "WeaponPopup::OpenWeapons": {
+     "va": "00443366",
+     "size": 265,
+     "mangled": "W?OpenWeapons$:WeaponPopup$n(pn$InputReq$$)v"
+    },
     "WeaponPopup::Close": {
      "va": "0044346f",
      "size": 26,
      "mangled": "W?Close$:WeaponPopup$n()v"
+    },
+    "WeaponPopup::UpdateWeapons": {
+     "va": "00443489",
+     "size": 348,
+     "mangled": "W?UpdateWeapons$:WeaponPopup$n()v"
     },
     "WeaponPopup::Process": {
      "va": "004435e5",
@@ -12128,6 +12287,11 @@
      "va": "0042a6e8",
      "size": 224,
      "mangled": "W?RichTextCommand$n(pn$RichTextState$$pnxuc)ui"
+    },
+    "RichTextDraw": {
+     "va": "0042a7cc",
+     "size": 1138,
+     "mangled": "W?RichTextDraw$n(llllpnxuclllpnlpnlpnxliiulll)v"
     }
    },
    "data": {
@@ -12775,6 +12939,11 @@
      "va": "00474367",
      "size": 72,
      "mangled": "W?DiscardThrough$:Queue$n(i)v"
+    },
+    "OldestAcknowledgement": {
+     "va": "004743af",
+     "size": 106,
+     "mangled": "W?OldestAcknowledgement$n(pn$Transport$$)i"
     },
     "QueueRedeliver": {
      "va": "004744ec",

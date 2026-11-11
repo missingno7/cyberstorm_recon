@@ -144,7 +144,7 @@ int Flic::Open(long source,int priority,int sourceMode)
     CloseCore();
     if(priority<gFlicMinimumPriority)return 1;
     if(sourceMode){
-        resource=(sourceMode==2)?(unsigned char *)source:(unsigned char *)gResMgr.Load(source);
+        if(sourceMode==2)resource=(unsigned char *)source; else resource=(unsigned char *)gResMgr.Load(source);
         if(!resource)return 0;
         header=*(FlicHeader *)resource;
         memoryPosition=128;

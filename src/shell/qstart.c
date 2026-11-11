@@ -9,7 +9,7 @@ struct GuiScreen {char first[16]; InputReq *input; char rest[0x38];
 };
 struct GuiControl {char first[20]; U32 flags,shortcut; virtual ~GuiControl(); void SetVisibility(U32 n){flags=(flags&0xff1fffffUL)+(n<<21);}};
 struct MenuButton:GuiControl {char rest[8]; MenuButton(const char *,U32); virtual ~MenuButton();};
-struct MenuNumber:GuiControl {char rest[16]; MenuNumber(signed char,signed char); virtual ~MenuNumber(); void SetFont(signed char);};
+struct MenuNumber:GuiControl {char rest[16]; MenuNumber(signed char=-1,signed char=18); virtual ~MenuNumber(); void SetFont(signed char);};
 struct MenuPanel:GuiControl {char rest[4]; MenuPanel(); virtual ~MenuPanel();};
 struct MenuHelpRegion:GuiControl {int id,activated; MenuHelpRegion(); virtual ~MenuHelpRegion();};
 extern "C" void BriefModuleInitC(void *,int,int);
@@ -30,7 +30,7 @@ struct QuickStartScreen:GuiScreen {
  QuickStartScreen();
 };
 MenuButton quickBack(0,0),quickRandom(0,0),quickLaunch(0,0);
-MenuNumber quickNumber0(-1,18),quickNumber1(-1,18),quickNumber2(-1,18),quickNumber3(-1,18),quickNumber4(-1,18);
+MenuNumber quickNumber0,quickNumber1,quickNumber2,quickNumber3,quickNumber4;
 MenuPanel quickPanel; MenuButton quickConfirm(0,0); MenuHelpRegion quickHelp;
 QuickSelection quickChoice0(3); UpgradeBar quickBar0(&quickChoice0); UpgradeArrow quickNext0(&quickChoice0,1,54),quickPrev0(&quickChoice0,-1,51);
 QuickSelection quickChoice1(23); UpgradeBar quickBar1(&quickChoice1); UpgradeArrow quickNext1(&quickChoice1,1,54),quickPrev1(&quickChoice1,-1,51);

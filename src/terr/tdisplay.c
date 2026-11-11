@@ -441,7 +441,7 @@ extern "C" void DisplayStep(AreaWalk *walk)
         walk->y = walk->edge;
         ++walk->step;
     } else if (walk->y > walk->x) {
-        ++walk->x; --walk->y; ++walk->phase; return;
+        ++walk->x; --walk->y;
     } else walk->y -= 2;
     ++walk->phase;
 }

@@ -35,9 +35,11 @@ Numbers come from `python tools/verify.py`; this file only summarises them.
   lanes, statement placement around switches, inline member calls vs field stores, callee spelling at the `-oe`
   limit (21 rows in codegen_rules.md). Compiler-option and second-oracle censuses are negative.
 
+- 2026-11-11 (wave p1-p6): six Sol lanes with the trial recipe on the 356 parked functions: +26.
+
 ## Next
-- Lanes p1-p6 (Sol with the trial recipe) on the 356 parked functions; then Fable medium on what stays parked,
-  if the cost is approved (trial: about $1.2 per match).
+- About 330 functions stay parked after Sol with the recipe (7% yield). Fable medium on them if the cost is
+  approved (trial: 59% yield, about $1.2 per match).
 - 32 path strings without a file (blocked.md): pair the core\*, terr\*, main\*, graph\* objects.
 - Screen modules in the old shape (hotbrief.c), the SimImageGadget/PilotImageButton name, `#pragma aux` aliases.
 - Image level: startup/BEGTEXT and library member order, then a full link once enough objects are complete.

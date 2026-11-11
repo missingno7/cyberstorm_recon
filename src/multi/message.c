@@ -57,7 +57,7 @@ struct SyncMessage : MessageHeader { SyncBody sync; };
 struct MenuMessage : MessageHeader {
     union { DataBody data; SlotBody slot; InfoBody info; GameInfo game; ActorBody actor; char text[0x1ba]; };
     MenuMessage() {} MenuMessage(unsigned type, const char *text);
-    int From(); int IsBroadcast(); void ApplyPackets(); void Clear();
+    unsigned Size(){return size;} int From(); int IsBroadcast(); void ApplyPackets(); void Clear();
 };
 MenuMessage *MenuMessageBasic(MenuMessage *m, int type); MenuMessage *MenuMessageData(MenuMessage *m, int type, int a, int b = 0, int c = 0);
 MenuMessage *MenuMessageInfo(MenuMessage *m, int type, int slot, Options *options); MenuMessage *MenuMessageSlot(MenuMessage *m, int type, int slot, PlayerSlot *info);
@@ -648,13 +648,13 @@ unsigned MessageChecksum(MenuMessage *m)
 
 int MessageValid(MenuMessage *m)
 {
-    int type = m->type;
-    if (type == 2 || type == 1 || type == 3 || type == 5 || type == 7 || type == 0xe || type == 0x20
-        || type == 0x21 || type == 0x31 || type == 0x484b)
+
+    if (m->type == 2 || m->type == 1 || m->type == 3 || m->type == 5 || m->type == 7 || m->type == 0xe || m->type == 0x20
+        || m->type == 0x21 || m->type == 0x31 || m->type == 0x484b)
         return 1;
-    if (m->size > 0x1da)
+    if (m->Size() > 0x1da)
         return 0;
-    if (type < 0x1001 || type > 0x1025)
+    if (m->type < 0x1001 || m->type > 0x1025)
         return 0;
     if (MessageChecksum(m) != m->checksum)
         return 0;

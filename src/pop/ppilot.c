@@ -361,8 +361,8 @@ void PilotScreen::Draw()  {
         }
         if(statusColor) {
             int color=(tick%4!=0)?14:4;
-            int value=statusColor;
-            const char *text=value>=255?targetBriefResource.GetString(436):BriefFormat("%d",value);
+            
+            const char *text=statusColor>=255?targetBriefResource.GetString(436):BriefFormat("%d",statusColor);
             MenuDrawWrapped(targetBriefResource.GetString(435),-1,-1,1,color,&spacers[0],10,130);
             MenuDrawWrapped(text,1,-1,1,color,&spacers[0],-10,130);
         }

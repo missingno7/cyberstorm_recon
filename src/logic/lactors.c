@@ -9,7 +9,7 @@ struct LogicActor {
     int index, next, type, value, timer;
     u8 pad28[0x70 - 0x28];
     ActorPoint position; int randomValue, state7c, linkedIndex; u8 pad84[4]; int state88, state8c; u8 pad90[0xa8 - 0x90];
-    int Available() { ActorUnit *u = (ActorUnit *)unit; return u && u->alive && u->info->Active() && !((ActorUnit *)unit)->inactive; } int Friendly() { return (flags & 1) == 0; } int Attached() { return unit != 0; } int Flag2() { return (flags & 2) != 0; } int Live() { ActorUnit *u = (ActorUnit *)unit; return u && u->alive && u->info->Active(); } LogicActor() {}
+    int Available() { ActorUnit *u = (ActorUnit *)unit; return u && u->alive && u->info->Active() && !((ActorUnit *)unit)->inactive; } int Hostile() { return (flags & 1) != 0; } int Friendly() { return (flags & 1) == 0; } int Attached() { return unit != 0; } int Flag2() { return (flags & 2) != 0; } int Live() { return unit && ((ActorUnit *)unit)->alive && ((ActorUnit *)unit)->info->Active(); } LogicActor() {}
 };
 struct ActorGlobals { LogicActor actorRecords[512]; int actorCount, actorSerial; };
 ActorGlobals logicActors;
@@ -130,8 +130,8 @@ LogicActor *LogicActorList::CreateActor(int type, ActorPoint *position, int valu
     if (type >= 1 && type <= 9 && ActorListIsBusy()) return 0;
     LogicActor *actor = Reserve();
     actor->name = name;
-    int actorIndex = actor->index;
-    ActorArraySet(actor, 0, actorIndex);
+    
+    ActorArraySet(actor, 0, actor->index);
     actor->type = type;
     actor->value = value;
     actor->flags = 0;
@@ -235,10 +235,10 @@ extern "C" int LogicDeleteFromMap(void *unused, int index)
         actor = ActorFirst();
     }
     while (actor) {
-        if (actor->Live() && actor->Friendly() && actor->Flag2()) break;
+        if (actor->Live() && actor->Friendly() && actor->Flag2()) return actor->index;
         actor = ActorNext(actor);
     }
-    return actor ? actor->index : 0;
+    return 0;
 }
 
 extern "C" int LogicRefreshMap(void *unused, int index)
@@ -251,10 +251,10 @@ extern "C" int LogicRefreshMap(void *unused, int index)
         actor = ActorFirst();
     }
     while (actor) {
-        if (actor->Live() && !actor->Friendly() && actor->Flag2()) break;
+        if (actor->Live() && actor->Hostile() && actor->Flag2()) return actor->index;
         actor = ActorNext(actor);
     }
-    return actor ? actor->index : 0;
+    return 0;
 }
 
 

@@ -1,5 +1,5 @@
 #include <windows.h>
-extern int networkEnabled, gLinkSigsMode, localPeer, multiState; extern void *gLinkEvent; extern unsigned int gFxSeed; extern char networkQueue[]; extern HWND volatile g_mainWindow; extern int linkTimerReserved; // Four BSS bytes between the timer array and the clocks.
+extern int networkEnabled, gLinkSigsMode, localPeer, multiState; extern void *gLinkEvent; extern unsigned int gFxSeed; extern char networkQueue[]; extern HWND g_mainWindow; extern int linkTimerReserved; // Four BSS bytes between the timer array and the clocks.
 extern unsigned int linkLastTick, linkLastAlert;
 
 extern "C" {

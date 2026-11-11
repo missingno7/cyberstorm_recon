@@ -67,7 +67,7 @@ class SimImageGadget:public GuiControl {
 class MenuButton:public GuiControl {
     public: U32 state;
     const char *text;
-    MenuButton(const char *,U32);
+    MenuButton(const char * =0,U32=0);
     virtual ~MenuButton();
     virtual void Reset(unsigned);
     virtual void Draw(unsigned);
@@ -155,7 +155,7 @@ class MovementPopup:public GuiScreen {
     void Invalidate();
 };
 SimImageGadget moveImageA(145,1000,0),moveImageB(148,1000,0),moveImageC(151,1000,0),moveImageD(154,1000,0);
-MenuButton moveJump(0,0),moveLand(0,0),moveButton2(0,0),moveButton3(0,0),moveButton4(0,0);
+MenuButton moveJump,moveLand,moveButton2,moveButton3,moveButton4;
 MovementPopup simPanel;
 GuiPoint moveOffsets[6]= {
     GuiPoint(0,-2),GuiPoint(-1,-1),GuiPoint(-1,1),GuiPoint(0,2),GuiPoint(1,1),GuiPoint(1,-1)

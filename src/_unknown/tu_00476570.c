@@ -37,7 +37,7 @@ void HelpTextDisplay(const char *message) {
  if(helpTextMode&2) HelpTextDraw(message);
 }
 inline int HelpTextWidth() { return g5138ac; }
-inline int HelpTextBottom() { return g5138b0+gViewY+2; }
+inline int HelpTextBottom() { int bottom=g5138b0; return bottom+gViewY+2; }
 inline unsigned HelpTextLength(const char *s) { return strlen(s); }
 void HelpTextDraw(const char *message) {
  HDC dc=g512538; int x=gViewX,y=HelpTextBottom();

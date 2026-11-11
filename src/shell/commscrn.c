@@ -262,14 +262,14 @@ int CommsLogView::Event(unsigned, U32)
     if (!g4b2e30.IsLoaded()) return 0;
     {
         long mouse = g4bb78c.x;
-        long left = x;
-        long w = width;
-        long low = left + w * 42 / 100;
-        long high = left + w * 58 / 100;
-        long right = w + left;
+        
+        
+        long low = x + width * 42 / 100;
+        long high = x + width * 58 / 100;
+        long right = width + x;
         if (mouse < low) {
             g4b2e30.scrollDirection = 1;
-            g4b2e30.scrollSpeed = (mouse - left) * 150 / 100 + 5;
+            g4b2e30.scrollSpeed = (mouse - x) * 150 / 100 + 5;
         } else if (mouse > high) {
             g4b2e30.scrollDirection = -1;
             g4b2e30.scrollSpeed = (right - mouse) * 150 / 100 + 5;

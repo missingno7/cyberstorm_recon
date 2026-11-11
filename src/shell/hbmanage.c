@@ -595,8 +595,7 @@ void StorageRestore(StorageScreen *s) {
 }
 void StorageScreen::Ramp() {
     for(int i=0;i<23;i++)for(int j=0;j<6;j++) {
-        byte c=this->color[i]+j;
-        this->remap[i*6+j+16]=c;
+        this->remap[i*6+j+16]=this->color[i]+j;
     }
 }
 byte StorageSelected(StorageScreen *s) {

@@ -121,9 +121,9 @@ int WorldActionRemove(void *stream)
 
 int WorldActionClear(void *stream)
 {
-    register void *reader = stream;
-    StreamRead(reader, &worldActionCount, 4);
-    register int count = worldActionCount;
+    
+    StreamRead(stream, &worldActionCount, 4);
+    
 
 
 
@@ -162,11 +162,11 @@ int WorldActionClear(void *stream)
 
 
 
-    /* ASSERT_LINE_165 */ ASSERT(count >= 0 && count < 250);
-    if (count != 0) {
-        register WorldAction *actions = worldActions;
-        register unsigned int size = count * sizeof(WorldAction);
-        StreamRead(reader, actions, size);
+    /* ASSERT_LINE_165 */ ASSERT(worldActionCount >= 0 && worldActionCount < 250);
+    if (worldActionCount != 0) {
+        
+        
+        StreamRead(stream, worldActions, worldActionCount * sizeof(WorldAction));
     }
     return 1;
 }

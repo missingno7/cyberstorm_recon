@@ -23,7 +23,10 @@ def commands(report):
     for line in Path(report).read_text(encoding="utf-8", errors="replace").splitlines():
         m = LINE.search(line.strip().strip("`"))
         if m:
-            args = shlex.split(m.group(1), posix=True)
+            # non-POSIX split keeps backslashes, so `--as dir\file.c` works quoted ('..', "..") or bare, as
+            # workers on PowerShell write it; then drop the surrounding quotes of each token
+            args = [x[1:-1] if len(x) > 1 and x[0] == x[-1] and x[0] in "'\"" else x
+                    for x in shlex.split(m.group(1), posix=False)]
             args = [a for a in args if a != "--publish"]
             if args and args[0].startswith("candidates/") and "--tu" in args:
                 out.append(args)

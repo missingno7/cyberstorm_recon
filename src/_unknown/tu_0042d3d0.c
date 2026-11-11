@@ -1,6 +1,8 @@
 // Working labels for terrain drawing. The object starts with its switch table at 42d3d0.
 typedef unsigned int uint;
 typedef unsigned char byte;
+struct TerrainCell { byte type,height,rest[10]; }; struct TerrainWorld { byte header[68]; TerrainCell *cells; };
+
 struct Point { int x, y; Point() {} Point(int a, int b) { x=a; y=b; } Point(const Point &p) { x=p.x; y=p.y; } Point &operator+=(const Point &p) { x+=p.x; y+=p.y; return *this; } };
 typedef Point DrawPoint;
 struct MenuImage { int offset, width, height; };
@@ -159,15 +161,15 @@ void TerrainDrawTile(int *view, uint location, DrawPoint *point, uint orientatio
 
 int TerrainVisibleDrop(int *view, DrawPoint *point, int height, int direction)
 {
-    int edge = (direction + view[20]) % 6;
-    DrawPoint neighbour = pathDirections[edge];
+    
+    DrawPoint neighbour = pathDirections[(direction + view[20]) % 6];
     neighbour += *point;
     int location = ResolveName((const char *)view[0], (const char *)&neighbour);
     if (location) {
         uint other = 0;
         if (!TerrainVisibility || !TerrainVisibility->Hidden(location))
-            other = ((byte *)((int *)view[0])[17])[location * 12 + 1];
-        if ((int)other < height) height -= other; else height = 0;
+            other=((TerrainWorld *)view[0])->cells[location].height;
+        if ((int)other < height) return height - other; else return 0;
     }
     return height;
 }

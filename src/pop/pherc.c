@@ -33,8 +33,8 @@ struct GuiScreen {char header[16];int active;char rest[56];GuiScreen(GuiControl 
 inline long AutoAdvanceEnabled() { return gInA4; }
 extern "C" void BriefModuleOpen(void *object, int id, int delay, int flags); extern int f_00439d48(int); struct HercModule;extern void f_00446350(HercModule *);
 extern void f_00425e1a(int); struct SimGame;struct ActorRecord;extern void SimDrawTimer(SimGame *,int,int,int=1,int=-1); extern void f_0047ae20(unsigned long *); struct HercModule;extern int f_00445e23(HercModule *); extern void PilotSetState(SimGame *,int);
-extern void SimSetFocus(SimGame *,ActorRecord *); extern void f_0047e670(void *, void *, unsigned long); extern int f_0047fce0(int); extern void f_0047fca0(int *, int);
-extern void f_0043ac02(int, int *, int *, int *, int *); extern void f_0047c320(void *); extern void SigsStart(void *,int); extern void SurfacePresent(void *); extern void SetGameWindowSize(int=-1,int=-1);
+extern void SimSetFocus(SimGame *,ActorRecord *); struct FileRecord; extern unsigned long StreamRead(FileRecord *, void *, unsigned long); extern "C" int GameTimerExpired(int); extern "C" void GameTimerSet(int *, int);
+extern void HercAngleWeights(int, int *, int *, int *, int *); extern void f_0047c320(void *); extern void SigsStart(void *,int); extern void SurfacePresent(void *); extern void SetGameWindowSize(int=-1,int=-1);
 extern void f_004272cd(void *, long, long, long); extern void f_0042732e(void *, long, long); extern "C" int BriefWaitB(int); extern "C" int BriefWaitA(int); extern void f_0047eb40(void *);
 extern void f_0041caf9(void *, int); extern void f_00445c81(int); extern char DAT_00511df0, DAT_00511948, DAT_00511958;
 extern long DAT_00513890, DAT_00513898, g5138ac, DAT_005138b0, DAT_00511960; extern int DAT_004faf44; extern "C" void ReleasePoolData(void *); extern "C" void GlobalBlockFree(void *);
@@ -170,9 +170,9 @@ uint f_004456f4(int *box) {
  return 0;
 }
 void f_0044579c(int *param_1, void *param_2) {
-    unsigned int priorActive = ((GuiScreen *)param_1)->IsActive();
-    if (!priorActive) {
-        DAT_004faf44 = priorActive;
+
+    if (!((GuiScreen *)param_1)->IsActive()) {
+        DAT_004faf44 = 0;
         if (modeSwitch != 0 && DAT_004faf40 != 0)
             TimeSleep(0xfa);
         memset(param_1 + 0x13, 0,
@@ -388,23 +388,23 @@ int f_00445e23(HercModule *self) {
 }
 void f_00446253(int object) {
  if(*(int *)(object+0x5fb)){
-  int loaded=*(int *)(object+0x5ff);
-  if(loaded<*(int *)(object+0x5fb)){
-   int bytes=*(int *)(object+0x5fb)-loaded;if(bytes>0x1800)bytes=0x1800;
-   f_0047e670((void *)(object+0x61c),(void *)(*(int *)(object+0x5f7)+*(int *)(object+0x5ff)),bytes);
+  
+  if(*(int *)(object+0x5ff)<*(int *)(object+0x5fb)){
+   int bytes=*(int *)(object+0x5fb)-*(int *)(object+0x5ff);if(bytes>0x1800)bytes=0x1800;
+   StreamRead((FileRecord *)(object+0x61c),(void *)(*(int *)(object+0x5f7)+*(int *)(object+0x5ff)),bytes);
    *(int *)(object+0x5ff)+=bytes;
-  }else if(f_0047fce0(object+0x610)){
-   int speed=*(int *)(object+0x607);
-   if(speed<0)f_0047fca0((int *)(object+0x610),-500/speed);
-   else if(speed>0)f_0047fca0((int *)(object+0x610),500/speed);
-   else f_0047fca0((int *)(object+0x610),100);
+  }else if(GameTimerExpired(object+0x610)){
+   
+   if(*(int *)(object+0x607)<0)GameTimerSet((int *)(object+0x610),-500/ *(int *)(object+0x607));
+   else if(*(int *)(object+0x607)>0)GameTimerSet((int *)(object+0x610),500/ *(int *)(object+0x607));
+   else GameTimerSet((int *)(object+0x610),100);
    f_00446350((HercModule *)object);
    if(*(int *)(object+0x607)>0){
-    int frame=++*(int *)(object+0x603);
-    if((unsigned)frame>=**(unsigned **)(object+0x60b))*(int *)(object+0x603)=0;
+    ++*(int *)(object+0x603);
+    if(*(unsigned *)(object+0x603)>=**(unsigned **)(object+0x60b))*(int *)(object+0x603)=0;
    }else if(*(int *)(object+0x607)<0){
-    int frame=--*(int *)(object+0x603);
-    if(frame<0)*(int *)(object+0x603)=**(int **)(object+0x60b)-1;
+    --*(int *)(object+0x603);
+    if(*(int *)(object+0x603)<0)*(int *)(object+0x603)=**(int **)(object+0x60b)-1;
    }
   }
  }
@@ -424,11 +424,11 @@ int f_00446493(int param_1, int param_2, int *param_3, int *param_4) {
     int local_14;
     int iVar6;
     int iVar5;
-    byte *base;
+    byte *base;ActorUnit *unit;
     int iVar4;
-    f_0043ac02(*(int *)(param_1 + 0x5df), &local_28, &local_24, &local_20, &local_1c);
+    HercAngleWeights(*(int *)(param_1 + 0x5df), &local_28, &local_24, &local_20, &local_1c);
     local_14=0;iVar6=0;iVar5=0;
-    base = (byte *)PopFindItem((ActorUnit *)*(ActorRecordCopy **)(param_1+0x5c3),0,-1);
+    unit=(ActorUnit *)((HercModule *)param_1)->Unit();base=(byte *)PopFindItem(unit,0,-1);
     for (iVar4 = 0; iVar4 < 0x17; ++iVar4) {
         char *pcVar3 = ((char *)base + 0x1b) + iVar4 * 0x1a;
         if (*pcVar3 != '\0') {
@@ -472,8 +472,7 @@ void f_004465d6(int param_1) {
         local_10=(100-uVar3)*15/100;
         local_10=local_10*8+16;
         *(char *)(iVar4 + 0x5ab + param_1) = (char)local_10;
-        iVar1=*(int *)(param_1+0x5cb);
-        if (iVar1 >= 0 && iVar4 != iVar1 && iVar1 < 0x17 && iVar1 != 1)
+        if (((HercModule *)param_1)->selected >= 0 && iVar4 != ((HercModule *)param_1)->selected && ((HercModule *)param_1)->selected < 0x17 && ((HercModule *)param_1)->selected != 1)
             local_10 = 0x90;
         for(int j=0;j<6;++j)
             *(char *)(param_1 + 0x4bb + (iVar4*6+j)) = (char)local_10+(char)j;

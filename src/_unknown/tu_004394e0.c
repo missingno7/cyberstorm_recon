@@ -159,10 +159,11 @@ char *HercChassisName(ActorUnit *u){int id=HercItemTables[0].stringBase+u->slots
 extern "C" char *f_00439d2c(ActorUnit *u){return u->name;}
 /* 00439d31 */
 extern "C" void f_00439d31(ActorUnit *u,char *s){strncpy(u->name,s,17);}
+inline int DamageClamp(int damage){return damage<=0?0:(damage>=100?100:damage);}
 /* 00439d48 */
 extern "C" int f_00439d48(ActorUnit *u){
  int value=10000;for(int i=0;i<23;i++){
- int damage=100-(int)u->slots[i].condition;damage=damage<=0?0:(damage>=100?100:damage);
+ int damage=DamageClamp(100-u->slots[i].condition);
  value-=damage*value*HercDamageWeights[i]/10000;
  }return (value+50)/100;
 }

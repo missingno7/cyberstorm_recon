@@ -394,7 +394,7 @@ int SimSelectTarget(SimGame *s,int target) {
   if(s->linked){if(GridClearSelection(&fallbackName))s->screen|=1;if(SimActorHidden(target))return 0;}
   s->focus->typeId=TargetRecordType(s,target);
   TargetInitializeRecord(s,(TargetRecord *)s->targetRecord,s->focus->id,s->focus->typeId);
-  ActorRecord *a=*(ActorRecord **)(s->targetRecord+0x98);if(a)simTargetState=*a->unit;
+  if(*(ActorRecord **)(s->targetRecord+0x98))simTargetState=*(*(ActorRecord **)(s->targetRecord+0x98))->unit;
   if(s->linked){SoundPlay(33,0);PilotSetState(s,2);}
   SimClearActions(&simActions,0);SimCenterTarget(s,*(int *)(s->targetRecord+0x54));
   return 0;

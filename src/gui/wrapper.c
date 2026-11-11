@@ -111,8 +111,8 @@ RichTextLayout layout;
                     layout.current.x+=layout.current.advance?layout.current.advance:layout.drawnAdvance;
                 }
             }
-            long nextHeight=lineHeight;
-            if(nextHeight<=0)nextHeight=maxHeight-nextHeight;
+            long nextHeight;
+            if(lineHeight<=0)nextHeight=maxHeight-lineHeight;else nextHeight=lineHeight;
             if(!wrapWidth){if(paragraphHeight<=0)nextHeight=maxHeight+paragraphHeight;else nextHeight=paragraphHeight;}
             layout.current.y+=nextHeight;
             layout.current.x=c<32?0:layout.current.nextX;

@@ -45,8 +45,8 @@ void Queue::DiscardThrough(int sequence) {
 int OldestAcknowledgement(Transport *t) {
  int peer=0,sequence=0x7fffffff;
  for(int i=1;i<=9;i++) {
-  if(GetPlayerState(i)->state==2) { int id=GetPlayerState(i)->peer; int seq=t->peers[id].acknowledged;
-   if(seq<sequence) { peer=id; sequence=seq; }
+  if(GetPlayerState(i)->state==2) {  int seq=t->peers[GetPlayerState(i)->peer].acknowledged;
+   if(seq<sequence) { peer=GetPlayerState(i)->peer; sequence=seq; }
    else if(seq==sequence) peer=0;
   }
  }
