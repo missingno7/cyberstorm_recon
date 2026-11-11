@@ -36,8 +36,8 @@ Numbers come from `python tools/verify.py`; this file only summarises them.
   limit (21 rows in codegen_rules.md). Compiler-option and second-oracle censuses are negative.
 
 ## Next
-- Object census: path strings + XI records + module headers against the ledger's TU ranges; cut the remaining
-  combined files (sim.c/simdo.c first). Then the three hand-written static initializers (blocked.md).
-- Near-miss functions (s48-s51), TU completion (s52), pdeath object split.
-- Image level: startup/BEGTEXT and library member order, .rsrc, then a full link once enough objects are complete.
-- Name the assert function, resource manager and other hubs from strings and call counts.
+- Lanes p1-p6 (Sol with the trial recipe) on the 356 parked functions; then Fable medium on what stays parked,
+  if the cost is approved (trial: about $1.2 per match).
+- 32 path strings without a file (blocked.md): pair the core\*, terr\*, main\*, graph\* objects.
+- Screen modules in the old shape (hotbrief.c), the SimImageGadget/PilotImageButton name, `#pragma aux` aliases.
+- Image level: startup/BEGTEXT and library member order, then a full link once enough objects are complete.
