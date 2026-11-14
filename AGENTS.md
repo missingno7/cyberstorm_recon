@@ -32,6 +32,9 @@ python tools/cc.py --profile ot|plain --as 'misc\strpool.c' SRC.c -fo=build/LANE
 python tools/compare.py build/LANE/x.obj [--at Label=VA] [--find] [--imply] [-v]
 python tools/promote.py SRC.c --tu src/DIR/FILE.c --as 'DIR\FILE.c' --profile ot [--at Label=VA]   (dry run)
 python tools/promote.py --retire src/DIR/OLD.c   integrator: drop a combined file before promoting the real objects
+python tools/parked.py [--fn L] [--targets F]  non-STRICT functions: residue class, work filter, lane target list
+python tools/notes.py show|add|merge          attempt ledger per function (merge: integrator, archives lane reports)
+python tools/objcensus.py | typecensus.py     object boundaries / record types with several definitions
 python tools/verify.py [--secondary]          fresh rebuild of every accepted TU
 python tools/try.py SRC.c --as A --profile P  compile + compare + aligned instruction diff (worker loop)
 python tools/variants.py TPL.c --as A --profile P --fn F   test all choice-point combinations

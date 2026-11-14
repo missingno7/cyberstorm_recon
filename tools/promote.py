@@ -119,6 +119,12 @@ def main(argv):
     if bad:
         print("POLICY FAIL:", ", ".join(bad))
         return 1
+    if not str(cand).lower().endswith(".asm"):
+        old_twins = set((x, y) for x, y, _ in gate.twin_helpers(ROOT / tu)) if (ROOT / tu).exists() else set()
+        for x, y, r in gate.twin_helpers(cand):
+            if (x, y) not in old_twins:
+                print(f"  REVIEW twin helpers: inline {x} and {y} have near-identical bodies ({r}); a second spelling "
+                      f"of one helper that only moves bytes is not accepted")
     try:
         reports, mods, _ = gate.build_and_compare(cand, entry, at=opts["at"], find=True, imply=True)
     except RuntimeError as e:

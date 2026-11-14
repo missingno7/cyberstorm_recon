@@ -53,10 +53,23 @@ You reconstruct C++ source that Watcom 10.6 compiles to the exact bytes of `CSTO
 - Statement order is visible in store order; operand order in `a < b` vs `b > a` is visible.
 - Struct layouts and global addresses are evidence: use `char pad[N]` only as a temporary, say so.
 
-## Before permuting anything
-`python tools/parked.py --tu FILE --fn LABEL` gives the residue class of a parked function and every earlier
-report line about it. `docs/watcom_playbook.md` is a symptom -> what-to-try table and the allocator internals from
-another Watcom 10.6 project: use it to choose ONE derived edit, not a grid of spellings.
+## Before touching a parked function (the memory of this project)
+1. `python tools/notes.py show LABEL_OR_VA`: its residue class, every structured attempt with its verdict, and every
+   report line that mentions it. If the verdict is `invariant` or the class is REG-SWAP / SLOT-SWAP / HOMES with
+   several reports, leave it unless you have NEW evidence (a different expression shape, a field type, a callee).
+2. Residue classes (`python tools/parked.py`): SHAPE = wrong size, the source says something else: rebuild the body
+   from the original listing. SAME-SIZE = right size, one construct off: find that instruction. HOMES / REG-SWAP /
+   SLOT-SWAP = same instructions, different homes: needs a different record set, rarely yields to respelling
+   (docs/watcom_playbook.md). WAIT-SIZE / WAIT-TABLE = fix the neighbour. ASM = hand assembly, not C.
+3. Compiler facts: read `docs/codegen_rules.md` fully (verified core, short). `docs/codegen_rules_lanes.md` holds
+   150+ rows reported by lanes and not re-verified: search it for your symptom, do not read it through.
+   `docs/watcom_playbook.md` is the symptom -> what-to-try table from two other Watcom projects.
+4. When you finish a hypothesis family on a function, also when it failed, record it:
+   `python tools/notes.py add --lane L --va VA --label NAME --hyp "..." --result "..." --before N --after N
+   --verdict open|invariant|dead-end|fixed`. One line per family, not per compile. This replaces long prose in the
+   report: the report then only needs the promote commands and what is new.
+5. `tools/promote.py` prints `REVIEW twin helpers` when an inline helper's body nearly equals another function's.
+   A second spelling of one helper that exists only to move bytes is rejected; do not build on it.
 
 ## Structure work
 Lanes that rename files to their path strings, cut combined files or complete `_DATA` follow

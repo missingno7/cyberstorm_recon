@@ -10,7 +10,10 @@ Classes (candidate vs original, same placement):
   SLOT-SWAP   same instructions, only esp/ebp displacements differ   (stack slot order)
   REG+SLOT    both of the above
   OPERANDS    same instruction lengths and mnemonics, other operand differences (constant, field offset, callee)
-  SHAPE       instruction stream differs in length or mnemonics      (control flow, expression shape, inlining)
+  SHAPE       the function has a different SIZE: control flow, expression shape, inlining or a field is wrong
+  SAME-SIZE   original size, but some arithmetic/compare/branch/call instruction differs (one construct is off)
+  HOMES       original size and the same core instructions; only moves, register homes or instruction order differ
+              (same family as REG-SWAP: needs a different expression/record set, see docs/watcom_playbook.md)
   ASM         the original starts with `enter` or pushes segment registers: hand assembly, no C source matches it
 Column `work`: yes = give it to a lane; no:<why> = withhold (asm origin, waits for a neighbour, or a register/slot
 swap that three or more lanes already reported on: invariant under respelling until there is new evidence).
@@ -43,11 +46,17 @@ SLOT = re.compile(r"e[sb]p [+-] 0x[0-9a-f]+|e[sb]p\]")
 BR = re.compile(r"^(j\w+|call|loop\w*)$")
 
 
-def classify(orig, cand, va, fix):
+def classify(orig, cand, va, fix, size_bad=False):
+    if size_bad:
+        return "SHAPE"              # the extent does not end where the original function ends
     a = [(i.address, i.size, i.mnemonic, i.op_str, bytes(i.bytes)) for i in MD.disasm(orig, va)]
     b = [(i.address, i.size, i.mnemonic, i.op_str, bytes(i.bytes)) for i in MD.disasm(cand, va)]
     if len(orig) != len(cand) or len(a) != len(b) or any(x[1] != y[1] or x[2] != y[2] for x, y in zip(a, b)):
-        return "SHAPE"
+        if len(orig) != len(cand):
+            return "SHAPE"              # different size: the source still says something else
+        core = lambda rows: collections.Counter(r[2] for r in rows if r[2] not in ("mov", "push", "pop", "lea", "nop"))
+        # same size: same arithmetic/compare/branch/call instructions (moves aside) = only homes and scheduling
+        return "HOMES" if core(a) == core(b) else "SAME-SIZE"
     kinds = set()
     for x, y in zip(a, b):
         if x[4] == y[4] or any(x[0] <= f < x[0] + x[1] for f in fix):
@@ -76,12 +85,23 @@ def classify(orig, cand, va, fix):
 def history():
     """label / VA -> [(report, line)] over every lane report."""
     text = {}
-    for p in sorted(glob.glob(str(ROOT / "candidates" / "*" / "REPORT.md"))):
+    for p in sorted(glob.glob(str(ROOT / "docs" / "lane_reports" / "*.md"))):       # archived (in git)
+        text[Path(p).stem] = Path(p).read_text(encoding="utf-8", errors="replace").split("\n")
+    for p in sorted(glob.glob(str(ROOT / "candidates" / "*" / "REPORT.md"))):      # live copies win
         try:
             text[Path(p).parent.name] = Path(p).read_text(encoding="utf-8", errors="replace").split("\n")
         except OSError:
             pass
     return text
+
+
+def verdicts():
+    """VA -> set of verdicts recorded in the attempt ledger (tools/notes.py)."""
+    import notes
+    out = collections.defaultdict(set)
+    for r in notes.load():
+        out[r["va"]].add(r.get("verdict", "open"))
+    return out
 
 
 def main(argv):
@@ -92,6 +112,7 @@ def main(argv):
     out = argv[argv.index("--out") + 1] if "--out" in argv else None
     ledger = gate.load_ledger()
     reports = history()
+    ledger_verdicts = verdicts()
     rows = []
     for tu, ent in sorted(ledger["tus"].items()):
         if (only and tu != only) or str(ent.get("profile", "")).startswith("asm"):
@@ -129,12 +150,15 @@ def main(argv):
                     else:
                         fx = {va + (o - e["off"]) + k for o in fixups[s["seg"]] if e["off"] <= o < e["end"]
                               for k in range(4)}
-                        cls = classify(img.read_va(va, size), bytes(segs[s["seg"]].data[e["off"]:e["end"]]), va, fx)
+                        cls = classify(img.read_va(va, size), bytes(segs[s["seg"]].data[e["off"]:e["end"]]), va, fx,
+                                       bool(e.get("size_bad")))
                     hits = [(lane, ln.strip()) for lane, lines in reports.items() for ln in lines
                             if (lab in ln and len(lab) > 5) or e["va"] in ln.lower()]
                     n = len({h[0] for h in hits})
                     work = ("no:asm" if cls == "ASM" else "no:neighbour" if cls.startswith("WAIT") else
-                            "no:invariant" if cls in ("REG-SWAP", "SLOT-SWAP", "REG+SLOT") and n >= 3 else "yes")
+                            "no:invariant" if "invariant" in ledger_verdicts.get(e["va"], ()) else
+                            "no:invariant" if cls in ("REG-SWAP", "SLOT-SWAP", "REG+SLOT", "HOMES") and n >= 3
+                            else "yes")
                     rows.append((tu, e["va"], size, e.get("diff_bytes"), cls, n, lab, hits, work))
     counts = collections.Counter(r[4] for r in rows)
     for tu, va, size, diff, cls, n, lab, hits, work in rows:

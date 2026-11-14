@@ -38,6 +38,45 @@ def policy(path):
     return [f"{why}" for rx, why in BANNED if rx.search(text_nc)]
 
 
+def twin_helpers(path, min_tokens=14, ratio=0.8):
+    """Pairs (inline helper, any other function) in one file whose bodies are the same up to renaming, or nearly
+    so. A second spelling of one helper that exists only so that two call sites get different bytes is not source
+    the original could have had (one definition there): reviewers must look at every pair.
+    Returns [(inline name, other name, ratio)]."""
+    import difflib
+    text = re.sub(r"/\*.*?\*/|//[^\n]*", "", Path(path).read_text(encoding="latin-1"), flags=re.S)
+    funcs = []
+    rx = re.compile(r"([A-Za-z_]\w*(?:::~?\w+)?)\s*\(([^;{}()]|\([^()]*\))*\)\s*(?:const\s*)?(?::[^;{}]*)?\{")
+    for m in rx.finditer(text):
+        if m.group(1) in ("if", "for", "while", "switch", "catch", "return", "sizeof"):
+            continue
+        depth, k = 0, m.end() - 1
+        while k < len(text):
+            depth += text[k] == "{"
+            depth -= text[k] == "}"
+            if depth == 0:
+                break
+            k += 1
+        line0 = text.rfind("\n", 0, m.start()) + 1
+        stmt0 = max(text.rfind(";", 0, m.start()), text.rfind("}", 0, m.start()), line0 - 1) + 1
+        inline = bool(re.search(r"\binline\b", text[stmt0:m.start()]))
+        toks = re.findall(r"[A-Za-z_]\w*|\d+|[^\sA-Za-z_\d]", text[m.end():k])
+        names = {}
+        norm = [names.setdefault(x, f"i{len(names)}") if re.match(r"[A-Za-z_]", x) else x for x in toks]
+        if len(norm) >= min_tokens:
+            funcs.append((m.group(1), norm, inline))
+    out = []
+    for i in range(len(funcs)):
+        for k in range(i + 1, len(funcs)):
+            a, b = funcs[i], funcs[k]
+            if not (a[2] or b[2]) or a[0] == b[0]:
+                continue
+            r = difflib.SequenceMatcher(None, a[1], b[1], autojunk=False).ratio()
+            if r >= ratio:
+                out.append((a[0], b[0], round(r, 2)) if a[2] else (b[0], a[0], round(r, 2)))
+    return out
+
+
 def load_ledger():
     if LEDGER.exists():
         return load_json(LEDGER)
