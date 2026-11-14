@@ -2,9 +2,9 @@
 #include <stdio.h>
 typedef unsigned char U8;
 typedef unsigned long U32;
-struct GuiRect {
-    long x,y,width,height;
-};
+#include "actor.h"
+
+
 struct GuiPoint {
     long x,y;
     GuiPoint(long a=0,long b=0):x(a),y(b) {
@@ -118,11 +118,11 @@ class WeaponControl:public GuiControl {
     virtual int Event(unsigned,U32);
 };
 #pragma pack(push,1)
-struct ActorUnit {
-    char name[17];
-    U8 slots[184];
-    U8 tail[66];
-};
+
+
+
+
+
 struct ActorItem {
     U8 head[9];
     U8 level;
@@ -132,25 +132,25 @@ struct ActorItem {
     int max;
     U8 tail[4];
 };
-struct ActorRecord {
-    int id,next,index,kind;
-    U8 unknown10[8];
-    ActorUnit *unit;
-    U8 unknown1c[9];
-    U8 type,face;
-    U8 unknown27[31];
-    int angle;
-    U8 unknown4a[63];
-    U8 dead;
-    U8 unknown8a[4];
-    U8 weapons;
-    int IsVisible() {
-        return !dead && type!=17;
-    }
-    U8 WeaponMask() {
-        return weapons;
-    }
-};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 struct SimGame {
     U8 head[0x38];
     ActorRecord *focus;
@@ -349,7 +349,7 @@ void WeaponPopup::Close() {
 }
 void WeaponPopup::UpdateWeapons() {
     ActorUnit *unit=g4d2498->unit;
-    if(targetSceneActive)TargetInitializeRecord(&modeCheckName,(TargetRecord *)&targetScene,g4d2498->id,g4d2498->kind);
+    if(targetSceneActive)TargetInitializeRecord(&modeCheckName,(TargetRecord *)&targetScene,g4d2498->id,g4d2498->targetId);
     f_0045d6b0(&weaponReport,&targetScene,0);
     for(int i=0; i<8; ++i) {
         int kind=weaponReport.weapons[i].kind;
@@ -361,7 +361,7 @@ void WeaponPopup::UpdateWeapons() {
         weaponRows[i].condition=weaponReport.weapons[i].cost;
         weaponRows[i].cost=weaponReport.weapons[i].condition;
         if(PopFindItem(unit,i+11)->max)weaponRows[i].value=*(int *)((char *)unit+0x6d+i*8);
-        U8 mask=g4d2498->weapons;
+        U8 mask=g4d2498->returnFire;
         int bit=1<<i;
         int image=(mask&bit)?115:113;
         weaponButtons[i].image=image;
@@ -416,7 +416,7 @@ void WeaponPopup::UpdatePreview() {
     ActorRecord *actor=ActorGetByIndex(targetActorId);
     if(actor && actor->IsVisible()) {
         ActorUnit *unit=actor->unit;
-        if(!previewUnit.slots[1])previewUnit=*unit;
+        if(!previewUnit.slots[0].item)previewUnit=*unit;
         SimAnimSet(&previewAnim,2,f_00439d02(unit),1);
         previewDirection=GridClamp(scene->angle-scene->heading);
         gDrawRemap=HercConditionDiagram(unit,&previewUnit);
@@ -424,10 +424,10 @@ void WeaponPopup::UpdatePreview() {
         gDrawRemap=0;
         f_0042f490(fallbackName,x,y,8);
         MenuDrawImage(&g513888,(MenuImage *)((char *)weaponImages+0x7d8),x,y);
-        gDrawRemap=f_0045bb30(unit,actor->face,&previewUnit);
+        gDrawRemap=f_0045bb30(unit,actor->action.angle,&previewUnit);
         MenuDrawImage(&g513888,(MenuImage *)((char *)weaponImages+0x43c),x-1,y-1);
         gDrawRemap=0;
-        int direction=(actor->face+GridClamp(PointAngle(&scene->destination,&scene->source)-actor->angle))%6;
+        int direction=(actor->action.angle+GridClamp(PointAngle(&scene->destination,&scene->source)-actor->action.direction))%6;
         MenuDrawImage(&g513888,&weaponImages->images[direction+168],x+weaponMarkerOffsets[direction][0],y+weaponMarkerOffsets[direction][1]);
         previewUnit=*unit;
     }
@@ -462,7 +462,7 @@ void WeaponPopup::UpdatePreview() {
         int distance=(scene->distance+50)/100;
         char *text=BriefFormat("%d.%d",distance/10,distance%10);
         char *name=(char *)actor->unit;
-        if(modeSwitch || previewMode)name=(char *)GetModePlayer(&modeCheckName,actor->index)+16;
+        if(modeSwitch || previewMode)name=(char *)GetModePlayer(&modeCheckName,actor->owner)+16;
         MenuDrawTextAt(&g511dc0,74,topY,0,name);
         MenuDrawTextAt(&g511dc0,25,bottomY,-1,targetBriefResource.GetString(721));
         MenuDrawTextAt(&g511dc0,123,bottomY,1,text);
@@ -491,7 +491,7 @@ void WeaponCommand(SimGame *s) {
         else if(key==30 && !InputShift())f_0044f290(s);
         else if(key==30) {
             TargetRecord record;
-            TargetInitializeRecord(s,&record,g4d2498->id,g4d2498->kind);
+            TargetInitializeRecord(s,&record,g4d2498->id,g4d2498->targetId);
             ActorRecord *p=ActorGetByIndex(record.actor);
             while(p && p->IsVisible()) {
                 if(!f_0044f290(s,-1,0))break;

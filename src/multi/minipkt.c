@@ -28,8 +28,8 @@ struct Packet {
         struct { int seed, arg; } turn;
     };
 };
-struct PayloadSlot { char unknown0[2]; char value; char unknown3; int amount; };
-struct Payload { char unknown00[0x11]; PayloadSlot slots[23]; char front, back; };
+#include "actor.h"
+
 #pragma pack()
 
 struct ActorRecord;
@@ -55,15 +55,15 @@ struct MenuNetwork {
 };
 extern MenuNetwork gMenuNetwork;
 
-struct ActorMode {
-    char unknown0[5]; unsigned char state; unsigned char stance;
-    int Busy() { if (state != 1 && state != 7 && state != 14 && state != 17 && state != 18) return 1; return 0; }
-};
-struct Pilot { char unknown00[0x12]; int health; int Alive() { return health > 0; } };
-struct ActorRecord {
-    int id, netId, kind, target; char unknown10[8]; Payload *payload; Pilot *pilot; ActorMode mode;
-    char unknown27[0x61]; char hasPilot; char unknown89[4]; char moved;
-};
+
+
+
+
+struct ActorPilot { char unknown00[0x12]; int health; int Alive() { return health > 0; } };
+
+
+
+
 
 int ModeCheck(const char *mode);
 extern char modeCheckName[];
@@ -198,44 +198,44 @@ int PacketApply(Packet *p)
         ReleaseState(actor);
         break;
     case 1: {
-        PayloadSlot *slot = &actor->payload->slots[p->repair.slot];
-        slot->value = p->repair.value;
+        UnitSlot *slot = &actor->unit->slots[p->repair.slot];
+        slot->condition = p->repair.value;
         slot->amount = p->repair.amount;
         break;
     }
     case 2:
         SendEvent(actor->pilot, 0x68);
         if (!actor->pilot->Alive())
-            actor->hasPilot = 0;
+            actor->active = 0;
         break;
     case 3:
         SendEvent(actor->pilot, 0x69);
         if (!actor->pilot->Alive())
-            actor->hasPilot = 0;
+            actor->active = 0;
         break;
     case 4:
-        if (actor->mode.Busy())
+        if (actor->action.IsMoving())
             return 0;
         ActorFace(actor, p->face.mode);
         if (p->face.heading) {
-            PayloadHeading(actor->payload, p->face.heading);
-            actor->moved = 1;
+            PayloadHeading(actor->unit, p->face.heading);
+            actor->spent = 1;
         }
         break;
     case 5:
-        if (actor->mode.Busy())
+        if (actor->action.IsMoving())
             return 0;
         ActorCrouch(actor, 1);
         break;
     case 6:
-        if (actor->mode.Busy())
+        if (actor->action.IsMoving())
             return 0;
         ActorStand(actor, 1);
         break;
     case 9:
-        actor->payload->front = p->shields.front;
-        actor->payload->back = p->shields.back;
-        UpdatePayload(actor->payload, actor->mode.stance);
+        actor->unit->shieldDirection = p->shields.front;
+        actor->unit->shieldRange = p->shields.back;
+        UpdatePayload(actor->unit, actor->action.angle);
         break;
     case 10:
         ModeToggleSystem(modeCheckName, p->toggle.system, -1);
@@ -244,7 +244,7 @@ int PacketApply(Packet *p)
         ModeGiveFocus(modeCheckName, actor);
         break;
     case 12:
-        if (actor->mode.Busy())
+        if (actor->action.IsMoving())
             return 0;
         ActorMove(actor, p->move.x, p->move.y);
         break;
@@ -254,11 +254,11 @@ int PacketApply(Packet *p)
         ModeNextTurn(modeCheckName);
         break;
     case 7:
-        if (actor->mode.Busy())
+        if (actor->action.IsMoving())
             return 0;
-        actor->target = p->fire.target;
+        actor->targetId = p->fire.target;
         MissionRandomTable[0] = p->fire.seed;
-        ModeFire(modeCheckName, actor, actor->target, p->fire.weapon, p->fire.aim);
+        ModeFire(modeCheckName, actor, actor->targetId, p->fire.weapon, p->fire.aim);
         break;
     case 8:
         ModeReturnFire(modeCheckName, p->rtnfire.a, p->rtnfire.b, p->rtnfire.c);
@@ -287,7 +287,7 @@ int PacketApply(Packet *p)
     }
     case 14:
         if (actor) {
-            if (actor->mode.Busy())
+            if (actor->action.IsMoving())
                 return 0;
             if (p->id >= 0)
                 CheckActor(p, actor);
@@ -307,7 +307,7 @@ int PacketApply(Packet *p)
 
 void CheckActor(Packet *p, ActorRecord *actor)
 {
-    int block = BlockChecksum(actor->payload);
+    int block = BlockChecksum(actor->unit);
     int pilot = PilotChecksum(actor->pilot);
     int state = ActorChecksum(actor);
     if (p->check.actor == 0xbe1a || state == 0xbe1a)
@@ -390,7 +390,7 @@ void PacketList::Repair(ActorRecord *actor, char slot, char value, int amount)
 {
     Packet *p = Add();
     p->type = 1;
-    p->id = actor->netId;
+    p->id = actor->previous;
     p->repair.slot = slot;
     p->repair.value = value;
     p->repair.amount = amount;
@@ -404,7 +404,7 @@ void PacketList::Simple(int type, ActorRecord *actor)
 {
     Packet *p = Add();
     p->type = type;
-    p->id = actor->netId;
+    p->id = actor->previous;
 }
 
 /*
@@ -467,7 +467,7 @@ void PacketList::Face(ActorRecord *actor, int mode, int heading)
 {
     Packet *p = Add();
     p->type = 4;
-    p->id = actor->netId;
+    p->id = actor->previous;
     p->face.mode = mode;
     p->face.heading = heading;
 }
@@ -479,7 +479,7 @@ void PacketList::Shields(ActorRecord *actor, char front, char back)
 {
     Packet *p = Add();
     p->type = 9;
-    p->id = actor->netId;
+    p->id = actor->previous;
     p->shields.front = front;
     p->shields.back = back;
 }
@@ -499,7 +499,7 @@ void PacketList::Toggle(ActorRecord *actor, char system)
 {
     Packet *p = Add();
     p->type = 10;
-    p->id = actor->netId;
+    p->id = actor->previous;
     p->toggle.system = system;
 }
 
@@ -526,7 +526,7 @@ void PacketList::Move(ActorRecord *actor, int x, int y)
 {
     Packet *p = Add();
     p->type = 12;
-    p->id = actor->netId;
+    p->id = actor->previous;
     p->move.x = x;
     p->move.y = y;
 }
@@ -538,7 +538,7 @@ void PacketList::DeadPilot(ActorRecord *actor)
 {
     Packet *p = Add();
     p->type = 20;
-    p->id = actor->netId;
+    p->id = actor->previous;
 }
 
 /*
@@ -548,7 +548,7 @@ void PacketList::DeadActor(ActorRecord *actor)
 {
     Packet *p = Add();
     p->type = 19;
-    p->id = actor->netId;
+    p->id = actor->previous;
 }
 
 /*
@@ -558,7 +558,7 @@ void PacketList::Fire(ActorRecord *actor, int target, int weapon, int seed, int 
 {
     Packet *p = Add();
     p->type = 7;
-    p->id = actor->netId;
+    p->id = actor->previous;
     p->fire.seed = seed;
     p->fire.target = target;
     p->fire.weapon = weapon;
@@ -572,7 +572,7 @@ void PacketList::ReturnFire(ActorRecord *actor, char a, char b, char c)
 {
     Packet *p = Add();
     p->type = 8;
-    p->id = actor->netId;
+    p->id = actor->previous;
     p->rtnfire.a = a;
     p->rtnfire.b = b;
     p->rtnfire.c = c;
@@ -648,8 +648,8 @@ void PacketList::Check(int type, ActorRecord *actor)
 {
     Packet *p = Add();
     p->type = type;
-    p->id = actor->netId;
-    p->check.block = BlockChecksum(actor->payload);
+    p->id = actor->previous;
+    p->check.block = BlockChecksum(actor->unit);
     p->check.extra = PilotChecksum(actor->pilot);
     p->check.actor = ActorChecksum(actor);
 }

@@ -2,27 +2,27 @@
 // Gaps are temporary unnamed layout fields, not reconstructed payloads.
 #pragma pack(push,1)
 typedef unsigned long U32;
-struct GridPoint { long x,y;
- GridPoint(){} GridPoint(long a,long b){x=a;y=b;} GridPoint(const GridPoint &p){x=p.x;y=p.y;}
- int operator!=(const GridPoint &p) const { return x!=p.x || y!=p.y; }
-};
+#include "actor.h"
+
+
+
 struct ViewState {long flags;GridPoint point;long scale,direction;ViewState(long f,GridPoint p,long s,long d){flags=f;point.x=p.x;point.y=p.y;scale=s;direction=d;}};
 struct CameraState {GridPoint point;long zoom,scale,direction;U32 flags,requested;long spare;};
-struct UnitSystem {unsigned char head[4];int value;};struct UnitState {unsigned char head[17];UnitSystem systems[19];};struct ActorItem {unsigned char head[0x1b];int maximum;};
-struct ActorTraits {unsigned char head[5],type;int Mobile()const{return type!=1 && type!=7 && type!=14 && type!=17 && type!=18;}};
-struct ActorRecord {
- int id; int unknown04; int owner; int typeId; int unknown10,target;
- UnitState *unit; void *pilot; ActorTraits action;
- unsigned char unknown26[6]; unsigned short model;
- unsigned char unknown2e[4];GridPoint position;unsigned char unknown3a[8];int index;unsigned char unknown46[0x87-0x46]; unsigned char done,active,disabled;
- unsigned char unknown8a[3]; unsigned char spent;
- int Ready() const {return active && !disabled;}
-};
+struct ActorItem {unsigned char head[0x1b];int maximum;};
+
+
+
+
+
+
+
+
+
 struct PlayerSlot { int status,id,points,actor; unsigned char rest[0xbc-16]; };
 struct InputReq {U32 mask,flags;int Pressed(U32 n)const{return (flags&(n|(n<<2)))==n;}int Down(U32 n)const{return (flags&n)!=0;}};
 struct SimGame {
  unsigned char unknown00[8];InputReq input;unsigned char unknown10[8];int selectedMode;unsigned char unknown1c[16];int screen; unsigned char unknown30[8]; ActorRecord *focus;
- void *unknown3c; UnitState *focusUnit; unsigned char unknown44[0x2ba-0x44];
+ void *unknown3c; ActorUnit *focusUnit; unsigned char unknown44[0x2ba-0x44];
  int phase; unsigned char unknown2be[4]; int multi; unsigned char unknown2c6[4]; int tick,deadline;
  int action; int palette,playerCount; PlayerSlot slots[9];
  PlayerSlot *slot; int mode,unknown982,player,localPlayer,unknown98e,linked;
@@ -50,7 +50,7 @@ extern void SetFastView(FastCoord *,const ViewState *);
 extern int gIn80,gInA0;extern long gInA4;
 inline int SimShiftDown(){return gInA4;} inline int SimAltDown(){return gInA0;}
 
-struct GuiRect {long x,y,width,height;};struct GuiPoint {long x,y;};
+struct GuiPoint {long x,y;};
 struct GuiControlData:GuiRect {unsigned char style[4];U32 attributes,shortcut;};
 class GuiControl:public GuiControlData {public:virtual ~GuiControl();virtual void Reset(unsigned);virtual void Draw(unsigned);virtual int Event(unsigned,U32);virtual int HitTest(const GuiPoint *);};
 class MenuHelpRegion:public GuiControl {public:long id;int activated;MenuHelpRegion();virtual ~MenuHelpRegion();virtual void Draw(unsigned);virtual int Event(unsigned,U32);};

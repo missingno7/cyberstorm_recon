@@ -27,23 +27,23 @@ extern Options gameOptions;
 int StopMultiplayer(int code, int restart = 0);
 
 /* Actors carried by actor messages. */
-struct ActorBlock { char bytes[0x10b]; };
+#include "actor.h"
 struct ActorListData { char bytes[0x7e]; };
-struct ActorListObject : ActorListData { ActorListObject(); ~ActorListObject(); void Fixup(); };
+struct ActorListObject : ActorListData { ActorListObject(); ~ActorListObject(); void Fixup(); }; struct ActorPilot : ActorListObject {};
 struct ActorState { char bytes[0x1d]; };
-struct ActorPosition { int x, y; };
-struct ActorRecord {
-    int id, netId, kind, unknown0c, target; char unknown14[4]; ActorBlock *block; ActorListObject *extra;
-    char unknown20[0x12]; ActorPosition home, goal; int targetName, stance;
-};
+
+
+
+
+
 ActorRecord *ActorGetByIndex(int index); ActorRecord *ActorGetByUnit(int unit); void ActorActivate(ActorRecord *actor);
-ActorRecord *ActorListAdd(int kind, ActorBlock *block, ActorListObject *extra, ActorPosition *position, int a, int b);
+ActorRecord *ActorListAdd(int kind, ActorUnit *block, ActorListObject *extra, GridPoint *position, int a, int b);
 void ActorSaveState(ActorRecord *actor, ActorState *state);
-int ActorLoad(ActorRecord *actor, ActorBlock *block, ActorListObject *extra, ActorState *state);
-void ActorUpdate(ActorRecord *actor, ActorBlock *block, ActorListObject *extra, ActorState *state);
+int ActorLoad(ActorRecord *actor, ActorUnit *block, ActorListObject *extra, ActorState *state);
+void ActorUpdate(ActorRecord *actor, ActorUnit *block, ActorListObject *extra, ActorState *state);
 void LogicActorDelete(void *logic, int actor);
-void TargetObjectInit(char *names, ActorPosition *position, int name); void BestLocSetData(char *names, ActorPosition *position, int name);
-int ResolveName(char *names, ActorPosition *position);
+void TargetObjectInit(char *names, GridPoint *position, int name); void BestLocSetData(char *names, GridPoint *position, int name);
+int ResolveName(char *names, GridPoint *position);
 extern char fallbackName[]; extern char g4dd0c0[]; extern int gLocalActorKind; extern int gRemoteActorKind;
 
 /* Message layout (packed, 0x1da bytes). */
@@ -51,7 +51,7 @@ struct MessageHeader { int type; unsigned checksum; int sequence; int ackLow; in
 struct DataBody { int a, b, c; };
 struct SlotBody { int slot; PlayerSlot info; };
 struct InfoBody { int a, b, slot; Options options; };
-struct ActorBody { ActorBlock block; ActorListData extra; int netId, kind, index, targetName, stance; ActorState state; };
+struct ActorBody { ActorUnit block; ActorListData extra; int netId, kind, index, targetName, stance; ActorState state; };
 struct SyncBody { int v20, v24, v28, v2c, v30, v34, v38, v3c, v40, v44, v48, v4c, v50; };
 struct SyncMessage : MessageHeader { SyncBody sync; };
 struct MenuMessage : MessageHeader {
@@ -113,8 +113,8 @@ const char *MessageName()
 void MessageActorMoved(MenuMessage *self, MenuMessage *m)
 {
     ActorRecord *actor = ActorGetByUnit(m->actor.targetName);
-    actor->netId = m->actor.netId;
-    actor->stance = m->actor.stance;
+    actor->previous = m->actor.netId;
+    actor->action.direction = m->actor.stance;
     gMenuNetwork.SetMapping(actor->id, m->actor.netId);
 }
 
@@ -126,17 +126,17 @@ void MessageActorCreated(MenuMessage *self, MenuMessage *m)
 {
     if (m->actor.kind == gLocalActorKind) {
         ActorRecord *actor = ActorGetByIndex(m->actor.index);
-        actor->netId = m->actor.netId;
-        actor->targetName = m->actor.targetName;
-        TargetObjectInit(fallbackName, &actor->home, m->actor.targetName);
-        BestLocSetData(fallbackName, &actor->goal, m->actor.targetName);
-        gMenuNetwork.SetMapping(actor->id, actor->netId);
+        actor->previous = m->actor.netId;
+        actor->action.resource = m->actor.targetName;
+        TargetObjectInit(fallbackName, &actor->action.position, m->actor.targetName);
+        BestLocSetData(fallbackName, &actor->action.target, m->actor.targetName);
+        gMenuNetwork.SetMapping(actor->id, actor->previous);
     } else if (m->actor.kind == gRemoteActorKind) {
         ActorRecord *actor = ActorGetByUnit(m->actor.targetName);
         ASSERT_MSG(actor, "Failed to find local instance of the Cybrid");
         if (actor) {
-            actor->netId = m->actor.netId;
-            actor->stance = m->actor.stance;
+            actor->previous = m->actor.netId;
+            actor->action.direction = m->actor.stance;
             gMenuNetwork.SetMapping(actor->id, m->actor.netId);
         }
 
@@ -151,8 +151,8 @@ void MessageActorCreated(MenuMessage *self, MenuMessage *m)
 
 
     } else {
-        ActorPosition position;
-        ActorBlock *block = new ActorBlock;
+        GridPoint position;
+        ActorUnit *block = new ActorUnit;
         ActorListObject *extra = new ActorListObject;
         ASSERT(block && extra);
         *block = m->actor.block;
@@ -161,15 +161,15 @@ void MessageActorCreated(MenuMessage *self, MenuMessage *m)
         BestLocSetData(fallbackName, &position, m->actor.targetName);
         ActorRecord *actor = ActorListAdd(m->actor.kind, block, extra, &position, 1, 0);
         LogicActorDelete(g4dd0c0, (int)actor);
-        actor->target = -1;
-        actor->stance = m->actor.stance;
+        actor->source = -1;
+        actor->action.direction = m->actor.stance;
         ActorActivate(actor);
         if (multiState == 3) {
-            m->actor.netId = actor->netId = actor->id;
-            m->actor.targetName = ResolveName(fallbackName, &actor->goal);
+            m->actor.netId = actor->previous = actor->id;
+            m->actor.targetName = ResolveName(fallbackName, &actor->action.target);
             MenuSend(self, 0);
         } else {
-            actor->netId = m->actor.netId;
+            actor->previous = m->actor.netId;
         }
         gMenuNetwork.SetMapping(actor->id, m->actor.netId);
     }
@@ -198,7 +198,7 @@ void MessageActorCreated(MenuMessage *self, MenuMessage *m)
 
 void MessageActorUpdate(MenuMessage *self, MenuMessage *m)
 {
-    ActorBlock *block = new ActorBlock;
+    ActorUnit *block = new ActorUnit;
     ActorListObject *extra = new ActorListObject;
     ASSERT(block && extra);
     *block = m->actor.block;
@@ -609,7 +609,7 @@ int MessageDispatch(MenuMessage *m, int expected)
 void MessageActorJoined(MenuMessage *self, MenuMessage *m)
 {
     MenuMessage reply;
-    ActorBlock *block = new ActorBlock;
+    ActorUnit *block = new ActorUnit;
     ActorListObject *extra = new ActorListObject;
     ASSERT(block && extra);
     *block = m->actor.block;
@@ -760,15 +760,15 @@ MenuMessage *MenuMessageBasic(MenuMessage *m, int type)
 MenuMessage *MenuMessageStart(MenuMessage *m, int type, ActorRecord *actor)
 {
     m->type = type;
-    ActorBlock *block = &m->actor.block;
-    *block = *actor->block;
+    ActorUnit *block = &m->actor.block;
+    *block = *actor->unit;
     ActorListData *extra = &m->actor.extra;
-    *extra = *actor->extra;
-    m->actor.kind = actor->kind;
+    *extra = *actor->pilot;
+    m->actor.kind = actor->owner;
     m->actor.index = actor->id;
-    m->actor.netId = actor->netId;
-    m->actor.targetName = actor->targetName;
-    m->actor.stance = actor->stance;
+    m->actor.netId = actor->previous;
+    m->actor.targetName = actor->action.resource;
+    m->actor.stance = actor->action.direction;
     if (type != 0x1017)
         ActorSaveState(actor, &m->actor.state);
     m->size = 0x1da;

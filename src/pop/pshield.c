@@ -3,7 +3,7 @@
 #include <stdio.h>
 typedef unsigned char U8;
 typedef unsigned long U32;
-struct GuiRect { long x,y,width,height; };
+#include "actor.h"
 struct GuiPoint { long x,y; };
 struct AimPoint:GuiPoint { AimPoint(long a=0,long b=0){x=a;y=b;} };
 struct ViewRect { long left,top,right,bottom; };
@@ -28,12 +28,12 @@ public: U32 state; const char *text;
     MenuButton(const char * = 0,U32=0); virtual ~MenuButton();
     virtual void Reset(unsigned); virtual void Draw(unsigned); virtual int Event(unsigned,U32);
 };
-struct ActorUnit {
-    char name[17]; U8 unknown11[60]; int shield;
-    U8 unknown51[120]; U8 direction,range; int arcs[6]; U8 tail[40];
-    void SetDirection(int value){direction=value;}
-};
-struct ActorRecord { U8 head[24]; ActorUnit *unit; U8 unknown1c[10]; U8 facing; };
+
+
+
+
+
+
 #pragma pack(pop)
 struct SimGame { U8 unknown[0x38]; ActorRecord *focus; };
 struct ModeSystem;
@@ -155,7 +155,7 @@ int ShieldControl::Event(unsigned index,U32 event) {
     if(event&12) {
         int dx=g4bb78c.x,dy=g4bb78c.y; dx-=width/2+x;dy-=height/2+y;
         sound.pan=dx*30/width;
-        sound.rate=(int)g4d2498->unit->range/5+100;
+        sound.rate=(int)g4d2498->unit->shieldRange/5+100;
         updateSound=1; changed=1;
         AimPoint point(dx,dy);
         int angle=f_0047ef00(&point)+shieldFacing*0x2aaaaabc;
@@ -163,7 +163,7 @@ int ShieldControl::Event(unsigned index,U32 event) {
         if(distance>48)distance=48;
         if(ShieldShift())angle=GridClamp(angle)*0x2aaaaabc;
         g4d2498->unit->SetDirection(angle>>24);
-        g4d2498->unit->range=distance;
+        g4d2498->unit->shieldRange=distance;
         shieldControl.attributes&=~0x1000000UL;
         result=index+1;
     }
@@ -180,7 +180,7 @@ int ShieldControl::Event(unsigned index,U32 event) {
 }
 void ShieldControl::Commit() {
     if(changed&&modeSwitch&&ModeCheck(modeCheckName))
-        modeLogName.Shields(g4d2498,g4d2498->unit->direction,g4d2498->unit->range);
+        modeLogName.Shields(g4d2498,g4d2498->unit->shieldDirection,g4d2498->unit->shieldRange);
     changed=0;
 }
 int ShieldControl::IsPressed(){return HasFlags(0x20000);}
@@ -196,7 +196,7 @@ void ShieldPopup::OpenShield(InputReq *request) {
 void SimInventoryClose(ShieldPopup *p) {
     if(p->IsActive()) {
         if(shieldControl.changed&&modeSwitch&&ModeCheck(modeCheckName))
-            modeLogName.Shields(g4d2498,g4d2498->unit->direction,g4d2498->unit->range);
+            modeLogName.Shields(g4d2498,g4d2498->unit->shieldDirection,g4d2498->unit->shieldRange);
         shieldControl.changed=0;
         ReleasePoolData(p->images);ReleasePoolData(p->dimImages);SoundStop(239);p->input=0;
     }
@@ -209,16 +209,16 @@ void ShieldPopup::Refresh() {
             PopDrawSurface(&g513888,1,0,x,y+60,width,190);
             long left=x,top=y,w=width,h=height;
             MenuSetClip(&gMenuClip,left,top,w,h);
-            int current=unit->shield;
+            int current=unit->slots[7].amount;
             int maximum=*(int *)((char *)PopFindItem(unit,7)+0x1f);
             char *text=BriefFormat(targetBriefResource.GetString((current!=0)+804+(current==maximum)),
                 current,maximum,(current*100+50)/maximum);
             MenuDrawWrapped(text,-1,-1,1,11,this,10,60);
-            facing=g4d2498->facing;
-            PointPolar(&cursor,unit->range,unit->direction*0x1000000-facing*0x2aaaaabc);
+            facing=g4d2498->action.angle;
+            PointPolar(&cursor,unit->shieldRange,unit->shieldDirection*0x1000000-facing*0x2aaaaabc);
             gMenuTextMap=(U32 *)&DAT_004bc560;gMenuTextColor=DAT_004bc4e8;
             for(int i=0;i<6;++i) {
-                char *text=BriefFormat("%d",unit->arcs[(i+6-facing)%6]);
+                char *text=BriefFormat("%d",unit->armor[(i+6-facing)%6]);
                 int width=MenuTextWidth(&shellFont,text);
                 MenuDrawText(&shellFont,shieldControl.x+shieldLabelX[i]-shieldLabelAlign[i]*width/2,
                              shieldControl.y+shieldLabelY[i],text);
@@ -238,19 +238,19 @@ void ShieldPopup::SetAim(int x,int y) {
     int distance=ISqrt(point.x*point.x+point.y*point.y);
     if(distance>48)distance=48;
     if(ShieldShift())angle=GridClamp(angle)*0x2aaaaabc;
-    g4d2498->unit->direction=angle>>24;
-    g4d2498->unit->range=distance;
+    g4d2498->unit->shieldDirection=angle>>24;
+    g4d2498->unit->shieldRange=distance;
     shieldControl.attributes&=~0x1000000UL;
 }
 int ShieldPopup::Process() {
     if(IsActive()) {
         int hovered=HitTest(&g4bb78c);
         if(hovered>=0)targetLimits=hovered+700;
-        facing=g4d2498->facing;
+        facing=g4d2498->action.angle;
         if(facing!=previousFacing){previousFacing=facing;Refresh();}
         if(!shieldControl.HasFlags(0x20000)) {
             if(shieldControl.changed&&modeSwitch&&ModeCheck(modeCheckName))
-                modeLogName.Shields(g4d2498,g4d2498->unit->direction,g4d2498->unit->range);
+                modeLogName.Shields(g4d2498,g4d2498->unit->shieldDirection,g4d2498->unit->shieldRange);
             shieldControl.changed=0;
         }
         return Update();
@@ -260,7 +260,7 @@ int ShieldPopup::Process() {
 void SimInventoryDraw(ShieldPopup *p){if(p->IsActive())p->Draw();}
 void ShieldPopup::Commit() {
     if(modeSwitch&&ModeCheck(modeCheckName))
-        modeLogName.Shields(g4d2498,g4d2498->unit->direction,g4d2498->unit->range);
+        modeLogName.Shields(g4d2498,g4d2498->unit->shieldDirection,g4d2498->unit->shieldRange);
 }
 int ShieldPopup::AllowsWeapons(){if(IsActive()&&shieldControl.HasFlags(0x20000))return 0;return 1;}
 void SimInventoryEvent(SimGame *s) {
@@ -271,7 +271,7 @@ void SimInventoryEvent(SimGame *s) {
     }
     ActorRecord *actor=s->focus;
     ActorUnit *unit=actor->unit;
-    long facing=actor->facing;
+    long facing=actor->action.angle;
     switch(selection) {
     case 2:
         UpdatePayload(unit,facing);simInventory.Refresh();break;
@@ -280,13 +280,13 @@ void SimInventoryEvent(SimGame *s) {
         simInventory.SetAim(0,0);
         UpdatePayload(unit,facing);simInventory.Refresh();
         if(modeSwitch&&ModeCheck(modeCheckName))
-            modeLogName.Shields(g4d2498,g4d2498->unit->direction,g4d2498->unit->range);
+            modeLogName.Shields(g4d2498,g4d2498->unit->shieldDirection,g4d2498->unit->shieldRange);
         break;
     case 4:
-        SoundPlay(9,0);unit->direction=128;unit->range=24;
+        SoundPlay(9,0);unit->shieldDirection=128;unit->shieldRange=24;
         UpdatePayload(unit,facing);simInventory.Refresh();
         if(modeSwitch&&ModeCheck(modeCheckName))
-            modeLogName.Shields(g4d2498,g4d2498->unit->direction,g4d2498->unit->range);
+            modeLogName.Shields(g4d2498,g4d2498->unit->shieldDirection,g4d2498->unit->shieldRange);
         shieldControl.attributes&=~0x1000000UL;break;
     }
 }

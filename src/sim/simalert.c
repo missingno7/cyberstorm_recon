@@ -1,7 +1,7 @@
 // sim/simalert.c: SIMALERT.BOX screen, 0044d150..0044d770.
 // Class and function names are working labels. Partial field layout is evidence-based.
 typedef unsigned long U32; static char simalertSourceFile[]=__FILE__;
-struct GuiRect { long x,y,width,height; };
+#include "actor.h"
 struct GuiPoint { long x,y; };
 struct InputReq; struct GuiControl;
 struct StrPool { long id; char *buffer; long capacity; void *data; long size;
@@ -50,7 +50,7 @@ void SimAlertClose(SimAlert *p) {if(p->IsActive())p->input=0;}
 void SimAlertUpdate(SimAlert *p) {if(p->IsActive()){targetLimits=p->HitTest(&g4bb78c);p->Update();}}
 struct ViewRect {long left,top,right,bottom;};
 extern ViewRect viewportClipLeft,gBriefDrawSource;
-struct ActorRecord { unsigned char head[24]; void *unit,*pilot;const char *UnitText()const{return (const char *)unit;}const char *PilotText()const{return (const char *)pilot;} };
+
 extern ActorRecord *g4d2498;
 extern char g513888;
 extern void SimAlertPrepare(void *,const GuiRect *);

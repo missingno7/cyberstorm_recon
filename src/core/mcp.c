@@ -11,8 +11,8 @@ typedef unsigned short U16;
 #pragma pack(push,1)
 struct ActorListObject { char name[16]; U8 unknown10[0x6a]; int type; ActorListObject(); ~ActorListObject(); };
 typedef ActorListObject Pilot;
-struct HercSlot { U8 value, condition; U8 unknown02[6]; };
-struct ActorUnit { char name[18]; HercSlot slots[23]; U8 unknownca[0x41]; };
+#include "actor.h"
+
 typedef ActorUnit Herc;
 struct Assignment { U8 pilot, active; };
 struct RankEntry { unsigned cost; int index; };
@@ -147,7 +147,7 @@ extern "C" Snapshot *f_0043b912(Snapshot *s, Herc *h)
 {
     strncpy(s->name,h->name,16);
     s->type=f_00439daf(h);
-    for (int i=0; i<23; ++i) s->slots[i]=h->slots[i].value;
+    for (int i=0; i<23; ++i) s->slots[i]=h->slots[i].item;
     s->next=0;
     return s;
 }
@@ -335,7 +335,7 @@ extern "C" void f_0043c17c(GameSession *s)
 extern "C" int f_0043c2ba(GameSession *s,int kind)
 {
     if(s->hercCount==s->hercCapacity) return 0;
-    Herc *h=&s->hercs[s->hercCount];h->slots[0].value=(U8)kind;
+    Herc *h=&s->hercs[s->hercCount];h->slots[0].item=(U8)kind;
     char name[28];strcpy(name,f_00439d2c(h));
     f_0043c4bf(s,name,h);
     ++s->hercCount;return s->hercCount;

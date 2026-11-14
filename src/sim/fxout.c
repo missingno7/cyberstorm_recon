@@ -13,7 +13,7 @@ struct FxDef {                      // weapon effect definition (004a2c58[type])
 };
 struct Weapon { char at00; unsigned char type; char pad02[0x2d]; int at2f, at33; };
 struct World { char pad00[0x2c]; unsigned char flags; char pad2d[0x959]; int localOwner; char pad98a[0x617]; int zoom; };   // + 0x986, + 0xfa1
-struct FxOwner { char pad00[8]; int owner; char pad0c[0x14]; char action[6]; unsigned char at26; };   // + 0x20, + 0x26
+#include "actor.h"
 struct FxHandle { int a, b; FxHandle(const FxHandle &); };      // copy constructor at 00429a04
 struct FxLink : FxHandle { int c, d; };                            // 0x10 bytes
 struct FxBytes { char c0, c1, c2, c3, c4, c5, c6, c7; int value; };   // 0x0c bytes
@@ -24,11 +24,11 @@ struct FxSide {                     // one end of a shot (0x54 bytes)
     FxLink link;                    // + 0x1c
     FxBytes bytes;                  // + 0x2c
     FxShape shape;                  // + 0x38
-    FxOwner *owner;                 // + 0x44
+    ActorRecord *owner;                 // + 0x44
     int at48, at4c, at50;           // + 0x48
 };
 struct FxTarget { FxSide src, dst; int atA8, atAC, atB0; };   // shooter and target ends (0xb4 bytes), dst at + 0x54
-struct ActorRecord { char pad00[0x20]; char action[5]; unsigned char kind; char pad26[0x72]; };   // 0x98 bytes: + 0x20, + 0x25
+
 struct FxRect { char pad00[0x2b]; int x, y, w, h; };   // + 0x2b .. + 0x37
 struct ViewRect { int left, top, right, bottom; };
 struct ExploRecordFx { char pad00[8]; unsigned char fps; };   // sim\explo.c record (+ 8 fps)
@@ -43,7 +43,7 @@ extern "C" unsigned int next_link_seed(unsigned int *seed);
 extern void WeaponSound(FxPoint *at, int sound, int kind, int value, int total);   // 0045dad0
 extern void *ExploStart(int kind, FxTarget *target);  // 0045fa20 (sim\explo.c)
 extern ExploRecordFx *ExploAddPart(char anim, int frames);                  // 0045fcd0 (sim\explo.c)
-extern void ExploAddGlow(int anim, int value, FxOwner *actor, int layer, char repeat);   // 0045faf0
+extern void ExploAddGlow(int anim, int value, ActorRecord *actor, int layer, char repeat);   // 0045faf0
 extern void PartInit(FxPart *p, FxDef *def, ExploRecordFx *e, FxPoint *from, FxPoint *to, Weapon *weapon, FxTarget *target, int index);   // 0045ada0
 extern void PartSetup(FxPart *p, int a, int b, int c, int d, int e);       // 0045b0b0
 extern int PartStep(FxPart *p, int mode);                                   // 0045b740
@@ -217,8 +217,8 @@ static void FxRedraw(void *world)
     WorldDrawTerrain(world);
     viewportClipLeft = gViewRect;
     for (int i = 0; i < actorCount; i++) {
-        if (actorTable[i].kind == 12)
-            ActorDrawEffect(actorTable[i].action);
+        if (actorTable[i].action.state == 12)
+            ActorDrawEffect(&actorTable[i].action);
     }
     ViewFlip(0);
     ShellLimitFrameRate((Shell *)modeCheckName);
@@ -385,7 +385,7 @@ void FxSpray(World *world, FxPoint from, FxPoint to, Weapon *weapon, int flags, 
     }
     int glow=def->railSteps;
     if (glow)
-        glow += target->src.owner->at26;
+        glow += target->src.owner->action.angle;
     ExploAddGlow(def->jitterMin, def->jitterMax, target->src.owner, flags, 0);
     ExploAddGlow(glow, def->glow, target->src.owner, flags, def->glowRepeat);
     for (;;) {
@@ -509,7 +509,7 @@ void FxFire(World *world, FxPoint from, FxPoint to, Weapon *weapon, int flags, F
     world->flags &= ~1;
     viewportClipLeft = gViewRect;
     if (def->anim && target->src.owner)
-        AnimActionConfigure(target->src.owner->action, def->anim, -1);
+        AnimActionConfigure(&target->src.owner->action, def->anim, -1);
     switch (def->kind) {
     case 0:
         FxBeam(world, from, to, weapon, flags, target, impact, quiet);

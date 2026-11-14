@@ -5,7 +5,7 @@ static char simmultiSourceFile[]=__FILE__;
 #include <stdio.h>
 #pragma pack(push, 1)
 struct PlayerSlot { int state, owner; char unknown08[0xbc-8]; };
-struct ActorRecord { char unknown00[8]; int owner; char rest[0x98-12]; };
+#include "actor.h"
 struct SimGame {
     int active;
     int IsActive() { return active; }
@@ -16,7 +16,7 @@ struct SimGame {
     char unknown996[8]; int turn; int option;
     char unknown9a6[0x10e9-0x9a6]; int busy; int remaining; int timedExtra; int CanEndTurn() { return busy == 0; }
 };
-struct GuiRect { long x,y,width,height; };
+
 struct ViewRect { int left,top,right,bottom; };
 struct MenuImage { unsigned long offset; unsigned short width,height; unsigned long flags; };
 struct MenuImages { unsigned long count; MenuImage images[1]; };

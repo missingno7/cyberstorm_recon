@@ -3,11 +3,11 @@
 typedef unsigned char U8;
 typedef unsigned short U16;
 #pragma pack(push,1)
-struct HercSlot { U8 type,value,condition,active; int amount; };
-struct ActorUnit {
-    char name[17]; HercSlot slots[23]; U8 flagC9,flagCA;
-    int armor[6]; int fieldE3,mass; U8 damage[32];
-};
+#include "actor.h"
+
+
+
+
 struct ItemHeader {
     U8 type,id; int field02; U8 nominal,minimum,field08,level,repair;
     int cost,field0f,amount,mass;
@@ -78,9 +78,9 @@ void HercAdvanceTurn(ActorUnit *u,void *actor){
  char shield[56];p=(ActorItem *)UnitFogObject(u,7,shield);
  u->slots[7].amount+=p->detail.words[2];u->slots[7].amount=Clamp(u->slots[7].amount,0,p->detail.words[1]);
  u->slots[5].amount-=HercPowerUse(u,1);u->slots[5].amount=Clamp(u->slots[5].amount,0,0x7fffffff);
- for(int i=0;i<8;i++)u->slots[i+11].active=0;
+ for(int i=0;i<8;i++)u->slots[i+11].uses=0;
  for(i=0;i<4;i++){
- U8 *active=&u->slots[i+19].active;U8 old=*active;
+ U8 *active=&u->slots[i+19].uses;U8 old=*active;
  if(old && old!=255)*active=old-1;
  if(*active){int cost=PopFindItem(u,i+19,-1)->detail.words[7];if(HercCanSpend(u,cost))UnitSpend(u,cost);else *active=0;}
  if(old && !*active)LogicCallMode(PopFindItem(u,i+19)->detail.words[9]);
@@ -150,8 +150,8 @@ void SimAddMission(ActorUnit *u){
  ActorItem *p=PopFindItem(u,7,-1);u->slots[7].amount=p->detail.words[1]*efficiency/100;
  p=PopFindItem(u,5,-1);efficiency=HercItemEfficiency(u,5);u->slots[5].amount=p->detail.words[0]*efficiency/100;
  p=PopFindItem(u,6,-1);efficiency=HercItemEfficiency(u,6);u->slots[6].amount=p->detail.words[0]*efficiency/100;
- u->flagCA=0;u->flagC9=u->flagCA;UpdatePayload(u);
- for(int i=0;i<4;i++)u->slots[i+19].active=PopFindItem(u,i+19,-1)->detail.bytes[42];
+ u->shieldRange=0;u->shieldDirection=u->shieldRange;UpdatePayload(u);
+ for(int i=0;i<4;i++)u->slots[i+19].uses=PopFindItem(u,i+19,-1)->detail.bytes[42];
  HercAdvanceTurn(u,0);
 }
 
@@ -174,7 +174,7 @@ int f_0043ac9c(ActorUnit *u,int type,int active){
  int best=0,result=0;
  for(int i=0;i<4;i++){
  ActorItem *p=PopFindItem(u,i+19,-1);
- if(type==p->detail.words[1] && (!active || u->slots[i+19].active || p->detail.bytes[41]==4) && HercItemEfficiency(u,i+19)){
+ if(type==p->detail.words[1] && (!active || u->slots[i+19].uses || p->detail.bytes[41]==4) && HercItemEfficiency(u,i+19)){
  int amount=u->slots[i+19].amount,score=0;
  switch(type){case 0:break;case 1:score=p->detail.words[4]-amount;break;
  case 3:case 7:score=p->detail.words[2];break;case 2:case 8:score=amount;break;
@@ -187,18 +187,18 @@ int f_0043ad4f(ActorUnit *u,int type,int base){
  int result=base;
  for(int i=0;i<4;i++){
  ActorItem *p=PopFindItem(u,i+19,-1);
- if(p->detail.words[1]==9 && type==p->detail.words[2] && (u->slots[i+19].active || p->detail.bytes[41]==4)){
+ if(p->detail.words[1]==9 && type==p->detail.words[2] && (u->slots[i+19].uses || p->detail.bytes[41]==4)){
  if(HercItemEfficiency(u,i+19))result+=base*p->detail.words[4]/100+p->detail.words[3]-base;
  }}return CLAMP(result,0,100000);
 }
 /* 0043adf6 */
 int HercDefense(ActorUnit *u){
  int total=0,left=100;for(int i=0;i<4;i++){ActorItem *p=PopFindItem(u,i+19,-1);
- if(p->detail.words[1]==3 && (u->slots[i+19].active || p->detail.bytes[41]==4) && HercItemEfficiency(u,i+19)){
+ if(p->detail.words[1]==3 && (u->slots[i+19].uses || p->detail.bytes[41]==4) && HercItemEfficiency(u,i+19)){
  int n=p->detail.words[2]*left/100;total+=n;left-=n;
  }}return total;
 }
-inline int HercHeavyModel(ActorUnit *u){return u->slots[0].value>8;}
+inline int HercHeavyModel(ActorUnit *u){return u->slots[0].item>8;}
 
 /* 0043ae77 */
 int HercSelectHit(ActorUnit *u,int direction){

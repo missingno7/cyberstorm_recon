@@ -1,6 +1,6 @@
 #pragma pack(push,1)
-typedef unsigned char u8;
-typedef unsigned long u32; struct ActorPoint { int x, y; }; struct UnitInfo { u8 pad[0x12]; int active; int Active() { return active > 0; } }; struct ActorUnit { u8 pad0[0x18]; void *actorData; UnitInfo *info; u8 pad20[0x68]; u8 alive, inactive; }; struct ApplyPoint { int x, y; }; extern int PointAngle(ApplyPoint *left, ApplyPoint *right);
+#include "actor.h"
+typedef unsigned char u8; typedef unsigned long u32; struct ActorPoint { int x, y; }; struct ActorPilot { u8 pad[0x12]; int active; int Active() { return active > 0; } }; struct ApplyPoint { int x, y; }; extern int PointAngle(ApplyPoint *left, ApplyPoint *right);
 struct LogicActor {
     void *unit;
     int field4; u8 pad8[4];
@@ -9,7 +9,7 @@ struct LogicActor {
     int index, next, type, value, timer;
     u8 pad28[0x70 - 0x28];
     ActorPoint position; int randomValue, state7c, linkedIndex; u8 pad84[4]; int state88, state8c; u8 pad90[0xa8 - 0x90];
-    int Available() { ActorUnit *u = (ActorUnit *)unit; return u && u->alive && u->info->Active() && !((ActorUnit *)unit)->inactive; } int Hostile() { return (flags & 1) != 0; } int Friendly() { return (flags & 1) == 0; } int Attached() { return unit != 0; } int Flag2() { return (flags & 2) != 0; } int Live() { return unit && ((ActorUnit *)unit)->alive && ((ActorUnit *)unit)->info->Active(); } LogicActor() {} int IsUnit() { return type == 30; } int Unlinked() { return (flags & 2) == 0; } int Ready() { return unit && ((ActorUnit *)unit)->alive && ((ActorUnit *)unit)->info->Active() && !((ActorUnit *)unit)->inactive; }
+    int Available() { ActorRecord *u = (ActorRecord *)unit; return u && u->active && u->pilot->Active() && !((ActorRecord *)unit)->hidden; } int Hostile() { return (flags & 1) != 0; } int Friendly() { return (flags & 1) == 0; } int Attached() { return unit != 0; } int Flag2() { return (flags & 2) != 0; } int Live() { return unit && ((ActorRecord *)unit)->active && ((ActorRecord *)unit)->pilot->Active(); } LogicActor() {} int IsUnit() { return type == 30; } int Unlinked() { return (flags & 2) == 0; } int Ready() { return unit && ((ActorRecord *)unit)->active && ((ActorRecord *)unit)->pilot->Active() && !((ActorRecord *)unit)->hidden; }
 };
 struct ActorGlobals { LogicActor actorRecords[512]; int actorCount, actorSerial; };
 ActorGlobals logicActors;
@@ -192,7 +192,7 @@ LogicActor *LogicActorList::SelectActor(LogicActor *actor)  {
                         int score = 0;
                         if (previous != 0) score = -LogicCopyPoint(ActorName(previous), ActorName(scan));
                         if (scan->Friendly()) score -= 1000;
-                        if (scan->Friendly() && *((u8 *)((ActorUnit *)scan->unit)->actorData + 0x12) == 9) score -= 1000;
+                        if (scan->Friendly() && ((ActorRecord *)scan->unit)->unit->slots[0].item == 9) score -= 1000;
                         if (best == 0 || score > bestScore)  {
                             best = scan;
                             bestScore = score;
@@ -316,7 +316,7 @@ void LogicActorList::UpdateActorPercentages()
         if (actor->Attached()) {
             if (ActorIsAvailable(actor)) percent = 0;
             else {
-percent = ClampPercent(f_00439d48((int)((ActorUnit *)actor->unit)->actorData));
+percent = ClampPercent(f_00439d48((int)((ActorRecord *)actor->unit)->unit));
             }
         }
         ActorArraySet(actor, 5, percent);

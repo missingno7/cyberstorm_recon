@@ -1,14 +1,14 @@
 // sim\simout.c - simulation screen output (working labels; names are guesses unless bound)
 #pragma pack(push, 1)
 struct SimStat { long value, maximum, spare; };
-struct UnitState { unsigned char bytes[0x10b]; };
+#include "actor.h"
 struct ViewRect { int left, top, right, bottom; };
 struct GuiCanvas;
 struct GuiScreen { void Invalidate(); };
 struct FastBuffer;
 struct StrPool { int Lock(); char *GetString(long, int = 0); };
 struct ProfileManager { void BeginMissions(); void *Mission(int); };
-struct GuiRect { long x, y, width, height; };
+
 struct MenuImage { unsigned long offset; unsigned short width, height; unsigned long flags; };
 struct MenuImages { unsigned long count; MenuImage images[1]; };
 struct Font;
@@ -16,16 +16,16 @@ struct GameTimer;
 extern void GameTimerSet(GameTimer *, unsigned long); extern int GameTimerExpired(GameTimer *);
 struct GameTimer { unsigned long start, end, duration; GameTimer(unsigned long n) { GameTimerSet(this, n); } };
 struct SimPoint { long x,y; SimPoint() {} SimPoint(const SimPoint &p) { x=p.x; y=p.y; } };
-struct DrawPoint { long x,y; };
-struct DrawAction {
-    long depth; unsigned char type,state,angle,rate,frame,count,flags,ready;
-    unsigned short kind; unsigned long time;
-    DrawPoint position,target; long resource,direction;
-    DrawPoint point; void *block; unsigned char b36,b37,b38,b39,color;
-    long drawX,drawY,drawWidth,drawHeight;
-    void *bitmap; DrawPoint from,to; long step,steps; long Width() { return drawWidth; }
-};
-struct ActorRecord { int id,previous,owner; unsigned char unknown0c[12]; UnitState *unit; void *pilot; DrawAction action; unsigned char busy,enabled; signed char hidden; unsigned char active,flags,unknown8c[11],blink; };
+
+
+
+
+
+
+
+
+
+
 
 struct SimAnim { unsigned char unknown00[6]; unsigned char mode; unsigned char frame; };
 struct FileRecord;
@@ -42,7 +42,7 @@ struct SimGame {
     unsigned char unknown3c[0x44 - 0x3c]; SimStat stats[3];
     SimAnim portrait; SimAnim face;
     SimAnim status; unsigned char unknown80[0x18b - 0x80];
-    UnitState focusState; unsigned char unknown296[0x2ba-0x296];
+    ActorUnit focusState; unsigned char unknown296[0x2ba-0x296];
     int phase, round, multi; int waiting;
     union { unsigned long tick; unsigned char tickBytes[4]; } ;
     unsigned long deadline, action; int palette;
@@ -71,9 +71,9 @@ extern unsigned char g4d2490; extern FastCoord gFastTransform; extern void Apply
 extern void PopDrawSurface(void *surface, int a, int b, int c, int d, int e, int f); extern void MenuLine(void *, long, long, long, long); extern void FastBufferReset(FastBuffer *);
 extern void SimLoadPalette(int, void *); extern void SimLoadImage(void *, int, void *); extern void SimSetMode(SimGame *, int);
 extern void SimSetView(SimGame *, int); extern void SimAddMission(void *); extern void MenuDrawImage(void *, MenuImage *, long, long);
-extern void MenuSetClip(GuiRect *, long, long, long, long); extern int StateInvoke(UnitState *, long *, long *); extern int StateInvokeEnergy(UnitState *, long *, long *);
+extern void MenuSetClip(GuiRect *, long, long, long, long); extern int StateInvoke(ActorUnit *, long *, long *); extern int StateInvokeEnergy(ActorUnit *, long *, long *);
 extern void *gDrawRemap; extern Font g511dbc;
-extern void *SimUnitRemap(UnitState *, UnitState *); extern void *SimUnitRemapVariant(UnitState *, int, UnitState *); extern void MenuDrawText(Font *, long, long, const char *);
+extern void *SimUnitRemap(ActorUnit *, ActorUnit *); extern void *SimUnitRemapVariant(ActorUnit *, int, ActorUnit *); extern void MenuDrawText(Font *, long, long, const char *);
 extern "C" int BriefFormat(const char *format, ...); extern void MenuDrawTextAt(Font *, long, long, int, const char *); extern void SimMarkPosition(long, long, int, int);
 extern MenuImage *SimAnimFrame(SimAnim *, int); extern void SimAnimAdvance(SimAnim *); extern void SimPaletteCycle(void *);
 extern unsigned long StreamWrite(FileRecord *, const void *, unsigned long); extern void ExploCompact(int); extern int ActorListRead(void *);
@@ -365,8 +365,8 @@ void SimGameDrawFrames(SimGame *game)
         signed char second=((game->tickBytes[1]&2)?focusFrameColors[3]:focusFrameColors[2]);
         if(first>=0 && !game->focus->hidden) {
             ActorRecord *actor=game->focus;
-            width=actor->action.drawWidth+6; height=actor->action.drawHeight+6;
-            int left=actor->action.drawX-3, top=actor->action.drawY-3;
+            width=actor->action.rect.width+6; height=actor->action.rect.height+6;
+            int left=actor->action.rect.x-3, top=actor->action.rect.y-3;
             int right=left+width-1, bottom=top+height-1;
             int length=actor->action.Width()/6+1;
             MenuSetColors(&g513888,FrameColor(first),-1);
@@ -377,8 +377,8 @@ void SimGameDrawFrames(SimGame *game)
         }
         if(second>=0 && game->target && g4d3604[game->target->action.resource]) {
             ActorRecord *actor=game->target;
-            width=actor->action.drawWidth+6; height=actor->action.drawHeight+6;
-            int left=actor->action.drawX-3,top=actor->action.drawY-3;
+            width=actor->action.rect.width+6; height=actor->action.rect.height+6;
+            int left=actor->action.rect.x-3,top=actor->action.rect.y-3;
             int right=left+width-1,bottom=top+height-1;
             int length=actor->action.Width()/6+1;
             MenuSetColors(&g513888,FrameColor(second),-1);

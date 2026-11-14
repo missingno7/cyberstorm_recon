@@ -1,24 +1,24 @@
-typedef signed char Bool8; struct AnimAction { char head[0x32]; int block; char tail[0x31]; AnimAction(); };
-struct ActorRecord {
-    /* default constructor is compiler generated: it constructs `action` (oracle typesig, 00456c80) */
-    int id;
-    int unused;
-    int owner; int Owner() const {return owner;} int RelatedIndex() const {return relatedIndex;}
-    int at0c;
-    int at10;
-    int at14;
-    void *at18;
-    void *at1c;
-    AnimAction action;
+#include "actor.h"
+typedef signed char Bool8;
 
 
-    Bool8 flag87;
-    Bool8 flag88;
-    Bool8 flag89;
-    char pad8a[5];
-    int relatedIndex;
-    char rest93[5];
-};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 extern int actorCount;
 extern ActorRecord *actorTable;
 extern int *actorIndexTable; extern int actorTransferMode; extern int leaderPlayer; extern int AnimActionHasMetadata(void *); extern "C" int LogicCopyPoint(void *, void *);
@@ -32,8 +32,8 @@ extern "C" void *memset(void *, int, unsigned int); extern "C" void *Allocate(un
 #define ASSERT(e) if (!(e)) AssertFail(__FILE__, __LINE__, 0)
 extern const char actorListDescriptor[];
 
-struct ActorListGlobalObject {
-    char bytes[0x7e];
+struct ActorPilot { char bytes[0x7e]; }; /* pilot record, 0x7e bytes (StreamRead size) */ struct ActorListGlobalObject : ActorPilot {
+
     ActorListGlobalObject(const void *descriptor);
     ~ActorListGlobalObject();
 };
@@ -50,17 +50,17 @@ int ActorListConstruct()
 }
 
 
-extern "C" void *ActorIdentity(void *, int); struct ActorUnitBlob { char bytes[0x10b]; }; struct ProfileManager { void *Mission(int); }; extern ProfileManager profileManager; extern "C" void *f_0043c6ed(void *,void *); struct ActorListObject { char bytes[0x7e]; ActorListObject(); };
+extern "C" void *ActorIdentity(void *, int); struct ProfileManager { ActorUnit *Mission(int); }; extern ProfileManager profileManager; extern "C" ActorPilot *f_0043c6ed(void *,void *); struct ActorListObject : ActorPilot { ActorListObject(); };
 
 int ActorListDestroy()
 {
     if (actorTable != 0) {
         for (int i=0;i<actorCount;i++) {
             ActorRecord *entry=actorTable+i;
-            if (entry->at18 && entry->at10==0) delete (char *)entry->at18;
-            if (entry->at10<0) {
-                if(entry->at18) delete (char *)entry->at18;
-                if(entry->at1c) delete (ActorListGlobalObject *)entry->at1c;
+            if (entry->unit && entry->source==0) delete (char *)entry->unit;
+            if (entry->source<0) {
+                if(entry->unit) delete (char *)entry->unit;
+                if(entry->pilot) delete (ActorListGlobalObject *)entry->pilot;
             }
         }
         delete[] actorTable;
@@ -85,14 +85,14 @@ int ActorListRead(void *stream)
     while (i < actorCount) {
         ActorRecord *entry = actorTable + i;
         StreamWrite(stream, entry, sizeof(ActorRecord));
-        if (entry->at10 <= -9999) {
-            StreamWrite(stream, entry->at18, 0x10b);
-            StreamWrite(stream, entry->at1c, 0x7e);
-        } else if (entry->at10 == 0) {
-            StreamWrite(stream, entry->at18, 0x10b);
+        if (entry->source <= -9999) {
+            StreamWrite(stream, entry->unit, 0x10b);
+            StreamWrite(stream, entry->pilot, 0x7e);
+        } else if (entry->source == 0) {
+            StreamWrite(stream, entry->unit, 0x10b);
         }
         if (entry->action.block != 0)
-            StreamWrite(stream, (void *)(unsigned long)entry->action.block, 0x494);
+            StreamWrite(stream, entry->action.block, 0x494);
         ++i;
     }
     return 1;
@@ -104,11 +104,11 @@ int ActorListWrite(void *stream)
     int i;
     for(i=0;i<actorCount;i++) {
         ActorRecord *entry = actorTable + i;
-        AnimActionFreeBlock((char *)entry + 0x20);
+        AnimActionFreeBlock(&entry->action);
         StreamRead(stream, entry, sizeof(ActorRecord));
-        if (entry->at10 <= -9999) {
-            entry->at18 = new ActorUnitBlob;
-            entry->at1c = new ActorListObject;
+        if (entry->source <= -9999) {
+            entry->unit = new ActorUnit;
+            entry->pilot = new ActorListObject;
 
 
 
@@ -137,27 +137,27 @@ int ActorListWrite(void *stream)
 
 
 
-            /* ASSERT_LINE_140 */ ASSERT(entry->at18 != 0 && entry->at1c != 0);
-            StreamRead(stream, entry->at18, 0x10b);
-            StreamRead(stream, entry->at1c, 0x7e);
-        } else if (entry->at10 == 0) {
-            entry->at18 = new ActorUnitBlob;
+            /* ASSERT_LINE_140 */ ASSERT(entry->unit != 0 && entry->pilot != 0);
+            StreamRead(stream, entry->unit, 0x10b);
+            StreamRead(stream, entry->pilot, 0x7e);
+        } else if (entry->source == 0) {
+            entry->unit = new ActorUnit;
 
 
 
 
-            /* ASSERT_LINE_149 */ ASSERT(entry->at18 != 0);
-            entry->at1c = &actorListGlobalObject; StreamRead(stream, entry->at18, 0x10b);
+            /* ASSERT_LINE_149 */ ASSERT(entry->unit != 0);
+            entry->pilot = &actorListGlobalObject; StreamRead(stream, entry->unit, 0x10b);
         } else {
-            entry->at18 = profileManager.Mission(entry->at10)
+            entry->unit = profileManager.Mission(entry->source)
                                             ;
-            entry->at1c = f_0043c6ed(&profileManager, entry->at18);
+            entry->pilot = f_0043c6ed(&profileManager, entry->unit);
         }
         if (entry->action.block != 0) {
             entry->action.block = 0;
-            AnimActionCreateBlock((char *)entry + 0x20);
-            StreamRead(stream, (void *)(unsigned long)entry->action.block, 0x494);
-            *(void **)((char *)(unsigned long)entry->action.block + 0x490) = entry;
+            AnimActionCreateBlock(&entry->action);
+            StreamRead(stream, entry->action.block, 0x494);
+            entry->action.block->actor = entry;
         }
     }
     return 1;
@@ -196,7 +196,7 @@ ActorRecord *ActorGetByUnit(int unit)
 
 
 
-inline int ActorTransferEligible(ActorRecord *entry) { return entry && leaderPlayer==entry->Owner() && entry->flag88 && !entry->flag89 && AnimActionHasMetadata((char *)entry+0x20); } inline ActorRecord *ActorGetByIndexInline(int index) { if (index == 0) return 0; if (index > 0 && index <= actorCount) return actorTable + (index - 1); return 0; }
+inline int ActorTransferEligible(ActorRecord *entry) { return entry && leaderPlayer==entry->Owner() && entry->active && !entry->hidden && AnimActionHasMetadata(&entry->action); } inline ActorRecord *ActorGetByIndexInline(int index) { if (index == 0) return 0; if (index > 0 && index <= actorCount) return actorTable + (index - 1); return 0; }
 ActorRecord *ActorListTransfer(int requestedIndex)
 {
     int selected=0;
@@ -268,7 +268,7 @@ ActorRecord *ActorListTransfer(int requestedIndex)
             if(ActorTransferEligible(entry) && !entry->RelatedIndex()) {
                 int score;
                 if(entry==ActorGetByIndex(selected)) score=1;
-                else { score=0; if(tail) score=-LogicCopyPoint((char *)tail+0x3a,(char *)entry+0x3a); }
+                else { score=0; if(tail) score=-LogicCopyPoint(&tail->action.target,&entry->action.target); }
                 if(!best || score>bestScore) { best=entry; bestScore=score; }
             }
         }
@@ -287,7 +287,7 @@ ActorRecord *ActorFindRelated(ActorRecord *actor)
     ActorRecord *entry=ActorGetByIndex(actor->relatedIndex);
     while(entry) {
         if(entry->id==actor->id) break;
-        if(entry->flag88 && !entry->flag87 && !entry->flag89) found=entry;
+        if(entry->active && !entry->done && !entry->hidden) found=entry;
         entry=ActorGetByIndex(entry->relatedIndex);
     }
     return found ? found : entry;
@@ -297,7 +297,7 @@ ActorRecord *ActorFindRelatedOther(ActorRecord *actor)
     ActorRecord *entry=ActorGetByIndex(actor->relatedIndex);
     while(entry) {
         if(entry->id==actor->id) break;
-        if(entry->flag88 && !entry->flag87 && !entry->flag89) break;
+        if(entry->active && !entry->done && !entry->hidden) break;
         entry=ActorGetByIndex(entry->relatedIndex);
     }
     return entry;
@@ -308,7 +308,7 @@ ActorRecord *ActorFindFree()
     ActorRecord *entry = actorTable;
     int i = 0;
     for (; i < actorCount; ++i, ++entry) {
-        if (entry->id != 0 && !entry->flag89)
+        if (entry->id != 0 && !entry->hidden)
             return entry;
     }
     return 0;
@@ -318,7 +318,7 @@ ActorRecord *ActorFindByOwner(int owner)
 {
     ActorRecord *entry=actorTable;
     for(int i=0;i<actorCount;i++,entry++) {
-        if(entry->id && entry->owner==owner && entry->flag88 && !entry->flag89) return entry;
+        if(entry->id && entry->owner==owner && entry->active && !entry->hidden) return entry;
     }
     return 0;
 }
@@ -327,7 +327,7 @@ ActorRecord *ActorFindNext(ActorRecord *actor)
     if(!actor || actor->id>=actorCount) return 0;
     actor++;
     for(int index=actor->id;index<=actorCount;index++,actor++) {
-        if(actor->id && !actor->flag89) return actor;
+        if(actor->id && !actor->hidden) return actor;
     }
     return 0;
 }
@@ -336,7 +336,7 @@ ActorRecord *ActorFindOwnerNext(ActorRecord *actor,int owner)
     if(!actor || actor->id>=actorCount) return 0;
     actor++;
     for(int index=actor->id;index<=actorCount;index++,actor++) {
-        if(actor->id && owner==actor->owner && actor->flag88 && !actor->flag89) return actor;
+        if(actor->id && owner==actor->owner && actor->active && !actor->hidden) return actor;
     }
     return 0;
 }

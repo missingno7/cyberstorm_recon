@@ -1,15 +1,15 @@
 // sim\opfire.c: opposing (reaction) fire during the hot-seat briefing. Working names unless bound.
 #pragma pack(push,1)
-struct GridPoint { long x, y; };
-struct Pilot { char unknown00[0x12]; int health; };
-struct ItemSlot { unsigned char kind, ready, enabled, uses; long count; };
+#include "actor.h"
+struct ActorPilot { char unknown00[0x12]; int health; };
+
 struct ActorItem;
-struct ActorUnit { unsigned char head[0x11]; ItemSlot items[23]; ActorItem *Item(int row); };
+
 struct ActorItem { char unknown00[0x13]; int ammo; char unknown17[8]; signed char category, maxUses, rank; char unknown22[9]; int skill; };
-struct ActorRecord {
-    int id; int unknown04; int owner; char unknown0c[0xc]; ActorUnit *unit; Pilot *pilot;
-    char unknown20[0x1a]; GridPoint position; char unknown42[0x46]; signed char active; char unknown89[5]; unsigned char returnFire;
-};
+
+
+
+
 struct TargetRecord;
 struct SimGame {
     char unknown00[0x2c]; unsigned char screen; char unknown2d[0x2c2-0x2d]; int multi;
@@ -29,7 +29,7 @@ extern "C" unsigned long next_link_seed(unsigned long *);
 ActorItem *PopFindItem(ActorUnit *, int, int);
 int HercEnergy(ActorUnit *);
 inline int HercUnsupported2() { return -1; }
-inline ActorItem *ActorUnit::Item(int row) { return PopFindItem(this, row, HercUnsupported2()); }
+inline ActorItem *UnitItem(ActorUnit *unit, int row) { return PopFindItem(unit, row, HercUnsupported2()); }
 void TargetInitializeRecord(void *, int *, int, int);
 ActorRecord *ActorFindFree();
 ActorRecord *ActorFindNext(ActorRecord *);
@@ -38,7 +38,7 @@ void f_00452950(SimGame *, ActorRecord *, ActorRecord *, int);
 int ModeCheck(const char *);
 void SimGameDrawStatus(SimGame *);
 inline int HotbriefOpposingEnabled(SimGame *s) { if (s->multi) return gLaunchOption105; if (s->extraSaved) return s->remoteEnabled; return DAT_004dd0b4; }
-inline int HotbriefHealth(Pilot *pilot) { return pilot->health > 0; }
+inline int HotbriefHealth(ActorPilot *pilot) { return pilot->health > 0; }
 static char opfireSourceFile[]=__FILE__; int DAT_004a3a0c[]={70,70,66,63,56,49,42,35,28,21,17,14,10,7,3,2,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
 int HotbriefCanSelectAction(ActorRecord *actor, int rankLimit)
@@ -46,13 +46,13 @@ int HotbriefCanSelectAction(ActorRecord *actor, int rankLimit)
     if (!HotbriefHealth(actor->pilot))
         return 0;
     ActorUnit *unit = actor->unit;
-    ItemSlot *slot = &unit->items[11];
+    UnitSlot *slot = &unit->slots[11];
     int skill = HercEnergy(unit);
     for (int index = 0, row = 11; index < 8; index++, row++, slot++) {
-        if (slot->ready && slot->enabled && !(actor->returnFire & 1 << index == 0)) {
-            ActorItem *item = unit->Item(row);
+        if (slot->item && slot->condition && !(actor->returnFire & 1 << index == 0)) {
+            ActorItem *item = UnitItem(unit, row);
             if (slot->uses < item->maxUses && WeaponEfficiency[item->category] &&
-                (!item->ammo || slot->count) &&
+                (!item->ammo || slot->amount) &&
                 (actor->owner == gRemoteActorKind || skill >= item->skill) &&
                 rankLimit <= item->rank)
                 return 1;
@@ -67,7 +67,7 @@ int HotbriefCheckAction(ActorRecord *source, ActorRecord *actor, int location, i
         return 0;
     long point[2];
     BestLocSetData(&fallbackName, point, location);
-    int rank = LogicCopyPoint(point, &actor->position);
+    int rank = LogicCopyPoint(point, &actor->action.target);
     if (rank > 20)
         return 0;
     int chance = DAT_004a3a0c[rank];
@@ -78,7 +78,7 @@ int HotbriefCheckAction(ActorRecord *source, ActorRecord *actor, int location, i
     if (priorLocation) {
         long previous[2];
         BestLocSetData(&fallbackName, previous, priorLocation);
-        if (LogicCopyPoint(previous, &actor->position) < rank)
+        if (LogicCopyPoint(previous, &actor->action.target) < rank)
             return 0;
     }
     if (!HotbriefCanSelectAction(actor, rank))

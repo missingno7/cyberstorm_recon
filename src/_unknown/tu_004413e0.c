@@ -4,15 +4,15 @@
 typedef unsigned char U8;
 typedef unsigned long U32;
 #pragma pack(push,1)
-struct Slot {
-    U8 kind, value, condition, unknown;
-    int amount;
-};
-struct ActorUnit {
-    char name[17];
-    Slot slots[23];
-    U8 rest[66];
-};
+#include "actor.h"
+
+
+
+
+
+
+
+
 struct Snapshot {
     char name[17];
     U8 slots[23];
@@ -123,12 +123,12 @@ extern void f_00477295(char *);
 extern int g494290,playerCount,gRemoteActorKind,modeSwitch,g4d3551,gLaunchBudget;
 extern U8 g4c978a;
 extern char modeCheckName[];
-struct ActorRecord {
-    int a,b,id;
-    U8 rest[12];
-    ActorUnit *unit;
-    void *pilot;
-};
+
+
+
+
+
+
 extern "C" int f_004413e0(GameSession *s,UnitTemplate *t) {
     TypeItem *type=&unitTypes[t->slots[0]];
     for(int i=0; i<23; ++i) {
@@ -299,7 +299,7 @@ extern "C" InventoryRow *f_00441dad(GameSession *s,int index,int *count) {
     for(int i=0; i<23; ++i) {
         InventoryRow *row=&inventoryRows[n];
         if(type.rules[i].head[0]) {
-            unsigned value=unit->slots[i].value;
+            unsigned value=unit->slots[i].item;
             int id=HercItemTables[i].stringBase;
             row->index=i;
             row->name=gHercStrings.GetSecondString(id+value);
@@ -376,8 +376,8 @@ extern "C" char *f_00442258(GameSession *s,int index,int slot,int choice) {
 }
 extern "C" int f_004422f0(ActorUnit *unit,int slot) {
     TypeItem type=*(TypeItem *)PopFindItem(unit,0);
-    Slot selected=unit->slots[slot];
-    unsigned value=selected.value;
+    UnitSlot selected=unit->slots[slot];
+    unsigned value=selected.item;
     U32 mask=type.rules[slot].mask;
     if(slot && value) {
         if(slot>=11 && slot<=18) {
@@ -394,12 +394,12 @@ extern "C" int f_004422f0(ActorUnit *unit,int slot) {
     return 0;
 }
 extern "C" int f_004423d7(ActorUnit *unit,int level) {
-    int type=unit->slots[0].value;
+    int type=unit->slots[0].item;
     if(type<=0 || type>=34)return 1;
     if(type>=9 && type<=17)return 1;
     if(f_00439daf(unit)>level+1)return 1;
     for(int i=0; i<23; ++i) {
-        if(!HercMountAllowed(unit,i) && unit->slots[i].value)return 1;
+        if(!HercMountAllowed(unit,i) && unit->slots[i].item)return 1;
         if(unit->slots[i].condition>100)return 1;
         ActorItem *item=PopFindItem(unit,i);
         if(item->max && item->max<unit->slots[i].amount)return 1;
@@ -413,14 +413,14 @@ extern "C" int f_004423d7(ActorUnit *unit,int level) {
     return a>b || c>d;
 }
 extern "C" void f_004424d4(ActorRecord *actor) {
-    if(!g494290 || playerCount<=2 || actor->id==gRemoteActorKind)return;
+    if(!g494290 || playerCount<=2 || actor->owner==gRemoteActorKind)return;
     unsigned level;
     if(modeSwitch) level=gLaunchBudget; else level=g4c978a;
     if(g4d3551)level=14;
     int pilot=actor->pilot && ActorStateInvalid((ActorState *)actor->pilot,level);
     int unit=actor->unit && f_004423d7(actor->unit,level);
     if(pilot || unit) {
-        f_00477295(BriefFormat("WARNING: I detect a possible cheater in our midst.\nPlayer: (#%d) %s\nHerc name: %s %s\nPilot name: %s %s\n",actor->id,(char *)GetModePlayer(modeCheckName,actor->id)+0x44,actor->unit,unit?"(QUESTIONABLE DATA)":"(looks fine)",actor->pilot,pilot?"(QUESTIONABLE DATA)":"(looks fine)"));
+        f_00477295(BriefFormat("WARNING: I detect a possible cheater in our midst.\nPlayer: (#%d) %s\nHerc name: %s %s\nPilot name: %s %s\n",actor->owner,(char *)GetModePlayer(modeCheckName,actor->owner)+0x44,actor->unit,unit?"(QUESTIONABLE DATA)":"(looks fine)",actor->pilot,pilot?"(QUESTIONABLE DATA)":"(looks fine)"));
     }
 }
 

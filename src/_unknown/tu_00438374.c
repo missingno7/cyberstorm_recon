@@ -3,11 +3,11 @@
 typedef unsigned char U8;
 typedef unsigned short U16;
 #pragma pack(push,1)
-struct HercSlot { U8 type,value,condition,active; int amount; };
-struct ActorUnit {
-    char name[17]; HercSlot slots[23]; U8 flagC9,flagCA;
-    int armor[6]; int fieldE3,mass; U8 damage[32];
-};
+#include "actor.h"
+
+
+
+
 struct ItemHeader {
     U8 type,id; int field02; U8 nominal,minimum,field08,level,repair;
     int cost,field0f,amount,mass;
@@ -35,7 +35,7 @@ inline int HercMin(int a,int b){return a<b?a:b;}
 #define HercClamp(a,lo,hi) ((a)<=(lo)?(lo):((a)>=(hi)?(hi):(a)))
 /* 00438374 */
 ActorItem *PopFindItem(ActorUnit *u,int slot,int value) {
- if(value<0) value=u->slots[slot].value;
+ if(value<0) value=u->slots[slot].item;
  ItemTable *t=&HercItemTables[slot];
  return (ActorItem *)(t->items+t->size*value);
 }
@@ -46,7 +46,7 @@ int HercMountAllowed(ActorUnit *u,int slot) {
 }
 /* 004383e1 */
 int PopItemReady(ActorUnit *u,int slot){
-int r=HercMountAllowed(u,slot);if(r)return u->slots[slot].value!=0;return r;
+int r=HercMountAllowed(u,slot);if(r)return u->slots[slot].item!=0;return r;
 }
 /* 0043842f */
 int HercItemEfficiency(ActorUnit *u,int slot) {
@@ -110,7 +110,7 @@ char *PopItemValue(ActorItem *p){
 /* 0043877f */
 char *HercItemDescription(ActorItem *p){return g511e18.GetString(HercItemTables[p->type].stringBase+p->id,1);}
 /* 004387af */
-void HercAppendAmount(HercSlot *slot,int id){
+void HercAppendAmount(UnitSlot *slot,int id){
  if(slot) DebugTextAppend(BriefFormat(gMenuPrefixStrings.GetString(id),slot->amount));
 }
 
@@ -120,7 +120,7 @@ int HercMobility(ActorUnit *);
 char *HercFormatItem(ActorUnit *u,ActorItem *p,int slot,unsigned flags){
  int wasOpen=gMenuPrefixStrings.data!=0;
  if(!wasOpen)gMenuPrefixStrings.Lock();
- HercSlot *installed=0;
+ UnitSlot *installed=0;
  if(slot>=0 && (flags&0x20))installed=&u->slots[slot];
  DebugTextClear();
  if(flags&1){
@@ -130,8 +130,8 @@ char *HercFormatItem(ActorUnit *u,ActorItem *p,int slot,unsigned flags){
  if((flags&0x800) && installed){DebugTextAppend(BriefFormat(gMenuPrefixStrings.GetString(1252,0),installed->condition));DebugTextAppend("\n\n");}
  if(flags&0x100){
  int before=HercMobility(u);
- ActorUnit copy=*u;HercSlot *s=&copy.slots[slot];
- s->value=p->id;s->condition=100;s->active=1;s->amount=0;
+ ActorUnit copy=*u;UnitSlot *s=&copy.slots[slot];
+ s->item=p->id;s->condition=100;s->uses=1;s->amount=0;
  int after=HercMobility(&copy);
  int id;
  if(after<before) id=1244;
@@ -239,18 +239,18 @@ int HercEqual(ActorUnit *a,ActorUnit *b){
  if(memcmp(a->damage,b->damage,sizeof(a->damage)))same=0;
  if(a->mass!=b->mass)same=0;
  if(a->fieldE3!=b->fieldE3)same=0;
- if(a->flagC9!=b->flagC9)same=0;
- if(a->flagCA!=b->flagCA)same=0;
+ if(a->shieldDirection!=b->shieldDirection)same=0;
+ if(a->shieldRange!=b->shieldRange)same=0;
  for(int i=0;i<6;i++)if(a->armor[i]!=b->armor[i])same=0;
- for(i=0;i<23;i++)if(memcmp(&a->slots[i],&b->slots[i],sizeof(HercSlot)))same=0;
+ for(i=0;i<23;i++)if(memcmp(&a->slots[i],&b->slots[i],sizeof(UnitSlot)))same=0;
  return same;
 }
 /* 00439438 */
 void HercCopy(ActorUnit *d,ActorUnit *s){
  strcpy(d->name,s->name);memcpy(d->damage,s->damage,sizeof(d->damage));
- d->mass=s->mass;d->fieldE3=s->fieldE3;d->flagC9=s->flagC9;d->flagCA=s->flagCA;
+ d->mass=s->mass;d->fieldE3=s->fieldE3;d->shieldDirection=s->shieldDirection;d->shieldRange=s->shieldRange;
  for(int i=0;i<6;i++)d->armor[i]=s->armor[i];
- for(i=0;i<23;i++)memcpy(&d->slots[i],&s->slots[i],sizeof(HercSlot));
+ for(i=0;i<23;i++)memcpy(&d->slots[i],&s->slots[i],sizeof(UnitSlot));
 }
 
 

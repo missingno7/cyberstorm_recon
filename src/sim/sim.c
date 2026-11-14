@@ -1,8 +1,8 @@
 // sim\sim.c, full function bodies. Unbound names and unnamed fields are provisional.
 #pragma pack(push,1)
 typedef unsigned long U32; static char simSourceFile[]=__FILE__;
-struct GuiRect { long x,y,width,height; };
-struct GridPoint {long x,y;GridPoint(){}GridPoint(long a,long b){x=a;y=b;}};
+#include "actor.h"
+
 struct ClipState { long words[10]; };
 struct GameTimer; extern void GameTimerSet(GameTimer *,U32); extern int GameTimerExpired(GameTimer *);
 struct GameTimer {U32 start,end,duration;GameTimer(U32 n){GameTimerSet(this,n);}};
@@ -12,7 +12,7 @@ struct ViewState {GridPoint point;long zoom,scale,direction;U32 flags,requested;
 struct SimAnim {unsigned char bytes[8];};
 struct PlayerSlot {int status,id,points,actor;unsigned char rest[0xbc-16];};
 struct InputReq {unsigned long mask,flags; InputReq(unsigned long n):mask(n){} };
-struct ActorRecord {int id;unsigned char unknown04[0x20-4];unsigned char actionData[6],actionMode;unsigned char unknown27[0x42-0x27];int index;};
+
 class SimGame:public ShellBase {
 public:
  InputReq input;int unknown10,uiState,selectedMode,previousMode,savedMode; int worldOpen,unknown28,screen,pending;
@@ -569,7 +569,7 @@ void SimGame::Open() {
    if(mode==10)SimHotStartMission(this);else SimStartMission(this);
    SimSetMode(this,next_link_seed(&gFxSeed)%6);palette=simInitialPalette;if(simInitialWarning<100)SoundTrigger(151,0);
   }
-  for(ActorRecord *a=ActorFindFree();a;a=ActorFindNext(a))AnimActionReplace(a->actionData,a->id);
+  for(ActorRecord *a=ActorFindFree();a;a=ActorFindNext(a))AnimActionReplace(&a->action,a->id);
   GuiFilterPalette(gShellBackground,5);ResetMultiplayerInput();if(multi){create_chat_menu(&simChatMenu);g4faf44=1;}
   SimSetMenuState(this,1);FastBufferReset(&g4d35e4);SimSetMode(this,0);SimSetView(this,0);
   if(extraSaved)SimHotResizeFogBuffers();

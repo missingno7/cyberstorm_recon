@@ -1,9 +1,9 @@
 /* Movement popup. Original path absent. Working names and packed actor fields. */
 typedef unsigned char U8;
 typedef unsigned long U32;
-struct GuiRect {
-    long x,y,width,height;
-};
+#include "actor.h"
+
+
 struct GuiPoint {
     long x,y;
     GuiPoint(long a=0,long b=0):x(a),y(b) {
@@ -80,33 +80,33 @@ class MenuButton:public GuiControl {
     }
 };
 #pragma pack(push,1)
-struct ActorUnit {
-    char storage[267];
-};
+
+
+
 struct ActorItem {
     char storage[637];
     int turn,move,jump,land;
 };
-struct ActorIdentity {
-    U8 header[5];
-    U8 type;
-    int IsMobile() {
-        return !(type==1 || type==7 || type==14 || type==17 || type==18);
-    }
-};
-struct ActorRecord {
-    int id,next,index,kind;
-    int start;
-    U8 unknown14[4];
-    ActorUnit *unit;
-    char unknown1c[4];
-    ActorIdentity identity;
-    U8 unknown26[20];
-    GuiPoint position;
-    int location,angle;
-    U8 unknown4a[12];
-    U8 state;
-};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 struct SimGame {
     U8 head[20];
     int target;
@@ -175,7 +175,7 @@ void MovementPopup::Close() {
 int MovementPopup::Process() {
     if(IsActive()) {
         if(changed) {
-            if((unsigned)g4d2498->identity.type==7 || (unsigned)g4d2498->identity.type==6) {
+            if((unsigned)g4d2498->action.state==7 || (unsigned)g4d2498->action.state==6) {
                 moveJump.Enable(5);
                 moveLand.Enable(0);
             }
@@ -193,20 +193,20 @@ int MovementPopup::Process() {
             ActorRecord *actor=g4d2498;
             ActorUnit *unit=actor->unit;
             ActorItem *item=PopFindItem(unit,0);
-            if(!actor->identity.IsMobile()) {
+            if(!actor->action.IsMoving()) {
                 int cost=0;
                 switch(selection) {
                     case 0:case 1:cost=item->turn;
                     break;
                     case 2: {
-                        GuiPoint p=moveOffsets[GridClamp(actor->angle)%6];
-                        p+=actor->position;
-                        cost=f_00432c00(fallbackName,ResolveName(fallbackName,&p),actor->location);
+                        GuiPoint p=moveOffsets[GridClamp(actor->action.direction)%6];
+                        p+=(GuiPoint &)actor->action.target;
+                        cost=f_00432c00(fallbackName,ResolveName(fallbackName,&p),actor->action.resource);
                         break;
                     }
-                    case 4:if((unsigned)actor->identity.type!=7)cost=item->jump;
+                    case 4:if((unsigned)actor->action.state!=7)cost=item->jump;
                     break;
-                    case 5:if((unsigned)actor->identity.type==7)cost=item->land;
+                    case 5:if((unsigned)actor->action.state==7)cost=item->land;
                     break;
                     case 6:cost=moveDefaultCost;
                     break;
@@ -225,10 +225,10 @@ void MovementPopup::Invalidate() {
     changed=1;
 }
 void StopMoving(void *,int all) {
-    if(g4d2498 && g4d2498->identity.IsMobile())g4d2498->state=3;
+    if(g4d2498 && g4d2498->action.IsMoving())g4d2498->action.special=3;
     if(all) {
         int owner=gLocalActorKind;
-        for(ActorRecord *p=ActorFindByOwner(owner); p; p=ActorFindOwnerNext(p,owner))if(p->identity.IsMobile())p->state=3;
+        for(ActorRecord *p=ActorFindByOwner(owner); p; p=ActorFindOwnerNext(p,owner))if(p->action.IsMoving())p->action.special=3;
     }
 }
 void MovementCommand(SimGame *s) {
@@ -247,7 +247,7 @@ void MovementCommand(SimGame *s) {
             break;
             case 0x26:selection=1;
             break;
-            case 0x25:selection=((unsigned)g4d2498->identity.type==7)+4;
+            case 0x25:selection=((unsigned)g4d2498->action.state==7)+4;
             break;
         }
         if(selection<0)return;
@@ -267,21 +267,21 @@ void MovementCommand(SimGame *s) {
     if(!SimFocusReady(s))return;
     ActorItem *item=PopFindItem(s->focus->unit);
     switch(selection) {
-        case 0: if(!s->focus || s->focus->identity.IsMobile())return;
+        case 0: if(!s->focus || s->focus->action.IsMoving())return;
         SoundPlay(9,0);
         if(!SimTrySpendFocus(s,item->turn))return;
-        SimFaceTarget(s,((GridClamp(s->focus->angle)+1)%6)*0x2aaaaabc,item->turn);
+        SimFaceTarget(s,((GridClamp(s->focus->action.direction)+1)%6)*0x2aaaaabc,item->turn);
         break;
-        case 1: if(!s->focus || s->focus->identity.IsMobile())return;
+        case 1: if(!s->focus || s->focus->action.IsMoving())return;
         SoundPlay(9,0);
         if(!SimTrySpendFocus(s,item->turn))return;
-        SimFaceTarget(s,((GridClamp(s->focus->angle)-1)%6)*0x2aaaaabc,item->turn);
+        SimFaceTarget(s,((GridClamp(s->focus->action.direction)-1)%6)*0x2aaaaabc,item->turn);
         break;
-        case 2: if(!s->focus || s->focus->identity.IsMobile())return;
+        case 2: if(!s->focus || s->focus->action.IsMoving())return;
         {
             GuiPoint p;
-            p=moveOffsets[GridClamp(s->focus->angle)%6];
-            p+=s->focus->position;
+            p=moveOffsets[GridClamp(s->focus->action.direction)%6];
+            p+=(GuiPoint &)s->focus->action.target;
             GridClearSelection(fallbackName);
             SimPrepareAction(s,ResolveName(fallbackName,&p));
             SoundPlay(9,0);
@@ -297,19 +297,19 @@ void MovementCommand(SimGame *s) {
         simPanel.changed=1;
         break;
         case 6:SoundPlay(9,0);
-        if(s->focus->location==s->focus->start)return;
-        SimTargetAction(s,s->focus->start);
-        SimPrepareAction(s,s->focus->start);
+        if(s->focus->action.resource==s->focus->target)return;
+        SimTargetAction(s,s->focus->target);
+        SimPrepareAction(s,s->focus->target);
         break;
         case 7: {
             SoundPlay(9,0);
             ActorRecord *saved=g4d2498;
             int owner=s->owner;
             for(ActorRecord *p=ActorFindByOwner(owner); p; p=ActorFindOwnerNext(p,owner)) {
-                if(p->start && p->location!=p->start) {
+                if(p->target && p->action.resource!=p->target) {
                     SimSetFocus((SimGame *)&modeCheckName,p);
-                    SimTargetAction(s,p->start);
-                    SimPrepareAction(s,p->start);
+                    SimTargetAction(s,p->target);
+                    SimPrepareAction(s,p->target);
                 }
             }
             SimSetFocus((SimGame *)&modeCheckName,saved);
@@ -330,11 +330,11 @@ void MovementCommand(SimGame *s) {
             SoundPlay(9,0);
             int owner=s->owner;
             for(ActorRecord *p=ActorFindByOwner(owner); p; p=ActorFindOwnerNext(p,owner)) {
-                if(p->start==s->target || p->location==s->target) {
-                    if(p->start && p->start!=p->location) {
+                if(p->target==s->target || p->action.resource==s->target) {
+                    if(p->target && p->target!=p->action.resource) {
                         SimSetFocus((SimGame *)&modeCheckName,p);
-                        SimTargetAction(s,p->start);
-                        SimPrepareAction(s,p->start);
+                        SimTargetAction(s,p->target);
+                        SimPrepareAction(s,p->target);
                     }
                 }
                 else {

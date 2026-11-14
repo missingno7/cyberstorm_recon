@@ -4,7 +4,7 @@
  * 004a042c/44/5c sit in the sim\simgad.c data block. No assert, so no line evidence.
  * Names are working labels. Profile ot-oe (orphan copies of small functions are inlined). */
 typedef unsigned long U32;
-struct GuiRect { long x, y, width, height; };
+#include "actor.h"
 struct GuiPoint { long x, y; };
 struct ViewRect { int left, top, right, bottom; };
 struct MenuImage { U32 offset; unsigned short width, height; U32 flags; };
@@ -68,14 +68,14 @@ public:
 
 struct ActorRecord; struct ActorUnit; struct Context;
 #pragma pack(push,1)
-struct ExploPoint { long x,y; ExploPoint() {} ExploPoint(long a,long b) : x(a),y(b) {} ExploPoint(const ExploPoint &p) : x(p.x),y(p.y) {} };
-struct AnimRect { long x,y,width,height; };
-struct AnimAction {
-    int id; unsigned char kind,state,variant,rate,frame,frames,flags; signed char dirty; unsigned short type;
-    int deadline; ExploPoint position, destination; int target,heading; ExploPoint screen;
-    int height; unsigned char color,phase,a38,a39,a3a; AnimRect rect; int scale; ExploPoint velocity,offset; int a5f,a63;
-    int IsMoving() { return state != 1 && state != 7 && state != 14 && state != 17 && state != 18; }
-};
+
+
+
+
+
+
+
+
 /* ---- sim\simmisc.c part (working assumption) ---- */
 struct SimGame {
     unsigned char unknown00[0x2c]; unsigned char flags; unsigned char unknown2d[0xb]; ActorRecord *focus; unsigned char unknown3c[0x44]; unsigned char oldUnit[0x10b]; unsigned char unknown18b[0x2c2-0x18b];
@@ -86,18 +86,18 @@ struct SimGame {
     int quiet;                          // +0x10e9
 };
 struct ActorPosition { long x, y; };
-struct ActorLevel { unsigned char unknown00[2]; unsigned char percent; unsigned char Percent() { return percent; } };
-struct ActorUnit { unsigned char unknown00[0x12]; unsigned char type; unsigned char unknown13[0x61 - 0x13]; ActorLevel level; unsigned char unknown64[0x10b-0x64]; };
+
+
 struct ActorItem { unsigned char unknown00[0x2b]; long full; long empty; };
-struct ActorRecord {
-    int id; unsigned char unknown04[4];
-    int owner;                          // +0x08
-    int targetId; unsigned char unknown10[8];
-    ActorUnit *unit;                    // +0x18
-    void *logic; void *Pilot(){return logic;}                        // +0x1c
-    AnimAction action; char unknown87;  // action fields end at +0x86; byte +0x87 is unmodeled
-    unsigned char alive; signed char hidden; unsigned char rest[0x98-0x8a];
-};
+
+
+
+
+
+
+
+
+
 struct SimSound { long priority, volume, pan, level; };
 
 struct LogicSystem;
@@ -121,7 +121,7 @@ extern int ModeCheck(SimGame *);
 struct Shell; extern void DeathMovie(Shell *, void *);
 extern "C" int sprintf(char *, const char *, ...);
 extern void LogicTextAppend(LogicSystem *, const char *);
-extern void ViewToScreen(void *, ExploPoint *, ExploPoint *);
+extern void ViewToScreen(void *, GridPoint *, GridPoint *);
 extern void TargetObjectInit(char *, ActorPosition *, int);
 extern ActorRecord *ActorFindByOwner(int);
 extern ActorRecord *ActorFindOwnerNext(ActorRecord *, int);
@@ -129,16 +129,16 @@ extern unsigned ISqrt(unsigned);
 void ModeEvent(SimGame *game, ActorRecord *actor, int amount, int message);
 void SimMessage(SimGame *game, const char *text);
 void SimActorKilled(SimGame *game, ActorRecord *actor, int message, int report);
-void SimSoundSetup(SimSound *sound, ExploPoint *at);
+void SimSoundSetup(SimSound *sound, GridPoint *at);
 
 #pragma pack(pop)
 #pragma pack(push,1)
-struct TargetSide { int id; ExploPoint cell,position; char unknown14[0x44-0x14]; ActorRecord *actor; int actorId,heading,band; };
+struct TargetSide { int id; GridPoint cell,position; char unknown14[0x44-0x14]; ActorRecord *actor; int actorId,heading,band; };
 struct TargetRecord { TargetSide source,target; int distance,elevation,modifier; };
 struct Weapon { char unknown00[0x28]; signed char skill; char unknown29[2]; int energy; char unknown2f[0xd]; signed char rings,spread; char unknown3e[8]; };
 struct WeaponScore { int state,accuracy,power,chance,rangeFactor,maximum,expected,ammoFactor; Weapon weapon; char unknown66[8]; };
 struct Context { int id; TargetRecord target; char fog[0x27]; WeaponScore scores[8]; };
-struct UnitSlot { unsigned char id,kind,health,charge; unsigned ammo; };
+
 #pragma pack(pop)
 struct WeaponPopup { void Invalidate(); void SetMode(int,int=0,int=0); }; extern WeaponPopup simActions;
 struct ReportScreen { void SetOther(ActorRecord *,int,int); }; extern ReportScreen simPilot;
@@ -151,22 +151,22 @@ void WeaponPrepare(Context *,TargetRecord *,int);
 int WeaponStatus(Context *,int);
 Weapon *UnitFogObject(ActorUnit *,int,void *);
 int SimSpendOnActor(SimGame *,ActorRecord *,int);
-int PointAngle(ExploPoint *,ExploPoint *);
+int PointAngle(GridPoint *,GridPoint *);
 int GridClamp(int);
 void ActorSetHeading(ActorRecord *,int);
 void AnimActionUpdateTrajectory(int *,int *);
-void AnimActionInterpolateDrawPos(void *,ExploPoint *,int,void *,void *);
+void AnimActionInterpolateDrawPos(void *,GridPoint *,int,void *,void *);
 void SimDrawFrame(SimGame *);
 void WorldDrawTerrain(SimGame *);
 void LogicCopyActorValues(void *,int,int);
-void FxFire(SimGame *,ExploPoint,ExploPoint,Weapon *,int,TargetRecord *,ExploPoint *,int);
+void FxFire(SimGame *,GridPoint,GridPoint,Weapon *,int,TargetRecord *,GridPoint *,int);
 void ApplyDamage(int,int,int,Weapon *);
 void ReportSelect(ReportScreen *,ActorRecord *);
 extern "C" unsigned next_link_seed(unsigned *);
 int RandomRange(unsigned *,int,int);
-extern "C" ExploPoint *PointFromAngle(ExploPoint *,int,int);
+extern "C" GridPoint *PointFromAngle(GridPoint *,int,int);
 int VectorLength(int,int);
-long GridPointToIndex(const char *,ExploPoint *);
+long GridPointToIndex(const char *,GridPoint *);
 inline int FireClamp(int n,int lo,int hi) { return n<=lo?lo:n>=hi?hi:n; }
 
 struct SimGame;
@@ -185,14 +185,14 @@ int SimFire(SimGame *game, ActorRecord *actor, long destination, long slot, long
 {
     TargetRecord target;
     Weapon weaponBuffer;
-    ExploPoint fireAt, missWorld, screen, missTo;
+    GridPoint fireAt, missWorld, screen, missTo;
     ActorRecord *other;
     int targetCell,angle,scatter;
     unsigned seed;
     int hit;
     Weapon *weapon;
     if (!destination) return 0;
-    if (!actor || !actor->alive) return 0;
+    if (!actor || !actor->active) return 0;
     TargetInitializeRecord(game,&target,actor->id,destination);
     other=ActorGetByIndex(target.target.actorId);
     seed=MissionRandomTable;
@@ -204,7 +204,7 @@ int SimFire(SimGame *game, ActorRecord *actor, long destination, long slot, long
         return 0;
     }
     angle=GridClamp(PointAngle(&target.source.position,&target.target.position));
-    if (!actor->action.IsMoving() && angle*0x2aaaaabc!=actor->action.heading) {
+    if (!actor->action.IsMoving() && angle*0x2aaaaabc!=actor->action.direction) {
         ActorSetHeading(actor,angle);
         game->flags|=4;
     }
@@ -212,9 +212,9 @@ int SimFire(SimGame *game, ActorRecord *actor, long destination, long slot, long
     if (actor->owner!=game->localPlayer && !SimSpendOnActor(game,actor,weapon->energy) && forced<0) return 0;
     if (other) *(ActorUnit *)game->oldUnit=*other->unit;
     if (actor->owner==game->player) { simActions.Invalidate(); simActions.SetMode(0); }
-    UnitSlot *unitSlot=&((UnitSlot *)((char *)actor->unit+0x11))[slot+11];
-    unitSlot->charge += unitSlot->charge!=250;
-    unitSlot->ammo -= unitSlot->ammo!=0;
+    UnitSlot *unitSlot=&actor->unit->slots[slot+11];
+    unitSlot->uses += unitSlot->uses!=250;
+    unitSlot->amount -= unitSlot->amount!=0;
     unsigned chance=game->Weapons()->scores[slot].chance;
     if (forced>=0) chance=forced;
     hit=next_link_seed(&simItemSeed)%100<chance;
@@ -222,13 +222,13 @@ int SimFire(SimGame *game, ActorRecord *actor, long destination, long slot, long
     AnimAction action=actor->action;
     AnimActionUpdateTrajectory((int *)&action,(int *)gView);
     AnimActionInterpolateDrawPos(&action,&fireAt,slot,PopFindItem(actor->unit,0,-1),gView);
-    targetCell=action.target;
+    targetCell=action.resource;
     SimDrawFrame(game);
     WorldDrawTerrain(game);
     if (other) LogicCopyActorValues(&g4dd0c0,(int)actor,(int)other);
     if (hit) {
-        SendEvent(actor->logic,0x6e,(void *)(int)weapon->skill,gPilotSkill*40/100);
-        SendEvent(actor->logic,0x6f,(void *)40);
+        SendEvent(actor->pilot,0x6e,(void *)(int)weapon->skill,gPilotSkill*40/100);
+        SendEvent(actor->pilot,0x6f,(void *)40);
         screen.x=0; screen.y=0;
         if (other) {
             screen=other->action.screen;
@@ -241,8 +241,8 @@ int SimFire(SimGame *game, ActorRecord *actor, long destination, long slot, long
         if (actor->owner==game->player) simActions.SetMode(2,gApplyTotalLoss,gApplyTotalDamage);
         if (other && other->owner==game->player) simPilot.SetOther(actor,gApplyTotalLoss,gApplyTotalDamage);
     } else {
-        SendEvent(actor->logic,0x6e,(void *)(int)weapon->skill,gPilotSkill*20/100);
-        SendEvent(actor->logic,0x6f,(void *)15);
+        SendEvent(actor->pilot,0x6e,(void *)(int)weapon->skill,gPilotSkill*20/100);
+        SendEvent(actor->pilot,0x6f,(void *)15);
         if (actor->owner==game->player) simActions.SetMode(1);
         if (other && other->owner==game->player) simPilot.SetOther(actor,-1,-1);
         int distance=VectorLength(target.target.position.x-target.source.position.x,target.target.position.y-target.source.position.y);

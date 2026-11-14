@@ -3,11 +3,11 @@
 typedef unsigned char U8;
 typedef unsigned short U16;
 #pragma pack(push,1)
-struct HercSlot { U8 type,value,condition,active; int amount; };
-struct ActorUnit {
-    char name[17]; HercSlot slots[23]; U8 flagC9,flagCA;
-    int armor[6]; int fieldE3,mass; U8 damage[32];
-};
+#include "actor.h"
+
+
+
+
 struct ItemHeader {
     U8 type,id; int field02; U8 nominal,minimum,field08,level,repair;
     int cost,field0f,amount,mass;
@@ -123,7 +123,7 @@ ChoiceNode *HercListItems(ActorUnit *u,int slot,SessionLevel *session,int *count
  list=0;*count=0;
  chassis=*(Chassis *)PopFindItem(u,0,-1);
  if(!chassis.mounts[slot].allowed)return 0;
- int current=u->slots[slot].value;
+ int current=u->slots[slot].item;
  if(current)HercAddChoiceNode(u,&list,slot,current,count);
  if((slot>=11 && slot<=18) || (slot>=19 && slot<=22))HercAddChoiceNode(u,&list,slot,0,count);
  mask=chassis.mounts[slot].mask;
@@ -148,13 +148,13 @@ ChoiceNode *HercListItems(ActorUnit *u,int slot,SessionLevel *session,int *count
 }
 /* 00439cad */
 int HercInstallItem(ActorUnit *u,int slot,ActorItem *p){
- HercSlot *s=&u->slots[slot];s->type=p->type;s->value=p->id;s->condition=100;s->active=0;s->amount=p->amount;
- SimAddMission(u);return HercItemTables[slot].stringBase+s->value;
+ UnitSlot *s=&u->slots[slot];s->type=p->type;s->item=p->id;s->condition=100;s->uses=0;s->amount=p->amount;
+ SimAddMission(u);return HercItemTables[slot].stringBase+s->item;
 }
 /* 00439d02 */
-extern "C" int f_00439d02(ActorUnit *u){return u->slots[0].value;}
+extern "C" int f_00439d02(ActorUnit *u){return u->slots[0].item;}
 /* 00439d0c */
-char *HercChassisName(ActorUnit *u){int id=HercItemTables[0].stringBase+u->slots[0].value;return gHercStrings.GetSecondString(id,1);}
+char *HercChassisName(ActorUnit *u){int id=HercItemTables[0].stringBase+u->slots[0].item;return gHercStrings.GetSecondString(id,1);}
 /* 00439d2c */
 extern "C" char *f_00439d2c(ActorUnit *u){return u->name;}
 /* 00439d31 */
@@ -169,12 +169,12 @@ extern "C" int f_00439d48(ActorUnit *u){
 }
 /* 00439daf */
 extern "C" int f_00439daf(ActorUnit *u){
- unsigned maximum=0;for(int i=0;i<23;i++){ActorItem *p=(ActorItem *)(HercItemTables[i].items+HercItemTables[i].size*u->slots[i].value);if(p->level>maximum)maximum=p->level;}return maximum;
+ unsigned maximum=0;for(int i=0;i<23;i++){ActorItem *p=(ActorItem *)(HercItemTables[i].items+HercItemTables[i].size*u->slots[i].item);if(p->level>maximum)maximum=p->level;}return maximum;
 }
 /* 00439df6 */
 extern "C" void LoadActorData(ActorUnit *u,Loadout *loadout,char *name){
  memset(u,0,sizeof(*u));for(int i=0;i<23;i++){
- HercSlot *s=&u->slots[i];s->type=i;s->value=loadout->values[i];s->condition=100;s->active=0;s->amount=PopFindItem(u,i,-1)->amount;
+ UnitSlot *s=&u->slots[i];s->type=i;s->item=loadout->values[i];s->condition=100;s->uses=0;s->amount=PopFindItem(u,i,-1)->amount;
  }SimAddMission(u);
  if(!name){char *text=gHercStrings.GetSecondString(loadout->name,1);strncpy(u->name,text,16);}
  else strncpy(u->name,name,16);
@@ -198,7 +198,7 @@ int HercFillItems(ActorUnit *u,int slot,SessionLevel *session,Choice *list,int c
  chassis=*(Chassis *)PopFindItem(u,0,-1);
  if(!chassis.mounts[slot].allowed)return 0;
  count=0;
- int current=u->slots[slot].value;
+ int current=u->slots[slot].item;
  if(current)HercAddChoice(u,list,slot,current,&count,capacity);
  if((slot>=11 && slot<=18) || (slot>=19 && slot<=22))HercAddChoice(u,list,slot,0,&count,capacity);
  mask=chassis.mounts[slot].mask;

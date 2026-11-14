@@ -1,48 +1,48 @@
 /* Drawing object 00454990..004556f0; split from the preceding timer/player object.
  * Unknown structure ranges are temporary padding. Labels are descriptive guesses. */
 #pragma pack(push,1)
-struct GridPoint { int x,y; GridPoint() {} };
-struct GuiRect { long x,y,width,height; GuiRect() {}
-    int Moved(const GuiRect &r) { return x != r.x || y != r.y; }
-};
-struct AnimAction {
-    int id;
-    unsigned char kind,state,variant,rate,frame,frames,flags;
-    signed char dirty;
-    unsigned short type;
-    unsigned long deadline;
-    GridPoint position;
-    char unknown1a[8];
-    int target;
-    int heading;
-    char unknown2a[0x3b-0x2a];
-    GuiRect rect;
-    char unknown4b[0x68-0x4b];
-    void SetHeading(int n) { heading = n * 0x2aaaaabc; }
-    int IsMoving() {
-        return state != 1 && state != 7 && state != 14 && state != 17 && state != 18;
-    }
-};
-struct UnitState { unsigned char unknown00[0x12]; unsigned char type; unsigned char unknown13[0x10b-0x13]; };
-struct ActorRecord {
-    int id;
-    unsigned char kind,subtype,variant,unknown07;
-    int owner,targetId,unknown10,targetName;
-    UnitState *unit;
-    void *world;
-    AnimAction action;
-    signed char active,hidden;
-    char unknown8a[3];
-    signed char stance;
-    unsigned char color;
-    char unknown8f[4];
-    int related;
-    unsigned char blink;
-    int Active() { return active; }
-    int Hidden() { return hidden; }
-    int Stance() { return stance; }
-    int Color() { return color; }
-};
+#include "actor.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 struct SimGame {
     char unknown00[0x2c]; unsigned short flags; char unknown2e[10];
@@ -113,12 +113,12 @@ void ExploDraw(ExploRecord *);
 void ExploAnimateAll();
 int Interpolate(int,int,int,int,int);
 void DisplayProcess(int *,void * = 0,int = 0,int = 0);
-int f_00438678(UnitState *);
+int f_00438678(ActorUnit *);
 void PopDrawSurface(void *,int,int,int,int,int,int);
 void LogicDrawConsole(void *);
 void f_004517c0(SimGame *);
 inline void DrawColor(unsigned char *p) { f_00459640(p); }
-inline unsigned char ActionHidden(AnimAction *a) { return !(a->state == 17 ? simVisibleTypes : simActorVisibility)[a->target]; }
+inline unsigned char ActionHidden(AnimAction *a) { return !(a->state == 17 ? simVisibleTypes : simActorVisibility)[a->resource]; }
 inline int WorldHidden(int target) { return !simVisibleTypes[target]; }
 inline unsigned char Hidden(int target,int type) { return !(type == 17 ? simVisibleTypes : simActorVisibility)[target]; }
 
@@ -126,8 +126,8 @@ inline void DrawActionBody(AnimAction *action)
 {
     f_00459640((unsigned char *)action);
     if (drawOverlayFlags & 0x80) {
-        int target = action->target;
-        if (action->state != 4 || action->variant != 0) {
+        int target = action->resource;
+        if (action->state != 4 || action->angle != 0) {
             unsigned char image = targetDefinitionTable[target].marker;
             if (image) {
                 GridPoint world,screen;
@@ -192,7 +192,7 @@ void SimBuildDrawQueue(SimGame *game)
             int hidden = 0;
             if (actor->owner != game->viewer) hidden = ActionHidden(action);
             if (!hidden) {
-                int dirty = action->dirty;
+                int dirty = action->ready;
                 if (all != (signed char)0 || dirty) {
                     GuiRect *rect = &action->rect;
                     f_0047add0(&simDetailClip,rect);
@@ -202,13 +202,13 @@ void SimBuildDrawQueue(SimGame *game)
                         ++drawQueueCount;
                     }
                 } else if (f_0047b170(&simMainClip,&action->rect)) {
-                    int period = drawAnimationTypes[action->type].period * animationRate/100;
-                    if ((!period || (drawFrame + (unsigned char)*((char *)action+0x37))%period == 0) && gGameTurn)
+                    int period = drawAnimationTypes[action->kind].period * animationRate/100;
+                    if ((!period || (drawFrame + action->random)%period == 0) && gGameTurn)
                         f_0047add0(&simMainClip,&action->rect);
                     *out++ = (DrawEntry *)action;
                     ++drawQueueCount;
                 }
-            } else if (all || action->dirty) AnimActionUpdateTrajectory((int *)action,(int *)gView);
+            } else if (all || action->ready) AnimActionUpdateTrajectory((int *)action,(int *)gView);
         }
     }
     for (i=0; i<worldActionCount; ++i) {

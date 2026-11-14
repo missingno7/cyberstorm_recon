@@ -2,26 +2,26 @@
 // Gaps are temporary unnamed layout fields, not reconstructed payloads.
 #pragma pack(push,1)
 typedef unsigned long U32;
-struct GridPoint { long x,y;
- int operator!=(const GridPoint &p) const { return x!=p.x || y!=p.y; }
-};
+#include "actor.h"
+
+
 struct ViewState { GridPoint point; long zoom,scale,direction; U32 flags,requested; long spare; };
-struct UnitState { unsigned char bytes[0x10b]; };
+
 struct SimStat {long value,maximum,spare;};
 struct SimAnim {unsigned char bytes[6]; unsigned char mode,frame;};
-struct ActorTraits {unsigned char prefix[5],type; int Mobile() const {return type!=1 && type!=7 && type!=14 && type!=17 && type!=18;}};
-struct ActorRecord {
- int id; int unknown04; int owner; int typeId; int unknown10,target;
- UnitState *unit; void *pilot; ActorTraits traits;
- unsigned char variant; unsigned char unknown27[5]; unsigned short model;
- unsigned char unknown2e[4]; GridPoint position; unsigned char unknown3a[0x87-0x3a]; unsigned char done,active,disabled;
- unsigned char unknown8a[3]; unsigned char spent;
- int Ready() const {return active && !disabled;}
-};
+
+
+
+
+
+
+
+
+
 struct PlayerSlot { int status,id,points,actor; unsigned char rest[0xbc-16]; };
 struct SimGame {
  unsigned char unknown00[0x2c]; int screen; unsigned char unknown30[8]; ActorRecord *focus;
- void *unknown3c; UnitState *focusUnit; SimStat stats[3]; SimAnim portrait,face,statusAnim; unsigned char unknown80[0x2ba-0x80];
+ void *unknown3c; ActorUnit *focusUnit; SimStat stats[3]; SimAnim portrait,face,statusAnim; unsigned char unknown80[0x2ba-0x80];
  int phase; int turn; int multi; unsigned char unknown2c6[4]; int tick,deadline;
  unsigned char unknown2d2[4]; int palette,playerCount; PlayerSlot slots[9];
  PlayerSlot *slot; int mode,slotStatus,player,localPlayer,unknown98e,linked,remote,automated,nextPlayer,forcedPlayer;
@@ -34,7 +34,7 @@ extern "C" void *memset(void *,int,unsigned);
 extern "C" int sprintf(char *,const char *,...);
 extern ActorRecord *ActorFindByOwner(int),*ActorFindOwnerNext(ActorRecord *,int),*ActorFindFree(),*ActorFindNext(ActorRecord *),*ActorListTransfer(int);
 extern int SimHotbriefCheckActor(ActorRecord *);
-extern int UpdatePayload(UnitState *,int);
+extern int UpdatePayload(ActorUnit *,int);
 extern void SimSetFocus(SimGame *,ActorRecord *);
 extern void SimHotBriefGameOver(void *),SimHotWriteFogBuffers(int),SimHotReadFogBuffers(int),SimHotInitializeFog();
 extern char g513888;
@@ -50,11 +50,11 @@ extern void SimMessage(SimGame *,const char *);
 extern PlayerSlot *GetModePlayer(SimGame *,int);
 extern int logicMode;
 extern "C" void BriefWaitA(int);
-inline int ActorIsMobile(ActorRecord *a) {return a->traits.type!=1 && a->traits.type!=7 && a->traits.type!=14 && a->traits.type!=17 && a->traits.type!=18;}
+inline int ActorIsMobile(ActorRecord *a) {return a->action.state!=1 && a->action.state!=7 && a->action.state!=14 && a->action.state!=17 && a->action.state!=18;}
 
 int SimOnlyStationary(SimGame *s) {
  int result=1;
- for(ActorRecord *a=ActorFindByOwner(s->mode);a;a=ActorFindOwnerNext(a,s->mode)) if(a->traits.Mobile()) result=0;
+ for(ActorRecord *a=ActorFindByOwner(s->mode);a;a=ActorFindOwnerNext(a,s->mode)) if(a->action.IsMoving()) result=0;
  return result;
 }
 int SimPlayerHasUnits(SimGame *s,int n) {
@@ -67,7 +67,7 @@ int SimPlayerHasUnits(SimGame *s,int n) {
  return result;
 }
 void SimUpdateOwnerPayloads(SimGame *s) {
- for(ActorRecord *a=ActorFindByOwner(s->mode);a;a=ActorFindOwnerNext(a,s->mode)) UpdatePayload(a->unit,a->variant);
+ for(ActorRecord *a=ActorFindByOwner(s->mode);a;a=ActorFindOwnerNext(a,s->mode)) UpdatePayload(a->unit,a->action.angle);
 }
 void SimChooseNextPlayer(SimGame *s) {
  int next;
@@ -114,8 +114,8 @@ void SimRestoreOwnerFocus(SimGame *s) {
 }
 void SimDisableInactiveActors() {
  for(ActorRecord *a=ActorFindFree();a;a=ActorFindNext(a)) {
-  if(a->traits.type==17) a->disabled=1;
-  if(a->model>=9 && a->model<=17 && !a->active) a->disabled=1;
+  if(a->action.state==17) a->hidden=1;
+  if(a->action.kind>=9 && a->action.kind<=17 && !a->active) a->hidden=1;
  }
 }
 void SimRefreshPanel(SimGame *s,int force) {
@@ -142,7 +142,7 @@ inline long PointDistance(const GridPoint *a,const GridPoint *b){long dx=a->x-b-
 void SimApplyLeadership(SimGame *s,ActorRecord *target) {
  char text[128]; int total=0;
  for(ActorRecord *a=ActorFindByOwner(s->mode);a;a=ActorFindOwnerNext(a,s->mode)){
-  int distance=(int)(PointDistance(&a->position,&target->position)+100)/1000;
+  int distance=(int)(PointDistance(&a->action.position,&target->action.position)+100)/1000;
   int value=PilotValue(a->pilot,7);if(distance>2)value-=(distance-2)*10;if(value>0)total+=value/2;}
  unsigned before=PilotValue(target->pilot,204);
  SendEvent(target->pilot,108,(void *)total,0,0); unsigned after=PilotValue(target->pilot,204);

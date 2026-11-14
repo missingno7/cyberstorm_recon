@@ -2,9 +2,9 @@
 #include <string.h>
 typedef unsigned long U32;
 typedef unsigned char byte;
-struct GuiRect  {
-    long x,y,width,height;
-};
+#include "actor.h"
+
+
 struct GuiPoint  {
     long x,y;
 };
@@ -146,31 +146,31 @@ struct MenuImages  {
     U32 count;
     MenuImage image[1];
 };
-struct ActorUnit  {
-    byte data[0x10b];
-};
+
+
+
 struct ActorLogic  {
     byte unknown00[0x12];
     int count;
     int HasPilots() {
         return count>0;
     }
-};
-struct ActorRecord  {
-    byte unknown00[8];
-    int owner;
-    byte unknown0c[8];
-    int mission;
-    ActorUnit *unit;
-    ActorLogic *logic;
-    byte unknown20[5];
-    byte kind,mood;
-    byte unknown27[0x62];
-    byte dead;
-    ActorLogic *Logic() {
-        return logic;
-    }
-};
+}; struct ActorPilot : ActorLogic {};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 struct ProfileManager  {
     ActorUnit *Mission(int);
 };
@@ -286,8 +286,8 @@ void ReportOpen(ReportScreen *s,InputReq *input) {
 void ReportMission(ReportScreen *s,int mission) {
     if(s->IsActive()&&s->selected) {
         ActorRecord *a=s->selected;
-        if(a->owner==gLocalActorKind&&a->mission!=mission) {
-            a->mission=mission;
+        if(a->owner==gLocalActorKind&&a->target!=mission) {
+            a->target=mission;
             LogicCallMode(6,0);
             GridClearSelection(&fallbackName);
             ReportSelectMission(&fallbackName,mission,7);
@@ -333,7 +333,7 @@ void ReportDirty(ReportScreen *s) {
 void ReportSelect(ReportScreen *s,ActorRecord *a) {
     if(s->IsActive()) {
         if(a) {
-            int valid=!a->dead&&a->kind!=17;
+            int valid=!a->hidden&&a->action.state!=17;
             if(!valid)a=0;
         }
         if(a!=s->selected) {
@@ -347,7 +347,7 @@ void ReportSelect(ReportScreen *s,ActorRecord *a) {
             reportPilot.Visibility(5);
             if(s->selected) {
                 s->unit=s->selected->unit;
-                s->logic=s->selected->Logic();
+                s->logic=s->selected->Pilot();
                 reportUnit.Visibility(0);
                 reportPilot.Visibility(0);
                 reportUnit.text=(const char *)s->unit;
@@ -385,7 +385,7 @@ void ReportDrawUnit(ReportScreen *s) {
         MenuImage *frame=SimAnimFrame(&s->unitImage,-1);
         gDrawRemap=HercConditionDiagram(s->unit,&s->copy);
         DrawSprite(&g513888,frame,ix+3,iy+3,0,76,76);
-        gDrawRemap=ReportMoodRemap(s->unit,s->selected->mood,&s->copy);
+        gDrawRemap=ReportMoodRemap(s->unit,s->selected->action.angle,&s->copy);
         MenuDrawImage(&g513888,&drawCursorImages->image[90],ix,iy);
         gDrawRemap=0;
         s->copy=*s->unit;

@@ -4,16 +4,16 @@ char animSourcePath[] = "sim\\anim.c";
 extern void AssertFail(const char *file, int line, const char *message);
 struct AnimBlockAllocation { unsigned char bytes[0x494]; };
 extern "C" unsigned int TimerNow(void);
-struct AnimPair { long first; long second; AnimPair() {} AnimPair(long x,long y) : first(x),second(y) {} void Copy(const AnimPair &p) { *this = p; } int Equal(const AnimPair &p) const { return first == p.first && second == p.second; }
-    int operator!=(const AnimPair &p) const { return first != p.first || second != p.second; } };
+#include "actor.h"
+
 #pragma pack(push, 1)
 /* Path block (0x494 bytes, AnimActionCreateBlock) and the network-visible state record (AnimActionCopyState). */
-struct AnimActor; struct AnimBlock { long path[128]; long cost[128]; unsigned char marks[0x80]; long budget, count, index, unknown48c; AnimActor *actor; }; struct ExploPoint { int x; int y; }; struct AnimState { unsigned char header[5]; AnimPair position; AnimPair target; long resource; long direction; };
+struct AnimState { unsigned char header[5]; GridPoint position; GridPoint target; long resource; long direction; };
 /* Working layout of the 0x67-byte animation action (member of ActorRecord at +0x20). */
-struct AnimAction { long depth; unsigned char type, state, angle, rate, frame, count, flags, ready; unsigned short kind; unsigned long time;
-    AnimPair position; AnimPair target; long resource; long direction; union { struct { long x, y; }; ExploPoint point; }; AnimBlock *block; unsigned char b36, b37; signed char b38, b39; unsigned char b3a;
-    long drawX, drawY, drawWidth, drawHeight; int *bitmap; AnimPair from; AnimPair to; long step, steps; AnimAction(); void SetState(int s) { state = s; } };
-struct AnimPilot { char pad[0x12]; int health; int Alive(){return health>0;} }; struct AnimActor { long id,spare,owner,type,spare10,target; void *unit; AnimPilot *pilot; char action[0x67]; signed char done,active,disabled; char pad8a[3]; unsigned char spent,returnFire; char pad8f[4]; long link; int Active(){return active;} }; inline int AnimActionBusy(AnimAction *a) { return a->state != 1 && a->state != 7 && a->state != 14 && a->state != 17 && a->state != 18; }
+
+
+
+struct ActorPilot { char pad[0x12]; int health; int Alive(){return health>0;} }; inline int AnimActionBusy(AnimAction *a) { return a->state != 1 && a->state != 7 && a->state != 14 && a->state != 17 && a->state != 18; }
 #pragma pack(pop)
 extern int *actorIndexTable; static inline unsigned long *AnimResourceSlot(int index) { return (unsigned long *)((char *)actorIndexTable+index*8); }
 extern unsigned long animReleaseSentinel;
@@ -38,9 +38,9 @@ extern unsigned char *targetDefinitionTable;
 extern long GridClamp(unsigned long);
 extern int ViewScale(void *actor, int value);
 
-extern long GridPointToIndex(const char *name, ExploPoint *point);
-extern void ViewToScreen(void *view, ExploPoint *out, ExploPoint *in);
-extern int PointAngle(ExploPoint *from, ExploPoint *to);
+extern long GridPointToIndex(const char *name, GridPoint *point);
+extern void ViewToScreen(void *view, GridPoint *out, GridPoint *in);
+extern int PointAngle(GridPoint *from, GridPoint *to);
 extern unsigned int ISqrt(unsigned int square);
 extern int StateInvoke(int state, void *first, void *second);
 extern int *ActorGetByUnit(int unit);
@@ -198,8 +198,8 @@ int AnimActionStep(AnimAction *a) {
 
 AnimAction::AnimAction() {
     AnimActionClear(this);
-    position.Copy(AnimPair(0,0));
-    frame = 0; count = 0; ready = 1; b36 = 0; time = 0; direction = 0;
+    position.Copy(GridPoint(0,0));
+    frame = 0; count = 0; ready = 1; special = 0; time = 0; direction = 0;
     AnimActionInitialize(this, 1, 0, 50, 0); time = 0; block = 0;
     SetState(1);
 }
@@ -269,7 +269,7 @@ void AnimActionReplace(AnimAction *a, unsigned long value) {
         BestLocSetCandidate(list, (void *)index);
         BestLocVisit(list, (int (*)(void *))AnimActionRelease);
     } else actorIndexTable[index * 2] = 0;
-    a->resource = GridPointToIndex(fallbackName, (ExploPoint *)&a->position);
+    a->resource = GridPointToIndex(fallbackName, (GridPoint *)&a->position);
     BestLocSetData((void *)fallbackName, &a->target, (void *)a->resource);
     AnimActionAssign(a, value, a->resource, count);
 }
@@ -293,29 +293,29 @@ void AnimActionReplace(AnimAction *a, unsigned long value) {
 
 void AnimActionUpdateTrajectory(AnimAction *a, int *actor) {
     int state = a->state; int distance = 0; if (state == 10) {
-        distance = DisplayPointToScreenScaled(actor, &a->point, &a->position);
+        distance = DisplayPointToScreenScaled(actor, &a->screen, &a->position);
         int sine = FixedSin(a->step * 180 / a->steps * 0xb60b61);
-        int first = targetDefinitionTable[GridPointToIndex(fallbackName, (ExploPoint *)&a->from) * 12 + 1] * distance;
-        int second = targetDefinitionTable[GridPointToIndex(fallbackName, (ExploPoint *)&a->to) * 12 + 1] * distance;
+        int first = targetDefinitionTable[GridPointToIndex(fallbackName, (GridPoint *)&a->from) * 12 + 1] * distance;
+        int second = targetDefinitionTable[GridPointToIndex(fallbackName, (GridPoint *)&a->to) * 12 + 1] * distance;
         int curve = distance * sine * 2 >> 16; distance = first + a->step * (second - first) / a->steps + curve;
     } else {
-        ViewToScreen(actor, &a->point, (ExploPoint *)&a->position);
+        ViewToScreen(actor, &a->screen, (GridPoint *)&a->position);
     }
-    a->depth = a->y;
+    a->depth = a->screen.y;
     if (a->state == 0x11) a->depth -= 20000;
-    a->y -= distance;
+    a->screen.y -= distance;
     a->angle = (unsigned char)GridClamp(actor[0x20] + a->direction);
     a->bitmap = AnimBitmapFrame(a);
     unsigned yOffset, xOffset = ((AnimBitmap *)a->bitmap)->xOffset; yOffset = ((AnimBitmap *)a->bitmap)->yOffset;
 
     int width = ViewScale(actor, animationMetaAt0cc4[a->kind * 15]) * ((AnimBitmap *)a->bitmap)->width / 64;
     int height = ViewScale(actor, animationMetaAt0cc8[a->kind * 15]) * ((AnimBitmap *)a->bitmap)->height / 64;
-    a->drawWidth = width;
-    a->drawX = a->x;
-    a->drawY = a->y;
-    a->drawHeight = height;
-    if (((AnimBitmap *)a->bitmap)->width) a->drawX -= xOffset * width / ((AnimBitmap *)a->bitmap)->width;
-    if (((AnimBitmap *)a->bitmap)->height) a->drawY -= yOffset * height / ((AnimBitmap *)a->bitmap)->height;
+    a->rect.width = width;
+    a->rect.x = a->screen.x;
+    a->rect.y = a->screen.y;
+    a->rect.height = height;
+    if (((AnimBitmap *)a->bitmap)->width) a->rect.x -= xOffset * width / ((AnimBitmap *)a->bitmap)->width;
+    if (((AnimBitmap *)a->bitmap)->height) a->rect.y -= yOffset * height / ((AnimBitmap *)a->bitmap)->height;
     a->ready = 0;
 }
 
@@ -343,8 +343,8 @@ void AnimActionUpdateTrajectory(AnimAction *a, int *actor) {
 
 void AnimActionInterpolateDrawPos(AnimAction *p, int *position, int frame,
                                   void *drawInfo, void *actor) {
-    *(ExploPoint *)position=p->point;
-    position[1]-=p->drawHeight/4;
+    *(GridPoint *)position=p->screen;
+    position[1]-=p->rect.height/4;
     unsigned char *frameData=*(unsigned char **)((char *)drawInfo+0x2d1);
     if(frameData) {
         frameData+=p->angle*18;
@@ -352,7 +352,7 @@ void AnimActionInterpolateDrawPos(AnimAction *p, int *position, int frame,
         x=frameData[frame*2+2]; y=frameData[frame*2+3];
         if(x || y) {
             x-=frameData[0]; y-=frameData[1];
-            *(ExploPoint *)position=p->point;
+            *(GridPoint *)position=p->screen;
             position[0]+=x*ViewScale(actor,animationMetaAt0cc4[p->kind*15])/64;
             position[1]+=y*ViewScale(actor,animationMetaAt0cc8[p->kind*15])/64;
         }
@@ -370,14 +370,14 @@ unsigned long AnimActionCommitTrajectory(AnimAction *p) {
 
     int listA[10];
     int listB[10];
-    int distance = PointAngle((ExploPoint *)(&p->from), (ExploPoint *)(&p->to));
+    int distance = PointAngle((GridPoint *)(&p->from), (GridPoint *)(&p->to));
     unsigned long direction = (unsigned long)GridClamp(distance) * 0x2aaaaabcUL;
     
     int tileScale = animationMetaAt0cc0[(p->kind) * 15];
     int rate = animationModeRate[g_004d2dee];
     int halfFrame = tileScale * rate >> 1;
-    int dx = p->to.first - p->from.first;
-    int dy = p->to.second - p->from.second;
+    int dx = p->to.x - p->from.x;
+    int dy = p->to.y - p->from.y;
     unsigned long travel = ISqrt(dy * dy + dx * dx);
     p->step = 1;
     p->ready = 1;
@@ -453,24 +453,24 @@ success:
         }
         if (g_004d2dee == 4 || g_004d271a == 2) {
             p->frame = 0;
-            p->position.first = p->to.first;
-            p->position.second = p->to.second;
+            p->position.x = p->to.x;
+            p->position.y = p->to.y;
             p->step = p->steps;
         } else {
             int startIndex = GridPointToIndex(fallbackName,
-                                               (ExploPoint *)(&p->from));
+                                               (GridPoint *)(&p->from));
             unsigned int startGroup = targetDefinitionTable[startIndex * 12 + 1];
             int endIndex = GridPointToIndex(fallbackName,
-                                            (ExploPoint *)(&p->to));
+                                            (GridPoint *)(&p->to));
             int groupDistance = abs((int)startGroup -
                 (int)targetDefinitionTable[endIndex * 12 + 1]);
             if (799 < groupDistance * g_004c7e50) {
                 p->state = 9;
                 p->frame = 0;
                 rate = animationModeRate[g_004d2dee];
-                dx = p->to.first - p->from.first;
+                dx = p->to.x - p->from.x;
                 halfFrame = rate * 0x32 >> 1;
-                dy = p->to.second - p->from.second;
+                dy = p->to.y - p->from.y;
                 travel = ISqrt(dx * dx + dy * dy);
                 p->steps = (travel + halfFrame) / (rate * 0x32);
             }
@@ -486,8 +486,8 @@ success:
     p->flags = flags;
     p->state = 1;
     p->flags = flags | 0x80;
-    p->position.first = p->from.first;
-    p->position.second = p->from.second;
+    p->position.x = p->from.x;
+    p->position.y = p->from.y;
     return 0;
 }
 void ActorDrawEffect(AnimAction *p) {
@@ -540,8 +540,8 @@ case 4: {
 // Original assertion source-line padding.
             if (!p->block || !p->block->actor) AssertFail(animSourcePath, __LINE__, 0);
             if (p->step < p->steps) {
-                p->position.first = p->step * (p->to.first - p->from.first) / p->steps + p->from.first;
-                p->position.second = p->from.second + p->step * (p->to.second - p->from.second) / p->steps;
+                p->position.x = p->step * (p->to.x - p->from.x) / p->steps + p->from.x;
+                p->position.y = p->from.y + p->step * (p->to.y - p->from.y) / p->steps;
                 signed char step = animationModeStep[g_004d2dee * 4]; p->step = p->step + 1; step = p->frame + step;
                 
                 p->frame = (unsigned char)step; } else {  int target = p->block->path[p->block->index]; if (target) {
@@ -550,9 +550,9 @@ case 4: {
                          if (!p->block->actor->Active()) return; if (!p->block->actor->pilot->Alive()) {
                             WorldActionNotify(p, 3);
  return;
-                        } } signed char special=p->b36; if (special) { if (special==3) {
+                        } } signed char special=p->special; if (special) { if (special==3) {
                             WorldActionNotify(p, special);
-                        } p->b36=0; } else { p->from.Copy(p->position);
+                        } p->special=0; } else { p->from.Copy(p->position);
                         TargetObjectInit(fallbackName, &p->to, p->block->path[p->block->index]); p->frame=(unsigned char)(p->frame+animationModeStep[g_004d2dee*4]);
                         AnimActionCommitTrajectory(p);
  } } else {
@@ -567,8 +567,8 @@ case 4: {
              p->frame = frame; if (3 < frame) { p->frame = 0; p->count = 0; p->SetState(10); p->time = 0;
                 unsigned char flags = p->flags & 0xf0; p->ready = 1; p->flags = flags; p->flags = flags | 0x80; } break; } case 10: {
             if (p->step < p->steps) {
-                p->position.first=p->step*(p->to.first-p->from.first)/p->steps+p->from.first;
-                p->position.second=p->step*(p->to.second-p->from.second)/p->steps+p->from.second;
+                p->position.x=p->step*(p->to.x-p->from.x)/p->steps+p->from.x;
+                p->position.y=p->step*(p->to.y-p->from.y)/p->steps+p->from.y;
                 signed char step=animationModeStep[g_004d2dee*4]; p->step=p->step+1;
                 step=p->frame+step;  p->frame=(unsigned char)step;
             } else { p->position.Copy(p->to); p->frame=0; p->count=0; p->time=0; p->ready=1; unsigned char flags=p->flags&0xf0;
@@ -722,7 +722,7 @@ case 4: {
     }
     
     if (p->block) {
-        int index = GridPointToIndex(fallbackName, (ExploPoint *)&p->position);
+        int index = GridPointToIndex(fallbackName, (GridPoint *)&p->position);
         BestLocSetData((void *)fallbackName, &p->target, (void *)index);
     }
     unsigned char frame=p->frame, count=p->count;
@@ -790,7 +790,7 @@ int AnimActionPrepareBlock(AnimAction *a, int actor, int sourceId) {
     a->block->cost[0] = 0;
     a->block->count = 1;
     a->block->index = 1;
-    a->block->actor = (AnimActor *)actor;
+    a->block->actor = (ActorRecord *)actor;
     int threshold = StateInvoke(((int *)actor)[6], 0, 0);
     int previous = a->resource;
     for (int i = 1; a->block->path[i]; i++) {
@@ -854,7 +854,7 @@ void AnimActionSetExternalBlock(AnimAction *a, int actor, int sourceId, unsigned
     a->block->count = 2;
     a->block->index = 1;
     a->block->budget = budget;
-    a->block->actor = (AnimActor *)actor;
+    a->block->actor = (ActorRecord *)actor;
     a->block->path[0] = a->resource;
     a->block->marks[0] = 0;
     a->block->cost[0] = 0;
@@ -945,15 +945,15 @@ void AnimActionChecksum(void *action, unsigned short *checksum) {
     Crc16(checksum, (char *)action + 0x26, 4);
 }
 void AnimActionCopyState(void *action, void *output)  {
-    ((AnimPair *)((char *)output+5))->Copy(*(AnimPair *)((char *)action+0x12));
-    ((AnimPair *)((char *)output+0xd))->Copy(*(AnimPair *)((char *)action+0x1a));
+    ((GridPoint *)((char *)output+5))->Copy(*(GridPoint *)((char *)action+0x12));
+    ((GridPoint *)((char *)output+0xd))->Copy(*(GridPoint *)((char *)action+0x1a));
     *(unsigned long *)((char *)output+0x15)=*(unsigned long *)((char *)action+0x22);
     *(unsigned long *)((char *)output+0x19)=*(unsigned long *)((char *)action+0x26);
 }
 
 int AnimActionEqual(AnimAction *a, AnimState *s) {
     int equal = 1;
-    AnimPair *pair = &s->position;
+    GridPoint *pair = &s->position;
     if (*pair != a->position) equal = 0;
     pair = &s->target;
     if (*pair != a->target) equal = 0;
@@ -962,7 +962,7 @@ int AnimActionEqual(AnimAction *a, AnimState *s) {
     return equal;
 }
 void AnimActionCopyChangedFields(AnimAction *a, AnimState *s) {
-    AnimPair *pair = &s->position;
+    GridPoint *pair = &s->position;
     if (*pair != a->position) a->position.Copy(*pair);
     pair = &s->target;
     if (*pair != a->target) a->target.Copy(*pair);

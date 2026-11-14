@@ -1,8 +1,8 @@
 // sim\weapai.c: weapon scoring and selection. Field names are provisional.
 #pragma pack(1)
 struct Point { int x,y; Point() {} Point(const Point &p) { x=p.x;y=p.y; } };
-struct UnitSlot { unsigned char at00,kind,health,charge; int ammo; }; struct ActorUnit { char pad00[0x11]; UnitSlot slot[23]; }; struct ActorAction { char pad00[5]; unsigned char mode; };
-struct ActorRecord { int id; char pad04[4]; int owner; char pad0c[0xc]; ActorUnit *unit; void *pilot; ActorAction action; char pad26[0x1c]; int type, direction; char pad4a[0x44]; unsigned char enabled; };
+#include "actor.h"
+
 struct ActorItem { char pad00[0x279]; int defense; };
 struct Weapon { char pad00[0x13]; int ammo; char pad17[8]; signed char armorClass, threshold, range, nearRange, farRange, falloffNear, falloffFar, power, limit, skill; char pad29[2]; int energy; int armorDamage, directDamage, penetrationDamage; signed char overflow, rings, at3d, ringDamage, ringCount; char pad40[6]; };
 struct WeaponScore { int state, accuracy, power, chance, rangeFactor, maximum, expected, ammoFactor; Weapon weapon; char pad66[8]; };
@@ -45,9 +45,9 @@ extern Point pathDirections[];
 extern TargetTriple *targetDefinitionTable;
 extern unsigned int MissionRandomTable;
 int weaponTerrainPenalty, weaponAreaOwner, weaponRingDamage, weaponAreaScore;
-inline int IsRestrictedMode(ActorAction *a) { return a->mode!=1 && a->mode!=7 && a->mode!=14 && a->mode!=17 && a->mode!=18; }
+inline int IsRestrictedMode(AnimAction *a) { return a->state!=1 && a->state!=7 && a->state!=14 && a->state!=17 && a->state!=18; }
 inline int IsTypeHidden(int type) { return !simVisibleTypes[type]; }
-inline int HealthPercent(ActorUnit *u) { return u->slot[0].health; }
+inline int HealthPercent(ActorUnit *u) { return u->slots[0].condition; }
 static inline int Clamp(int value,int low,int high) { if(value<=low) return low; if(value>=high) return high; return value; }
 int WeaponEnabled(Context *c,int index)
 {
@@ -133,23 +133,23 @@ int WeaponEnabled(Context *c,int index)
 
 
         AssertFail(__FILE__, __LINE__, 0);
-    return c->target.sourceActor->enabled & ((1 << index) != 0);
+    return c->target.sourceActor->returnFire & ((1 << index) != 0);
 }
 int WeaponAlwaysEnabled() { return 1; }
 int WeaponStatus(Context *c,int index)
 {
     if (!c->target.sourceActor || !c->target.targetId) return 2;
     ActorUnit *u=c->target.sourceActor->unit;
-    UnitSlot *slot=&u->slot[index+11];
-    if (!slot->kind) return 1;
-    if (!slot->health) return 3;
+    UnitSlot *slot=&u->slots[index+11];
+    if (!slot->item) return 1;
+    if (!slot->condition) return 3;
     WeaponScore *r=&c->score[index];
     Weapon temporary;
     Weapon *w=(Weapon *)UnitFogObject(u,index+11,&temporary);
     r->weapon=*w;
     if (!WeaponEfficiency[w->armorClass]) return 11;
-    if (r->weapon.ammo && !slot->ammo) return 6;
-    if ((int)slot->charge >= r->weapon.threshold) return r->weapon.ammo == 0 ? 5 : 4;
+    if (r->weapon.ammo && !slot->amount) return 6;
+    if ((int)slot->uses >= r->weapon.threshold) return r->weapon.ammo == 0 ? 5 : 4;
     if (HercEnergy(u) < r->weapon.energy && c->target.sourceActor->owner != gRemoteActorKind) return 7;
     if (!UnitCapability(c->target.sourceActor->pilot,r->weapon.skill)) return 10;
     if (c->target.distance-100 > r->weapon.range*1000) return 8;
@@ -159,7 +159,7 @@ int WeaponStatus(Context *c,int index)
 
     }
     if (!modeSwitch && gRemoteActorKind == c->target.sourceActor->owner) {
-        int kind=f_00439d02(c->target.sourceActor->unit); int visible=!IsTypeHidden(c->target.sourceActor->type);
+        int kind=f_00439d02(c->target.sourceActor->unit); int visible=!IsTypeHidden(c->target.sourceActor->action.resource);
         int range=weaponMissionRanges[gMissionKind]+weaponClassRanges[kind]+weaponRangeBase;
         if (gMission==410) range+=2;
         if (gMission==418) range+=3;
@@ -265,8 +265,8 @@ int WeaponAccuracy(Context *c,int index)
     void *pilot=source->pilot; int skill=UnitCapability(pilot,r->weapon.skill);
     int range=Interpolate(r->weapon.nearRange*1000,135,r->weapon.farRange*1000,0,c->target.distance);
     int sourceSkill=c->target.sourceSkill, targetSkill=c->target.targetSkill;
-    if (source->action.mode==7) sourceSkill-=20;
-    if (target && target->action.mode==7 && c->target.targetHeight >= c->target.sourceHeight) targetSkill+=20;
+    if (source->action.state==7) sourceSkill-=20;
+    if (target && target->action.state==7 && c->target.targetHeight >= c->target.sourceHeight) targetSkill+=20;
     int heights=(int)c->target.sourceHeight-c->target.targetHeight; int modifiers=sourceSkill-targetSkill+heights*5;
     int bonus=c->fog.accuracy+GetModePlayer(modeCheckName,source->owner)->accuracy;
     if (target) {
@@ -381,7 +381,7 @@ int WeaponExpected(Context *c,int index)
     int falloff=Interpolate(r->weapon.falloffNear,100,r->weapon.falloffFar,0,(c->target.distance+100)/1000);
     int factor=Clamp(falloff,10,100);
     r->rangeFactor=factor;
-    direction=c->target.modifier+0x80000034-c->target.targetActor->direction;
+    direction=c->target.modifier+0x80000034-c->target.targetActor->action.direction;
     int damage=factor*r->weapon.ringCount;
     int armor,body;
     UnitDamageSplit(other,direction,damage,(Weapon *)PopFindItem(unit,index+11),armor,body);
@@ -470,7 +470,7 @@ int WeaponAmmoFactor(Context *c,int index)
 
 
             AssertFail(__FILE__, __LINE__, 0);
-#define LEFT c->target.sourceActor->unit->slot[index+11].ammo
+#define LEFT c->target.sourceActor->unit->slots[index+11].amount
         int left=LEFT;
         ammo=left*100/r->weapon.ammo+r->weapon.ammo/2;
     }

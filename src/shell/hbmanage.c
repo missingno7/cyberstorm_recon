@@ -2,9 +2,9 @@
 #include <string.h>
 typedef unsigned long U32;
 typedef unsigned char byte;
-struct GuiRect  {
-    long x,y,width,height;
-};
+#include "actor.h"
+
+
 struct GuiPoint  {
     long x,y;
 };
@@ -152,25 +152,25 @@ struct MenuImages  {
     U32 count;
     MenuImage image[1];
 };
-struct ActorUnit  {
-    byte data[0x10b];
-};
+
+
+
 struct ActorLogic  {
     byte unknown00[0x12];
     int count;
-};
-struct ActorRecord  {
-    byte unknown00[8];
-    int owner;
-    byte unknown0c[8];
-    int mission;
-    ActorUnit *unit;
-    ActorLogic *logic;
-    byte unknown20[5];
-    byte kind,mood;
-    byte unknown27[0x62];
-    byte dead;
-};
+}; struct ActorPilot : ActorLogic {};
+
+
+
+
+
+
+
+
+
+
+
+
 struct ProfileManager  {
     ActorUnit *Mission(int);
 };
@@ -542,7 +542,7 @@ void StorageColors(StorageScreen *s) {
     if(s->count!=0) {
         ActorUnit *u=((ProfileManager *)gShellGame)->Mission(s->selected+1);
         for(int i=0;i<23;i++) {
-            int n=u->data[0x13+i*8];
+            int n=u->slots[i].condition;
             if(n==100)s->color[i]=16;
             else if(n>75)s->color[i]=22;
             else if(n>50)s->color[i]=28;

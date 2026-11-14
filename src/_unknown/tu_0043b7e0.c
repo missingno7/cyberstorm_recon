@@ -11,8 +11,8 @@ typedef unsigned short U16;
 #pragma pack(push,1)
 struct ActorListObject { char name[16]; U8 unknown10[0x6a]; int type; ActorListObject(); ~ActorListObject(); };
 typedef ActorListObject Pilot;
-struct HercSlot { U8 value, condition; U8 unknown02[6]; };
-struct ActorUnit { char name[18]; HercSlot slots[23]; U8 unknownca[0x41]; };
+#include "actor.h"
+
 typedef ActorUnit Herc;
 struct Assignment { U8 pilot, active; };
 struct RankEntry { unsigned cost; int index; };

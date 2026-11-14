@@ -416,13 +416,13 @@ DWORD __stdcall MenuNetwork::ThreadProc(void*) {
 void MenuNetwork::Reset() {
     ResetCore();
 }
-struct ActorRecord {
-    int unknown,state;
-}
-;
+#include "actor.h"
+
+
+
 extern ActorRecord *ActorGetByIndex(int);
 int GetActorState(int actor) {
-    return ActorGetByIndex(actor)->state;
+    return ActorGetByIndex(actor)->previous;
 }
 void MenuNetwork::SetMapping(int value,int index) {
     mapping[index]=value;

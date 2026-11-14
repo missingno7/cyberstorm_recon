@@ -115,14 +115,14 @@ ExploRecord *ExploStart(int kind, ExploTarget *target)
 // Declarations used by the drawing and positioning code at the end of the file.
 #pragma pack(1)
 struct ExploBox { int x, y, w, h; };
-struct ExploSprite { int depth; char pad04[0x26]; int at2a; char pad2e[0x0d]; ExploBox box; };   // actor + 0x20: + 0x2a, + 0x3b
-struct ExploActorRecord { char pad00[0x18]; void *unit; char pad1c[4]; ExploSprite sprite; };     // ActorRecord (0x98)
+#include "actor.h"
+
 struct ExploAnim { unsigned char count; char pad01[3]; ExploFrame frames[1]; };                   // frames are 12 bytes
 #pragma pack()
 extern ExploAnim *AnimFrames(int anim);                        // 00459e60
-extern ExploActorRecord *ActorGetByIndex(int);
-extern char *UnitPart(void *unit, int part = 0, int index = -1);        // 00438374
-extern void ActorAttachPoint(ExploSprite *s, ExploPoint *out, int layer, char *part, void *view);   // 004579e0
+extern ActorRecord *ActorGetByIndex(int);
+extern char *UnitPart(ActorUnit *unit, int part = 0, int index = -1);        // 00438374
+extern void ActorAttachPoint(AnimAction *s, ExploPoint *out, int layer, char *part, void *view);   // 004579e0
 extern void ExploIdle();                                       // 0047682c
 extern void FxBounds(ExploRecord *e);                          // 0045e310 (simxout.c)
 extern void FxDrawCurrent();                                   // 0045e190
@@ -543,7 +543,7 @@ int ExploPosition(ExploRecord *e)
         return 0;
     {
         ExploPoint at;
-        ExploActorRecord *actor;
+        ActorRecord *actor;
         switch (e->type) {
         case 0:
             ExploIdle();
@@ -560,27 +560,27 @@ int ExploPosition(ExploRecord *e)
             if (actor == 0)
                 break;
             static ExploPoint spot;
-            ExploSprite *sprite = &actor->sprite;
-            e->value = sprite->box.h;
-            e->value = -sprite->box.h;
-            spot.x = sprite->at2a;
-            spot.y = sprite->box.h / 2 + sprite->box.y;
-            e->depth = actor->sprite.depth + 10;
+            AnimAction *sprite = &actor->action;
+            e->value = sprite->rect.height;
+            e->value = -sprite->rect.height;
+            spot.x = sprite->screen.x;
+            spot.y = sprite->rect.height / 2 + sprite->rect.y;
+            e->depth = actor->action.depth + 10;
             ExploSetupFrame(e, &spot);
             break;
         }
         case -7:
         case -8: {
             actor = ActorGetByIndex(-e->target);
-            ExploBox *box = &actor->sprite.box;
-            at.x = box->w * e->pos.x / 100 + box->x;
-            at.y = box->h * e->pos.y / 100 + box->y;
+            GuiRect *box = &actor->action.rect;
+            at.x = box->width * e->pos.x / 100 + box->x;
+            at.y = box->height * e->pos.y / 100 + box->y;
             int value = e->value;
-            e->value = box->h * value / 100;
+            e->value = box->height * value / 100;
             e->value = -e->value;
             ExploSetupFrame(e, &at);
             e->value = value;
-            e->depth = actor->sprite.depth + 1;
+            e->depth = actor->action.depth + 1;
             break;
         }
         case -9:
@@ -595,8 +595,8 @@ int ExploPosition(ExploRecord *e)
             break;
         case -10:
             actor = ActorGetByIndex(-e->target);
-            ActorAttachPoint(&actor->sprite, &at, e->layer, UnitPart(actor->unit), gView);
-            e->depth = actor->sprite.depth + 20000;
+            ActorAttachPoint(&actor->action, &at, e->layer, UnitPart(actor->unit), gView);
+            e->depth = actor->action.depth + 20000;
             ExploSetupFrame(e, &at);
             break;
         }

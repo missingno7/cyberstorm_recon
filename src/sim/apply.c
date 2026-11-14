@@ -15,8 +15,8 @@ struct Weapon {
     ApplyRing ring[4];                                       // + 0x3e
 };
 struct WeaponInfo { char pad00[0x33]; int at33; char pad37[0x0f]; };   // 0x46-byte records at 0049cb38
-struct UnitSlot { char at00; unsigned char kind; unsigned char health; char at03; int at04; };
-struct Unit { char pad00[0x11]; UnitSlot slot[23]; };    // slot[0].kind = unit class, slot[0].health = crew
+#include "actor.h"
+
 struct PartRecord { char pad00[9]; int factor; char pad0d[0x0d]; };   // part + 0x1b + slot * 0x1a
 struct PartDef { char pad00[2]; int scale; char pad06; unsigned char minimum; char pad08[0x13]; PartRecord record[1]; };
 struct ArmorDef {
@@ -26,14 +26,14 @@ struct ArmorDef {
     int bandFactor[6];                                       // + 0x23
     int at3b, at3f, at43, at47;                              // + 0x3b .. + 0x47
 };
-struct ActorRecord {
-    char pad00[8]; int owner; char pad0c[0x0c];
-    Unit *unit;                                              // + 0x18
-    void *at1c;                                              // + 0x1c
-    char at20[0x26];                                         // + 0x20 (world action block)
-    int at46;                                                // + 0x46
-    char pad4a[0x4d]; char at97;                             // + 0x97
-};
+
+
+
+
+
+
+
+
 struct ApplyPoint { int x, y; ApplyPoint() {} }; struct ApplyPair { int a, b; }; struct BestLocBuffer { char bytes[0x28]; };
 struct BestLocCandidate { int at00; ApplyPoint pos; int actor; }; 
 #pragma pack()
@@ -43,11 +43,11 @@ extern long GridClamp(unsigned long);
 extern void ReleaseState(void *);
 extern "C" int WorldActionNotify(void *, int);
 extern int SoundPlay(unsigned int, const void *);
-extern int UnitDamage(Unit *unit, int range, int damage, Weapon *weapon);      // 0045b8c0
-extern int UnitHealth(Unit *unit, int range);                                  // 0045b9e0
-extern char *UnitPart(Unit *unit, int part, int index);                        // 00438374
-extern int UnitClass(Unit *unit);                                              // 00439d02
-extern int UnitSlotAt(Unit *unit, int range);                                  // 0043ae77
+extern int UnitDamage(ActorUnit *unit, int range, int damage, Weapon *weapon);      // 0045b8c0
+extern int UnitHealth(ActorUnit *unit, int range);                                  // 0045b9e0
+extern char *UnitPart(ActorUnit *unit, int part, int index);                        // 00438374
+extern int UnitClass(ActorUnit *unit);                                              // 00439d02
+extern int UnitSlotAt(ActorUnit *unit, int range);                                  // 0043ae77
 extern int Interpolate(int x0, int y0, int x1, int y1, int x);                 // 00453c70
 extern void ModeReport(char *name, ActorRecord *actor, int value);             // 00453cb0
 extern int ActorIsDead(ActorRecord *actor);                                    // 00455d10
@@ -87,7 +87,7 @@ static const char applySourcePath[] = __FILE__;
 static void ApplyFinish()
 {
     int message = 0;
-    if (UnitHealth(gApplyActor->unit, gApplyDistance - gApplyActor->at46)) {
+    if (UnitHealth(gApplyActor->unit, gApplyDistance - gApplyActor->action.direction)) {
         message = gApplyWeapon->at2f;
         if (message != 0 || gApplyWeapon->at37 != gApplyWeapon->at33) {
             if (gApplyLoss == 0)
@@ -108,11 +108,11 @@ static void ApplyFinish()
         WeaponSound(&gApplyImpactPos, gApplySound, 1, gApplyLoss, message);
     }
     if (gGameTurn > 20) {
-        gApplyActor->at97 = gGameTime / 33 + 1;
+        gApplyActor->blink = gGameTime / 33 + 1;
         gRedrawFlags |= 4;
     }
     if (gApplyDamage > 75)
-        AnimActionConfigure(gApplyActor->at20, (gApplyDamage > 150) + 1, 1);
+        AnimActionConfigure(&gApplyActor->action, (gApplyDamage > 150) + 1, 1);
     if (gApplyActor != 0 && gApplyActor != gApplyLastActor) {
         WeaponSound(&gApplyImpactPos, gApplySound, 2, gApplyDamage, gApplyShots * gApplyInfo->at33 + 1);
         FxDamage(gApplyInfo, gApplyActor, gApplyShots, gApplyDamage);
@@ -122,10 +122,10 @@ static void ApplyFinish()
 
 static void ApplyOne(int damage)
 {
-    ASSERT(gApplyActor != 0 && gApplyActor->unit != 0 && gApplyActor->at1c != 0);
+    ASSERT(gApplyActor != 0 && gApplyActor->unit != 0 && gApplyActor->pilot != 0);
     ActorRecord *actor = gApplyActor;
-    int range = gApplyDistance - actor->at46;
-    Unit *unit = actor->unit;
+    int range = gApplyDistance - actor->action.direction;
+    ActorUnit *unit = actor->unit;
     int band = GridClamp(range);
     int before = UnitHealth(unit, range);
     int hit = UnitDamage(unit, range, damage, gApplyWeapon) + gApplyBonus;
@@ -143,9 +143,9 @@ static void ApplyOne(int damage)
         PartRecord *record = &((PartDef *)UnitPart(unit, 0, -1))->record[slot];
         ArmorDef *armor = (ArmorDef *)UnitPart(unit, 1, -1);
         PartDef *part = (PartDef *)UnitPart(unit, slot, -1);
-        UnitSlot *entry = &unit->slot[slot];
+        UnitSlot *entry = &unit->slots[slot];
         int amount = hit * 100;
-        int health = entry->health;
+        int health = entry->condition;
         int resist = Interpolate(0, armor->at3f, 100, armor->at3b, health);
         amount -= Interpolate(0, armor->at47, 100, armor->at43, health) * 100;
         amount -= resist * amount / 100;
@@ -158,7 +158,7 @@ static void ApplyOne(int damage)
         amount = armor->typeFactor[gApplyWeapon->type] * amount / 50;
         if (amount < 0)
             amount = 0;
-        if (unit->slot[0].kind == 9) {
+        if (unit->slots[0].item == 9) {
             if (gMission == 410)
                 amount = amount * 50 / 100;
             if (gMission == 418)
@@ -173,11 +173,11 @@ static void ApplyOne(int damage)
         if (modeSwitch == 0 && UnitClass(unit) == 0x1f && health < 50)
             health = 50;
         if (health <= 0 || part->minimum > health) {
-            entry->at03 = 0;
-            entry->at04 = 0;
+            entry->uses = 0;
+            entry->amount = 0;
             health = 0;
             if (slot == 0) {
-                WorldActionNotify(actor->at20, 0x11);
+                WorldActionNotify(&actor->action, 0x11);
                 ReleaseState(actor);
                 if (old > 0) {
                     ExploAddSmoke(8, actor, 0x1e, 1, 0);
@@ -188,13 +188,13 @@ static void ApplyOne(int damage)
                 }
             }
         }
-        entry->health = health;
+        entry->condition = health;
         if (slot == 10)
             ModeReport(modeCheckName, actor, points);
         if (!ActorIsDead(actor)) {
-            int crew = unit->slot[0].health;
+            int crew = unit->slots[0].condition;
             if (crew != 0 && crew < 40)
-                WorldActionNotify(actor->at20, 0x12);
+                WorldActionNotify(&actor->action, 0x12);
         }
     }
 }
@@ -401,17 +401,17 @@ int ApplyVisit(BestLocCandidate *candidate)
         ApplyOne(damage);
     StatsRecord(g4dd0c0, gApplyAttacker, gApplyActor);
     ApplyFinish();
-    Unit *unit = gApplyActor->unit;
-    if (unit->slot[0].kind > 8) {
+    ActorUnit *unit = gApplyActor->unit;
+    if (unit->slots[0].item > 8) {
         for (int j = 1; j < 23; j++)
-            unit->slot[j].health = unit->slot[0].health;
+            unit->slots[j].condition = unit->slots[0].condition;
     } else {
         int sum = 0;
         for (int j = 0; j < 23; j++)
-            sum += unit->slot[j].health * slotWeight[j];
+            sum += unit->slots[j].condition * slotWeight[j];
         char average = sum / 100;
-        if (unit->slot[1].health > average)
-            unit->slot[1].health = average;
+        if (unit->slots[1].condition > average)
+            unit->slots[1].condition = average;
     }
     return 0;
 }

@@ -7,12 +7,12 @@ struct LogicActor {
     u8 pad[0x9c];
 };
 
-struct ActorUnit {
-    u8 pad0[0x18];
-    void *action;
-    u8 pad1[0x26 - 0x1c];
-    u8 rank;
-};
+#include "actor.h"
+
+
+
+
+
 
 struct ActorPayload {
     u8 pad[0x1c];
@@ -99,14 +99,14 @@ char *ActorName(LogicActor *actor)
 }
 int ActorEnable(LogicActor *actor) {
     ASSERT(actor->state != 0);
-    return StateInvoke(((ActorUnit *)actor->state)->action, 0, 0);
+    return StateInvoke(((ActorRecord *)actor->state)->unit, 0, 0);
 }
 
 int ActorStateCall(LogicActor *actor) {
 
 
     ASSERT(actor->state != 0);
-    return StateAction(((ActorUnit *)actor->state)->action);
+    return StateAction(((ActorRecord *)actor->state)->unit);
 }
 
 void ActorSetMode(LogicActor *actor, int value) {
@@ -117,14 +117,14 @@ void ActorSetMode(LogicActor *actor, int value) {
     int lowIsDefault = ((*(u8 *)((char *)actor + 0x0c) & 1) == 0);
     if (!lowIsDefault)
         low = 0;
-    ((u8 *)((char *)((ActorUnit *)actor->state)->action + 0xc9))[0] = (u8)(value >> 24);
-    ((u8 *)((char *)((ActorUnit *)actor->state)->action + 0xca))[0] = low;
-    UpdatePayload(((ActorUnit *)actor->state)->action,
-                  ((ActorUnit *)actor->state)->rank);
+    ((ActorRecord *)actor->state)->unit->shieldDirection = (u8)(value >> 24);
+    ((ActorRecord *)actor->state)->unit->shieldRange = low;
+    UpdatePayload(((ActorRecord *)actor->state)->unit,
+                  ((ActorRecord *)actor->state)->action.angle);
     if (modeSwitch && ModeCheck(modeCheckName)) {
         LogMode(modeLogName, actor->state,
-                (u8)*((char *)((ActorUnit *)actor->state)->action + 0xc9),
-                (u8)*((char *)((ActorUnit *)actor->state)->action + 0xca));
+                ((ActorRecord *)actor->state)->unit->shieldDirection,
+                ((ActorRecord *)actor->state)->unit->shieldRange);
     }
 }
 

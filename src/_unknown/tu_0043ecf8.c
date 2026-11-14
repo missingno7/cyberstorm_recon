@@ -4,8 +4,8 @@
 typedef unsigned char U8;
 #pragma pack(push,1)
 struct ActorListObject { char name[16]; U8 unknown10[0x6a]; int type; };
-struct HercSlot { U8 value, condition; U8 unknown02[6]; };
-struct ActorUnit { char name[18]; HercSlot slots[23]; U8 unknownca[0x41]; };
+#include "actor.h"
+
 struct Snapshot { char name[16]; U8 type; U8 slots[23]; Snapshot *next; Snapshot(); };
 struct GameSession {
     U8 unknown000[0x3fc]; int mission; U8 unknown400[0x3e]; U8 level;

@@ -2,27 +2,27 @@
 // Gaps are temporary unnamed layout fields, not reconstructed payloads.
 #pragma pack(push,1)
 typedef unsigned long U32; static char simmainSourceFile[]=__FILE__;struct SoundSettings;
-struct GridPoint { long x,y;
- GridPoint(){} GridPoint(long a,long b){x=a;y=b;} GridPoint(const GridPoint &p){x=p.x;y=p.y;}
- int operator!=(const GridPoint &p) const { return x!=p.x || y!=p.y; }
-};
+#include "actor.h"
+
+
+
 struct ViewState {long flags;GridPoint point;long scale,direction;ViewState(long f,GridPoint p,long s,long d){flags=f;point.x=p.x;point.y=p.y;scale=s;direction=d;}};
 struct CameraState {GridPoint point;long zoom,scale,direction;U32 flags,requested;long spare;};
-struct UnitSystem {unsigned char head[4];int value;};struct UnitState {unsigned char head[17];UnitSystem systems[19];};struct ActorItem {unsigned char head[0x1b];int maximum;};
-struct ActorTraits {unsigned char head[5],type;int Mobile()const{return type!=1 && type!=7 && type!=14 && type!=17 && type!=18;}};
-struct ActorRecord {
- int id; int unknown04; int owner; int typeId; int unknown10,target;
- UnitState *unit; void *pilot; ActorTraits action;
- unsigned char unknown26[6]; unsigned short model;
- unsigned char unknown2e[4];GridPoint position;unsigned char unknown3a[8];int index;unsigned char unknown46[0x87-0x46]; unsigned char done,active,disabled;
- unsigned char unknown8a[3]; unsigned char spent;
- int Ready() const {return active && !disabled;}
-};
+struct ActorItem {unsigned char head[0x1b];int maximum;};
+
+
+
+
+
+
+
+
+
 struct PlayerSlot { int status,id,points,actor; unsigned char rest[0xbc-16]; };
 struct InputReq {U32 mask,flags;int Pressed(U32 n)const{return (flags&(n|(n<<2)))==n;}int Down(U32 n)const{return (flags&n)!=0;}};
 struct SimGame {
  unsigned char unknown00[8];InputReq input;unsigned char unknown10[8];int selectedMode;unsigned char unknown1c[16];int screen; unsigned char unknown30[8]; ActorRecord *focus;
- void *unknown3c; UnitState *focusUnit; unsigned char unknown44[0x2ba-0x44];
+ void *unknown3c; ActorUnit *focusUnit; unsigned char unknown44[0x2ba-0x44];
  int phase; unsigned char unknown2be[4]; int multi; unsigned char unknown2c6[4]; int tick,deadline;
  int action; int palette,playerCount; PlayerSlot slots[9];
  PlayerSlot *slot; int mode,unknown982,player,localPlayer,unknown98e,linked;
@@ -50,7 +50,7 @@ extern void SetFastView(FastCoord *,const ViewState *);
 extern int gIn80,gInA0;extern long gInA4;
 inline int SimShiftDown(){return gInA4;} inline int SimAltDown(){return gInA0;}
 extern signed char simShortcutModes[];
-struct GuiRect {long x,y,width,height;};struct GuiPoint {long x,y;};
+struct GuiPoint {long x,y;};
 struct GuiControlData:GuiRect {unsigned char style[4];U32 attributes,shortcut;};
 class GuiControl:public GuiControlData {public:virtual ~GuiControl();virtual void Reset(unsigned);virtual void Draw(unsigned);virtual int Event(unsigned,U32);virtual int HitTest(const GuiPoint *);};
 class MenuHelpRegion:public GuiControl {public:long id;int activated;MenuHelpRegion();virtual ~MenuHelpRegion();virtual void Draw(unsigned);virtual int Event(unsigned,U32);};
@@ -107,7 +107,7 @@ extern void SimSetUpdate(SimGame *,int);
 extern void SendEvent(void *,int,void * =0,int=0,int=0),SimAddMission(void *),ReleaseState(void *);
 extern "C" void f_0043e38f(void *),f_00439706(void *,int);
 extern ActorItem *PopFindItem(void *,int,int);
-extern int f_0043ac9c(UnitState *,int,int),TakeTerrainFeature(TerrainGrid *,int);
+extern int f_0043ac9c(ActorUnit *,int,int),TakeTerrainFeature(TerrainGrid *,int);
 inline int SimActorHidden(int);
 extern void LogicSetActorLink(void *,ActorRecord *,int,int);
 inline void SimRecoverPilot(void *pilot){SendEvent(pilot,116);SendEvent(pilot,118);SendEvent(pilot,120);}
@@ -123,7 +123,7 @@ void SimHandleInput(SimGame *s) {
  case 75:SimPan(s,-1,0);break;
  case 71:SimPan(s,-1,1);break;
  case 73:SimPan(s,1,1);break;
- case 76:if(s->focus && !SimActorHidden(s->focus->index)){GridPoint point=s->focus->position;SimCenterOn(s,&point);}break;
+ case 76:if(s->focus && !SimActorHidden(s->focus->action.resource)){GridPoint point=s->focus->action.position;SimCenterOn(s,&point);}break;
  case 82:SimSetMode(s,1);break;
  case 83:SimSetMode(s,-1);break;
  case 78:SimSetView(s,1);break;
@@ -184,7 +184,7 @@ void SimHandleInput(SimGame *s) {
   case 32031:s->screen=-1;SendEvent(s->focus->pilot,116);SendEvent(s->focus->pilot,118);SendEvent(s->focus->pilot,120);return;
   case 32033:s->screen=-1;f_00439706(s->focus->unit,23);return;
   case 32034: {
-   s->screen=-1;UnitState *u=s->focus->unit;u->systems[5].value=PopFindItem(u,5,-1)->maximum;u->systems[6].value=PopFindItem(u,6,-1)->maximum;return;
+   s->screen=-1;ActorUnit *u=s->focus->unit;u->slots[5].amount=PopFindItem(u,5,-1)->maximum;u->slots[6].amount=PopFindItem(u,6,-1)->maximum;return;
   }
   case 32035:s->screen=-1;SimAddMission(s->focus->unit);return;
   case 32036:s->screen=-1;SendEvent(s->focus->pilot,116);SendEvent(s->focus->pilot,118);SendEvent(s->focus->pilot,120);f_00439706(s->focus->unit,23);SimAddMission(s->focus->unit);return;
@@ -192,7 +192,7 @@ void SimHandleInput(SimGame *s) {
    s->screen=-1;for(ActorRecord *a=ActorFindByOwner(s->mode);a;a=ActorFindOwnerNext(a,s->mode))SimRecoverActor(a);return;
   }
   case 32039: {
-   s->screen=-1;for(ActorRecord *a=ActorFindByOwner(s->mode);a;a=ActorFindOwnerNext(a,s->mode)){a->unit->systems[5].value=1000000;a->unit->systems[6].value=1000000;}return;
+   s->screen=-1;for(ActorRecord *a=ActorFindByOwner(s->mode);a;a=ActorFindOwnerNext(a,s->mode)){a->unit->slots[5].amount=1000000;a->unit->slots[6].amount=1000000;}return;
   }
   case 32040:gApplyFreeShots=1;return;
   case 32041:gApplyFreeShots=10000;return;
@@ -202,7 +202,7 @@ void SimHandleInput(SimGame *s) {
   case 32044: {
    int index=0,total=0;ActorRecord *a=ActorFindByOwner(s->mode);
    while(a && !(index=f_0043ac9c(a->unit,1,0)))a=ActorFindOwnerNext(a,s->mode);
-   if(a){for(int i=0;i<4000;i++)total+=TakeTerrainFeature(&fallbackName,i);a->unit->systems[index].value=total;}
+   if(a){for(int i=0;i<4000;i++)total+=TakeTerrainFeature(&fallbackName,i);a->unit->slots[index].amount=total;}
    s->screen=-1;return;
   }
   case 32046:case 32047:case 32048:case 32049:case 32050:
@@ -259,9 +259,9 @@ void SimHoverActor(SimGame *s,int unit,int cursor) {
   }
  }
  if(unit) {
-  if(!s->focus->action.Mobile()){cursor=5;if(unit==s->focus->target)cursor=6;}
+  if(!s->focus->action.IsMoving()){cursor=5;if(unit==s->focus->target)cursor=6;}
   s->action=unit;actor=ActorGetByUnit(unit);
-  if(s->linked && actor && SimActorHidden(actor->index))actor=0;
+  if(s->linked && actor && SimActorHidden(actor->action.resource))actor=0;
   if(shift)actor=0;
   if(actor && actor->owner==s->player && !SimHotbriefCheckActor(actor))actor=0;
   if(actor) {
@@ -299,7 +299,7 @@ void SimHoverObject(SimGame *s,int unit) {
  unsigned cursor;
  if(unit) {
   cursor=5;s->action=unit;actor=ActorGetByUnit(unit);ActorRecord *test=actor;
-  if(actor && SimHotbriefCheckActor(actor) && !SimActorHidden(test->index))cursor=4;
+  if(actor && SimHotbriefCheckActor(actor) && !SimActorHidden(test->action.resource))cursor=4;
  } else cursor=3;
  if(cursor){SimSetCursor(cursor,0);targetLimits=cursor+15;}
  if(right) {

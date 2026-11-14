@@ -709,7 +709,7 @@
     }
    },
    "data": {},
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-14"
   },
   "src/logic/miss.c": {
    "as": "logic\\miss.c",
@@ -2709,7 +2709,7 @@
      "size": 16
     }
    },
-   "accepted": "2026-11-11"
+   "accepted": "2026-11-14"
   },
   "src/shell/shell.c": {
    "as": "shell\\shell.c",
@@ -3016,6 +3016,11 @@
      "va": "004576d0",
      "size": 256,
      "mangled": "W?AnimActionReplace$n(pn$AnimAction$$ul)v"
+    },
+    "AnimActionInterpolateDrawPos": {
+     "va": "004579e0",
+     "size": 272,
+     "mangled": "W?AnimActionInterpolateDrawPos$n(pn$AnimAction$$pniipnvpnv)v"
     },
     "AnimActionCreateBlock": {
      "va": "004587d0",
@@ -3560,7 +3565,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-11"
+   "accepted": "2026-11-14"
   },
   "src/shell/hercbuy.c": {
    "as": "shell\\hercbuy.c",
@@ -4422,7 +4427,7 @@
      "size": 6
     }
    },
-   "accepted": "2026-11-11"
+   "accepted": "2026-11-14"
   },
   "src/sim/simgame.c": {
    "as": "sim\\simgame.c",
@@ -4473,7 +4478,7 @@
      "size": 14
     }
    },
-   "accepted": "2026-11-11"
+   "accepted": "2026-11-14"
   },
   "src/shell/commscrn.c": {
    "as": "shell\\commscrn.c",
@@ -5988,7 +5993,7 @@
     }
    },
    "data": {},
-   "accepted": "2026-11-11"
+   "accepted": "2026-11-14"
   },
   "src/_unknown/tu_0043ef34.c": {
    "as": "_unknown\\tu_0043ef34.c",
@@ -7805,7 +7810,7 @@
     "HercAppendAmount": {
      "va": "004387af",
      "size": 55,
-     "mangled": "W?HercAppendAmount$n(pn$HercSlot$$i)v"
+     "mangled": "W?HercAppendAmount$n(pn$UnitSlot$$i)v"
     },
     "HercPowerUse": {
      "va": "004390e9",
@@ -9393,7 +9398,7 @@
     }
    },
    "data": {},
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-14"
   },
   "src/_unknown/tu_0047d400.c": {
    "as": "_unknown\\tu_0047d400.c",
@@ -10594,7 +10599,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-11"
+   "accepted": "2026-11-14"
   },
   "src/sim/simfire.c": {
    "as": "sim\\simfire.c",
@@ -10658,7 +10663,7 @@
     "SimSoundSetup": {
      "va": "00453fd0",
      "size": 432,
-     "mangled": "W?SimSoundSetup$n(pn$SimSound$$pn$ExploPoint$$)v"
+     "mangled": "W?SimSoundSetup$n(pn$SimSound$$pn$GridPoint$$)v"
     }
    },
    "data": {
@@ -10667,7 +10672,7 @@
      "size": 14
     }
    },
-   "accepted": "2026-11-11"
+   "accepted": "2026-11-14"
   },
   "src/shell/dbrief.c": {
    "as": "shell\\dbrief.c",
@@ -13717,7 +13722,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-11"
+   "accepted": "2026-11-14"
   },
   "src/sim/simbug.c": {
    "as": "sim\\simbug.c",

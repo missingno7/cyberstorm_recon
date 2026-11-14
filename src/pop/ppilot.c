@@ -3,8 +3,8 @@
 #include <string.h>
 #include <stdio.h>
 typedef unsigned long U32; typedef unsigned char byte;
-struct GuiRect { long x,y,width,height; }; struct GuiPoint { long x,y; }; struct ViewRect {long left,top,right,bottom;}; struct InputReq;
-struct GuiControlData:GuiRect { byte style[4]; U32 attributes,shortcut; };
+#include "actor.h"
+struct GuiPoint { long x,y; }; struct ViewRect {long left,top,right,bottom;}; struct InputReq; struct GuiControlData:GuiRect { byte style[4]; U32 attributes,shortcut; };
 class GuiControl:public GuiControlData { public: GuiControl(U32,U32); virtual ~GuiControl(); virtual void Reset(unsigned); virtual void Draw(unsigned); virtual int Event(unsigned,U32); virtual int HitTest(const GuiPoint *); };
 #pragma pack(push,1)
 class MenuImageLabel:public GuiControl { public: const char *text; long image; signed char ax,ay,font,unused,color,bevel; MenuImageLabel(long=0,signed char=0,signed char=0,signed char=1,signed char=0,signed char=11,signed char=0); virtual ~MenuImageLabel(); virtual void Draw(unsigned); void SetStyle(signed char,signed char,signed char,signed char,signed char,signed char); void SetTextCore(const char *t){text=t;} };
@@ -16,7 +16,7 @@ class PilotImageButton:public GuiControl { public: U32 state; long image,repeat;
 struct GameTimer; extern void GameTimerSet(GameTimer *,U32); extern int GameTimerExpired(GameTimer *); struct GameTimer { U32 start,end,length; GameTimer(U32 t){GameTimerSet(this,t);} };
 struct FlicSound; struct Flic { char unknown[0x4c]; long loops; char rest[0x40]; void SetLoops(long n){loops=n;} void *GetPalette(){return *(void **)((char *)this+60);} void SetSounds(FlicSound *); Flic(); int Open(long,int=100,int=0); U32 Update(void *); }; struct Surface { long width,height; byte *pixels; U32 flags; Surface(U32); };
 struct PilotEquipmentStats {byte header[31];int values[3];}; struct Palette { byte data[0x452]; }; struct MenuImage { U32 offset; unsigned short width,height; U32 flags; }; struct MenuImages { U32 count; MenuImage image[1]; };
-struct ActorLogic; struct ActorUnit { byte unknown[99]; byte status; unsigned short GetStatus(){return status;} }; struct ActorRecord { byte unknown[0x18]; ActorUnit *unit; ActorLogic *logic; }; struct SimGame { byte unknown[0x1c]; int state; };
+struct ActorLogic {}; struct ActorPilot : ActorLogic {}; struct SimGame { byte unknown[0x1c]; int state; };
 struct StrPool { char *GetString(long,int=0); }; struct ResMgr { void *Load(const char *,int=1,void * = 0,U32=0); }; extern ResMgr gResMgr;
 struct GuiScreen { char unknown[0x10]; void *active; char rest[0x38]; GuiScreen(GuiControl ** = 0,unsigned=0,U32=0); GuiScreen *Reset(GuiControl **,unsigned,U32); int IsActive()const{return active!=0;} int Update(); void LoadLayout(long); void Open(InputReq *,StrPool *,long,int); };
 struct PilotScreen:GuiScreen { ActorRecord *actor; ActorLogic *logic; ActorUnit *unit; MenuImages *background; Flic animation; Surface surface; MenuImage surfaceImage; Palette palette; int paletteChanged; byte remap[256]; int portrait,mood,overridePortrait,overrideMood,status,statusColor; int shown[16],target[16],maximum[16],changed[16],frames[3],effect; GameTimer timer; int tick,savedAudio,savedWait,refresh,stopped; MenuNumber numbers[2]; MenuImageLabel labels[13]; MenuSpacer spacers[8]; MenuNumber statusNumber; MenuButton button; MenuHelpRegion help; GuiControl *controls[30]; PilotScreen(); void Begin(void *); void Select(ActorRecord *); void Close(); int Event(); void Refresh(); void DrawValues(); void DrawDetails(); void Draw(); void Next(); void Previous(); void DrawBar(GuiRect *,int,int,int,int); };
@@ -101,7 +101,7 @@ void PilotScreen::Begin(void *callback) {
 }
 void PilotScreen::Select(ActorRecord *selected) {
     actor=selected;
-    if(!selected||!selected->logic||!selected->unit)
+    if(!selected||!selected->pilot||!selected->unit)
 
 
 
@@ -131,7 +131,7 @@ void PilotScreen::Select(ActorRecord *selected) {
 
 
         AssertFail(__FILE__,__LINE__,0);
-    logic=actor->logic;
+    logic=actor->pilot;
     unit=actor->unit;
     effect=0;
     tick=0;
@@ -257,7 +257,7 @@ void PilotScreen::Refresh()  {
     maximum[0]=PilotValue(logic,201);
     maximum[1]=PilotValue(logic,205);
     maximum[2]=PilotValue(logic,208);
-    status=unit->status;
+    status=unit->slots[10].condition;
     statusColor=0;
     if(status==0)statusColor=statusColorEmpty;
     else if(status<100)statusColor=statusColorLow;
