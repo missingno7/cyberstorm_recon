@@ -46,6 +46,9 @@ def compile_one(src, out, flags, inst="wc106", tool="wpp386", extra_include=(), 
     src = Path(src).resolve()
     out = Path(out).resolve()
     inc = [str(base / p) for p in ent.get("include", [])] + [str(Path(p).resolve()) for p in extra_include]
+    # CSTORM_INCLUDE: extra header directories of a lane (e.g. candidates/ty1/include), searched before src/include,
+    # so a worker can prove shared headers in a dry run before the integrator moves them to src/include
+    inc += [str(Path(p).resolve()) for p in os.environ.get("CSTORM_INCLUDE", "").split(os.pathsep) if p]
     inc.append(str(SRC / "include"))
     with tempfile.TemporaryDirectory(prefix="c", dir=SCRATCH) as td:
         td = Path(td)
