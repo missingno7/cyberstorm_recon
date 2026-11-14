@@ -37,6 +37,9 @@ Numbers come from `python tools/verify.py`; this file only summarises them.
 
 - 2026-11-11 (wave p1-p6): six Sol lanes with the trial recipe on the 356 parked functions: +26.
 
+- 2026-11-14: Opus effort trial on 49 parked functions (low 8 for $7, medium 9 for $22, high 10 for $19; union 17
+  published). anim.c is now typed records instead of raw offsets and `volatile`.
+
 ## Next
 - About 330 functions stay parked after Sol with the recipe (7% yield). Fable medium on them if the cost is
   approved (trial: 59% yield, about $1.2 per match).

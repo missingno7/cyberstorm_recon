@@ -172,9 +172,8 @@ void ShellSoundShutdown(){SoundVoice *v=soundVoices;for(int i=0;i<32;i++,v++){if
 void SoundStop(unsigned id){if(id && (int)id<440 && soundEnabled){SoundVoice *v=soundVoices;for(int i=0;i<32;i++,v++){if(v->id==id)v->buffer->vtable->Stop(v->buffer);}}}
 int SoundAllowed(int id) {
  if(!id || id>=440)return 0;
- int volume; signed char category=soundPriority[id].category; signed char priority=soundPriority[id].threshold;
- if(category==0)volume=100-soundEffectsVolume;else if(category==1)volume=100-soundVoiceVolume;else volume=100-soundMusicVolume;
- return priority>volume;
+ signed char category=soundPriority[id].category; signed char priority=soundPriority[id].threshold;
+ if(category==0)return priority>100-soundEffectsVolume; if(category==1)return priority>100-soundVoiceVolume; return priority>100-soundMusicVolume;
 }
 
 int SoundPlay(unsigned id,const SoundSettings *settings) {
@@ -188,19 +187,25 @@ int SoundPlay(unsigned id,const SoundSettings *settings) {
  if(i>=32)return 0;
  int keep=soundPriority[id].keep;
  if(keep)SoundLoad(id);
- SoundBuffer *buffer; WAVEFORMATEX format;
+ WAVEFORMATEX format; SoundBuffer *buffer;
  if(!SoundDuplicate(id,&buffer,&format))return 0;
  int volume=((unsigned char)soundPriority[id].category==1)?soundMasterVolume:100;
  int pan=0,frequency=100;
  if(settings){pan=SoundClamp(settings->pan,-100,100);
   volume=settings->volume*volume/100;frequency=settings->frequency*frequency/100;}
+
  if(frequency!=100)buffer->vtable->SetFrequency(buffer,frequency*soundFrequency[id]/100);
+
  if(volume<=0)volume=0;else if(volume>=99)volume=99;
- volume=soundAttenuation[volume]*-100;buffer->vtable->SetVolume(buffer,volume);
+
+ int attenuation=soundAttenuation[volume]*-100;buffer->vtable->SetVolume(buffer,attenuation);
+
  if(pan)buffer->vtable->SetPan(buffer,pan*100);
  int looping=settings && settings->loop ? 1 : 0;buffer->vtable->Play(buffer,0,0,looping);
  voice->id=id;voice->buffer=buffer;
+
  if(keep){int delay=(keep*1000-20000)/2;if(delay<0)delay=0;soundTouched[id]=TimeNow()+delay;}
+
  return 1;
 }
 
@@ -241,6 +246,10 @@ void ViewFlip(int force) {
  SoundFlush(10000);
 } }
 }
+
+
+
+
 
 
 

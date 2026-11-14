@@ -557,7 +557,7 @@ extern "C" void f_0043d1a6(GameSession *s,int index,int value)
 {
     if(index<=1024) {
         int byte=index/8;
-        U8 mask=(U8)(1<<(index%8));
+        int mask=1<<(index%8);
         if(value) s->known[byte]|=mask;
         else s->known[byte]&=~mask;
     }

@@ -6,7 +6,7 @@ struct GridPoint { long x,y;
  int operator!=(const GridPoint &p) const { return x!=p.x || y!=p.y; }
 };
 struct ViewState { GridPoint point; long zoom,scale,direction; U32 flags,requested; long spare; ViewState(const ViewState &v){point.x=v.point.x;point.y=v.point.y;zoom=v.zoom;scale=v.scale;direction=v.direction;flags=v.flags;requested=v.requested;spare=v.spare;} };
-struct ItemSlot {unsigned char head[3],cooldown;long count;};struct ActorItem;struct UnitState {unsigned char bytes[0xa9];ItemSlot items[4];unsigned char tail[0x10b-0xc9];ActorItem *Item(int,int=-1);};struct UnitModel {unsigned char bytes[0x480];int cost,kind;};
+struct ItemSlot {unsigned char head[3],cooldown;long count;};struct ActorItem;struct UnitState {unsigned char bytes[0x11];ItemSlot items[23];unsigned char tail[0x10b-0xc9];ActorItem *Item(int,int=-1);};struct UnitModel {unsigned char bytes[0x480];int cost,kind;};
 struct SimStat {long value,maximum,spare;};
 struct SimAnim {unsigned char bytes[6];unsigned char mode,frame;};
 struct ActorTraits {unsigned char unknown[5],type;int Mobile()const{return type!=1 && type!=7 && type!=14 && type!=17 && type!=18;}};
@@ -402,7 +402,7 @@ int SimSelectTarget(SimGame *s,int target) {
  return ready;
 }
 
-int ModeCheck(const char *object) {SimGame *s=(SimGame *)object;int n=s->mode-1;PlayerSlot *slots=s->slots;int status=slots[n].status;if(status!=1 && status!=3)return 0;return 1;}
+int ModeCheck(const char *object) {if(((SimGame *)object)->slots[((SimGame *)object)->mode-1].status==1 || ((SimGame *)object)->slots[((SimGame *)object)->mode-1].status==3)return 1;return 0;}
 int SimFireFocus(SimGame *s,int mode) {if(SimFocusReady(s))return SimFire(s,s->focus,s->focus->typeId,mode,-1);return 0;}
 struct StrPool {char *GetString(long,int=0);};extern StrPool targetBriefResource;
 extern unsigned PopItemValue(void *,int);extern int PopItemReady(void *,int);
@@ -418,7 +418,7 @@ int SimExecuteItem(SimGame *s,int item,int toggle) {
   UnitState *unit=s->focus->unit;
   if(item<4 && PopItemReady(unit,item+19)) {
    ActorItem *entry=unit->Item(item+19);
-   ItemSlot *slot=&unit->items[item];
+   ItemSlot *slot=&unit->items[item+19];
    if(SimFocusReady(s) || entry->kind==4) {
     PopNodeChanged(&g4d1dec);PilotSetState(s,3);
     int cost=entry->cost;unsigned amount=entry->amount;

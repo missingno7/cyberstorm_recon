@@ -2932,22 +2932,32 @@
     "AnimActionClear": {
      "va": "00457390",
      "size": 16,
-     "mangled": "W?AnimActionClear$n(pnv)v"
+     "mangled": "W?AnimActionClear$n(pn$AnimAction$$)v"
     },
     "AnimActionInitialize": {
      "va": "004573a0",
      "size": 80,
-     "mangled": "W?AnimActionInitialize$n(pnvucusucuc)v"
+     "mangled": "W?AnimActionInitialize$n(pn$AnimAction$$iiii)v"
+    },
+    "WorldActionNotify": {
+     "va": "004573f0",
+     "size": 48,
+     "mangled": "W?WorldActionNotify$n(pn$AnimAction$$i)v"
     },
     "AnimActionIsSet": {
      "va": "00457420",
      "size": 16,
-     "mangled": "W?AnimActionIsSet$n(pnv)i"
+     "mangled": "W?AnimActionIsSet$n(pn$AnimAction$$)i"
     },
     "AnimActionAdvance": {
      "va": "00457430",
      "size": 64,
-     "mangled": "W?AnimActionAdvance$n(pnv)i"
+     "mangled": "W?AnimActionAdvance$n(pn$AnimAction$$)i"
+    },
+    "AnimActionStep": {
+     "va": "00457470",
+     "size": 160,
+     "mangled": "W?AnimActionStep$n(pn$AnimAction$$)i"
     },
     "AnimActionRelease": {
      "va": "004575a0",
@@ -2959,6 +2969,16 @@
      "size": 112,
      "mangled": "W?AnimActionAssign$n(pnvulii)v"
     },
+    "AnimActionClearGroup": {
+     "va": "00457650",
+     "size": 128,
+     "mangled": "W?AnimActionClearGroup$n(pn$AnimAction$$)v"
+    },
+    "AnimActionReplace": {
+     "va": "004576d0",
+     "size": 256,
+     "mangled": "W?AnimActionReplace$n(pn$AnimAction$$ul)v"
+    },
     "AnimActionCreateBlock": {
      "va": "004587d0",
      "size": 80,
@@ -2969,10 +2989,25 @@
      "size": 32,
      "mangled": "W?AnimActionFreeBlock$n(pnv)v"
     },
+    "AnimActionSetExternalBlock": {
+     "va": "00458ad0",
+     "size": 288,
+     "mangled": "W?AnimActionSetExternalBlock$n(pn$AnimAction$$iiul)v"
+    },
+    "AnimActionInitTargetActor": {
+     "va": "00458bf0",
+     "size": 112,
+     "mangled": "W?AnimActionInitTargetActor$n(pn$AnimAction$$)v"
+    },
     "AnimActionHasMetadata": {
      "va": "00458c60",
      "size": 48,
-     "mangled": "W?AnimActionHasMetadata$n(pnv)i"
+     "mangled": "W?AnimActionHasMetadata$n(pn$AnimAction$$)i"
+    },
+    "AnimActionConfigure": {
+     "va": "00458c90",
+     "size": 128,
+     "mangled": "W?AnimActionConfigure$n(pn$AnimAction$$ii)v"
     },
     "AnimActionGetMetadata": {
      "va": "00458d10",
@@ -2998,6 +3033,16 @@
      "va": "00458df0",
      "size": 48,
      "mangled": "W?AnimActionCopyState$n(pnvpnv)v"
+    },
+    "AnimActionEqual": {
+     "va": "00458e20",
+     "size": 128,
+     "mangled": "W?AnimActionEqual$n(pn$AnimAction$$pn$AnimState$$)i"
+    },
+    "AnimActionCopyChangedFields": {
+     "va": "00458ea0",
+     "size": 113,
+     "mangled": "W?AnimActionCopyChangedFields$n(pn$AnimAction$$pn$AnimState$$)v"
     }
    },
    "data": {
@@ -3006,7 +3051,7 @@
      "size": 11
     }
    },
-   "accepted": "2026-11-11"
+   "accepted": "2026-11-14"
   },
   "src/multi/linkapp.c": {
    "as": "multi\\linkapp.c",
@@ -6111,6 +6156,11 @@
      "size": 192,
      "mangled": "W?SimTrySpendFocus$n(pn$SimGame$$i)i"
     },
+    "SimFaceTarget": {
+     "va": "0044e420",
+     "size": 192,
+     "mangled": "W?SimFaceTarget$n(pn$SimGame$$ii)v"
+    },
     "SimTargetAction": {
      "va": "0044e4e0",
      "size": 336,
@@ -6135,6 +6185,11 @@
      "va": "0044ea00",
      "size": 256,
      "mangled": "W?SimSelectTarget$n(pn$SimGame$$i)i"
+    },
+    "ModeCheck": {
+     "va": "0044eb00",
+     "size": 80,
+     "mangled": "W?ModeCheck$n(pnxa)i"
     },
     "SimAdoptFocus": {
      "va": "0044f220",
@@ -6173,7 +6228,7 @@
      "size": 124
     }
    },
-   "accepted": "2026-11-11"
+   "accepted": "2026-11-14"
   },
   "src/sim/simturn.c": {
    "as": "sim\\simturn.c",
@@ -11385,6 +11440,11 @@
      "size": 98,
      "mangled": "f_0043d1fd"
     },
+    "f_0043d25f": {
+     "va": "0043d25f",
+     "size": 90,
+     "mangled": "f_0043d25f"
+    },
     "f_0043d3cc": {
      "va": "0043d3cc",
      "size": 453,
@@ -11488,7 +11548,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-11"
+   "accepted": "2026-11-14"
   },
   "src/pop/pmove.c": {
    "as": "pop\\pmove.c",
@@ -13971,6 +14031,16 @@
      "size": 44,
      "mangled": "W?SoundCached$n(i)i"
     },
+    "SoundCache": {
+     "va": "0046be17",
+     "size": 301,
+     "mangled": "W?SoundCache$n(i)i"
+    },
+    "SoundCacheList": {
+     "va": "0046bf44",
+     "size": 301,
+     "mangled": "W?SoundCacheList$n(pni)v"
+    },
     "SoundRelease": {
      "va": "0046c071",
      "size": 69,
@@ -13985,6 +14055,11 @@
      "va": "0046c10a",
      "size": 84,
      "mangled": "W?SoundReleaseAll$n()v"
+    },
+    "SoundLoad": {
+     "va": "0046c15e",
+     "size": 374,
+     "mangled": "W?SoundLoad$n(ui)i"
     },
     "SoundFlush": {
      "va": "0046c2d4",
@@ -14005,6 +14080,16 @@
      "va": "0046c3af",
      "size": 77,
      "mangled": "W?SoundStop$n(ui)v"
+    },
+    "SoundAllowed": {
+     "va": "0046c3fc",
+     "size": 101,
+     "mangled": "W?SoundAllowed$n(i)i"
+    },
+    "SoundPlayDefault": {
+     "va": "0046c980",
+     "size": 573,
+     "mangled": "W?SoundPlayDefault$n(uii)i"
     },
     "SoundClearContext": {
      "va": "0046cbbd",
@@ -14032,7 +14117,7 @@
      "size": 250
     }
    },
-   "accepted": "2026-11-11"
+   "accepted": "2026-11-14"
   }
  },
  "accepted_losses": [

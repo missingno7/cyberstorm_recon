@@ -4,7 +4,17 @@ char animSourcePath[] = "sim\\anim.c";
 extern void AssertFail(const char *file, int line, const char *message);
 struct AnimBlockAllocation { unsigned char bytes[0x494]; };
 extern "C" unsigned int TimerNow(void);
-struct AnimPair { unsigned long first; unsigned long second; void Copy(const AnimPair &p) { *this = p; } int Equal(const AnimPair &p) const { return first == p.first && second == p.second; } };
+struct AnimPair { unsigned long first; unsigned long second; void Copy(const AnimPair &p) { *this = p; } int Equal(const AnimPair &p) const { return first == p.first && second == p.second; }
+    int operator!=(const AnimPair &p) const { return first != p.first || second != p.second; } };
+#pragma pack(push, 1)
+/* Path block (0x494 bytes, AnimActionCreateBlock) and the network-visible state record (AnimActionCopyState). */
+struct AnimBlock { long path[128]; long cost[128]; unsigned char marks[0x80]; long budget, count, index, unknown48c; void *actor; }; struct ExploPoint { int x; int y; }; struct AnimState { unsigned char header[5]; AnimPair position; AnimPair target; long resource; long direction; };
+/* Working layout of the 0x67-byte animation action (member of ActorRecord at +0x20). */
+struct AnimAction { long depth; unsigned char type, state, angle, rate, frame, count, flags, ready; unsigned short kind; unsigned long time;
+    AnimPair position; AnimPair target; long resource; long direction; union { struct { long x, y; }; ExploPoint point; }; AnimBlock *block; unsigned char b36, b37, b38, b39, b3a;
+    long drawX, drawY, drawWidth, drawHeight; int *bitmap; AnimPair from; AnimPair to; long step, steps; AnimAction(); void SetState(int s) { state = s; } };
+inline int AnimActionBusy(AnimAction *a) { return a->state != 1 && a->state != 7 && a->state != 14 && a->state != 17 && a->state != 18; }
+#pragma pack(pop)
 extern int *actorIndexTable; static inline unsigned long *AnimResourceSlot(int index) { return (unsigned long *)((char *)actorIndexTable+index*8); }
 extern unsigned long animReleaseSentinel;
 extern const char fallbackName[];
@@ -18,8 +28,8 @@ extern int animationMetaAt0cbc[];
 extern "C" int AnimResourceResolve(unsigned long name, int *entry);
 extern "C" void AnimResourceLoadEntry(unsigned long name, unsigned long *entry,
                                        int index);
-extern int f_0042c130(void *actor, void *from, void *to);
-extern int f_0047f9d9(int angle);
+extern int DisplayPointToScreenScaled(void *actor, void *from, void *to); struct AnimBitmap { unsigned char head[4]; unsigned short width, height; unsigned char pad[2], xOffset, yOffset; };
+extern int FixedSin(int angle);
 extern int f_0042afb0(unsigned long name, void *point);
 extern int *AnimBitmapFrame(void *action);
 extern int animationMetaAt0cc4[];
@@ -27,7 +37,7 @@ extern int animationMetaAt0cc8[];
 extern unsigned char *targetDefinitionTable;
 extern long GridClamp(unsigned long);
 extern int ViewScale(void *actor, int value);
-struct ExploPoint { int x; int y; };
+
 extern long GridPointToIndex(const char *name, ExploPoint *point);
 extern void ViewToScreen(void *view, ExploPoint *out, ExploPoint *in);
 extern int PointAngle(ExploPoint *from, ExploPoint *to);
@@ -60,16 +70,16 @@ extern unsigned char animationStatusFlags[];
 extern signed char animationModeStep[];
 extern "C" void BestLocSetData(void *name, void *point, void *index);
 extern int BestLocSetup(void *entries, int id, int reset);
-extern int f_0042d2b0(void *entries, int id, void *buffer, int size);
-extern void f_004324d0(unsigned long name, int index, int id, void *buffer, int size);
-extern void f_0042d370(void *entries, int id);
+extern int SearchGetPath(void *entries, int id, void *buffer, int size);
+extern void BuildTerrainPath(unsigned long name, int index, int id, void *buffer, int size);
+extern void SearchGetCost(void *entries, int id);
 extern void TargetInitAt(unsigned long name, unsigned short *result, int actor, int id);
 extern int StateInvoke(int state, void *first, void *second);
 extern unsigned char bestLocEntries[];
 extern int bestLocCursor;
 extern void *g4d2498;
 extern int gLocalActorKind;
-extern unsigned char *simVisibleTypes;
+extern unsigned char *simVisibleTypes; inline int SimTypeHidden(int t) { return !simVisibleTypes[t]; } inline int SimActorHidden(int t) { return !simActorVisibility[t]; }
 extern int animationMetaAt0cbc[];
 extern unsigned long animationKindTable[];
 extern "C" int f_00434a20(unsigned long name, int index, int variant);
@@ -77,155 +87,145 @@ extern "C" void f_00434bd0(unsigned long name, int index, int value,
                            int variant, int flags, int duration);
 extern void Crc16(unsigned short *checksum, void *data, int length);
 extern void AssertFail(const char *file, int line, const char *message);
-void AnimActionClear(void *action);
-void AnimActionInitialize(void *action, unsigned char type, unsigned short duration,
-                          unsigned char rate, unsigned char initialFlags);
-void WorldActionNotify(void *action, unsigned char state);
-int AnimActionIsSet(void *action);
-int AnimActionAdvance(void *action);
-int AnimActionStep(unsigned char *p);
-void ActorClose(void *action);
+void AnimActionClear(AnimAction *action);
+void AnimActionInitialize(AnimAction *, int type, int kind,
+ int rate, int flags); inline void AnimActionSetState(AnimAction *a, int s) { a->state = s; }
+void WorldActionNotify(AnimAction *action, int state);
+int AnimActionIsSet(AnimAction *action);
+int AnimActionAdvance(AnimAction *action);
+int AnimActionStep(AnimAction *action);
+
 unsigned long AnimActionRelease(void *action);
 void AnimActionAssign(void *unused, unsigned long value, int index, int count);
-void AnimActionClearGroup(void *action);
-void AnimActionReplace(unsigned char *action, unsigned long value);
-void AnimActionUpdateTrajectory(int *action, int *actor);
+void AnimActionClearGroup(AnimAction *action);
+void AnimActionReplace(AnimAction *action, unsigned long value);
+void AnimActionUpdateTrajectory(AnimAction *action, int *actor);
 void AnimActionInterpolateDrawPos(void *action, int *position, int frame,
                                   void *drawInfo, void *actor);
 unsigned long AnimActionCommitTrajectory(void *action);
 void ActorDrawEffect(void * action);
 void AnimActionCreateBlock(void *action);
 void AnimActionFreeBlock(void *action);
-int AnimActionPrepareBlock(void *action, int actor, int sourceId);
-void AnimActionSetExternalBlock(void *action, int actor, int sourceId,
+int AnimActionPrepareBlock(AnimAction *action, int actor, int sourceId);
+void AnimActionSetExternalBlock(AnimAction *action, int actor, int sourceId,
                                 unsigned long budget);
-void AnimActionInitTargetActor(void *action);
-int AnimActionHasMetadata(void *action);
-void AnimActionConfigure(void *action, unsigned char frame, int index);
+void AnimActionInitTargetActor(AnimAction *action);
+int AnimActionHasMetadata(AnimAction *action);
+void AnimActionConfigure(AnimAction *action, int frame, int index);
 int AnimActionGetMetadata(void *action);
-void AnimActionMarkReady(void *action);
 void AnimActionPublish(void *action);
 void AnimActionChecksum(void *action, unsigned short *checksum);
 void AnimActionCopyState(void *action, void *output);
-int AnimActionEqual(void *action, void *state);
-void AnimActionCopyChangedFields(void *action, void *state);
-void AnimActionClear(void *action) {
-    unsigned char *p = (unsigned char *)action;
-    p[4] = 0;
-    *(volatile unsigned char *)(p + 5) = 0;
+int AnimActionEqual(AnimAction *action, AnimState *state);
+void AnimActionCopyChangedFields(AnimAction *action, AnimState *state);
+void AnimActionClear(AnimAction *a) {
+    a->type = 0; a->state = 0;
 }
-void AnimActionInitialize(void *action, unsigned char type, unsigned short duration,
-                          unsigned char rate, unsigned char initialFlags) {
-    unsigned char *p = (unsigned char *)action;
-    unsigned char t = type;
-    union FlagWord { unsigned short word; struct { unsigned char low; unsigned char high; } bytes; } flags;
-    p[8] = 0;
-    p[4] = t;
-    *(volatile unsigned short *)(p + 12) = duration;
-    p[7] = rate;
-    p[10] = initialFlags;
-    unsigned long zero = 0;
-    *(volatile unsigned char *)(p + 5) = (unsigned char)zero;
-    *(volatile unsigned long *)(p + 14) = zero;
-    flags.word = (unsigned short)zero;
-    flags.bytes.low = *(volatile unsigned char *)(p + 10);
-    *(volatile unsigned char *)(p + 9) = 0;
-    flags.bytes.low &= 0x70;
-    p[10] = flags.bytes.low;
-    flags.bytes.high = flags.bytes.low;
-    p[11] = 1;
-    flags.bytes.high |= 0x80;
-    p[10] = flags.bytes.high;
+void AnimActionInitialize(AnimAction *a, int type, int kind, int rate, int flags) {
+    a->type = type; a->kind = kind; a->rate = rate; a->flags = flags; WorldActionNotify(a, 0);
 }
-void WorldActionNotify(void *action, unsigned char state) {
-    unsigned char *p = (unsigned char *)action;
-    union FlagWord { unsigned short word; struct { unsigned char low; unsigned char high; } bytes; } flags;
-    p[8] = 0;
-    p[9] = 0;
-    p[5] = state;
-    flags.bytes.high = 0;
-    flags.bytes.low = p[10];
-    *(volatile unsigned long *)(p + 14) = 0;
-    flags.bytes.low &= 0x70;
-    p[10] = flags.bytes.low;
-    flags.bytes.high = flags.bytes.low;
-    *(volatile unsigned char *)(p + 11) = 1;
-    flags.bytes.high |= 0x80;
-    p[10] = flags.bytes.high;
+void WorldActionNotify(AnimAction *a, int state) {
+    a->frame = 0; a->count = 0; a->state = state; a->time = 0; a->ready = 1;
+    a->flags &= 0x70; a->flags |= 0x80;
 }
-int AnimActionIsSet(void *action) {
-    unsigned long value = 0;
-    unsigned char *p = (unsigned char *)action;
-    value = p[10];
-    return value & 1;
+int AnimActionIsSet(AnimAction *a) {
+    return (unsigned)a->flags & 1;
 }
-int AnimActionAdvance(void *action) {
-unsigned char *p = (unsigned char *)action; unsigned long now = TimerNow(); if (now >= *(unsigned long *)(p + 14) && p[7]) { *(unsigned long *)(p + 14) = now + 1000 / (int)(unsigned char)p[7]; return 1; } return 0;
-}
-int AnimActionStep(unsigned char *p) {
-int advanced=AnimActionAdvance(p); if (!advanced) return 0; if (!p[9]) return 0; if ((int)p[5]==0) return 0; 
-
-
-
-
-
-
-
-
-
-    if (p[10] & 0x20) {
-        unsigned char frame = p[8];
-        ++frame;
-        p[8] = frame;
-        if (frame >= p[9])
-            p[8] = 0;
-    } else {
-        unsigned char frame = p[8];
-        ++frame;
-        unsigned char count = p[9];
-        p[8] = frame;
-        if (frame >= count) {
-            unsigned char flags = p[10];
-            --count;
-            flags |= 1;
-            p[8] = count;
-            p[10] = flags;
-            p[10] = (p[10] & 0x7f) | 1;
-        }
-    }
-    p[10] &= 0xfb;
+int AnimActionAdvance(AnimAction *a) {
+    unsigned long now = TimerNow();
+    if (now >= a->time && a->rate) { a->time = now + 1000 / a->rate; return 1; }
     return 0;
 }
-void ActorClose(void *action) {
-    volatile unsigned char *p = (volatile unsigned char *)action;
-    AnimPair pair;
-    unsigned char bits;
-    p[4] = 0;
-    p[5] = 0;
-    pair.first = 0;
-    pair.second = 0;
-    *(AnimPair *)(p + 0x12) = pair;
-    p[8] = 0;
-    p[9] = 0;
-    p[11] = 1;
-    p[0x36] = 0;
-    *(volatile unsigned long *)(p + 0x26) = 0;
-    p[7] = 50;
-    p[10] = 0;
-    p[8] = 0;
-    p[9] = 0;
-    p[11] = 1;
-    *(volatile unsigned short *)(p + 0xc) = 0;
-    *(volatile unsigned long *)(p + 0xe) = 0;
-    p[4] = 1;
-    p[5] = 0;
-    *(volatile unsigned long *)(p + 0x32) = 0;
-    bits = p[10] & 0x70;
-    p[10] = bits;
-    *(volatile unsigned long *)(p + 0xe) = 0;
-    p[10] = bits | 0x80;
-    p[5] = 1;
+int AnimActionStep(AnimAction *a) {
+    if (!AnimActionAdvance(a) || !a->count || a->state == 0) return 0;
+    if ((unsigned)a->flags & 0x20) {
+        if (++a->frame >= a->count) a->frame = 0;
+    } else if (++a->frame >= a->count) {
+        a->frame = a->count - 1; a->flags |= 1; a->flags &= 0x7f;
+    }
+    a->flags &= 0xfb;
+    return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+AnimAction::AnimAction() {
+    AnimActionClear(this);
+    AnimPair zero; zero.first = 0; zero.second = 0; position.Copy(zero);
+    frame = 0; count = 0; ready = 1; b36 = 0; time = 0; direction = 0;
+    AnimActionInitialize(this, 1, 0, 50, 0); time = 0; block = 0;
+    SetState(1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 unsigned long AnimActionRelease(void *action) {
     unsigned long id = *(unsigned long *)((char *)action + 12);
     if (id != 0) {
@@ -248,99 +248,99 @@ void AnimActionAssign(void *unused, unsigned long value, int index, int count) {
     }
     *(unsigned long *)((char *)actorIndexTable + index * 8) = value;
 }
-void AnimActionClearGroup(void *action) {
-    unsigned char *p = (unsigned char *)action;
-    int count = animationMetaAt0cbc[*(unsigned short *)(p + 12) * 15];
-    int index = *(int *)(p + 0x22);
-    int resourceList[10];
+void AnimActionClearGroup(AnimAction *a) {
+    int list[10];
+    int count = animationMetaAt0cbc[a->kind * 15];
+    int index = a->resource;
     if (count > 1) {
         animReleaseSentinel = 0;
-        BestLocInitialize(resourceList, fallbackName, count - 1);
-        BestLocSetCandidate(resourceList, (void *)index);
-        BestLocVisit(resourceList, (int (*)(void *))AnimActionRelease);
-        return;
-    }
-    actorIndexTable[index * 2] = 0;
+        BestLocInitialize(list, fallbackName, count - 1);
+        BestLocSetCandidate(list, (void *)index);
+        BestLocVisit(list, (int (*)(void *))AnimActionRelease);
+    } else actorIndexTable[index * 2] = 0;
 }
-void AnimActionReplace(unsigned char *action, unsigned long value)  {
-    int count=AnimActionGetMetadata(action);
-    int index = *(int *)(action + 0x22);
-    int resourceListA[10];
-    int resourceListB[10];
-    if (count > 1)  {
+void AnimActionReplace(AnimAction *a, unsigned long value) {
+    int list[10];
+    int count = animationMetaAt0cbc[a->kind * 15];
+    int index = a->resource;
+    if (count > 1) {
         animReleaseSentinel = 0;
-        BestLocInitialize(resourceListA, fallbackName, count - 1);
-        BestLocSetCandidate(resourceListA, (void *)index);
-        BestLocVisit(resourceListA, (int (*)(void *))AnimActionRelease);
-    }
-    else  {
-        actorIndexTable[index * 2] = 0;
-    }
-    index = AnimResourceResolve((unsigned long)fallbackName, (int *)(action + 0x12));
-    *(int *)(action + 0x22) = index;
-    AnimResourceLoadEntry((unsigned long)fallbackName, (unsigned long *)(action + 0x1a), index);
-    index = *(int *)(action + 0x22);
-    if (count > 1)  {
-        animReleaseSentinel = value;
-        BestLocInitialize(resourceListB, fallbackName, count - 1);
-        BestLocSetCandidate(resourceListB, (void *)index);
-        BestLocVisit(resourceListB, (int (*)(void *))AnimActionRelease);
-    }
-    else  {
-        *AnimResourceSlot(index)=value;
-    }
+        BestLocInitialize(list, fallbackName, count - 1);
+        BestLocSetCandidate(list, (void *)index);
+        BestLocVisit(list, (int (*)(void *))AnimActionRelease);
+    } else actorIndexTable[index * 2] = 0;
+    a->resource = GridPointToIndex(fallbackName, (ExploPoint *)&a->position);
+    BestLocSetData((void *)fallbackName, &a->target, (void *)a->resource);
+    AnimActionAssign(a, value, a->resource, count);
 }
 
-void AnimActionUpdateTrajectory(int *action, int *actor) {
-    unsigned char *p = (unsigned char *)action;
-    int distance = 0;
-    int angle;
-    int *frame;
-    if (p[5] == 10) {
-        distance = f_0042c130(actor, p + 0x2a, p + 0x12);
-        angle = f_0047f9d9(((*(int *)(p + 0x5f) * 0xb4) /
-                             *(int *)(p + 0x63)) * 0xb60b61);
-        int first = GridPointToIndex(fallbackName, (ExploPoint *)(p + 0x4f));
-        int firstDistance = targetDefinitionTable[first * 12 + 1] * distance;
-        int second = GridPointToIndex(fallbackName, (ExploPoint *)(p + 0x57));
-        distance = firstDistance +
-            (*(int *)(p + 0x5f) *
-             (targetDefinitionTable[second * 12 + 1] * distance - firstDistance)) /
-             *(int *)(p + 0x63) + ((distance * angle * 2) >> 16);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void AnimActionUpdateTrajectory(AnimAction *a, int *actor) {
+    int state = a->state; int distance = 0; if (state == 10) {
+        distance = DisplayPointToScreenScaled(actor, &a->point, &a->position);
+        int sine = FixedSin(a->step * 180 / a->steps * 0xb60b61);
+        int first = targetDefinitionTable[GridPointToIndex(fallbackName, (ExploPoint *)&a->from) * 12 + 1] * distance;
+        int second = targetDefinitionTable[GridPointToIndex(fallbackName, (ExploPoint *)&a->to) * 12 + 1] * distance;
+        int curve = distance * sine * 2 >> 16; distance = first + a->step * (second - first) / a->steps + curve;
     } else {
-        ViewToScreen(actor, (ExploPoint *)(p + 0x2a),
-                     (ExploPoint *)(p + 0x12));
+        ViewToScreen(actor, &a->point, (ExploPoint *)&a->position);
     }
-    *(int *)p = *(int *)(p + 0x2e);
-    if (p[5] == 0x11)
-        *(int *)p -= 20000;
-    *(int *)(p + 0x2e) -= distance;
-    p[6] = (unsigned char)GridClamp(
-        *(int *)((char *)actor + 0x80) + *(int *)(p + 0x26));
-    frame = AnimBitmapFrame(p);
-    *(int *)(p + 0x4b) = (int)frame;
-    unsigned char xOffset = ((unsigned char *)frame)[10];
-    unsigned int yOffset = ((unsigned char *)frame)[11];
-    int width = *(unsigned short *)((char *)frame + 4);
-    int scaledWidth = ViewScale(actor,
-        animationMetaAt0cc4[*(unsigned short *)(p + 12) * 15]) * width;
-    scaledWidth /= 64;
-    int height = *(unsigned short *)(*(unsigned char **)(p + 0x4b) + 6);
-    int scaledHeight = ViewScale(actor,
-        animationMetaAt0cc8[*(unsigned short *)(p + 12) * 15]) * height;
-    scaledHeight /= 64;
-    *(int *)(p + 0x43) = scaledWidth;
-    *(int *)(p + 0x3b) = *(int *)(p + 0x2a);
-    *(int *)(p + 0x3f) = *(int *)(p + 0x2e);
-    *(int *)(p + 0x47) = scaledHeight;
-    width = *(unsigned short *)(*(unsigned char **)(p + 0x4b) + 4);
-    if (width != 0)
-        *(int *)(p + 0x3b) -= ((unsigned int)xOffset * scaledWidth) / width;
-    height = *(unsigned short *)(*(unsigned char **)(p + 0x4b) + 6);
-    if (height != 0)
-        *(int *)(p + 0x3f) -= (yOffset * scaledHeight) / height;
-    p[11] = 0;
+    a->depth = a->y;
+    if (a->state == 0x11) a->depth -= 20000;
+    a->y -= distance;
+    a->angle = (unsigned char)GridClamp(actor[0x20] + a->direction);
+    a->bitmap = AnimBitmapFrame(a);
+    unsigned yOffset, xOffset = ((AnimBitmap *)a->bitmap)->xOffset; yOffset = ((AnimBitmap *)a->bitmap)->yOffset;
+
+    int width = ViewScale(actor, animationMetaAt0cc4[a->kind * 15]) * ((AnimBitmap *)a->bitmap)->width / 64;
+    int height = ViewScale(actor, animationMetaAt0cc8[a->kind * 15]) * ((AnimBitmap *)a->bitmap)->height / 64;
+    a->drawWidth = width;
+    a->drawX = a->x;
+    a->drawY = a->y;
+    a->drawHeight = height;
+    if (((AnimBitmap *)a->bitmap)->width) a->drawX -= xOffset * width / ((AnimBitmap *)a->bitmap)->width;
+    if (((AnimBitmap *)a->bitmap)->height) a->drawY -= yOffset * height / ((AnimBitmap *)a->bitmap)->height;
+    a->ready = 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 void AnimActionInterpolateDrawPos(void *action, int *position, int frame,
                                   void *drawInfo, void *actor) {
     struct Point { int x; int y; };
@@ -766,160 +766,160 @@ void AnimActionFreeBlock(void *action) {
         object->resource = 0;
     }
 }
-int AnimActionPrepareBlock(void *action, int actor, int sourceId) {
-    unsigned char *p = (unsigned char *)action;
-    if (actor != 0 && sourceId != 0) {
-        unsigned char type = p[5];
-        if (type == 1 || type == 7 || type == 0x0e || type == 0x11 || type == 0x12) {
-            if ((void *)actor == g4d2498)
-                goto valid;
-        }
-    }
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-    AssertFail(animSourcePath, __LINE__, 0);
-valid:
-    int id = *(int *)(p + 0x22);
-    if (bestLocCursor != id)
-        BestLocSetup(bestLocEntries, id, 0);
-    AnimActionCreateBlock(action);
-    unsigned char *block = *(unsigned char **)(p + 0x32);
-    int found = f_0042d2b0(bestLocEntries, sourceId, block + 4, 0x80);
-    if (!found)
-        f_004324d0((unsigned long)fallbackName, id, sourceId, block + 4, 0x80);
-    else
-        f_0042d370(bestLocEntries, sourceId);
-    *(int *)block = id;
-    block[0x400] = 6;
-    *(int *)(block + 0x200) = 0;
-    *(int *)(block + 0x484) = 1;
-    *(int *)(block + 0x488) = 1;
-    *(int *)(block + 0x490) = actor;
-    int entryIndex = 1;
-    int threshold = StateInvoke(*(int *)(actor + 0x18), 0, 0);
-    int currentId = id;
-    for (int offset = 4; *(int *)(block + offset) != 0; offset += 4) {
+int AnimActionPrepareBlock(AnimAction *a, int actor, int sourceId) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+    if (!(actor && sourceId && !AnimActionBusy(a) && (void *)actor == g4d2498)) AssertFail(animSourcePath, __LINE__, 0);
+    if (bestLocCursor != a->resource) BestLocSetup(bestLocEntries, a->resource, 0);
+    AnimActionCreateBlock(a);
+    if (SearchGetPath(bestLocEntries, sourceId, &a->block->path[1], 0x80)) SearchGetCost(bestLocEntries, sourceId);
+    else BuildTerrainPath((unsigned long)fallbackName, a->resource, sourceId, &a->block->path[1], 0x80);
+    a->block->path[0] = a->resource;
+    a->block->marks[0] = 6;
+    a->block->cost[0] = 0;
+    a->block->count = 1;
+    a->block->index = 1;
+    a->block->actor = (void *)actor;
+    int threshold = StateInvoke(((int *)actor)[6], 0, 0);
+    int previous = a->resource;
+    for (int i = 1; a->block->path[i]; i++) {
         unsigned short result[6];
-        TargetInitAt((unsigned long)fallbackName, result,
-                     *(int *)(block + offset), currentId);
-        ++*(int *)(block + 0x484);
-        *(int *)(block + 0x480) += result[0];
-        *(unsigned int *)(block + 0x200 + offset) = result[0];
-        block[0x400 + entryIndex] =
-            (threshold < *(int *)(block + 0x480)) ? 9 : 7;
-        currentId = *(int *)(block + offset);
-        if (*(int *)(actor + 8) == gLocalActorKind) {
-            int resource = *(int *)(actorIndexTable + currentId * 2);
-            if (resource < 0 && simVisibleTypes[currentId] != 0)
-                block[0x400 + entryIndex] = 9;
-            if (0 < resource && simActorVisibility[currentId] != 0)
-                block[0x400 + entryIndex] = 9;
+        TargetInitAt((unsigned long)fallbackName, result, a->block->path[i], previous);
+        a->block->count++;
+        a->block->budget += result[0];
+        a->block->cost[i] = result[0];
+        a->block->marks[i] = a->block->budget > threshold ? 9 : 7;
+        previous = a->block->path[i];
+        if (((int *)actor)[2] == gLocalActorKind) {
+            int resource = actorIndexTable[previous * 2];
+            if (resource < 0 && !SimTypeHidden(previous)) a->block->marks[i] = 9;
+            if (resource > 0 && !SimActorHidden(previous)) a->block->marks[i] = 9;
         }
-        ++entryIndex;
     }
     return 1;
 }
-void AnimActionSetExternalBlock(void *action, int actor, int sourceId,
-                                unsigned long budget) {
-    unsigned char *p = (unsigned char *)action;
-    unsigned char type = p[5];
-    int allowed = type == 1 || type == 7 || type == 0x0e || type == 0x11 || type == 0x12;
-    if (actor && sourceId && allowed)
-        goto valid;
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-    AssertFail(animSourcePath, __LINE__, 0);
-valid:
-    AnimActionCreateBlock(action);
-    unsigned char *block = *(unsigned char **)(p + 0x32);
-    *(unsigned long *)(block + 0x484) = 2;
-    *(unsigned long *)(block + 0x488) = 1;
-    *(unsigned long *)(block + 0x480) = budget;
-    *(unsigned long *)(block + 0x490) = actor;
-    *(unsigned long *)block = *(unsigned long *)(p + 0x22);
-    block[0x400] = 0;
-    *(unsigned long *)(block + 0x200) = 0;
-    *(unsigned long *)(block + 4) = sourceId;
-    block[0x401] = 0;
-    *(unsigned long *)(block + 0x204) = budget;
+
+
+
+
+
+
+
+
+
+
+
+
+
+void AnimActionSetExternalBlock(AnimAction *a, int actor, int sourceId, unsigned long budget) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    if (!(actor && sourceId && !AnimActionBusy(a))) AssertFail(animSourcePath, __LINE__, 0);
+    AnimActionCreateBlock(a);
+
+    a->block->count = 2;
+    a->block->index = 1;
+    a->block->budget = budget;
+    a->block->actor = (void *)actor;
+    a->block->path[0] = a->resource;
+    a->block->marks[0] = 0;
+    a->block->cost[0] = 0;
+    a->block->path[1] = sourceId;
+    a->block->marks[1] = 0;
+    a->block->cost[1] = budget;
 }
-void AnimActionInitTargetActor(void *action) {
-    unsigned char *p = (unsigned char *)action;
-    unsigned char *block = *(unsigned char **)(p + 0x32);
-    if (block != 0) {
-        if (*(int *)(block + 0x488) == 1) {
-            if (*(int *)(block + 4) != 0)
-                goto valid;
-        }
+
+void AnimActionInitTargetActor(AnimAction *a) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    if (!a->block || a->block->index != 1 || !a->block->path[1]) AssertFail(animSourcePath, __LINE__, 0);
+    TargetObjectInit(fallbackName, &a->to, a->block->path[1]); a->from.Copy(a->position);
+    a->frame = 0;
+    a->state = 4;
+    AnimActionCommitTrajectory(a);
+}
+
+
+
+
+int AnimActionHasMetadata(AnimAction *a) {
+    return animationMetaAt0cc0[a->kind * 15] != 0;
+}
+void AnimActionConfigure(AnimAction *a, int frame, int index) {
+    if (a->state == 1 && AnimActionHasMetadata(a)) {
+        WorldActionNotify(a, 12);
+        a->frame = (index < 0) ? frame : 0;
+        a->b39 = index; a->b38 = frame;
     }
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-    AssertFail(animSourcePath, __LINE__, 0);
-valid:
-TargetObjectInit(fallbackName,p+0x57,*(int *)(*(unsigned char **)(p+0x32)+4));((AnimPair *)(p+0x4f))->Copy(*(AnimPair *)(p+0x12));
+}
 
 
 
-    p[8] = 0;
-    p[5] = 4;
-    AnimActionCommitTrajectory(action);
-}
-int AnimActionHasMetadata(void *action) {
-    return animationMetaAt0cc0[*(unsigned short *)((char *)action + 12) * 15] != 0;
-}
-void AnimActionConfigure(void *action, unsigned char frame, int index) {
-    unsigned char *p = (unsigned char *)action;
-    if (p[5] == 1) {
-        unsigned short metadataIndex = *(unsigned short *)(p + 12);
-        if (animationMetaAt0cc0[metadataIndex * 15] == 0)
-            return;
-        p[8] = 0;
-        p[9] = 0;
-        p[5] = 0x0c;
-        unsigned char flags = p[10];
-        *(volatile unsigned long *)(p + 14) = 0;
-        p[10] = flags & 0x70;
-        *(volatile unsigned char *)(p + 11) = 1;
-        p[10] = (flags & 0x70) | 0x80;
-        p[8] = (index < 0) ? frame : 0;
-        *(char *)(p + 0x39) = (char)index;
-        *(unsigned char *)(p + 0x38) = frame;
-    }
-}
+
+
+
+
+
+
+
+
+
 int AnimActionGetMetadata(void *action) {
     return animationMetaAt0cbc[*(unsigned short *)((char *)action + 12) * 15];
 }
@@ -951,41 +951,21 @@ void AnimActionCopyState(void *action, void *output)  {
     *(unsigned long *)((char *)output+0x19)=*(unsigned long *)((char *)action+0x26);
 }
 
-int AnimActionEqual(void *action, void *state) {
-    unsigned char *p = (unsigned char *)action;
-    unsigned char *q = (unsigned char *)state;
+int AnimActionEqual(AnimAction *a, AnimState *s) {
     int equal = 1;
-    if (*(int *)(q + 5) != *(int *)(p + 0x12) ||
-        *(int *)(q + 9) != *(int *)(p + 0x16))
-        equal = 0;
-    if (*(int *)(q + 0x0d) != *(int *)(p + 0x1a) ||
-        *(int *)(q + 0x11) != *(int *)(p + 0x1e))
-        equal = 0;
-    if (*(int *)(q + 0x15) != *(int *)(p + 0x22))
-        equal = 0;
-    if (*(int *)(q + 0x19) != *(int *)(p + 0x26))
-        equal = 0;
+    AnimPair *pair = &s->position;
+    if (*pair != a->position) equal = 0;
+    pair = &s->target;
+    if (*pair != a->target) equal = 0;
+    if (s->resource != a->resource) equal = 0;
+    if (s->direction != a->direction) equal = 0;
     return equal;
 }
-void AnimActionCopyChangedFields(void *action, void *state) {
-    unsigned char *p = (unsigned char *)action;
-    unsigned char *q = (unsigned char *)state;
-    struct Pair { unsigned long first; unsigned long second; };
-    Pair *first = (Pair *)(p + 0x12);
-    Pair *firstSource = (Pair *)(q + 5);
-    if (first->first != firstSource->first ||
-        first->second != firstSource->second)
-        *first = *firstSource;
-    Pair *second = (Pair *)(p + 0x1a);
-    Pair *secondSource = (Pair *)(q + 0x0d);
-    if (second->first != secondSource->first ||
-        second->second != secondSource->second)
-        *second = *secondSource;
-    if (*(int *)(q + 0x15) != *(int *)(p + 0x22))
-        *(int *)(p + 0x22) = *(int *)(q + 0x15);
-    if (*(int *)(q + 0x19) != *(int *)(p + 0x26))
-        *(int *)(p + 0x26) = *(int *)(q + 0x19);
+void AnimActionCopyChangedFields(AnimAction *a, AnimState *s) {
+    AnimPair *pair = &s->position;
+    if (*pair != a->position) a->position.Copy(*pair);
+    pair = &s->target;
+    if (*pair != a->target) a->target.Copy(*pair);
+    if (s->resource != a->resource) a->resource = s->resource;
+    if (s->direction != a->direction) a->direction = s->direction;
 }
-
-
-
