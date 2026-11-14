@@ -19,9 +19,9 @@ static char assertFooter[]="----------------------------------------------------
 #pragma data_seg("assertTitle", "DATA")
 static char assertTitle[]="Problem!";
 #pragma data_seg()
-extern int g_assertCallbackCount;
-extern int g_assertMessageActive;
-extern AssertCallback g_assertCallbacks[50];
+/* 00513988: one record (the callback table is indexed off the record, not a separate array) */
+struct AssertState { int messageActive; int callbackCount; AssertCallback callbacks[50]; };
+extern AssertState g_assertState;
 extern void *g_mainWindow;
 int sprintf(char *buffer, const char *format, ...);
  static char assertSourceFile[] = __FILE__;
@@ -34,51 +34,37 @@ char errorMissingFile[] = "Missing file: %s.  Possible cause: Bad installation, 
 char errorWrite[] = "Unable to write.  Possible cause: Disk was full.  Try clearing more disk space and running again.";
 extern "C" void DrainAssertCallbacks()
 {
-    while (g_assertCallbackCount != 0) {
-        --g_assertCallbackCount;
-        g_assertCallbacks[g_assertCallbackCount]();
+    while (g_assertState.callbackCount != 0) {
+        --g_assertState.callbackCount;
+        g_assertState.callbacks[g_assertState.callbackCount]();
     }
 }
 
+extern "C" void AssertFail(const char *file, int line, const char *message);
 extern "C" void RegisterAssertCallback(AssertCallback callback)
 {
-    int wasActive;
-    if (g_assertCallbackCount >= 50) {
-        wasActive = g_assertMessageActive;
-        if (wasActive == 0) {
-            char buffer[1024];
-            g_assertMessageActive = 1;
-            sprintf(buffer, assertFormat,
-                (const char *)wasActive, assertProgram, assertVersion, assertDate, assertSourceFile, 104, assertFooter);
-            MessageBeep(wasActive);
-            MessageBoxA((HWND)g_mainWindow, buffer, assertTitle, 0x2000);
-            g_assertMessageActive = wasActive;
-        }
-    }
-    {register int oldCount = g_assertCallbackCount;
-    register AssertCallback *slot = g_assertCallbacks + oldCount;
-    g_assertCallbackCount = oldCount + 1;
-    *slot = callback;}
+    if (g_assertState.callbackCount >= 50) AssertFail(assertSourceFile, 104, 0);
+    g_assertState.callbacks[g_assertState.callbackCount++] = callback;
 }
 
 extern "C" void AssertFail(const char *file, int line, const char *message)
 {
-    if (g_assertMessageActive == 0) {
+    if (g_assertState.messageActive == 0) {
         char buffer[1024];
-        g_assertMessageActive = 1;
+        g_assertState.messageActive = 1;
         sprintf(buffer, assertFormat,
             message, assertProgram, assertVersion, assertDate, file, line, assertFooter);
         MessageBeep(0);
         MessageBoxA((HWND)g_mainWindow, buffer, assertTitle, 0x2000);
-        g_assertMessageActive = 0;
+        g_assertState.messageActive = 0;
     }
 }
 
 extern "C" void AssertExit(unsigned int code)
 {
-    while (g_assertCallbackCount != 0) {
-        --g_assertCallbackCount;
-        g_assertCallbacks[g_assertCallbackCount]();
+    while (g_assertState.callbackCount != 0) {
+        --g_assertState.callbackCount;
+        g_assertState.callbacks[g_assertState.callbackCount]();
     }
     ExitProcess(code);
 }

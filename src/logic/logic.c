@@ -501,6 +501,7 @@ static inline int ClampMissionCount(int n) { if (n <= 0) return 0; if (n >= 0xba
 
 void LogicGetMissionSummary(unsigned char *mission, unsigned long *summary)
 {
+    LogicActor *actor;
     if ((*mission & 2) == 0) {
         int limit = DAT_004d35bc;
         for (int index = 0; index <= limit; ++index)
@@ -510,7 +511,7 @@ void LogicGetMissionSummary(unsigned char *mission, unsigned long *summary)
         *(int *)(mission + 0x6c) = 0;
         *(int *)(mission + 0x7c) = 0;
         *(int *)(mission + 0x78) = 0;
-        LogicActor *actor = logicActorList.First();
+        actor = logicActorList.First();
         while (actor) {
             if (actor->Attached()) {
                 if (actor->Friendly()) {

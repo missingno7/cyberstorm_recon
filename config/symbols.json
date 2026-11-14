@@ -8071,10 +8071,10 @@
   "AreaFind": {
    "va": "0042cba0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?AreaFind$n(pnii)i",
    "tu": "src/terr/tarea.c",
-   "evidence": "placed (at) in src/terr/tarea.c 2026-11-09"
+   "evidence": "strict match 2026-11-14"
   },
   "AreaIndexToPoint": {
    "va": "0042cca0",
@@ -8106,7 +8106,7 @@
    "status": "matched",
    "mangled": "W?AreaEnumerate$n(pnipnvuiui)v",
    "tu": "src/terr/tarea.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-14"
   },
   "BestLocVisit": {
    "va": "0042cf20",
@@ -8128,7 +8128,7 @@
    "status": "matched",
    "mangled": "W?AreaEnumerateAll$n(pnipnv)v",
    "tu": "src/terr/tarea.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-14"
   },
   "BestLocState::$ct": {
    "va": "0042cf40",
@@ -16813,7 +16813,7 @@
    "status": "matched",
    "mangled": "W?LogicReadActorRecord$n(pnvpn$FileRecord$$)i",
    "tu": "src/logic/logic.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-14"
   },
   "LogicSystem::Save": {
    "va": "00462d9a",
@@ -16828,7 +16828,7 @@
    "status": "matched",
    "mangled": "W?LogicWriteActorRecord$n(pnxvpn$FileRecord$$)i",
    "tu": "src/logic/logic.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-14"
   },
   "LogicLoadActorState": {
    "va": "00462de8",
@@ -16836,7 +16836,7 @@
    "status": "matched",
    "mangled": "W?LogicLoadActorState$n(pnulpnxulpnul)v",
    "tu": "src/logic/logic.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-14"
   },
   "LogicGetScriptData": {
    "va": "00462e33",
@@ -16844,7 +16844,7 @@
    "status": "matched",
    "mangled": "W?LogicGetScriptData$n()pnv",
    "tu": "src/logic/logic.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-14"
   },
   "LogicGetScriptData#W?LogicGetScriptData$n(pnv)pnv": {
    "va": "00462e33",
@@ -16859,7 +16859,7 @@
    "status": "matched",
    "mangled": "W?LogicActorBuild$n(pnvpnxul)pnv",
    "tu": "src/logic/logic.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-14"
   },
   "LogicStoreActorLink": {
    "va": "00462fff",
@@ -16867,7 +16867,7 @@
    "status": "matched",
    "mangled": "W?LogicStoreActorLink$n(pnvpnv)i",
    "tu": "src/logic/logic.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-14"
   },
   "LogicCheckActorCollision": {
    "va": "00463040",
@@ -16883,7 +16883,7 @@
    "status": "matched",
    "mangled": "W?LogicCheckActorOrder$n(pnucui)v",
    "tu": "src/logic/logic.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-14"
   },
   "LogicResetActorList": {
    "va": "004634ea",
@@ -16891,7 +16891,7 @@
    "status": "matched",
    "mangled": "W?LogicResetActorList$n()v",
    "tu": "src/logic/logic.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-14"
   },
   "LogicUpdateMissionStatus": {
    "va": "0046350d",
@@ -16899,7 +16899,7 @@
    "status": "matched",
    "mangled": "W?LogicUpdateMissionStatus$n(pnuc)v",
    "tu": "src/logic/logic.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-14"
   },
   "LogicMarkMissionReady": {
    "va": "004635a7",
@@ -16907,7 +16907,7 @@
    "status": "matched",
    "mangled": "W?LogicMarkMissionReady$n(pnuci)v",
    "tu": "src/logic/logic.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-14"
   },
   "LogicCheckMissionAction": {
    "va": "004635dc",
@@ -16915,7 +16915,7 @@
    "status": "matched",
    "mangled": "W?LogicCheckMissionAction$n(pnuc)v",
    "tu": "src/logic/logic.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-14"
   },
   "LogicDispatchIntel": {
    "va": "004637ed",
@@ -16931,7 +16931,7 @@
    "status": "matched",
    "mangled": "W?LogicCopyActorValues$n(pnvii)v",
    "tu": "src/logic/logic.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-14"
   },
   "LogicAdvanceMissionState": {
    "va": "004639bc",
@@ -16939,15 +16939,15 @@
    "status": "matched",
    "mangled": "W?LogicAdvanceMissionState$n(pnuc)v",
    "tu": "src/logic/logic.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-14"
   },
   "LogicGetMissionSummary": {
    "va": "00463a2f",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?LogicGetMissionSummary$n(pnucpnul)v",
    "tu": "src/logic/logic.c",
-   "evidence": "placed (at) in src/logic/logic.c 2026-11-09"
+   "evidence": "strict match 2026-11-14"
   },
   "ActorRead": {
    "va": "00463b18",
@@ -23099,7 +23099,7 @@
    "status": "matched",
    "mangled": "W?.fn_init$n()v",
    "tu": "src/_unknown/tu_0047d0e0.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-14"
   },
   "f_d110": {
    "va": "0047d110",
@@ -23115,7 +23115,7 @@
    "status": "matched",
    "mangled": "W?$ct:MciState$n()_",
    "tu": "src/_unknown/tu_0047d0e0.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-14"
   },
   "MciState::StopClose": {
    "va": "0047d130",
@@ -23131,7 +23131,7 @@
    "status": "matched",
    "mangled": "W?$dt:MciState$n()_",
    "tu": "src/_unknown/tu_0047d0e0.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-14"
   },
   "MciState::Open": {
    "va": "0047d180",
@@ -23146,7 +23146,7 @@
    "status": "matched",
    "mangled": "W?Close$:MciState$n()v",
    "tu": "src/_unknown/tu_0047d0e0.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-14"
   },
   "f_d270": {
    "va": "0047d270",
@@ -23154,7 +23154,7 @@
    "status": "matched",
    "mangled": "f_d270",
    "tu": "src/_unknown/tu_0047d0e0.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-14"
   },
   "f_d2c0": {
    "va": "0047d2c0",
@@ -23162,7 +23162,7 @@
    "status": "matched",
    "mangled": "f_d2c0",
    "tu": "src/_unknown/tu_0047d0e0.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-14"
   },
   "f_d2c0#W?f_d2c0$n(pnv)v": {
    "va": "0047d2c0",
@@ -23177,7 +23177,7 @@
    "status": "matched",
    "mangled": "f_d2f0",
    "tu": "src/_unknown/tu_0047d0e0.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-14"
   },
   "MciState::PlayTimeRange": {
    "va": "0047d310",
@@ -23229,15 +23229,15 @@
    "status": "matched",
    "mangled": "DrainAssertCallbacks",
    "tu": "src/debug/assert.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-14"
   },
   "RegisterAssertCallback": {
    "va": "0047d4f0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "RegisterAssertCallback",
    "tu": "src/debug/assert.c",
-   "evidence": "placed (at) in src/debug/assert.c 2026-11-09"
+   "evidence": "strict match 2026-11-14"
   },
   "AssertFail": {
    "va": "0047d5a0",
@@ -23245,7 +23245,7 @@
    "status": "matched",
    "mangled": "AssertFail",
    "tu": "src/debug/assert.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-14"
   },
   "AssertFail#W?AssertFail$n(pnxaipnxa)v": {
    "va": "0047d5a0",
@@ -23260,7 +23260,7 @@
    "status": "matched",
    "mangled": "AssertExit",
    "tu": "src/debug/assert.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-14"
   },
   "AssertExit#W?AssertExit$n(i)v": {
    "va": "0047d640",
@@ -37463,6 +37463,13 @@
    "mangled": "W?logicMissionByteCount$ni",
    "evidence": "implied by src/logic/lsys.c 2026-11-09"
   },
+  "DAT_004d35bc": {
+   "va": "004d35bc",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?DAT_004d35bc$ni",
+   "evidence": "implied by src/logic/logic.c 2026-11-14"
+  },
   "DAT_004d35c0": {
    "va": "004d35c0",
    "kind": "data",
@@ -37525,6 +37532,13 @@
    "status": "hypothesis",
    "mangled": "W?simVisibleTypes$npnuc",
    "evidence": "implied by src/_unknown/tu_0044950c.c 2026-11-09"
+  },
+  "DAT_004d3600": {
+   "va": "004d3600",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?DAT_004d3600$ni",
+   "evidence": "implied by src/logic/logic.c 2026-11-14"
   },
   "simActorVisibility": {
    "va": "004d3604",
@@ -40989,6 +41003,13 @@
    "status": "hypothesis",
    "mangled": "g_assertMessageActive",
    "evidence": "implied by src/debug/assert.c (overload-safe migration 2026-11-09)"
+  },
+  "g_assertState": {
+   "va": "00513988",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g_assertState$n$AssertState$$",
+   "evidence": "implied by src/debug/assert.c 2026-11-14"
   },
   "g_assertCallbackCount": {
    "va": "0051398c",

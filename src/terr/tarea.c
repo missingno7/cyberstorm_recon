@@ -15,6 +15,7 @@ extern "C" void DisplayStep(AreaWalk *);
 extern int ResolveName(const char *, const char *);
 extern void AreaVisit(void *, void *);
 
+inline int AreaRingCount(int radius) { if (radius < 0) return 0; return (((radius + 1) * radius) >> 1) * 6 + 1; }
 int AreaFind(int *grid, int position)
 {
     int point[2];
@@ -22,8 +23,7 @@ int AreaFind(int *grid, int position)
         BestLocSetData((void *)grid[0], point, (void *)position);
         int *center = grid + 8;
         int ring = LogicCopyPoint(point, center);
-        int maxRing = grid[5];
-        if (ring <= maxRing) {
+        if (ring <= grid[5]) {
             point[0] -= center[0];
             point[1] -= center[1];
             AreaWalk walk;
@@ -32,15 +32,12 @@ int AreaFind(int *grid, int position)
             walk.y = ring * 2;
             walk.edge = walk.y;
             walk.phase = ((unsigned int)ring > 0);
-            int previous = --ring;
-            int index = 0;
-            if (previous >= 0) index = (((previous + 1) * previous) >> 1) * 6 + 1;
-            if (walk.step <= (unsigned int)grid[5]) {
-                do {
-                    ++index;
-                    if (walk.x == point[0] && walk.y == point[1]) return index;
-                    DisplayStep(&walk);
-                } while (walk.step <= (unsigned int)grid[5]);
+            int index = AreaRingCount(ring - 1);
+            ++index;
+            while (walk.step <= (unsigned int)grid[5]) {
+                if (walk.x == point[0] && walk.y == point[1]) return index;
+                DisplayStep(&walk);
+                ++index;
             }
             // The assert's line number is an immediate in the original call.
             // Keep this call at source line 143.
@@ -140,51 +137,23 @@ int AreaFind(int *grid, int position)
             // line-number padding
             // line-number padding
             // line-number padding
+            // line-number padding
+            // line-number padding
+            // line-number padding
             AssertFail(AreaSourcePath, __LINE__, 0);
         }
     }
     return 0;
 }
 
-inline int AreaRingCount(int radius) { if (radius < 0) return 0; return (((radius + 1) * radius) >> 1) * 6 + 1; }
 
 int AreaIndexToPoint(int *grid, int index)
 {
     int savedIndex = index;
     AreaPoint point = *(AreaPoint *)(grid + 8);
     if (savedIndex != 0) {
-        index+=4; index/=6;
-        int sum = 0;
-        int r = 0;
-        if (index > 0) { do { ++r; sum += r; } while (sum < index); }
-        AreaWalk walk;
-        walk.step = r;
-        walk.x = 0;
-        walk.y = r * 2;
-        walk.edge = walk.y;
-        walk.phase = ((unsigned int)r > 0);
-        int previous = r - 1;
-        int current = 0;
-        if (previous >= 0) current = (((previous + 1) * previous) >> 1) * 6 + 1;
-        ++current; if (walk.step <= (unsigned int)grid[5]) {
-            do {
-                if (current == savedIndex) {
-                    point += *(AreaPoint *)&walk;
-                    break;
-                }
-                DisplayStep(&walk); ++current;
-            } while (walk.step <= (unsigned int)grid[5]);
-        }
-    }
-    return ResolveName((const char *)grid[0], (const char *)&point);
-}
-
-int *AreaGetPoint(int *grid, int *point, int index)
-{
-    *(AreaPoint *)point = *(AreaPoint *)(grid + 8);
-    int requestedIndex = index;
-    if (requestedIndex != 0) {
-        int ring = (requestedIndex + 4) / 6;
+        int ring = index + 4;
+        ring /= 6;
         int sum = 0;
         int r = 0;
         if (ring > 0) { do { ++r; sum += r; } while (sum < ring); }
@@ -194,19 +163,44 @@ int *AreaGetPoint(int *grid, int *point, int index)
         walk.y = r * 2;
         walk.edge = walk.y;
         walk.phase = ((unsigned int)r > 0);
-        int previous = r - 1;
-        int current = 0;
-        if (previous >= 0) current = (((previous + 1) * previous) >> 1) * 6 + 1;
-        if (walk.step <= (unsigned int)grid[5]) {
-            do {
-                ++current;
-                if (current == requestedIndex) {
-                    point[0] += walk.x;
-                    point[1] += walk.y;
-                    return point;
-                }
-                DisplayStep(&walk);
-            } while (walk.step <= (unsigned int)grid[5]);
+        int current = AreaRingCount(r - 1);
+        ++current;
+        while (walk.step <= (unsigned int)grid[5]) {
+            if (current == savedIndex) {
+                point += *(AreaPoint *)&walk;
+                break;
+            }
+            DisplayStep(&walk);
+            ++current;
+        }
+    }
+    return ResolveName((const char *)grid[0], (const char *)&point);
+}
+
+int *AreaGetPoint(int *grid, int *point, int index)
+{
+    *(AreaPoint *)point = *(AreaPoint *)(grid + 8);
+    if (index != 0) {
+        int ring = index + 4;
+        ring /= 6;
+        int sum = 0;
+        int r = 0;
+        if (ring > 0) { do { ++r; sum += r; } while (sum < ring); }
+        AreaWalk walk;
+        walk.step = r;
+        walk.x = 0;
+        walk.y = r * 2;
+        walk.edge = walk.y;
+        walk.phase = ((unsigned int)r > 0);
+        int current = AreaRingCount(r - 1);
+        ++current;
+        while (walk.step <= (unsigned int)grid[5]) {
+            if (current == index) {
+                *(AreaPoint *)point += *(AreaPoint *)&walk;
+                break;
+            }
+            DisplayStep(&walk);
+            ++current;
         }
     }
     return point;

@@ -228,12 +228,17 @@
   "src/debug/assert.c": {
    "as": "debug\\assert.c",
    "install": "wc106",
-   "profile": "ot",
+   "profile": "ot-oe",
    "functions": {
     "DrainAssertCallbacks": {
      "va": "0047d4c0",
      "size": 48,
      "mangled": "DrainAssertCallbacks"
+    },
+    "RegisterAssertCallback": {
+     "va": "0047d4f0",
+     "size": 176,
+     "mangled": "RegisterAssertCallback"
     },
     "AssertFail": {
      "va": "0047d5a0",
@@ -276,7 +281,7 @@
      "size": 346
     }
    },
-   "accepted": "2026-11-11"
+   "accepted": "2026-11-14"
   },
   "src/io/memory.c": {
    "as": "io\\memory.c",
@@ -5498,10 +5503,15 @@
      "va": "004639bc",
      "size": 115,
      "mangled": "W?LogicAdvanceMissionState$n(pnuc)v"
+    },
+    "LogicGetMissionSummary": {
+     "va": "00463a2f",
+     "size": 232,
+     "mangled": "W?LogicGetMissionSummary$n(pnucpnul)v"
     }
    },
    "data": {},
-   "accepted": "2026-11-11"
+   "accepted": "2026-11-14"
   },
   "src/_unknown/tu_004599a0.c": {
    "as": "_unknown\\tu_004599a0.c",
@@ -6692,6 +6702,11 @@
    "install": "wc106",
    "profile": "ot",
    "functions": {
+    "AreaFind": {
+     "va": "0042cba0",
+     "size": 256,
+     "mangled": "W?AreaFind$n(pnii)i"
+    },
     "AreaEnumerate": {
      "va": "0042ce60",
      "size": 192,
@@ -6709,7 +6724,7 @@
      "size": 13
     }
    },
-   "accepted": "2026-11-11"
+   "accepted": "2026-11-14"
   },
   "src/terr/tdisplay.c": {
    "as": "terr\\tdisplay.c",
@@ -10083,7 +10098,7 @@
      "size": 6
     }
    },
-   "accepted": "2026-11-11"
+   "accepted": "2026-11-14"
   },
   "src/_unknown/asm_00435084.asm": {
    "as": "_unknown\\asm_00435084.asm",

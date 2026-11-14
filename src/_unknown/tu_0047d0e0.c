@@ -88,21 +88,17 @@ extern "C" void PlayNextMciTrack(MciState *s, int start)
 }
 int MciState::PlayTimeRange(int from, int fromSeconds, unsigned int to, int toSeconds)
 {
-    register MciState *state = this;
-    struct LocalParameters {
-        MCI_PLAY_PARMS play;
-        MCI_SET_PARMS setTime;
-    } local;
-    local.setTime.dwTimeFormat = 10;
-    mciSendCommandA(state->device, MCI_SET, MCI_SET_TIME_FORMAT, (unsigned long)&local.setTime);
-    DWORD flags;
-    if (to)
-        flags = MCI_FROM | MCI_TO;
-    else
-        flags = MCI_FROM;
-    state->state = 1;
-    DWORD packedFrom = (DWORD)(unsigned char)from | ((fromSeconds / 60 & 0xffff) << 8);
-    local.play.dwFrom = packedFrom | ((unsigned char)(fromSeconds % 60) << 16);
-    local.play.dwTo = (to & 0xff) | ((toSeconds / 60 & 0xffff) << 8) | ((unsigned char)(toSeconds % 60) << 16);
-    return mciSendCommandA(state->device, MCI_PLAY, flags, (unsigned long)&local.play) == 0;
+    MCI_SET_PARMS set;
+    MCI_PLAY_PARMS play;
+    DWORD start;
+    set.dwTimeFormat = MCI_FORMAT_TMSF;
+    mciSendCommandA(device, MCI_SET, MCI_SET_TIME_FORMAT, (DWORD)&set);
+    DWORD flags = to ? MCI_FROM | MCI_TO : MCI_FROM;
+    state = 1;
+    start = (BYTE)from | ((WORD)(fromSeconds / 60) << 8);
+    play.dwFrom = start | ((DWORD)(BYTE)(fromSeconds % 60) << 16);
+    DWORD end = (BYTE)to | ((WORD)(toSeconds / 60) << 8);
+    play.dwTo = end | ((DWORD)(BYTE)(toSeconds % 60) << 16);
+    return mciSendCommandA(device, MCI_PLAY, flags, (DWORD)&play) == 0;
 }
+
