@@ -122,7 +122,7 @@ void MenuFill(GuiCanvas *s,int x,int y,int w,int h)
     }
     if(s->style.fill==-1 || s->style.fill!=s->style.line) {
         int right=x+w-1;
-        MenuLine(s,x,y,right,y); int bottom=y+h-1; MenuLine(s,right,y,right,bottom);
+          int bottom; MenuLine(s,x,y,right,y); MenuLine(s,right,y,right,bottom=y+h-1);
         MenuLine(s,right,bottom,x,bottom); MenuLine(s,x,bottom,x,y);
     }
 }

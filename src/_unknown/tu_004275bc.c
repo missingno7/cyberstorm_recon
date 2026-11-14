@@ -16,7 +16,7 @@ int PlyMatch(PlyEntry *poly,long x,long y){
  for(direction=0;direction<4;++direction){
   p=poly->points;
   found=0;
-  for(int i=0;!found&&i<poly->count;++i,++p){
+  for(i=0;!found&&i<poly->count;++i,++p){
    switch(direction){
     case 0:found=(x==p->x&&y>=p->y);break;
     case 1:found=(x==p->x&&y<=p->y);break;
@@ -37,19 +37,19 @@ int PlyMatch(PlyEntry *poly,long x,long y){
   switch(direction){
    case 0:
     if(x>minX&&x<maxX&&y>=(currentY-previousY)*(x-previousX)/(currentX-previousX)+previousY){
-     if(-(currentY-previousY)*(x-previousX)+(currentX-previousX)*(y-previousY)>0)--crossings;else ++crossings;
+     crossings+=(-(currentY-previousY)*(x-previousX)+(currentX-previousX)*(y-previousY)>0)?-1:1;
     }break;
    case 1:
     if(x>minX&&x<maxX&&y<=(currentY-previousY)*(x-previousX)/(currentX-previousX)+previousY){
-     if(-(currentY-previousY)*(x-previousX)+(currentX-previousX)*(y-previousY)>0)--crossings;else ++crossings;
+     crossings+=(-(currentY-previousY)*(x-previousX)+(currentX-previousX)*(y-previousY)>0)?-1:1;
     }break;
    case 2:
     if(y>minY&&y<maxY&&x>=(currentX-previousX)*(y-previousY)/(currentY-previousY)+previousX){
-     if(-(currentY-previousY)*(x-previousX)+(currentX-previousX)*(y-previousY)>0)--crossings;else ++crossings;
+     crossings+=(-(currentY-previousY)*(x-previousX)+(currentX-previousX)*(y-previousY)>0)?-1:1;
     }break;
    case 3:
     if(y>minY&&y<maxY&&x<=(currentX-previousX)*(y-previousY)/(currentY-previousY)+previousX){
-     if(-(currentY-previousY)*(x-previousX)+(currentX-previousX)*(y-previousY)>0)--crossings;else ++crossings;
+     crossings+=(-(currentY-previousY)*(x-previousX)+(currentX-previousX)*(y-previousY)>0)?-1:1;
     }break;
   }
   previousX=currentX;previousY=currentY;

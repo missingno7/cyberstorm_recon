@@ -23,8 +23,8 @@ struct UnitInfo {                       // unit configuration record (0x2f bytes
     unsigned char chassis;              // + 0x18 herc chassis + 8 / vehicle animation
     char pad19[0x16];
 };
-inline long GenUnitKind(unsigned char *unit) { return unit[0x12]; }
-struct GenRecord { char pad00[8]; long owner; char pad0c[0xc]; unsigned char *unit; char pad1c[0x1e]; ScriptPoint at; char pad42[4]; long angle; };
+struct GenUnitSlot { unsigned char type,value,condition,active; long amount; }; struct GenUnit { char name[17]; GenUnitSlot slots[23]; }; inline long GenUnitKind(GenUnit *unit) { return unit->slots[0].value; }
+struct GenRecord { char pad00[8]; long owner; char pad0c[0xc]; GenUnit *unit; char pad1c[0x1e]; ScriptPoint at; char pad42[4]; long angle; };
 struct GenActor {                       // logic actor (logic\lactor.c)
     GenRecord *rec;                     // + 0x00
     char pad04[8];

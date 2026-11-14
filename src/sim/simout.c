@@ -16,17 +16,17 @@ struct GameTimer;
 extern void GameTimerSet(GameTimer *, unsigned long); extern int GameTimerExpired(GameTimer *);
 struct GameTimer { unsigned long start, end, duration; GameTimer(unsigned long n) { GameTimerSet(this, n); } };
 struct SimPoint { long x,y; SimPoint() {} SimPoint(const SimPoint &p) { x=p.x; y=p.y; } };
-struct ActorRecord {
-    unsigned char unknown00[8]; int owner;
-    unsigned char unknown0c[0x18 - 0xc]; UnitState *unit;
-    unsigned char unknown1c[0x25 - 0x1c]; unsigned char type;
-    unsigned char variant; unsigned char unknown27[0x32 - 0x27];
-    unsigned char position[0x42 - 0x32]; int index;
-    unsigned char unknown46[0x5a - 0x46]; signed char color;
-    int boxX,boxY,boxW,boxH; unsigned char unknown6b[0x89-0x6b];
-    signed char hidden; unsigned char unknown8a[0x97-0x8a];
-    unsigned char blink;
+struct DrawPoint { long x,y; };
+struct DrawAction {
+    long depth; unsigned char type,state,angle,rate,frame,count,flags,ready;
+    unsigned short kind; unsigned long time;
+    DrawPoint position,target; long resource,direction;
+    DrawPoint point; void *block; unsigned char b36,b37,b38,b39,color;
+    long drawX,drawY,drawWidth,drawHeight;
+    void *bitmap; DrawPoint from,to; long step,steps; long Width() { return drawWidth; }
 };
+struct ActorRecord { int id,previous,owner; unsigned char unknown0c[12]; UnitState *unit; void *pilot; DrawAction action; unsigned char busy,enabled; signed char hidden; unsigned char active,flags,unknown8c[11],blink; };
+
 struct SimAnim { unsigned char unknown00[6]; unsigned char mode; unsigned char frame; };
 struct FileRecord;
 struct TerrainGrid;
@@ -318,7 +318,7 @@ void SimGameDrawStatus(SimGame *game)
         MenuDrawImage(&g513888, frame, x, y);
         gDrawRemap = 0;
         MenuSetClip(&g4d3cec, x, y, 1000, 1000);
-        gDrawRemap = SimUnitRemapVariant(game->focus->unit, game->focus->variant, &game->focusState);
+        gDrawRemap = SimUnitRemapVariant(game->focus->unit, game->focus->action.angle, &game->focusState);
         MenuDrawImage(&g513888, &drawCursorImages->images[90], g4a0338 + 0x95, g4a033c + 2);
         gDrawRemap = 0;
         game->focusState = *game->focus->unit;
@@ -355,29 +355,33 @@ void SimGameDrawStatus(SimGame *game)
 }
 
 // Eight corner strokes around the focused and targeted actor bounds.
+inline unsigned long FrameColor(int color) { return gMenuColors[color]; }
 void SimGameDrawFrames(SimGame *game)
 {
+    int width,height;
     viewportClipLeft=gViewRect;
     if(game->linked && game->focus) {
-        int first=focusFrameColors[1],second=focusFrameColors[2];
-        if(game->tickBytes[1]&2) { first=focusFrameColors[0]; second=focusFrameColors[3]; }
+        signed char first=((game->tickBytes[1]&2)?focusFrameColors[0]:focusFrameColors[1]);
+        signed char second=((game->tickBytes[1]&2)?focusFrameColors[3]:focusFrameColors[2]);
         if(first>=0 && !game->focus->hidden) {
             ActorRecord *actor=game->focus;
-            int left=actor->boxX-3, top=actor->boxY-3;
-            int right=actor->boxW+left+5, bottom=actor->boxH+top+5;
-            int length=actor->boxW/6+1;
-            MenuSetColors(&g513888,gMenuColors[first],-1);
+            width=actor->action.drawWidth+6; height=actor->action.drawHeight+6;
+            int left=actor->action.drawX-3, top=actor->action.drawY-3;
+            int right=left+width-1, bottom=top+height-1;
+            int length=actor->action.Width()/6+1;
+            MenuSetColors(&g513888,FrameColor(first),-1);
             MenuLine(&g513888,left,top,left+length,top); MenuLine(&g513888,left,top,left,top+length);
             MenuLine(&g513888,right,top,right-length,top); MenuLine(&g513888,right,top,right,top+length);
             MenuLine(&g513888,right,bottom,right-length,bottom); MenuLine(&g513888,right,bottom,right,bottom-length);
             MenuLine(&g513888,left,bottom,left+length,bottom); MenuLine(&g513888,left,bottom,left,bottom-length);
         }
-        if(second>=0 && game->target && g4d3604[game->target->index]) {
+        if(second>=0 && game->target && g4d3604[game->target->action.resource]) {
             ActorRecord *actor=game->target;
-            int left=actor->boxX-3,top=actor->boxY-3;
-            int right=actor->boxW+left+5,bottom=actor->boxH+5+top;
-            int length=actor->boxW/6+1;
-            MenuSetColors(&g513888,gMenuColors[second],-1);
+            width=actor->action.drawWidth+6; height=actor->action.drawHeight+6;
+            int left=actor->action.drawX-3,top=actor->action.drawY-3;
+            int right=left+width-1,bottom=top+height-1;
+            int length=actor->action.Width()/6+1;
+            MenuSetColors(&g513888,FrameColor(second),-1);
             MenuLine(&g513888,left,top,left+length,top); MenuLine(&g513888,left,top,left,top+length);
             MenuLine(&g513888,right,top,right-length,top); MenuLine(&g513888,right,top,right,top+length);
             MenuLine(&g513888,right,bottom,right-length,bottom); MenuLine(&g513888,right,bottom,right,bottom-length);

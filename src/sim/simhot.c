@@ -116,7 +116,7 @@ void f_0043dcfd(ProfileManager *, int); void f_0043ef34(ProfileManager *); int H
 void AssertFail(const char *, int, const char *);
 #define ASSERT(test) if (!(test)) AssertFail(__FILE__, __LINE__, 0)
 extern char DAT_0048b5ac[], DAT_0048b5ae[], DAT_0048b5b2[], DAT_0048b5b4[];
-extern short hotseatMapSizes[]; extern char g511ddc[]; extern char DAT_004d028b[]; extern int DAT_004d030f, DAT_004d3551, DAT_004d3555, DAT_004d3559, DAT_004c975c, DAT_004fb940;
+extern short hotseatMapSizes[]; extern char g511ddc[]; extern char DAT_004d028b[]; extern int DAT_004d030f, DAT_004d3551, DAT_004d3555, DAT_004d3559, DAT_004fb940; extern short DAT_004c975c;
 extern unsigned long DAT_004c9354[], DAT_004f6600; extern char g4dd0c0[];
 int f_00450930(void *, int, void *); char *f_0047c350(void *, int, int); void MissionRecordInitialize(void *, int, int, int, int, int); void MissionDataInit(void *, int, int, int, int, int, int);
 void HotbriefEmpty(void); void *LogicActorBuild(void *, void *); void BestLocSetData(void *, void *, void *); struct FastBuffer; void FastBufferReset(FastBuffer *); extern FastBuffer g4d35e4;
@@ -378,18 +378,18 @@ void SimHotBriefGameOver(void *mission)
                (char *)(*(int *)((char *)mission + 0x97a) + 0x10));
     f_cbf0(gShellFont);
     SurfacePresent(g513888);
-    ResetFrameClock();
+    HotseatInput *input=(HotseatInput *)((char *)mission+8); ResetFrameClock();
     gInputPolling = 1;
-    InputPoll((char *)mission + 8);
+    InputPoll(input);
     VoicePlay(0xb, 500);
     VoicePlay(0xb, 500);
     VoicePlay(0xb, 500);
     for (;;) {
         gInputPolling = 1;
-        InputPoll((char *)mission + 8);
+        InputPoll(input);
         if (gGameOverDismissed != 0 ||
-            ((HotseatInput *)((char *)mission + 8))->Pressed(0x50,0x40) ||
-            ((HotseatInput *)((char *)mission + 8))->Pressed(0xa0,0x80))
+            input->Pressed(0x50,0x40) ||
+            input->Pressed(0xa0,0x80))
             break;
         SurfaceFlush(g513888);
         ShellServiceFrame(mission);

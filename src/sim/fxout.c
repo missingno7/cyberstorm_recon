@@ -368,8 +368,8 @@ void FxRail(World *world, FxPoint from, FxPoint to, Weapon *weapon, int flags, F
 
 void FxSpray(World *world, FxPoint from, FxPoint to, Weapon *weapon, int flags, FxTarget *target, FxPoint *impact, int quiet)
 {
-    FxDef *def = fxDefs[weapon->type];
-    int sound = weaponSoundTable[weapon->type];
+    int type=weapon->type; FxDef *def = fxDefs[type];
+    int sound = weaponSoundTable[type];
     if (!def->repeatSound)
         WeaponSound(&from, sound, 0, 0, MAX(weapon->at33, weapon->at2f));
     FxTarget aim = *target;
@@ -383,9 +383,9 @@ void FxSpray(World *world, FxPoint from, FxPoint to, Weapon *weapon, int flags, 
         PartInit(&parts[i], def, e, &from, &to, weapon, &aim, i);
         PartSetup(&parts[i], def->part[0], def->part[1], def->part[2], def->part[3], def->part[4]);
     }
-    int glow=def->railSteps; FxOwner *actor=target->src.owner;
+    int glow=def->railSteps;
     if (glow)
-        glow += actor->at26;
+        glow += target->src.owner->at26;
     ExploAddGlow(def->jitterMin, def->jitterMax, target->src.owner, flags, 0);
     ExploAddGlow(glow, def->glow, target->src.owner, flags, def->glowRepeat);
     for (;;) {

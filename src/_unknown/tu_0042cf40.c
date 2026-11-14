@@ -70,17 +70,17 @@ void BestLocSetup(SearchWorkspace *self,int origin,int radius)
         self->cost[i] = -10000;
         self->previous[i] = 0;
     }
-    int best = 0;
-    for (int current = self->start; current; current = best, best = 0) {
+    int current=self->start, best = 0;
+    for (; current; current = best, best = 0) {
         SearchPoint point;
         AreaGetPoint((int *)self, (int *)&point, current);
         int location = ResolveName((const char *)self->grid, (const char *)&point);
         self->cost[current] = -self->cost[current];
         if (self->cost[current] == 10000) self->cost[current] = 0;
-        SearchPoint *end = pathDirections + 6;
-        for (SearchPoint *delta = pathDirections; delta != end; ++delta) {
+        for (int direction = 0; direction < 6; ++direction) {
+
             SearchPoint neighbour = point;
-            neighbour += *delta;
+            neighbour += pathDirections[direction];
             int nextLocation = ResolveName((const char *)self->grid, (const char *)&neighbour);
             int next = AreaFind((int *)self, nextLocation);
             if (next && self->cost[next] < 0) {
@@ -88,14 +88,14 @@ void BestLocSetup(SearchWorkspace *self,int origin,int radius)
                 if (distance > 0) {
                     distance += self->cost[current];
                     int newCost=-distance;
-                    if (-self->cost[next]!=distance && self->cost[next]<=newCost) { self->cost[next]=newCost;self->previous[next]=current; }
+                    if (newCost > self->cost[next]) { self->cost[next]=newCost;self->previous[next]=current; }
                 }
-                if (self->cost[best] < self->cost[next]) best = next;
+                if (self->cost[next] > self->cost[best]) best = next;
             }
         }
-        int *entry = self->cost;
         for (int index = 1; index <= count; ++index) {
-            ++entry;
+            int *entry = &self->cost[index];
+
             if (*entry < 0 && self->cost[best] < *entry) best = index;
         }
     }

@@ -1139,7 +1139,7 @@ extern void ActivateMainWindow();struct MenuNetwork {void SetTimeout();};extern 
 struct Shell;extern void DeathSummary(Shell *);extern "C" int BriefWaitA(int);
 extern void LogicUpdateMissionStatus(unsigned char *);extern unsigned char g4dd0c0[];
 void SimSetUpdate(SimGame *,int);
-inline int SimLinkedMode(){return logicMode==2 || logicMode==3;}
+inline int SimLinkedMode(){return logicMode==2 || logicMode==3;} inline void SimTurnBrief(SimGame *s,int begin) {if(s->multi || SimLinkedMode())BriefWaitA(13+!begin);else BriefWaitA(10+!begin);}
 void SimBeginTurn(SimGame *s) {
  if(!s->slots[s->mode-1].status){SimStartPhase(s);return;}
  s->slot->points=0;f_44bba0(s);SimUpdateTimer(s,0);
@@ -1178,12 +1178,12 @@ void SimBeginTurn(SimGame *s) {
   PilotSetState(s,s->savedMode);
   if(s->multi || s->extraSaved){ActivateMainWindow();gMenuNetwork.SetTimeout();SimUpdateTimer(s,1);}
   DeathSummary((Shell *)s);
-  BriefWaitA(s->multi || SimLinkedMode()?13:10);
+  SimTurnBrief(s,1);
   break;
  case 2:case 5:
-  ShellRestore(s);BriefWaitA(s->multi || SimLinkedMode()?14:11);s->selectedMode=0;s->previousMode=s->selectedMode;PilotSetState(s,7);f_44bba0(s);break;
+  ShellRestore(s);SimTurnBrief(s,0);s->selectedMode=0;s->previousMode=s->selectedMode;PilotSetState(s,7);f_44bba0(s);break;
  case 3:
-  ShellRestore(s);LogicUpdateMissionStatus(g4dd0c0);BriefWaitA(s->multi || SimLinkedMode()?14:11);s->selectedMode=0;s->previousMode=s->selectedMode;PilotSetState(s,7);break;
+  ShellRestore(s);LogicUpdateMissionStatus(g4dd0c0);SimTurnBrief(s,0);s->selectedMode=0;s->previousMode=s->selectedMode;PilotSetState(s,7);break;
  }
  if(s->unknown982==1) {
   s->waiting=1;

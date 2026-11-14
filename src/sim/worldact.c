@@ -6,7 +6,7 @@ extern int worldActionCount;
 extern WorldAction *worldActions;
 extern int worldActionFlag;
 extern int worldActionBusy;
-extern int *actorIndexTable; extern int worldActionTypeTable[];
+extern int *actorIndexTable; struct AnimMeta { int radius; char rest[56]; }; extern AnimMeta animationMetaAt0cbc[];
 extern void *globalActorData;
 extern void *worldActionData;
 
@@ -56,16 +56,17 @@ int WorldActionShutdown()
 
 int WorldActionAdd(void *actor, int type, int duration)
 {
-    if (!WorldActionPlace(actor, worldActionTypeTable[type * 15] + 1))
+    if (!WorldActionPlace(actor, animationMetaAt0cbc[type].radius + 1))
         return 0;
     if (worldActionCount >= 250)
         return 0;
     int count = worldActionCount;
-    WorldAction *entry = &worldActions[count]; worldActionCount = ++count;
+    WorldAction *entry = &worldActions[count++]; worldActionCount = count;
     memset(entry, 0, sizeof(WorldAction));
     TargetObjectInit(fallbackName, entry->position, actor);
+    int angle = next_link_seed(MissionRandomTable) % 6 * 0x2aaaaabc;
     entry->actor = actor;
-    entry->angle = next_link_seed(MissionRandomTable) % 6 * 0x2aaaaabc;
+    entry->angle = angle;
     WorldActorApply(entry, 1, type, 0x63, 0);
     WorldActionNotify(entry, 1);
     WorldActionStart(entry, -count);
@@ -124,7 +125,6 @@ int WorldActionClear(void *stream)
     
     StreamRead(stream, &worldActionCount, 4);
     
-
 
 
 

@@ -32,11 +32,11 @@ struct GameTimer { unsigned long start,end,duration; GameTimer(unsigned long n) 
 extern char modeCheckName[], g4dd0c0[], g513888;
 extern PacketList modeLogName;
 extern int retryTimeout;
-extern unsigned long gFogTimer;
+extern Timer gFogTimer;
 extern unsigned long gIn80,gIn7c;
 extern unsigned long gMenuColors[30],gMenuColorMap[30],gMenuTextColor;
 extern unsigned long *gMenuTextMap;
-extern int g5138ac,g5138b0,gRedrawFlags;
+struct ScreenDimensions { long width,height; }; extern ScreenDimensions g5138ac; extern int gRedrawFlags;
 extern ViewRect viewportClipLeft,gBriefDrawSource;
 extern GuiRect gMenuClip;
 extern Font gShellFont,gDefaultFont;
@@ -116,7 +116,7 @@ void ResetPlayer(PlayerSlot *player) { memset(player,0,sizeof(*player)); }
 int SimHotReadTimer(SimGame *game)
 {
     if (game->currentPlayer != game->localPlayer && (game->timed || game->timedExtra) && retryTimeout > 0)
-        return TimerRemaining((Timer *)&gFogTimer);
+        return TimerRemaining(&gFogTimer);
     return 216000000;
 }
 
@@ -184,17 +184,17 @@ void SimPollRepeat(RepeatInput *input)
 
 void SimSetOption(SimGame *game,int option) { game->option = option; }
 
-inline long ScreenHeight() { return g5138b0; }
+inline long ScreenHeight() { return g5138ac.height; }
 void ModeBeginDiagnose()
 {
     SigsStart(&g513888,0);
     viewportClipLeft = gBriefDrawSource;
     MenuImages *image = (MenuImages *)gResMgr.Load("BGREDHEX.BMX",1,0,0);
-    MenuDrawImage(&g513888,image->images,(g5138ac-640)/2,(g5138b0-480)/2);
+    MenuDrawImage(&g513888,image->images,(g5138ac.width-640)/2,(g5138ac.height-480)/2);
     ReleasePoolData(image);
     int loaded = gShellFont.IsOpen();
     if (!loaded) f_cba0(&gShellFont,"font3.fnx");
-    int y = ScreenHeight()/2; long x = g5138ac/2;
+    int y = ScreenHeight()/2; long x = g5138ac.width/2;
     gMenuTextColor = deathTextColor;
     gMenuTextMap = deathTextMap;
     MenuDrawTextAt(&gShellFont,x,y-15,0,targetBriefResource.GetString(1409,0));

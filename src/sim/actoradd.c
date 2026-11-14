@@ -1,6 +1,10 @@
 typedef unsigned char u8;
 typedef unsigned int u32;
-typedef struct ActorRecord { char bytes[0x98]; } ActorRecord; struct ActorListGlobalObject { char bytes[0x7e]; }; struct BestLocBuffer { char bytes[0x28]; }; extern ActorListGlobalObject actorListGlobalObject;
+#pragma pack(push,1)
+struct ActorPoint { int x,y; }; struct AnimAction { int depth; u8 type,state,angle,rate,frame,count,flags,ready; unsigned short kind; u32 time; ActorPoint position,target; int resource,direction,x,y; void *block; u8 b36,random,b38,b39,color; int drawX,drawY,drawWidth,drawHeight; void *bitmap; ActorPoint from,to; int step,steps; };
+struct ActorRecord { int index,previous; void *owner; int field0c,field10,field14; void *unit,*pilot; AnimAction action; u8 busy,enabled,unknown89,draw,active; u8 unknown8c[2],selected,unknown8f[9]; };
+#pragma pack(pop)
+struct ActorListGlobalObject { char bytes[0x7e]; }; struct BestLocBuffer { char bytes[0x28]; }; extern ActorListGlobalObject actorListGlobalObject;
 
 extern int actorCount;
 extern ActorRecord *actorTable;
@@ -59,15 +63,11 @@ ActorRecord *ActorCreate(void *input, void *actorData, int c, int d)
 
 
 
-
-
-
-
     /* ASSERT_LINE_66 */ ASSERT(temporary != 0);
     LoadActorData(temporary, (int)(unsigned long)actorData, 0);
     record = ActorListAdd(input, temporary, &actorListGlobalObject, c, d,
                           *(int *)((char *)actorData + 4));
-    *(int *)(record->bytes + 0x10) = 0;
+    record->field10 = 0;
     return record;
 }
 
@@ -89,17 +89,17 @@ ActorRecord *ActorListAdd(void *input, void *a, void *b, int d, int e, int f)
 
     ASSERT(record);
     memset(record, 0, sizeof(ActorRecord));
-    *(int *)(record->bytes + 4) = -1;
-    record->bytes[0x87] = 0;
-    record->bytes[0x88] = 1;
-    record->bytes[0x8a] = 1;
-    record->bytes[0x8b] = 1;
-    record->bytes[0x8e] = (char)0xff;
-    *(int *)(record->bytes + 0) = slot;
-    *(void **)(record->bytes + 8) = input;
-    *(void **)(record->bytes + 0x18) = a;
-    *(void **)(record->bytes + 0x1c) = b;
-    record->bytes[0x57] = next_link_seed(&MissionRandomTable) % 100;
+    record->previous = -1;
+    record->busy = 0;
+    record->enabled = 1;
+    record->draw = 1;
+    record->active = 1;
+    record->selected = (char)0xff;
+    record->index = slot;
+    record->owner = input;
+    record->unit = a;
+    record->pilot = b;
+    record->action.random = next_link_seed(&MissionRandomTable) % 100;
     player = GetModePlayer((SimGame *)modeCheckName, (int)input);
     player->slot = slot;
     if (f == 0) f = f_00439d02((ActorUnit *)a);
@@ -139,12 +139,12 @@ ActorRecord *ActorListAdd(void *input, void *a, void *b, int d, int e, int f)
 
         ASSERT(name);
     }
-    TargetObjectInit(fallbackName, record->bytes + 0x32, name);
-    AnimActionInitialize((AnimAction *)(record->bytes + 0x20), 1, f, 0x63, 0);
-    WorldActionNotify((AnimAction *)(record->bytes + 0x20), 1);
-    *(int *)(record->bytes + 0x46) = next_link_seed(&MissionRandomTable) % 6 * 0x2aaaaabc;
-    AnimActionReplace((AnimAction *)(record->bytes + 0x20), *(int *)record->bytes);
-    record->bytes[0x5a] = player->color;
+    TargetObjectInit(fallbackName, &record->action.position, name);
+    AnimActionInitialize(&record->action, 1, f, 0x63, 0);
+    WorldActionNotify(&record->action, 1);
+    record->action.direction = next_link_seed(&MissionRandomTable) % 6 * 0x2aaaaabc;
+    AnimActionReplace(&record->action, record->index);
+    record->action.color = player->color;
     return record;
 }
 

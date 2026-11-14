@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+struct BitmapAction { int id; unsigned char kind,state,variant,rate,frame,frames,flags,dirty; unsigned short type; };struct BitmapKind { unsigned long mode; unsigned char frameTypes[56]; };
 struct ResMgr { char pad[0x324]; int open; void *Load(long id, int a = 1, int b = 0, int c = 0); };
 extern ResMgr gResMgr;
 extern void AssertFail(const char *file, int line, const char *message);
@@ -26,14 +26,14 @@ static const char animFormatPool[] =
 char *AnimBitmapName(void *animation)
 {
     unsigned char *p = (unsigned char *)animation;
-    switch (p[4]) {
+    switch (((BitmapAction *)p)->kind) {
     case 1:
         sprintf(animNameBuffer, animFormatPool,
-                *(unsigned short *)(p + 12), currentAnimationFrame + 64,
+                ((BitmapAction *)p)->type, currentAnimationFrame + 64,
                 currentAnimationGroup);
         break;
     case 4:
-        sprintf(animNameBuffer, animFormatPool + 0x10, p[5]);
+        sprintf(animNameBuffer, animFormatPool + 0x10, ((BitmapAction *)p)->state);
         break;
     }
     return animNameBuffer;
@@ -48,35 +48,35 @@ int *AnimBitmapFrame(unsigned char *p)
     unsigned long moduloFrame;
     int **resource;
     unsigned long resourceCount;
-    if (p[4] == 1) {
-        mode = animationKindTable[*(unsigned short *)(p + 12) * 15];
-        moduloFrame = p[6] % 6;
-        if (mode == 0) {
-            modeFlags = animationDefinitionTable[p[5] * 6];
+    switch (((BitmapAction *)p)->kind) { case 1: {
+        mode = animationKindTable[((BitmapAction *)p)->type * 15];
+        moduloFrame = ((BitmapAction *)p)->variant % 6;
+        switch (mode) { case 0: {
+            modeFlags = animationDefinitionTable[((BitmapAction *)p)->state * 6];
             currentAnimationFrame = modeFlags & 15;
-            currentAnimationGroup = moduloFrame;
-            if (modeFlags & 16)
-                currentAnimationGroup = 0;
+            currentAnimationGroup = (modeFlags & 16) ? 0 : moduloFrame;
+
+
             if (currentAnimationFrame == 7 && g_004d2dee != 0)
                 currentAnimationFrame = 6;
-        } else if (mode < 2) {
-            currentAnimationFrame = animationDefinitionTable[p[5] * 6] & 15;
+        break; } case 1: {
+            currentAnimationFrame = animationDefinitionTable[((BitmapAction *)p)->state * 6] & 15;
             currentAnimationGroup = moduloFrame;
-            if (animationFrameTypeTable[*(unsigned short *)(p + 12) * 60 + currentAnimationFrame] != 6)
+            if (animationFrameTypeTable[((BitmapAction *)p)->type * 60 + currentAnimationFrame] != 6)
                 currentAnimationGroup = 0;
             modeFlags = 0;
-        } else if (mode == 2) {
+        break; } case 2: {
             currentAnimationFrame = 1;
             currentAnimationGroup = 0;
             modeFlags = 0;
         }
-        resource = animationResourceTable + *(unsigned short *)(p + 12) * 42 + currentAnimationFrame * 6 + currentAnimationGroup;
-        animationLastUseTable[*(unsigned short *)(p + 12) * 42 + currentAnimationFrame * 6 + currentAnimationGroup] = currentFrameCounter;
+        } resource = animationResourceTable + ((BitmapAction *)p)->type * 42 + currentAnimationFrame * 6 + currentAnimationGroup;
+        animationLastUseTable[((BitmapAction *)p)->type * 42 + currentAnimationFrame * 6 + currentAnimationGroup] = currentFrameCounter;
         if (*resource == 0) {
-            if (p[4] == 1) {
-                sprintf(animNameBuffer, animFormatPool, *(unsigned short *)(p + 12), currentAnimationFrame + 64, currentAnimationGroup);
-            } else if (p[4] == 4) {
-                sprintf(animNameBuffer, animFormatPool + 0x10, p[5]);
+            if (((BitmapAction *)p)->kind == 1) {
+                sprintf(animNameBuffer, animFormatPool, ((BitmapAction *)p)->type, currentAnimationFrame + 64, currentAnimationGroup);
+            } else if (((BitmapAction *)p)->kind == 4) {
+                sprintf(animNameBuffer, animFormatPool + 0x10, ((BitmapAction *)p)->state);
             }
             *resource = (int *)gResMgr.Load((long)animNameBuffer, 0, 0, 0);
             if (*resource == 0)
@@ -121,33 +121,33 @@ int *AnimBitmapFrame(unsigned char *p)
             }
         }
         if ((modeFlags & 16) == 0)
-            p[9] = (unsigned char)**resource;
+            ((BitmapAction *)p)->frames = (unsigned char)**resource;
         else
-            p[9] = 1;
-        frameOffset = p[8];
+            ((BitmapAction *)p)->frames = 1;
+        frameOffset = ((BitmapAction *)p)->frame;
         if (mode == 2) {
-            switch (p[9]) {
+            switch (((BitmapAction *)p)->frames) {
             case 1: frameOffset = 0; break;
-            case 2: frameOffset = p[5] != 1; break;
+            case 2: frameOffset = ((BitmapAction *)p)->state != 1; break;
             case 6: frameOffset = moduloFrame; break;
-            case 7: frameOffset = moduloFrame + (p[5] != 1); break;
+            case 7: frameOffset = moduloFrame + (((BitmapAction *)p)->state != 1); break;
             }
         }
         if (modeFlags != 0) {
             if (modeFlags & 16)
                 frameOffset = moduloFrame;
             if (modeFlags & 32)
-                frameOffset = p[9] - p[8] - 1;
+                frameOffset = ((BitmapAction *)p)->frames - ((BitmapAction *)p)->frame - 1;
         }
         resourceCount = (unsigned long)**resource;
         if (resourceCount <= frameOffset || (int)frameOffset < 0)
             frameOffset = 0;
         return (int *)((char *)*resource + 4 + frameOffset * 12);
     }
-    if (p[4] == 4) {
-        resource = effectResourceTable + p[5];
+    case 4: {
+        resource = effectResourceTable + ((BitmapAction *)p)->state;
         if (*resource == 0) {
-                sprintf(animNameBuffer, animFormatPool + 0x10, p[5]);
+                sprintf(animNameBuffer, animFormatPool + 0x10, ((BitmapAction *)p)->state);
             *resource = (int *)gResMgr.Load((long)animNameBuffer, 1, 0, 0);
             if (*resource == 0) {
 // Original assertion source-line padding.
@@ -157,15 +157,15 @@ int *AnimBitmapFrame(unsigned char *p)
                 AssertFail(animBmpSourcePath, __LINE__, 0);
             }
         }
-        effectLastUseTable[p[5]] = currentFrameCounter;
-        p[9] = *(unsigned char *)effectResourceTable[p[5]];
-        return (int *)((char *)effectResourceTable[p[5]] + 4 + p[8] * 12);
+        effectLastUseTable[((BitmapAction *)p)->state] = currentFrameCounter;
+        ((BitmapAction *)p)->frames = *(unsigned char *)effectResourceTable[((BitmapAction *)p)->state];
+        return (int *)((char *)effectResourceTable[((BitmapAction *)p)->state] + 4 + ((BitmapAction *)p)->frame * 12);
     }
 // Original assertion source-line padding.
 // Original assertion source-line padding.
-    AssertFail(animBmpSourcePath, __LINE__, 0);
-    p[9] = 0;
-    return 0;
+    default: AssertFail(animBmpSourcePath, __LINE__, 0);
+    ((BitmapAction *)p)->frames = 0;
+    return 0; }
 }
 
 void *AnimEnsureFX(int index)
@@ -208,7 +208,8 @@ int **groupResources = animationResourceTable;
             int timestampOffset = group * 0xa8 + row * 0x18;
             int **resource = rowResources;
             do {
-                if (*resource != 0) {
+                int *loaded = *resource;
+                if (loaded != 0) {
                     int ordinaryGroup = (group < 8) || (group > 0x1a);
                     int rowAge = rowLateAge;
                     if (row < 3)
@@ -219,7 +220,7 @@ int **groupResources = animationResourceTable;
                     int expiration = *(int *)((char *)animationLastUseTable + timestampOffset)
                                    + rowAge + groupAge;
                     if (expiration < (int)currentFrameCounter) {
-                        f_cb80(*resource);
+                        f_cb80(loaded);
                         *resource = 0;
                     }
                 }
@@ -244,8 +245,4 @@ int **groupResources = animationResourceTable;
     } while (group != 0x118);
     return row;
 }
-
-
-
-
 

@@ -276,7 +276,7 @@ int WeaponAccuracy(Context *c,int index)
         ActorItem *part=PopFindItem(target->unit,0);
         bonus+=part->defense+weaponActionDefense[action];
     }
-    int chance=(range+modifiers+bonus)*skill/100;
+    int chance=range+modifiers; chance+=bonus; chance=chance*skill/100;
     chance=Clamp(chance,0,100);
     if (weaponHalfAccuracy) chance=chance*50/100;
     return chance;

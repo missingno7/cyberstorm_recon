@@ -5,13 +5,16 @@ typedef BOOL (WINAPI *WinGRecommendDIBFormatProc)(BITMAPINFO *);
 typedef HDC (WINAPI *WinGCreateDCProc)();
 typedef UINT (WINAPI *WinGColorTableProc)(HDC,UINT,UINT,const RGBQUAD *);
 typedef BOOL (WINAPI *WinGStretchBltProc)(HDC,int,int,int,int,HDC,int,int,int,int);
-volatile int wingInitialized;
-WinGCreateDCProc wingCreateDC;
-WinGCreateBitmapProc wingCreateBitmap;
-WinGRecommendDIBFormatProc wingRecommendDIBFormat;
-WinGColorTableProc wingSetDIBColorTable, wingGetDIBColorTable;
-WinGBitBltProc wingBitBlt;
-WinGStretchBltProc wingStretchBlt;
+struct WinGApi {
+    int initialized;
+    WinGCreateDCProc createDC;
+    WinGCreateBitmapProc createBitmap;
+    WinGRecommendDIBFormatProc recommendDIBFormat;
+    WinGColorTableProc setDIBColorTable, getDIBColorTable;
+    WinGBitBltProc bitBlt;
+    WinGStretchBltProc stretchBlt;
+};
+WinGApi wingApi;
 extern "C" int IsWin32s()
 {
     DWORD version = GetVersion();
@@ -22,13 +25,13 @@ extern "C" int LoadWinG()
     int success = 0;
     HMODULE module = LoadLibraryA("WING32.DLL");
     if (module) {
-        success = (wingBitBlt = (WinGBitBltProc)GetProcAddress(module, "WinGBitBlt")) != 0;
-        success = success && (wingCreateBitmap = (WinGCreateBitmapProc)GetProcAddress(module, "WinGCreateBitmap")) != 0;
-        success = success && (wingRecommendDIBFormat = (WinGRecommendDIBFormatProc)GetProcAddress(module, "WinGRecommendDIBFormat")) != 0;
-        success = success && (wingCreateDC = (WinGCreateDCProc)GetProcAddress(module, "WinGCreateDC")) != 0;
-        success = success && (wingSetDIBColorTable = (WinGColorTableProc)GetProcAddress(module, "WinGSetDIBColorTable")) != 0;
-        success = success && (wingGetDIBColorTable = (WinGColorTableProc)GetProcAddress(module, "WinGGetDIBColorTable")) != 0;
-        success = success && (wingStretchBlt = (WinGStretchBltProc)GetProcAddress(module, "WinGStretchBlt")) != 0;
+        success = (wingApi.bitBlt = (WinGBitBltProc)GetProcAddress(module, "WinGBitBlt")) != 0;
+        success = success && (wingApi.createBitmap = (WinGCreateBitmapProc)GetProcAddress(module, "WinGCreateBitmap")) != 0;
+        success = success && (wingApi.recommendDIBFormat = (WinGRecommendDIBFormatProc)GetProcAddress(module, "WinGRecommendDIBFormat")) != 0;
+        success = success && (wingApi.createDC = (WinGCreateDCProc)GetProcAddress(module, "WinGCreateDC")) != 0;
+        success = success && (wingApi.setDIBColorTable = (WinGColorTableProc)GetProcAddress(module, "WinGSetDIBColorTable")) != 0;
+        success = success && (wingApi.getDIBColorTable = (WinGColorTableProc)GetProcAddress(module, "WinGGetDIBColorTable")) != 0;
+        success = success && (wingApi.stretchBlt = (WinGStretchBltProc)GetProcAddress(module, "WinGStretchBlt")) != 0;
     }
     return success;
 }
@@ -50,25 +53,25 @@ extern "C" BOOL WINAPI GdiBitBlt(HDC dc,int x,int y,int w,int h,HDC source,int s
 extern "C" BOOL WINAPI GdiStretchBlt(HDC dc,int x,int y,int w,int h,HDC source,int sx,int sy,int sw,int sh) { return StretchBlt(dc,x,y,w,h,source,sx,sy,sw,sh,SRCCOPY); }
 extern "C" int UseGdiFallback()
 {
-    wingBitBlt = GdiBitBlt;
-    wingCreateBitmap = GdiCreateBitmap;
-    wingRecommendDIBFormat = GdiRecommendDIBFormat;
-    wingCreateDC = GdiCreateDC;
-    wingSetDIBColorTable = GdiSetDIBColorTable;
-    wingGetDIBColorTable = GdiGetDIBColorTable;
-    wingStretchBlt = GdiStretchBlt;
+    wingApi.bitBlt = GdiBitBlt;
+    wingApi.createBitmap = GdiCreateBitmap;
+    wingApi.recommendDIBFormat = GdiRecommendDIBFormat;
+    wingApi.createDC = GdiCreateDC;
+    wingApi.setDIBColorTable = GdiSetDIBColorTable;
+    wingApi.getDIBColorTable = GdiGetDIBColorTable;
+    wingApi.stretchBlt = GdiStretchBlt;
     return 1;
 }
 extern "C" int InitializeWinG()
 {
-    if (!wingInitialized) {
+    if (!wingApi.initialized) {
         if (IsWin32s()) {
             if (!LoadWinG()) return 0;
-            wingInitialized = 1;
-            return wingInitialized;
+            wingApi.initialized = 1;
+            return wingApi.initialized;
         }
-        wingInitialized = UseGdiFallback();
+        wingApi.initialized = UseGdiFallback();
     }
-    return wingInitialized;
+    return wingApi.initialized;
 }
 

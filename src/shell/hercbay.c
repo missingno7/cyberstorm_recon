@@ -1,7 +1,7 @@
 struct GuiControl; struct InputReq; struct StrPool; struct MenuPrefixButton; struct MenuNumber; struct MenuImage; struct Palette; typedef unsigned long U32;
-class GuiScreen { char pad00[0x10]; public: int active; char pad14[0x44]; GuiScreen(GuiControl **, unsigned, U32); ~GuiScreen(){active=0;} void LoadLayout(long); void Open(InputReq *, StrPool *, long, int); };
-struct Flic { char body[0x90]; Flic(); ~Flic(); int Open(long source, int priority = 0x64, int sourceMode = 0); };
-class HercBay : public GuiScreen { public: Flic animation; int state,previous; int IsActive() const { return active != 0; } void Start(void *callback); void DrawImage(void *image); void StartVariantA(void *callback); HercBay(); };
+class GuiScreen { char pad00[0x10]; public: int active; char pad14[0x38]; GuiScreen(GuiControl **, unsigned, U32); ~GuiScreen(){active=0;} void LoadLayout(long); void Open(InputReq *, StrPool *, long, int); };
+struct Flic { char body[0x4c]; int frame; char rest50[0x40]; Flic(); ~Flic(); int Open(long source, int priority = 0x64, int sourceMode = 0); };
+class HercBay : public GuiScreen { public: int display,transition,closed; Flic animation; int unknownE8,state; int IsActive() const { return active != 0; } void Start(void *callback); void DrawImage(void *image); void StartVariantA(void *callback); HercBay(); };
  static char hercbaySourceFile[] = __FILE__;
 
 
@@ -153,9 +153,9 @@ void HercBayReturnFromPurchase(HercBay *bay, void *callback)
     ((Flic *)screen)->Open((long)g48aa6c);
     *(int *)(screen + 0x4c) = -1;
     ((MenuNumber *)&g4b3748)->SetValue(g4d0413, 0);
-    *(int *)((char *)bay + 0x4c) = g4d030f;
-    *(int *)((char *)bay + 0xec) = 1;
-    *(int *)((char *)bay + 0x50) = 0;
+    bay->display = g4d030f;
+    bay->state = 1;
+    bay->transition = 0;
 }
 
 void HercBayOpen(HercBay *bay, void *callback)
@@ -220,7 +220,7 @@ void HercBayCleanup(HercBay *bay)
 
 void HercBaySetStatus(HercBay *bay)
 {
-    *(int *)((char *)bay + 0x4c) = g4d030f;
+    bay->display = g4d030f;
     if (bay->IsActive()) {
         g4b37bc = HercGetHandle((char *)bay, &g4bb78c);
         HercRefresh((char *)bay);
@@ -247,7 +247,7 @@ redraw:
     }
     BriefStatus((char *)bay);
     BriefRenderUpdate((char *)bay);
-    *(int *)((char *)bay + 0xec) = 1;
+    bay->state = 1;
     return;
 state_one:
     BriefSwitch(resource, &g511948);
@@ -282,7 +282,7 @@ void HercBayDrawMission(HercBay *bay)
     int local[2];
     MenuDrawImage(&g513888, (MenuImage *)((char *)gShellImages + 0x31c), 0xd2, 0xaa);
     SurfacePresent(&g513888);
-    *(int *)((char *)bay + 0xec) = 9;
+    bay->state = 9;
     g4b36b0 = (g4b36b0 & 0xff1fffff) + 0xa00000;
     g4b36dc = (g4b36dc & 0xff1fffff) + 0xa00000;
     g4b3708 = (g4b3708 & 0xff1fffff) + 0xa00000;
@@ -335,7 +335,7 @@ void HercBayActions::Reactivate()
     g4b36b0 = Read4b36b0() & 0xff1fffff;
     g4b36dc = Read4b36dc() & 0xff1fffff;
     g4b3708 = Read4b3708() & 0xff1fffff;
-    *(int *)((char *)bay + 0xec) = 1;
+    bay->state = 1;
     ((Flic *)((char *)bay + 0x58))->Open((long)g48aa78);
     BriefStatus((char *)bay);
 }

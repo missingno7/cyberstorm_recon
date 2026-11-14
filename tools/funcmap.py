@@ -109,6 +109,12 @@ def analyse(img, known_data=frozenset(), known_jt_sites=frozenset()):
 
     for va in seeds:
         add_func(va, seeds[va])
+    # config/nongame.json "starts": function starts nothing references (an empty function that the preceding
+    # function falls through into); each needs its evidence written there
+    xs = ROOT / "config" / "nongame.json"
+    if img.name == "cs11" and xs.exists():
+        for s in json.loads(xs.read_text(encoding="utf-8")).get("starts", []):
+            add_func(int(s["va"], 16), "declared")
 
     def descend(start):
         last_imm = {}

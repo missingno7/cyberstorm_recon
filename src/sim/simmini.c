@@ -227,8 +227,8 @@ void SimDrawVLine(long y1, long y2, long x)
     if (x < 10 || x > 0x87) return;
     int inset = (x <= 0x48 ? 0x49 - x : x - 0x48) / 2;
     ViewRect saved = viewportClipLeft;
-    viewportClipTop = inset + 6;
-    viewportClipBottom = 0x83 - inset;
+    viewportClipLeft.top = inset + 6;
+    viewportClipLeft.bottom = 0x83 - inset;
     MenuLine(&g513888, x, y1, x, y2);
     viewportClipLeft = saved;
 }

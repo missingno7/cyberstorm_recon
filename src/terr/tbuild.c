@@ -1,7 +1,7 @@
 /* terr\tbuild.c. Terrain generation; working type and function names. */ extern "C" void *memcpy(void *,const void *,unsigned); extern "C" void *memset(void *,int,unsigned);
 #include <stdio.h>
 typedef unsigned char U8;
-struct Point { int x,y; void Add(Point *p){x+=p->x;y+=p->y;} };
+struct Point { int x,y; void Add(Point *p){x+=p->x;y+=p->y;} void HalveY(){y>>=1;} };
 struct Cell { U8 terrain,height,feature,featureKind,overlay,overlayKind,rotation,variant; U8 unknown[4]; U8 Type(){return terrain;} };
 struct TerrainGrid { int fields[2]; int radius; int pitch; Point center; int layout[4]; int count,waterCount; int rest[5]; Cell *cells; };
 struct Noise { char body[444]; Noise(); ~Noise(); };
@@ -162,7 +162,7 @@ void TerrainSetHeights(TerrainGrid *grid,Noise *noise)
         memset(cell,0,sizeof(Cell));
         BestLocSetData(grid,&p,(void *)i);
         if (LogicCopyPoint(&p,&grid->center)>grid->radius) continue;
-        p.y>>=1;
+        p.HalveY();
         int height=NoiseGet(noise,&p)>>5;
         cell->height=height<=0?0:(height>=7?7:height);
     }
@@ -175,7 +175,7 @@ void TerrainSetTypes(TerrainGrid *grid,Noise *noise)
     for (int i=1;i<grid->count;i++,cell++) {
         BestLocSetData(grid,&p,(void *)i);
         if (LogicCopyPoint(&p,&grid->center)>grid->radius) continue;
-        p.y>>=1;
+        p.HalveY();
         int type=NoiseGet(noise,&p)/17;
         cell->terrain=type<=0?0:(type>=14?14:type);
         if ((unsigned short)(terrainFlags)&8) cell->terrain=14-cell->terrain;
@@ -205,7 +205,7 @@ void TerrainSetWater(TerrainGrid *grid,int seed,int percent)
             if(!cell->feature&&terrainWaterThreshold<=cell->height) {
                 Point p;BestLocSetData(grid,&p,(void *)i);
                 if(LogicCopyPoint(&p,&grid->center)<=grid->radius) {
-                    p.y>>=1; int value=NoiseGet(&noise,&p);
+                    p.HalveY(); int value=NoiseGet(&noise,&p);
                     if(value>=range.lo&&value<=range.hi) {
                         int level=range.lo<range.hi?((value-range.lo)*5+((range.hi-range.lo)>>1))/(range.hi-range.lo):0;
                         level=level<=0?0:(level>=5?5:level);
@@ -235,8 +235,11 @@ void TerrainTriplet(TerrainGrid *grid,int index,int kind)
         Cell *left=&grid->cells[i],*right=&grid->cells[j];
         if(!left->feature&&!right->feature) {
             Cell *middle=&grid->cells[index];
-            if(left->height==middle->height&&middle->height==right->height) {
-                U8 base=featureTypes[kind-1].base+direction*3;
+            U8 middleHeight=middle->height;
+            if(left->height==middleHeight&&middleHeight==right->height) {
+                int base=featureTypes[kind-1].base;
+                U8 offset=direction*3;
+                base+=offset;
                 left->feature=base;middle->feature=base+1;right->feature=base+2;
                 left->featureKind=kind;middle->featureKind=kind;right->featureKind=kind;
             }
@@ -246,33 +249,32 @@ void TerrainTriplet(TerrainGrid *grid,int index,int kind)
 void TerrainFeatures(TerrainGrid *grid)
 {
     for(int kind=0;kind<64;kind++) {
-        FeatureType *feature=&featureTypes[kind+1];
+        FeatureType *feature=&featureTypes[kind];
         if(feature->type==3||feature->type==4) {
             int overlay=feature->type==4;
-            unsigned percent=0,mask=0;
-            for(unsigned terrain=0;terrain<15;terrain++) {
-                for(int j=0;j<16;j++) if(terrainTypes[terrain].feature[j].kind==kind+1) {
-                    if(percent<terrainTypes[terrain].feature[j].chance)percent=terrainTypes[terrain].feature[j].chance;
-                    mask|=1<<terrain;
+            int percent=0; unsigned mask=0;
+            for(unsigned terrain=0;terrain<15;terrain++) { U8 *p=(U8 *)terrainTypes[terrain].feature;
+                for(int j=0;j<16;j++) { int chance=*p++; int id=*p++;
+                    if(id==kind+1) { if(chance>percent)percent=chance; mask|=1<<terrain; }
                 }
             }
             if(percent) {
-                Noise noise;NoiseFill(&noise,88,0);
+                Noise noise;NoiseFill(&noise,88,0); Point p;
                 Range range;TerrainHeightRange(grid,&noise,&range,percent,mask,overlay);
                 Cell *cell=grid->cells+1;
                 for(int index=1;index<grid->count;index++,cell++) {
                     if((mask&(1<<cell->terrain))&&((!overlay&&!cell->feature)||(overlay&&!cell->overlay))) {
-                        Point p;BestLocSetData(grid,&p,(void *)index);
+                        BestLocSetData(grid,&p,(void *)index);
                         if(LogicCopyPoint(&p,&grid->center)<=grid->radius) {
-                            p.y>>=1;int value=NoiseGet(&noise,&p);
+                            p.HalveY();int value=NoiseGet(&noise,&p);
                             if(value>=range.lo&&value<=range.hi) {
-                                int level=0;
+                                int level;
                                 if(range.lo<range.hi) {
                                     level=(((range.hi-range.lo)>>1)+(value-range.lo)*5)/(range.hi-range.lo);
                                     level=5-(level<=0?0:(level>=5?5:level));
-                                }
-                                if(!overlay){cell->feature=feature->base+level;cell->featureKind=kind+1;}
-                                else {cell->overlay=feature->base+level;cell->overlayKind=kind+1;}
+                                } else level=0;
+                                if(overlay){cell->overlay=feature->base+level;cell->overlayKind=kind+1;}
+                                else {cell->feature=feature->base+level;cell->featureKind=kind+1;}
                             }
                         }
                     }
@@ -290,8 +292,8 @@ void TerrainFeatures(TerrainGrid *grid)
         for(int j=0;j<16;j++) {
             int kind=terrainTypes[cell->terrain].feature[j].kind;
             int chance=terrainTypes[cell->terrain].feature[j].chance;
-            if(kind) {
-                int type=featureTypes[kind].type;
+            if(kind) { FeatureType *f=&featureTypes[kind-1];
+                int type=f->type;
                 if(type>100) {
                     if(actionRoll<chance&&!cell->feature&&!cell->overlay) {
                         WorldActionAdd((void *)index,type-67,0x7fffffff);
@@ -300,13 +302,13 @@ void TerrainFeatures(TerrainGrid *grid)
                     actionRoll-=chance;
                 } else if(type==2) {
                     if(!cell->overlay&&overlayRoll<chance) {
-                        cell->overlay=featureTypes[kind].base;cell->overlayKind=kind;actionRoll=9999;
+                        cell->overlay=f->base;cell->overlayKind=kind;actionRoll=9999;
                     }
                     overlayRoll-=chance;
                 } else {
                     if(!cell->feature&&featureRoll<chance) {
-                        if(!featureTypes[kind].type){cell->feature=featureTypes[kind].base;cell->featureKind=kind;}
-                        else if(featureTypes[kind].type==1)TerrainTriplet(grid,index,kind);
+                        if(!f->type){cell->feature=f->base;cell->featureKind=kind;}
+                        else if(f->type==1)TerrainTriplet(grid,index,kind);
                         actionRoll=9999;
                     }
                     featureRoll-=chance;
@@ -318,7 +320,7 @@ void TerrainFeatures(TerrainGrid *grid)
 
 void TerrainSetNoiseHeight(Point *point,U8 height)
 {
-    Point p; p.x=point->x; p.y=point->y; p.y>>=1;
+    Point p; p.x=point->x; p.y=point->y; p.HalveY();
     NoiseSet(&terrainNoise,&p,(U8)(height<<5));
 }
 
@@ -337,7 +339,7 @@ void TerrainBuildHeights(TerrainGrid *grid,MissionTerrain *mission,int seed,void
     for(;i<owner->count;i++,cell++) {
         memset(cell,0,sizeof(Cell));BestLocSetData(owner,&p,(void *)i);
         if(LogicCopyPoint(&p,&owner->center)>owner->radius)continue;
-        p.y>>=1;int height=NoiseGet(&terrainNoise,&p)>>5;
+        p.HalveY();int height=NoiseGet(&terrainNoise,&p)>>5;
         cell->height=height<=0?0:(height>=7?7:height);
     }
 }

@@ -23,7 +23,7 @@ extern void PilotSetState(SimGame *, int);
 extern int SimUseItem(SimGame *, int, int);
 struct PopInput { int mask, state; int HelpPressed() { return (state & 0xa0) == 0x20; } };
 struct PopFrameRect { int left, top, width, height; };
-struct PopTableRect { int words[4]; };
+struct PopTableRect { int words[4]; }; struct PopSlot { unsigned char id,kind,condition,charge; int amount; }; struct PopItemData { char unknown00[7]; unsigned char minimum; char unknown08[11]; int amount13; char unknown17[8]; int category,rate,range,capacity; char unknown2f[4]; int value; char unknown37[13]; unsigned char behavior; };
 struct PopManagerRoot {
     char *GetItems() const { return *(char **)((char *)this + 0x18); }
 };
@@ -177,26 +177,26 @@ void PopUpdateItem(PopNode *node, int index)
     manager += 0x11;
     unsigned char *row = (unsigned char *)manager + rowOffset;
     text[0] = 0;
-    long label = row[2] == 100 ? 10 : 15;
-    if (row[2] <= item[7]) {
+    long label = ((PopSlot *)row)->condition == 100 ? 10 : 15;
+    if (((PopSlot *)row)->condition <= ((PopItemData *)item)->minimum) {
         label = 0xe;
         sprintf(text, AllocateMissionImage((int *)targetBriefResource, 0x25f), label);
     } else {
-        if (item[0x44] == 4)
+        if (((PopItemData *)item)->behavior == 4)
             sprintf(text, AllocateMissionImage((int *)targetBriefResource, 0x260));
-        else if (item[0x44] == 2 && *(int *)(row + 4))
+        else if (((PopItemData *)item)->behavior == 2 && ((PopSlot *)row)->amount)
             sprintf(text, AllocateMissionImage((int *)targetBriefResource, 0x260));
-        else if (row[3])
+        else if (((PopSlot *)row)->charge)
             sprintf(text, AllocateMissionImage((int *)targetBriefResource, 0x25d));
         else
             sprintf(text, AllocateMissionImage((int *)targetBriefResource, 0x25e));
     }
     MenuDrawWrapped(text, -1, 0, 1, label, &rect);
-    if (*(int *)(item + 0x1f) != 1) label = *(int *)(item + 0x13);
-    else label = *(int *)(item + 0x2b);
-    int templateId = *(int *)(item + 0x1f) * 3 + 0x261 +
-        (label == *(int *)(row + 4)) + (*(int *)(row + 4) == 0) * 2;
-    sprintf(text, AllocateMissionImage((int *)targetBriefResource, templateId), *(int *)(row + 4));
+    if (((PopItemData *)item)->category != 1) label = ((PopItemData *)item)->amount13;
+    else label = ((PopItemData *)item)->capacity;
+    int amount=((PopSlot *)row)->amount; int templateId = ((PopItemData *)item)->category * 3 + 0x261 +
+        (label == amount) + (amount == 0) * 2;
+    sprintf(text, AllocateMissionImage((int *)targetBriefResource, templateId), ((PopSlot *)row)->amount);
     MenuDrawWrapped(text, 1, 0, 0, 10, &rect);
 }
 int PopNode::GetValue(int index)
@@ -219,28 +219,28 @@ int PopNode::GetValue(int index)
     int rowOffset = index * 8 + 0x98;
     manager = (char *)manager + 0x11;
     char *row = (char *)manager + rowOffset;
-    int rowLevel = (unsigned char)row[2];
-    int itemLevel = (unsigned char)item[7];
+    int rowLevel = (unsigned char)((PopSlot *)row)->condition;
+    int itemLevel = (unsigned char)((PopItemData *)item)->minimum;
     if (rowLevel <= itemLevel)
         return 0;
-    switch (item[0x44]) {
+    switch (((PopItemData *)item)->behavior) {
     case 1:
-        if (row[3])
+        if (((PopSlot *)row)->charge)
             return 0;
         break;
     case 2: {
-        if (*(int *)(row + 4) == 0)
+        if (((PopSlot *)row)->amount == 0)
             return 0;
         int activeIndex = SimDistanceToDepot((SimGame *)&modeCheckName, (ActorRecord *)g4d2498);
-        if (activeIndex < 0 || *(int *)(item + 0x27) < activeIndex)
+        if (activeIndex < 0 || ((PopItemData *)item)->range < activeIndex)
             return 0;
-        return activeIndex * *(int *)(item + 0x23) + *(int *)(item + 0x33);
+        return activeIndex * ((PopItemData *)item)->rate + ((PopItemData *)item)->value;
     }
     case 0: case 3: case 4:
     default:
         break;
     }
-    return *(int *)(item + 0x33);
+    return ((PopItemData *)item)->value;
 }
 void PopSystemCallback(SimGame *callback)
 {

@@ -187,13 +187,13 @@ void SimBuildDrawQueue(SimGame *game)
     animationRate = drawDetailRates[game->detail]*animationRate/10;
     ActorRecord *actor = actorTable;
     for (int i=0; i<actorCount; ++i,++actor) {
-        AnimAction *action = &actor->action;
-        if (!actor->hidden) {
+        if (actor->hidden == (signed char)0) {
+            AnimAction *action = &actor->action;
             int hidden = 0;
-            if (actor->owner != game->viewer) hidden = Hidden(action->target,action->state);
+            if (actor->owner != game->viewer) hidden = ActionHidden(action);
             if (!hidden) {
                 int dirty = action->dirty;
-                if (all || dirty) {
+                if (all != (signed char)0 || dirty) {
                     GuiRect *rect = &action->rect;
                     f_0047add0(&simDetailClip,rect);
                     AnimActionUpdateTrajectory((int *)action,(int *)gView);

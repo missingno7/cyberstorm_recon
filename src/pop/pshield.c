@@ -31,6 +31,7 @@ public: U32 state; const char *text;
 struct ActorUnit {
     char name[17]; U8 unknown11[60]; int shield;
     U8 unknown51[120]; U8 direction,range; int arcs[6]; U8 tail[40];
+    void SetDirection(int value){direction=value;}
 };
 struct ActorRecord { U8 head[24]; ActorUnit *unit; U8 unknown1c[10]; U8 facing; };
 #pragma pack(pop)
@@ -144,6 +145,7 @@ void ShieldControl::Draw(unsigned index) {
         MenuDrawImage(&g513888,image,left,top);
     }
 }
+inline int ShieldLimit(int value,int low,int high){if(value<=low)return low;if(value>=high)return high;return value;}
 int ShieldControl::Event(unsigned index,U32 event) {
     int result=0,updateSound=0;
     if(event&4) {
@@ -160,7 +162,7 @@ int ShieldControl::Event(unsigned index,U32 event) {
         int distance=ISqrt(point.x*point.x+point.y*point.y);
         if(distance>48)distance=48;
         if(ShieldShift())angle=GridClamp(angle)*0x2aaaaabc;
-        g4d2498->unit->direction=angle>>24;
+        g4d2498->unit->SetDirection(angle>>24);
         g4d2498->unit->range=distance;
         shieldControl.attributes&=~0x1000000UL;
         result=index+1;
@@ -169,10 +171,8 @@ int ShieldControl::Event(unsigned index,U32 event) {
     if((event&1)&&frame<0){frame=0;attributes&=~0x1000000UL;}
     if(step) {
         updateSound=1;
-        int volume=sound.volume+step;
-        if(volume<=0)volume=0; else if(volume>=100)volume=100;
-        sound.volume=volume;
-        if(!volume){step=0;SoundStop(239);}
+        sound.volume=ShieldLimit(sound.volume+step,0,100);
+        if(!sound.volume){step=0;SoundStop(239);}
         if(sound.volume==100)step=0;
     }
     if(updateSound)SoundSetSettings(239,&sound);

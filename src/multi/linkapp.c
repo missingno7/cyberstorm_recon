@@ -11,6 +11,9 @@ void *memset(void *, int, unsigned int);
 
 }
 struct MenuMessage;
+#pragma pack(push,1)
+struct LinkPacket { unsigned char header[20]; unsigned int name; unsigned char payload[450]; };
+#pragma pack(pop)
 int MessageValid(MenuMessage *);
 int IsSystemMessage(MenuMessage *);
 int MessageDispatch(MenuMessage *, int);
@@ -26,7 +29,7 @@ int TimerExpired(Timer *);
 void AssertFail(const char *, int, const char *);
 extern "C" unsigned int next_link_seed(unsigned int *);
 void MenuMessageNull(MenuMessage *);
-int receive_link_packet(int *, int *, unsigned int *, int, int);
+int receive_link_packet(int *, int *, unsigned int *, unsigned int, int);
 void PostCornerClick(void);
 void QueueReceive(void *, unsigned int *);
 struct LinkEntry { char pad[8]; void *name; void *Name() {return name;} };
@@ -150,9 +153,6 @@ void set_link_timer(int index)
 
 
 
-
-
-
     if (index > 32)
         AssertFail(__FILE__, __LINE__, 0);
     if (index < 1)
@@ -164,18 +164,18 @@ void set_link_timer(int index)
 
 void process_link_events(void)
 {
-    char packet[0x1da];
+    LinkPacket packet;
     int player;
     int event_id;
     // The validation helper is inlined by this object's -oe profile.
-    MenuMessageNull((MenuMessage *)packet);
+    MenuMessageNull((MenuMessage *)&packet);
     for (;;) {
 parse_packet:
         do {
-            if (receive_link_packet(&event_id, &player, (unsigned int *)packet, sizeof(packet), 1) == 0)
+            if (receive_link_packet(&event_id, &player, (unsigned int *)&packet, sizeof(packet), 1) == 0)
                 goto no_packet;
         } while (player != (int)localPeer && player != 0);
-        if (wait_for_name_release(packet)) goto parse_packet;
+        if (wait_for_name_release(&packet)) goto parse_packet;
         // Source-line padding preserves the original AssertFail line number.
         // Source-line padding preserves the original AssertFail line number.
 
@@ -191,9 +191,9 @@ parse_packet:
 
 
 
-        if (*(int *)(packet + 0x14) == 0)
+        if (packet.name == 0)
             AssertFail(__FILE__, __LINE__, 0);
-        QueueReceive(networkQueue, (unsigned int *)packet);
+        QueueReceive(networkQueue, (unsigned int *)&packet);
     }
 no_packet:
     {

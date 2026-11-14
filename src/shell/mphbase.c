@@ -427,16 +427,16 @@ int MultiplayerAttemptStart(MultiplayerBase *s) {
     }
     s->busy = 1;
     MenuDrawImage(&g513888, (MenuImage *)((char *)gShellImages + 0x31c), 200, 140);
-    for (int i = 0; i < 5; ++i) multiplayerButtons[i].flags = (multiplayerButtons[i].flags & 0xff1fffffUL) + 0xa00000;
+    { for (int i = 0; i < 5; ++i) multiplayerButtons[i].flags = (multiplayerButtons[i].flags & 0xff1fffffUL) + 0xa00000; }
     /* Clear the first ordinary button's visibility and clean bits. */
     extern U32 multiplayerFirstButtonFlags;
     g4b7cbc.flags &= 0xfe1fffffUL;
     s->unknown157 = 0;
     unsigned char a = s->errors & 1, b = s->errors & 2, c = s->errors & 4, d = s->errors & 8;
-    if (a) MultiplayerDrawText(s, gShellStrings.GetString(0x274, 1));
-    else if (b) MultiplayerDrawText(s, gShellStrings.GetString(0x275, 1));
-    else if (c) MultiplayerDrawText(s, gShellStrings.GetString(0x277, 1));
-    else if (d) { MultiplayerDrawText(s, gShellStrings.GetString(0x276, 1)); SoundTrigger(0x90, 0); }
+    if (a) MultiplayerDrawText(s, gShellStrings.GetString(0x274));
+    else if (b) MultiplayerDrawText(s, gShellStrings.GetString(0x275));
+    else if (c) MultiplayerDrawText(s, gShellStrings.GetString(0x277));
+    else if (d) { MultiplayerDrawText(s, gShellStrings.GetString(0x276)); SoundTrigger(0x90, 0); }
     SurfacePresent(&g513888);
     return 0;
 }

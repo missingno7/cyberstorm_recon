@@ -61,8 +61,8 @@ void GameTimerSet(GameTimer *,uint);int GameTimerExpired(GameTimer *);
 inline GameTimer::GameTimer(uint n){GameTimerSet(this,n);}
 #pragma pack(push,1)
 struct MenuButton:GuiControl {uint state;const char *text;MenuButton(const char * =0,uint=0);virtual ~MenuButton();};
-struct MenuHelpRegion:GuiControl {long id;int activated;MenuHelpRegion();virtual ~MenuHelpRegion();};
-struct MenuNumber:GuiControl {uint unused;const char *text;long value;signed char font,color,flash,align;MenuNumber(signed char=-1,signed char=18);virtual ~MenuNumber();};
+struct MenuHelpRegion:GuiControl {long id;int activated;void SetId(int n){id=n;}MenuHelpRegion();virtual ~MenuHelpRegion();};
+struct MenuNumber:GuiControl {uint unused;const char *text;long value;signed char font,color,flash,align;void SetText(const char *s){text=s;}void SetAlignment(int n){align=n;}MenuNumber(signed char=-1,signed char=18);virtual ~MenuNumber();};
 struct MenuImageLabel:GuiControl {const char *text;long image;signed char ax,ay,font,unused,color,bevel;MenuImageLabel(long=0,signed char=0,signed char=0,signed char=1,signed char=0,signed char=11,signed char=0);virtual ~MenuImageLabel();void SetStyle(signed char,signed char,signed char,signed char,signed char,signed char);};
 struct HercModule:GuiScreen {
  byte flag4c;ActorRecord *actor;int *guiImages,*hercImages;byte palette[0x452],remap[256],colors[24];
@@ -76,14 +76,14 @@ struct ActorUnit;struct ActorItem;struct SoundSettings;extern char *PopItemValue
 extern int HercMountAllowed(ActorUnit *,int);extern "C" int f_00439d02(void *);
 extern void DecodeLaunchPalette(void *,void *);extern void ApplyPaletteData(void *,int=0,int=256);extern void GuiFilterPalette(void *,int=0); extern "C" void AssertFail(const char *,int,const char *);
 extern "C" byte *BriefFormat(const char *,...); extern int IORelease(FileRecord *);extern uint IoClose(FileRecord *);extern void *GlobalBlockAlloc(uint,unsigned);
-extern int next_link_seed(uint *);extern uint gFxSeed; extern void PilotManagerPoll(void *);extern int HercRepairPoints(ActorUnit *);extern int HercRepairNeeded(ActorUnit *,int);
+extern uint next_link_seed(uint *);extern uint gFxSeed; extern void PilotManagerPoll(void *);extern int HercRepairPoints(ActorUnit *);extern int HercRepairNeeded(ActorUnit *,int);
 extern ActorItem *PopFindItem(ActorUnit *,int,int=-1);extern char *HercFormatItem(ActorUnit *,ActorItem *,int,unsigned);
 extern void DialogTimedMessage(const char *);extern char gDebugText[];extern StrPool gShellMiniStrings;
 extern void HelpSetDirty(int);extern ActorRecord *ActorGetByIndex(int);extern ActorRecord *ActorFindRelated(ActorRecord *);extern ActorRecord *ActorFindRelatedOther(ActorRecord *);
 extern unsigned long gIn80,gInA0;extern long gIn7c;extern int SimShortcutMode(void *); extern "C" int sprintf(char *,const char *,...);
-void f_0044591f(HercModule *,int);void f_00446570(int *);void f_00446253(int);
+void f_0044591f(HercModule *,int);void f_00446570(HercModule *);void f_00446253(int);
 void f_004465d6(int);
-inline int Percent(int n,int p){return n*p/100;}inline int ClampValue(int n,int lo,int hi){if(n<=lo)return lo;if(n>=hi)return hi;return n;}
+inline uint RandomBelow(uint limit){return next_link_seed(&gFxSeed)%limit;}inline int AbsValue(int v){return v<0?-v:v;}inline int Percent(int n,int p){return n*p/100;}inline int ClampValue(int n,int lo,int hi){if(n<=lo)return lo;if(n>=hi)return hi;return n;}
 inline void GuiControl::Clip(){int left=x;int top=y;int w=width;int h=height;MenuSetClip(&gMenuClip,left,top,w,h);}
 inline void GuiControl::Background(){PopDrawSurface(&g513888,1,0,x,y,width,height);}
 // Two static image buttons: the compiler generates the initializer at 00445238 (module registration, two
@@ -159,8 +159,8 @@ void f_004456f3(void) {
 uint f_004456f4(int *box) {
  int mouse=g4bb78c;
  int left=box[0];
- int widthLow=box[2];int low=left+widthLow*42/100;
- int widthHigh=box[2];int high=widthHigh*58/100+left;
+ int low=left+Percent(box[2],42);
+ int high=Percent(box[2],58)+left;
  int right=box[2]+left;
  int speed=0;
  if(mouse<low)speed=(low-mouse)*40/(low-left)+1;
@@ -206,9 +206,9 @@ void f_0044591f(HercModule *self,int actor) {
  for(int i=0;i<256;i++)self->remap[i]=(byte)i;
  f_004465d6((int)self);memset(self->ids,0,34);
  for(i=0;i<23;i++){
-  short allowed=(short)HercMountAllowed((ActorUnit *)self->unit,i);HercControl *control=&self->controls[i];if(allowed){self->ids[i+3]=(byte)i;control->SetState(0);}else control->SetState(5);
+  if(HercMountAllowed((ActorUnit *)self->unit,i)){self->ids[i+3]=(byte)i;self->controls[i].SetState(0);}else self->controls[i].SetState(5);
  }
- self->number.text=(const char *)self->unit;self->number.align=2;
+ self->number.SetText((const char *)self->unit);self->number.SetAlignment(2);
  if(self->buffer)f_0047eb40(self->buffer);
  if(self->file.IsOpen())IORelease(&self->file);
  self->totalBytes=0;self->buffer=0;self->frames=0;
@@ -300,7 +300,7 @@ void f_0044591f(HercModule *self,int actor) {
 
    if(!self->buffer)AssertFail(__FILE__,__LINE__,(const char *)self->buffer);
    memset(self->buffer,0,self->totalBytes);self->frames=(FrameList *)self->buffer;GameTimerSet(&self->timer,0);
-   if(next_link_seed(&gFxSeed)%2)self->speed=5;else self->speed=-5;
+   self->speed=RandomBelow(2)?5:-5;
    self->frame=0;
   }
  }
@@ -347,10 +347,10 @@ void f_00445cfe(int param_1) {
 }
 int f_00445e23(HercModule *self) {
  if(!self->IsActive())return 0;
- PilotManagerPoll(&g4b74f4);f_00446570((int *)self);
+ PilotManagerPoll(&g4b74f4);f_00446570(self);
  int oldPoints=self->points;self->points=HercRepairPoints((ActorUnit *)self->unit);
  long hit=self->HitTest(&g4bb78c);
- self->help.id=hit;
+ self->help.SetId(hit);
  self->selected=(hit<3||hit>25)?-1:self->ids[hit];
  if(hit==26)self->selected=23;
  if(self->HelpPressed()&&self->selected>=0&&self->selected<23){
@@ -362,25 +362,25 @@ int f_00445e23(HercModule *self) {
  if(self->selected>=0){
   if(!self->showDamage){
    if(self->points){int need=HercRepairNeeded((ActorUnit *)self->unit,self->selected);if(need){
-    if(need<100000){if(oldPoints!=self->points)HelpSetDirty(1);self->help.id=self->selected+38;
+    if(need<100000){if(oldPoints!=self->points)HelpSetDirty(1);self->help.SetId(self->selected+38);
      char *destination=gShellMiniStrings.GetString(339,0);const char *format=targetBriefResource.GetString(338,0);sprintf(destination,format,need,self->points);
-    }else self->help.id=self->selected+62;
+    }else self->help.SetId(self->selected+62);
    }}
-  }else self->help.id=36;
+  }else self->help.SetId(36);
  }
  f_00446253((int)self);
  if(gIn7c>=20000&&gIn7c<=20199){ActorRecord *actor=ActorGetByIndex(gIn7c-20000);f_00445c81((int)self);f_0044591f(self,(int)actor);LogicCallMode(6,0);}
  int result=(gIn80==1||gIn80==57);
- switch(self->GuiScreen::Update()){
- case 28:{ActorRecord *a=ActorFindRelated(self->actor);if(a){f_00445c81((int)self);f_0044591f(self,(int)a);LogicCallMode(6,0);}else LogicCallMode(7,0);break;}
- case 29:{ActorRecord *a=ActorFindRelatedOther(self->actor);if(a){f_00445c81((int)self);f_0044591f(self,(int)a);LogicCallMode(6,0);}else LogicCallMode(7,0);break;}
- case 30:result=1;break;
+ switch(self->GuiScreen::Update()-1){
+ case 27:{ActorRecord *a=ActorFindRelated(self->actor);if(a){f_00445c81((int)self);f_0044591f(self,(int)a);LogicCallMode(6,0);}else LogicCallMode(7,0);break;}
+ case 28:{ActorRecord *a=ActorFindRelatedOther(self->actor);if(a){f_00445c81((int)self);f_0044591f(self,(int)a);LogicCallMode(6,0);}else LogicCallMode(7,0);break;}
+ case 29:result=1;break;
  }
  switch(gIn80){
  case 1:case 57:result=1;break;
- case 75:{int *rate=&self->speed;int step;if(AutoAdvanceEnabled())step=5;else{step=self->speed;if(step<0)step=-step;step=step/5+1;}*rate+=step;break;}
+ case 75:{int *rate=&self->speed;int step;if(AutoAdvanceEnabled())step=5;else{step=AbsValue(self->speed)/5+1;}*rate+=step;break;}
  case 76:self->speed=0;break;
- case 77:{int *rate=&self->speed;int step;if(AutoAdvanceEnabled())step=5;else{step=self->speed;if(step<0)step=-step;step=step/5+1;}*rate-=step;break;}
+ case 77:{int *rate=&self->speed;int step;if(AutoAdvanceEnabled())step=5;else{step=AbsValue(self->speed)/5+1;}*rate-=step;break;}
  }
  int shortcut=SimShortcutMode((void *)self->active);if(shortcut&&shortcut!=5)result=-shortcut;
  int speed=self->speed;if(speed<=-40)speed=-40;else if(speed>=40)speed=40;self->speed=speed;
@@ -442,13 +442,13 @@ int f_00446493(int param_1, int param_2, int *param_3, int *param_4) {
     *param_4 = iVar6;
     return (local_14 * 100) / iVar6;
 }
-void f_00446570(int *param_1) {
-    FrameList *list=((HercModule *)param_1)->Frames();
+void f_00446570(HercModule *param_1) {
+    FrameList *list=param_1->Frames();
     int iVar2;
     if(!list||!(iVar2=list->Count()))iVar2=40;
-    int angle = ((*(int *)((char *)param_1 + 0x603) * 0x168) / iVar2 + 0x1e) % 0x168;
-    *(int *)((char *)param_1 + 0x5df) = angle;
-    *(uint *)((char *)param_1 + 0x5e3) = GridClamp((uint)angle * 0xb60b61);
+    int angle = ((param_1->frame * 0x168) / iVar2 + 0x1e) % 0x168;
+    param_1->angle = angle;
+    param_1->grid = GridClamp((uint)angle * 0xb60b61);
 }
 void f_004465d6(int param_1) {
     int iVar1, iVar2, iVar4;

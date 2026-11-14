@@ -133,7 +133,10 @@ char *HercFormatItem(ActorUnit *u,ActorItem *p,int slot,unsigned flags){
  ActorUnit copy=*u;HercSlot *s=&copy.slots[slot];
  s->value=p->id;s->condition=100;s->active=1;s->amount=0;
  int after=HercMobility(&copy);
- int id=after<before?1244:(after>before?1245:1246);
+ int id;
+ if(after<before) id=1244;
+ else if(after>before) id=1245;
+ else id=1246;
  if(flags&0x1000)DebugTextAppend(gMenuPrefixStrings.GetString(1238,0));
  DebugTextAppend(BriefFormat(gMenuPrefixStrings.GetString(id,0),before,after));DebugTextAppend("\n\n");
  }
@@ -199,7 +202,8 @@ void HercNoOperation(ActorUnit *){}
 int HercPowerUse(ActorUnit *u,int damaged){
  int a=100,b=100,c=100,d=100;
  if(damaged){a=HercItemEfficiency(u,7);b=HercItemEfficiency(u,8);c=HercItemEfficiency(u,9);d=HercItemEfficiency(u,10);}
- int value=PopFindItem(u,7,-1)->detail.words[3]*a/100;
+ int value=0;
+ value+=PopFindItem(u,7,-1)->detail.words[3]*a/100;
  value+=PopFindItem(u,8,-1)->detail.words[0]*b/100;
  value+=PopFindItem(u,9,-1)->detail.words[0]*c/100;
  value+=PopFindItem(u,10,-1)->detail.words[0]*d/100;return value;

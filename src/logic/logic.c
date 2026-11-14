@@ -18,7 +18,7 @@ struct Script {
 };
 extern LogicActorList logicActorList;
 extern Script gScript;
-extern int DAT_004dd168;
+extern LogicActor *DAT_004dd168;
 
 unsigned long StreamRead(FileRecord *, void *, unsigned long);
 unsigned long StreamWrite(FileRecord *, const void *, unsigned long);
@@ -75,7 +75,7 @@ extern int DAT_004dd0b8;
 extern int DAT_004f65e8;
 extern int DAT_004dd0b4;
 
-struct LogicHealth { int Alive() { return *(int *)((char *)this+0x12)>0; } }; struct LogicUnit { LogicHealth *Health() { return *(LogicHealth **)((char *)this+0x1c); }  }; struct LogicActor { LogicUnit *Unit() { return *(LogicUnit **)this; } int Available() { LogicUnit *u=Unit(); return u && ((unsigned char *)u)[0x88] && u->Health()->Alive() && !((unsigned char *)Unit())[0x89]; } int Owner() { LogicUnit *u=Unit(); if (u) return *(int *)((char *)u+8); return 0; } int Kind30() { return ((int *)this)[7]==30; } int Flag2Clear() { return ((((unsigned char *)this)[0xc])&2)==0; } int Attached() { return *(void **)this != 0; } int Value() { return ((int *)this)[5]; } int Friendly() { return (((unsigned char *)this)[0xc] & 1) == 0; } int Enemy() { return (((unsigned char *)this)[0xc] & 1) != 0; } };
+struct LogicHealth { char pad00[0x12]; int value; int Alive(){return value>0;} }; struct LogicUnit {char pad00[8];int owner;char pad0c[0x10];LogicHealth *health;char pad20[0x68];unsigned char active,disabled; LogicHealth *Health(){return health;} }; struct LogicActor {LogicUnit *unit;int pad04[2];unsigned char flags,pad0d[7];int value,spare,kind; LogicUnit *Unit(){return unit;} int Available(){LogicUnit *u=Unit();return u && u->active && u->Health()->Alive() && !Unit()->disabled;} int Owner(){LogicUnit *u=Unit();if(u)return u->owner;return 0;} int Kind30(){return kind==30;} int Flag2Clear(){return (flags&2)==0;} int Attached(){return unit!=0;} int Value(){return value;} int Friendly(){return (flags&1)==0;} int Enemy(){return (flags&1)!=0;} };
 class StrPool { public: int Lock(); void Unlock(); int IsOpen() { return DAT_00511e38 != 0; } };
 extern StrPool missionImageName;
 extern char fallbackName[]; extern char g4c9234[]; int LogicStoreActorLink(void *, void *); static inline int DefaultActorLink() { return DAT_004d35ac; }
@@ -211,7 +211,7 @@ int LogicCheckActorCollision(unsigned char *mission, int unused)
                     }
                     if ((!foundCloseName && foundSimilarName) ||
                         (!foundCandidateKind && foundOtherUnit)) {
-                        if (candidateCount > 0x1f)
+
 // Original ASSERT source-line padding.
 // Original ASSERT source-line padding.
 // Original ASSERT source-line padding.
@@ -265,7 +265,7 @@ int LogicCheckActorCollision(unsigned char *mission, int unused)
 // Original ASSERT source-line padding.
 // Original ASSERT source-line padding.
 // Original ASSERT source-line padding.
-                            ASSERT(candidateCount <= 0x1f);
+                            ASSERT(candidateCount < 0x20);
                         candidateActors[candidateCount++] = entry;
                     }
                 }
@@ -273,13 +273,7 @@ int LogicCheckActorCollision(unsigned char *mission, int unused)
             entry = logicActorList.Next(entry);
         }
     }
-    if (candidateCount == 0) {
-        if ((mission[0] & 0x10) == 0) {
-            char *prompt = AllocateMissionImage(g511ddc, 0xf3, 0);
-            if (f_004771aa(prompt) == 0)
-                return 0;
-        }
-    } else {
+    if (candidateCount != 0) {
         char *prompt = AllocateMissionImage(g511ddc, 0xf6, 0);
         strcpy((char *)DAT_004fb944, prompt);
         strcat((char *)DAT_004fb944, (char *)DAT_0048b5ac);
@@ -295,12 +289,18 @@ int LogicCheckActorCollision(unsigned char *mission, int unused)
             return 0;
         for (int releaseIndex = 0; releaseIndex < candidateCount; ++releaseIndex)
             ActorRelease(candidateActors[releaseIndex]);
+    } else {
+        if ((mission[0] & 0x10) == 0) {
+            char *prompt = AllocateMissionImage(g511ddc, 0xf3, 0);
+            if (f_004771aa(prompt) == 0)
+                return 0;
+        }
     }
     return 1;
 }
 
 extern int DAT_004d3551, DAT_004d2dfa, DAT_004d271a, DAT_004d3549;
-extern int DAT_004dd168, DAT_004dd0bc, modeSwitch, DAT_004d35bc; static inline int MissionPromptEnabled() { return DAT_004d3549 == 0; }
+extern int DAT_004dd0bc, modeSwitch, DAT_004d35bc; static inline int MissionPromptEnabled() { return DAT_004d3549 == 0; }
 extern int DAT_004d3600, DAT_004d35c0;
 extern int MissionRandomTable[];
 extern int modeSwitch;
@@ -385,7 +385,7 @@ void LogicUpdateMissionStatus(unsigned char *mission)
     }
     *mission &= 0xf7;
     logicActorList.ResetActorState();
-    DAT_004dd168 = (int)actor;
+    DAT_004dd168 = actor;
 }
 
 void LogicMarkMissionReady(unsigned char *mission, int value)
@@ -435,14 +435,14 @@ void LogicAdvanceMissionState(unsigned char *mission);
 void LogicDispatchIntel(unsigned char *mission)
 {
     if (DAT_004d2dfa != 0 && DAT_004d271a == 1) {
-        if (!DAT_004dd168) DAT_004dd168 = (int)logicActorList.SelectActor(0);
-        LogicActor *current = (LogicActor *)DAT_004dd168;
+        if (!DAT_004dd168) DAT_004dd168 = logicActorList.SelectActor(0);
+        LogicActor *current = DAT_004dd168;
         if (current) {
             int result;
             if (MissionIntelPhase(mission)) result = IntelIsAvailable((int *)current);
             else result = IntelActorDispatch((int *)current);
             if (result) {
-                DAT_004dd168 = (int)logicActorList.SelectActor((LogicActor *)DAT_004dd168);
+                DAT_004dd168 = logicActorList.SelectActor(DAT_004dd168);
                 if (!DAT_004dd168) {
                     if (MissionIntelPhase(mission)) { logicActorList.ResetActorValues(); current = 0; }
                     else {
@@ -454,7 +454,7 @@ void LogicDispatchIntel(unsigned char *mission)
                 } else goto tick;
             } else goto tick;
         } else logicActorList.ResetActorValues();
-        DAT_004dd168 = (int)current;
+        DAT_004dd168 = current;
         SimHotbriefRefresh(modeCheckName);
     }
 tick:

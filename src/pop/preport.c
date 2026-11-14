@@ -411,14 +411,14 @@ void ReportDrawUnit(ReportScreen *s) {
             gMenuTextMap=reportTextMap;
             gMenuTextColor=reportTextColor;
             for(row=0;row<3;row++) {
-                int filled=ReportClamp((value[row]*19+maximum[row]/2)/maximum[row],value[row]>=0,19);
-                long bx=px+86,by=py+reportBarY[row]+27;
+                int current=value[row], top=maximum[row]; int filled=(current*19+top/2)/top;
+                long bx=px+86,by=py+reportBarY[row]+27; filled=ReportClamp(filled,current>=0,19);
                 int image=row*2+117;
                 int j;
                 for(j=0;j<filled;j++)MenuDrawImage(&g513888,&drawCursorImages->image[image],bx+j*3,by);
                 for(;j<19;j++)MenuDrawImage(&g513888,&drawCursorImages->image[image+1],bx+j*3,by);
-                MenuDrawText(&reportFont,px+107,by-11,targetBriefResource.GetString(row+1300));
-                MenuDrawTextAt(&reportFont,px+143,by-11,1,BriefFormat("%d",value[row]));
+                MenuDrawText(&reportFont,bx+21,by-11,targetBriefResource.GetString(row+1300));
+                MenuDrawTextAt(&reportFont,bx+57,by-11,1,BriefFormat("%d",value[row]));
             }
             U32 flash=s->tick&1;
             int image=123;

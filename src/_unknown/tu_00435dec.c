@@ -129,9 +129,9 @@ int ActorFatigueCost(ActorState *); int ActorRemainingValue(ActorState *);
 void ActorRememberLevel(ActorState *); 
 void ActorDamageHealth(ActorState *, int); void ActorZeroVitals(ActorState *); void ActorVoice(ActorState *);
 long SendEvent(void *object, int eventCode, void *argument, int arg2, int arg3) {
-    ActorState *s = (ActorState *)object;
-    U32 event = eventCode;
-    int value = (int)argument;
+    ActorState *s=(ActorState *)object;
+    U32 event=eventCode;
+    int value=(int)argument;
     if (s->descriptor->disabled && event > 103) { RefreshActorFlags(s); return 0; }
     switch(event) {
     case 100: f_00435e43(s, value); break;
@@ -226,8 +226,8 @@ unsigned int SimLogicFlags(void *object) {
 int ActorCondition(ActorState *);
 int ActorQuery(ActorState *s, U32 event) {
     int result;
+    if (event >= 216) return 0;
     switch(event) {
-    case 7: return s->skill * 10;
     case 200: return s->health;
     case 201: return ActorScale(s, s->descriptor->health, 201);
     case 202: return s->descriptor->marker;
@@ -241,12 +241,14 @@ int ActorQuery(ActorState *s, U32 event) {
         return result < 100 ? result : 99;
     case 207: return s->fatigue < 100 ? s->fatigue : 99;
     case 208: return ActorScale(s, s->descriptor->fatigue, 209);
-    case 210: if (s->originalLevel != s->level) return s->level; return 0;
-    case 211: result = s->damage / 10; return result < 100 ? result : 99;
+    case 215: return ActorCondition(s);
+    case 211: result = (U8)(s->damage / 10); return result < 100 ? result : 99;
     case 212: return s->descriptor->endurance;
+    case 7: return s->skill * 10;
     case 213: return s->experience;
     case 214: return s->level;
-    case 215: return ActorCondition(s);
+    case 209: return 0;
+    case 210: if (s->originalLevel != s->level) return s->level; return 0;
     default: return 0;
     }
 }
@@ -254,8 +256,13 @@ int ActorEffectiveSkill(ActorState *s, U32 index) {
     int result = 0;
     if (index == 7) result = s->skill * 10;
     else if (index <= 8) result = s->skills[index].value >> 12;
-    int maximum = ActorScale(s, s->descriptor->morale, 205);
-    int middle = (U8)((maximum - (int)s->descriptor->threshold) / 2 + s->descriptor->threshold);
+    int firstThreshold = s->descriptor->threshold;
+    int maximum = s->descriptor->morale;
+    maximum = s->level + maximum - 1;
+    if (maximum >= 100) maximum = 99;
+    int middle = (maximum-firstThreshold)/2;
+    middle += s->descriptor->threshold;
+    middle = (U8)middle;
     if (s->morale <= middle) result -= middle - s->morale + 1;
     int threshold = s->descriptor->threshold;
     if (s->morale <= threshold) result -= (threshold - s->morale + 1) * 6;
@@ -276,14 +283,14 @@ int ActorCondition(ActorState *s) {
 void ActorSetName(ActorState *s, const char *name) { strncpy(s->name, name, 16); }
 void ActorGetName(ActorState *s, char *name) { strncpy(name, s->name, 16); }
 void ActorWork(ActorState *s) {
-    if (s->fatigue < ActorScale(s, s->descriptor->fatigue, 209)) ActorRecoverInjuries(s, s->descriptor->rules[12]);
+if (s->fatigue < ActorScale(s, s->descriptor->fatigue, 209)) ActorRecoverInjuries(s, s->descriptor->rules[12]);
     s->fatigue += ActorScale(s, s->descriptor->rules[13], 217);
     ActorAdjustScalar(s, (U32 *)&s->morale, -ActorScale(s, s->descriptor->rules[14], 217), 0);
     if (s->morale <= 0 && s->descriptor->health > 99) s->morale = 1;
     ActorAdjustFatigue(s, 0);
 }
 void ActorRest(ActorState *s) {
-    ++s->ticks;
+++s->ticks;
     if (s->fatigue < ActorScale(s, s->descriptor->fatigue, 209)) {
         if (s->ticks == s->descriptor->rules[18]) {
             ActorAdjustScalar(s, (U32 *)&s->morale, s->descriptor->rules[17], ActorScale(s, s->descriptor->morale, 205));
@@ -353,7 +360,7 @@ void ActorRestoreHealth(ActorState *s) {
     s->health = value;
 }
 int ActorHealthCost(ActorState *s) {
-    int maximum = ActorScale(s, s->descriptor->health, 201);
+int maximum = ActorScale(s, s->descriptor->health, 201);
     if (maximum == s->health) return 0;
     int difference = 100 - maximum;
     Curve curve;
@@ -366,7 +373,7 @@ void ActorRestoreMorale(ActorState *s) {
     s->morale = value;
 }
 int ActorMoraleCost(ActorState *s) {
-    int maximum = ActorScale(s, s->descriptor->morale, 205);
+int maximum = ActorScale(s, s->descriptor->morale, 205);
     if (maximum == s->morale) return 0;
     int difference = 100 - maximum;
     Curve curve;
@@ -426,7 +433,7 @@ void ActorTick(ActorState *s, int health, int morale, int fatigue) {
         s->health = 1;
     }
     if (fatigue) ActorAdjustScalar(s, (U32 *)&s->fatigue, -fatigue, 0);
-    s->fatigue = s->fatigue > 0 ? s->fatigue : 0;
+    s->fatigue = s->fatigue < 0 ? 0 : s->fatigue;
     ActorAdjustFatigue(s, health);
     ActorAdjustMorale(s, morale);
     for (int i = 0; i < 8; ++i) {
@@ -480,7 +487,7 @@ void ActorAdjustMorale(ActorState *s, int delta) {
     }
 }
 void ActorRecoverInjuries(ActorState *s, U32 step) {
-    for (int i = 0; i < 8; ++i) {
+for (int i = 0; i < 8; ++i) {
         U32 difference = (s->skills[i].maximum >> 12) - (s->skills[i].value >> 12);
         if (difference >= step) s->injuries[i] += (char)step;
         else s->injuries[i] += (char)difference;

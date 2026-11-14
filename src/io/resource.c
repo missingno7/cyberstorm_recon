@@ -16,7 +16,7 @@ struct ResMgr {
     char pad2[4];
     FileRecord file;
     int IsOpen();
-    int Init(const char ** volatile, const char *);
+    int Init(const char **, const char *);
     void Close();
     int FindPath(const char *, char *, int);
     int CloseFile(); int *Load(char *, unsigned int = 0, int * = 0, unsigned int = 0); ~ResMgr();
@@ -42,7 +42,7 @@ ResMgr::ResMgr() { opened=0; loaded=opened; count=0; }
 ResMgr::~ResMgr()
 { Close(); }
 /* Keep this source line aligned with the original assertion immediates. */
-int ResMgr::Init(const char ** volatile paths, const char *outDir)
+int ResMgr::Init(const char ** paths, const char *outDir)
 { if (this == 0 || loaded != 0 || opened != 0)
 
 
@@ -67,27 +67,27 @@ int ResMgr::Init(const char ** volatile paths, const char *outDir)
 
 
         AssertFail(ResourceSourcePath, __LINE__, 0);
-    const char **source = paths;
-    int i = 0;
-    char *entry = (char *)entries;
-    count = 0;
-    while (*source) {
-        count = i + 1;
-        types[i] = 1;
-        this->paths[i] = *source;
-        if (FindChar(*source, '.')) {
-            types[i] = 2;
-            if (!MakePath(entry, *source, outDir, 1))
+    ResourceEntry *entry=entries;
+    count=0;
+    for(int i=0;i<10;++i,++paths,++entry) {
+        if (!*paths) break;
+        count=i+1; types[i]=1; this->paths[i]=*paths;
+        if (FindChar(*paths,'.')) {
+            types[i]=2;
+            if (!MakePath(entry,*paths,outDir,1))
+
+
+
                 AssertFail(ResourceSourcePath, __LINE__, "Unable to open game data file!");
         }
-        ++source; ++i;
-        entry += 0x48;
-        if (i >= 10)
-            break;
     }
-    loaded = 1;
+    loaded=1;
     return loaded;
 }
+
+
+
+
 void ResMgr::Close()
 {
     if (opened) {
@@ -413,7 +413,7 @@ extern "C" void ReleaseLoadedResource(void **p)
         *p = 0;
     }
 }
-struct Font { void *resource; };
+struct FontResource { unsigned char header[6], packed, reserved; int flags, height, baseline, first, count; unsigned int *offsets; unsigned char *widths, *pixels; }; struct Font { FontResource *resource; };
 extern "C" unsigned int MeasureResourceTextWidth(Font *p, const unsigned char *name)
 {
     unsigned int sum;
@@ -422,7 +422,7 @@ extern "C" unsigned int MeasureResourceTextWidth(Font *p, const unsigned char *n
     if (p->resource != 0 && name != 0) {
         sum = 0;
         ch = *name;
-        table = *(unsigned char **)((char *)p->resource + 0x20);
+        table = p->resource->widths;
         if (ch) {
             do {
                 sum += table[*name++];
@@ -449,27 +449,27 @@ extern "C" void DrawGlyphBackground(void *, int, int, int, int);
 extern "C" void BlitGlyphRows(int, int, unsigned int, int, unsigned char *, unsigned char *);
 extern "C" unsigned int RenderResourceGlyph(Font *handle, int x, int y, signed char character)
 {
-    register int *font = (int *)handle->resource;
+FontResource *font = handle->resource;
     unsigned int width;
-    register unsigned char *bits;
-    register int height;
+    unsigned char *bits;
+    int height;
     unsigned char packed;
-    register int index;
-    register int right;
-    register unsigned int row;
+    int index;
+    int right;
+    unsigned int row;
 
     if (font == 0)
         return 0;
     unsigned char code=(unsigned char)character;
-    index = (int)code - font[5];
-    if (index < 0 || font[6] <= index)
+    index = (int)code - font->first;
+    if (index < 0 || font->count <= index)
         return 0;
-    width = *(unsigned char *)(code + (unsigned int)font[8]);
+    width = font->widths[code];
     if (width != 0 && code != 0x20) {
-        register unsigned int savedColor;
-        height = ((int*)handle->resource)[3];
-        bits = (unsigned char *)(font[9] + *(int *)(font[7] + index * 4));
-        packed = *(unsigned char *)((char *)font + 6) == 1;
+        unsigned int savedColor;
+        height = handle->resource->height;
+        bits = font->pixels + font->offsets[index];
+        packed = font->packed == 1;
         if (!packed && gGlyphRenderFlags == 1) {
             int bottom = y + height - 1;
             if (gGlyphClipLeft <= x && (int)(x + width - 1) <= gGlyphClipRight) {
@@ -490,9 +490,9 @@ extern "C" unsigned int RenderResourceGlyph(Font *handle, int x, int y, signed c
 
         savedColor = gCurrentGlyphColor;
         if (gGlyphRenderFlags & 4)
-            x += ((int*)handle->resource)[3] >> 1;
+            x += handle->resource->height >> 1;
         right = x + width;
-        for (row = 0; row < (unsigned int)((int*)handle->resource)[3]; ++row) {
+        for (row = 0; row < (unsigned int)handle->resource->height; ++row) {
             if ((gGlyphRenderFlags & 1) == 0) {
                 gGlyphCurrentBackground = gGlyphBackgroundColor;
                 DrawGlyphBackground(&gGlyphSurface, x, y, right, y);
@@ -522,7 +522,7 @@ extern "C" unsigned int RenderResourceGlyph(Font *handle, int x, int y, signed c
                     mask >>= 1;
                 }
                 if (bit == 0) {
-                    if ((gGlyphRenderFlags & 8) && row == (unsigned int)((int*)handle->resource)[4])
+                    if ((gGlyphRenderFlags & 8) && row == (unsigned int)handle->resource->baseline)
                         DrawGlyphPixel(&gGlyphSurface, pixelX, y, (unsigned char)savedColor);
                 } else {
                     unsigned int color=gCurrentGlyphColor;
@@ -577,9 +577,9 @@ extern "C" void RenderFormattedResourceText(Font *font, int x, int y, const char
     va_start(arguments, format);
     vsprintf(buffer, format, arguments);
     va_end(arguments);
-    register int drawY;
-    register int drawX;
-    register int *drawFont;
+    int drawY;
+    int drawX;
+    int *drawFont;
     drawFont = (int *)font;
     drawX = x;
     drawY = y;

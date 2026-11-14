@@ -90,10 +90,11 @@ extern unsigned char *simActorVisibility;
 extern void SimCenterOn(SimGame *,GridPoint *);extern int SoundPlay(unsigned,const SoundSettings *);
 extern U32 gIn7c;
 extern char g4dd0c0[],profileManager[],chatPlayerName[],chatAddress[],chatMessage[],chatTitle[];
-extern int g4faf40,g4faf44,simDebugSpeed;
+extern int g4faf40,g4faf44,gApplyFreeShots;
 #pragma aux post_start_callback "W?PostStart$:MenuNetwork$n()v";
 struct MenuNetwork {static void __pragma("post_start_callback") PostStart();};
-extern void SimOpenChat(char *,char *,char *,int,int,char *,void (*)(),int *,int *),SimToggleHelp();
+extern void MenuTrackContext();
+extern void DialogOpen(char *,char *,char *,int,int,char *,void (*)(),int *,int *),SimToggleHelp();
 extern void LogicTextPrevious(void *),LogicTextNext(void *),LogicTextClear(void *),SimSaveBookmark(SimGame *,int),SimRestoreBookmark(SimGame *,int);
 extern void SimSetMode(SimGame *,int),SimSetView(SimGame *,int),f_44db70(SimGame *,int),SimStartPhase(SimGame *),SimFinishFocus(SimGame *);
 extern void PilotSetState(SimGame *,int),SimSetFocus(SimGame *,ActorRecord *),SimRefreshFog(SimGame *,int);
@@ -106,42 +107,43 @@ extern void SimSetUpdate(SimGame *,int);
 extern void SendEvent(void *,int,void * =0,int=0,int=0),SimAddMission(void *),ReleaseState(void *);
 extern "C" void f_0043e38f(void *),f_00439706(void *,int);
 extern ActorItem *PopFindItem(void *,int,int);
-extern int UnitFindType(UnitState *,int,int),SimGridValue(TerrainGrid *,int);
+extern int f_0043ac9c(UnitState *,int,int),TakeTerrainFeature(TerrainGrid *,int);
+inline int SimActorHidden(int);
 extern void LogicSetActorLink(void *,ActorRecord *,int,int);
 inline void SimRecoverPilot(void *pilot){SendEvent(pilot,116);SendEvent(pilot,118);SendEvent(pilot,120);}
-inline void SimRecoverActor(ActorRecord *a){SimRecoverPilot(a->pilot);f_00439706(a->unit,23);SimAddMission(a->unit);}
-inline U32 SimInputKey(){return gIn80;}inline U32 SimInputCommand(){return gIn7c;}
+inline void SimRecoverActor(ActorRecord *a){SendEvent(a->pilot,116);SendEvent(a->pilot,118);SendEvent(a->pilot,120);f_00439706(a->unit,23);SimAddMission(a->unit);}
+inline int SimInputKey(){return gIn80;}inline U32 SimInputCommand(){return gIn7c;}
 void SimHandleInput(SimGame *s) {
  U32 key=SimInputKey(),command=SimInputCommand();
- if(!key && !command)return;
- if(s->multi && !g4faf40 && (key==28 || command==23013))SimOpenChat(chatPlayerName,chatAddress,chatMessage,150,100,chatTitle,&MenuNetwork::PostStart,&g4faf40,&g4faf44);
+ if(key || command) {
+ if(s->multi && !g4faf40 && (key==28 || command==23013))DialogOpen(chatPlayerName,chatAddress,chatMessage,150,100,chatTitle,&MenuNetwork::PostStart,&g4faf40,&g4faf44);
  switch(key) {
- case 10:s->view.spare=0;f_44db70(s,0);s->screen|=1;break;
- case 11:s->view.spare=100;f_44db70(s,0);s->screen|=1;break;
- case 14:LogicTextClear(g4dd0c0);break;
- case 31:SimResetLimits(s);break;
- case 44:LogicTextPrevious(g4dd0c0);break;
- case 45:LogicTextNext(g4dd0c0);break;
- case 50:SimToggleHelp();break;
- case 71:SimPan(s,-1,1);break;
- case 72:SimPan(s,0,1);break;
- case 73:SimPan(s,1,1);break;
- case 74:SimSetView(s,-1);break;
- case 75:SimPan(s,-1,0);break;
- case 76:if(s->focus && simActorVisibility[s->focus->index]){GridPoint point=s->focus->position;SimCenterOn(s,&point);}break;
- case 77:SimPan(s,1,0);break;
- case 78:SimSetView(s,1);break;
  case 79:SimPan(s,-1,-1);break;
- case 80:SimPan(s,0,-1);break;
  case 81:SimPan(s,1,-1);break;
+ case 75:SimPan(s,-1,0);break;
+ case 71:SimPan(s,-1,1);break;
+ case 73:SimPan(s,1,1);break;
+ case 76:if(s->focus && !SimActorHidden(s->focus->index)){GridPoint point=s->focus->position;SimCenterOn(s,&point);}break;
  case 82:SimSetMode(s,1);break;
  case 83:SimSetMode(s,-1);break;
+ case 78:SimSetView(s,1);break;
+ case 74:SimSetView(s,-1);break;
+ case 50:MenuTrackContext();break;
+ case 10:s->view.spare=0;f_44db70(s,0);s->screen|=1;break;
+ case 11:s->view.spare=100;f_44db70(s,0);s->screen|=1;break;
+ case 44:LogicTextPrevious(g4dd0c0);break;
+ case 45:LogicTextNext(g4dd0c0);break;
+ case 14:LogicTextClear(g4dd0c0);break;
+ case 31:SimResetLimits(s);break;
+ case 80:SimPan(s,0,-1);break;
+ case 77:SimPan(s,1,0);break;
+ case 72:SimPan(s,0,1);break;
  }
- if((int)key>58 && (int)key<67) {
+ if((int)key>=59 && (int)key<=66) {
   if(gInA4){SimSaveBookmark(s,key-59);key=0;}
   else if(gInA0){SimRestoreBookmark(s,key-59);key=0;}
  }
- if((int)command>22999 && (int)command<23014 && s->multi)SimChatCommand(&simChatMenu,command);
+ if((int)command>=23000 && (int)command<=23013 && s->multi)SimChatCommand(&simChatMenu,command);
  switch(command) {
  case 30120:simTransform.flags=0;SetFastView(&gFastTransform,&simTransform);s->screen|=2;break;
  case 30121:simTransform.flags=2;SetFastView(&gFastTransform,&simTransform);s->screen|=2;break;
@@ -164,8 +166,8 @@ void SimHandleInput(SimGame *s) {
   }
  }
  if(s->linked) {
-  if((int)command>31979 && (int)command<32081){if(s->multi)command=0;SimMenuCommand(command);}
-  if((int)command>19999 && (int)command<20200) {ActorRecord *actor=ActorGetByIndex(command-20000);if(actor){SimSetFocus(s,actor);SoundPlay(4,0);}}
+  if((int)command>=31980 && (int)command<=32080){if(s->multi)command=0;SimMenuCommand(command);}
+  if((int)command>=20000 && (int)command<=20199) {ActorRecord *actor=ActorGetByIndex(command-20000);if(actor){SimSetFocus(s,actor);SoundPlay(4,0);}}
   switch(command) {
   case 30100:PilotSetState(s,1);return;
   case 30102:PilotSetState(s,2);return;
@@ -179,28 +181,28 @@ void SimHandleInput(SimGame *s) {
   case 30132:SimFinishFocus(s);return;
   case 30133:SimStartPhase(s);return;
   case 32032:s->screen=-1;f_0043e38f(profileManager);SimSetUpdate(s,1);return;
-  case 32031:s->screen=-1;SimRecoverPilot(s->focus->pilot);return;
+  case 32031:s->screen=-1;SendEvent(s->focus->pilot,116);SendEvent(s->focus->pilot,118);SendEvent(s->focus->pilot,120);return;
   case 32033:s->screen=-1;f_00439706(s->focus->unit,23);return;
   case 32034: {
    s->screen=-1;UnitState *u=s->focus->unit;u->systems[5].value=PopFindItem(u,5,-1)->maximum;u->systems[6].value=PopFindItem(u,6,-1)->maximum;return;
   }
   case 32035:s->screen=-1;SimAddMission(s->focus->unit);return;
-  case 32036:s->screen=-1;SimRecoverActor(s->focus);return;
+  case 32036:s->screen=-1;SendEvent(s->focus->pilot,116);SendEvent(s->focus->pilot,118);SendEvent(s->focus->pilot,120);f_00439706(s->focus->unit,23);SimAddMission(s->focus->unit);return;
   case 32038: {
    s->screen=-1;for(ActorRecord *a=ActorFindByOwner(s->mode);a;a=ActorFindOwnerNext(a,s->mode))SimRecoverActor(a);return;
   }
   case 32039: {
    s->screen=-1;for(ActorRecord *a=ActorFindByOwner(s->mode);a;a=ActorFindOwnerNext(a,s->mode)){a->unit->systems[5].value=1000000;a->unit->systems[6].value=1000000;}return;
   }
-  case 32040:simDebugSpeed=1;return;
-  case 32041:simDebugSpeed=10000;return;
+  case 32040:gApplyFreeShots=1;return;
+  case 32041:gApplyFreeShots=10000;return;
   case 32043: {
    s->screen=-1;for(ActorRecord *a=ActorFindByOwner(s->localPlayer);a;a=ActorFindOwnerNext(a,s->localPlayer))ReleaseState(a);return;
   }
   case 32044: {
    int index=0,total=0;ActorRecord *a=ActorFindByOwner(s->mode);
-   while(a && !(index=UnitFindType(a->unit,1,0)))a=ActorFindOwnerNext(a,s->mode);
-   if(a){for(int i=0;i<4000;i++)total+=SimGridValue(&fallbackName,i);a->unit->systems[index].value=total;}
+   while(a && !(index=f_0043ac9c(a->unit,1,0)))a=ActorFindOwnerNext(a,s->mode);
+   if(a){for(int i=0;i<4000;i++)total+=TakeTerrainFeature(&fallbackName,i);a->unit->systems[index].value=total;}
    s->screen=-1;return;
   }
   case 32046:case 32047:case 32048:case 32049:case 32050:
@@ -213,6 +215,7 @@ void SimHandleInput(SimGame *s) {
   case 32062:LogicSetActorLink(g4dd0c0,s->focus,6,0);return;
   }
  }
+}
 }
 void SimHandleCursor(SimGame *s) {
  int dx,dy;

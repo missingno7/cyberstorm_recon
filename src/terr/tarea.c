@@ -7,6 +7,7 @@ struct AreaWalk {
 };
 struct AreaPoint { int x; int y; AreaPoint &operator+=(const AreaPoint &p) { x+=p.x; y+=p.y; return *this; } AreaPoint &operator-=(const AreaPoint &p) { x-=p.x; y-=p.y; return *this; } };
 
+struct AreaRecord { void *grid; AreaPoint current; int location,index,radius; int unknown18[2]; AreaPoint center; };
 static const char AreaSourcePath[] = "terr\\tarea.c";
 extern "C" void AssertFail(const char *, int, const char *);
 extern "C" void BestLocSetData(void *, void *, void *);
@@ -20,10 +21,10 @@ int AreaFind(int *grid, int position)
 {
     int point[2];
     if (position != 0) {
-        BestLocSetData((void *)grid[0], point, (void *)position);
-        int *center = grid + 8;
+        BestLocSetData((void *)((AreaRecord *)grid)->grid, point, (void *)position);
+        int *center = (int *)&((AreaRecord *)grid)->center;
         int ring = LogicCopyPoint(point, center);
-        if (ring <= grid[5]) {
+        if (ring <= ((AreaRecord *)grid)->radius) {
             point[0] -= center[0];
             point[1] -= center[1];
             AreaWalk walk;
@@ -34,14 +35,13 @@ int AreaFind(int *grid, int position)
             walk.phase = ((unsigned int)ring > 0);
             int index = AreaRingCount(ring - 1);
             ++index;
-            while (walk.step <= (unsigned int)grid[5]) {
+            while (walk.step <= (unsigned int)((AreaRecord *)grid)->radius) {
                 if (walk.x == point[0] && walk.y == point[1]) return index;
                 DisplayStep(&walk);
                 ++index;
             }
             // The assert's line number is an immediate in the original call.
             // Keep this call at source line 143.
-            // padding
             // padding
             // padding
             // padding
@@ -150,7 +150,7 @@ int AreaFind(int *grid, int position)
 int AreaIndexToPoint(int *grid, int index)
 {
     int savedIndex = index;
-    AreaPoint point = *(AreaPoint *)(grid + 8);
+    AreaPoint point = *&((AreaRecord *)grid)->center;
     if (savedIndex != 0) {
         int ring = index + 4;
         ring /= 6;
@@ -165,7 +165,7 @@ int AreaIndexToPoint(int *grid, int index)
         walk.phase = ((unsigned int)r > 0);
         int current = AreaRingCount(r - 1);
         ++current;
-        while (walk.step <= (unsigned int)grid[5]) {
+        while (walk.step <= (unsigned int)((AreaRecord *)grid)->radius) {
             if (current == savedIndex) {
                 point += *(AreaPoint *)&walk;
                 break;
@@ -174,12 +174,12 @@ int AreaIndexToPoint(int *grid, int index)
             ++current;
         }
     }
-    return ResolveName((const char *)grid[0], (const char *)&point);
+    return ResolveName((const char *)((AreaRecord *)grid)->grid, (const char *)&point);
 }
 
 int *AreaGetPoint(int *grid, int *point, int index)
 {
-    *(AreaPoint *)point = *(AreaPoint *)(grid + 8);
+    *(AreaPoint *)point = *&((AreaRecord *)grid)->center;
     if (index != 0) {
         int ring = index + 4;
         ring /= 6;
@@ -194,7 +194,7 @@ int *AreaGetPoint(int *grid, int *point, int index)
         walk.phase = ((unsigned int)r > 0);
         int current = AreaRingCount(r - 1);
         ++current;
-        while (walk.step <= (unsigned int)grid[5]) {
+        while (walk.step <= (unsigned int)((AreaRecord *)grid)->radius) {
             if (current == index) {
                 *(AreaPoint *)point += *(AreaPoint *)&walk;
                 break;
@@ -217,10 +217,10 @@ void AreaEnumerate(int *record, void *callback, unsigned int ring, unsigned int 
     int index = AreaRingCount((int)ring - 1);
     ++index;
     while (walk.step <= maxRing) {
-        record[1] = record[8] + walk.x;
-        record[2] = record[9] + walk.y;
-        record[3] = ResolveName((const char *)record[0], (const char *)(record + 1));
-        record[4] = index;
+        ((AreaRecord *)record)->current.x = ((AreaRecord *)record)->center.x + walk.x;
+        ((AreaRecord *)record)->current.y = ((AreaRecord *)record)->center.y + walk.y;
+        ((AreaRecord *)record)->location = ResolveName((const char *)((AreaRecord *)record)->grid, (const char *)&((AreaRecord *)record)->current);
+        ((AreaRecord *)record)->index = index;
         if (((int (*)(void *))callback)(record) != 0) return;
         DisplayStep(&walk);
         ++index;
@@ -229,7 +229,7 @@ void AreaEnumerate(int *record, void *callback, unsigned int ring, unsigned int 
 
 void AreaEnumerateAll(int *record, void *callback)
 {
-    AreaEnumerate(record, callback, 0, (unsigned int)record[5]);
+    AreaEnumerate(record, callback, 0, (unsigned int)((AreaRecord *)record)->radius);
 }
 
 

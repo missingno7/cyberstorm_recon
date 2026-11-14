@@ -8,9 +8,9 @@ typedef unsigned long U32;
 struct MissionRecord { U32 words[22]; };
 struct MissionInfo { int type, number, category, unknown0c, flags, mission, difficulty, value, value20, image, value28, value2c, value30, value34; int rest[9]; };
 struct MissionSummary { byte type, number; ushort unused; int category, flags, difficulty, value, nextValue, blocked; void *typeData, *missionData; int image, value34; };
-struct UnitRecord { char name[17];byte wounds;byte unknown12[8];int field1a;byte unknown1e[8];byte bytes26,bytes27;byte rest[86]; };
+struct ActorState { void ActorApplyDamage(int); char name[17];byte wounds;byte unknown12[8];int field1a;byte unknown1e[8];byte bytes26,bytes27;byte rest[86]; };
 struct PilotSkill { byte active;byte rest[7]; };
-struct PilotRecord { byte header[19];PilotSkill skills[23];byte rest[64]; };
+struct ActorUnit { byte header[19];PilotSkill skills[23];byte rest[64]; };
 struct RankCost { ushort cost; byte rest[14]; };
 struct ProgressInfo { int money; byte rank; };
 struct GameInfo;
@@ -20,9 +20,9 @@ public:
     int mode, field400, missionType, field408, field40c; short choice;
     int killsTotal,objectivesTotal,missionsTotal,wins,streak; int field426, field42a; byte unknown42e[12]; int field43a;
     byte rank; byte unknown43f[2],previousRank; int progress, continuation;
-    byte unknown44a[0xed9]; UnitRecord units[60]; PilotRecord pilots[60]; ushort pilotUnits[64]; int unitCount,pilotCount;
+    byte unknown44a[0xed9]; ActorState units[60]; ActorUnit pilots[60]; struct PilotAssignment { byte unit, flags; } pilotUnits[64]; int unitCount,pilotCount;
     byte unknown6fc7[256]; int money, oldMoney;
-    UnitRecord *GetUnit(unsigned slot){return &units[slot-1];} void BeginMissions(); int IsSpecial(){return field426==2 || field426==3;} void SetMissionChoice(unsigned long); void RefreshMission(int);
+    ActorState *GetUnit(unsigned slot){return &units[slot-1];} void BeginMissions(); int IsSpecial(){return field426==2 || field426==3;} void SetMissionChoice(unsigned long); void RefreshMission(int);
     int GetProgress(){return progress;} int HasContinuation(); int MissionIsBlocked(MissionInfo &); ProfileManager *SetProfileMode(byte); void SelectMissionNumber(int,unsigned long &,unsigned long &); int LaunchMission(GameInfo *);
 };
 #pragma pack(pop)
@@ -38,7 +38,7 @@ void MissionDataInit(MissionRecord *, int, int, int, int, int, int);
 void DecodeMission(MissionRecord *, MissionInfo *);
 void *MissionAllocateType(int);
 extern "C" void *MissionAllocate(int,int);
-void UnitReset(UnitRecord *);
+void UnitReset(ActorState *);
 void ProfileAdvance(ProfileManager *, unsigned long);
 void ProfileRefresh(ProfileManager *);
 
@@ -52,29 +52,29 @@ void ResetProfileUnits(ProfileManager *p) {
 #include <string.h>
 struct DebriefStats { U32 outcome,field4,field8; int totalKills,kills,damaged,value,objectives,totalObjectives,field24; };
 struct StrPool { char *GetString(long,int=1); };
-extern StrPool reportStrings;
+extern StrPool g511ddc;
 extern char g4dd0c0[];
 extern U32 gSessionTable[];
 extern char gDebugText[];
-extern int missionExperienceScale, reportStatic;
-extern char *savedReport;
+extern int g4c9280, g4941e0;
+extern char *g4c9340;
 extern char reportToken_0049417c[],reportToken_00494184[],reportToken_0049418c[],reportToken_00494194[],reportToken_004941a0[],reportToken_004941a4[],reportToken_004941a8[],reportToken_004941b0[],reportToken_004941b8[],reportToken_004941c0[],reportToken_004941c8[];
-extern char reportBreak_0048af46[],reportBreak_0048af94[],reportBreak_0048afad[],reportBreak_0048afc2[],reportBreak_0048b078[],reportBreak_0048b07a[],reportBreak_0048b07c[],reportBreak_0048b142[];
+
 struct RankDescriptor { ushort skip; byte unknown[10]; int name; };
 extern RankDescriptor rankDescriptors[];
 void LogicGetMissionSummary(unsigned char *,U32 *);
-int ProfileUnitIsAssigned(ProfileManager *,int);
-void UnitClearA(UnitRecord *); void UnitClearB(UnitRecord *);
-void UnitAddExperience(UnitRecord *,int);
-void PilotReset(void *,int);
+extern "C" int f_0043bffc(ProfileManager *,int);
+void ActorRestoreHealth(ActorState *); void ActorRestoreMorale(ActorState *);
+
+void HercResetAmount(ActorUnit *,int);
 unsigned SimLogicFlags(void *);
-void ReportBuffer(void *,U32);
+extern "C" void FormatSetBuffer(void *,U32);
 void DebugTextClear(); void DebugTextAppend(char *);
 extern "C" char *BriefFormat(const char *,...);
 extern "C" char *LogicTextPointer(void *);
-byte PilotHealth(void *); byte UnitGrade(UnitRecord *);
-unsigned UnitStat(UnitRecord *,unsigned);
-void ProfileCleanup(ProfileManager *);
+extern "C" byte f_00439d48(ActorUnit *); byte ActorCondition(ActorState *);
+long PilotValue(ActorState *,int);
+extern "C" void f_0043c05b(ProfileManager *);
 
 
 void GenerateMissions(ProfileManager *); void ReplaceMission(ProfileManager *);
@@ -95,163 +95,164 @@ void ProfileManager::BeginMissions() {
     if(IsSpecial()) reward*=10;
     int objectiveBonus=stats.objectives*initial.value20;
     if(initial.category==1 && stats.kills==0 && stats.damaged==0) baseBonus=0;
-    int earned=baseBonus+reward+objectiveBonus;
-    int possible=initial.value+stats.totalObjectives*initial.value20+stats.totalKills*stats.value;
+    int earned=baseBonus+(reward+objectiveBonus);
+    int possible=initial.value+(stats.totalObjectives*initial.value20+stats.totalKills*stats.value);
     ++field40c; ++missionsTotal;
-    int experience=(initial.difficulty*missionExperienceScale+50)/100;
+    int experience=(initial.difficulty*g4c9280+50)/100;
     for(int i=0;i<unitCount;++i) {
-        UnitRecord *unit=&units[i];
-        if(!ProfileUnitIsAssigned(this,i+1)) {UnitClearA(unit);UnitClearB(unit);unit->field1a=0;}
-        else UnitAddExperience(unit,experience);
+        ActorState *unit=&units[i];
+        if(f_0043bffc(this,i+1)) unit->ActorApplyDamage(experience);
+        else {ActorRestoreHealth(unit);ActorRestoreMorale(unit);unit->field1a=0;}
     }
     totalExperience+=initial.difficulty;
-    for(i=0;i<pilotCount;++i) PilotReset(&pilots[i],23);
+    for(i=0;i<pilotCount;++i) HercResetAmount(&pilots[i],23);
     switch(stats.outcome) {
+    case 3: RefreshMission(choice); break;
     case 1:
         ++field408;++wins;++streak;
         killsTotal+=stats.kills;objectivesTotal+=stats.objectives;
         regenerate=1;money+=earned;
-        if(IsSpecial() || initial.category!=2) ++progress; else progress+=3;
+        if(!IsSpecial() && initial.category==2) progress+=3; else ++progress;
         if(rank!=14) {
             if(IsSpecial()) {
                 if(rank!=13 && progress>=3) {promote=1;continuation=1;progress=0;initial.category=2;}
-            } else if(initial.category==3) {
+            } else switch(initial.category) {
+            case 3: {
                 progress=0;
                 if(missionType<MissionBaseType()-1) {++missionType;field408=0;field40c=0;}
                 regenerate=2;promote=1;continuation=1;
-            } else if(rankCosts[rank].cost<=progress && rankCosts[rank].cost!=0) {promote=1;continuation=1;}
+            } break;
+            default: if((int)rankCosts[rank].cost<=progress && rankCosts[rank].cost!=0) {promote=1;continuation=1;} break;
+            }
         }
         break;
-    case 3: RefreshMission(choice); break;
+    case 2:
     default: RefreshMission(choice); break;
     }
     if(initial.mission==0 || initial.mission==2 || initial.mission==3) regenerate=0;
     if(stats.outcome!=1) {
         for(i=0;i<pilotCount;++i) {
-            unsigned unit=pilotUnits[i]&255;
+            unsigned unit=pilotUnits[i].unit;
             if(unit && !(SimLogicFlags(&units[unit-1])&1)) {
                 for(int j=0;j<23;++j) pilots[i].skills[j].active=0;
             }
         }
     }
-    ReportBuffer(gSessionTable,0x4000);DebugTextClear();
-    DebugTextAppend(BriefFormat("%s%s%s%s\n",reportToken_004941c8,reportToken_004941a4,reportToken_0049418c,reportStrings.GetString(0x98)));
-    DebugTextAppend(reportBreak_0048af46);
-    DebugTextAppend(BriefFormat("%s%s%s: %s%s%s\n",reportToken_004941c8,reportToken_0049417c,reportStrings.GetString(0x99),reportToken_00494184,reportToken_004941b8,MissionAllocateType(initial.type)));
-    DebugTextAppend(BriefFormat("%s%s: %s%s%s\n",reportToken_0049417c,reportStrings.GetString(0x9a),reportToken_00494184,reportToken_004941b8,MissionAllocate(initial.type,initial.number)));
-    DebugTextAppend(BriefFormat("%s%s: %s%s%d %s\n",reportToken_0049417c,reportStrings.GetString(0xb5),reportToken_00494184,reportToken_004941b8,initial.difficulty,reportStrings.GetString(0xb6)));
-    DebugTextAppend(BriefFormat("%s%s:",reportToken_0049417c,reportStrings.GetString(0xc5)));
+    FormatSetBuffer(gSessionTable,0x4000);DebugTextClear();
+    DebugTextAppend(BriefFormat("%s%s%s%s\n",reportToken_004941c8,reportToken_004941a4,reportToken_0049418c,g511ddc.GetString(0x98)));
+    DebugTextAppend("\n");
+    DebugTextAppend(BriefFormat("%s%s%s: %s%s%s\n",reportToken_004941c8,reportToken_0049417c,g511ddc.GetString(0x99),reportToken_00494184,reportToken_004941b8,MissionAllocateType(initial.type)));
+    DebugTextAppend(BriefFormat("%s%s: %s%s%s\n",reportToken_0049417c,g511ddc.GetString(0x9a),reportToken_00494184,reportToken_004941b8,MissionAllocate(initial.type,initial.number)));
+    DebugTextAppend(BriefFormat("%s%s: %s%s%d %s\n",reportToken_0049417c,g511ddc.GetString(0xb5),reportToken_00494184,reportToken_004941b8,initial.difficulty,g511ddc.GetString(0xb6)));
+    DebugTextAppend(BriefFormat("%s%s:",reportToken_0049417c,g511ddc.GetString(0xc5)));
     if(stats.outcome==3) {
-        DebugTextAppend(BriefFormat("%s%s%s%s%s\n",reportToken_00494194,reportToken_004941a0,reportToken_004941b8,reportStrings.GetString(0xe2),reportToken_004941c8));
+        DebugTextAppend(BriefFormat("%s%s%s%s%s\n",reportToken_00494194,reportToken_004941a0,reportToken_004941b8,g511ddc.GetString(0xe2),reportToken_004941c8));
         if(!IsSpecial()) DebugTextAppend(BriefFormat("%s%s\n%s%s\n",reportToken_004941c8,reportToken_00494184,LogicTextPointer(g4dd0c0),reportToken_004941c8));
-        DebugTextAppend(reportBreak_0048af94);
+        DebugTextAppend("\n");
     } else if(stats.outcome==2) {
-        DebugTextAppend(BriefFormat("%s%s%s%s%s\n",reportToken_00494194,reportToken_004941a0,reportToken_004941b8,reportStrings.GetString(0xe3),reportToken_004941c8));
+        DebugTextAppend(BriefFormat("%s%s%s%s%s\n",reportToken_00494194,reportToken_004941a0,reportToken_004941b8,g511ddc.GetString(0xe3),reportToken_004941c8));
         if(!IsSpecial()) DebugTextAppend(BriefFormat("%s%s\n%s%s\n",reportToken_004941c8,reportToken_00494184,LogicTextPointer(g4dd0c0),reportToken_004941c8));
-        DebugTextAppend(reportBreak_0048afad);
+        DebugTextAppend("\n");
     } else {
         DebugTextAppend(BriefFormat("%s%s%s\n",reportToken_00494184,reportToken_004941b8,(char *)initial.image));
         if(!IsSpecial()) DebugTextAppend(BriefFormat("%s%s\n%s%s\n",reportToken_004941c8,reportToken_00494184,LogicTextPointer(g4dd0c0),reportToken_004941c8));
-        DebugTextAppend(reportBreak_0048afc2);
-        DebugTextAppend(BriefFormat("\n%s%s:\n",reportToken_0049417c,reportStrings.GetString(0xbc)));
-        DebugTextAppend(BriefFormat("%s%s%s: %s%s%d %s%s\n",reportToken_004941a8,reportToken_0049417c,reportStrings.GetString(0xa0),reportToken_00494184,reportToken_004941b8,killBonus,reportToken_004941c0,reportStrings.GetString(0xb1)));
-        if(stats.objectives==stats.totalObjectives) DebugTextAppend(BriefFormat("%s%s%s: %s%s%d %s%s\n",reportToken_004941a8,reportToken_0049417c,reportStrings.GetString(0xa2),reportToken_00494184,reportToken_004941b8,damageBonus,reportToken_004941c0,reportStrings.GetString(0xb1)));
-        DebugTextAppend(BriefFormat("%s%s%s: %s%s%d %s%s\n",reportToken_004941a8,reportToken_0049417c,reportStrings.GetString(0xbf),reportToken_00494184,reportToken_004941b8,objectiveBonus,reportToken_004941c0,reportStrings.GetString(0xb1)));
-        DebugTextAppend(BriefFormat("%s%s%s: %s%s%d %s%s\n",reportToken_004941a8,reportToken_0049417c,reportStrings.GetString(0xc2),reportToken_00494184,reportToken_004941b8,baseBonus,reportToken_004941c0,reportStrings.GetString(0xb1)));
-        DebugTextAppend(BriefFormat("\n\n%s%s:\n",reportToken_0049417c,reportStrings.GetString(0xb8)));
-        int percent=stats.kills && stats.totalKills ? stats.kills*100/stats.totalKills : 0;
-        DebugTextAppend(BriefFormat("%s%s%s: %s%s%d%s%d%%\n",reportToken_004941a8,reportToken_0049417c,reportStrings.GetString(0xa1),reportToken_00494184,reportToken_004941b8,stats.kills,reportToken_004941c0,percent));
-        percent=stats.objectives && stats.totalObjectives ? stats.objectives*100/stats.totalObjectives : 0;
-        DebugTextAppend(BriefFormat("%s%s%s: %s%s%d%s%d%%\n",reportToken_004941a8,reportToken_0049417c,reportStrings.GetString(0x9e),reportToken_00494184,reportToken_004941b8,stats.objectives,reportToken_004941c0,percent));
-        percent=earned && possible ? earned*100/possible : 0;
-        DebugTextAppend(BriefFormat("\n%s%s%s: %s%s%d%s%s%d%%\n",reportToken_004941a8,reportToken_0049417c,reportStrings.GetString(0xb9),reportToken_00494194,reportToken_004941b8,earned,reportToken_004941c0,reportToken_00494184,percent));
+        DebugTextAppend("\n");
+        DebugTextAppend(BriefFormat("\n%s%s:\n",reportToken_0049417c,g511ddc.GetString(0xbc)));
+        DebugTextAppend(BriefFormat("%s%s%s: %s%s%d %s%s\n",reportToken_004941a8,reportToken_0049417c,g511ddc.GetString(0xa0),reportToken_00494184,reportToken_004941b8,killBonus,reportToken_004941c0,g511ddc.GetString(0xb1)));
+        if(stats.objectives==stats.totalObjectives) DebugTextAppend(BriefFormat("%s%s%s: %s%s%d %s%s\n",reportToken_004941a8,reportToken_0049417c,g511ddc.GetString(0xa2),reportToken_00494184,reportToken_004941b8,damageBonus,reportToken_004941c0,g511ddc.GetString(0xb1)));
+        DebugTextAppend(BriefFormat("%s%s%s: %s%s%d %s%s\n",reportToken_004941a8,reportToken_0049417c,g511ddc.GetString(0xbf),reportToken_00494184,reportToken_004941b8,objectiveBonus,reportToken_004941c0,g511ddc.GetString(0xb1)));
+        DebugTextAppend(BriefFormat("%s%s%s: %s%s%d %s%s\n",reportToken_004941a8,reportToken_0049417c,g511ddc.GetString(0xc2),reportToken_00494184,reportToken_004941b8,baseBonus,reportToken_004941c0,g511ddc.GetString(0xb1)));
+        DebugTextAppend(BriefFormat("\n\n%s%s:\n",reportToken_0049417c,g511ddc.GetString(0xb8)));
+        DebugTextAppend(BriefFormat("%s%s%s: %s%s%d%s%d%%\n",reportToken_004941a8,reportToken_0049417c,g511ddc.GetString(0xa1),reportToken_00494184,reportToken_004941b8,stats.kills,reportToken_004941c0,(stats.kills && stats.totalKills ? stats.kills*100/stats.totalKills : 0)));
+        DebugTextAppend(BriefFormat("%s%s%s: %s%s%d%s%d%%\n",reportToken_004941a8,reportToken_0049417c,g511ddc.GetString(0x9e),reportToken_00494184,reportToken_004941b8,stats.objectives,reportToken_004941c0,(stats.objectives && stats.totalObjectives ? stats.objectives*100/stats.totalObjectives : 0)));
+        DebugTextAppend(BriefFormat("\n%s%s%s: %s%s%d%s%s%d%%\n",reportToken_004941a8,reportToken_0049417c,g511ddc.GetString(0xb9),reportToken_00494194,reportToken_004941b8,earned,reportToken_004941c0,reportToken_00494184,(earned && possible ? earned*100/possible : 0)));
         if(promote) {
             byte oldRank=rank,newRank=rank;
             if(initial.category==3) {do {++newRank;} while(rankDescriptors[newRank].skip>0);} else newRank=oldRank+1;
-            char *name=reportStrings.GetString(rankDescriptors[newRank].name);
-            DebugTextAppend(BriefFormat("\n%s%s%s%s",reportToken_00494194,reportToken_004941a8,reportStrings.GetString(0xf7),reportToken_004941b8));
+            char *name=g511ddc.GetString(rankDescriptors[newRank].name);
+            DebugTextAppend(BriefFormat("\n%s%s%s%s",reportToken_00494194,reportToken_004941a8,g511ddc.GetString(0xf7),reportToken_004941b8));
             byte levels=newRank-oldRank;
-            if(levels==1) DebugTextAppend(BriefFormat(reportStrings.GetString(0xf8),name));
-            else DebugTextAppend(BriefFormat(reportStrings.GetString(0xf9),levels,name));
-            DebugTextAppend(reportBreak_0048b078);
+            if(levels==1) DebugTextAppend(BriefFormat(g511ddc.GetString(0xf8),name));
+            else DebugTextAppend(BriefFormat(g511ddc.GetString(0xf9),levels,name));
+            DebugTextAppend("\n");
         }
-        DebugTextAppend(reportBreak_0048b07a);
+        DebugTextAppend("\n");
     }
-    DebugTextAppend(reportBreak_0048b07c);
-    DebugTextAppend(BriefFormat("%s%s%s:\n",reportToken_004941c8,reportToken_004941a4,reportStrings.GetString(0xb3)));
+    DebugTextAppend("\n");
+    DebugTextAppend(BriefFormat("%s%s%s:\n",reportToken_004941c8,reportToken_004941a4,g511ddc.GetString(0xb3)));
     DebugTextAppend(BriefFormat("%s\n",reportToken_004941c8));
     for(i=0;i<pilotCount;++i) {
-        PilotRecord *pilot=&pilots[i];
-        unsigned index=pilotUnits[i]&255;
+        ActorUnit *pilot=&pilots[i];
+        unsigned index=pilotUnits[i].unit;
         if(index) {
             
             unsigned flags=SimLogicFlags(GetUnit(index));
-            DebugTextAppend(BriefFormat("%s%s%s  %s%s\n",reportToken_00494184,(char *)pilot,reportToken_0049417c,reportToken_004941c0,reportStrings.GetString(0xa5)));
-            DebugTextAppend(BriefFormat("%s%s%s: %s%s",reportToken_0049417c,reportToken_004941a8,reportStrings.GetString(0xa8),reportToken_00494184,reportToken_004941b0));
-            byte health=PilotHealth(pilot);
+            DebugTextAppend(BriefFormat("%s%s%s  %s%s\n",reportToken_00494184,(char *)pilot,reportToken_0049417c,reportToken_004941c0,g511ddc.GetString(0xa5)));
+            DebugTextAppend(BriefFormat("%s%s%s: %s%s",reportToken_0049417c,reportToken_004941a8,g511ddc.GetString(0xa8),reportToken_00494184,reportToken_004941b0));
+            byte health=f_00439d48(pilot);
             if(health) DebugTextAppend(BriefFormat("%d%%\n",health));
-            else DebugTextAppend(BriefFormat("%s%s\n",reportToken_00494194,reportStrings.GetString(0xaa)));
-            DebugTextAppend(BriefFormat("%s%s%s  %s%s\n",reportToken_00494184,(char *)GetUnit(index),reportToken_0049417c,reportToken_004941c0,reportStrings.GetString(0xa6)));
-            DebugTextAppend(BriefFormat("%s%s%s: %s",reportToken_0049417c,reportToken_004941a8,reportStrings.GetString(0x79),reportToken_004941b0));
-            byte grade=UnitGrade(GetUnit(index));
+            else DebugTextAppend(BriefFormat("%s%s\n",reportToken_00494194,g511ddc.GetString(0xaa)));
+            DebugTextAppend(BriefFormat("%s%s%s  %s%s\n",reportToken_00494184,(char *)GetUnit(index),reportToken_0049417c,reportToken_004941c0,g511ddc.GetString(0xa6)));
+            DebugTextAppend(BriefFormat("%s%s%s: %s",reportToken_0049417c,reportToken_004941a8,g511ddc.GetString(0x79),reportToken_004941b0));
+            byte grade=ActorCondition(GetUnit(index));
             if(grade=='D') {
-                if(flags&1) DebugTextAppend(BriefFormat("%s%s\n",reportToken_00494194,reportStrings.GetString(0xaf)));
-                else DebugTextAppend(BriefFormat("%s%s\n",reportToken_00494194,reportStrings.GetString(0xc6)));
-            } else if(grade=='C') DebugTextAppend(BriefFormat("%s%s\n",reportToken_00494194,reportStrings.GetString(0xae)));
-            else if(grade=='B') DebugTextAppend(BriefFormat("%s%s\n",reportToken_00494184,reportStrings.GetString(0xad)));
-            else DebugTextAppend(BriefFormat("%s%s\n",reportToken_00494184,reportStrings.GetString(0xac)));
+                if(flags&1) DebugTextAppend(BriefFormat("%s%s\n",reportToken_00494194,g511ddc.GetString(0xaf)));
+                else DebugTextAppend(BriefFormat("%s%s\n",reportToken_00494194,g511ddc.GetString(0xc6)));
+            } else if(grade=='C') DebugTextAppend(BriefFormat("%s%s\n",reportToken_00494194,g511ddc.GetString(0xae)));
+            else if(grade=='B') DebugTextAppend(BriefFormat("%s%s\n",reportToken_00494184,g511ddc.GetString(0xad)));
+            else DebugTextAppend(BriefFormat("%s%s\n",reportToken_00494184,g511ddc.GetString(0xac)));
             if(!(flags&1)) {
-                if(flags&0x10000) DebugTextAppend(BriefFormat("%s%s%s\n",reportToken_00494194,reportToken_004941a8,reportStrings.GetString(0x75)));
-                else if(flags&0x100000) DebugTextAppend(BriefFormat("%s%s%s\n",reportToken_00494194,reportToken_004941a8,reportStrings.GetString(0x76)));
-                else DebugTextAppend(BriefFormat("%s%s%s\n",reportToken_00494194,reportToken_004941a8,reportStrings.GetString(0x77)));
+                if(flags&0x10000) DebugTextAppend(BriefFormat("%s%s%s\n",reportToken_00494194,reportToken_004941a8,g511ddc.GetString(0x75)));
+                else if(flags&0x100000) DebugTextAppend(BriefFormat("%s%s%s\n",reportToken_00494194,reportToken_004941a8,g511ddc.GetString(0x76)));
+                else DebugTextAppend(BriefFormat("%s%s%s\n",reportToken_00494194,reportToken_004941a8,g511ddc.GetString(0x77)));
             } else {
-                DebugTextAppend(BriefFormat("%s%s%s: %s",reportToken_0049417c,reportToken_004941a8,reportStrings.GetString(0x66),reportToken_004941b0));
-                int damage=UnitStat(GetUnit(index),0xd4)*10-GetUnit(index)->wounds;
-                char *description=reportStrings.GetString(damage==1 ? 0x71 : 0x72);
+                DebugTextAppend(BriefFormat("%s%s%s: %s",reportToken_0049417c,reportToken_004941a8,g511ddc.GetString(0x66),reportToken_004941b0));
+                int damage=PilotValue(GetUnit(index),0xd4)*10-GetUnit(index)->wounds;
+                char *description=g511ddc.GetString(damage==1 ? 0x71 : 0x72);
                 if(flags&0x40000) {
                     DebugTextAppend(BriefFormat("%s%d %s\n",reportToken_00494194,damage,description));
-                    DebugTextAppend(BriefFormat("%s%s%s\n",reportToken_004941b0,reportToken_00494194,reportStrings.GetString(0x74)));
+                    DebugTextAppend(BriefFormat("%s%s%s\n",reportToken_004941b0,reportToken_00494194,g511ddc.GetString(0x74)));
                 } else if(flags&0x20000) {
                     DebugTextAppend(BriefFormat("%s%d %s\n",reportToken_00494184,damage,description));
-                    DebugTextAppend(BriefFormat("%s%s%s\n",reportToken_004941b0,reportToken_00494184,reportStrings.GetString(0x73)));
+                    DebugTextAppend(BriefFormat("%s%s%s\n",reportToken_004941b0,reportToken_00494184,g511ddc.GetString(0x73)));
                 } else DebugTextAppend(BriefFormat("%s%d %s\n",reportToken_00494184,damage,description));
             }
-            if(GetUnit(index)->bytes26 != GetUnit(index)->bytes27) DebugTextAppend(BriefFormat("%s%s%s\n",reportToken_004941a8,reportToken_00494184,reportStrings.GetString(0xab)));
+            if(GetUnit(index)->bytes27 != GetUnit(index)->bytes26) DebugTextAppend(BriefFormat("%s%s%s\n",reportToken_004941a8,reportToken_00494184,g511ddc.GetString(0xab)));
             DebugTextAppend("\n\n");
         }
     }
-    DebugTextAppend(reportBreak_0048b142);
-    DebugTextAppend(BriefFormat("%s%s%s:\n",reportToken_004941c8,reportToken_004941a4,reportStrings.GetString(0xa7)));
+    DebugTextAppend("\n");
+    DebugTextAppend(BriefFormat("%s%s%s:\n",reportToken_004941c8,reportToken_004941a4,g511ddc.GetString(0xa7)));
     DebugTextAppend(BriefFormat("%s\n",reportToken_004941c8));
     int any=0;
     for(i=0;i<unitCount;++i) {
         unsigned number=i+1;
-        if(!ProfileUnitIsAssigned(this,number)) {
-            any=1; UnitRecord *base=units; UnitRecord *unit=&base[i];
-            DebugTextAppend(BriefFormat("%s%s%s  %s%s\n",reportToken_00494184,(char *)unit,reportToken_0049417c,reportToken_004941c0,reportStrings.GetString(0xa6)));
+        if(!f_0043bffc(this,number)) {
+            any=1; ActorState *base=units; ActorState *unit=&base[i];
+            DebugTextAppend(BriefFormat("%s%s%s  %s%s\n",reportToken_00494184,(char *)unit,reportToken_0049417c,reportToken_004941c0,g511ddc.GetString(0xa6)));
             unsigned flags=SimLogicFlags(unit);
             if(!(flags&1)) {
-                if(flags&0x10000) DebugTextAppend(BriefFormat("%s%s%s\n",reportToken_00494194,reportToken_004941a8,reportStrings.GetString(0x75)));
-                else if(flags&0x100000) DebugTextAppend(BriefFormat("%s%s%s\n",reportToken_00494194,reportToken_004941a8,reportStrings.GetString(0x76)));
-                else DebugTextAppend(BriefFormat("%s%s%s\n",reportToken_00494194,reportToken_004941a8,reportStrings.GetString(0x77)));
+                if(flags&0x10000) DebugTextAppend(BriefFormat("%s%s%s\n",reportToken_00494194,reportToken_004941a8,g511ddc.GetString(0x75)));
+                else if(flags&0x100000) DebugTextAppend(BriefFormat("%s%s%s\n",reportToken_00494194,reportToken_004941a8,g511ddc.GetString(0x76)));
+                else DebugTextAppend(BriefFormat("%s%s%s\n",reportToken_00494194,reportToken_004941a8,g511ddc.GetString(0x77)));
             } else {
-                DebugTextAppend(BriefFormat("%s%s%s: %s",reportToken_0049417c,reportToken_004941a8,reportStrings.GetString(0x66),reportToken_004941b0));
-                int damage=UnitStat(unit,0xd4)*10-base[number-1].wounds;
-                char *description=reportStrings.GetString(damage==1 ? 0x71 : 0x72);
+                DebugTextAppend(BriefFormat("%s%s%s: %s",reportToken_0049417c,reportToken_004941a8,g511ddc.GetString(0x66),reportToken_004941b0));
+                int damage=PilotValue(unit,0xd4)*10-base[number-1].wounds;
+                char *description=g511ddc.GetString(damage==1 ? 0x71 : 0x72);
                 if(flags&0x40000) {
                     DebugTextAppend(BriefFormat("%s%d %s\n",reportToken_00494194,damage,description));
-                    DebugTextAppend(BriefFormat("%s%s%s\n",reportToken_004941b0,reportToken_00494194,reportStrings.GetString(0x74)));
+                    DebugTextAppend(BriefFormat("%s%s%s\n",reportToken_004941b0,reportToken_00494194,g511ddc.GetString(0x74)));
                 } else if(flags&0x20000) {
                     DebugTextAppend(BriefFormat("%s%d %s\n",reportToken_00494184,damage,description));
-                    DebugTextAppend(BriefFormat("%s%s%s\n",reportToken_004941b0,reportToken_00494184,reportStrings.GetString(0x73)));
+                    DebugTextAppend(BriefFormat("%s%s%s\n",reportToken_004941b0,reportToken_00494184,g511ddc.GetString(0x73)));
                 } else DebugTextAppend(BriefFormat("%s%d %s\n",reportToken_00494184,damage,description));
             }
             DebugTextAppend("\n\n");
         }
     }
 
-    if(!any) DebugTextAppend(BriefFormat("%s%s\n",reportToken_004941c8,reportStrings.GetString(0xc6)));
-    ProfileCleanup(this);
+    if(!any) DebugTextAppend(BriefFormat("%s%s\n",reportToken_004941c8,g511ddc.GetString(0xc6)));
+    f_0043c05b(this);
     if(promote) {
         previousRank=rank;
         if(initial.category==3) {do {++rank;ProfileAdvance(this,rank);} while(rankDescriptors[rank].skip>0);}
@@ -259,11 +260,11 @@ void ProfileManager::BeginMissions() {
     }
     ProfileRefresh(this);
     if(regenerate==2) GenerateMissions(this); else if(regenerate==1) ReplaceMission(this);
-    if(!reportStatic) delete [] savedReport; else reportStatic=0;
+    if(!g4941e0) delete [] g4c9340; else g4941e0=0;
     unsigned length=strlen(gDebugText)+1;
-    savedReport=new char[length];
-    memset(savedReport,0,length);strcpy(savedReport,gDebugText);
-    field43a=(int)savedReport;choice=-1;
+    g4c9340=new char[length];
+    memset(g4c9340,0,length);strcpy(g4c9340,gDebugText);
+    field43a=(int)g4c9340;choice=-1;
 }
 
 

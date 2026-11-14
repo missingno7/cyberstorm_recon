@@ -80,9 +80,10 @@ void FogResetMode(FogBuffer *p) { if (p->mode == 4 || p->mode == 3 || p->mode ==
 
 int FogSetValue(FogBuffer *p, long index, int value) { register long v; if (p->mode == 4) return 0; if (p->mode == 5) return 0; v = (value > 0); if (*(p->lower + index) != v || *(p->upper + index) != v) { p->state = 1; *(p->lower + index) = (signed char)v; *(p->upper + index) = (signed char)v; return 1; } return 0; }
 
-struct TerrainGrid { long fields[17]; void *cells; void *neighbors; };
+struct FogCellRecord; struct TerrainGrid { long fields[17]; FogCellRecord *cells; long *neighbors; };
 struct GridPoint { long x; long y; };
-struct FogCellRecord { unsigned char raw[12]; };
+struct FogCellRecord { unsigned char type,height,unknown[10]; };
+struct FogVisit { TerrainGrid *grid; GridPoint point; long index; };
 #pragma pack(push, 1)
 struct FogObject { char pad00[8]; long owner; char pad0c[0x13]; long range; long scale; char pad27[0x1b]; long index; char pad46[0x42]; signed char visible; char pad89[7]; };
 #pragma pack(pop)
@@ -106,17 +107,17 @@ int StreamWrite(void *, const void *, unsigned long);
 extern FogObject *CreateState(int);
 
 int FogUpdateCell(void *argument) {
-    long index = ((long *)argument)[3];
+    long index = ((FogVisit *)argument)->index;
     if (index) {
         int visible = (gFogCast.limit <= 7);
         unsigned long band;
         int blocked = 0; int range;
         if (visible) {
             GridPoint coordinate;
-            TargetObjectInit((const char *)*(TerrainGrid **)argument, &coordinate, (int)index);
+            TargetObjectInit((const char *)((FogVisit *)argument)->grid, &coordinate, (int)index);
             long distance = PointAngle(&gFogCast.target, &coordinate);
             band = ((unsigned long)distance + 0x1fU) >> 0x1a & 63;
-            range = LogicCopyPoint((int *)&gFogCast.source, (int *)((unsigned char *)argument + sizeof(long)));
+            range = LogicCopyPoint((int *)&gFogCast.source, (int *)&((FogVisit *)argument)->point);
             blocked = gFogCast.mask[band];
 
         }
@@ -125,11 +126,11 @@ int FogUpdateCell(void *argument) {
                 signed char *upper=gFogCast.active->upper; upper[index] = 1;
                 gFogCast.active->lower[index] = upper[index];
             } else {
-                long objectId = ((long *)(*(TerrainGrid **)argument)->neighbors)[index*2];
+                long objectId = ((FogVisit *)argument)->grid->neighbors[index*2];
                 if(objectId) { FogObject *object = CreateState((int)objectId);
                 if (object && (int)object->visible && index == object->index && object->owner != gLocalActorKind) gFogCast.flags |= 4; }
             }
-            if (visible && gFogCast.limit <= ((unsigned char *)((*(TerrainGrid **)argument)->cells))[index * 12 + 1]) {
+            if (visible && gFogCast.limit <= ((FogVisit *)argument)->grid->cells[index].height) {
                 if (range>5 || range<1) gFogCast.mask[band]=1; else {
                     unsigned long count = gFogMaskWidths[range];
                     long start = ((long)band) - ((long)count >> 1);
@@ -147,7 +148,7 @@ int FogUpdateCell(void *argument) {
     return 0;
 }
 
-long FogCast(register FogBuffer *buffer, register long index, register FogObject *object) {
+long FogCast(FogBuffer *buffer, long index, FogObject *object) {
     if (buffer->mode == 4 || buffer->mode == 5) return 0;
     gFogCast.flagsWord = 0;
     buffer->state = 1;
@@ -161,9 +162,9 @@ long FogCast(register FogBuffer *buffer, register long index, register FogObject
         BestLocInitialize(shape, (const char *)buffer->source, (int)object->range);
         BestLocSetCandidate(shape, (void *)gFogCast.index);
         long half = (heightStep + 500) / 2;
-        long scale = gFogScale[object->scale];
-        int threshold=(scale * 500 + half / 2) / half; memset(gFogCast.mask, 0, 0x40);
-        gFogCast.limit = threshold + ((FogCellRecord *)((TerrainGrid *)buffer->source)->cells)[gFogCast.index].raw[1];
+        long scale = gFogScale[object->scale] * 500;
+        int threshold=(scale + half / 2) / half; memset(gFogCast.mask, 0, 0x40);
+        gFogCast.limit = threshold + ((TerrainGrid *)buffer->source)->cells[gFogCast.index].height;
         BestLocVisit(shape, FogUpdateCell);
         gFogCast.flags |= 3;
     }

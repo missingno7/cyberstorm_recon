@@ -1,6 +1,6 @@
 // terr\tgrid.c. Names and partial field layouts remain working labels.
 struct GridPoint { long x, y; };
-struct TerrainGrid { long fields[17]; void *cells, *neighbors; long PointToIndex(GridPoint *); };
+struct GridCell { unsigned char terrain, water, ground, feature, height, flags, region, unused; long actor; }; struct GridNeighbors { unsigned short index[4]; }; struct TerrainGrid { long unknown00,spacing,radius,diameter; GridPoint center; long centerIndex,rowShift,rowWidth,rowSlack,cellCount,state,unknown30,counts[3],unknown40; GridCell *cells; GridNeighbors *neighbors; long PointToIndex(GridPoint *); };
 struct Point {
     long x, y;
     Point(long ax, long ay) : x(ax), y(ay) {}
@@ -15,6 +15,7 @@ struct GridCoordLocal {
     GridCoordLocal() {}
     GridCoordLocal(const GridPoint &p) : x(p.x), y(p.y) {}
     void Set(long ax, long ay) { x=ax; y=ay; }
+    void Add(const GridPoint *p) { x+=p->x; y+=p->y; }
 };
 struct GridSearchState { GridPoint point; long target, bestIndex, bestDistance; };
 extern GridSearchState gGridSearch;
@@ -34,8 +35,8 @@ inline long GridAbs(long a) { return a<0 ? -a : a; }
 inline long GridMax(long a, long b) { return a>b ? a : b; }
 inline GridPoint *GridDecode(TerrainGrid *grid, GridPoint *out, long index) {
     long value=index-1;
-    out->x=value&(grid->fields[8]-1);
-    out->y=(value>>grid->fields[7])*2+((out->x&1)!=0);
+    out->x=value&(grid->rowWidth-1);
+    out->y=(value>>grid->rowShift)*2+((out->x&1)!=0);
     return out;
 }
 inline GridPoint *GridSubtract(GridPoint *p, const GridPoint *q) {
@@ -49,52 +50,51 @@ inline GridPoint *GridScale(GridPoint *p, long amount) {
 inline long GridDistance(const GridPoint *a, const GridPoint *b) {
     long dx=GridAbs(a->x-b->x); long dy=GridAbs(a->y-b->y); return GridMax(dx,(dx+dy)>>1); }
 inline long GridLookup(TerrainGrid *grid, const GridPoint *point) {
-    const GridPoint *center=(GridPoint *)&grid->fields[4]; long dx=GridAbs(center->x-point->x); long dy=GridAbs(center->y-point->y);
-    if(GridMax(dx,(dx+dy)>>1)>grid->fields[2]) return 0;
-    return ((point->y>>1)<<grid->fields[7])+point->x+1;
+    const GridPoint *center=&grid->center; long dx=GridAbs(center->x-point->x); long dy=GridAbs(center->y-point->y);
+    if(GridMax(dx,(dx+dy)>>1)>grid->radius) return 0;
+    return ((point->y>>1)<<grid->rowShift)+point->x+1;
 }
-
 // Direction table is initialized by the global point constructors.
 TerrainGrid *GridClear(TerrainGrid *p) { p->cells = 0; p->neighbors = 0; return p; }
 TerrainGrid *GridRelease(TerrainGrid *p) {
     if (p->cells) {
-        delete[] (char *)p->cells; p->cells=0;
-        delete[] (char *)p->neighbors; p->neighbors=0;
+        delete[] p->cells; p->cells=0;
+        delete[] p->neighbors; p->neighbors=0;
     }
     return p;
 }
 void GridDestroy(TerrainGrid *p) {
     if (p->cells) {
-        delete[] (char *)p->cells; p->cells=0;
-        delete[] (char *)p->neighbors; p->neighbors=0;
+        delete[] p->cells; p->cells=0;
+        delete[] p->neighbors; p->neighbors=0;
     }
 }
 long GridInitialize(TerrainGrid *p, long spacing, long height) {
     // dimensions are recomputed through the grid fields.
     if (p->cells) {
-        delete[] (char *)p->cells;
+        delete[] p->cells;
         p->cells = 0;
-        delete[] (char *)p->neighbors;
+        delete[] p->neighbors;
         p->neighbors = 0;
     }
-    p->fields[1] = spacing;
-    p->fields[2] = height;
+    p->spacing = spacing;
+    p->radius = height;
     long doubled = height * 2;
-    p->fields[3] = doubled + 1;
-    p->fields[4] = p->fields[2];
-    p->fields[5] = p->fields[2] * 2 + ((p->fields[4] & 1) != 0);
-    p->fields[7] = 0;
-    for (long value = doubled; value > 0; value >>= 1) ++p->fields[7];
-    p->fields[7] = GridMax(p->fields[7],1);
-    p->fields[6] = (p->fields[2] << p->fields[7]) + p->fields[2] + 1;
-    long power = GridPower(p->fields[7]);
-    p->fields[8] = power;
-    p->fields[9] = p->fields[8] - p->fields[3];
-    p->fields[10] = p->fields[8] * p->fields[3];
-    p->fields[11] = 0;
-    memset(&p->fields[13], 0, 12);
-    p->cells = new char[(p->fields[10] + 1) * 12];
-    p->neighbors = new char[(p->fields[10] + 1) * 8];
+    p->diameter = doubled + 1;
+    p->center.x = p->radius;
+    p->center.y = p->radius * 2 + ((p->center.x & 1) != 0);
+    p->rowShift = 0;
+    for (long value = doubled; value > 0; value >>= 1) ++p->rowShift;
+    p->rowShift = GridMax(p->rowShift,1);
+    p->centerIndex = (p->radius << p->rowShift) + p->radius + 1;
+    long power = GridPower(p->rowShift);
+    p->rowWidth = power;
+    p->rowSlack = p->rowWidth - p->diameter;
+    p->cellCount = p->rowWidth * p->diameter;
+    p->state = 0;
+    memset(&p->counts[0], 0, 12);
+    p->cells = new GridCell[p->cellCount + 1];
+    p->neighbors = new GridNeighbors[p->cellCount + 1];
     if (!p->cells || !p->neighbors) {
         // source-line padding
         // source-line padding
@@ -117,34 +117,34 @@ long GridInitialize(TerrainGrid *p, long spacing, long height) {
         // source-line padding
         AssertFail(GridSourcePath, __LINE__, 0);
     }
-    memset(p->cells, 0, (p->fields[10] + 1) * 12);
-    memset(p->neighbors, 0, (p->fields[10] + 1) * 8);
+    memset(p->cells, 0, (p->cellCount + 1) * 12);
+    memset(p->neighbors, 0, (p->cellCount + 1) * 8);
     return 1;
 }
-void GridClearNeighbors(TerrainGrid *p) { memset(p->neighbors, 0, (p->fields[10] + 1) * 8); }
+void GridClearNeighbors(TerrainGrid *p) { memset(p->neighbors, 0, (p->cellCount + 1) * 8); }
 long GridPointToIndex(TerrainGrid *grid, GridPoint *point) {
     GridCoordLocal local(*point); GridCoordLocal remainder;
     local.x=(local.x*0x128)>>8;
-    remainder.Set(abs(local.x)%grid->fields[1],abs(local.y)%grid->fields[1]);
-    local.x/=grid->fields[1]; local.x+=grid->fields[4];
-    remainder.x-=grid->fields[1]>>2;
+    remainder.Set(abs(local.x)%grid->spacing,abs(local.y)%grid->spacing);
+    local.x/=grid->spacing; local.x+=grid->center.x;
+    remainder.x-=grid->spacing>>2;
     if(remainder.x>0) {
         long add;
-        if(remainder.x < (grid->fields[1]>>1)) {
+        if(remainder.x < (grid->spacing>>1)) {
             int side=0;
-            if(remainder.y > (grid->fields[1]>>1)) { remainder.y-=grid->fields[1]>>1; side=1; }
-            if((local.x-grid->fields[4])&1)side=!side;
-            add=side ? remainder.x>remainder.y : (grid->fields[1]>>1)-remainder.y<remainder.x;
+            if(remainder.y > (grid->spacing>>1)) { remainder.y-=grid->spacing>>1; side=1; }
+            if((local.x-grid->center.x)&1)side=!side;
+            add=side ? remainder.x>remainder.y : (grid->spacing>>1)-remainder.y<remainder.x;
             // Both cases produce the crossing predicate.
         } else add=1;
         if(add) { if(point->x<0)add=-1; else add=1; }
         local.x+=add;
     }
-    long odd=(local.x-grid->fields[4])&1;
-    if(!odd) local.y+=point->y<=0?-(grid->fields[1]>>1):(grid->fields[1]>>1);
-    local.y/=grid->fields[1]; local.y=-local.y*2;
+    long odd=(local.x-grid->center.x)&1;
+    if(!odd) local.y+=point->y<=0?-(grid->spacing>>1):(grid->spacing>>1);
+    local.y/=grid->spacing; local.y=-local.y*2;
     if(odd) local.y+=point->y<=0?1:-1;
-    local.y+=grid->fields[5];
+    local.y+=grid->center.y;
     if(local.x&1)local.y|=1; else local.y&=~1;
     return GridLookup(grid,(GridPoint*)&local);
 
@@ -164,8 +164,8 @@ long GridPointToIndex(TerrainGrid *grid, GridPoint *point) {
 
 extern "C" GridPoint *TargetObjectInit(TerrainGrid *grid, GridPoint *out, long index) {
     GridDecode(grid,out,index);
-    GridSubtract(out,(GridPoint*)&grid->fields[4]);
-    GridScale(out,grid->fields[1]);
+    GridSubtract(out,&grid->center);
+    GridScale(out,grid->spacing);
     out->x=(out->x*0xde)>>8;
     out->y=-out->y>>1;
     return out;
@@ -183,7 +183,7 @@ extern "C" GridPoint *TargetObjectInit(TerrainGrid *grid, GridPoint *out, long i
 
 
 extern "C" int ResolveName(TerrainGrid *grid,GridPoint *point) {
-    if(GridDistance((GridPoint *)&grid->fields[4],point)>grid->fields[2]) return 0; return ((point->y>>1)<<grid->fields[7])+point->x+1; }
+    if(GridDistance(&grid->center,point)>grid->radius) return 0; return ((point->y>>1)<<grid->rowShift)+point->x+1; }
 
 
 
@@ -194,28 +194,21 @@ extern "C" int ResolveName(TerrainGrid *grid,GridPoint *point) {
 
 long *BestLocSetData(TerrainGrid *grid, long *out, long index) {
     --index;
-    out[0]=index&(grid->fields[8]-1);
-    out[1]=(index>>grid->fields[7])*2+((out[0]&1)!=0);
+    out[0]=index&(grid->rowWidth-1);
+    out[1]=(index>>grid->rowShift)*2+((out[0]&1)!=0);
     return out;
 }
 long GridFindNeighbor(TerrainGrid *grid,long index,long wanted) {
     GridPoint origin;
-    long value=index-1;
-    origin.x=value&(grid->fields[8]-1);
-    origin.y=(value>>grid->fields[7])*2+((origin.x&1)!=0);
-    long result=0;
-    Point *offset=pathDirections;
-    while(result<6) {
-        GridPoint point=origin;
-        point.x+=offset->x; point.y+=offset->y;
-        long dx=GridAbs(grid->fields[4]-point.x);
-        long dy=GridAbs(grid->fields[5]-point.y);
-        long distance=GridMax(dx,(dx+dy)>>1);
+    GridDecode(grid,&origin,index);
+    long result;
+    for(result=0; result<6; ++result) {
+        GridCoordLocal point(origin);
+        point.Add((const GridPoint *)&pathDirections[result]);
         long candidate;
-        if(distance>grid->fields[2]) candidate=0;
-        else candidate=((point.y>>1)<<grid->fields[7])+point.x+1;
+        if(GridDistance(&grid->center,(GridPoint *)&point)>grid->radius) candidate=0;
+        else candidate=((point.y>>1)<<grid->rowShift)+point.x+1;
         if(candidate==wanted) break;
-        ++result; ++offset;
     }
     return result;
 }
@@ -258,10 +251,10 @@ long GridVisitBest(void *argument) {
         GridPoint point;
         {
             long value=index-1;
-            point.x=value&(grid->fields[8]-1);
-            point.y=(value>>grid->fields[7])*2+((point.x&1)!=0);
-            GridSubtract(&point,(GridPoint*)&grid->fields[4]);
-            GridScale(&point,grid->fields[1]);
+            point.x=value&(grid->rowWidth-1);
+            point.y=(value>>grid->rowShift)*2+((point.x&1)!=0);
+            GridSubtract(&point,&grid->center);
+            GridScale(&point,grid->spacing);
             point.x=(point.x*0xde)>>8;
             point.y=-point.y>>1;
         }
@@ -280,11 +273,11 @@ long GridVisitBest(void *argument) {
 long GridFindClosest(TerrainGrid *grid, unsigned long start, long target) {
     gGridSearch.bestIndex = 0; gGridSearch.target = target;
     {
-        long value=grid->fields[6]-1;
-        gGridSearch.point.x=value&(grid->fields[8]-1);
-        gGridSearch.point.y=(value>>grid->fields[7])*2+((gGridSearch.point.x&1)!=0);
-        GridSubtract(&gGridSearch.point,(GridPoint*)&grid->fields[4]);
-        GridScale(&gGridSearch.point,grid->fields[1]);
+        long value=grid->centerIndex-1;
+        gGridSearch.point.x=value&(grid->rowWidth-1);
+        gGridSearch.point.y=(value>>grid->rowShift)*2+((gGridSearch.point.x&1)!=0);
+        GridSubtract(&gGridSearch.point,&grid->center);
+        GridScale(&gGridSearch.point,grid->spacing);
         gGridSearch.point.x=(gGridSearch.point.x*0xde)>>8;
         gGridSearch.point.y=-gGridSearch.point.y>>1;
     }
@@ -294,16 +287,23 @@ long GridFindClosest(TerrainGrid *grid, unsigned long start, long target) {
 
     long shape[10];
     BestLocInitialize(shape, (const char *)grid, (int)start);
-    BestLocSetCandidate(shape, (void *)grid->fields[6]);
+    BestLocSetCandidate(shape, (void *)grid->centerIndex);
     AreaEnumerate((int*)shape, (void*)GridVisitBest, start, start);
     return gGridSearch.bestIndex;
 }
+
+
+
+
+
+
+
 long GridLoad(TerrainGrid *grid, void *stream) {
     if (!grid->cells) return 0;
-    long count = grid->fields[10];
-    unsigned long headerBytes = (unsigned long)((char *)&grid->fields[16] - (char *)grid); int bytes = StreamRead(stream, grid, headerBytes);
+    long count = grid->cellCount;
+    unsigned long headerBytes = (unsigned long)((char *)&grid->unknown40 - (char *)grid); int bytes = StreamRead(stream, grid, headerBytes);
     if (bytes != (int)headerBytes) return 0;
-    if (count != grid->fields[10]) {
+    if (count != grid->cellCount) {
         // source-line padding
         // source-line padding
         // source-line padding
@@ -367,18 +367,18 @@ long GridLoad(TerrainGrid *grid, void *stream) {
         // source-line padding
         AssertFail(GridSourcePath, __LINE__, 0);
     }
-    unsigned long cellBytes = (grid->fields[10] + 1) * 12;
+    unsigned long cellBytes = (grid->cellCount + 1) * 12;
     if (StreamRead(stream, grid->cells, cellBytes) != (int)cellBytes) return 0;
-    unsigned long neighborBytes = (grid->fields[10] + 1) * 8;
+    unsigned long neighborBytes = (grid->cellCount + 1) * 8;
     if (StreamRead(stream, grid->neighbors, neighborBytes) != (int)neighborBytes) return 0;
     return 1;
 }
 long GridSave(TerrainGrid *grid, void *stream) {
     if (!grid->cells) return 0;
-    unsigned long headerBytes = (unsigned long)((char *)&grid->fields[16] - (char *)grid); if (StreamWrite(stream, grid, headerBytes) != (int)headerBytes) return 0;
-    unsigned long cellBytes = (grid->fields[10] + 1) * 12;
+    unsigned long headerBytes = (unsigned long)((char *)&grid->unknown40 - (char *)grid); if (StreamWrite(stream, grid, headerBytes) != (int)headerBytes) return 0;
+    unsigned long cellBytes = (grid->cellCount + 1) * 12;
     if (StreamWrite(stream, grid->cells, cellBytes) != (int)cellBytes) return 0;
-    unsigned long neighborBytes = (grid->fields[10] + 1) * 8;
+    unsigned long neighborBytes = (grid->cellCount + 1) * 8;
     if (StreamWrite(stream, grid->neighbors, neighborBytes) != (int)neighborBytes) return 0;
     return 1;
 }
@@ -393,19 +393,19 @@ long GridSerializeStats(TerrainGrid *grid, void *output) {
     scratch.value[0] = 0;
     long i = 0;
     // Each grid cell occupies twelve bytes.
-    unsigned char *cell = (unsigned char *)grid->cells;
-    if (i < grid->fields[10]) {
+    GridCell *cell = grid->cells;
+    if (i < grid->cellCount) {
         do {
-            scratch.value[0] = cell[0]; Crc16(&scratch.slot[7].count, scratch.value, 1);
-            scratch.value[0] = cell[2]; Crc16(&scratch.slot[4].count, scratch.value, 1);
-            scratch.value[0] = cell[3]; Crc16(&scratch.slot[6].count, scratch.value, 1);
-            scratch.value[0] = cell[4]; Crc16(&scratch.slot[1].count, scratch.value, 1);
-            scratch.value[0] = cell[5]; Crc16(&scratch.slot[3].count, scratch.value, 1);
-            scratch.value[0] = cell[1]; Crc16(&scratch.slot[5].count, scratch.value, 1);
-            scratch.value[0] = cell[6]; Crc16(&scratch.slot[0].count, scratch.value, 1);
-            Crc16(&scratch.slot[8].count, cell+8, 4);
-            ++i; cell += 12;
-        } while (i < grid->fields[10]);
+            scratch.value[0] = cell->terrain; Crc16(&scratch.slot[7].count, scratch.value, 1);
+            scratch.value[0] = cell->ground; Crc16(&scratch.slot[4].count, scratch.value, 1);
+            scratch.value[0] = cell->feature; Crc16(&scratch.slot[6].count, scratch.value, 1);
+            scratch.value[0] = cell->height; Crc16(&scratch.slot[1].count, scratch.value, 1);
+            scratch.value[0] = cell->flags; Crc16(&scratch.slot[3].count, scratch.value, 1);
+            scratch.value[0] = cell->water; Crc16(&scratch.slot[5].count, scratch.value, 1);
+            scratch.value[0] = cell->region; Crc16(&scratch.slot[0].count, scratch.value, 1);
+            Crc16(&scratch.slot[8].count, &cell->actor, 4);
+            ++i; ++cell;
+        } while (i < grid->cellCount);
     }
     long *fields = (long *)output;
     fields[8] = scratch.slot[7].count; fields[11] = scratch.slot[4].count;

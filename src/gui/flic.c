@@ -213,6 +213,7 @@ void Flic::PlaySounds()
 
 U32 Flic::DecodeFrame()
 {
+    struct SettingsRect {long values[4];} values;
     FrameHeader header,*frame;
     unsigned char *chunks;
     if(Resource()){
@@ -220,7 +221,7 @@ U32 Flic::DecodeFrame()
         if(now<deadline)return 0;
         deadline=now+delay;
         frame=(FrameHeader *)(resource+memoryPosition);
-        chunks=resource+memoryPosition+16;
+        chunks=resource+(memoryPosition+16);
         memoryPosition+=frame->size;
     }else if(gFlicFileCount==1){
         if(!file.IsOpen()||!gFlicInput)return 0;
@@ -254,15 +255,15 @@ U32 Flic::DecodeFrame()
     int settingsChanged=0;
     U32 offset=0;
     for(int i=0;i<frame->chunks;++i){
-        U32 next=offset+*(long *)(chunks+offset);
-        int kind=*(short *)(chunks+offset+4);
+        U32 next=offset+((ChunkHeader *)(chunks+offset))->size;
+        int kind=((ChunkHeader *)(chunks+offset))->kind;
         unsigned char *data=chunks+offset+6;
         if(kind==100)PixelsCore(data);
         else if(kind==101)RegionCore(data);
         else if(kind==104)PackedCore(data);
         else if(kind==4){DecodePalette(data);result|=0x20;}
         else if(kind==102){
-            struct SettingsRect {long values[4];} values;values.values[0]=((long *)data)[0];values.values[1]=((long *)data)[1];values.values[2]=((long *)data)[2];values.values[3]=((long *)data)[3];
+            values.values[0]=((long *)data)[0];values.values[1]=((long *)data)[1];values.values[2]=((long *)data)[2];values.values[3]=((long *)data)[3];
             CopyFrameSettings(&gFlicFrameSettings,&values);settingsChanged=1;
         }
         offset=next;

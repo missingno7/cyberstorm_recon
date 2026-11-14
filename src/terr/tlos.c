@@ -1,7 +1,7 @@
 // Working labels for line traversal and terrain occlusion. Separate object at 42eca0.
 typedef unsigned int uint;
 struct Point { int x, y; Point() {} Point(int a, int b) { x=a; y=b; } int &X() { return x; } int &Y() { return y; } };
-typedef Point RayPoint;
+typedef Point RayPoint; struct RayCell { unsigned char type,height,rest[10]; }; struct RayOccupant { int actor,flags; }; struct RayTerrain { int first,scale,rest[15]; RayCell *cells; RayOccupant *occupants; }; inline int RayClamp(int v,int lo,int hi) { if(v<=lo)return lo; if(v>=hi)return hi;return v; }
 inline int RaySign(int x) { if (x < 0) return -1; return x > 0; }
 struct ApplyPoint { int x, y; };
 extern "C" int abs(int);
@@ -85,22 +85,22 @@ void RayCollect(RayPoint *point)
     }
 }
 
-int RayOcclusion(int *grid, int origin, int target, int sample, RayPoint *hit)
+int RayOcclusion(RayTerrain *grid, int origin, int target, int sample, RayPoint *hit)
 {
     if (!origin || !target) return 0;
 RayPoint impact, end, start, point, startCell, endCell;
     TargetObjectInit((const char *)grid, &start, origin);
     TargetObjectInit((const char *)grid, &end, target);
-    int *occupants = (int *)grid[18]; int startOccupant = occupants[origin * 2]; int endOccupant = occupants[target * 2];
+    int startOccupant = grid->occupants[origin].actor; int endOccupant = grid->occupants[target].actor;
     if (RayCachedOrigin == origin && RayCachedTarget == target && RayCachedSample == sample) {
         if (hit) *hit = RayHit;
         return RayCachedResult;
     }
     RayCachedTarget = target; RayCachedSample = sample; RayCachedResult = 100; RayCachedOrigin = origin;
-    RayHit = end; RayCount = 0; RayGrid = grid;
+    RayHit = end; RayCount = 0; RayGrid = (int *)grid;
     memset(RaySamples, -1, 100);
-    unsigned char *startTile = (unsigned char *)grid[17] + origin * 12;
-    unsigned char *endTile = (unsigned char *)grid[17] + target * 12;
+    RayCell *startTile = &grid->cells[origin];
+    RayCell *endTile = &grid->cells[target];
     impact = end;
     int sampleRow = sample / 10, sampleColumn = sample % 10;
 
@@ -109,9 +109,9 @@ RayPoint impact, end, start, point, startCell, endCell;
     unsigned char found = 0;
     RayWalk(&startCell, &endCell, RayCollect);
     if (!RayCount) return 100;
-    uint distance = ISqrt((end.y - start.y) * (end.y - start.y) + (end.x - start.x) * (end.x - start.x));
+    int squareX=(end.x-start.x)*(end.x-start.x); uint distance=ISqrt(squareX+(end.y-start.y)*(end.y-start.y));
     int angle = PointAngle((ApplyPoint *)&start, (ApplyPoint *)&end);
-    int tenth = grid[1] / 10;
+    int tenth = grid->scale / 10;
     if (!tenth || !distance) return 100;
     int result = 100;
     for (int i = 0; i < RayCount; ++i) {
@@ -119,36 +119,36 @@ RayPoint impact, end, start, point, startCell, endCell;
         TargetObjectInit((const char *)grid, &point, RayLocations[i]);
         point.x -= start.x; point.y -= start.y;
         f_0047efb0(&point, -angle);
-        if (point.y > 0 && point.y < (int)distance && abs(point.x) < grid[1]) {
-            uint along;
-            if (point.y <= 0) along = 0;
-            else if (point.y >= (int)distance) along = distance;
-            else along = point.y;
-            int rise = ((unsigned char *)grid[17])[RayLocations[i] * 12 + 1] * heightStep -
-                ((int)((uint)(endTile[1] - startTile[1]) * along * heightStep) / (int)distance + startTile[1] * heightStep);
-            int occupant = ((int *)grid[18])[RayLocations[i] * 2];
+        if (point.y > 0 && point.y < (int)distance && abs(point.x) < grid->scale) {
+            uint along=RayClamp(point.y,0,(int)distance);
+
+
+
+            int rise = grid->cells[RayLocations[i]].height * heightStep -
+                ((int)((uint)(endTile->height - startTile->height) * along * heightStep) / (int)distance + startTile->height * heightStep);
+            int occupant = grid->occupants[RayLocations[i]].actor;
             if (occupant && occupant != startOccupant && occupant != endOccupant) rise += 800;
             if (rise > 0) {
                 int left, right;
                 if (!occupant) {
-                    left = (point.x - (grid[1] * 8 >> 4)) / tenth + 5;
-                    right = (point.x + (grid[1] * 7 >> 4)) / tenth + 5;
+                    left = (point.x - (grid->scale * 8 >> 4)) / tenth + 5;
+                    right = (point.x + (grid->scale * 7 >> 4)) / tenth + 5;
                 } else {
-                    left = (point.x - (grid[1] * 4 >> 4)) / tenth + 5;
-                    right = (point.x + (grid[1] * 3 >> 4)) / tenth + 5;
+                    left = (point.x - (grid->scale * 4 >> 4)) / tenth + 5;
+                    right = (point.x + (grid->scale * 3 >> 4)) / tenth + 5;
                 }
-                if (left < 1) left = 0; else if (left > 8) left = 9;
-                if (right < 1) right = 0; else if (right > 8) right = 9;
+                left = RayClamp(left,0,9);
+                right = RayClamp(right,0,9);
                 rise /= tenth;
-                if (rise < 2) rise = 1; else if (rise > 9) rise = 10;
+                rise = RayClamp(rise,1,10);
                 for (int row = 10 - rise; row < 10; ++row) {
                     for (int column = left; column <= right; ++column) {
                         int offset = row * 10 + column;
                         if (RaySamples[offset]) {
                             if (!found && row == sampleRow && column == sampleColumn) {
                                 impact.x = tenth * (sampleColumn - 5); found = 1;
-                                int half=grid[1]>>1;
-                                if(startTile[1]<endTile[1] && (impact.y=half*half-(impact.x-point.x)*(impact.x-point.x))>0) { impact.y=ISqrt(impact.y);impact.y=point.y-impact.y; }else impact.y=point.y;
+                                
+                                if(startTile->height<endTile->height && (impact.y=(grid->scale>>1)*(grid->scale>>1)-(impact.x-point.x)*(impact.x-point.x))>0) { impact.y=ISqrt(impact.y);impact.y=point.y-impact.y; }else impact.y=point.y;
                                 f_0047efb0(&impact, angle);
                                 impact.x += start.x; impact.y += start.y;
                             }

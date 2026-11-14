@@ -156,7 +156,7 @@ struct SimGame {
     ActorRecord *focus;
 };
 struct TargetRecord {
-    U8 bytes[180];
+    U8 head[156]; int actor; U8 tail[20];
 };
 struct WeaponStatus {
     int kind;
@@ -189,7 +189,7 @@ struct SimAnim {
     U8 bytes[8];
 };
 struct FogData {
-    int v[8];
+    int v[8]; FogData(const FogData &p) {v[0]=p.v[0];v[1]=p.v[1];v[2]=p.v[2];v[3]=p.v[3];v[4]=p.v[4];v[5]=p.v[5];v[6]=p.v[6];v[7]=p.v[7];}
 };
 extern GuiControl *weaponControls[];
 extern ActorRecord *g4d2498;
@@ -439,35 +439,35 @@ void WeaponPopup::UpdatePreview() {
         f_0042d640(gView,scene->model,GuiPoint(x+40,y+40),0);
         SetTerrainView(gView,&gFogDefaultData,0);
     }
-    if(!mode && actor) {
+    int topY=y+90, bottomY=y+103; if(mode || !actor) {
+        gMenuTextMode=1;
+        if(mode==2) {
+            gMenuTextMap=deathTextMap;
+            gMenuTextColor=deathTextColor;
+            MenuDrawTextAt(&g511dc0,10,topY,-1,targetBriefResource.GetString(719));
+            MenuDrawTextAt(&g511dc0,10,bottomY,-1,targetBriefResource.GetString(720));
+            MenuDrawTextAt(&g511dc0,138,topY,1,BriefFormat("%d",a));
+            MenuDrawTextAt(&g511dc0,138,bottomY,1,BriefFormat("%d",b));
+        }
+        else if(mode==1) {
+            gMenuTextMap=warningTextMap;
+            gMenuTextColor=warningTextColor;
+            MenuDrawText(&gDefaultFont,10,topY+5,targetBriefResource.GetString(718));
+            viewportClipLeft=gBriefDrawSource;
+            return;
+        }
+    } else {
         gMenuTextMap=infoTextMap;
         gMenuTextColor=infoTextColor;
         int distance=(scene->distance+50)/100;
         char *text=BriefFormat("%d.%d",distance/10,distance%10);
         char *name=(char *)actor->unit;
         if(modeSwitch || previewMode)name=(char *)GetModePlayer(&modeCheckName,actor->index)+16;
-        MenuDrawTextAt(&g511dc0,74,y+90,0,name);
-        MenuDrawTextAt(&g511dc0,25,y+103,-1,targetBriefResource.GetString(721));
-        MenuDrawTextAt(&g511dc0,123,y+103,1,text);
+        MenuDrawTextAt(&g511dc0,74,topY,0,name);
+        MenuDrawTextAt(&g511dc0,25,bottomY,-1,targetBriefResource.GetString(721));
+        MenuDrawTextAt(&g511dc0,123,bottomY,1,text);
     }
-    else {
-        gMenuTextMode=1;
-        if(mode==2) {
-            gMenuTextMap=deathTextMap;
-            gMenuTextColor=deathTextColor;
-            MenuDrawTextAt(&g511dc0,10,y+90,-1,targetBriefResource.GetString(719));
-            MenuDrawTextAt(&g511dc0,10,y+103,-1,targetBriefResource.GetString(720));
-            MenuDrawTextAt(&g511dc0,138,y+90,1,BriefFormat("%d",a));
-            MenuDrawTextAt(&g511dc0,138,y+103,1,BriefFormat("%d",b));
-        }
-        else if(mode==1) {
-            gMenuTextMap=warningTextMap;
-            gMenuTextColor=warningTextColor;
-            MenuDrawText(&gDefaultFont,10,y+95,targetBriefResource.GetString(718));
-            viewportClipLeft=gBriefDrawSource;
-            return;
-        }
-    }
+
     viewportClipLeft=gBriefDrawSource;
 }
 void SimActionsDraw(WeaponPopup *p) {
@@ -492,7 +492,7 @@ void WeaponCommand(SimGame *s) {
         else if(key==30) {
             TargetRecord record;
             TargetInitializeRecord(s,&record,g4d2498->id,g4d2498->kind);
-            ActorRecord *p=ActorGetByIndex(*(int *)(record.bytes+156));
+            ActorRecord *p=ActorGetByIndex(record.actor);
             while(p && p->IsVisible()) {
                 if(!f_0044f290(s,-1,0))break;
             }

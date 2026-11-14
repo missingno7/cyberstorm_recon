@@ -9,6 +9,13 @@
    "evidence": "Terrain masked blit: ENTER/LEAVE, BH/CL/CH independently hold nested counts, raw MOVSB/MOVSD and shift/carry bit tests."
   },
   {
+   "start": "004358b8",
+   "end": "00435b5c",
+   "class": "asm",
+   "member": "",
+   "evidence": "Terrain span scaling and row fills: ENTER/LEAVE frames, ADD/ADC carry-driven sampling, explicit CLD and DS-to-ES setup, REP STOSB/STOSD; four routines STRICT with TASM32 -ml -m5 (lane a1, 2026-11-14)"
+  },
+  {
    "start": "00435b5c",
    "end": "00435dec",
    "class": "asm",
@@ -252,6 +259,12 @@
    "class": "thunk",
    "member": "WLINK Win32 import glue: KERNEL32, USER32, GDI32, WINMM",
    "evidence": "G18: 162 consecutive FF25 absolute-IAT jumps (972 bytes), each IAT target and HIGHLOW site checked; census seeds 161; final 388 bytes zero fill."
+  }
+ ],
+ "starts": [
+  {
+   "va": "00435010",
+   "evidence": "empty function after BuildPixels (terr\\\\tfast.c): BuildPixels ends 00435009 with pop ebx and no ret, compiler filler, then a lone ret at 00435010 with filler to 00435020 (fall-through into an empty function, codegen_rules.md); an empty function written there reproduces BuildPixels byte for byte (lane a1, 2026-11-14). Unreferenced, so the scanner cannot find it."
   }
  ]
 }

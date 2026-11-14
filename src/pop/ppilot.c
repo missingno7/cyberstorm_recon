@@ -292,12 +292,15 @@ void PilotScreen::DrawDetails()  {
     int letter=rank/5+65,number=rank%5+1;
     MenuDrawWrapped(BriefFormat("%c%d",letter,number),1,-1,1,11,&labels[0]);
     MenuDrawWrapped(BriefFormat("%d / %d",shown[15],maximum[15]),1,-1,1,11,&labels[1]);
+    #pragma pack(push,1)
+    struct SkillItem { byte header[31]; int values[3]; };
+#pragma pack(pop)
     byte stats[52];
     ActorUnit *u=unit;
-    byte *original=(byte *)PopFindItem(u,10,-1);
-    byte *current=(byte *)UnitFogObject((UnitState *)unit,10,stats);
+    SkillItem *original=(SkillItem *)PopFindItem(u,10,-1);
+    SkillItem *current=(SkillItem *)UnitFogObject((UnitState *)unit,10,stats);
     char *name=PilotItemName(PopFindItem(unit,10,-1));
-    int *originalValues=(int *)(original+31),*currentValues=(int *)(current+31);
+    int *originalValues=original->values,*currentValues=current->values;
     byte health=unit->GetStatus();
     status=health;
     MenuDrawWrapped(name,-1,-1,1,11,&spacers[0],10,10);

@@ -3,6 +3,7 @@
 #include <string.h>
 typedef unsigned char U8;
 struct RayPoint {int x,y;};
+struct TerrainImage {int offset,width,height;};
 struct SpanState {
     int integerStep;unsigned fractionStep;int skip;U8 *destination,*source;
     int width,step,verticalStep,size,doubleSize,tripleSize,quadSize;
@@ -44,10 +45,10 @@ void SetTerrainSpanSize(int size) {
         terrainSpan.growRight[j]=left;terrainSpan.growLeft[i]=left;
     }
 }
-inline U8 *TerrainPixels(int *image){return (U8 *)image+*image;}
-#define TERRAIN_PIXELS(image) (*(image)+(U8 *)(image))
+inline U8 *TerrainPixels(TerrainImage *image){return (U8 *)image+image->offset;}
+#define TERRAIN_PIXELS(image) ((image)->offset+(U8 *)(image))
 #define SOURCE_ROW(row) ((row)<<16)
-void DrawTerrainRows(int *image,int row,int x,int right,int top,int bottom) {
+void DrawTerrainRows(TerrainImage *image,int row,int x,int right,int top,int bottom) {
     if(top<viewportClipTop) {
         int delta=viewportClipTop-top;
         terrainSpan.rows-=delta;terrainSpan.rowLeft+=delta;terrainSpan.rowRight+=delta;
@@ -85,7 +86,7 @@ void DrawTerrainRows(int *image,int row,int x,int right,int top,int bottom) {
         }
     }
 }
-void DrawTerrainTop(int *image,int row,int x,int top,int bottom,int texture) {
+void DrawTerrainTop(TerrainImage *image,int row,int x,int top,int bottom,int texture) {
     if(x>viewportClipRight || top>viewportClipBottom || bottom<viewportClipTop) return;
     int right=x+terrainSpan.size;
     if(right<viewportClipLeft) return;
@@ -97,7 +98,7 @@ void DrawTerrainTop(int *image,int row,int x,int top,int bottom,int texture) {
         FillTerrainRowsClipped(terrainSpan.rowLeft,terrainSpan.rowRight,x,top,terrainSpan.rows);
     else FillTerrainRows(terrainSpan.rowLeft,terrainSpan.shrinkRight+1,x,top,terrainSpan.rows);
 }
-void DrawTerrainBottom(int *image,int row,int x,int top,int bottom,int texture) {
+void DrawTerrainBottom(TerrainImage *image,int row,int x,int top,int bottom,int texture) {
     if(x>viewportClipRight || top>viewportClipBottom || bottom<viewportClipTop) return;
     int right=x+terrainSpan.size;
     if(right<viewportClipLeft) return;
@@ -109,7 +110,7 @@ void DrawTerrainBottom(int *image,int row,int x,int top,int bottom,int texture) 
         FillTerrainRowsClipped(terrainSpan.rowLeft,terrainSpan.rowRight,x,top,terrainSpan.rows);
     else FillTerrainRows(terrainSpan.growLeft+1,terrainSpan.rowRight,x,top,terrainSpan.rows);
 }
-void DrawTerrainMiddle(int *image,int row,int x,int top,int bottom) {
+void DrawTerrainMiddle(TerrainImage *image,int row,int x,int top,int bottom) {
     if(x>viewportClipRight || top>viewportClipBottom || bottom<viewportClipTop) return;
     int right=x+terrainSpan.doubleSize-1;
     if(right<viewportClipLeft) return;

@@ -213,13 +213,13 @@ void f_00424a07(int *screen,int input)
     ((GuiScreen*)screen)->LoadLayout((long)hotseatLayoutName);
     ((GuiScreen*)screen)->Open((void*)input,&gShellStrings,0xfa1,1);
     f_cba0(&DAT_00511dcc,hotseatFontName);
-    screen[0x15]=(int)gResMgr.Load((long)hotseatImagesName);
-    DecodeLaunchPalette(&gShellBackground,(void*)(screen[0x15]+16)); ShellApplyPalette(&gShellBackground);
-    MenuDrawImage(&g513888, (const MenuImage*)((screen[0x15]+4)),0,0);
+    ((HotseatDataView *)screen)->images=(int)gResMgr.Load((long)hotseatImagesName);
+    DecodeLaunchPalette(&gShellBackground,(void*)(((HotseatDataView *)screen)->images+16)); ShellApplyPalette(&gShellBackground);
+    MenuDrawImage(&g513888, (const MenuImage*)((((HotseatDataView *)screen)->images+4)),0,0);
     SurfaceCopyRegion(&gMenuSavedSurface,&g511948,0,0); BriefWaitB(9);
-    screen[0x4b2]=1; f_00424d60((int)screen); f_00424cf4((int)screen);
+    ((HotseatDataView *)screen)->option=1; f_00424d60((int)screen); f_00424cf4((int)screen);
     BriefSetMode(&hotMapRange,HotRandom(7)); BriefSetMode(&hotRange3,12); BriefSetMode(&hotRange2,0); BriefSetMode(&hotRange1,2); BriefSetMode(&hotRange0,2);
-    for(int i=0;i<screen[0x13];i++){ screen[i+0x48e]=3; screen[i+0x49e]=2; screen[i+0x496]=DAT_0048f30c[2]; }
+    for(int i=0;i<((HotseatDataView *)screen)->count;i++){ ((HotseatDataView *)screen)->team[i]=3; ((HotseatDataView *)screen)->last[i]=2; ((HotseatDataView *)screen)->value[i]=DAT_0048f30c[2]; }
     f_0042515a((int)screen); f_0042539a((int)screen); f_004254d5((HotseatDataView*)screen); f_004255bf((int)screen);
 }
 
@@ -232,11 +232,11 @@ void f_00424cf4(int param_1)
     f_0047e200(MissionRandomTable);
     memset(aiStack_2c, 0, 0x20);
     iVar3 = 0;
-    while (iVar3 < *(int *)(param_1 + 0x4c)) {
+    while (iVar3 < ((HotseatDataView *)param_1)->count) {
         iVar2 = (int)HotRandom(8);
         if (aiStack_2c[iVar2] == 0) {
             aiStack_2c[iVar2] = 1;
-            *(char *)(param_1 + 0x1298 + iVar3) = (char)iVar2;
+            ((HotseatDataView *)param_1)->colors[iVar3] = (char)iVar2;
             ++iVar3;
         }
     }
@@ -258,7 +258,7 @@ void f_00424d60(int screen)
         sprintf((char*)(screen+0x58+i*32),hotseatPlayerFormat,i+1);
         *(char*)(screen+0x1298+i)=(char)i;
         hotNames[i].Visibility(0); hotProfiles[i].Visibility(0); hotActions[i].Visibility(0); hotTeamLabels[i].Visibility(0); hotValueLabels[i].Visibility(0);
-        if (i>=*(int*)(screen+0x4c)) {
+        if (i>=((HotseatDataView *)screen)->count) {
             *(char*)(screen+0x1298+i)=-1;
             hotNames[i].Visibility(5); hotProfiles[i].Visibility(5); hotActions[i].Visibility(5); hotTeamLabels[i].Visibility(5); hotValueLabels[i].Visibility(5);
         }
@@ -285,13 +285,13 @@ int f_0042500d(HotseatDataView *screen)
 
 void f_0042515a(int param_1)
 {
-    int resourceId = *(int *)(param_1 + 0x12a0) + 0xf8a;
+    int resourceId = ((HotseatDataView *)param_1)->mode + 0xf8a;
     _DAT_004bb430 = (int)gShellStrings.GetString(resourceId, 0);
     DAT_004bb423 &= 0xfe;
-    resourceId = *(int *)(param_1 + 0x12a4) + 0xf85;
+    resourceId = ((HotseatDataView *)param_1)->funds + 0xf85;
     _DAT_004bb458 = (int)gShellStrings.GetString(resourceId, 0);
     DAT_004bb44b &= 0xfe;
-    resourceId = *(int *)(param_1 + 0x12c8) + 0xfed;
+    resourceId = ((HotseatDataView *)param_1)->option + 0xfed;
     _DAT_004bb480 = (int)gShellStrings.GetString(resourceId, 0);
     DAT_004bb473 &= 0xfe;
     f_0042500d((HotseatDataView*)param_1);
@@ -333,11 +333,11 @@ active_screen:
 void f_004252a1(int param_1)
 {
     if (param_1 && ((GuiScreen*)param_1)->IsActive()) {
-        long changed=0; int old=*(int*)(param_1+0x12c0); int now=hotMapRange.GetValue(); *(int*)(param_1+0x12c0)=now; changed+=old!=now;
-        old=*(int*)(param_1+0x12b0); now=hotRange1.GetValue()+1; *(int*)(param_1+0x12b0)=now; changed+=old!=now;
-        old=*(int*)(param_1+0x12b8); now=hotRange3.GetValue(); *(int*)(param_1+0x12b8)=now; changed+=old!=now;
-        old=*(int*)(param_1+0x12b4); now=hotRange2.GetValue(); *(int*)(param_1+0x12b4)=now; changed+=old!=now;
-        old=*(int*)(param_1+0x12a8); now=hotRange0.GetValue(); *(int*)(param_1+0x12a8)=now; changed+=old!=now;
+        long changed=0; int old=((HotseatDataView *)param_1)->map; int now=hotMapRange.GetValue(); ((HotseatDataView *)param_1)->map=now; changed+=old!=now;
+        old=((HotseatDataView *)param_1)->teamLimit; now=hotRange1.GetValue()+1; ((HotseatDataView *)param_1)->teamLimit=now; changed+=old!=now;
+        old=((HotseatDataView *)param_1)->techIndex; now=hotRange3.GetValue(); ((HotseatDataView *)param_1)->techIndex=now; changed+=old!=now;
+        old=((HotseatDataView *)param_1)->lastSetting; now=hotRange2.GetValue(); ((HotseatDataView *)param_1)->lastSetting=now; changed+=old!=now;
+        old=((HotseatDataView *)param_1)->valueIndex; now=hotRange0.GetValue(); ((HotseatDataView *)param_1)->valueIndex=now; changed+=old!=now;
         if (changed) { f_0042539a(param_1); f_004254d5((HotseatDataView*)param_1); }
         *(ClipCopy*)&viewportClipLeft=*(ClipCopy*)&DAT_0051390c;
         f_00425e1a(param_1);
@@ -348,21 +348,21 @@ void f_004252a1(int param_1)
 void f_0042539a(int param_1)
 {
     SurfaceCopyAligned((GuiCanvas*)&g513888, 1, 0, 500, 0x154, 500, 0x154, 0x8c, 0x78);
-    MenuDrawImage(&g513888, (const MenuImage*)(((*(int *)(param_1 + 0x12c0) + 2) * 12 + (*(int *)(param_1 + 0x54) + 4))),
+    MenuDrawImage(&g513888, (const MenuImage*)(((((HotseatDataView *)param_1)->map + 2) * 12 + (((HotseatDataView *)param_1)->images + 4))),
                   0x203, 0x154);
-    int id=*(int *)(param_1 + 0x12c0)+0xee3;
+    int id=((HotseatDataView *)param_1)->map+0xee3;
     _DAT_004babc8 = (int)gShellStrings.GetString(id,0);
     DAT_004babbb &= 0xfe;
-    hotNumber6.SetValue(*(int *)(param_1 + 0x12b0), 0);
+    hotNumber6.SetValue(((HotseatDataView *)param_1)->teamLimit, 0);
     DAT_004bab8b &= 0xfe;
-    *(int *)(param_1 + 0x12bc) = DAT_0048f334[*(int *)(param_1 + 0x12b8)];
-    id=*(int *)(param_1 + 0x12b8)+0xefa;
+    ((HotseatDataView *)param_1)->techValue = DAT_0048f334[((HotseatDataView *)param_1)->techIndex];
+    id=((HotseatDataView *)param_1)->techIndex+0xefa;
     _DAT_004bac28 = (int)gShellStrings.GetString(id,0);
     DAT_004bac1b &= 0xfe;
-    hotNumber8.SetValue(*(int *)(param_1 + 0x12b4), 0);
+    hotNumber8.SetValue(((HotseatDataView *)param_1)->lastSetting, 0);
     DAT_004babeb &= 0xfe;
-    int value = DAT_0048f30c[*(int *)(param_1 + 0x12a8)];
-    *(int *)(param_1 + 0x12ac) = value;
+    int value = DAT_0048f30c[((HotseatDataView *)param_1)->valueIndex];
+    ((HotseatDataView *)param_1)->valueLimit = value;
     hotNumber5.SetValue(value, 0);
     DAT_004bab5b &= 0xfe;
     GuiResetClip(&gMenuClip);
@@ -384,9 +384,9 @@ void f_004255bf(int param_1)
 {
     int iVar1;
     GuiResetClip(&gMenuClip);
-    for (iVar1 = 0; iVar1 < *(int *)(param_1 + 0x4c); iVar1 = iVar1 + 1) {
-        MenuDrawImage(&g513888, (const MenuImage*)(((*(signed char *)(param_1 + 0x1298 + iVar1) + 0x19) * 0xc +
-                               (*(int *)(param_1 + 0x54) + 4))),
+    for (iVar1 = 0; iVar1 < ((HotseatDataView *)param_1)->count; iVar1 = iVar1 + 1) {
+        MenuDrawImage(&g513888, (const MenuImage*)(((((HotseatDataView *)param_1)->colors[iVar1] + 0x19) * 0xc +
+                               (((HotseatDataView *)param_1)->images + 4))),
                       0x87, iVar1 * 0x1a + 0x32);
     }
 }
@@ -396,7 +396,7 @@ int f_00425616(int param_1)
     if (f_0042500d((HotseatDataView*)param_1) != 0) {
         char *prompt = DAT_00511e7c.GetString(0x19f, 1);
         int accepted = f_0047723b(prompt);
-        *(int *)(param_1 + 0x12c4) = accepted;
+        ((HotseatDataView *)param_1)->run = accepted;
         return 1;
     }
     char *prompt = DAT_00511e7c.GetString(0x1a1, 1);
@@ -558,36 +558,36 @@ void f_004256eb(int param_1, int param_2)
         struct PlayerInfo { char first; char rest[39]; int value; int unused; } info;
         GetPlayerInfo(&profileManager, &info);
         *(unsigned int *)(param_1 + 0x1238 + param_2 * 4) = (unsigned char)info.first;
-        *(int *)(param_1 + 0x1258 + param_2 * 4) = info.value;
+        ((HotseatDataView *)param_1)->value[param_2] = info.value;
     } else {
         *(int *)(slot + 0x1218) = 0;
-        *(int *)(slot + 0x1238) = *(int *)(param_1 + 0x12b0);
-        *(int *)(slot + 0x1258) = *(int *)(param_1 + 0x12ac);
-        *(int *)(slot + 0x1278) = *(int *)(param_1 + 0x12a8);
+        *(int *)(slot + 0x1238) = ((HotseatDataView *)param_1)->teamLimit;
+        *(int *)(slot + 0x1258) = ((HotseatDataView *)param_1)->valueLimit;
+        *(int *)(slot + 0x1278) = ((HotseatDataView *)param_1)->valueIndex;
     }
     f_004254d5((HotseatDataView*)param_1);
 }
 
 void f_00425815(int param_1, int param_2)
 {
-    int local_10 = (int)*(signed char *)(param_1 + param_2 + 0x1298);
+    int local_10 = (int)((HotseatDataView *)param_1)->colors[param_2];
     int local_30[8];
     memset(local_30, 0, 0x20);
     int iVar2 = 0;
     for (; iVar2 < param_2; ++iVar2) {
-        int slot = (int)*(signed char *)(param_1 + iVar2 + 0x1298);
+        int slot = (int)((HotseatDataView *)param_1)->colors[iVar2];
         if (slot >= 0 && slot < 8)
             local_30[slot] = 1;
     }
-    iVar2 = (int)*(signed char *)(param_1 + param_2 + 0x1298);
+    iVar2 = (int)((HotseatDataView *)param_1)->colors[param_2];
     do {
         iVar2 = (iVar2 + 1) % 8;
-        *(char *)(param_2 + 0x1298 + param_1) = (char)iVar2;
+        ((HotseatDataView *)param_1)->colors[param_2] = (char)iVar2;
     } while (local_30[iVar2] != 0);
     char replacement = (char)local_10;
-    for (int laterIndex = param_2 + 1; laterIndex < *(int *)(param_1 + 0x4c); ++laterIndex) {
-        if (*(signed char *)(param_1 + laterIndex + 0x1298) == iVar2)
-            *(char *)(param_1 + laterIndex + 0x1298) = replacement;
+    for (int laterIndex = param_2 + 1; laterIndex < ((HotseatDataView *)param_1)->count; ++laterIndex) {
+        if (((HotseatDataView *)param_1)->colors[laterIndex] == iVar2)
+            ((HotseatDataView *)param_1)->colors[laterIndex] = replacement;
     }
     f_004255bf(param_1);
 }
@@ -597,11 +597,11 @@ void f_00425906(int param_1)
     char *prompt = DAT_00511e7c.GetString(0x1a6, 1);
     if (f_0047723b(prompt) != 0) {
         int iVar3;
-        for (iVar3 = 0; iVar3 < *(int *)(param_1 + 0x4c); ++iVar3) {
-            *(int *)(param_1 + 0x1218 + iVar3 * 4) = 0;
-            *(int *)(param_1 + 0x1238 + iVar3 * 4) = *(int *)(param_1 + 0x12b0);
-            *(int *)(param_1 + 0x1258 + iVar3 * 4) = *(int *)(param_1 + 0x12ac);
-            *(int *)(param_1 + 0x1278 + iVar3 * 4) = *(int *)(param_1 + 0x12a8);
+        for (iVar3 = 0; iVar3 < ((HotseatDataView *)param_1)->count; ++iVar3) {
+            ((HotseatDataView *)param_1)->loaded[iVar3] = 0;
+            ((HotseatDataView *)param_1)->team[iVar3] = ((HotseatDataView *)param_1)->teamLimit;
+            ((HotseatDataView *)param_1)->value[iVar3] = ((HotseatDataView *)param_1)->valueLimit;
+            ((HotseatDataView *)param_1)->last[iVar3] = ((HotseatDataView *)param_1)->valueIndex;
         }
         f_004254d5((HotseatDataView*)param_1);
     }

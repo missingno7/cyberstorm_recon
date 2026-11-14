@@ -1,7 +1,7 @@
 static char projSourceFile[]=__FILE__;
 // Unit directional armor, redistribution and indicator colors. Names are provisional.
 #pragma pack(1)
-struct UnitArmor { int at00, total; };
+struct UnitArmor { int at00, total; void Remove(int amount) { total-=amount; if(total<=0) total=0; } };
 struct Unit { char pad00[0x49]; UnitArmor armor; char pad51[0x78]; unsigned char direction, bias; int facingArmor[6]; };
 struct ActorUnit;
 struct ActorItem { char pad00[0x1b]; signed char *typeFactor; int strength; };
@@ -16,7 +16,7 @@ extern unsigned int TimerNow();
 unsigned char damageLevelColors[]={224,223,222,221,220,219,218,217,216,215}, damageFlashColors[]={79,78};
 extern unsigned char damageIndicator[];
 inline int UnitScaledDamage(Unit *u, int damage, Weapon *w) { return PopFindItem((ActorUnit *)u, 7)->typeFactor[w->kind] * damage / 50; }
-void UnitDamageSplit(Unit *u, int range, register int damage, register Weapon *w, int &armor, int &body)
+void UnitDamageSplit(Unit *u, int range, int damage, Weapon *w, int &armor, int &body)
 {
     damage = UnitScaledDamage(u, damage, w);
     int shield = w->armorDamage * damage / 100; int direct = w->directDamage * damage / 100; int penetrate = w->penetrationDamage * damage / 100;
@@ -30,7 +30,7 @@ void UnitDamageSplit(Unit *u, int range, register int damage, register Weapon *w
         if (shield > health) { body = penetrate + (shield - health) * overflow / 100; armor = health; }
     }
 }
-int UnitDamage(Unit *u, int range, register int damage, register Weapon *w)
+int UnitDamage(Unit *u, int range, int damage, Weapon *w)
 {
     damage = PopFindItem((ActorUnit *)u, 7)->typeFactor[w->kind] * damage / 50;
     int shield = w->armorDamage * damage / 100; int direct = w->directDamage * damage / 100; int penetrate = w->penetrationDamage * damage / 100;
@@ -48,8 +48,7 @@ int UnitDamage(Unit *u, int range, register int damage, register Weapon *w)
     if (removed) {
         u->facingArmor[facing] -= removed;
         if (u->facingArmor[facing] <= 0) u->facingArmor[facing] = 0;
-        u->armor.total -= removed;
-        if (u->armor.total <= 0) u->armor.total = 0;
+        u->armor.Remove(removed);
     }
     return result;
 }
@@ -70,19 +69,17 @@ void UpdatePayload(Unit *u, int unused)
 }
 unsigned char *UnitDamageIndicator(Unit *u, int direction, Unit *previous)
 {
-    unsigned int time=TimerNow()/1500; unsigned int phase=time&1;
+    unsigned int time=TimerNow()/1500;
+    unsigned int phase=time&1;
     int maximum = PopFindItem((ActorUnit *)u,7)->strength / 4;
-    Unit *p=u, *old=previous;
-    Unit *end=(Unit *)((char *)u+24);
-    do {
-        int level=p->facingArmor[0] * 10 / maximum;
+    for (int i=0; i<6; ++i, ++direction) {
+        int level=u->facingArmor[i] * 10 / maximum;
         if (level >= 10) level=9;
-        unsigned char color = p->facingArmor[0] == 0 ? 0 : damageLevelColors[level];
-        if (previous && old->facingArmor[0] != p->facingArmor[0]) color=255;
+        unsigned char color=u->facingArmor[i]==0 ? 0 : damageLevelColors[level];
+        if (previous && previous->facingArmor[i] != u->facingArmor[i]) color=255;
         damageIndicator[1+direction%6]=color;
-        unsigned char flash = p->facingArmor[0] != 0 ? 0 : damageFlashColors[phase];
+        unsigned char flash=u->facingArmor[i] ? 0 : damageFlashColors[phase];
         damageIndicator[7+direction%6]=flash;
-        p=(Unit *)((char *)p+4);old=(Unit *)((char *)old+4);direction++;
-    } while (p!=end);
+    }
     return damageIndicator;
 }

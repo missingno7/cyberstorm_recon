@@ -47,9 +47,9 @@ int FastBufferCreate(FastBuffer *p, long count) { FastBuffer *owner = p; p->coun
 struct TerrainGrid { long fields[17]; void *cells; void *neighbors; };
 struct GridPoint { long x; long y; };
 struct GridOffset { long x; long y; };
-struct FastPalette { unsigned char raw[256]; };
+struct Point;
 extern GridOffset gGridOffsets[6];
-extern FastPalette gFastPalette;
+extern char gView[];
 
 void FastBufferDestroy(FastBuffer *p) { if (p->items) delete[] p->items; p->items = 0; }
 
@@ -60,7 +60,7 @@ void FastBuffer::Update(long width, long offset) { int changed = (width != curre
 
 struct FastCell { unsigned char raw[12]; };
 struct TargetTriple { int x; int y; int z; }; extern TargetTriple *targetDefinitionTable;
-extern long GridColorLookup(FastPalette *, FastCoord *, unsigned long, int);
+extern int TerrainVisibleDrop(int *, Point *, int, int);
 
 struct Point { int x, y; };
 extern Point pathDirections[6];
@@ -95,9 +95,9 @@ void FastBuffer::BuildPixels() {
             FastCoord coordinate;
             BestLocSetData(&fallbackName, &coordinate, (void *)index);
             unsigned long currentColor = ((unsigned char *)targetDefinitionTable)[sourceOffset + 1];
-            long a = GridColorLookup(&gFastPalette, &coordinate, currentColor, 4);
-            long b = GridColorLookup(&gFastPalette, &coordinate, currentColor, 3);
-            long c = GridColorLookup(&gFastPalette, &coordinate, currentColor, 2);
+            long a = TerrainVisibleDrop((int *)gView, (Point *)&coordinate, (int)currentColor, 4);
+            long b = TerrainVisibleDrop((int *)gView, (Point *)&coordinate, (int)currentColor, 3);
+            long c = TerrainVisibleDrop((int *)gView, (Point *)&coordinate, (int)currentColor, 2);
             item->raw[0] = (unsigned char)a;
             item->raw[1] = (unsigned char)b;
             item->raw[2] = (unsigned char)c;
@@ -109,6 +109,11 @@ void FastBuffer::BuildPixels() {
 
 }
 
+/* Inferred unreferenced empty function at 00435010 (name/signature provisional).
+ * BuildPixels falls through 7 bytes of compiler alignment filler into its RET.
+ * No original direct transfer, relocated pointer, XI entry, or raw address
+ * dword references it. Watcom -oxt reproduces this boundary and both extents;
+ * the current function map instead includes it in BuildPixels. */
 void FastBufferEmpty(FastBuffer *) {
 }
 

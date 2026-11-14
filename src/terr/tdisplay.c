@@ -153,14 +153,14 @@ int DisplayZoomArea(int *view, unsigned int *result, int position, int candidate
     int rings = horizontal / *(int *)(*view + 4) + 1;
     if (candidate == 0) {
         if (((adjust == 0 || view[0x1a] == 0xe) && rings < halfScale)) return 0;
-        result[0] = originPoint.x; result[1] = originPoint.y;
+        *(GuiPoint *)result=originPoint;
         if (adjust != 0) result[3] = 0xe;
     } else {
         if (rings < halfScale) {
-            if (rings < (scaleCount >> 2) && adjust != 0) {
-                unsigned int level = result[3];
-                if ((int)level < 2) level = 1;
-                result[3] = level;
+            if (rings < (halfScale >> 1) && adjust != 0) {
+                result[3] = DisplayMaxRef((int)result[3],1);
+
+
                 while (rings < (halfScale >> 1) && (int)result[3] < 0xe) {
                     ++result[3];
                     halfScale = view[0x0d] / (int)(result[3] * 4) + 1 >> 1;

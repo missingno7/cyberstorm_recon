@@ -143,7 +143,7 @@ struct UnitSlot { unsigned char id,kind,health,charge; unsigned ammo; };
 struct WeaponPopup { void Invalidate(); void SetMode(int,int=0,int=0); }; extern WeaponPopup simActions;
 struct ReportScreen { void SetOther(ActorRecord *,int,int); }; extern ReportScreen simPilot;
 struct PacketList { void Fire(ActorRecord *,int,int,int,int); void DeadPilot(ActorRecord *); }; 
-extern unsigned MissionRandomTable,gShotSeed,gFxSeed;
+extern unsigned MissionRandomTable,simItemSeed,gFxSeed;
 extern int weaponStatusSounds[],gPilotSkill,gApplyTotalLoss,gApplyTotalDamage;
 void TargetInitializeRecord(void *,TargetRecord *,int,int);
 ActorRecord *ActorGetByIndex(int);
@@ -196,11 +196,11 @@ int SimFire(SimGame *game, ActorRecord *actor, long destination, long slot, long
     TargetInitializeRecord(game,&target,actor->id,destination);
     other=ActorGetByIndex(target.target.actorId);
     seed=MissionRandomTable;
-    gShotSeed=seed;
+    simItemSeed=seed;
     WeaponPrepare(game->Weapons(),&target,0);
     int status=WeaponStatus(game->Weapons(),slot);
     if (status && forced<0) {
-        if (game->player==actor->owner) SoundTrigger(weaponStatusSounds[status],0);
+        if (actor->owner==game->player) SoundTrigger(simFireTable[status],0);
         return 0;
     }
     angle=GridClamp(PointAngle(&target.source.position,&target.target.position));
@@ -211,12 +211,13 @@ int SimFire(SimGame *game, ActorRecord *actor, long destination, long slot, long
     weapon=UnitFogObject(actor->unit,slot+11,&weaponBuffer);
     if (actor->owner!=game->localPlayer && !SimSpendOnActor(game,actor,weapon->energy) && forced<0) return 0;
     if (other) *(ActorUnit *)game->oldUnit=*other->unit;
-    if (game->player==actor->owner) { simActions.Invalidate(); simActions.SetMode(0); }
-    UnitSlot *unitSlot=(UnitSlot *)((char *)actor->unit+0x11)+slot+11;
+    if (actor->owner==game->player) { simActions.Invalidate(); simActions.SetMode(0); }
+    UnitSlot *unitSlot=&((UnitSlot *)((char *)actor->unit+0x11))[slot+11];
     unitSlot->charge += unitSlot->charge!=250;
     unitSlot->ammo -= unitSlot->ammo!=0;
-    unsigned chance=forced>=0 ? forced : game->Weapons()->scores[slot].chance;
-    hit=next_link_seed(&gShotSeed)%100<chance;
+    unsigned chance=game->Weapons()->scores[slot].chance;
+    if (forced>=0) chance=forced;
+    hit=next_link_seed(&simItemSeed)%100<chance;
     if (game->network && ModeCheck(game)) ((PacketList *)modeLogName)->Fire((ActorRecord *)target.source.actor,target.target.actorId,(unsigned char)slot,seed,chance);
     AnimAction action=actor->action;
     AnimActionUpdateTrajectory((int *)&action,(int *)gView);
@@ -248,10 +249,9 @@ int SimFire(SimGame *game, ActorRecord *actor, long destination, long slot, long
         angle=PointAngle(&target.source.position,&target.target.position);
         int error=FireClamp((int)((100-chance)*256)/100,0,256);
         scatter=(distance/10)*error>>8;
-        int range=distance/20+scatter;
-        distance+=RandomRange(&gShotSeed,-range,range);
+        distance+=RandomRange(&simItemSeed,-(distance/20+scatter),distance/20+scatter);
         int deviation=(error*15>>8)+5;
-        angle+=RandomRange(&gShotSeed,-deviation,deviation)*0xb60b61;
+        angle+=RandomRange(&simItemSeed,-deviation,deviation)*0xb60b61;
         if (weapon->rings<=1 && !weapon->spread) distance+=distance/10+500;
         PointFromAngle(&missWorld,distance,angle);
         missWorld.x+=target.source.position.x; missWorld.y+=target.source.position.y;
@@ -261,7 +261,7 @@ int SimFire(SimGame *game, ActorRecord *actor, long destination, long slot, long
         if ((weapon->rings>1 || weapon->spread) && cell) {
             ApplyDamage((int)game,cell,targetCell,weapon);
             if (gApplyTotalLoss || gApplyTotalDamage) {
-                if (game->player==actor->owner) simActions.SetMode(2,gApplyTotalLoss,gApplyTotalDamage);
+                if (actor->owner==game->player) simActions.SetMode(2,gApplyTotalLoss,gApplyTotalDamage);
                 if (other && other->owner==game->player) simPilot.SetOther(actor,gApplyTotalLoss,gApplyTotalDamage);
             }
         }

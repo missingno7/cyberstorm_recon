@@ -46,7 +46,7 @@ extern void PopDrawSurface(void *,int,int,int,int,int,int);
 struct Font;
 struct TargetInfo { unsigned short value; signed char a,b; long action,count; };
 struct TargetDefinition { unsigned char type,quantity,hasSpecial,special,hasExtra,extra; unsigned char rest[6]; };
-struct ViewState { long x,y,z,zoom,a,offset,b,c; };
+struct ViewState { long x,y,z,zoom,a,offset,b,c; ViewState(const ViewState &v) { x=v.x;y=v.y;z=v.z;zoom=v.zoom;a=v.a;offset=v.offset;b=v.b;c=v.c; } };
 struct WorldAction { unsigned char head[12]; unsigned short type; unsigned char rest[97]; };
 extern TargetDefinition *targetDefinitionTable;
 extern WorldAction *worldActions;
@@ -82,7 +82,6 @@ void PopInfoDrawText(PopInfo *unused,int n) {
  if(target.b) { MenuDrawTextAt(&g511dc0,15,y,-1,targetBriefResource.GetString(1010)); MenuDrawTextAt(&g511dc0,125,y,1,BriefFormat("%d",target.b)); y+=14; }
  if(target.a) { MenuDrawTextAt(&g511dc0,15,y,-1,targetBriefResource.GetString(1011)); MenuDrawTextAt(&g511dc0,125,y,1,BriefFormat("%d",target.a)); }
  StrPool strings(InfoResourceName(&g4c68b4,"bin")); strings.Lock();
- ViewState view;
  char text[256];
  strcpy(text,""); strcat(text,strings.GetString(def->type+101,1));
  if(def->hasSpecial) {
@@ -93,7 +92,7 @@ void PopInfoDrawText(PopInfo *unused,int n) {
  if(target.action<0) { long id=worldActions[-target.action-1].type+1716; strcat(text,", "); strcat(text,missionImageName.GetString(id,1)); }
  strings.Unlock();
  RichTextDraw(15,380,115,60,(const unsigned char *)text,0,0,4,0,0,0,11);
- view=infoView; view.zoom=16; view.offset=-57;
+ ViewState view=infoView; view.zoom=16; view.offset=-57;
  InfoSetView(&gView,&view,0);
  point.x=72; point.y=330;
  InfoDrawTarget(&gView,n,&point,0); GuiResetClip(&infoClip); InfoSetView(&gView,&infoView,0);

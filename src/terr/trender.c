@@ -2,13 +2,14 @@
 struct GridPoint { int x, y; GridPoint() {} };
 struct ViewRect { GridPoint top; int width, height; ViewRect() {} ViewRect(int x, int y, int w, int h) { top.x=x; top.y=y; width=w; height=h; } void Center(GridPoint *p) { p->x=top.x+(width>>1); p->y=top.y+(height>>1); } };
 struct ViewState { int mode; GridPoint position; int scale, rotation, extra1, extra2; };
+struct MapCell { unsigned char terrain,height,feature,featureKind,overlay,overlayKind,rotation,variant; int raised; }; struct MapGrid { int kind,cellScale,radius,pitch; GridPoint center; int origin; char unknown1c[0x44-0x1c]; MapCell *cells; };
 struct FastCoord {
-    int *grid; int reserved[4]; int radius, count, origin;
+    MapGrid *grid; int reserved[4]; int radius, count, origin;
     GridPoint center; int mode; GridPoint position; int scale;
     ViewRect bounds; GridPoint offset; int rotation, angle;
 };
-struct VisitPoint { int *grid; GridPoint point; int index; };
-inline int MapOrigin(FastCoord *self) { return self->grid[6]; }
+struct VisitPoint { MapGrid *grid; GridPoint point; int index; };
+inline int MapOrigin(FastCoord *self) { return self->grid->origin; }
 extern int BestLocInitialize(void *, const char *, int);
 extern int BestLocSetCandidate(void *, void *);
 extern void BestLocVisit(void *, int (*)(void *));
@@ -82,7 +83,7 @@ extern "C" void SetFastView(FastCoord *self, const ViewState *state)
 int MapPointScale(FastCoord *self, int value)
 {
     int numerator = value * self->scale;
-    int *grid = self->grid; int divisor = grid[1];
+    MapGrid *grid = self->grid; int divisor = grid->cellScale;
     return numerator / divisor;
 }
 
@@ -93,7 +94,7 @@ void MapPointToScreen(FastCoord *self, GridPoint *out, GridPoint *point)
     out->x = out->x * 0x128 >> 8;
     out->y = -out->y * 2;
     out->x *= self->scale; out->y *= self->scale >> 1;
-    int divisor = self->grid[1];
+    int divisor = self->grid->cellScale;
     out->x /= divisor; out->y /= divisor;
     GridPoint *offset = &self->offset;
     out->x += offset->x; out->y += offset->y;
@@ -102,7 +103,7 @@ void MapPointToScreen(FastCoord *self, GridPoint *out, GridPoint *point)
 void GridConvert(FastCoord *self, GridPoint *out, GridPoint *point)
 {
     *out = *point;
-    GridPoint *origin = (GridPoint *)(self->grid + 4);
+    GridPoint *origin = &self->grid->center;
     out->x -= origin->x; out->y -= origin->y;
     GridRotatePoint(out, self->rotation);
     out->x *= self->scale; out->y *= self->scale >> 1;
@@ -117,7 +118,7 @@ int MapDrawPoint(VisitPoint *visit)
 {
     int index = visit->index;
     if (index) {
-        unsigned char *tile = (unsigned char *)visit->grid[17] + index * 12;
+        MapCell *tile = &visit->grid->cells[index];
         GridPoint screen;
         GridPoint *point = &visit->point;
         if (MapDrawScale == 2) {
@@ -129,19 +130,19 @@ int MapDrawPoint(VisitPoint *visit)
         if (MapVisibility && MapHidden(index))
             color = gMenuColors[0];
         else switch (MapView->mode) {
-        case 0: color = MapHeightColors[7 - (tile[1] & 7)]; break;
+        case 0: color = MapHeightColors[7 - (tile->height & 7)]; break;
         case 1:
-            if (tile[3] == 0x42) color = gMenuColors[6];
-            else if (tile[3] == 0x41) color = gMenuColors[1];
-            else color = MapHeightColors[(tile[0] >> 1) & 7];
+            if (tile->featureKind == 0x42) color = gMenuColors[6];
+            else if (tile->featureKind == 0x41) color = gMenuColors[1];
+            else color = MapHeightColors[(tile->terrain >> 1) & 7];
             break;
         case 2:
-            if (tile[3] == 0x42) color = gMenuColors[6];
-            else if (tile[3] == 0x41) color = gMenuColors[1];
-            else color = worldColorInfo[tile[0] * 8 + tile[1]];
+            if (tile->featureKind == 0x42) color = gMenuColors[6];
+            else if (tile->featureKind == 0x41) color = gMenuColors[1];
+            else color = worldColorInfo[tile->terrain * 8 + tile->height];
             break;
         case 3: color = Visibility()->threat[index] != 0 ? 0x4b : 0x48; break;
-        case 4: color = MapThreatColors[f_00432d60(visit->grid, index) / 10]; break;
+        case 4: color = MapThreatColors[f_00432d60((int *)visit->grid, index) / 10]; break;
         }
         if (MapDrawScale != 2) {
             MenuSetColors(g513888, color, color);
@@ -165,7 +166,7 @@ inline GuiPoint::GuiPoint() {}
 typedef GuiPoint OutlinePoint;
 extern "C" void DrawDeathMap(FastCoord *self, unsigned long color, int padding)
 {
-    int half = self->grid[2] * (self->scale >> 1);
+    int half = self->grid->radius * (self->scale >> 1);
     int twice = half * 2, triple = half + twice, whole = twice * 2;
     int x = self->position.x, y = self->position.y;
     OutlinePoint vertices[6];

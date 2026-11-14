@@ -9,7 +9,7 @@ extern int g5138b0; extern int playerCount; extern int gRemoteActorKind;
 extern int gHotbriefStringIndex; extern int gHotbriefCounter; extern int gMenuTextColor;
 extern char *gMenuTextMap; extern int viewportClipLeft; extern char gBriefDrawSource[];
 extern char gBriefTextMap[]; extern int gBriefTextColor; extern char DAT_004d274e[];
-extern char targetBriefResource[]; extern void AssertFail(const char *, int, const char *);
+struct StrPool { char *GetString(long,int=0); }; extern unsigned long gMenuColorMap[]; extern char targetBriefResource[]; extern void AssertFail(const char *, int, const char *);
 #define ASSERT(test) if (!(test)) AssertFail(__FILE__, __LINE__, 0)
 void f_cb80(void *); void f_cbf0(void *); void f_0041cab0(void *);
 void ReleasePoolData(void *); void GuiFadeOut(void); void ShellClearFrame(void);
@@ -41,7 +41,7 @@ extern int gHotbriefMissionFlags; extern char g511dc0[], hotbriefPlayerMaps[], h
 
 
 class MenuButton { public:
-    char objectBytes[40]; MenuButton(const char *, unsigned long); ~MenuButton();
+    char objectBytes[40]; MenuButton(const char * =0, unsigned long =0); ~MenuButton();
 };
 class MenuSpacer { public:
     char objectBytes[32]; MenuSpacer(); ~MenuSpacer();
@@ -56,13 +56,13 @@ class GuiScreen { public:
     char objectBytes[36]; GuiScreen(GuiControl *, unsigned int, unsigned long); long HitTest(GuiPoint *); int Update(); void LoadLayout(const char *); void Open(void *, void *, int, int); void Draw();
 };
 class HotbriefResources : public GuiScreen { public:
-    char resourceFields[0x40]; HotbriefResources(); ~HotbriefResources();
+    char unknown24[0x28]; int mission,x,y,frame,count; void *image; HotbriefResources(); ~HotbriefResources();
 };
 
 MenuButton gBriefMenuButton(0, 0);
 MenuSpacer gBriefMenuSpacerA;
 MenuSpacer gBriefMenuSpacerB;
-MenuHelpRegion gBriefHelpRegion;
+MenuHelpRegion hotbriefHelpRegion;
 MenuPanel gBriefMenuPanel;
 HotbriefResources gHotbriefResources;
 
@@ -80,19 +80,19 @@ void HotbriefOpen(void *screen, void *input, int mission)
     if (!HotbriefIsActive(screen)) {
         BriefWaitA(0);
         BriefWaitB(2);
-        *(int *)((char *)screen + 0x4c) = mission;
+        ((HotbriefResources *)screen)->mission = mission;
         gHotbriefHit = -1;
         ((GuiScreen *)screen)->LoadLayout("hotbrief.box");
         ((GuiScreen *)screen)->Open(input, targetBriefResource, 0x5dd, 1);
-        *(int *)((char *)screen + 0x60) =
-            (int)((ResMgr *)gResMgr)->Load("HOTSEAT.BMX", 1);
+        ((HotbriefResources *)screen)->image =
+            ((ResMgr *)gResMgr)->Load("HOTSEAT.BMX", 1);
         f_cba0(gShellFont, "font3.fnx");
         f_d2c0(gShellResources);
         HercSetMissionStart(g4b74f4, 0x979);
         HotbriefSetup(screen);
         for (int offset = 0; offset != 0x14; offset += 4) {
             int *point = *(int **)((char *)gHotbriefResourceList + offset);
-            ((HotbriefPoint *)point)->Move(*(int *)((char *)screen + 0x50), *(int *)((char *)screen + 0x54));
+            ((HotbriefPoint *)point)->Move(((HotbriefResources *)screen)->x, ((HotbriefResources *)screen)->y);
         }
     }
 }
@@ -101,9 +101,9 @@ void HotbriefRelease(void *screen)
 {
     int active = *(int *)((char *)screen + 0x10) != 0;
     if (active) {
-        if (*(void **)((char *)screen + 0x60) != 0)
-            ReleasePoolData(*(void **)((char *)screen + 0x60));
-        *(int *)((char *)screen + 0x60) = 0;
+        if (((HotbriefResources *)screen)->image != 0)
+            ReleasePoolData(((HotbriefResources *)screen)->image);
+        ((HotbriefResources *)screen)->image = 0;
         f_cbf0(gShellFont);
         f_0041cab0(g4b74f4);
         *(int *)((char *)screen + 0x10) = 0;
@@ -124,21 +124,21 @@ void HotbriefTimerUpdate(void *screen)
     int active = *(int *)((char *)screen + 0x10) != 0;
     if (active) {
         static HotbriefTimerInit timerInit;
-        if (*(int *)((char *)screen + 0x5c) != 0) {
+        if (((HotbriefResources *)screen)->count != 0) {
             int expired = TimerExpired(&gBriefTimer);
             if (expired != 0) {
                 TimerSet(&gBriefTimer, 100);
                 MenuDrawImage(g513888,
-                              ((char *)*(void **)((char *)screen + 0x60) + 4) +
-                                  *(int *)((char *)screen + 0x58) * 0xc,
-                              *(int *)((char *)screen + 0x50) + 0xf4,
-                              *(int *)((char *)screen + 0x54) + 0x3c);
-                int clipX = *(int *)((char *)screen + 0x50) + 0xf4;
-                int clipY = *(int *)((char *)screen + 0x54) + 0x3c;
+                              ((char *)((HotbriefResources *)screen)->image + 4) +
+                                  ((HotbriefResources *)screen)->frame * 0xc,
+                              ((HotbriefResources *)screen)->x + 0xf4,
+                              ((HotbriefResources *)screen)->y + 0x3c);
+                int clipX = ((HotbriefResources *)screen)->x + 0xf4;
+                int clipY = ((HotbriefResources *)screen)->y + 0x3c;
                 MenuSetClip(gMenuClip, clipX, clipY, 0x18b, 0x16d);
-                *(int *)((char *)screen + 0x58) =
-                    (*(int *)((char *)screen + 0x58) + 1) %
-                    *(int *)((char *)screen + 0x5c);
+                ((HotbriefResources *)screen)->frame =
+                    (((HotbriefResources *)screen)->frame + 1) %
+                    ((HotbriefResources *)screen)->count;
             }
         }
         ((GuiScreen *)screen)->Draw();
@@ -153,26 +153,26 @@ void HotbriefSetup(void *screen)
     struct DrawCopy { unsigned long words[4]; };
     *(DrawCopy *)&viewportClipLeft = *(DrawCopy *)gBriefDrawSource;
     gDrawRemap = 0;
-    *(int *)((char *)screen + 0x50) = (g5138ac - 0x280) / 2;
-    *(int *)((char *)screen + 0x54) = (g5138b0 - 0x1e0) / 2;
-    *(int *)((char *)screen + 0x58) = 0;
-    *(int *)((char *)screen + 0x5c) = *(int *)((char *)screen + 0x58);
-    if (*(void **)((char *)screen + 0x60) != 0)
-        *(int *)((char *)screen + 0x5c) = **(int **)((char *)screen + 0x60);
-    gMenuTextMap = gBriefTextMap;
+    ((HotbriefResources *)screen)->x = (g5138ac - 0x280) / 2;
+    ((HotbriefResources *)screen)->y = (g5138b0 - 0x1e0) / 2;
+    ((HotbriefResources *)screen)->frame = 0;
+    ((HotbriefResources *)screen)->count = ((HotbriefResources *)screen)->frame;
+    if (((HotbriefResources *)screen)->image != 0)
+        ((HotbriefResources *)screen)->count = *(int *)((HotbriefResources *)screen)->image;
+    gMenuTextMap = (char *)(gMenuColorMap+((HotbriefResources *)screen)->mission+20); gMenuTextColor=hotbriefPlayerColors[((HotbriefResources *)screen)->mission]; gMenuTextMap = gBriefTextMap;
     gMenuTextColor = gBriefTextColor;
-    char *title = f_0047c350(targetBriefResource, 0x5e2, 0);
-    title = BriefFormat(title);
-    f_0047cfc0(gShellFont, *(int *)((char *)screen + 0x50) + 400,
-               *(int *)((char *)screen + 0x54) + 0x1b3, 0, title);
+    char *title = BriefFormat(((StrPool *)targetBriefResource)->GetString(0x5e2),DAT_004d274e+(((HotbriefResources *)screen)->mission-1)*0xbc);
+
+    f_0047cfc0(gShellFont, ((HotbriefResources *)screen)->x + 400,
+               ((HotbriefResources *)screen)->y + 0x1b3, 0, title);
     gMenuTextMap = gBriefTextMap;
     gMenuTextColor = gBriefTextColor;
     title = f_0047c350(targetBriefResource, 0x5e3, 0);
-    f_0047cfc0(gShellFontBefore, *(int *)((char *)screen + 0x50) + 10,
-               *(int *)((char *)screen + 0x54) + 0x4b, -1, title);
+    f_0047cfc0(gShellFontBefore, ((HotbriefResources *)screen)->x + 10,
+               ((HotbriefResources *)screen)->y + 0x4b, -1, title);
     title = f_0047c350(targetBriefResource, 0x5e4, 0);
-    f_0047cfc0(gShellFontBefore, *(int *)((char *)screen + 0x50) + 0xb9,
-               *(int *)((char *)screen + 0x54) + 0x4b, 1, title);
+    f_0047cfc0(gShellFontBefore, ((HotbriefResources *)screen)->x + 0xb9,
+               ((HotbriefResources *)screen)->y + 0x4b, 1, title);
     int ownerCounts[9];
     int aiOwnerCounts[9];
     memset(ownerCounts, 0, sizeof(ownerCounts));
@@ -218,13 +218,13 @@ void HotbriefSetup(void *screen)
                 gMenuTextMap = rowName; gMenuTextColor = hotbriefPlayerColors[row];
             gMenuTextMap = gBriefTextMap;
                 f_0047cfc0(g511dc0,
-                           *(int *)((char *)screen + 0x50) + 10,
-                           *(int *)((char *)screen + 0x54) + 100 + yOffset,
+                           ((HotbriefResources *)screen)->x + 10,
+                           ((HotbriefResources *)screen)->y + 100 + yOffset,
                            -1, missionNames);
                 title = f_0047c350(targetBriefResource, 0x5e5, 0);
                 f_0047cfc0(g511dc0,
-                           *(int *)((char *)screen + 0x50) + 0xb9,
-                           *(int *)((char *)screen + 0x54) + 100 + yOffset,
+                           ((HotbriefResources *)screen)->x + 0xb9,
+                           ((HotbriefResources *)screen)->y + 100 + yOffset,
                            1, title);
             }
         } else {
@@ -232,13 +232,13 @@ void HotbriefSetup(void *screen)
             gMenuTextMap = gBriefTextMap;
             gMenuTextColor = gBriefTextColor;
             f_0047cfc0(g511dc0,
-                       *(int *)((char *)screen + 0x50) + 10,
-                       *(int *)((char *)screen + 0x54) + 100 + yOffset,
+                       ((HotbriefResources *)screen)->x + 10,
+                       ((HotbriefResources *)screen)->y + 100 + yOffset,
                        -1, missionNames);
             title = BriefFormat(hotbriefCountFormat, aiOwnerCounts[row]);
             f_0047cfc0(g511dc0,
-                       *(int *)((char *)screen + 0x50) + 0xb9,
-                       *(int *)((char *)screen + 0x54) + 100 + yOffset,
+                       ((HotbriefResources *)screen)->x + 0xb9,
+                       ((HotbriefResources *)screen)->y + 100 + yOffset,
                        1, title);
         }
         yOffset += 0x16;

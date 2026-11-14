@@ -355,7 +355,9 @@ int MenuNetwork::Active() {
     return multiplayerActive;
 }
 int StopMultiplayer(int notify,int restart) {
-    if(!multiplayerActive) return 0;
+    int result;
+    if(!multiplayerActive) result=0;
+    else {
     if(gMenuNetwork.IsHost()) currentOptions=gameOptions;
     if(restart && serverMode && restartData) {
         multiplayerActive=0;
@@ -402,7 +404,9 @@ int StopMultiplayer(int notify,int restart) {
         CommitModePlayers(modeCheckName);
         NetworkShutdown();
     }
-    return 1;
+    result=1;
+    }
+    return result;
 }
 DWORD __stdcall MenuNetwork::ThreadProc(void*) {
     NetworkCallback();
@@ -427,7 +431,7 @@ void MenuNetwork::CompactPlayers() {
     int peer=PeerCore(localSlot);
     int i=1;
     {
-        PlayerSlot *p=&slots[1];
+        PlayerSlot *p=GetSlot(1);
         while(i++<=9) {
             if(p->state==6) p->state=0;
             p++;
@@ -461,7 +465,7 @@ void MenuNetwork::CompactPlayers() {
     playerColors[lastPlayer]=16;
     p->color=16;
     strcpy(p->name,(const char*)AllocateMissionImage(textPool,0x9d,0));
-    p=&slots[1];
+    p=GetSlot(1);
     for(int n=1;n<=extra;n++,p++) AddModePlayer(modeCheckName,p->state,p);
     localPlayer=localSlot;
 }

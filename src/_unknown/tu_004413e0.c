@@ -143,8 +143,9 @@ extern "C" int f_004413e0(GameSession *s,UnitTemplate *t) {
 }
 extern "C" ListRow *f_00441456(GameSession *s,int *count) {
     *count=0;
-    int standard=0,custom=0,i=0;
-    for(; unitTemplates[i].name; ++i) if(f_004413e0(s,&unitTemplates[i])) ++standard;
+    int standard=0,custom=0,i;
+    { for(int templateIndex=0;unitTemplates[templateIndex].name;++templateIndex)
+        if(f_004413e0(s,&unitTemplates[templateIndex])) ++standard; }
     Snapshot *p=s->snapshots;
     while(p) {
         ++custom;
@@ -190,7 +191,7 @@ extern "C" ListRow *f_00441456(GameSession *s,int *count) {
     return g4c9338;
 }
 extern "C" char *f_004418a9(GameSession *s,int index) {
-    int i; if(index<0 || index>=s->stat70cf)return 0;
+int i; if(index<0 || index>=s->stat70cf)return 0;
     UnitTemplate t;
     int id=g4c9338[index].index;
     if(id>=0)t=unitTemplates[id];
@@ -261,7 +262,7 @@ extern "C" int f_00441c2c(GameSession *s,unsigned index) {
     return s->hercCount;
 }
 extern "C" int f_00441ca7(GameSession *s,int value,int levels) {
-    if (levels >= 1) {
+if (levels >= 1) {
         if (levels > 1) value = f_00441ca7(s, value, levels - 1);
         value = value * 80 / 100;
     }
@@ -329,7 +330,7 @@ extern "C" void f_00441ec5(GameSession *,Choice *list,int count) {
     memcpy(list,sortRows,count*sizeof(Choice));
 }
 extern "C" Choice *f_00442045(GameSession *s,int index,int slot,int *count) {
-    *count=0;
+*count=0;
     if(index<0 || index>=s->hercCount)return 0;
     int max=76;
     memset(upgradeRows,0,sizeof(upgradeRows));

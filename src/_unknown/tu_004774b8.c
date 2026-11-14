@@ -6,10 +6,11 @@ extern HWND g_mainWindow;
 extern int menuReady,menuMode,windowOriginX,windowOriginY,gViewX,gViewY;
 extern "C" void RegisterAssertCallback(void (*)());
 void ReadMousePosition(POINT*);
-inline void MenuEnableAll(HMENU menu,int disabled) {
+inline HMENU MenuEnableAll(HMENU menu,int disabled) {
  int count; unsigned flags; int i;
- flags=disabled?1:0; count=GetMenuItemCount(menu);
+ flags=disabled!=0; count=GetMenuItemCount(menu);
  for(i=0;i<count;i++) EnableMenuItem(menu,i,flags|0x400);
+ return menu;
 }
 inline void MenuMainFlags(int save,int load,int always,int mode3,int mode4) {
  unsigned a=always?1:0,b=mode3?1:0,c=mode4?1:0,d=load?1:0,e=save?1:0;
@@ -23,15 +24,16 @@ void MenuApplyMode(int mode) {
  int disabled;
  disabled=MenuFileDisabled(mode);
  if(mode==13) disabled=0;
- MenuEnableAll(menu,disabled);
+ menu=MenuEnableAll(menu,disabled);
  if(mode==11 || mode==14) { EnableMenuItem(menu,5,0x400); EnableMenuItem(menu,8,0x400); }
  if(mode==12) EnableMenuItem(menu,4,0x400);
  menu=GetSubMenu(g512544,2);
- MenuEnableAll(menu,mode!=2);
- int always=MenuAlwaysFlag(mode);
+ menu=MenuEnableAll(menu,mode!=2);
+ int always=0;
+ if(mode==0 || mode==1 || mode==11) always=0;
  int mode3=(mode!=3),mode4=(mode!=4),load=1,save=1;
- switch(mode) { case 1: case 2: case 7: case 8: case 10: load=0; break; }
- switch(mode) { case 2: case 7: case 8: case 9: case 10: save=0; break; }
+ switch(mode) { case 1: load=0;break;case 2: case 7: case 8: case 10: load=0; break; }
+ switch(mode) { case 2:save=0;break;case 7: case 8: case 9:save=0;break;case 10: save=0; break; }
  MenuMainFlags(save,load,always,mode3,mode4);
  if(mode==8 || mode==9) { EnableMenuItem(g512544,0x75fc,0); EnableMenuItem(g512544,0x75fb,0); EnableMenuItem(g512544,0x75fa,0); }
 }

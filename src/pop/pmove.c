@@ -118,7 +118,7 @@ struct SimGame {
 #pragma pack(pop)
 struct SoundSettings;
 extern int SoundPlay(unsigned,const SoundSettings *);
-extern ActorItem *PopFindItem(ActorUnit *,int,int=-1);
+extern ActorItem *PopFindItem(ActorUnit *,int=0,int=-1);
 extern long GridClamp(U32);
 extern "C" int ResolveName(const char *,const GuiPoint *);
 extern "C" int f_00432c00(const char *,int,int);
@@ -254,18 +254,18 @@ void MovementCommand(SimGame *s) {
     }
     if(gInA4) {
         switch(selection) {
-            case 4:selection=11;
-            break;
-            case 5:selection=12;
-            break;
             case 6:selection=7;
             break;
             case 8:selection=10;
             break;
+            case 4:selection=11;
+            break;
+            case 5:selection=12;
+            break;
         }
     }
     if(!SimFocusReady(s))return;
-    ActorItem *item=PopFindItem(s->focus->unit,0);
+    ActorItem *item=PopFindItem(s->focus->unit);
     switch(selection) {
         case 0: if(!s->focus || s->focus->identity.IsMobile())return;
         SoundPlay(9,0);
