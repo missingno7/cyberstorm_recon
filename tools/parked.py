@@ -100,7 +100,10 @@ def verdicts():
     import notes
     out = collections.defaultdict(set)
     for r in notes.load():
-        out[r["va"]].add(r.get("verdict", "open"))
+        # only a function-level record decides: a SUMMARY, or a record of a lane that tested the function itself;
+        # one invariant hypothesis family among several does not withhold the function
+        if r.get("hyp", "").startswith("SUMMARY") or not r.get("lane", "").startswith("bf"):
+            out[r["va"]].add(r.get("verdict", "open"))
     return out
 
 
