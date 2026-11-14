@@ -53,6 +53,11 @@ You reconstruct C++ source that Watcom 10.6 compiles to the exact bytes of `CSTO
 - Statement order is visible in store order; operand order in `a < b` vs `b > a` is visible.
 - Struct layouts and global addresses are evidence: use `char pad[N]` only as a temporary, say so.
 
+## Before permuting anything
+`python tools/parked.py --tu FILE --fn LABEL` gives the residue class of a parked function and every earlier
+report line about it. `docs/watcom_playbook.md` is a symptom -> what-to-try table and the allocator internals from
+another Watcom 10.6 project: use it to choose ONE derived edit, not a grid of spellings.
+
 ## Structure work
 Lanes that rename files to their path strings, cut combined files or complete `_DATA` follow
 `docs/structure_brief.md` (census tool, `promote.py --from`, what "done" means for an object).

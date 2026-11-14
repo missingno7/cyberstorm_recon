@@ -11,6 +11,10 @@ Classes (candidate vs original, same placement):
   REG+SLOT    both of the above
   OPERANDS    same instruction lengths and mnemonics, other operand differences (constant, field offset, callee)
   SHAPE       instruction stream differs in length or mnemonics      (control flow, expression shape, inlining)
+  ASM         the original starts with `enter` or pushes segment registers: hand assembly, no C source matches it
+Column `work`: yes = give it to a lane; no:<why> = withhold (asm origin, waits for a neighbour, or a register/slot
+swap that three or more lanes already reported on: invariant under respelling until there is new evidence).
+`--targets FILE` writes only the `yes` rows, largest first, as a lane target list.
 REG-SWAP / SLOT-SWAP functions that many lanes already tried are usually invariant under respelling: read the notes
 (--fn prints the report lines that mention the function) before spending time. SHAPE functions are where reading
 the original listing pays: something in the source says a different thing.
@@ -117,7 +121,10 @@ def main(argv):
                     lab = symbols.label(e["names"][0])
                     if want and want not in (lab, e["va"]):
                         continue
-                    if e.get("diff_bytes") == 0 and e.get("size_bad"):
+                    head = img.read_va(va, 4)
+                    if head[0] == 0xC8 or head[:1] == b"\x06" or head[:2] in (b"\x0f\xa0", b"\x0f\xa8"):
+                        cls = "ASM"
+                    elif e.get("diff_bytes") == 0 and e.get("size_bad"):
                         cls = "WAIT-TABLE"
                     else:
                         fx = {va + (o - e["off"]) + k for o in fixups[s["seg"]] if e["off"] <= o < e["end"]
@@ -125,16 +132,25 @@ def main(argv):
                         cls = classify(img.read_va(va, size), bytes(segs[s["seg"]].data[e["off"]:e["end"]]), va, fx)
                     hits = [(lane, ln.strip()) for lane, lines in reports.items() for ln in lines
                             if (lab in ln and len(lab) > 5) or e["va"] in ln.lower()]
-                    rows.append((tu, e["va"], size, e.get("diff_bytes"), cls, len({h[0] for h in hits}), lab, hits))
+                    n = len({h[0] for h in hits})
+                    work = ("no:asm" if cls == "ASM" else "no:neighbour" if cls.startswith("WAIT") else
+                            "no:invariant" if cls in ("REG-SWAP", "SLOT-SWAP", "REG+SLOT") and n >= 3 else "yes")
+                    rows.append((tu, e["va"], size, e.get("diff_bytes"), cls, n, lab, hits, work))
     counts = collections.Counter(r[4] for r in rows)
-    for tu, va, size, diff, cls, n, lab, hits in rows:
-        print(f"{va} {size:5d} B  {str(diff):>5s} differ  {cls:10s} {n:2d} reports  {lab[:42]:42s} {tu}")
+    for tu, va, size, diff, cls, n, lab, hits, work in rows:
+        print(f"{va} {size:5d} B  {str(diff):>5s} differ  {cls:10s} {n:2d} reports  {work:12s} {lab[:42]:42s} {tu}")
         if want:
             for lane, ln in hits[:40]:
                 print(f"    [{lane}] {ln[:230]}")
     print("\n" + ", ".join(f"{k} {v}" for k, v in counts.most_common()) + f"; total {len(rows)}")
+    print("work: " + ", ".join(f"{k} {v}" for k, v in collections.Counter(r[8] for r in rows).most_common()))
     if out:
-        Path(out).write_text("\n".join("\t".join(str(x) for x in r[:7]) for r in rows) + "\n", encoding="utf-8")
+        Path(out).write_text("\n".join("\t".join(str(x) for x in r[:7] + (r[8],)) for r in rows) + "\n",
+                             encoding="utf-8")
+    if "--targets" in argv:
+        sel = sorted((r for r in rows if r[8] == "yes"), key=lambda r: -r[2])
+        Path(argv[argv.index("--targets") + 1]).write_text(
+            "\n".join("\t".join(str(x) for x in r[:7]) for r in sel) + "\n", encoding="utf-8")
     return 0
 
 

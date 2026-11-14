@@ -9448,7 +9448,6 @@
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?MaskTerrainTile$n(pnucpnucpnucii)v",
-   "tu": "src/_unknown/tu_00435084.c",
    "evidence": "placed (at) in src/_unknown/tu_00435084.c 2026-11-09"
   },
   "StoreTerrainEdge": {
@@ -9550,7 +9549,6 @@
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?DrawTerrainTile$n(pn$Image$$iii)v",
-   "tu": "src/_unknown/tu_00435b5c.c",
    "evidence": "placed (at) in src/_unknown/tu_00435b5c.c 2026-11-09"
   },
   "DrawTerrainTileClipped": {
@@ -9566,7 +9564,6 @@
    "kind": "func",
    "status": "hypothesis",
    "mangled": "W?DrawTerrainTileClipped$n(pn$Image$$iiiii)v",
-   "tu": "src/_unknown/tu_00435b5c.c",
    "evidence": "placed (at) in src/_unknown/tu_00435b5c.c 2026-11-09"
   },
   "ActorListObject::$ct": {
