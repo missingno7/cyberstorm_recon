@@ -66,7 +66,7 @@ extern long g4a0338, g4a033c; extern GuiRect g4d3cec, g4d3c9c; extern unsigned l
 extern unsigned long gMenuTextColor; extern unsigned long *gMenuTextMap; extern Font g511dc0;
 extern ActorRecord *g4d2498; static char simminiSourceFile[] = __FILE__; unsigned char g4a0350[9] = { 0x50, 0x4f, 0xce, 0x94, 0xe7, 0x5d, 0xd7, 0xd1, 0xd1 };
 extern int gGameTurn; extern TerrainGrid fallbackName; extern FogBuffer g4d35f4;
-extern LogicSystem g4dd0c0; extern int *actorIndexTable; extern unsigned char *g4d3604;
+extern LogicSystem g4dd0c0; extern int *actorIndexTable; extern unsigned char *simActorVisibility;
 extern unsigned char g4d2490; extern FastCoord gFastTransform; extern void ApplyPaletteData(void *, int = 0, int = 256);
 extern void PopDrawSurface(void *surface, int a, int b, int c, int d, int e, int f); extern void MenuLine(void *, long, long, long, long); extern void FastBufferReset(FastBuffer *);
 extern void SimLoadPalette(int, void *); extern void SimLoadImage(void *, int, void *); extern void SimSetMode(SimGame *, int);
@@ -104,8 +104,8 @@ extern MenuNetwork gMenuNetwork; extern void HotbriefEmpty(void *); extern void 
 extern void BestLocSetData(void *,void *,void *); extern int SimAddPlayer(SimGame *,int,PlayerSlot * = 0); extern "C" void *f_0043c6ed(void *,void *);
 struct ActorBlock; struct ActorListObject; struct ActorPosition; struct GridPoint; extern ActorRecord *ActorListAdd(int,ActorBlock *,ActorListObject *,ActorPosition *,int,int); extern void LogicActorDelete(void *,int),ActorActivate(ActorRecord *); extern "C" int ResolveName(void *,void *);
 extern void TargetObjectInit(char *,ActorPosition *,int); extern void SimCenterOn(SimGame *,GridPoint *),SimRefreshFog(SimGame *,int),SimChangePlayer(SimGame *,int); extern void FogInitialize(FogBuffer *,int,int);
-inline int SimActorHidden(int index) { return g4d3604[index]==0; }
-inline int SimActorUnitId(int index) { return actorIndexTable[index*2]; }
+inline int SimActorHidden(int index) { return !simActorVisibility[index]; }
+inline int SimActorUnitId(int index) { return *(int *)((char *)actorIndexTable + index * 8); }
 
 
 static inline void RequireActive(int active) {
@@ -257,20 +257,21 @@ void SimGameDrawMap(SimGame *game)
     } else {
         BriefBlit(&g513888,1,0,10,37,10,37,128,64);
         for(int row=1;row<32;row++) {
-            int bytes=128-(row/2)*8;
             int x=((row*2)&~3)+10;
+            int bytes=128-(row/2)*8;
             memcpy((char *)gShellSurfacePixelsBefore+shellScanlines[37-row]+x,(char *)gShellDrawPixels+shellScanlines[37-row]+x,bytes);
             memcpy((char *)gShellSurfacePixelsBefore+shellScanlines[100+row]+x,(char *)gShellDrawPixels+shellScanlines[100+row]+x,bytes);
         }
     }
     MapPointToScreen(&gFastTransform,&at,game->view);
-    int halfWidth=MapPointScale(&gFastTransform,DisplayScale(gView)*1000);
-    int halfHeight=halfWidth*2/3;
+    SimPoint half;
+    half.x=MapPointScale(&gFastTransform,DisplayScale(gView)*1000);
+    half.y=half.x*2/3;
     MenuSetColors(&g513888,gMenuColors[16],gMenuColors[16]);
-    SimDrawHLine(at.x-halfWidth,at.x+halfWidth,at.y-halfHeight);
-    SimDrawHLine(at.x-halfWidth,at.x+halfWidth,at.y+halfHeight);
-    SimDrawVLine(at.y-halfHeight,at.y+halfHeight,at.x-halfWidth);
-    SimDrawVLine(at.y-halfHeight,at.y+halfHeight,at.x+halfWidth);
+    SimDrawHLine(at.x-half.x,at.x+half.x,at.y-half.y);
+    SimDrawHLine(at.x-half.x,at.x+half.x,at.y+half.y);
+    SimDrawVLine(at.y-half.y,at.y+half.y,at.x-half.x);
+    SimDrawVLine(at.y-half.y,at.y+half.y,at.x+half.x);
     GuiResetClip(&g4d3c9c);
     SimGameDrawActors(game,2);
     if(game->linked) SimGameBlink();
@@ -283,7 +284,6 @@ void SimGameDrawActors(SimGame *game, int size)
     g4d4150.x = 0;
     for (ActorRecord *actor = ActorFindFree(); actor; actor = ActorFindNext(actor)) {
         SimPoint at;
-        int half = size >> 1;
         unsigned long color = 0;
         if (actor->type == 0x11) {
             if (SimActorUnitId(actor->index) == 0) color = gMenuColors[0];
@@ -296,8 +296,9 @@ void SimGameDrawActors(SimGame *game, int size)
             }
         }
         if (color) {
-            FastProject(&gFastTransform, &at, actor->position);
+            MapPointToScreen(&gFastTransform, &at, actor->position);
             if (size != 2) {
+                int half = size >> 1;
                 MenuSetColors(&g513888, color, color);
                 MenuFill(&g513888, at.x - half, at.y - half, size, size);
             } else {

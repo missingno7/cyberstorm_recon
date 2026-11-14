@@ -46,11 +46,11 @@ inline GridPoint *GridScale(GridPoint *p, long amount) {
     p->x*=amount; p->y*=amount;
     return p;
 }
+inline long GridDistance(const GridPoint *a, const GridPoint *b) {
+    long dx=GridAbs(a->x-b->x); long dy=GridAbs(a->y-b->y); return GridMax(dx,(dx+dy)>>1); }
 inline long GridLookup(TerrainGrid *grid, const GridPoint *point) {
-    long dx=GridAbs(grid->fields[4]-point->x);
-    long dy=GridAbs(grid->fields[5]-point->y);
-    long distance=GridMax(dx,(dx+dy)>>1);
-    if(distance>grid->fields[2]) return 0;
+    const GridPoint *center=(GridPoint *)&grid->fields[4]; long dx=GridAbs(center->x-point->x); long dy=GridAbs(center->y-point->y);
+    if(GridMax(dx,(dx+dy)>>1)>grid->fields[2]) return 0;
     return ((point->y>>1)<<grid->fields[7])+point->x+1;
 }
 
@@ -182,8 +182,8 @@ extern "C" GridPoint *TargetObjectInit(TerrainGrid *grid, GridPoint *out, long i
 
 
 
-int ResolveName(const char *gridArg,const char *pointArg) { return GridLookup((TerrainGrid*)gridArg,(GridPoint*)pointArg); }
-
+extern "C" int ResolveName(TerrainGrid *grid,GridPoint *point) {
+    if(GridDistance((GridPoint *)&grid->fields[4],point)>grid->fields[2]) return 0; return ((point->y>>1)<<grid->fields[7])+point->x+1; }
 
 
 

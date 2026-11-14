@@ -9,7 +9,7 @@ struct LogicActor {
     int index, next, type, value, timer;
     u8 pad28[0x70 - 0x28];
     ActorPoint position; int randomValue, state7c, linkedIndex; u8 pad84[4]; int state88, state8c; u8 pad90[0xa8 - 0x90];
-    int Available() { ActorUnit *u = (ActorUnit *)unit; return u && u->alive && u->info->Active() && !((ActorUnit *)unit)->inactive; } int Hostile() { return (flags & 1) != 0; } int Friendly() { return (flags & 1) == 0; } int Attached() { return unit != 0; } int Flag2() { return (flags & 2) != 0; } int Live() { return unit && ((ActorUnit *)unit)->alive && ((ActorUnit *)unit)->info->Active(); } LogicActor() {}
+    int Available() { ActorUnit *u = (ActorUnit *)unit; return u && u->alive && u->info->Active() && !((ActorUnit *)unit)->inactive; } int Hostile() { return (flags & 1) != 0; } int Friendly() { return (flags & 1) == 0; } int Attached() { return unit != 0; } int Flag2() { return (flags & 2) != 0; } int Live() { return unit && ((ActorUnit *)unit)->alive && ((ActorUnit *)unit)->info->Active(); } LogicActor() {} int IsUnit() { return type == 30; } int Unlinked() { return (flags & 2) == 0; } int Ready() { return unit && ((ActorUnit *)unit)->alive && ((ActorUnit *)unit)->info->Active() && !((ActorUnit *)unit)->inactive; }
 };
 struct ActorGlobals { LogicActor actorRecords[512]; int actorCount, actorSerial; };
 ActorGlobals logicActors;
@@ -22,7 +22,7 @@ extern unsigned int MissionRandomTable[];
 extern unsigned int next_link_seed(void *table);
 extern int GetModeValue(const char *name, int value), CompareActorNames(const char *left, const char *right); extern void UpdateLogicActor(LogicActor *actor), RemoveLogicActor(LogicActor *actor);
 extern int ActorListIsBusy(); extern void ActorArraySet(LogicActor *actor, int array, int value);
-extern int ActorArrayGet(LogicActor *actor, int array), ActorCanChoose(LogicActor *actor), ActorPercent(void *data), ActorValue(LogicActor *actor), ActorIsAvailable(LogicActor *actor), ActorLinkStrength(int value); extern const char *ActorName(LogicActor *actor); extern void ActorSetMode(LogicActor *actor, int mode), SetModeForUnit(const char *name, void *unit); extern int f_00434bd0(const char *message, int actor, int flag, int start, int end, int percent); extern int *GetModePlayer(const char *name, int value); extern int LogicCopyPoint(const char *left, const char *right); extern int DirectionCompare(int *left, int *right), DirectionBlend(int *result, int kind, int direction), DirectionLength(int *direction), NeighborResponse(LogicActor *actor, const char *name); extern char modeCheckName[]; extern int g4d2498, g4dd0c0; extern char fallbackName[];
+extern int ActorArrayGet(LogicActor *actor, int array), ActorCanChoose(LogicActor *actor), ActorPercent(void *data), ActorValue(LogicActor *actor), ActorIsAvailable(LogicActor *actor), ActorLinkStrength(int value); extern const char *ActorName(LogicActor *actor); inline int ActorArmed(LogicActor *actor) { return ActorArrayGet(actor, 7) != 0; } extern void ActorSetMode(LogicActor *actor, int mode), SetModeForUnit(const char *name, void *unit); extern int f_00434bd0(const char *message, int actor, int flag, int start, int end, int percent); extern int *GetModePlayer(const char *name, int value); extern int LogicCopyPoint(const char *left, const char *right); extern int DirectionCompare(int *left, int *right), DirectionBlend(int *result, int kind, int direction), DirectionLength(int *direction), NeighborResponse(LogicActor *actor, const char *name); extern char modeCheckName[]; extern int g4d2498, g4dd0c0; extern char fallbackName[]; inline int LogicFlag8() { return (g4dd0c0 & 8) != 0; }
 extern "C" void *memset(void *buffer, int value, unsigned int count);
 class LogicActorList {
 public:
@@ -170,28 +170,25 @@ extern int ActorModeType(int type);
 extern unsigned char *targetDefinitionTable;
 
 LogicActor *LogicActorList::SelectActor(LogicActor *actor)  {
-    LogicActor *result;
-    if (actor == 0)  {
-        LogicActor *clear = ActorFirst();
-        while (clear != 0)  {
-            clear->next = 0;
-            clear = ActorNext(clear);
+    if (actor != 0)  {
+        if (LogicFlag8() && actor->Flag2() && next_link_seed(&MissionRandomTable) % 100 < 25) ActorRandomAction(actor);
+        actor = ActorAt(actor->next);
+    }
+    else  {
+        actor = ActorFirst();
+        while (actor != 0)  {
+            actor->next = 0;
+            actor = ActorNext(actor);
         }
-        result=0;
-        LogicActor *previous=0;
+        LogicActor *first = actor;
+        LogicActor *previous = 0;
         for (;;)  {
             LogicActor *best = 0;
             int bestScore;
             LogicActor *scan = ActorFirst();
             while (scan != 0)  {
-                ActorUnit *unit = (ActorUnit *)scan->unit;
-                int active = scan->Available();
-                if (active && scan->next == 0)  {
-                    int choose = 0;
-                    if (scan->Friendly()) choose = 1;
-                    else if (ActorArrayGet(scan, 7) != 0) choose = 1;
-                    else if (*GetModePlayer(modeCheckName, (int)scan->name) == 0) choose = 1;
-                    if (choose)  {
+                if (scan->Ready() && scan->next == 0)  {
+                    if (scan->Friendly() || ActorArmed(scan) || *GetModePlayer(modeCheckName, (int)scan->name) == 0)  {
                         int score = 0;
                         if (previous != 0) score = -LogicCopyPoint(ActorName(previous), ActorName(scan));
                         if (scan->Friendly()) score -= 1000;
@@ -205,24 +202,20 @@ LogicActor *LogicActorList::SelectActor(LogicActor *actor)  {
                 scan = ActorNext(scan);
             }
             if (best == 0) break;
-            if (result == 0) result = best;
+            if (first == 0) first = best;
             if (previous != 0) previous->next = best->index;
-            best->next = -1;
             previous = best;
+            best->next = -1;
         }
         if (previous != 0) previous->next = 0;
-    }
-    else  {
-        if ((g4dd0c0 & 8) != 0 && (actor->flags & 2) != 0 && next_link_seed(&MissionRandomTable) % 100 < 25) ActorRandomAction(actor);
-        int next = actor->next;
-        if (next >= 1 && next <= logicActors.actorCount) result = logicActors.actorRecords + next - 1;
+        actor = first;
     }
     g4d2498 = 0;
-    if (result != 0)  {
-        SetModeForUnit(modeCheckName, result->unit);
-        if ((result->flags & 2) != 0) ActorFinalize(result);
+    if (actor != 0)  {
+        SetModeForUnit(modeCheckName, actor->unit);
+        if (actor->Flag2()) ActorFinalize(actor);
     }
-    return result;
+    return actor;
 }
 
 extern "C" int LogicDeleteFromMap(void *unused, int index)
@@ -260,21 +253,15 @@ extern "C" int LogicRefreshMap(void *unused, int index)
 
 void LogicActorList::ResetActorState()
 {
-    LogicActor *actor = ActorFirst();
-    while (actor != 0) {
+    for (LogicActor *actor = ActorFirst(); actor != 0; actor = ActorNext(actor)) {
         actor->state88 = 0;
         actor->state8c = 0;
         actor->field4 = 0;
         *((u8 *)&actor->flags) &= (u8)~8;
-        if (actor->type == 30) {
-            ActorUnit *unit = (ActorUnit *)actor->unit;
-            int active = actor->Available();
-            if (active && ActorArrayGet(actor, 7) == 11) {
-                SetModeForUnit(modeCheckName, actor->unit);
-                IntelActorEvent(actor);
-            }
+        if (actor->IsUnit() && actor->Ready() && ActorArrayGet(actor, 7) == 11) {
+            SetModeForUnit(modeCheckName, actor->unit);
+            IntelActorEvent(actor);
         }
-        actor = ActorNext(actor);
     }
     CalculateActorValues(1);
 }
@@ -336,35 +323,23 @@ percent = ClampPercent(f_00439d48((int)((ActorUnit *)actor->unit)->actorData));
     }
 }
 
+inline void AddDirection(int *average, int kind, int direction) { int contribution[2]; DirectionBlend(contribution, kind, direction); average[0] += contribution[0]; average[1] += contribution[1]; }
 void LogicActorList::CalculateActorValues(int force)
 {
-    LogicActor *actor = ActorFirst();
-    while (actor != 0) {
-        ActorUnit *unit = (ActorUnit *)actor->unit;
-        int active = actor->Available();
-        if (active) {
-            int value;
-            if (!force) {
-                if ((actor->flags & 1) != 0 && ActorArrayGet(actor, 7) == 0) {
-                    actor = ActorNext(actor);
-                    continue;
-                }
-                int average[2] = {0, 0};
+    for (LogicActor *actor = ActorFirst(); actor != 0; actor = ActorNext(actor)) {
+        if (actor->Ready() && (actor->Friendly() || ActorArmed(actor))) {
+            if (force) ActorSetMode(actor, -0x7fffffcc);
+            else {
+                int average[2];
+                average[0] = 0; average[1] = 0;
                 int count = 0;
                 LogicActor *other = ActorFirst();
                 while (other != 0) {
-                    if (other != actor && other->name != actor->name) {
-                        ActorUnit *otherUnit = (ActorUnit *)other->unit;
-                        int otherActive = other->Available();
-                        if (otherActive) {
-                            int direction = PointAngle((ApplyPoint *)((char *)unit + 0x32), (ApplyPoint *)((char *)otherUnit + 0x32));
-                            int response = NeighborResponse(other, ActorName(actor));
-                            int contribution[2];
-                            DirectionBlend(contribution, response, direction);
-                            average[0] += contribution[0];
-                            average[1] += contribution[1];
-                            ++count;
-                        }
+                    if (other->Available() && actor->name != other->name) {
+                        int direction = PointAngle((ApplyPoint *)((char *)actor->unit + 0x32), (ApplyPoint *)((char *)other->unit + 0x32));
+                        int response = NeighborResponse(other, ActorName(actor));
+                        AddDirection(average, response, direction);
+                        ++count;
                     }
                     other = ActorNext(other);
                 }
@@ -374,11 +349,9 @@ void LogicActorList::CalculateActorValues(int force)
                     average[1] /= count;
                     length = DirectionLength(average);
                 }
-                value = -0x7fffffcc - (length - *((int *)((char *)unit + 0x46)));
-            } else value = -0x7fffffcc;
-            ActorSetMode(actor, value);
+                ActorSetMode(actor, -0x7fffffcc - (length - *((int *)((char *)actor->unit + 0x46))));
+            }
         }
-        actor = ActorNext(actor);
     }
 }
 
@@ -386,26 +359,23 @@ void LogicActorList::NotifyActorLinks()
 {
     LogicActor *actor = ActorFirst();
     while (actor != 0) {
-        int unit = (int)actor->unit;
-        if (unit != 0 && *(char *)(unit + 0x88) &&
-            *(int *)(*(int *)(unit + 0x1c) + 0x12) > 0 &&
-            (actor->flags & 2) == 0 &&
-            ((actor->flags & 1) != 0 || actor->state7c == 0)) {
-            int kind = ActorValue(actor);
-            int mode = targetDefinitionTable[1 + kind * 0xc];
+        if (actor->Live() && actor->Unlinked() && (actor->Hostile() || actor->state7c == 0)) {
+            int mode = targetDefinitionTable[1 + ActorValue(actor) * 0xc];
             LogicActor *linked = actor;
             while (linked != 0) {
-                int linkedKind = ActorValue(linked);
+                int kind = ActorValue(linked);
                 int strength = ActorLinkStrength(linked->value);
-                f_00434bd0(fallbackName, linkedKind, mode, strength + 1, strength + 3, 100);
-                int next = linked->linkedIndex;
-                if (next >= 1 && next <= logicActors.actorCount)
-                    linked = logicActors.actorRecords + next - 1;
-                else linked = 0;
+                f_00434bd0(fallbackName, kind, mode, strength + 1, strength + 3, 100);
+                linked = ActorAt(linked->linkedIndex);
             }
         }
         actor = ActorNext(actor);
     }
 }
+
+
+
+
+
 
 

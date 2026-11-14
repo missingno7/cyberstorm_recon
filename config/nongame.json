@@ -13,7 +13,14 @@
    "end": "00435dec",
    "class": "asm",
    "member": "",
-   "evidence": "Terrain blitters: ENTER/LEAVE, mirrored BSWAP path, explicit DS\u2192ES, packed CH/CL loop state, ROL-based transparent dword copies."
+   "evidence": "Terrain blitters: ENTER/LEAVE, mirrored BSWAP path, explicit DS→ES, packed CH/CL loop state, ROL-based transparent dword copies."
+  },
+  {
+   "start": "0046cdbc",
+   "end": "0046ceec",
+   "class": "asm",
+   "member": "decode_link_samples: hand assembly (enter 0,0; push es; push gs; stosw loops); matched as TASM object by lane h3 2026-11-14",
+   "evidence": "decode_link_samples: hand assembly (enter 0,0; push es; push gs; stosw loops); matched as TASM object by lane h3 2026-11-14"
   },
   {
    "start": "0047dfc2",

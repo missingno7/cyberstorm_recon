@@ -32,7 +32,7 @@ extern unsigned int gFxSeed;
 extern "C" unsigned int next_link_seed(unsigned int *);
 extern SpeedProfile trajectorySpeedProfiles[];
 inline int Clamp(int value,int low,int high) { if(value<=low)return low; if(value>=high)return high; return value; }
-inline unsigned int PointDistance(ExploPoint *a,ExploPoint *b) { int x=b->x-a->x,y=b->y-a->y; return ISqrt(y*y+x*x); }
+inline unsigned int PointDistance(ExploPoint *a,ExploPoint *b) { int sum=(b->x-a->x)*(b->x-a->x); return ISqrt(sum+(b->y-a->y)*(b->y-a->y)); }
 int TrajectoryArc(ProjectileDef *def,Weapon *w,TargetRecord *target)
 {
     int distance=PointDistance(&target->source,&target->target);
@@ -138,7 +138,8 @@ void TrajectoryDirection(Trajectory *t)
         future.targetScreen.x*=95;future.targetScreen.y*=95;future.arc*=96;
         TrajectoryPosition(&future);ExploPoint before=future.currentScreen;
         TrajectoryAdvance(&future);TrajectoryPosition(&future);ExploPoint after=future.currentScreen;
-        if(PointDistance(&after,&before)>10)angle=PointAngle(&after,&before);
+        int x=before.x-after.x,y=before.y-after.y;
+        if(ISqrt(y*y+x*x)>10)angle=PointAngle(&after,&before);
     }
     t->effect->frame=(angle/0xb60b61+367)/15%24;
     if(t->part)t->part->frame=t->partDirection;

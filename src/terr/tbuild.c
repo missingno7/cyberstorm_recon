@@ -7,7 +7,7 @@ struct TerrainGrid { int fields[2]; int radius; int pitch; Point center; int lay
 struct Noise { char body[444]; Noise(); ~Noise(); };
 struct Search { int words[10]; };
 struct Visit { TerrainGrid *grid; Point point; int index; };
-struct Range { int lo,hi; }; inline int TerrainMin(int a,int b){return a<b?a:b;} inline int TerrainMax(int a,int b){return a>b?a:b;}
+struct Range { int lo,hi; Range(){} Range(int l,int h){lo=l;hi=h;} }; inline int TerrainMin(int a,int b){return a<b?a:b;} inline int TerrainMax(int a,int b){return a>b?a:b;}
 extern "C" void AssertFail(const char *,int,const char *);
 
 extern "C" void NoiseConstruct(Noise *);
@@ -46,12 +46,12 @@ struct TerrainConfig { char prefix[10]; unsigned short flags; char rest[0x4c5-12
 extern TerrainConfig g4c68b4;
 #define terrainFlags g4c68b4.Flags()
 extern U8 terrainWaterThreshold,terrainWaterBase;
-struct TerrainType { U8 first,variants,unknown[4],flags; struct { U8 chance,kind; } feature[16]; };
+struct FeatureChance { U8 chance,kind; }; struct TerrainType { U8 first,variants,unknown[4],flags; FeatureChance feature[16]; };
 struct FeatureType { U8 base,type,unknown[6]; };
 extern TerrainType terrainTypes[];
 extern FeatureType featureTypes[];
 extern U8 tripletDirections[][2];
-extern Point gGridOffsets[];
+extern Point pathDirections[];
 struct ResMgr { void *Load(const char *,int=1,void * =0,unsigned long=0); int CloseFile(); };
 extern ResMgr gResMgr;
 extern void SimLoadPalette(int,void *);
@@ -124,7 +124,7 @@ int TerrainHeightRange(TerrainGrid *grid,Noise *noise,Range *range,int percent,u
 {
     int histogram[256];
     Point point;
-    Range empty; empty.lo=255;empty.hi=0; *range=empty;
+    *range=Range(255,0);
     memset(histogram,0,sizeof(histogram));
     int count=0;
     Cell *cell=grid->cells+1;
@@ -144,7 +144,7 @@ int TerrainHeightRange(TerrainGrid *grid,Noise *noise,Range *range,int percent,u
         for(int h=range->hi;h>range->lo;h--) {
             total+=histogram[h];
             if(total>(percent*count+50)/100) {
-                if(h==range->hi)*range=empty;
+                if(h==range->hi)*range=Range(255,0);
                 else range->lo=h+1;
                 break;
             }
@@ -228,15 +228,15 @@ void TerrainTriplet(TerrainGrid *grid,int index,int kind)
     Point a,b;
     BestLocSetData(grid,&a,(void *)index); b=a;
     unsigned direction=next_link_seed(&MissionRandomTable)%6;
-    a.Add(&gGridOffsets[tripletDirections[direction][0]]);
-    b.Add(&gGridOffsets[tripletDirections[direction][1]]);
+    a.Add(&pathDirections[tripletDirections[direction][0]]);
+    b.Add(&pathDirections[tripletDirections[direction][1]]);
     int i=ResolveName(grid,&a),j=ResolveName(grid,&b);
     if(i&&j) {
         Cell *left=&grid->cells[i],*right=&grid->cells[j];
         if(!left->feature&&!right->feature) {
             Cell *middle=&grid->cells[index];
             if(left->height==middle->height&&middle->height==right->height) {
-                U8 base=featureTypes[kind].base+direction*3;
+                U8 base=featureTypes[kind-1].base+direction*3;
                 left->feature=base;middle->feature=base+1;right->feature=base+2;
                 left->featureKind=kind;middle->featureKind=kind;right->featureKind=kind;
             }
@@ -360,3 +360,4 @@ void TerrainBuildFeatures(TerrainGrid *grid,MissionTerrain *mission,int seed,int
 
 void TerrainDestroyNoise(Noise *p){NoiseDestroy(p,1);}
 void TerrainConstructNoise(Noise *p){NoiseConstruct(p);}
+

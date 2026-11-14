@@ -36,7 +36,7 @@ extern ActorItem *PopFindItem(ActorUnit *,int,int);
 extern void SimAddMission(ActorUnit *);
 extern signed char HercDamageWeights[];
 extern "C" int f_0043d152(void *,int);
-struct SessionLevel { char unknown[0x43e]; U8 level; };
+struct SessionLevel { char unknown[0x43e]; U8 level; int Level() { return level; } };
 #pragma pack(push,1)
 struct WeaponEntry : ItemHeader { int words[10]; U8 end[3]; };
 struct SpecialEntry : ItemHeader { int words[10]; U8 end[4]; };
@@ -130,13 +130,13 @@ ChoiceNode *HercListItems(ActorUnit *u,int slot,SessionLevel *session,int *count
  if(slot>=11 && slot<=18){
  for(int i=1;i<76;i++){
  
- if((HercWeapons[i].words[0]&mask) && f_0043d152(session,HercWeapons[i].id+651) && session->level>=HercWeapons[i].level)HercAddChoiceNode(u,&list,slot,i,count);
+ if((mask&HercWeapons[i].words[0]) && f_0043d152(session,HercWeapons[i].id+651) && session->Level()>=HercWeapons[i].level)HercAddChoiceNode(u,&list,slot,i,count);
  }return list;
  }
  if(slot>=19 && slot<=22){
  for(int i=1;i<35;i++){
  
- if((HercSpecials[i].words[0]&mask) && f_0043d152(session,HercSpecials[i].id+801) && session->level>=HercSpecials[i].level)HercAddChoiceNode(u,&list,slot,i,count);
+ if((mask&HercSpecials[i].words[0]) && f_0043d152(session,HercSpecials[i].id+801) && session->Level()>=HercSpecials[i].level)HercAddChoiceNode(u,&list,slot,i,count);
  }return list;
  }
  for(int i=1;i<32;i++){
@@ -205,13 +205,13 @@ int HercFillItems(ActorUnit *u,int slot,SessionLevel *session,Choice *list,int c
  if(slot>=11 && slot<=18){
  for(int i=1;i<76;i++){
  
- if((HercWeapons[i].words[0]&mask) && f_0043d152(session,HercWeapons[i].id+651) && session->level>=HercWeapons[i].level)HercAddChoice(u,list,slot,i,&count,capacity);
+ if((mask&HercWeapons[i].words[0]) && f_0043d152(session,HercWeapons[i].id+651) && session->Level()>=HercWeapons[i].level)HercAddChoice(u,list,slot,i,&count,capacity);
  }return count;
  }
  if(slot>=19 && slot<=22){
  for(int i=1;i<35;i++){
  
- if((HercSpecials[i].words[0]&mask) && f_0043d152(session,HercSpecials[i].id+801) && session->level>=HercSpecials[i].level)HercAddChoice(u,list,slot,i,&count,capacity);
+ if((mask&HercSpecials[i].words[0]) && f_0043d152(session,HercSpecials[i].id+801) && session->Level()>=HercSpecials[i].level)HercAddChoice(u,list,slot,i,&count,capacity);
  }return count;
  }
  for(int i=1;i<32;i++){
@@ -221,5 +221,6 @@ int HercFillItems(ActorUnit *u,int slot,SessionLevel *session,Choice *list,int c
  }return count;
  }
 }
+
 
 

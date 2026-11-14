@@ -12,7 +12,7 @@ struct TileSprite { byte first, kind, reserved[3], stride; unsigned short animat
 struct TerrainDefinition { byte sprite, reserved[38]; };
 struct TerrainAnimation { byte first, pad[7], alternate, pad2[3], stride; };
 #pragma pack(pop)
-extern TileSprite TileSprites[65];
+struct FeatureType { byte base, type, unknown, defense, cover, stride; unsigned short animated; }; extern FeatureType featureTypes[];
 extern TerrainDefinition TerrainDefinitions[];
 extern TerrainAnimation TerrainFrames;
 extern byte TerrainOutlineColors[];
@@ -48,32 +48,29 @@ void TerrainDrawOverlay(int *view, uint location, int sprite, int type, int x, i
 {
     int selected = -1;
     if (type <= 64) {
-        TileSprite *def = TileSprites + type;
-        unsigned short animated=def->animated; unsigned int first=def->first;
-        if (def->kind < 5) {
-            switch (def->kind) {
-            case 1: {
-                int relative = sprite - first;
-                selected = ((6 - view[20] + relative / 3) % 6) * 3 + first + relative % 3;
-                if (frame && animated) selected += def->stride * (frame - 1) + animated - first;
-                break;
-            }
-            case 3: case 4:
-                selected = sprite;
-                if (frame && animated) selected += animated - first + def->stride * (frame - 1);
-                break;
-            default:
-                if (frame && animated) sprite += animated - first + def->stride * (frame - 1);
-                selected = sprite;
-                if (location & 2) {
-                    int half = view[26] / 2;
-                    x += half;
-                    if (def->kind == 2) DrawSprite(g513888, (ExploFrame *)TerrainFrame(sprite), x, y + view[26], 0, view[28], view[28]);
-                    else DrawSprite(g513888, (ExploFrame *)TerrainFrame(sprite), x, y + half, 0, view[28], view[28]);
-                    selected = -1;
-                }
-                break;
-            }
+        FeatureType *def = &featureTypes[type - 1];
+        switch (def->type) {
+        case 0: case 2: {
+            int image = sprite;
+            if (frame && def->animated) image = def->animated - def->base + def->stride * (frame - 1) + sprite;
+            if ((char)((int)(location & 2) >> 1)) {
+                int half = view[26] / 2;
+                x += half;
+                if (def->type == 2) DrawSprite(g513888, (ExploFrame *)TerrainFrame(image), x, y + view[26], 0, view[28], view[28]);
+                else DrawSprite(g513888, (ExploFrame *)TerrainFrame(image), x, y + half, 0, view[28], view[28]);
+            } else selected = image;
+            break;
+        }
+        case 3: case 4:
+            selected = sprite;
+            if (frame && def->animated) selected = def->animated - def->base + def->stride * (frame - 1) + sprite;
+            break;
+        case 1: {
+            int relative = sprite - def->base;
+            selected = def->base + ((6 + relative / 3 - view[20]) % 6) * 3 + relative % 3;
+            if (frame && def->animated) selected += def->animated - def->base + def->stride * (frame - 1);
+            break;
+        }
         }
     } else if (type == 66) {
         selected = sprite;
@@ -216,6 +213,8 @@ void TerrainDrawCliff(int *view, int location, DrawPoint *point, int level)
         } else f_00435700(TerrainFrame(sprite + 1), shade, x + view[26], y + view[29], height + y + view[29]);
     }
 }
+
+
 
 
 

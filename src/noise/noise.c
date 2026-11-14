@@ -63,7 +63,7 @@ void SoundFlush(int); void ShellSoundShutdown();
 static inline int SoundClamp(int value,int low,int high) {if(value<=low)return low;if(value>=high)return high;return value;}
 static inline void SoundPan(SoundBuffer *buffer,int pan){buffer->vtable->SetPan(buffer,pan*100);}
 static inline void SoundVolume(SoundBuffer *buffer,int volume){buffer->vtable->SetVolume(buffer,-(soundAttenuation[volume]*100));}
-static inline void SoundRate(SoundBuffer *buffer,int percent,int rate){buffer->vtable->SetFrequency(buffer,rate*percent/100);}
+static inline void SoundRate(SoundBuffer *buffer,int id,int percent){buffer->vtable->SetFrequency(buffer,soundFrequency[id]*percent/100);}
 
 int SoundInit() {
  if(soundEnabled) return 1;
@@ -215,7 +215,7 @@ int SoundSetSettings(int id,const SoundSettings *settings) {
  for(int i=0;i<32;i++,v++)if(v->id==id) {
   SoundPan(v->buffer,SoundClamp(settings->pan,-100,100));
   SoundVolume(v->buffer,SoundClamp(settings->volume,0,100));
-  SoundRate(v->buffer,settings->frequency,soundFrequency[id]);
+  int percent=settings->frequency;SoundRate(v->buffer,id,percent);
  }
  return 1;
 }

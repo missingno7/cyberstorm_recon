@@ -351,7 +351,7 @@ int FileExists(const char *path)
         // source-line padding before the line-354 ASSERT
         // source-line padding before the line-354 ASSERT
         // source-line padding before the line-354 ASSERT
-        AssertFail(fileSourcePath, __LINE__, (const char *)path);
+        AssertFail(fileSourcePath, __LINE__, 0);
     }
     if (path != 0) error = GetFileAttributesA(path) == 0xffffffffUL;
     return error == 0;

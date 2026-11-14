@@ -261,10 +261,11 @@ extern "C" int f_00441c2c(GameSession *s,unsigned index) {
     return s->hercCount;
 }
 extern "C" int f_00441ca7(GameSession *s,int value,int levels) {
-    if (levels < 1) return value;
-    int result = value;
-    if (levels > 1) result = f_00441ca7(s, value, levels - 1);
-    return result * 80 / 100;
+    if (levels >= 1) {
+        if (levels > 1) value = f_00441ca7(s, value, levels - 1);
+        value = value * 80 / 100;
+    }
+    return value;
 }
 
 extern "C" int f_00441ce1(GameSession *s,int index) {
@@ -332,9 +333,9 @@ extern "C" Choice *f_00442045(GameSession *s,int index,int slot,int *count) {
     if(index<0 || index>=s->hercCount)return 0;
     int max=76;
     memset(upgradeRows,0,sizeof(upgradeRows));
-    ActorUnit *unit=&s->hercs[index];
-    *count=HercFillItems(unit,slot,(SessionLevel *)s,upgradeRows,max);
+    *count=HercFillItems(&s->hercs[index],slot,(SessionLevel *)s,upgradeRows,max);
     if(!*count)return 0;
+    ActorUnit *unit=&s->hercs[index];
     ActorItem *item=PopFindItem(unit,slot);
     int cost;
     if(slot<11)cost=item->cost;
@@ -345,9 +346,14 @@ extern "C" Choice *f_00442045(GameSession *s,int index,int slot,int *count) {
     int remaining=cost-f_004394e0(unit,slot);
     if(remaining<0)remaining=0;
     for(int i=0; upgradeRows[i].item && i<max; ++i) {
-        item=upgradeRows[i].item;
-        upgradeRows[i].cost=(slot<11?item->cost:f_00441ca7(s,item->cost,(int)s->level-(int)item->level))-remaining;
-        if(i==0 && cost-f_004394e0(unit,slot)<0)upgradeRows[0].cost=f_004394e0(unit,slot);
+        Choice *row=&upgradeRows[i];
+        item=row->item;
+        if(slot<11)row->cost=item->cost-remaining;
+        else {
+            int levels=(int)s->level-(int)item->level;
+            row->cost=f_00441ca7(s,item->cost,levels)-remaining;
+        }
+        if(i==0 && cost-f_004394e0(unit,slot)<0)row->cost=f_004394e0(unit,slot);
     }
     f_00441ec5(s,upgradeRows,max);
     return upgradeRows;
@@ -407,13 +413,13 @@ extern "C" int f_004423d7(ActorUnit *unit,int level) {
 }
 extern "C" void f_004424d4(ActorRecord *actor) {
     if(!g494290 || playerCount<=2 || actor->id==gRemoteActorKind)return;
-    unsigned level=modeSwitch?gLaunchBudget:g4c978a;
+    unsigned level;
+    if(modeSwitch) level=gLaunchBudget; else level=g4c978a;
     if(g4d3551)level=14;
     int pilot=actor->pilot && ActorStateInvalid((ActorState *)actor->pilot,level);
     int unit=actor->unit && f_004423d7(actor->unit,level);
     if(pilot || unit) {
-        extern char reportWarning[];
-        f_00477295(BriefFormat(reportWarning,actor->id,(char *)GetModePlayer(modeCheckName,actor->id)+0x44,actor->unit,unit?"(QUESTIONABLE DATA)":"(looks fine)",actor->pilot,pilot?"(QUESTIONABLE DATA)":"(looks fine)"));
+        f_00477295(BriefFormat("WARNING: I detect a possible cheater in our midst.\nPlayer: (#%d) %s\nHerc name: %s %s\nPilot name: %s %s\n",actor->id,(char *)GetModePlayer(modeCheckName,actor->id)+0x44,actor->unit,unit?"(QUESTIONABLE DATA)":"(looks fine)",actor->pilot,pilot?"(QUESTIONABLE DATA)":"(looks fine)"));
     }
 }
 

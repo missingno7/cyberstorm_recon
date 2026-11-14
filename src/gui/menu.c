@@ -264,7 +264,7 @@ if(length<cursor||length>capacity)AssertFail(menuSourceFile,__LINE__,0);
             case 28:return 1;
             case 1:return 2;
             case 14:if(cursor>0) {
-                memmove(text+cursor-1,text+cursor,length-cursor+1);
+                memmove(&text[cursor-1],text+cursor,length-cursor+1);
                 --length;
                 --cursor;
                 changed=1;
@@ -287,7 +287,7 @@ if(length<cursor||length>capacity)AssertFail(menuSourceFile,__LINE__,0);
             }
             break;
             case 83:if((long)length>0&&cursor<length) {
-                memmove(text+cursor,text+cursor+1,length-cursor);
+                memmove(text+cursor,&text[cursor+1],length-cursor);
                 --length;
                 changed=1;
             }
@@ -296,13 +296,13 @@ if(length<cursor||length>capacity)AssertFail(menuSourceFile,__LINE__,0);
             break;
         }
     }
-    else if(c>=32&&c<=126&&length<capacity) {
+    else if(c>=(signed char)32&&c<=(signed char)126&&length<capacity) {
         long size=MenuTextWidth(gMenuFonts[2],text);
         size+=gMenuFonts[2]->data->widths[(unsigned char)c];
         if(size<width-2) {
             U32 next=length+1;
             if(gMenuInsert) {
-                memmove(text+cursor+1,text+cursor,length-cursor+1);
+                memmove(&text[cursor+1],text+cursor,length-cursor+1);
                 length=next;
             }
             else if(length==cursor)length=next;
@@ -446,10 +446,8 @@ void MenuImageLabel::Draw(unsigned index) {
         if(bevel)MenuBevel(&g513888,1,0,x,y,width,height);
         Clip();
         if(image) {
-            MenuImages *images=gMenuImages;
-            long n=image;
-            if(images&&n>=0&&(U32)n<images->count) {
-                MenuImage *p=&images->images[n];
+            if(gMenuImages&&image>=0&&(U32)image<gMenuImages->count) {
+                MenuImage *p=&gMenuImages->images[image];
                 long left=x+(width-p->width)*(alignX+1)/2;
                 long top=y+(height-p->height)*(alignY+1)/2;
                 MenuDrawImage(&g513888,p,left,top);
@@ -636,25 +634,25 @@ int MenuChat::Event(unsigned,U32) {
     U32 key=gIn80;
     U32 input=MenuInputChar();
     signed char c=(signed char)input;
-    U32 length=strlen(history),oldLength=length;
+    U32 length=strlen(gMenuHistory),oldLength=length;
     if(memchr(chatKeys,key,9)) {
         switch(key) {
             case 14:if(MenuControlKey()) {
                 memset(gMenuHistory,0,2048);
-                scrollStart=cursor=0;
+                cursor=scrollStart=0;
                 gMenuHistory[0]=26;
                 pending=1;
                 changed=1;
             }
             else if(cursor>0) {
-                memmove(history+cursor-1,history+cursor,oldLength-cursor+1);
+                memmove(&gMenuHistory[cursor-1],&gMenuHistory[cursor],oldLength-cursor+1);
                 --cursor;
                 if(cursor<scrollStart)scrollStart=cursor;
                 pending=1;
                 changed=1;
             }
             break;
-            case 71:cursor=scrollStart=0;
+            case 71:scrollStart=cursor=0;
             gMenuHistory[0]=' ';
             pending=1;
             changed=1;
@@ -664,16 +662,19 @@ int MenuChat::Event(unsigned,U32) {
             pending=1;
             break;
             case 83:if(cursor>0) {
-                memmove(history+cursor,history+cursor+1,oldLength-cursor);
+                memmove(&gMenuHistory[cursor],&gMenuHistory[cursor+1],oldLength-cursor);
                 changed=1;
                 pending=1;
             }
             break;
             case 82:gMenuChatInsert^=1;
             break;
+            case 28:
+            case 75:
+            break;
         }
     }
-    else if(!((input>=0&&input<=7)||(c>=9&&c<=31)||((int)c>=127&&(int)c<=144)||((int)c>=152&&(int)c<=182)||((int)c>=185&&(int)c<=190)||(int)c==197||(int)c==208||(int)c==215||(int)c==216||(int)c==222||(int)c==229||(int)c==247||(int)c==248||(int)c==254)) {
+    else if(!(((signed char)input>=0&&(signed char)input<=7)||(c>=9&&c<=31)||((int)c>=127&&(int)c<=144)||((int)c>=152&&(int)c<=182)||((int)c>=185&&(int)c<=190)||(int)c==197||(int)c==208||(int)c==215||(int)c==216||(int)c==222||(int)c==229||(int)c==247||(int)c==248||(int)c==254)) {
         U32 offset=cursor-scrollStart;
         if(offset>=visibleLength)++scrollStart;
         if(cursor>=2046) {
@@ -681,9 +682,9 @@ int MenuChat::Event(unsigned,U32) {
             cursor=2045;
             scrollStart=cursor-visibleLength+1;
         }
-        if(gMenuChatInsert)memmove(history+cursor+1,history+cursor,length-cursor+1);
+        if(gMenuChatInsert)memmove(&history[cursor+1],history+cursor,length-cursor+1);
         else if(cursor==length)++length;
-        history[cursor++]=c;
+        gMenuHistory[cursor++]=c;
         changed=1;
         pending=1;
     }

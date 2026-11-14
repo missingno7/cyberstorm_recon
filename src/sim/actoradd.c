@@ -27,7 +27,7 @@ extern "C" int ActorGetSeed(void *);
 extern "C" void ActorSetRandom(void *, int);
 extern "C" void ActorFinish(ActorRecord *, int, int, int, int, int);
 extern ActorRecord *ActorGetByIndex(int);
-extern ActorRecord *ActorListAdd(void *, void *, void *, int, int, int); extern void *ActorInstanceCreate(void *, void *); extern int ResolveActorName(const char *, int); extern int BestLocInitialize(void *, const char *, int); extern int BestLocSetCandidate(void *, void *); extern void BestLocVisit(void *, int (*)(void *)); extern int WorldActionCopyName(const void *, void *, void *); extern int WorldActorApply(void *, int, int, int, int); extern int WorldActionNotify(void *, int); extern int WorldActionStart(void *, int); extern unsigned int RandomUpdate(unsigned int *);
+extern ActorRecord *ActorListAdd(void *, void *, void *, int, int, int); extern int BestLocInitialize(void *, const char *, int); extern int BestLocSetCandidate(void *, void *); extern void BestLocVisit(void *, int (*)(void *)); struct AnimAction; struct SimGame; struct ActorUnit; struct PlayerSlot { char pad00[0xc]; int slot; char pad10[0xa4]; unsigned char color; }; extern PlayerSlot *GetModePlayer(SimGame *, int); extern char modeCheckName[]; inline int CellActor(int cell) { return actorIndexTable[cell * 2]; } extern int animationMetaAt0cbc[]; extern "C" int f_00439d02(ActorUnit *); extern void SimAddMission(ActorUnit *); extern "C" int ResolveName(const char *, int); extern "C" void TargetObjectInit(const char *, void *, int); extern void AnimActionInitialize(AnimAction *, int, int, int, int); extern void WorldActionNotify(AnimAction *, int); extern void AnimActionReplace(AnimAction *, unsigned long); extern "C" unsigned int next_link_seed(unsigned int *); extern unsigned int MissionRandomTable;
 
 #define ASSERT(e) if (!(e)) AssertFail(__FILE__, __LINE__, 0)
 
@@ -74,15 +74,12 @@ ActorRecord *ActorCreate(void *input, void *actorData, int c, int d)
 ActorRecord *ActorListAdd(void *input, void *a, void *b, int d, int e, int f)
 {
     ActorRecord *record;
-    int slot;
-    void *resource;
-    register void *ownerArgument = (void *)*(volatile void **)&input;
-    register int typeAddend = e;
-    register int typeArgument = *(volatile int *)&f;
+    PlayerSlot *player;
+    int slot, name;
     if (actorCount >= 400)
         return 0;
     slot = ++actorCount;
-    record = (ActorRecord *)ActorGetByIndex(slot);
+    record = ActorGetByIndex(slot);
 
 
 
@@ -90,8 +87,7 @@ ActorRecord *ActorListAdd(void *input, void *a, void *b, int d, int e, int f)
 
 
 
-
-    /* ASSERT_LINE_90 */ ASSERT(record != 0);
+    ASSERT(record);
     memset(record, 0, sizeof(ActorRecord));
     *(int *)(record->bytes + 4) = -1;
     record->bytes[0x87] = 0;
@@ -100,32 +96,31 @@ ActorRecord *ActorListAdd(void *input, void *a, void *b, int d, int e, int f)
     record->bytes[0x8b] = 1;
     record->bytes[0x8e] = (char)0xff;
     *(int *)(record->bytes + 0) = slot;
-    *(void **)(record->bytes + 8) = ownerArgument;
+    *(void **)(record->bytes + 8) = input;
     *(void **)(record->bytes + 0x18) = a;
     *(void **)(record->bytes + 0x1c) = b;
-    unsigned int randomValue = RandomUpdate((unsigned int *)0x51445c);
-    record->bytes[0x57] = (char)(randomValue % 100);
-    resource = ActorInstanceCreate(&actorSettings, input);
-    *(int *)((char *)resource + 0x0c) = slot;
-    if (typeArgument == 0)
-        typeArgument = SelectActorData(a);
-    int typeIndex = actorAddTypeTable[typeArgument * 15] + typeAddend - 1;
-    int nameIndex = ResolveActorName(fallbackName, d);
+    record->bytes[0x57] = next_link_seed(&MissionRandomTable) % 100;
+    player = GetModePlayer((SimGame *)modeCheckName, (int)input);
+    player->slot = slot;
+    if (f == 0) f = f_00439d02((ActorUnit *)a);
+    int typeIndex = animationMetaAt0cbc[f * 15] + e - 1;
+
+    SimAddMission((ActorUnit *)a);
+    name = ResolveName(fallbackName, d);
 
 
 
 
 
-    /* ASSERT_LINE_115 */ ASSERT(nameIndex != 0);
-    int chosen = nameIndex;
-    if (actorIndexTable[nameIndex * 2] != 0) {
-        actorContext = (int)(unsigned long)resource;
-        currentActor = 0;
+    ASSERT(name);
+    if (CellActor(name)) {
         BestLocBuffer search;
+        actorContext = typeIndex;
+        currentActor = 0;
         BestLocInitialize(&search, fallbackName, 0x20);
-        BestLocSetCandidate(&search, (void *)(unsigned long)nameIndex);
+        BestLocSetCandidate(&search, (void *)name);
         BestLocVisit(&search, ActorFindAndSet);
-        chosen = (int)(unsigned long)currentActor;
+        name = (int)currentActor;
 
 
 
@@ -141,15 +136,15 @@ ActorRecord *ActorListAdd(void *input, void *a, void *b, int d, int e, int f)
 
 
 
-        /* ASSERT_LINE_140 */ ASSERT(chosen != 0);
+
+        ASSERT(name);
     }
-    WorldActionCopyName(fallbackName, record->bytes + 0x32,
-                        (void *)(unsigned long)chosen);
-    WorldActorApply(record->bytes + 0x20, 1, typeArgument, 0x63, 0);
-    WorldActionNotify(record->bytes + 0x20, 1);
-    unsigned int fractional = RandomUpdate((unsigned int *)0x51445c) % 6;
-    *(int *)(record->bytes + 0x46) = fractional * 0x2aaaaabc;
-    WorldActionStart(record->bytes + 0x20, *(int *)record->bytes);
-    record->bytes[0x5a] = *((char *)resource + 0xb4);
+    TargetObjectInit(fallbackName, record->bytes + 0x32, name);
+    AnimActionInitialize((AnimAction *)(record->bytes + 0x20), 1, f, 0x63, 0);
+    WorldActionNotify((AnimAction *)(record->bytes + 0x20), 1);
+    *(int *)(record->bytes + 0x46) = next_link_seed(&MissionRandomTable) % 6 * 0x2aaaaabc;
+    AnimActionReplace((AnimAction *)(record->bytes + 0x20), *(int *)record->bytes);
+    record->bytes[0x5a] = player->color;
     return record;
 }
+

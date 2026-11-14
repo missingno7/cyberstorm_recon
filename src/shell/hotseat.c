@@ -333,7 +333,7 @@ active_screen:
 void f_004252a1(int param_1)
 {
     if (param_1 && ((GuiScreen*)param_1)->IsActive()) {
-        int old=*(int*)(param_1+0x12c0); int now=hotMapRange.GetValue(); *(int*)(param_1+0x12c0)=now; long changed=old!=now;
+        long changed=0; int old=*(int*)(param_1+0x12c0); int now=hotMapRange.GetValue(); *(int*)(param_1+0x12c0)=now; changed+=old!=now;
         old=*(int*)(param_1+0x12b0); now=hotRange1.GetValue()+1; *(int*)(param_1+0x12b0)=now; changed+=old!=now;
         old=*(int*)(param_1+0x12b8); now=hotRange3.GetValue(); *(int*)(param_1+0x12b8)=now; changed+=old!=now;
         old=*(int*)(param_1+0x12b4); now=hotRange2.GetValue(); *(int*)(param_1+0x12b4)=now; changed+=old!=now;
@@ -585,14 +585,11 @@ void f_00425815(int param_1, int param_2)
         *(char *)(param_2 + 0x1298 + param_1) = (char)iVar2;
     } while (local_30[iVar2] != 0);
     char replacement = (char)local_10;
-    for (int laterIndex = param_2; ++laterIndex < *(int *)(param_1 + 0x4c);) {
+    for (int laterIndex = param_2 + 1; laterIndex < *(int *)(param_1 + 0x4c); ++laterIndex) {
         if (*(signed char *)(param_1 + laterIndex + 0x1298) == iVar2)
             *(char *)(param_1 + laterIndex + 0x1298) = replacement;
     }
-    GuiResetClip(&gMenuClip);
-    for (iVar2 = 0; iVar2 < *(int *)(param_1 + 0x4c); ++iVar2) {
-        MenuDrawImage(&g513888, (const MenuImage*)((*(int *)(param_1 + 0x54) + 4 + (*(signed char *)(param_1 + iVar2 + 0x1298) + 0x19) * 0xc)), 0x87, iVar2 * 0x1a + 0x32);
-    }
+    f_004255bf(param_1);
 }
 
 void f_00425906(int param_1)
@@ -692,3 +689,4 @@ GuiControl *PTR_DAT_0048f1dc[]={
 };
 int DAT_0048f30c[]={20000,50000,100000,200000,400000,750000,1000000,3000000,7500000,15000000};
 short DAT_0048f334[]={30,45,60,90,120,180,240,300,480,600,900,1200,-1};
+

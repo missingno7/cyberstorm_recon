@@ -79,7 +79,7 @@ extern int gZoom,gGameTurn,drawFrame;
 extern ClipState simMainClip,simMainSaved,simDetailClip,simDetailSaved,drawDetailChanged;
 extern ClipState simSmallClip;
 extern ViewRect viewportClipLeft,gViewRect;
-extern int g5138ac;
+extern int g5138ac;inline int SurfaceWidth(){return g5138ac;}
 extern int actorCount,worldActionCount,exploCount;
 extern ActorRecord *actorTable;
 extern WorldAction *worldActions;
@@ -118,6 +118,8 @@ void PopDrawSurface(void *,int,int,int,int,int,int);
 void LogicDrawConsole(void *);
 void f_004517c0(SimGame *);
 inline void DrawColor(unsigned char *p) { f_00459640(p); }
+inline unsigned char ActionHidden(AnimAction *a) { return !(a->state == 17 ? simVisibleTypes : simActorVisibility)[a->target]; }
+inline int WorldHidden(int target) { return !simVisibleTypes[target]; }
 inline unsigned char Hidden(int target,int type) { return !(type == 17 ? simVisibleTypes : simActorVisibility)[target]; }
 
 inline void DrawActionBody(AnimAction *action)
@@ -152,14 +154,14 @@ void SimInvalidateActors(SimGame *game)
     int tick = game->tick/512;
     if (game->localTurn && game->focus) {
         GuiRect *rect = &game->focus->action.rect;
-        if (tick != drawPreviousTick || previousFocus.Moved(*rect)) {
+        if (tick != drawPreviousTick || rect->Moved(previousFocus)) {
             MenuSetClip(&simDetailClip.rect,previousFocus.x-5,previousFocus.y-5,previousFocus.width+10,previousFocus.height+10);
             MenuSetClip(&simDetailClip.rect,rect->x-5,rect->y-5,rect->width+10,rect->height+10);
             previousFocus = *rect;
         }
         if (game->target) {
             rect = &game->target->action.rect;
-            if (tick != drawPreviousTick || previousTarget.Moved(*rect)) {
+            if (tick != drawPreviousTick || rect->Moved(previousTarget)) {
                 MenuSetClip(&simDetailClip.rect,previousTarget.x-5,previousTarget.y-5,previousTarget.width+10,previousTarget.height+10);
                 MenuSetClip(&simDetailClip.rect,rect->x-5,rect->y-5,rect->width+10,rect->height+10);
                 previousTarget = *rect;
@@ -169,7 +171,7 @@ void SimInvalidateActors(SimGame *game)
     drawPreviousTick = tick;
     if (game->timed || game->timedExtra) {
         int left = SimHotReadTimer((char *)game);
-        if (left != game->remaining) MenuSetClip(&simDetailClip.rect,g5138ac-145,0,145,40);
+        if (left != game->remaining) MenuSetClip(&simDetailClip.rect,SurfaceWidth()-145,0,145,40);
         game->remaining = left;
     } else game->remaining = 0x7fffffff;
 }
@@ -189,14 +191,13 @@ void SimBuildDrawQueue(SimGame *game)
         if (!actor->hidden) {
             int hidden = 0;
             if (actor->owner != game->viewer) hidden = Hidden(action->target,action->state);
-            if (hidden) {
-                if (all || action->dirty) AnimActionUpdateTrajectory((int *)action,(int *)gView);
-            } else {
+            if (!hidden) {
                 int dirty = action->dirty;
                 if (all || dirty) {
-                    f_0047add0(&simDetailClip,&action->rect);
+                    GuiRect *rect = &action->rect;
+                    f_0047add0(&simDetailClip,rect);
                     AnimActionUpdateTrajectory((int *)action,(int *)gView);
-                    if (f_0047add0(&simDetailClip,&action->rect) || dirty) {
+                    if (f_0047add0(&simDetailClip,rect) || dirty) {
                         *out++ = (DrawEntry *)action;
                         ++drawQueueCount;
                     }
@@ -207,12 +208,12 @@ void SimBuildDrawQueue(SimGame *game)
                     *out++ = (DrawEntry *)action;
                     ++drawQueueCount;
                 }
-            }
+            } else if (all || action->dirty) AnimActionUpdateTrajectory((int *)action,(int *)gView);
         }
     }
     for (i=0; i<worldActionCount; ++i) {
         WorldAction *action = &worldActions[i];
-        if (simVisibleTypes[action->target]) {
+        if (!WorldHidden(action->target)) {
             if (all) AnimActionUpdateTrajectory((int *)action,(int *)gView);
             if (f_0047b170(&simMainClip,&action->rect)) {
                 *out++ = (DrawEntry *)action;
@@ -220,8 +221,8 @@ void SimBuildDrawQueue(SimGame *game)
             }
         }
     }
-    for (i=0; i<exploCount; ++i) {
-        ExploRecord *effect = &explos[i];
+    ExploRecord *effect = explos;
+    for (i=0; i<exploCount; ++i,++effect) {
         if (effect->type) {
             f_0047add0(&simDetailClip,&effect->rect);
             if (f_00460340(effect) && f_0047add0(&simDetailClip,&effect->rect)) {
@@ -246,11 +247,9 @@ void SimBuildDrawQueue(SimGame *game)
     } else drawCursorTarget = 0;
     SimInvalidateActors(game);
     f_0047ad90(&simMainClip,&simDetailClip);
-    ClipState *source = &simMainClip;
-    simSmallClip = *source;
+    simSmallClip = simMainClip;
     f_0047ad90(&simSmallClip,&simMainSaved);
-    source = &simDetailClip;
-    drawDetailChanged = *source;
+    drawDetailChanged = simDetailClip;
     f_0047ad90(&drawDetailChanged,&simDetailSaved);
 }
 
@@ -324,4 +323,5 @@ void SimDrawFrame(SimGame *game)
     ExploAnimateAll();
     viewportClipLeft = gViewRect;
 }
+
 

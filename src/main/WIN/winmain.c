@@ -1386,7 +1386,7 @@ int ApplySettings(char *commandLine)
     gWinConfig.resizable = gWinConfig.width;
     gWinConfig.f8 = gGameSettings.f2c;
     gWinConfig.f24 = gGameSettings.f28;
-    if (!gWinConfig.noMenuSize) gWinConfig.captionAdjust = gWinConfig.noMenuSize;
+    if (gWinConfig.noMenuSize == 0) gWinConfig.captionAdjust = 0;
     if (commandLine) strlwr(commandLine);
     return ok;
 }

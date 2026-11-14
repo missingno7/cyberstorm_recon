@@ -57,7 +57,7 @@ extern void ViewFlip(int);                                  // 0046cbdb
 struct Shell; extern void ShellLimitFrameRate(Shell *); extern char modeCheckName[];   // 004d2460 is the shell object
 extern FxDef *fxDefs[];                                     // 004a2c58
 extern int weaponSoundTable[];                              // 004a32e8
-extern int gLocalSpeed, gRemoteSpeed;                       // 004d3794, 004d3798
+extern int simLimit3, simLimit4;                       // 004d3794, 004d3798
 extern char g513888[];                                      // drawing surface
 extern ViewRect viewportClipLeft, gViewRect;                // 005138fc, 004d382c
 extern int gZoom;                                           // 004d3401
@@ -251,7 +251,7 @@ void FxBeam(World *world, FxPoint from, FxPoint to, Weapon *weapon, int flags, F
     gFxColors = (unsigned char *)boltColors[def->colorRow];
     gFxSegments = 0;
     gFxDef = 0;
-    int speed = target->src.owner->owner == world->localOwner ? gLocalSpeed : gRemoteSpeed;
+    int speed = target->src.owner->owner == world->localOwner ? simLimit3 : simLimit4;
     int steps = speed * def->jitterMin / 20 + 1;
     int count = def->count;
     FxPoint aim;
@@ -304,12 +304,12 @@ void FxBeam(World *world, FxPoint from, FxPoint to, Weapon *weapon, int flags, F
 
 
 
-
-
-
 inline int Distance2(FxPoint *a, FxPoint *b)
 {
-    return (b->x - a->x) * (b->x - a->x) + (b->y - a->y) * (b->y - a->y);
+    int d = a->x - b->x;
+    int sum = d * d;
+    d = a->y - b->y;
+    return sum + d * d;
 }
 
 void FxRail(World *world, FxPoint from, FxPoint to, Weapon *weapon, int flags, FxTarget *target, FxPoint *impact, int quiet)
@@ -320,9 +320,9 @@ void FxRail(World *world, FxPoint from, FxPoint to, Weapon *weapon, int flags, F
     gFxWidth = gFxWidth <= 1 ? 1 : gFxWidth >= 5 ? 5 : gFxWidth;
     gFxColors = (unsigned char *)boltColors[def->colorRow];
     gFxSegments = ISqrt(Distance2(&target->src.pos, &target->dst.pos)) / def->segmentLength + 2;
-    int speed = world->localOwner == target->src.owner->owner ? gLocalSpeed : gRemoteSpeed;
+    int speed = world->localOwner == target->src.owner->owner ? simLimit3 : simLimit4;
     int steps = speed * def->railSteps / 10 + 1;
-    signed char count=def->count;
+    int count=def->count;
     ASSERT(ExploStart(-3, target) != 0);
     for (int n = 0; n < count; n++) {
         if (n == 0 || def->repeatSound)
@@ -527,7 +527,7 @@ void FxFire(World *world, FxPoint from, FxPoint to, Weapon *weapon, int flags, F
     if (quiet == 0)
         WeaponRingHit(weapon, impact);
     int owner = target->src.owner ? target->src.owner->owner : 0;
-    int speed = owner == gLocalActorKind ? gLocalSpeed : gRemoteSpeed;
+    int speed = owner == gLocalActorKind ? simLimit3 : simLimit4;
     if (speed >= 10 && quiet == 0)
         WeaponHitMarks(weapon, impact, 0);
     ExploCompact();

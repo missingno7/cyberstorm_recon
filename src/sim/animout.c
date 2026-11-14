@@ -1,5 +1,5 @@
 static char animoutSourceFile[]=__FILE__;
-#include <string.h>
+extern "C" void *memset(void *, int, unsigned int); extern "C" void *memcpy(void *, const void *, unsigned int);
 
 extern volatile unsigned long animDrawState[10];
 extern int animDrawX0;
@@ -78,7 +78,7 @@ extern unsigned char gDebugText[];
 extern void *gDrawRemap;
 struct MenuImage;
 extern char g513888;
-extern MenuImage *MenuImageData(void *manager, const MenuImage *image);
+extern MenuImage *MenuImageData(void *manager, const MenuImage *image); extern void RenderImage(const MenuImage *, int, int, int, int, int);
 extern int animViewportX;
 extern int animViewportY;
 extern int animViewportWidth;
@@ -87,7 +87,7 @@ extern int ResolveName(unsigned long name, int *point);
 extern void f_0042c040(int *source, int *result, int *point, int target);
 extern void f_0047f114(int *bitmap, int x, int y, int a, int width, int height);
 
-struct DrawDefaults {
+struct DrawPoint { int x; int y; DrawPoint() {} DrawPoint(const DrawPoint &p) { x = p.x; y = p.y; } }; struct DrawDefaults {
     int values[12];
     DrawDefaults()
     {
@@ -106,10 +106,10 @@ struct DrawDefaults {
     }
 };
 
-void f_00459020(int *point, int phase)
+void f_00459020(DrawPoint point, int phase)
 {
     static DrawDefaults defaults;
-    int target = ResolveName((unsigned long)animFallbackName, point);
+    int target = ResolveName((unsigned long)animFallbackName, (int *)&point);
     if (target == 0)
         return;
 
@@ -118,8 +118,8 @@ void f_00459020(int *point, int phase)
     unsigned char oldType = targetEntry[1];
     int stepX = defaults.values[phaseOffset];
     int stepY = defaults.values[phaseOffset + 1];
-    point[0] += defaults.values[phaseOffset];
-    point[1] += stepY;
+    point.x += defaults.values[phaseOffset];
+    point.y += stepY;
 
     phaseOffset = ((g_004d3405 + 1) % 6) * 2;
     stepX = defaults.values[phaseOffset];
@@ -128,7 +128,7 @@ void f_00459020(int *point, int phase)
 
     int result[2];
     if ((phase - 1) == 0 && targetEntry[4]) {
-        f_0042c040(gView, result, point, target);
+        f_0042c040(gView, result, (int *)&point, target);
         result[1] -= gZoom / 8;
         if (result[1] < g_004d432c) {
             g_004d4328 = result[0];
@@ -138,17 +138,17 @@ void f_00459020(int *point, int phase)
 
     int scan = 0;
     do {
-        int next = ResolveName((unsigned long)animFallbackName, point);
+        int next = ResolveName((unsigned long)animFallbackName, (int *)&point);
         if (next != 0 && oldType < targetDefinitionTable[next * 12 + 1]) {
-            f_0042c040(gView, result, point, next);
+            f_0042c040(gView, result, (int *)&point, next);
             if (result[1] < g_004d432c) {
                 g_004d4328 = result[0];
                 g_004d432c = result[1];
             }
         }
-        point[0] += stepX;
+        point.x += stepX;
         ++scan;
-        point[1] += stepY;
+        point.y += stepY;
     } while (scan < 3);
 
     if (g_004d432c != 99999) {
@@ -195,48 +195,48 @@ void f_00459020(int *point, int phase)
 
 extern int *AnimBitmapFrame(void *action);
 
-struct DrawPoint { int x; int y; };
-struct BitmapHeader { int offset; int width; int height; };
 
-extern "C" void AnimDrawBitmap(int *bitmap, int *position)
+struct MenuImage { unsigned long offset; unsigned short width, height; unsigned char kind, compressed; char unknown0a[2]; };
+extern MenuImage animImageHeader;
+inline int AnimClearEnabled() { return (g_004d3690 & 1) != 0; }
+extern "C" void AnimDrawBitmap(MenuImage *image, DrawPoint *position)
 {
-    DrawPoint first;
-    DrawPoint second;
-    DrawPoint third;
-    if (bitmap != 0) {
-        if (*(unsigned char *)((char *)bitmap + 9))
-            bitmap = (int *)MenuImageData(&g513888, (const MenuImage *)bitmap);
-        unsigned char shouldClear = (unsigned char)(g_004d3690 & 1);
-        if (shouldClear) {
-            if (!*(unsigned char *)((char *)bitmap + 9)) {
-                ((int *)&g_004d42b0)[0] = ((int *)bitmap)[0]; ((int *)&g_004d42b0)[1] = ((int *)bitmap)[1]; ((int *)&g_004d42b0)[2] = ((int *)bitmap)[2];
-                unsigned long byteCount =
-                    (unsigned long)*(unsigned short *)((char *)bitmap + 4) *
-                    (unsigned long)*(unsigned short *)((char *)bitmap + 6);
-                memcpy(gDebugText,
-                       (unsigned int *)((char *)bitmap + g_004d42b0), byteCount);
-                bitmap = &g_004d42b0;
-                g_004d42b0 = 0x27694;
+    if (image != 0) {
+        if (image->compressed)
+            image = MenuImageData(&g513888, image);
+        if (AnimClearEnabled()) {
+            if (!image->compressed) {
+                animImageHeader = *image;
+                memcpy(gDebugText, (char *)image + animImageHeader.offset, image->width * image->height);
+                animImageHeader.offset = gDebugText - (unsigned char *)&animImageHeader;
+                image = &animImageHeader;
             }
-            animDrawBuffer = (unsigned char *)bitmap + bitmap[0];
-            animDrawWidth = *(unsigned short *)((char *)bitmap + 4);
-            animDrawRowLimit = *(unsigned short *)((char *)bitmap + 6);
+            animDrawBuffer = (unsigned char *)image + image->offset;
+            animDrawWidth = image->width;
+            animDrawRowLimit = image->height;
             g_004d4320 = gZoom;
             g_004d4324 = gZoom * 2;
-            first.x = position[0];
-            first.y = position[1];
-            f_00459020((int *)&first, 0);
-            second.x = position[0];
-            second.y = position[1];
-            f_00459020((int *)&second, 1);
-            third.x = position[0];
-            third.y = position[1];
-            f_00459020((int *)&third, 2);
+            
+            f_00459020(*position, 0);
+            
+            f_00459020(*position, 1);
+            
+            f_00459020(*position, 2);
         }
-        f_0047f114(bitmap, animViewportX, animViewportY, 0,
+        RenderImage(image, animViewportX, animViewportY, 0,
                    animViewportWidth, animViewportHeight);
     }
 }
+
+
+
+
+
+
+
+
+
+
 
 extern int viewportClipRight;
 extern int viewportClipBottom;
@@ -246,7 +246,7 @@ extern int animViewportX;
 extern int animViewportY;
 extern int animViewportWidth;
 extern int animViewportHeight;
-extern "C" void AnimDrawBitmap(int *bitmap, int *position);
+extern "C" void AnimDrawBitmap(MenuImage *image, DrawPoint *position);
 
 int AnimSetViewportRect(int *bitmap, int *position, int x, int y, int width, int height)
 {
@@ -263,7 +263,7 @@ int AnimSetViewportRect(int *bitmap, int *position, int x, int y, int width, int
     } else {
         positionCopy[0] = position[0];
         positionCopy[1] = position[1];
-        AnimDrawBitmap(bitmap, positionCopy);
+        AnimDrawBitmap((MenuImage *)bitmap, (DrawPoint *)positionCopy);
         result = 1;
     }
     return result;
@@ -285,7 +285,7 @@ extern void AnimActionInitialize(void *action, unsigned char type,
 extern void WorldActionNotify(void *action, unsigned char state);
 extern int AnimActionStep(unsigned char *action);
 extern int *AnimBitmapFrame(unsigned char *action);
-extern void f_00459020(int *point, int phase);
+extern void f_00459020(DrawPoint point, int phase);
 
 struct AnimDrawAction {
     AnimDrawAction();
@@ -325,7 +325,7 @@ void f_00459640(unsigned char *p)
         } else {
             mainPosition.x = *(int *)(p + 0x1a);
             mainPosition.y = *(int *)(p + 0x1e);
-            AnimDrawBitmap(bitmap, (int *)&mainPosition);
+            AnimDrawBitmap((MenuImage *)bitmap, (DrawPoint *)&mainPosition);
         }
         gDrawRemap = 0;
         if (p[5] == 0x11) {
@@ -348,22 +348,22 @@ void f_00459640(unsigned char *p)
                                 (animViewportWidth * 0x7000 >> 16);
                 firstPosition.x = *(int *)(p + 0x1a);
                 firstPosition.y = *(int *)(p + 0x1e);
-                AnimDrawBitmap(AnimBitmapFrame(actions[0].bytes),
-                               (int *)&firstPosition);
+                AnimDrawBitmap((MenuImage *)AnimBitmapFrame(actions[0].bytes),
+                               (DrawPoint *)&firstPosition);
                 animViewportX = *(int *)(p + 0x2a) -
                                 (animViewportWidth * 0x7000 >> 16);
                 animViewportY = *(int *)(p + 0x2e) - ((animViewportWidth << 15) >> 16);
                 secondPosition.x = *(int *)(p + 0x1a);
                 secondPosition.y = *(int *)(p + 0x1e);
-                AnimDrawBitmap(AnimBitmapFrame(actions[1].bytes),
-                               (int *)&secondPosition);
+                AnimDrawBitmap((MenuImage *)AnimBitmapFrame(actions[1].bytes),
+                               (DrawPoint *)&secondPosition);
                 int diagonal = animViewportWidth * 0x9000 >> 16;
                 animViewportX = *(int *)(p + 0x2a) - diagonal;
                 animViewportY = *(int *)(p + 0x2e) - diagonal;
                 thirdPosition.x = *(int *)(p + 0x1a);
                 thirdPosition.y = *(int *)(p + 0x1e);
-                AnimDrawBitmap(AnimBitmapFrame(actions[2].bytes),
-                               (int *)&thirdPosition);
+                AnimDrawBitmap((MenuImage *)AnimBitmapFrame(actions[2].bytes),
+                               (DrawPoint *)&thirdPosition);
             } else {
                 animViewportWidth = *(int *)(p + 0x43);
                 animViewportHeight = *(int *)(p + 0x47);
@@ -371,8 +371,8 @@ void f_00459640(unsigned char *p)
                 animViewportY = *(int *)(p + 0x3f);
                 fallbackPosition.x = *(int *)(p + 0x1a);
                 fallbackPosition.y = *(int *)(p + 0x1e);
-                AnimDrawBitmap(AnimBitmapFrame(actions[0].bytes),
-                               (int *)&fallbackPosition);
+                AnimDrawBitmap((MenuImage *)AnimBitmapFrame(actions[0].bytes),
+                               (DrawPoint *)&fallbackPosition);
             }
             AnimActionStep(actions[0].bytes);
             AnimActionStep(actions[1].bytes);
@@ -380,6 +380,7 @@ void f_00459640(unsigned char *p)
         }
     }
 }
+
 
 
 

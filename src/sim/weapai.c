@@ -41,7 +41,7 @@ extern unsigned char *simVisibleTypes;
 extern signed char WeaponEfficiency[], weaponMissionRanges[], weaponClassRanges[], weaponVisibleRanges[];
 extern int weaponActionDefense[];
 extern unsigned char weaponTerrainWeights[];
-extern Point weaponNeighborOffsets[];
+extern Point pathDirections[];
 extern TargetTriple *targetDefinitionTable;
 extern unsigned int MissionRandomTable;
 int weaponTerrainPenalty, weaponAreaOwner, weaponRingDamage, weaponAreaScore;
@@ -160,7 +160,7 @@ int WeaponStatus(Context *c,int index)
     }
     if (!modeSwitch && gRemoteActorKind == c->target.sourceActor->owner) {
         int kind=f_00439d02(c->target.sourceActor->unit); int visible=!IsTypeHidden(c->target.sourceActor->type);
-        int range=weaponClassRanges[kind]+weaponMissionRanges[gMissionKind]+weaponRangeBase;
+        int range=weaponMissionRanges[gMissionKind]+weaponClassRanges[kind]+weaponRangeBase;
         if (gMission==410) range+=2;
         if (gMission==418) range+=3;
         if (visible) range+=weaponVisibleRanges[kind];
@@ -504,7 +504,7 @@ int WeaponTerrain(int source,int target)
         int facing=GridClamp(PointAngle(&targetPoint,&sourcePoint));
         BestLocSetData(fallbackName,&targetGrid,(void *)target);
         unsigned int height=targetDefinitionTable[target].height;
-        Point *offset=weaponNeighborOffsets, *end=offset+6;
+        Point *offset=pathDirections, *end=offset+6;
         int weightIndex=facing*6;
         for (; offset!=end; ++offset,++weightIndex) {
             Point neighbor=targetGrid;
@@ -699,3 +699,5 @@ int WeaponChoose(Context *c,TargetRecord *target,int minimum,int checkEnabled)
     }
     return -1;
 }
+
+

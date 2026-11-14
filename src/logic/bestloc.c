@@ -211,36 +211,48 @@ int BestLocDispatch(int *actor, int setting, int limit)
     return bestLocIndex;
 }
 
-struct BestLocEntry { int type; int flags; int extra; int index; int payload[2]; };
+struct BestLocPoint { int x, y; };
+struct BestLocEntry { int type; BestLocPoint pos; int index; };
+struct LogicUnitRef { int id; };
+struct LogicActor { LogicUnitRef *unit; char pad04[0x64]; int nearRange, farRange; };   // + 0x68, + 0x6c
+struct TargetTriple { unsigned char kind, cost; char pad[10]; };                      // 12 bytes
+struct SearchWorkspace;
+extern int SearchGetCost(SearchWorkspace *, int);
+extern int ActorEnable(LogicActor *);
+extern "C" int LogicCopyPoint(void *, void *);
+extern int ActorNetStrengthAt(const char *);
+extern int *actorIndexTable;
+extern unsigned char *targetDefinitionTable;
+extern int logicWorldOffsetX;
+inline int ActorIndexUnit(int index) { return actorIndexTable[index * 2]; }
 
 int BestLocSubCandidate(BestLocEntry *entry)
 {
     int index = entry->index;
     if (index == 0)
         return 0;
-    int rank = BestLocFindEntry(bestLocEntries, index);
+    int rank = SearchGetCost((SearchWorkspace *)bestLocEntries, index);
     if (rank <= 0)
         return 0;
-    if (rank > ActorEnable(bestLocActor))
+    if (rank > ActorEnable((LogicActor *)bestLocActor))
         return 0;
-    int mapActor = bestLocLookup[index * 2];
+    int mapActor = actorIndexTable[index * 2];
     if (mapActor != 0) {
-        int actor = *(int *)bestLocActor;
-        if (actor != 0)
-            actor = *(int *)actor;
-        if (mapActor != actor)
+        LogicActor *actor = (LogicActor *)bestLocActor;
+        if (mapActor != (actor->unit ? actor->unit->id : 0))
             return 0;
     }
-    int score = BestLocDistance(entry->payload, (int *)bestLocOutput);
-    if (*(int *)((char *)bestLocActor + 0x6c) + 3 <= score)
-        score = BestLocMeasurement(entry->payload) + 1000;
-    int tie = -(int)bestLocMetrics[index * 12 + 1];
-    if (bestLocIndex == 0 || bestLocCurrentScore < score ||
-        (score == bestLocCurrentScore && bestLocCurrentTie < tie)) {
+    int score = LogicCopyPoint(&entry->pos, bestLocOutput);
+    if (score >= ((LogicActor *)bestLocActor)->farRange + 3)
+        score = ActorNetStrengthAt((const char *)&entry->pos) + 1000;
+    int tie = -targetDefinitionTable[index * 12 + 1];
+    if (bestLocIndex == 0 || score > bestLocCurrentScore ||
+        (score == bestLocCurrentScore && tie > bestLocCurrentTie)) {
+        bestLocIndex = index;
         bestLocCurrentScore = score;
         bestLocCurrentTie = tie;
-        bestLocIndex = index;
     }
+
     return 0;
 }
 
@@ -265,30 +277,29 @@ int BestLocBegin(void *actor, void *settings)
 
 int ScoreCandidate(void *value)
 {
-    int index = ((int *)value)[3];
+    int index = ((BestLocEntry *)value)->index;
     if (index == 0)
         return 0;
-    int rank = BestLocFindEntry(bestLocEntries, index);
+    int rank = SearchGetCost((SearchWorkspace *)bestLocEntries, index);
     if (rank <= 0)
         return 0;
-    if (rank > ActorEnable(bestLocActor))
+    if (rank > ActorEnable((LogicActor *)bestLocActor))
         return 0;
-    int mapActor = bestLocLookup[index * 2];
+    int mapActor = ActorIndexUnit(index);
     if (mapActor != 0) {
-        int actor = *(int *)bestLocActor;
-        if (actor != 0)
-            actor = *(int *)actor;
-        if (mapActor != actor)
+        LogicActor *actor = (LogicActor *)bestLocActor;
+        if (mapActor != (actor->unit ? actor->unit->id : 0))
             return 0;
     }
-    int score = BestLocDistance((int *)((char *)value + 4), (int *)bestLocScoreKey);
-    int tie = -(int)bestLocMetrics[index * 12 + 1];
-    if (bestLocIndex == 0 || bestLocCurrentScore < score ||
-        (score == bestLocCurrentScore && bestLocCurrentTie < tie)) {
+    int score = LogicCopyPoint(&((BestLocEntry *)value)->pos, &logicWorldOffsetX);
+    int tie = -targetDefinitionTable[index * 12 + 1];
+    if (bestLocIndex == 0 || score > bestLocCurrentScore ||
+        (score == bestLocCurrentScore && tie > bestLocCurrentTie)) {
+        bestLocIndex = index;
         bestLocCurrentScore = score;
         bestLocCurrentTie = tie;
-        bestLocIndex = index;
     }
+
     return 0;
 }
 
@@ -306,3 +317,5 @@ int BestLocRun(void *actor)
     }
     return bestLocIndex;
 }
+
+

@@ -66,15 +66,15 @@ int QueueReceive(char *object,MenuMessage *m) {
  int sequence=m->Sequence();
  if(sequence && !IsSystemMessage(m)) {
   int current; int peer=m->From(), directed=m->To();
-  PeerQueue *p=&((Transport*)object)->peers[peer]; int *received; if(directed) received=&p->received; else received=&p->unreliable;
+  PeerQueue *p=&((Transport*)object)->peers[peer]; int *received=directed?&p->received:&p->unreliable;
   if(!*received) *received=sequence-1;
   current=*received; if(sequence>current) {
    if(current+1==m->Sequence()) {
     MenuMessage *copy=new MenuMessage;
     *copy=*m; gReceiveQueue.Add(474,copy); ++*received;
-   } else { int type; if(directed) type=0x1004; else type=0x1005; int next=current+1; MenuMessage request(type,next,sequence,0); MenuSend(&request,peer); }
+   } else { int type=directed?0x1004:0x1005; MenuMessage request(type,current+1,sequence,0); MenuSend(&request,peer); }
   }
-  MessageAcknowledge(m,object);
+  if(directed) MessageAcknowledge(m,object);
  }
  return 1;
 }

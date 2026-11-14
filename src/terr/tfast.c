@@ -62,30 +62,27 @@ struct FastCell { unsigned char raw[12]; };
 struct TargetTriple { int x; int y; int z; }; extern TargetTriple *targetDefinitionTable;
 extern long GridColorLookup(FastPalette *, FastCoord *, unsigned long, int);
 
+struct Point { int x, y; };
+extern Point pathDirections[6];
+inline long FastNeighborCell(FastCoord *base, long direction) {
+    Point neighbor; Point *d = &pathDirections[direction];
+    neighbor.x = d->x; neighbor.y = d->y;
+    neighbor.x += base->x;
+    neighbor.y += base->y;
+    return ResolveName((const char *)&fallbackName, (const char *)&neighbor);
+}
 void FastBuffer::BuildFlags() {
-    long sourceOffset;
-    register FastItem *item = items + 1;
-    register long index = 1;
-    if (index < count) {
-        sourceOffset = 12;
-        do {
-            FastCoord base;
-            BestLocSetData(&fallbackName, &base, (void *)index);
-            unsigned long currentColor = ((unsigned char *)targetDefinitionTable)[sourceOffset + 1];
-            unsigned char flags = 0;
-            for (long side = 0; side < 6; ++side) {
-                long neighborSide = (this->current + side) % 6;
-                FastCoord neighbor;
-                neighbor.x = base.x + gGridOffsets[neighborSide].x;
-                neighbor.y = base.y + gGridOffsets[neighborSide].y;
-                long cell = ResolveName((const char *)&fallbackName, (const char *)&neighbor);
-                if (cell && ((unsigned char *)targetDefinitionTable)[cell * 12 + 1] < currentColor) flags |= (unsigned char)(1 << side);
-            }
-            item->raw[6] = flags;
-            ++item;
-            ++index;
-            sourceOffset += 12;
-        } while (index < count);
+    FastItem *item = items + 1;
+    for (long index = 1; index < count; index++, item++) {
+        FastCoord base;
+        BestLocSetData(&fallbackName, &base, (void *)index);
+        int currentColor = ((unsigned char *)&targetDefinitionTable[index])[1];
+        unsigned char flags = 0;
+        for (long side = 0; side < 6; ++side) {
+            long cell = FastNeighborCell(&base, (this->current + side) % 6);
+            if (cell && ((unsigned char *)targetDefinitionTable)[cell * 12 + 1] < currentColor) flags |= (unsigned char)(1 << side);
+        }
+        item->raw[6] = flags;
     }
 }
 
@@ -112,6 +109,9 @@ void FastBuffer::BuildPixels() {
 
 }
 
+void FastBufferEmpty(FastBuffer *) {
+}
+
 void FastBufferMakeCoords(FastBuffer *p) {
     register FastItem *item = p->items + 1;
     register long index = 1;
@@ -126,5 +126,7 @@ void FastBufferMakeCoords(FastBuffer *p) {
         ++item;
     } while (index < p->count);
 }
+
+
 
 

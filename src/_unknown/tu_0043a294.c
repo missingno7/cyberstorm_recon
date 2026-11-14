@@ -44,13 +44,15 @@ extern int UpdatePayload(void *,int=0);
 extern void SendEvent(void *,int,void * =0,int=0,int=0);
 extern void *UnitFogObject(ActorUnit *,int,void *);
 extern "C" unsigned next_link_seed(unsigned *);
-extern unsigned HercRandomSeed;
+struct SimRandomSeed {unsigned value;SimRandomSeed(){value=0x12345678;}};
+extern SimRandomSeed simItemSeed;
 extern int HercHitBias[];
 struct SixBytes { U8 bytes[6]; };
 extern SixBytes HercConditionColors[];
 extern unsigned long gSessionTable[];
 #define CLAMP(v,lo,hi) ((v)<=(lo)?(lo):((v)>=(hi)?(hi):(v)))
 int HercWeaponDamage(ActorUnit *,int,int);
+inline int Clamp(int v,int lo,int hi){if(v<=lo)return lo;if(v>=hi)return hi;return v;}
 int HercDamageAtRange(ActorUnit *,int);
 void HercBuildDamage(ActorUnit *);
 /* 0043a294 */
@@ -70,12 +72,12 @@ void HercAdvanceTurn(ActorUnit *u,void *actor){
  p=PopFindItem(u,6,-1);efficiency=HercItemEfficiency(u,6);
  u->slots[6].amount+=p->detail.words[1]*efficiency/100+u->slots[5].amount;
  u->slots[5].amount=generation;
- u->slots[6].amount=CLAMP(u->slots[6].amount,0,batteryMax);
+ u->slots[6].amount=Clamp(u->slots[6].amount,0,batteryMax);
  if(actor){p=PopFindItem(u,10,-1);efficiency=HercItemEfficiency(u,10);
  SendEvent(actor,122,(void *)((p->detail.words[1]*efficiency+50)/100),(p->detail.words[2]*efficiency+50)/100+HercSensorBase,(p->detail.words[3]*efficiency+50)/100);}
  char shield[56];p=(ActorItem *)UnitFogObject(u,7,shield);
- u->slots[7].amount+=p->detail.words[2];u->slots[7].amount=CLAMP(u->slots[7].amount,0,p->detail.words[1]);
- u->slots[5].amount-=HercPowerUse(u,1);u->slots[5].amount=CLAMP(u->slots[5].amount,0,0x7fffffff);
+ u->slots[7].amount+=p->detail.words[2];u->slots[7].amount=Clamp(u->slots[7].amount,0,p->detail.words[1]);
+ u->slots[5].amount-=HercPowerUse(u,1);u->slots[5].amount=Clamp(u->slots[5].amount,0,0x7fffffff);
  for(int i=0;i<8;i++)u->slots[i+11].active=0;
  for(i=0;i<4;i++){
  U8 *active=&u->slots[i+19].active;U8 old=*active;
@@ -205,17 +207,18 @@ int HercSelectHit(ActorUnit *u,int direction){
  HercAngleWeights(direction/0xb60b61,&a,&b,&x,&y);
  unsigned total=0;Chassis *c=(Chassis *)PopFindItem(u,0,-1);
  for(int i=0;i<23;i++){
- Mount *m=&c->mounts[i];
- if(!m->allowed || !u->slots[i].condition)thresholds[i]=0x7fffffff;
- else {int weight=m->weights[a]*x/100+m->weights[b]*y/100+HercHitBias[i];thresholds[i]=total;total+=weight;}
+ if(c->mounts[i].allowed && u->slots[i].condition){int weight=c->mounts[i].weights[a]*x/100;weight+=c->mounts[i].weights[b]*y/100;weight+=HercHitBias[i];thresholds[i]=total;total+=weight;}
+ else thresholds[i]=0x7fffffff;
  }
  if(!total)return 0;
- int random=next_link_seed(&HercRandomSeed)%total,selected=0;
+ int random=next_link_seed(&simItemSeed.value)%total,selected=0;
  for(i=0;i<23;i++)if(random>=thresholds[i])selected=i;
  int chance=c->mounts[selected].chance;
- if(chance){chance=chance*HercItemEfficiency(u,0)/100;if(next_link_seed(&HercRandomSeed)%100<chance)selected=0;}
+ if(chance){chance=chance*HercItemEfficiency(u,0)/100;if(next_link_seed(&simItemSeed.value)%100<chance)selected=0;}
  return selected;
 }
+
+
 
 
 

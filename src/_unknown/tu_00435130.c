@@ -12,37 +12,35 @@ struct SpanState {
 extern int viewportClipLeft,viewportClipTop,viewportClipRight,viewportClipBottom;
 extern U8 *gShellSurfacePixels;
 extern int *surfaceRowOffsets;
-extern int surfaceStride;
+extern "C" int surfaceRowStride;
 void RayWalk(RayPoint *,RayPoint *,void (*)(RayPoint *));
 void DrawScaledSpan(SpanState *);void DrawSpan16(SpanState *);
 void FillTerrainRows(U8 *,U8 *,int,int,int);
 void FillTerrainRowsClipped(U8 *,U8 *,int,int,int);
 void StoreTerrainEdge(RayPoint *point) {terrainSpan.left[point->y]=(U8)point->x;}
 void SetTerrainSpanSize(int size) {
+    
     if(size==terrainSpan.size) return;
     memset(&terrainSpan,0,0x11d4);
     terrainSpan.size=size;terrainSpan.doubleSize=size*2;
-    terrainSpan.tripleSize=size*3;terrainSpan.quadSize=size*4;
-    terrainSpan.magic=0x589ac;
+    terrainSpan.tripleSize=size*3;terrainSpan.magic=0x589ac;terrainSpan.quadSize=size*4;
     terrainSpan.draw=size==16 ? DrawSpan16 : DrawScaledSpan;
     int step=0x100000/size;
-    terrainSpan.step=step;terrainSpan.verticalStep=step;
-    terrainSpan.integerStep=(step&0xff0000)>>16;
-    terrainSpan.fractionStep=(step&0xffff)<<16;
-    RayPoint a,b;a.x=terrainSpan.size;a.y=0;b.x=0;b.y=terrainSpan.doubleSize;RayWalk(&a,&b,StoreTerrainEdge);
+    terrainSpan.integerStep=(step&0xff0000)>>16;terrainSpan.fractionStep=(step&0xffff)<<16;terrainSpan.verticalStep=step;terrainSpan.step=step;
+    RayPoint b,a;a.x=terrainSpan.size;a.y=0;b.x=0;b.y=terrainSpan.doubleSize;RayWalk(&a,&b,StoreTerrainEdge);
     for(int i=0;i<1000;++i) {
         terrainSpan.shrinkLeft[i]=0;terrainSpan.shrinkRight[i]=terrainSpan.size;
         terrainSpan.growLeft[i]=0;terrainSpan.growRight[i]=terrainSpan.size;
     }
     int j=1000-terrainSpan.doubleSize;
     for(i=0;i<terrainSpan.doubleSize;++i,++j) {
-        U8 left=terrainSpan.left[i];
+        int left=terrainSpan.left[i];
         int right=terrainSpan.quadSize-left-1;
+        int k=terrainSpan.quadSize-i-1;
         terrainSpan.right[i]=right;
-        terrainSpan.right[terrainSpan.quadSize-i-1]=right;
-        terrainSpan.left[terrainSpan.quadSize-i-1]=left;
-        terrainSpan.shrinkLeft[j]=terrainSpan.size-left;
-        terrainSpan.shrinkRight[i]=terrainSpan.size-left;
+        terrainSpan.right[k]=right;
+        terrainSpan.left[k]=left;
+        terrainSpan.shrinkRight[i]=terrainSpan.shrinkLeft[j]=terrainSpan.size-left;
         terrainSpan.growRight[j]=left;terrainSpan.growLeft[i]=left;
     }
 }
@@ -69,21 +67,21 @@ void DrawTerrainRows(int *image,int row,int x,int right,int top,int bottom) {
             terrainSpan.destination=destination+left;
             terrainSpan.source=pixels+((sourceRow&0xff0000)>>12);
             sourceRow+=terrainSpan.step;terrainSpan.draw(&terrainSpan);
-            destination+=surfaceStride;
+            destination+=surfaceRowStride;
         }
     } else {
         U8 *pixels=TERRAIN_PIXELS(image);
         U8 *destination=gShellSurfacePixels+surfaceRowOffsets[top];
-        int sourceRow=SOURCE_ROW(row);
+        row<<=16;
         for(int y=top;y<=bottom;++y) {
             int skip=*terrainSpan.rowLeft++;
             int left=skip+x;
             int end=*terrainSpan.rowRight+++x;
             terrainSpan.skip=skip;terrainSpan.width=end-left+1;
             terrainSpan.destination=destination+left;
-            terrainSpan.source=pixels+((sourceRow&0xff0000)>>12);
-            sourceRow+=terrainSpan.step;terrainSpan.draw(&terrainSpan);
-            destination+=surfaceStride;
+            terrainSpan.source=pixels+((row&0xff0000)>>12);
+            row+=terrainSpan.step;terrainSpan.draw(&terrainSpan);
+            destination+=surfaceRowStride;
         }
     }
 }
@@ -127,7 +125,7 @@ void DrawTerrainMiddle(int *image,int row,int x,int top,int bottom) {
         for(int y=top;y<=bottom;++y) {
             terrainSpan.source=pixels+((sourceRow&0xff0000)>>11);
             sourceRow+=terrainSpan.step;terrainSpan.draw(&terrainSpan);
-            terrainSpan.destination+=surfaceStride;
+            terrainSpan.destination+=surfaceRowStride;
         }
     }
 }

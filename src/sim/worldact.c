@@ -1,6 +1,6 @@
 typedef unsigned char u8;
 typedef unsigned int u32;
-struct WorldAction { WorldAction() { pad[0] = 0; } int &Duration() { return timer; } char pad[0x67]; int timer; char rest[4]; }; struct BestLocBuffer { char bytes[0x28]; };
+struct WorldAction { WorldAction() { pad[0] = 0; } int &Duration() { return timer; } char pad[0x12]; char position[0x10]; void *actor; int angle; char unknown2a[0x67-0x2a]; int timer; int active; }; struct BestLocBuffer { char bytes[0x28]; };
 
 extern int worldActionCount;
 extern WorldAction *worldActions;
@@ -13,15 +13,15 @@ extern void *worldActionData;
 extern "C" void AssertFail(const char *, int, const char *);
 extern "C" void *memset(void *, int, unsigned int);
 extern int BestLocInitialize(void *, const char *, int);
-extern int WorldActionCopyName(const void *, void *, void *);
+extern "C" void TargetObjectInit(const char *, char *, void *);
 extern "C" int ReadToken(void *, void *);
 extern "C" int ReadValue(void *, void *);
 extern "C" int ParseTokens(void *, int (*)(void *)); extern void BestLocVisit(void *, int (*)(void *));
 extern "C" int WorldActorClose(void *); extern const char fallbackName[];
 extern "C" int WorldActorSave(void *); extern int BestLocSetCandidate(void *, void *);
 extern "C" int WorldActorApply(void *, int, int, int, int);
-extern "C" int WorldActorSet(void *, int); extern unsigned int RandomUpdate(unsigned int *); extern int WorldActionStart(void *, int); int WorldActionCallback(void *);
-
+extern "C" int WorldActorSet(void *, int); extern "C" unsigned long next_link_seed(unsigned long *); extern unsigned long MissionRandomTable[]; extern int WorldActionStart(void *, int); int WorldActionCallback(void *);
+inline int WorldActionPlace(void *actor, int unit) { if (!actor) return 0; BestLocBuffer candidate; worldActionFlag = 1; BestLocInitialize(&candidate, fallbackName, unit); BestLocSetCandidate(&candidate, actor); BestLocVisit(&candidate, WorldActionCallback); return worldActionFlag; }
 #define ASSERT(e) if (!(e)) AssertFail(__FILE__, __LINE__, 0)
 
 int WorldActionInitialize()
@@ -56,35 +56,35 @@ int WorldActionShutdown()
 
 int WorldActionAdd(void *actor, int type, int duration)
 {
-    BestLocBuffer candidate;
-    int unit = worldActionTypeTable[type * 15] + 1;
-    if (actor != 0) {
-        worldActionFlag = 1;
-        BestLocInitialize(&candidate, fallbackName, unit);
-        BestLocSetCandidate(&candidate, actor);
-        BestLocVisit(&candidate, WorldActionCallback);
-    }
-    if (worldActionFlag == 0)
+    if (!WorldActionPlace(actor, worldActionTypeTable[type * 15] + 1))
         return 0;
     if (worldActionCount >= 250)
         return 0;
     int count = worldActionCount;
-    WorldAction *entry = worldActions + count;
-    register int newCount = count + 1;
-    worldActionCount = newCount;
-    memset(entry, 0, 0x6f);
-    WorldActionCopyName(fallbackName, (char *)entry + 0x12, actor);
-    unsigned int value = RandomUpdate((unsigned int *)0x51445c);
-    int fractional = (value % 6) * 0x2aaaaabc;
-    *(void **)((char *)entry + 0x22) = actor;
-    *(int *)((char *)entry + 0x26) = fractional;
-    WorldActorApply(entry, 1, *(volatile int *)&type, 0x63, 0);
+    WorldAction *entry = &worldActions[count]; worldActionCount = ++count;
+    memset(entry, 0, sizeof(WorldAction));
+    TargetObjectInit(fallbackName, entry->position, actor);
+    entry->actor = actor;
+    entry->angle = next_link_seed(MissionRandomTable) % 6 * 0x2aaaaabc;
+    WorldActorApply(entry, 1, type, 0x63, 0);
     WorldActionNotify(entry, 1);
-    WorldActionStart(entry, -newCount);
-    *(int *)((char *)entry + 0x6b) = 1;
-    *(int *)((char *)entry + 0x67) = duration;
+    WorldActionStart(entry, -count);
+    entry->active = 1;
+    entry->timer = duration;
     return 1;
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 int WorldActionUpdate(int actor, int elapsed)
 {
@@ -103,7 +103,7 @@ int WorldActionUpdate(int actor, int elapsed)
         return 1;
     *remaining = 0;
     if (oldValue != 0) {
-        *(int *)(entry->rest) = 1;
+        entry->active = 1;
         WorldActionNotify(entry, 0x11);
         WorldActionFinalize(entry);
     }
@@ -203,3 +203,4 @@ int WorldActionStop(void *actor)
 {
     return WorldActorClose(actor);
 }
+

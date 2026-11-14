@@ -19,7 +19,7 @@ inline int UnitScaledDamage(Unit *u, int damage, Weapon *w) { return PopFindItem
 void UnitDamageSplit(Unit *u, int range, register int damage, register Weapon *w, int &armor, int &body)
 {
     damage = UnitScaledDamage(u, damage, w);
-    int shield = w->armorDamage * damage / 100; int penetrate = w->penetrationDamage * damage / 100; int direct = w->directDamage * damage / 100;
+    int shield = w->armorDamage * damage / 100; int direct = w->directDamage * damage / 100; int penetrate = w->penetrationDamage * damage / 100;
 
 
     int overflow = w->overflow;
@@ -32,8 +32,8 @@ void UnitDamageSplit(Unit *u, int range, register int damage, register Weapon *w
 }
 int UnitDamage(Unit *u, int range, register int damage, register Weapon *w)
 {
-    damage = UnitScaledDamage(u, damage, w);
-    int shield = w->armorDamage * damage / 100; int penetrate = w->penetrationDamage * damage / 100; int direct = w->directDamage * damage / 100;
+    damage = PopFindItem((ActorUnit *)u, 7)->typeFactor[w->kind] * damage / 50;
+    int shield = w->armorDamage * damage / 100; int direct = w->directDamage * damage / 100; int penetrate = w->penetrationDamage * damage / 100;
 
 
     int overflow = w->overflow;

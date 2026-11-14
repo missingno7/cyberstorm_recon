@@ -6,7 +6,7 @@ extern "C" unsigned int next_link_seed(unsigned int *seed);
 extern unsigned int MissionRandomTable;                             // 0051445c random seed
 int RandomRange(unsigned int *seed, int low, int high);
 extern "C" char *BriefFormat(const char *format, ...);              // 0047d420 (vsprintf into a static buffer)
-struct ScriptPoint { long x, y; };
+struct Point { long x, y; }; struct ScriptPoint { long x, y; ScriptPoint() {} ScriptPoint(const ScriptPoint &p) { x = p.x; y = p.y; } void Add(Point *d) { x += d->x; y += d->y; } };
 #pragma pack(1)
 struct UnitInfo {                       // unit configuration record (0x2f bytes)
     char *name;                         // + 0x00 (0 ends a table)
@@ -67,7 +67,7 @@ extern "C" long ActorArrayGet(GenActor *actor, int index);
 int PopFindItem(void *unit, int part, int index = -1);             // 00438374 unit part record
 inline int GenFindPart(void *unit,int part) { return PopFindItem(unit,part); }
 struct ActorUnit; int HercDamageAtRange(ActorUnit *unit, int kind);                              // 0043a670
-extern ScriptPoint gHexDirection[6];
+extern Point pathDirections[6];
 extern long *actorIndexTable;
 struct AnimMeta { long radius; char pad[0x38]; };
 extern AnimMeta animationMetaAt0cbc[];
@@ -87,7 +87,7 @@ static signed char skillTable[18][3] = {
     {3, 3, 1}, {3, 3, 1}, {3, 3, 1}, {3, 3, 1},
     {4, 3, 1}, {0, 0, 0}, {4, 4, 2}, {5, 5, 2}
 };
-static signed char squadDirection[10] = {0, 0, 1, 3, 5, 0, 4, 2, 0, 0};
+static unsigned char squadDirection[10] = {0, 0, 1, 3, 5, 0, 4, 2, 0, 0};
 static long dropList[7];
 static GenAnchor anchors[30];
 
@@ -543,7 +543,7 @@ long LogicGenVehicle(void *list, int type, long budget, ScriptPoint *at)
     for (i = 1; i < count; i++) {
         int roll, kind, found;
         anchors[i].kind = -1;
-        roll = budget / 30 + next_link_seed(&MissionRandomTable) % 100;
+        int bias = budget / 30; roll = next_link_seed(&MissionRandomTable) % 100 + bias;
         if (roll < 30)
             kind = 5;
         else if (roll < 65)
@@ -563,9 +563,9 @@ long LogicGenVehicle(void *list, int type, long budget, ScriptPoint *at)
             p.x = at->x;
             p.y = at->y;
             for (j = 0; j < steps; j++) {
-                p.x += gHexDirection[squadDirection[i + 1]].x;
-                p.y += gHexDirection[squadDirection[i + 1]].y;
+                p.Add(&pathDirections[squadDirection[i + 1]]);
             }
+
             if (ResolveName(fallbackName, &p)) {
                 GenActor *actor = LogicGenSpawn(list, type, &budget, &p, kind, leader, found);
                 if (actor) {
@@ -582,44 +582,28 @@ long LogicGenVehicle(void *list, int type, long budget, ScriptPoint *at)
     budget += bonus;
     for (i = 1; i < count; i++) {
         int kind = 2;
-        unsigned int roll = next_link_seed(&MissionRandomTable) % 100;
+        int roll = next_link_seed(&MissionRandomTable) % 100;
         if (roll >= 50) {
             kind = 3;
             if (roll >= 75) kind = 4;
         }
         if (gLogic.campaign == 0x1a2) next_link_seed(&MissionRandomTable);
-        if (anchors[i].kind == -1) {
-            ScriptPoint p;
-            int j;
-            p.x = at->x;
-            p.y = at->y;
-            for (j = 0; j < radius; j++) {
-                p.x += gHexDirection[squadDirection[i + 1]].x;
-                p.y += gHexDirection[squadDirection[i + 1]].y;
-            }
-            if (ResolveName(fallbackName, &p) && next_link_seed(&MissionRandomTable) % 100 < 75) {
-                GenActor *actor = LogicGenSpawn(list, type, &budget, &p, kind, leader, -1);
-                if (actor) {
-                    leader = actor;
-                    actor->angle = (6 - squadDirection[i + 2]) * 0x2aaaaabc;
-                }
-            }
-        } else {
+        if (anchors[i].kind != -1) {
             int direction = squadDirection[i + 1];
             long size = anchors[i].radius;
             int turn;
             for (turn = -1; turn <= 1; turn++) {
                 int d = direction + turn;
-                ScriptPoint p;
                 int j, cell;
                 if (d < 0) d += 6;
                 else if (d >= 6) d -= 6;
-                p.x = anchors[i].at.x;
-                p.y = anchors[i].at.y;
+                ScriptPoint p = anchors[i].at;
+
+
                 for (j = 0; j <= size; j++) {
-                    p.x += gHexDirection[d].x;
-                    p.y += gHexDirection[d].y;
+                    p.Add(&pathDirections[d]);
                 }
+
                 cell = ResolveName(fallbackName, &p);
                 if (cell && !actorIndexTable[cell * 2] && next_link_seed(&MissionRandomTable) % 100 < 75) {
                     GenActor *actor = LogicGenSpawn(list, type, &budget, &p, kind, leader, -1);
@@ -627,6 +611,22 @@ long LogicGenVehicle(void *list, int type, long budget, ScriptPoint *at)
                         leader = actor;
                         actor->angle = (6 - d) * 0x2aaaaabc;
                     }
+                }
+            }
+        } else {
+            ScriptPoint p;
+            int j;
+            p.x = at->x;
+            p.y = at->y;
+            for (j = 0; j < radius; j++) {
+                p.Add(&pathDirections[squadDirection[i + 1]]);
+            }
+
+            if (ResolveName(fallbackName, &p) && next_link_seed(&MissionRandomTable) % 100 < 75) {
+                GenActor *actor = LogicGenSpawn(list, type, &budget, &p, kind, leader, -1);
+                if (actor) {
+                    leader = actor;
+                    actor->angle = (6 - squadDirection[i + 2]) * 0x2aaaaabc;
                 }
             }
         }
@@ -820,4 +820,3 @@ void LogicDeleteActorFromList(void *list, GenRecord *rec)
     ActorArraySet(actor, 7, 0);
     LogicGenSetup(actor);
 }
-

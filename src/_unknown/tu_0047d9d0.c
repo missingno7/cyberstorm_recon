@@ -19,14 +19,13 @@ extern "C" unsigned int InterpolateColor(unsigned int a, unsigned int b, unsigne
 extern "C" void PaletteGradient(Palette *p, unsigned int first, unsigned int count)
 {
     if (count < 2) return;
-    Color b, a;
+    Color a, b;
     PaletteGet(p, &a, first);
     PaletteGet(p, &b, first + count - 1);
-    Color *entry = p->colors + first;
-    for (unsigned int i = 0; i < count; ++i, ++entry) {
-        entry->blue = InterpolateColor(a.blue, b.blue, i, count-1);
-        entry->green = InterpolateColor(a.green, b.green, i, count-1);
-        entry->red = InterpolateColor(a.red, b.red, i, count-1);
+    for (unsigned int i = 0; i < count; ++i) {
+        p->colors[first + i].blue = InterpolateColor(a.blue, b.blue, i, count-1);
+        p->colors[first + i].green = InterpolateColor(a.green, b.green, i, count-1);
+        p->colors[first + i].red = InterpolateColor(a.red, b.red, i, count-1);
     }
 }
 
@@ -58,6 +57,7 @@ extern "C" int ColorDistance(Palette *p, const Color *a, const Color *b)
 #define SQUARE(x) ((x)*(x))
     return SQUARE(((int)a->green-b->green)/4)*6 + SQUARE(((int)a->blue-b->blue)/4)*3 + SQUARE(((int)a->red-b->red)/4);
 }
+
 
 
 

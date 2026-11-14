@@ -83,12 +83,12 @@ extern void f_0044579c(int,int),SimHercSelect(PopHerc *,ActorRecord *);
 extern "C" void f_d2c0(void *);
 void PilotSetState(SimGame *s,int mode) {
  if(!s->linked && mode!=7 && mode!=8 && mode!=9)mode=7;
- int old=s->selectedMode;
- if(mode!=old) {
-  s->previousMode=old;SimClosePopups(s);
+ if(mode!=s->selectedMode) {
+  s->previousMode=s->selectedMode;
+  SimClosePopups(s);
   s->worldOpen=1;s->selectedMode=mode;s->screen|=8;
   if(mode!=6 && mode!=5) {
-   GridPoint point(0,167);int previous=s->previousMode;if(previous==7){GuiResetClip(&gMenuClip);point.y=139;}
+   int previous=s->previousMode;GridPoint point(0,167);if(previous==7){GuiResetClip(&gMenuClip);point.y=139;}
    viewportClipLeft=g4d381c;
    PopDrawSurface(&g513888,1,0,point.x,point.y,148,g5138b0-point.y);SimAlertSetValue(&g4d4094,s->selectedMode);
   }
@@ -145,7 +145,7 @@ extern ActorRecord *ActorFindFree(),*ActorFindNext(ActorRecord *);
 extern void AnimActionReplace(void *,int),GuiFilterPalette(void *,int),SimHotResizeFogBuffers(),SimHotReleaseFogBuffers();
 extern void ResetMultiplayerInput(),create_chat_menu(void *),destroy_chat_menu(void *);
 extern char simChatMenu;extern int g4faf44;
-struct SimColorProfile {int foreground;unsigned char unknown04[20];int background;unsigned char rest[0x58-28];};extern SimColorProfile simColorProfiles[];extern int simColorProfile;
+extern short mainSelectedMission;extern unsigned long missionScripts[][22];
 extern int simWorldBackground,simWorldForeground;
 extern void SimGameLoadMissions(SimGame *),SigsStart(void *,int),SurfacePresent(void *),ReleasePoolData(void *),LogicTextBegin(void *),GridDestroy(TerrainGrid *),FastBufferDestroy(FastBuffer *),FogRelease(FogBuffer *),HotbriefEmpty(void *),ReportAnimClose(SimAnim *),TerrainReleaseImage();
 extern int AnimBitmapSweep(int,int,int,int,int);
@@ -560,9 +560,8 @@ void SimGame::Open() {
   ShellRestore(this);
   gShellMiniStrings.Unlock();gShellParaStrings.Unlock();SetPointer(&gShellMiniStrings,"miniSim.bin");SetPointer(&gShellParaStrings,"paraSim.bin");gShellMiniStrings.Unlock();gShellMiniStrings.Lock();BriefWaitB(28);targetBriefResource.Lock();
   GridInitialize(&fallbackName,1000,31);FastBufferCreate(&g4d35e4,fallbackName.Count());g4d35f4.Resize();SimBestLocOpen(bestLocEntries);simFogSource=&g4d35f4;SimFastSetFog(&gFastTransform,&g4d35f4);bestLocCursor=0;bestLocCount=0;
-  view.point=GridPoint(0,0);view.zoom=9;view.direction=0;view.requested=-17;view.spare=100;view.flags=view.requested;
-  ViewState *end=bookmarks;ViewState *bookmark=end;end+=13;
-  for(;bookmark!=end;++bookmark)*bookmark=view;
+  view.point=GridPoint(0,0);view.zoom=9;view.direction=0;view.requested=-17;view.flags=view.requested;view.spare=100;
+  for(int i=0;i<13;i++)bookmarks[i]=view;
   ActorListConstruct();WorldActionInitialize();ExploInit();SimAlertOpen(&g4d4094,&input);TargetMapAlert(&targetPrompt5,&input);
   selectedMode=0;savedMode=1;worldOpen=1;screen=-1;pending=0;unknown28=0;playerCount=0;
   if(mode==8)multi=1;
@@ -574,7 +573,7 @@ void SimGame::Open() {
   GuiFilterPalette(gShellBackground,5);ResetMultiplayerInput();if(multi){create_chat_menu(&simChatMenu);g4faf44=1;}
   SimSetMenuState(this,1);FastBufferReset(&g4d35e4);SimSetMode(this,0);SimSetView(this,0);
   if(extraSaved)SimHotResizeFogBuffers();
-  simWorldBackground=simColorProfiles[simColorProfile].background;simWorldForeground=simColorProfiles[simColorProfile].foreground;
+  const unsigned long *mission=missionScripts[mainSelectedMission];simWorldBackground=mission[13];simWorldForeground=mission[7];
   if(extraSaved){simWorldBackground=9;simWorldForeground=0;}
  }
 }
@@ -590,6 +589,7 @@ void SimGame::Close(int reason) {
  }
 }
 inline ViewState::ViewState() {}
+
 
 
 

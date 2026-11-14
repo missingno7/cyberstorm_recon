@@ -138,14 +138,14 @@ void SimRefreshPanel(SimGame *s,int force) {
   }
  }
 }
+inline long PointDistance(const GridPoint *a,const GridPoint *b){long dx=a->x-b->x;dx*=dx;long dy=a->y-b->y;dy*=dy;dx+=dy;return ISqrt(dx);}
 void SimApplyLeadership(SimGame *s,ActorRecord *target) {
  char text[128]; int total=0;
- ActorRecord *a=ActorFindByOwner(s->mode);const GridPoint *point=&target->position;while(a){long dx=a->position.x-point->x,dy=a->position.y-point->y;
-  int distance=(int)(ISqrt(dx*dx+dy*dy)+100)/1000;
-  int value=PilotValue(a->pilot,7);if(distance>2)value-=(distance-2)*10;if(value>0)total+=value/2; a=ActorFindOwnerNext(a,s->mode);}
+ for(ActorRecord *a=ActorFindByOwner(s->mode);a;a=ActorFindOwnerNext(a,s->mode)){
+  int distance=(int)(PointDistance(&a->position,&target->position)+100)/1000;
+  int value=PilotValue(a->pilot,7);if(distance>2)value-=(distance-2)*10;if(value>0)total+=value/2;}
  unsigned before=PilotValue(target->pilot,204);
- SendEvent(target->pilot,108,(void *)total,0,0);
- unsigned after=PilotValue(target->pilot,204);
+ SendEvent(target->pilot,108,(void *)total,0,0); unsigned after=PilotValue(target->pilot,204);
  if(before!=after && s->linked) {sprintf(text,targetBriefResource.GetString(1204),target->pilot); SimMessage(s,text);}
 }
 

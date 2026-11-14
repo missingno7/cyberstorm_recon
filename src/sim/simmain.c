@@ -264,8 +264,8 @@ void SimHoverActor(SimGame *s,int unit,int cursor) {
   if(actor) {
    if(actor->id==s->focus->id)cursor=1;
    else if(actor->owner==s->mode)cursor=4;
-   else if(s->lastTarget==actor->id && s->selectedMode==2)cursor=9;
-   else cursor=7;
+   else if(s->lastTarget!=actor->id || s->selectedMode!=2)cursor=7;
+   else cursor=9;
   }
   if(alt && actor!=s->focus)cursor=7;
  } else cursor=3;
@@ -277,10 +277,10 @@ void SimHoverActor(SimGame *s,int unit,int cursor) {
   LogicTextMark(g4dd0c0);
   switch(cursor) {
   case 4:SimSetFocus(s,actor);SoundPlay(4,0);break;
-  case 5:SimTargetAction(s,unit);if(!shift)break;
-  case 6:SimPrepareAction(s,unit);break;
   case 7:SimSelectTarget(s,unit);break;
   case 9:SimRandomFire(s,-1,1);break;
+  case 5:SimTargetAction(s,unit);if(!shift)break;
+  case 6:SimPrepareAction(s,unit);break;
   }
  }
  if(s->input.Down(32) && GameTimerExpired(&timer)) {
@@ -334,5 +334,6 @@ if(s->action>0 && s->action==s->focus->target)SimPreviewCost(s,s->actionCost,1);
  LogicDispatchIntel((unsigned char *)g4dd0c0);
  if(s->extraSaved) {int owner=SimHotChooseHotseatOwner(s);if(owner){HotbriefMainLoop(s,owner);SimDelayPhase(s);s->deadline=s->tick;g4d35f4.Initialize(5,1);}}
 }
+
 
 

@@ -5,46 +5,46 @@ struct ActorRecord;
 struct ExploActor;
 struct ExploPoint { int x, y; };
 struct ExploRecord { char beforeFrameStep[11]; unsigned char frameStep, delay; };
-struct FxBurstDef { signed char kind, minCount, maxCount, minValue, maxValue, minDelay, maxDelay; unsigned char noRepeat : 1; unsigned char spareFlags : 7; };
+struct FxBurstDef { signed char kind, minCount, maxCount, minValue, maxValue, minDelay, maxDelay; unsigned char flags; };
 struct FxHitDef { FxBurstDef *smoke, *blast; signed char smokeScale, blastScale, at0a, extra; };
 #pragma pack()
 static char exptblSourceFile[]=__FILE__;
 FxBurstDef fxBurstDefinitions[]={
-    {1,1,1,90,110,0,0,0,0},
-    {2,1,1,90,110,0,0,0,0},
-    {3,1,1,90,110,0,0,0,0},
-    {4,1,1,90,110,0,0,0,0},
-    {10,1,1,90,110,0,0,0,0},
-    {5,1,1,90,110,0,0,0,0},
-    {12,1,1,90,110,0,0,0,0},
-    {4,3,3,90,110,0,5,0,0},
-    {4,3,8,25,35,0,20,0,0},
-    {11,10,15,90,100,0,20,0,0},
-    {9,1,1,90,110,0,0,0,0},
-    {15,1,1,90,110,0,0,0,0},
-    {16,1,1,90,110,0,0,0,0},
-    {17,1,1,90,110,0,0,0,0},
-    {18,1,1,90,110,0,0,0,0},
-    {19,1,1,90,110,0,0,0,0},
-    {20,1,1,90,110,0,0,0,0},
-    {11,1,1,90,110,0,0,0,0},
-    {12,1,1,90,110,0,0,0,0},
-    {23,0,2,90,110,0,8,0,0},
-    {23,0,4,90,110,0,15,0,0},
-    {13,1,1,90,110,0,0,1,0},
-    {14,1,1,90,110,0,0,1,0},
-    {6,1,1,90,110,0,6,0,0},
+    {1,1,1,90,110,0,0,0},
+    {2,1,1,90,110,0,0,0},
+    {3,1,1,90,110,0,0,0},
+    {4,1,1,90,110,0,0,0},
+    {10,1,1,90,110,0,0,0},
+    {5,1,1,90,110,0,0,0},
+    {12,1,1,90,110,0,0,0},
+    {4,3,3,90,110,0,5,0},
+    {4,3,8,25,35,0,20,0},
+    {11,10,15,90,100,0,20,0},
+    {9,1,1,90,110,0,0,0},
+    {15,1,1,90,110,0,0,0},
+    {16,1,1,90,110,0,0,0},
+    {17,1,1,90,110,0,0,0},
+    {18,1,1,90,110,0,0,0},
+    {19,1,1,90,110,0,0,0},
+    {20,1,1,90,110,0,0,0},
+    {11,1,1,90,110,0,0,0},
+    {12,1,1,90,110,0,0,0},
+    {23,0,2,90,110,0,8,0},
+    {23,0,4,90,110,0,15,0},
+    {13,1,1,90,110,0,0,1},
+    {14,1,1,90,110,0,0,1},
+    {6,1,1,90,110,0,6,0},
 };
 FxBurstDef fxExtraDefinitions[]={
-    {0,0,0,0,0,0,0,0,0},
-    {26,1,1,10,20,4,4,0,0},
-    {26,1,1,20,30,3,3,0,0},
-    {26,1,1,30,50,2,2,0,0},
-    {26,1,1,50,80,1,1,0,0},
-    {26,1,1,80,115,1,1,0,0},
-    {24,1,1,30,45,2,2,0,0},
-    {24,1,1,50,65,1,1,0,0},
-    {24,1,1,70,85,1,1,0,0},
+    {0,0,0,0,0,0,0,0},
+    {26,1,1,10,20,4,4,0},
+    {26,1,1,20,30,3,3,0},
+    {26,1,1,30,50,2,2,0},
+    {26,1,1,50,80,1,1,0},
+    {26,1,1,80,115,1,1,0},
+    {24,1,1,30,45,2,2,0},
+    {24,1,1,50,65,1,1,0},
+    {24,1,1,70,85,1,1,0},
 };
 FxHitDef fxHitDefinitions[]={
     {0,0,100,100,0,0},
@@ -168,7 +168,7 @@ void FxBlast(WeaponInfo *weapon, ExploPoint *position, int actor, int repeated)
     if (definition->blast == 0 || !definition->blastScale)
         return;
     FxBurstDef *effect = definition->blast;
-    if ((effect->noRepeat) && repeated != 0)
+    if (((unsigned)effect->flags & 1) && repeated != 0)
         return;
     int count = RandomRange(&gFxSeed, effect->minCount, effect->maxCount);
     int spread = 700;
@@ -178,7 +178,7 @@ void FxBlast(WeaponInfo *weapon, ExploPoint *position, int actor, int repeated)
     }
     if (effect->minCount == 1 && effect->maxCount == 1 && repeated == 0)
         spread = 100;
-    if (effect->noRepeat)
+    if ((unsigned)effect->flags & 1)
         spread = 0;
     unsigned int previousSeed = gFxSeed; gFxSeed = TimeNow() + previousSeed;
     int limit = fxAlternateLimit ? simLimit3 : simLimit4;

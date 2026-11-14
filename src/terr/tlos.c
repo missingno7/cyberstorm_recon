@@ -71,19 +71,17 @@ void RayWalk(RayPoint *from, RayPoint *to, void (*visit)(RayPoint *))
 
 void RayCollect(RayPoint *point)
 {
-    int direction = 0;
-    RayPoint *delta=pathDirections; while (RayCount<100) {
+    for (int direction = 0; RayCount < 100; ++direction) {
         if (direction > 6) return;
         RayPoint candidate; candidate.x = point->x; candidate.y = point->y;
         if (candidate.x & 1) candidate.y |= 1; else candidate.y &= ~1;
-        if (direction < 6) { candidate.x += delta->x; candidate.y += delta->y; }
+        if (direction < 6) { RayPoint *delta = &pathDirections[direction]; candidate.x += delta->x; candidate.y += delta->y; }
         int location = ResolveName((const char *)RayGrid, (const char *)&candidate);
         if (location) {
             int i;
             for (i = 0; i < RayCount; ++i) if (RayLocations[i] == location) break;
-            if (i == RayCount) { RayLocations[RayCount] = location; ++RayCount; }
+            if (i == RayCount) RayLocations[RayCount++] = location;
         }
-        ++delta; ++direction;
     }
 }
 
@@ -178,6 +176,7 @@ void RayDrawSamples(void *, int x, int y, int step)
         y += step;
     }
 }
+
 
 
 

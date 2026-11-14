@@ -32,7 +32,7 @@ int TerrainBlendHeight(Visit *v)
 {
     int index=v->index;
     if(index) {
-        TerrainGrid *grid=v->grid; Cell *cell=&grid->cells[index];
+        TerrainGrid *grid=v->grid; Cell *cell=grid->CellAt(index);
         if(cell->height!=heightTarget) {
             int distance=LogicCopyPoint(&heightCenter,&v->point);
             int strength=heightStrength;

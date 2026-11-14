@@ -83,7 +83,9 @@ int FogSetValue(FogBuffer *p, long index, int value) { register long v; if (p->m
 struct TerrainGrid { long fields[17]; void *cells; void *neighbors; };
 struct GridPoint { long x; long y; };
 struct FogCellRecord { unsigned char raw[12]; };
-struct FogObject { unsigned char raw[0x90]; };
+#pragma pack(push, 1)
+struct FogObject { char pad00[8]; long owner; char pad0c[0x13]; long range; long scale; char pad27[0x1b]; long index; char pad46[0x42]; signed char visible; char pad89[7]; };
+#pragma pack(pop)
 struct FogCastGlobals { FogObject *owner; FogBuffer *active; union { long flagsWord; unsigned char flags; }; long index; GridPoint source; GridPoint target; signed char mask[64]; long limit; };
 extern FogCastGlobals gFogCast;
 extern unsigned char *gTerrainCellData;
@@ -125,7 +127,7 @@ int FogUpdateCell(void *argument) {
             } else {
                 long objectId = ((long *)(*(TerrainGrid **)argument)->neighbors)[index*2];
                 if(objectId) { FogObject *object = CreateState((int)objectId);
-                if (object && (int)*(signed char *)(object->raw+0x88) && index == *(long *)(object->raw + 0x42) && *(long *)(object->raw + 8) != gLocalActorKind) gFogCast.flags |= 4; }
+                if (object && (int)object->visible && index == object->index && object->owner != gLocalActorKind) gFogCast.flags |= 4; }
             }
             if (visible && gFogCast.limit <= ((unsigned char *)((*(TerrainGrid **)argument)->cells))[index * 12 + 1]) {
                 if (range>5 || range<1) gFogCast.mask[band]=1; else {
@@ -149,19 +151,19 @@ long FogCast(register FogBuffer *buffer, register long index, register FogObject
     if (buffer->mode == 4 || buffer->mode == 5) return 0;
     gFogCast.flagsWord = 0;
     buffer->state = 1;
-    if (index && *(long *)(object->raw + 0x1f) > 0) {
+    if (index && object->range > 0) {
         gFogCast.active = buffer;
         gFogCast.owner = object;
         gFogCast.index = index;
         BestLocSetData(buffer->source, &gFogCast.source, (void *)index);
         TargetObjectInit((const char *)buffer->source, &gFogCast.target, (int)gFogCast.index);
         long shape[10];
-        BestLocInitialize(shape, (const char *)buffer->source, (int)*(long *)(object->raw + 0x1f));
+        BestLocInitialize(shape, (const char *)buffer->source, (int)object->range);
         BestLocSetCandidate(shape, (void *)gFogCast.index);
         long half = (heightStep + 500) / 2;
-        long scale = gFogScale[*(long *)(object->raw + 0x23)];
+        long scale = gFogScale[object->scale];
         int threshold=(scale * 500 + half / 2) / half; memset(gFogCast.mask, 0, 0x40);
-        gFogCast.limit = ((unsigned char *)((TerrainGrid *)buffer->source)->cells)[gFogCast.index * 12 + 1] + threshold;
+        gFogCast.limit = threshold + ((FogCellRecord *)((TerrainGrid *)buffer->source)->cells)[gFogCast.index].raw[1];
         BestLocVisit(shape, FogUpdateCell);
         gFogCast.flags |= 3;
     }
@@ -188,3 +190,4 @@ int FogWrite(FogBuffer *p, void *stream) {
     if (StreamWrite(stream, p->upper, size) != (int)size) return 0;
     return 1;
 }
+

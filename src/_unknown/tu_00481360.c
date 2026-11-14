@@ -68,18 +68,20 @@ extern "C" int FileOpen(ResourceEntry *entry, const char *name, FileRecord *out,
     int found = -1;
     int high = entry->count - 1;
     int low = 0;
-    do {
+    while (found == -1) {
         if (low > high) break;
         int middle = (low + high) >> 1;
-        int result = memcmp(entry->index[middle].name,key,12);
+        ArchiveIndex *item = &entry->index[middle];
+        int result = memcmp(item->name,key,12);
         if (result < 0) low = middle + 1;
         else if (result > 0) high = middle - 1;
         else found = middle;
-    } while (found == -1);
+    }
     if (found != -1) {
     length = -1;
     FileRecord *file = &entry->source;
-    IoRead(file,entry->index[found].offset,0);
+    long offset = entry->index[found].offset;
+    IoRead(file,offset,0);
     StreamRead(file,&length,4);
     if (separate) file = &entry->independent;
     *out = *file;
@@ -90,4 +92,5 @@ extern "C" int FileOpen(ResourceEntry *entry, const char *name, FileRecord *out,
     }
     return 0;
 }
+
 

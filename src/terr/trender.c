@@ -68,14 +68,14 @@ extern "C" void SetFastView(FastCoord *self, const ViewState *state)
     if (scale <= 2) scale = 2;
     else if (scale >= 8) scale = 8;
     self->scale = scale;
-    int rotation = state->rotation % 6;
-    self->rotation = rotation;
-    if (rotation < 0) self->rotation = rotation + 6;
+    self->rotation = state->rotation % 6;
+    if (self->rotation < 0) self->rotation += 6;
     self->angle = self->rotation * 0x2aaaaabc;
     int side = (self->radius * 2 + 1) * self->scale;
     ViewRect rect(self->position.x, self->position.y, side, side);
     self->bounds = rect;
-    self->bounds.Center(&self->offset);
+    self->offset.x = self->bounds.top.x + (self->bounds.width >> 1);
+    self->offset.y = self->bounds.top.y + (self->bounds.height >> 1);
     --self->offset.x; --self->offset.y;
 }
 
@@ -110,19 +110,23 @@ void GridConvert(FastCoord *self, GridPoint *out, GridPoint *point)
     out->x += offset->x; out->y += offset->y;
 }
 
-int MapDrawPoint(void *item)
+struct VisibilityMap { int reserved[3]; char *visible; char *threat; };
+inline VisibilityMap *Visibility() { return (VisibilityMap *)MapVisibility; }
+inline int MapHidden(int index) { return !Visibility()->visible[index]; }
+int MapDrawPoint(VisitPoint *visit)
 {
-    VisitPoint *visit = (VisitPoint *)item;
     int index = visit->index;
     if (index) {
         unsigned char *tile = (unsigned char *)visit->grid[17] + index * 12;
         GridPoint screen;
+        GridPoint *point = &visit->point;
         if (MapDrawScale == 2) {
-            screen.x = MapDetails[index * 8 + 4];
-            screen.y = MapDetails[index * 8 + 5];
-        } else GridConvert(MapView, &screen, &visit->point);
+            unsigned char *detail = &MapDetails[index * 8 + 4];
+            screen.x = detail[0];
+            screen.y = detail[1];
+        } else GridConvert(MapView, &screen, point);
         unsigned int color;
-        if (MapVisibility && !((char **)((char *)MapVisibility + 12))[0][index])
+        if (MapVisibility && MapHidden(index))
             color = gMenuColors[0];
         else switch (MapView->mode) {
         case 0: color = MapHeightColors[7 - (tile[1] & 7)]; break;
@@ -136,15 +140,14 @@ int MapDrawPoint(void *item)
             else if (tile[3] == 0x41) color = gMenuColors[1];
             else color = worldColorInfo[tile[0] * 8 + tile[1]];
             break;
-        case 3: color = ((char **)((char *)MapVisibility + 16))[0][index] ? 0x4b : 0x48; break;
+        case 3: color = Visibility()->threat[index] != 0 ? 0x4b : 0x48; break;
         case 4: color = MapThreatColors[f_00432d60(visit->grid, index) / 10]; break;
         }
-        if (MapDrawScale == 2) SimMarkPosition(screen.x, screen.y, 2, (char)color);
-        else {
+        if (MapDrawScale != 2) {
             MenuSetColors(g513888, color, color);
             int side = MapView->scale;
             MenuFill(g513888, screen.x - (side >> 1), screen.y - (side >> 1), side, side);
-        }
+        } else SimMarkPosition(screen.x, screen.y, 2, color);
     }
     return 0;
 }
@@ -153,17 +156,17 @@ extern "C" void PrepareDeathMap(FastCoord *self)
 {
     BestLocSetCandidate(self, (void *)MapOrigin(self));
     MapView = self; MapDrawScale = self->scale;
-    BestLocVisit(self, MapDrawPoint);
+    BestLocVisit(self, (int (*)(void *))MapDrawPoint);
 }
 
 // The original Point class has a non-elided default constructor for arrays.
-struct OutlinePoint { int x, y; OutlinePoint(); OutlinePoint(int a, int b) { x=a; y=b; } OutlinePoint(const OutlinePoint &p); };
-inline OutlinePoint::OutlinePoint() {}
-inline OutlinePoint::OutlinePoint(const OutlinePoint &p) { x=p.x; y=p.y; }
+struct GuiPoint { long x, y; GuiPoint(); GuiPoint(int a, int b) { x=a; y=b; } };
+inline GuiPoint::GuiPoint() {}
+typedef GuiPoint OutlinePoint;
 extern "C" void DrawDeathMap(FastCoord *self, unsigned long color, int padding)
 {
     int half = self->grid[2] * (self->scale >> 1);
-    int twice = half * 2, triple = half * 3, whole = half * 4;
+    int twice = half * 2, triple = half + twice, whole = twice * 2;
     int x = self->position.x, y = self->position.y;
     OutlinePoint vertices[6];
     vertices[0] = OutlinePoint(twice + x, y - padding);

@@ -61,7 +61,7 @@ struct SimGame {
 extern GuiCanvas g513888; extern ViewRect viewportClipLeft; extern ViewRect g4d381c, g4d385c;
 extern GuiScreen g4d4094; extern FastBuffer g4d35e4; extern char gShellBackground;
 extern char g4c9234, g4c68b4; extern StrPool missionImageName, targetBriefResource; extern ProfileManager profileManager;
-extern int g4d030f; extern MenuImages *g4d3744; extern int g4d3485;
+extern int g4d030f; extern MenuImages *drawCursorImages; extern int g4d3485;
 int g4a031c[3] = { 0, 11, 22 }; static char simoutSourceFile[] = __FILE__; long g4a0338 = 148, g4a033c = 395; extern GuiRect g4d3cec, g4d3c9c; extern unsigned long gMenuColors[30], gMenuColorMap[30];
 extern unsigned long gMenuTextColor; extern unsigned long *gMenuTextMap; extern Font g511dc0;
 extern SimPoint g4d4150; extern ActorRecord *g4d2498; extern unsigned char g4a0350[];
@@ -92,7 +92,7 @@ void SimGameDrawStatus(SimGame *game);
 void SimGameLeave(SimGame *game);
 extern "C" void AssertFail(const char *,int,const char *); extern "C" int sprintf(char *,const char *,...); extern "C" void *memcpy(void *,const void *,unsigned);
 extern "C" int memcmp(const void *,const void *,unsigned); extern void *gShellSurfacePixels,*gShellSurfacePixelsBefore,*gShellDrawPixels; extern int *shellScanlines;
-extern long viewportClipTop,viewportClipBottom; extern long g5138ac,g5138b0; extern ViewRect gBriefDrawSource,gViewRect,simPortraitRect;
+extern long viewportClipTop,viewportClipBottom; extern long g5138ac,g5138b0; inline long ScreenWidth() { return g5138ac; } inline long ScreenHeight() { return g5138b0; } extern ViewRect gBriefDrawSource,gViewRect,simPortraitRect;
 extern Font gDefaultFont; extern char targetPrompt5,simPanel,popInfo,popWorld,simActions,g4d1dec,simInventory; extern GuiRect gMenuClip,simClip,simMainClip,simMainSaved,simDetailClip,simDetailSaved;
 extern signed char focusFrameColors[4]; extern void SigsStart(void *,int),SurfacePresent(void *),GuiFilterPalette(void *,int),BriefStatus(void *),GuiResetClip(void *),SimClipFlush(void *); extern void SimDrawTimer(SimGame *,int,int,int,int);
 extern void BriefBlit(void *,int,int,int,int,int,int,int,int); extern void PrepareDeathMap(FastCoord *); extern void MapPointToScreen(FastCoord *,SimPoint *,void *);
@@ -198,37 +198,36 @@ extern "C" void ShellRestore(SimGame *game)
     ApplyPaletteData(&gShellBackground);
     GuiFilterPalette(&gShellBackground,4);
     g4a0338=g4d385c.left; g4a033c=g4d385c.top;
-    int image=game->mode==game->player ? 78 : 84;
     int y=167;
-    int end=image+6;
-    do {
-        MenuImage *frame=&g4d3744->images[image];
+    int image=game->mode==game->player ? 78 : 84;
+    for(int i=0;i<6;i++) {
+        MenuImage *frame=&drawCursorImages->images[image+i];
         MenuDrawImage(&g513888,frame,0,y);
         y+=frame->height;
-    } while(++image!=end);
-    image=game->mode==game->player ? 66 : 72;
-    end=image+6;
+    }
     int x=g4a0338;
-    do {
-        MenuImage *frame=&g4d3744->images[image];
+    image=game->mode==game->player ? 66 : 72;
+    for(i=0;i<6;i++) {
+        MenuImage *frame=&drawCursorImages->images[image+i];
         MenuDrawImage(&g513888,frame,x,g4a033c);
         x+=frame->width;
-    } while(++image!=end);
-    if(game->mode!=game->player) MenuDrawImage(&g513888,&g4d3744->images[174],0,353);
+    }
+    if(game->mode!=game->player) MenuDrawImage(&g513888,&drawCursorImages->images[174],0,353);
     if(game->mode!=game->player) {
         char text[80];
-        if(game->mode==game->localPlayer) {
+        int mode=game->mode;
+        if(mode!=game->localPlayer) {
+            gMenuTextMap=&gMenuColorMap[20+mode];gMenuTextColor=gMenuColors[20+mode];
+            if(game->multi && mode!=game->player)
+                sprintf(text,targetBriefResource.GetString(1403,0),mode,game->players[mode-1].name);
+            else sprintf(text,targetBriefResource.GetString(1405,0));
+        } else {
             gMenuTextMap=&gMenuColorMap[16]; gMenuTextColor=gMenuColors[16];
             sprintf(text,targetBriefResource.GetString(1404,0));
-        } else {
-            gMenuTextColor=gMenuColors[20+game->mode];gMenuTextMap=&gMenuColorMap[20+game->mode];
-            if(game->multi && game->mode!=game->player)
-                sprintf(text,targetBriefResource.GetString(1403,0),game->mode,game->players[game->mode-1].name);
-            else sprintf(text,targetBriefResource.GetString(1405,0));
         }
         MenuDrawText(&gDefaultFont,g4a0338+10,g4a033c+4,text);
     }
-    PopDrawSurface(&g513888,0,1,0,0,g5138ac,g5138b0);
+    PopDrawSurface(&g513888,0,1,0,0,ScreenWidth(),ScreenHeight());
     BriefStatus(&g4d4094);BriefStatus(&targetPrompt5);BriefStatus(&simPanel);BriefStatus(&popInfo);BriefStatus(&popWorld);BriefStatus(&simActions);BriefStatus(&g4d1dec);BriefStatus(&simInventory);
     GuiResetClip(&gMenuClip);
     SimClipFlush(&g4d3c9c);SimClipFlush(&simClip);SimClipFlush(&g4d3cec);SimClipFlush(&simMainClip);SimClipFlush(&simMainSaved);SimClipFlush(&simDetailClip);SimClipFlush(&simDetailSaved);
@@ -272,18 +271,19 @@ void SimDrawBar(long x, long y, int image, long width, long value, long maximum,
 {
     long filled = value * width / maximum;
     viewportClipLeft = g4d381c;
-    if (filled) MenuDrawImage(&g513888, &g4d3744->images[image], x, y);
+    if (filled) MenuDrawImage(&g513888, &drawCursorImages->images[image], x, y);
     if (value != maximum) {
         viewportClipLeft.left = x + filled;
-        MenuDrawImage(&g513888, &g4d3744->images[image + 2], x, y);
+        MenuDrawImage(&g513888, &drawCursorImages->images[image + 2], x, y);
     }
     if (g4d3485) {
         viewportClipLeft.left = x + trend * width / maximum;
         viewportClipLeft.right = x + filled;
-        MenuDrawImage(&g513888, &g4d3744->images[image + 1], x, y);
+        MenuDrawImage(&g513888, &drawCursorImages->images[image + 1], x, y);
     }
     viewportClipLeft = g4d381c;
-    MenuDrawImage(&g513888, &g4d3744->images[image + 3 + (trend < 0)], x - 10, y);
+    int down = trend < 0;
+    MenuDrawImage(&g513888, &drawCursorImages->images[image + 3 + down], x - 10, y);
 }
 
 void SimGameDrawPanel(SimGame *game)
@@ -310,7 +310,7 @@ void SimGameDrawStatus(SimGame *game)
     static GameTimer timer(0);
     static int blink;
     if (GameTimerExpired(&timer) || (game->screen & 0x30)) {
-        long x = g4a0338 + 0x94, y = g4a033c;
+        long y = g4a033c, x = g4a0338 + 0x94;
         viewportClipLeft = g4d385c;
         SimRestoreBackground(x, y, 0x50, 0x50);
         MenuImage *frame = SimAnimFrame(&game->face, -1);
@@ -319,7 +319,7 @@ void SimGameDrawStatus(SimGame *game)
         gDrawRemap = 0;
         MenuSetClip(&g4d3cec, x, y, 1000, 1000);
         gDrawRemap = SimUnitRemapVariant(game->focus->unit, game->focus->variant, &game->focusState);
-        MenuDrawImage(&g513888, &g4d3744->images[90], g4a0338 + 0x95, g4a033c + 2);
+        MenuDrawImage(&g513888, &drawCursorImages->images[90], g4a0338 + 0x95, g4a033c + 2);
         gDrawRemap = 0;
         game->focusState = *game->focus->unit;
         if (GameTimerExpired(&timer)) {
@@ -339,17 +339,17 @@ void SimGameDrawStatus(SimGame *game)
             long top = g4a033c + g4a031c[k] + 0x1b;
             filled = Clamp(filled, game->stats[k].value >= 0, 19);
             int n;
-            for (n = 0; n < filled; n++) MenuDrawImage(&g513888, &g4d3744->images[image], left + n * 3, top);
-            for (; n < 19; n++) MenuDrawImage(&g513888, &g4d3744->images[image + 1], left + n * 3, top);
+            for (n = 0; n < filled; n++) MenuDrawImage(&g513888, &drawCursorImages->images[image], left + n * 3, top);
+            for (; n < 19; n++) MenuDrawImage(&g513888, &drawCursorImages->images[image + 1], left + n * 3, top);
             top -= 3;
             MenuDrawText(&g511dbc, left + 0x3e, top, targetBriefResource.GetString(text, 0));
             MenuDrawTextAt(&g511dbc, left + 0x62, top, 1, (const char *)BriefFormat("%d", game->stats[k].value));
         }
         if (!(blink & 1) || game->stats[1].value >= 0) image++;
-        MenuDrawImage(&g513888, &g4d3744->images[image], g4a0338 + 0x181, g4a033c + 0x26);
+        MenuDrawImage(&g513888, &drawCursorImages->images[image], g4a0338 + 0x181, g4a033c + 0x26);
         image = 0x7d;
         if (!(blink & 1) || game->stats[2].value <= game->stats[2].maximum) image++;
-        MenuDrawImage(&g513888, &g4d3744->images[image], g4a0338 + 0x1be, g4a033c + 0x31);
+        MenuDrawImage(&g513888, &drawCursorImages->images[image], g4a0338 + 0x1be, g4a033c + 0x31);
         viewportClipLeft = g4d381c;
     }
 }
@@ -386,3 +386,6 @@ void SimGameDrawFrames(SimGame *game)
     }
     if(game->multi || game->extraSaved) SimDrawTimer(game,g5138ac-5,5,0,game->turnTime);
 }
+
+
+

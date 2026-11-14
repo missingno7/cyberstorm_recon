@@ -51,8 +51,9 @@ int MenuControlChanged(GuiControl *c,unsigned index,U32 *previous) {
 inline U32 MenuScan(){return gIn80;}inline U32 MenuChar(){return gIn84;}
 int GuiControlShortcut(GuiControl *c) {
  if(c->shortcut&&MenuScan()) {
-  U32 scan=(c->shortcut>>8)&255;
-  U32 key=c->shortcut&255;
+  U32 shortcut=c->shortcut;
+  U32 key=shortcut&255;
+  U32 scan=(shortcut>>8)&255;
   if(key&&key==MenuScan())return 1;
   if(scan&&scan==toupper(MenuChar()))return 1;
  }

@@ -323,7 +323,7 @@ void ReplaceMission(ProfileManager *p) {
     if (p->missionType==0) {
         DecodeMission(&p->missions[0],&info);
         if(info.category==0) {
-            MissionRecordInitialize(&p->missions[0],1,p->missionType,next_link_seed(MissionRandomTable)%(byte)count,p->mode,0);
+            int variant=next_link_seed(MissionRandomTable)%(byte)count; MissionRecordInitialize(&p->missions[0],1,p->missionType,variant,p->mode,0);
             p->RefreshMission(0);
         }
     }
@@ -462,6 +462,7 @@ int ProfileManager::HasContinuation() {
 ProfileManager *ProfileManager::SetProfileMode(byte mode) {
     if (mode == 2) this->mode=mode; else if (mode == 1) this->mode=mode; else this->mode=0; return this;
 }
+
 
 
 

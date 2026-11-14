@@ -2,7 +2,7 @@
 // Gaps are temporary unnamed layout fields, not reconstructed payloads.
 #pragma pack(push,1)
 typedef unsigned long U32;
-struct GridPoint { long x,y;
+struct GridPoint { long x,y; GridPoint() {} GridPoint(const GridPoint &p) {x=p.x;y=p.y;}
  int operator!=(const GridPoint &p) const { return x!=p.x || y!=p.y; }
 };
 struct ViewState { GridPoint point; long zoom,scale,direction; U32 flags,requested; long spare; ViewState(const ViewState &v){point.x=v.point.x;point.y=v.point.y;zoom=v.zoom;scale=v.scale;direction=v.direction;flags=v.flags;requested=v.requested;spare=v.spare;} };
@@ -18,15 +18,15 @@ struct ActorRecord {
  unsigned char unknown8a[3]; unsigned char spent,returnFire;
  int Ready() const {return active && !disabled;} const char *UnitText()const{return (const char *)unit;} const char *PilotText()const{return (const char *)pilot;}
 };
-struct TargetSlot {int used;unsigned char rest[106];}; struct TargetSelection {unsigned char head[0xdf];TargetSlot slots[8];}; struct PlayerSlot { int status,id,points,actor; unsigned char rest[0xbc-16]; int NetworkOwner() const {return status==1 || status==3;} };
+struct TargetRecord {unsigned char head[0x54];int destination;unsigned char unknown58[0x40];ActorRecord *target;int targetActor;unsigned char rest[20];};struct TargetSlot {int used;unsigned char rest[106];}; struct TargetSelection {unsigned char head[0xdf];TargetSlot slots[8];}; struct PlayerSlot { int status,id,points,actor; unsigned char rest[0xbc-16]; int NetworkOwner() const {return status==1 || status==3;} };
 struct SimGame {
  unsigned char unknown00[0x14];int uiState,selectedMode;int previousMode,savedMode;unsigned char unknown24[8]; int screen,pending,focusIndex; ActorRecord *focus;
  UnitState *focusUnit; void *focusPilot;SimStat stats[3];SimAnim portrait,face,statusAnim;UnitState oldState,focusState;SimStat oldStats[3];
  int phase; unsigned char unknown2be[4]; int multi; int waiting; int tick,deadline;
  unsigned char unknown2d2[4]; int palette,playerCount; PlayerSlot slots[9];
- PlayerSlot *slot; int mode,unknown982,player,localPlayer,unknown98e,linked,remote,automated;
+ int Networked() const {return slots[mode-1].status==1 || slots[mode-1].status==3;} PlayerSlot *slot; int mode,unknown982,player,localPlayer,unknown98e,linked,remote,automated;
  unsigned char unknown99e[8]; TargetSelection targets; ViewState bookmarks[13],view,savedView;
- unsigned char unknownfd5[0x1025-0xfd5]; int preview; long healthTrend; long energyTrend; int actionCost; unsigned char targetRecord[0xb4]; unsigned char unknown10e9[8]; int extraSaved;
+ unsigned char unknownfd5[0x1025-0xfd5]; int preview; long healthTrend; long energyTrend; int actionCost; TargetRecord targetRecord; unsigned char unknown10e9[8]; int extraSaved;
 };
 #pragma pack(pop)
 struct TerrainGrid; struct FastCoord;
@@ -41,7 +41,7 @@ unsigned char viewScales[]={4,5,6,7,8,9,10,12,14,16,20,24,32,40,48,64};
 struct ViewMask { U32 mask; int threshold; };
 int viewMasks[]={1,20,2,10,4,60,8,5,16,0,32,0,64,70,128,35,256,0,512,60,0};
 extern long GridPointToIndex(TerrainGrid *,GridPoint *);
-extern void RotateViewPoint(GridPoint *,int);
+struct Point;extern Point *f_0047efb0(Point *,int);
 extern void ExploCompact(int);
 extern void SetTerrainView(void *,const ViewState *,int);
 extern void SetFastView(FastCoord *,const ViewState *);
@@ -55,9 +55,9 @@ extern void SimResetLimits(SimGame *);
 void SimPanBy(SimGame *,GridPoint *);
 void f_44db70(SimGame *,int);
 
-struct PacketList {void Focus(ActorRecord *);void Face(ActorRecord *,int,int);void Remove(ActorRecord *);void ReturnFire(ActorRecord *,char,char,char);void JackUp(ActorRecord *);void Placidex(ActorRecord *);void Toggle(ActorRecord *,char);};
+struct PacketList {void Focus(ActorRecord *);void Face(ActorRecord *,int,int);void Remove(ActorRecord *);void ReturnFire(ActorRecord *,signed char,signed char,signed char);void JackUp(ActorRecord *);void Placidex(ActorRecord *);void Toggle(ActorRecord *,char);};
 extern PacketList modeLogName;
-extern SimGame modeCheckName;
+extern SimGame modeCheckName;inline int LeaderNetworked(){return modeCheckName.slots[modeCheckName.mode-1].status==1 || modeCheckName.slots[modeCheckName.mode-1].status==3;}
 extern int ModeCheck(const char *);
 extern "C" void AssertFail(const char *,int,const char *);
 static char SimDoSourceFile[]=__FILE__;
@@ -69,13 +69,13 @@ extern void SimRefreshPanel(SimGame *,int);
 extern "C" void *memcpy(void *,const void *,unsigned);
 extern "C" void *memset(void *,int,unsigned);
 extern void SimClosePopups(SimGame *),PilotSetState(SimGame *,int);
-extern void GridSetActor(TerrainGrid *,UnitState *,void *);
+extern void ConfigureMovement(TerrainGrid *,UnitState *,void *);
 extern PlayerSlot *GetModePlayer(void *,int);
 extern int bestLocCursor,bestLocCount;
 extern unsigned char bestLocEntries[],*actorVisibility;
 extern int BestLocSetup(void *,int,int);
 extern void SimRefreshFog(SimGame *,int),SimTargetAction(SimGame *,int);
-struct TargetRecord {unsigned char head[156];int targetActor;unsigned char rest[20];};
+
 extern void TargetInitializeRecord(void *,TargetRecord *,int,int);
 extern int GridClearSelection(TerrainGrid *);
 extern long GridClamp(U32);
@@ -86,7 +86,7 @@ struct FogBuffer;extern FogBuffer g4d35f4;
 extern int AnimActionHasMetadata(void *),UnitCapability(void *,int);
 extern int AnimActionPrepareBlock(void *,int,int);extern void GridSetSelection(TerrainGrid *,UnitModel *),AnimActionInitTargetActor(void *);
 extern int simAutoCenter;
-extern int FogSetValue(FogBuffer *,long,int),AdjustTargetView(void *,ViewState *,int,int,int);
+extern int FogSetValue(FogBuffer *,long,int),DisplayZoomArea(void *,ViewState *,int,int,int);
 extern "C" int memcmp(const void *,const void *,unsigned);
 extern void FogResetMode(FogBuffer *);
 struct FogObject;extern FogObject *UnitFogObject(UnitState *,int,void *);
@@ -98,7 +98,7 @@ extern void SimClearActions(void *,int=0,int=0,int=0);
 extern long PilotValue(void *,int);
 extern ActorRecord *ActorFindByOwner(int),*ActorFindOwnerNext(ActorRecord *,int),*ActorFindFree(),*ActorFindNext(ActorRecord *);
 struct ActorItem {unsigned char head[7],amount;unsigned char unknown08[0x1f-8];U32 kind;long parameter1,parameter2;unsigned char unknown2b[8];long cost;unsigned char unknown37[4];long sound,stopSound;unsigned char cooldown,mode;};
-extern int PopFindItem(void *,int,int);extern void UnitRefresh(void *);inline ActorItem *UnitState::Item(int i,int f){return (ActorItem *)PopFindItem(this,i,f);}
+extern int PopFindItem(void *,int,int);inline ActorItem *UnitState::Item(int i,int f){return (ActorItem *)PopFindItem(this,i,f);}
 int SimExecuteItem(SimGame *,int,int);
 int SimFocusReady(SimGame *s) { if(s->focus && s->focus->active && !s->focus->disabled) return 1; return 0; }
 inline int SimClamp(int n,int lo,int hi) { if(n<=lo)return lo; if(n>=hi)return hi; return n; }
@@ -113,13 +113,13 @@ void SimPan(SimGame *s,int dx,int dy) {
  SimPanBy(s,&d);
 }
 void SimPanBy(SimGame *s,GridPoint *d) {
- GridPoint point=s->view.point;
- RotateViewPoint(d,-g4d368c);
+ GridPoint point(s->view.point);
+ f_0047efb0((Point *)d,-g4d368c);
  point.x+=d->x; point.y+=d->y;
- if(!GridPointToIndex(&fallbackName,&point)) { point.x=s->view.point.x+d->x/4; point.y=s->view.point.y+d->y/4; }
- if(point!=s->view.point) {
+ if(!GridPointToIndex(&fallbackName,&point)) { point=s->view.point; point.x+=d->x/4; point.y+=d->y/4; }
+ if(s->view.point!=point) {
   if(GridPointToIndex(&fallbackName,&point)) { ExploCompact(1);
-   s->view.point=point; ViewState *v=&s->view; ViewState *saved=&s->savedView; SetTerrainView(gView,v,1); *saved=*v; s->screen|=1;
+   s->view.point=point; SetTerrainView(gView,&s->view,1);s->savedView=s->view; s->screen|=1;
   }
  }
 }
@@ -167,9 +167,9 @@ int SimCycleFocus(SimGame *s,int direction) {
  return 0;
 }
 void SimSetFocus(SimGame *s,ActorRecord *a) {
- GridPoint point;
- int oldMode=s->selectedMode;
+ 
  if(s->multi && ModeCheck((const char *)s))modeLogName.Focus(a);
+ int oldMode=s->selectedMode;
  if(s->linked)SimClosePopups(s);
  s->focus=a;s->focusPilot=a->pilot;s->focusUnit=a->unit;
 // ASSERT source line padding.
@@ -268,25 +268,25 @@ void SimSetFocus(SimGame *s,ActorRecord *a) {
  AnimBitmapSweep(60000,5000,s->automated?5000:60000,s->automated?60000:5000,15000);
  if(s->linked) {SimRefreshPanel(s,1);SimAnimSet(&s->face,2,UnitPortrait(s->focus->unit),1);}
  s->focusState=*s->focus->unit;memcpy(s->oldStats,s->stats,36);memset(&s->oldState,0,267);
- GridSetActor(&fallbackName,s->focus->unit,s->focus->pilot);
+ ConfigureMovement(&fallbackName,s->focus->unit,s->focus->pilot);
  ActorRecord *focus=s->focus;GetModePlayer(s,focus->owner)->actor=focus->id;
  bestLocCursor=0;
  if(s->focus->owner==s->player)BestLocSetup(bestLocEntries,s->focus->index,0);
  bestLocCount=0;
  if(s->linked) {
   if(!s->focus->disabled) {
-   SimRefreshFog(s,0);TargetInitializeRecord(s,(TargetRecord *)s->targetRecord,s->focus->id,s->focus->typeId);
-   int destination=*(int *)(s->targetRecord+0x54);
+   SimRefreshFog(s,0);TargetInitializeRecord(s,&s->targetRecord,s->focus->id,s->focus->typeId);
+   int destination=s->targetRecord.destination;
    if(destination) {
-    if(!actorVisibility[destination])s->focus->typeId=0;
-    ActorRecord *target=*(ActorRecord **)(s->targetRecord+0x98);
-    if(target && target->disabled)s->focus->typeId=0;
-    if(target && !target->active)s->focus->typeId=0;
-    TargetInitializeRecord(s,(TargetRecord *)s->targetRecord,s->focus->id,s->focus->typeId);
+    if(SimActorHidden(destination))s->focus->typeId=0;
+    if(s->targetRecord.target && s->targetRecord.target->disabled)s->focus->typeId=0;
+    if(s->targetRecord.target && !s->targetRecord.target->active)s->focus->typeId=0;
+
+    TargetInitializeRecord(s,&s->targetRecord,s->focus->id,s->focus->typeId);
    }
   }
   GridClearSelection(&fallbackName);SimPreviewCost(s,1,0);SimPreviewCost(s,0,0);s->actionCost=0;
-  point=s->focus->position;SimCenterOn(s,&point);
+  GridPoint point(s->focus->position);SimCenterOn(s,&point);
   int target=s->focus->target;if(target && target!=s->focus->index)SimTargetAction(s,target);
   if(oldMode>4)oldMode=(s->focus->typeId!=0)+1;
   PilotSetState(s,oldMode);s->screen=-1;
@@ -352,21 +352,21 @@ void SimTargetAction(SimGame *s,int target) {
 }
 void SimResetFocusCache() {simLastActor=-1;simLastIndex=-1;simLastTarget=-1;}
 int SimCenterTarget(SimGame *s,int target) {
- if(SimCanCenter(s)) {
-  if(simLastActor==s->focus->id && simLastIndex==s->focus->index && (!target || target==simLastTarget))return 0;
-  simLastActor=s->focus->id;simLastIndex=s->focus->index;simLastTarget=target;
-  int changed=0;
-  if(!s->linked && target && !actorVisibility[s->focus->index]){s->screen|=FogSetValue(&g4d35f4,simLastIndex,99);changed=1;}
-  if(!simAutoCenter)return changed;
-  if(!simLastTarget && !actorVisibility[s->focus->index])return changed;
+ if(s->linked || s->automated || !SimFocusReady(s))return 0;
+ if(simLastActor==s->focus->id && s->focus->index==simLastIndex && (!target || target==simLastTarget))return 0;
+ simLastActor=s->focus->id;simLastIndex=s->focus->index;simLastTarget=target;
+ int changed=0;
+ if(!s->linked && target && SimActorHidden(s->focus->index)){s->screen|=FogSetValue(&g4d35f4,simLastIndex,99);changed=1;}
+ if(simAutoCenter && (simLastTarget || !SimActorHidden(s->focus->index))) {
   ViewState view=s->view;
-  if(AdjustTargetView(gView,&view,simLastIndex,simLastTarget,1) && memcmp(&view,&s->view,32)) {
-   s->view=view;SetTerrainView(gView,&s->view,0);s->screen|=1;return 1;
+  if(DisplayZoomArea(gView,&view,simLastIndex,simLastTarget,1) && memcmp(&view,&s->view,32)) {
+   s->view=view;SetTerrainView(gView,&s->view,0);s->screen|=1;changed=1;
   }
-  return changed;
  }
- return 0;
+ return changed;
 }
+
+
 void SimPrepareAction(SimGame *s,int target) {
  if(SimFocusReady(s) && AnimActionHasMetadata(&s->focus->action)) {
   if(!UnitCapability(s->focusPilot,6)){SoundTrigger(166,0);return;}
@@ -393,10 +393,10 @@ int SimSelectTarget(SimGame *s,int target) {
  if(ready) {
   if(s->linked){if(GridClearSelection(&fallbackName))s->screen|=1;if(SimActorHidden(target))return 0;}
   s->focus->typeId=TargetRecordType(s,target);
-  TargetInitializeRecord(s,(TargetRecord *)s->targetRecord,s->focus->id,s->focus->typeId);
-  if(*(ActorRecord **)(s->targetRecord+0x98))simTargetState=*(*(ActorRecord **)(s->targetRecord+0x98))->unit;
+  TargetInitializeRecord(s,&s->targetRecord,s->focus->id,s->focus->typeId);
+  if(s->targetRecord.target)simTargetState=*(s->targetRecord.target)->unit;
   if(s->linked){SoundPlay(33,0);PilotSetState(s,2);}
-  SimClearActions(&simActions,0);SimCenterTarget(s,*(int *)(s->targetRecord+0x54));
+  SimClearActions(&simActions,0);SimCenterTarget(s,s->targetRecord.destination);
   return 0;
  }
  return ready;
@@ -406,10 +406,10 @@ int ModeCheck(const char *object) {if(((SimGame *)object)->slots[((SimGame *)obj
 int SimFireFocus(SimGame *s,int mode) {if(SimFocusReady(s))return SimFire(s,s->focus,s->focus->typeId,mode,-1);return 0;}
 struct StrPool {char *GetString(long,int=0);};extern StrPool targetBriefResource;
 extern unsigned PopItemValue(void *,int);extern int PopItemReady(void *,int);
-extern char *ActorItemPrepareText(ActorItem *);extern void UnitRecalculateItems(void *),UnitSetSystem(void *,int);
+extern char *HercItemName(ActorItem *);extern int HercCalculateMass(UnitState *),HercItemEfficiency(UnitState *,int);extern void HercResetAmount(UnitState *,int);
 extern void f_00477295(char *);extern "C" int f_0047723b(char *),sprintf(char *,const char *,...);
 struct PopNode;extern PopNode g4d1dec;extern void PopNodeChanged(PopNode *);
-extern void SimActionsRefresh(void *);extern int SimDistanceToDepot(SimGame *,ActorRecord *);
+extern void f_00443d08(void *);extern int SimDistanceToDepot(SimGame *,ActorRecord *);
 struct ExploRecord;struct Weapon;extern ExploRecord *ExploAddTarget(int,int,int);extern void ApplyDamage(int,int,int,Weapon *);
 extern void ActorSetActive(ActorRecord *,int),ReleaseState(void *);
 extern unsigned MissionRandomTable[],simItemSeed;
@@ -422,13 +422,13 @@ int SimExecuteItem(SimGame *s,int item,int toggle) {
    if(SimFocusReady(s) || entry->kind==4) {
     PopNodeChanged(&g4d1dec);PilotSetState(s,3);
     int cost=entry->cost;unsigned amount=entry->amount;
-    if((int)PopItemValue(unit,item+19)<=(int)amount)return 0;
+    if(HercItemEfficiency(unit,item+19)<=(int)amount)return 0;
     switch(entry->mode) {
     case 3:case 4:break;
     case 0:
      if(s->player==s->focus->owner) {
       if(PilotValue(s->focus->pilot,202)==28) {SoundTrigger(162,0);f_00477295(targetBriefResource.GetString(1411));return 0;}
-      char text[200];sprintf(text,targetBriefResource.GetString(1201),ActorItemPrepareText(entry));
+      char text[200];sprintf(text,targetBriefResource.GetString(1201),HercItemName(entry));
       if(!f_0047723b(text))return 0;
      }
      break;
@@ -446,27 +446,27 @@ int SimExecuteItem(SimGame *s,int item,int toggle) {
      cost+=distance*entry->parameter1;
      break;
     }
-    if(cost) {int paid=0;if(SimFocusReady(s))paid=SimSpendOnActor(s,s->focus,cost);if(!paid)return 0;}
+    if(cost) {if(!(SimFocusReady(s)?SimSpendOnActor(s,s->focus,cost):0))return 0;}
     if(entry->sound)SoundPlay(entry->sound,0);
     slot->cooldown=entry->cooldown;
     if(s->multi && ModeCheck((const char *)s))modeLogName.Toggle(s->focus,(char)item);
     switch(entry->kind) {
+    case 2:PilotSetState(s,5);break;
     case 4: {
-     unsigned seed=MissionRandomTable[0];MissionRandomTable[0]=0x12345678;simItemSeed=0x12345678;
-     int damage=entry->parameter1;
+     int damage;unsigned seed=MissionRandomTable[0];MissionRandomTable[0]=0x12345678;simItemSeed=0x12345678;
+     damage=entry->parameter1;
      ExploAddTarget(7,s->focus->index,entry->parameter2);
      int index=s->focus->index;ApplyDamage((int)s,index,index,(Weapon *)damage);
      ReleaseState(s->focus);MissionRandomTable[0]=seed;
      break;
     }
-    case 2:PilotSetState(s,5);break;
     case 1:ActorSetActive(s->focus,1);break;
     case 10:
-     slot->count--;SimActionsRefresh(&simActions);
-     for(int i=11;i<19;i++)UnitSetSystem(unit,i);
+     slot->count--;f_00443d08(&simActions);
+     for(int i=11;i<=18;i++)HercResetAmount(unit,i);
      break;
     }
-    if(entry->mode==0){memset(slot,0,8);UnitRecalculateItems(unit);}
+    if(entry->mode==0){memset(slot,0,8);HercCalculateMass(unit);}
    }
   }
  }
@@ -477,19 +477,19 @@ int SimUseItem(SimGame *s,int item,int mode) {
  ActorItem *entry=s->focus->unit->Item(item+19);
  U32 kind=entry->kind;
  switch(kind) {default:return result;case 5:case 9:
-  UnitRefresh(s->focus->unit);GridSetActor(&fallbackName,s->focus->unit,s->focus->pilot);SimRefreshFog(s,0);
+  HercCalculateMass(s->focus->unit);ConfigureMovement(&fallbackName,s->focus->unit,s->focus->pilot);SimRefreshFog(s,0);
   if(s->focus->target)SimTargetAction(s,s->focus->target);
  }
  return result;
 }
-void SimSetReturnFire(SimGame *s,unsigned char index,int all,int value) {
+void SimSetReturnFire(SimGame *s,int index,int all,int value) {
  if(SimFocusReady(s)) {
   if(s->multi && ModeCheck((const char *)s))modeLogName.ReturnFire(s->focus,(char)index,(char)all,(char)value);
   unsigned char mask=1;mask<<=index;unsigned char *bits=&s->focus->returnFire;
-  int enabled=value;if(value<0)enabled=(*bits&mask)==0;
-  if(s->linked && value<0)SoundTrigger(enabled?420:393,0);
-  if(!all){if(enabled)*bits|=mask;else *bits&=~mask;}
-  else for(int i=0;i<8;i++)SimSetReturnFire(s,(unsigned char)i,0,enabled);
+  int set=(mask&*bits)!=0;int enabled=value>=0?value:!set;
+  if(s->linked && value<0){if(enabled)SoundTrigger(420,0);else SoundTrigger(393,0);}
+  if(all)for(int i=0;i<8;i++)SimSetReturnFire(s,i,0,enabled);
+  else if(enabled)*bits|=mask;else *bits&=~mask;
  }
 }
 void SimAdoptFocus(SimGame *s,ActorRecord *a) {
@@ -1059,18 +1059,17 @@ int SimReturnShot(SimGame *s) {
  TargetRecord record;
  TargetInitializeRecord(s,&record,s->focus->id,s->focus->typeId);
  ActorRecord *target=ActorGetByIndex(record.targetActor),*old=s->focus;
- if(old && target && target!=old && target->active) {
-  if(target->owner==s->mode)return 0;
-  SimAdoptFocus(s,target);
-  s->focus->typeId=TargetRecordType(s,old->index);
-  TargetInitializeRecord(s,&record,s->focus->id,s->focus->typeId);
-  int mode=TargetChoose(&s->targets,&record,25,1);
-  if(mode>=0)SimFireFocus(s,mode);
-  SimAdoptFocus(s,old);
-  s->focus->typeId=TargetRecordType(s,target->index);
-  TargetInitializeRecord(s,&record,s->focus->id,s->focus->typeId);
- }
- return 0;
+ if(!old || !target || target==old || (signed char)target->active==0)return 0;
+ if(target->owner==s->mode)return 0;
+ SimAdoptFocus(s,target);
+ s->focus->typeId=TargetRecordType(s,old->index);
+ TargetInitializeRecord(s,&record,s->focus->id,s->focus->typeId);
+ int result=0;int mode=TargetChoose(&s->targets,&record,25,1);
+ if(mode>=0)SimFireFocus(s,mode);
+ SimAdoptFocus(s,old);
+ s->focus->typeId=TargetRecordType(s,target->index);
+ TargetInitializeRecord(s,&record,s->focus->id,s->focus->typeId);
+ return result;
 }
 void SimStartPhase(SimGame *s) { if(s->phase==0 || s->phase==1) {s->phase=2; SimResetLimits(s);} }
 void SimDelayPhase(SimGame *s) { if(s->phase<4) {s->phase=4; s->deadline=s->tick+1500;} }
@@ -1126,15 +1125,15 @@ void PilotPrevious(SimGame *s,ActorRecord *actor,int all,int notify) {
  }
 }
 void IntelClearMode(const char *object) {
- SimGame *s=(SimGame *)object;
- if(s->focus) {if(s->multi && ModeCheck((const char *)&modeCheckName))modeLogName.Remove(s->focus);ActorClearSelection(s->focus);}
+
+ if(((SimGame *)object)->focus) {if(((SimGame *)object)->multi && modeCheckName.Networked())modeLogName.Remove(((SimGame *)object)->focus);ActorClearSelection(((SimGame *)object)->focus);}
 }
 
 extern unsigned char statusColorLow,statusColorEmpty;
 extern void f_44bba0(SimGame *);extern "C" void ShellRestore(SimGame *);
 extern int logicMode;
-extern void ModeEvent(SimGame *,ActorRecord *,int,int),SimMaintainUnit(UnitState *,void *),SimUpdateTimer(SimGame *,int),SimApplyLeadership(SimGame *,ActorRecord *);
-extern int UnitFindType(UnitState *,int,int),UpdatePayload(UnitState *,int);
+extern void ModeEvent(SimGame *,ActorRecord *,int,int),HercAdvanceTurn(UnitState *,void *),SimUpdateTimer(SimGame *,int),SimApplyLeadership(SimGame *,ActorRecord *);
+extern int f_0043ac9c(UnitState *,int,int),UpdatePayload(UnitState *,int);
 extern ActorRecord *ActorListTransfer(int);
 extern void ActivateMainWindow();struct MenuNetwork {void SetTimeout();};extern MenuNetwork gMenuNetwork;
 struct Shell;extern void DeathSummary(Shell *);extern "C" int BriefWaitA(int);
@@ -1144,21 +1143,21 @@ inline int SimLinkedMode(){return logicMode==2 || logicMode==3;}
 void SimBeginTurn(SimGame *s) {
  if(!s->slots[s->mode-1].status){SimStartPhase(s);return;}
  s->slot->points=0;f_44bba0(s);SimUpdateTimer(s,0);
- ActorRecord *a;
- for(a=ActorFindByOwner(s->mode);a;a=ActorFindOwnerNext(a,s->mode)) {
-  unsigned amount=PopItemValue(a->unit,10),penalty=0;
-  if(!amount)penalty=statusColorEmpty;else if((int)amount<100)penalty=statusColorLow;
-  if(penalty>254)penalty=9999;
+ ActorRecord *a=ActorFindByOwner(s->mode);
+ while(a) {
+  int amount=HercItemEfficiency(a->unit,10),penalty=0;
+  if(!amount)penalty=statusColorEmpty;else if(amount<100)penalty=statusColorLow;
+  if(penalty>=255)penalty=9999;
   if(penalty)ModeEvent(s,a,penalty,1205);
- }
+  a=ActorFindOwnerNext(a,s->mode);}
  for(a=ActorFindByOwner(s->mode);a;a=ActorFindOwnerNext(a,s->mode)) {
   a->done=0;unsigned alive=SimLogicFlags(a->pilot)&1;
-  SimMaintainUnit(a->unit,a->pilot);
+  HercAdvanceTurn(a->unit,a->pilot);
   unsigned after=SimLogicFlags(a->pilot)&1;
   if(alive && !after)SimActorKilled(s,a,1207,1);
   a->spent=a->unit->bytes[0x3b]!=100;
   UpdatePayload(a->unit,a->unknown26[0]);
-  int index=UnitFindType(a->unit,7,1);
+  int index=f_0043ac9c(a->unit,7,1);
   if(index)s->slot->points+=a->unit->Item(index)->parameter1;
   if(SimLogicFlags(a->pilot)&1){SimApplyLeadership(s,a);SendEvent(a->pilot,111,(void *)40);}
  }
@@ -1215,6 +1214,13 @@ void SimSetUpdate(SimGame *s,int open) {
   }
  }
 }
+
+
+
+
+
+
+
 
 
 

@@ -885,22 +885,24 @@ void f_00419412(void)
 }
 
 struct UpgradeRect { int x, y; int width; int height; int Width(){return width;} int X(){return x;} };
+inline int Percent(int value, int percent) { return value * percent / 100; }
 int f_00419413(UpgradeRect *range)
 {
     int result = g4b709c;
     if (result) {
         int mouse = g4bb78c;
-        int base = range->X();
-        int low = base + range->Width() * 42 / 100;
-        int high = base + range->Width() * 58 / 100;
-        int end = range->Width() + base;
+        int base = range->x;
+        int low = base + Percent(range->width, 42);
+        int high = base + Percent(range->width, 58);
+        int end = range->width + base;
         int distance;
         if (mouse < low) { g4b7084 = 1; distance = mouse - base; }
         else if (mouse > high) { g4b7084 = -1; distance = end - mouse; }
         else { g4b7084 = 0; g4b7088 = 83; return 0; }
-        g4b7088 = distance * 150 / 100 + 5;
+        g4b7088 = Percent(distance, 150) + 5;
+        result = 0;
     }
-    return 0;
+    return result;
 }
 
 void f_004194c4(char *screen, InputReq *input, unsigned char damage)
@@ -1955,6 +1957,7 @@ MenuNumber g4b6f7c(-1, 0x12);
 MenuNumber upgradeStat5(-1, 0x12);
 MenuNumber upgradeStat6(-1, 0x12);
 UpgradeInitScreen upgradeScreen;
+
 
 
 

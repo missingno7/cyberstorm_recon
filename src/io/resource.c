@@ -567,7 +567,7 @@ void MenuDrawTextAt(Font *font, long x, long y, int alignment, const char *text)
 { if(alignment<0) MenuDrawText(font,x,y,text);
     else {
         int width=(int)MeasureResourceTextWidth(font,(const unsigned char *)text);
-        MenuDrawText(font,x-width/((alignment==0)+1),y,text);
+        MenuDrawText(font,x-width/(alignment ? 1 : 2),y,text);
     }
 }
 extern "C" void RenderFormattedResourceText(Font *font, int x, int y, const char *format, ...)
