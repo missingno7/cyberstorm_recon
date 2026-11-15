@@ -409,7 +409,7 @@ int ApplyVisit(BestLocCandidate *candidate)
         int sum = 0;
         for (int j = 0; j < 23; j++)
             sum += unit->slots[j].condition * slotWeight[j];
-        char average = sum / 100;
+        signed char average = sum / 100;
         if (unit->slots[1].condition > average)
             unit->slots[1].condition = average;
     }

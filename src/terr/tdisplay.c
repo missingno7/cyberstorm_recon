@@ -39,7 +39,7 @@ extern "C" void AssertFail(const char *, int, const char *);
 struct GuiPoint;
 struct DisplayTile { unsigned char type, height; unsigned char reserved[10]; };
 struct TerrainGrid {
-    char reserved[0x10]; int origin[2]; char unknown18[0x2c]; DisplayTile *tiles;
+    int unknown00,cellWidth; char reserved[8]; int origin[2]; int CellWidth(){return cellWidth;} char unknown18[0x2c]; DisplayTile *tiles;
     GuiPoint *Origin() { return (GuiPoint *)origin; }
     DisplayTile *Tile(int index) { return tiles+index; }
 };
@@ -150,7 +150,7 @@ int DisplayZoomArea(int *view, unsigned int *result, int position, int candidate
     int vertical = abs(delta.y);
     int horizontal = abs((int)delta.x);
     if (horizontal <= vertical) horizontal = vertical;
-    int rings = horizontal / *(int *)(*view + 4) + 1;
+    int rings = horizontal / ((TerrainGrid *)*view)->CellWidth() + 1;
     if (candidate == 0) {
         if (((adjust == 0 || view[0x1a] == 0xe) && rings < halfScale)) return 0;
         *(GuiPoint *)result=originPoint;

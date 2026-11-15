@@ -378,8 +378,8 @@ void PilotScreen::Draw()  {
             changed[i]=0;
             if(shown[i]!=target[i]) {
                 int delta=shown[i]-target[i];
-                int step=delta<=8&&delta>=-8?1:4;
-                if(target[i]<shown[i])step=-step;
+                int step=delta>8||delta < -8?4:1;
+                if(shown[i]>target[i])step=-step;
                 int *value=&shown[i];
                 *value+=step;
                 changed[i]=1;

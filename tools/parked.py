@@ -81,7 +81,13 @@ def classify(orig, cand, va, fix, size_bad=False):
     if len(orig) != len(cand) or len(a) != len(b) or any(x[1] != y[1] or x[2] != y[2] for x, y in zip(a, b)):
         if len(orig) != len(cand):
             return "SHAPE"              # different size: the source still says something else
-        core = lambda rows: collections.Counter(r[2] for r in rows if r[2] not in ("mov", "push", "pop", "lea", "nop"))
+        # `lea r,[s+imm]` and `add r,imm` are the same operation in another register home (TerrainBlendHeight):
+        # count them as one; scaled-index lea stays an address computation and is skipped like mov
+        def op(r):
+            if r[2] == "lea" and "*" not in r[3] and re.search(r"[+-] 0x[0-9a-f]+\]$", r[3]):
+                return "add"
+            return r[2]
+        core = lambda rows: collections.Counter(op(r) for r in rows if op(r) not in ("mov", "push", "pop", "lea", "nop"))
         # same size: same arithmetic/compare/branch/call instructions (moves aside) = only homes and scheduling
         if core(a) == core(b):
             return "HOMES"

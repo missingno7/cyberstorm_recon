@@ -70,11 +70,11 @@ int ResMgr::Init(const char ** paths, const char *outDir)
     ResourceEntry *entry=entries;
     count=0;
     for(int i=0;i<10;++i,++paths,++entry) {
-        if (!*paths) break;
-        count=i+1; types[i]=1; this->paths[i]=*paths;
-        if (FindChar(*paths,'.')) {
+        const char *path=*paths; if (!path) break;
+        count=i+1; types[i]=1; this->paths[i]=path;
+        if (FindChar(path,'.')) {
             types[i]=2;
-            if (!MakePath(entry,*paths,outDir,1))
+            if (!MakePath(entry,path,outDir,1))
 
 
 

@@ -260,7 +260,7 @@ void FxBeam(World *world, FxPoint from, FxPoint to, Weapon *weapon, int flags, F
     ASSERT(ExploStart(-2, target) != 0);
     for (int n = 0; n < count; n++) {
         if (n == 0 || def->repeatSound)
-            WeaponSound(&from, sound, 0, 0, MAX(weapon->at33, weapon->at2f));
+            WeaponSound(&from, sound, 0, 0, (weapon->at33 <= weapon->at2f ? weapon->at2f : weapon->at33));
         if (count > 1) {
             int jitter = world->zoom / 3;
             int half = jitter / 2;
