@@ -5513,7 +5513,7 @@
    "status": "matched",
    "mangled": "W?$ct:GuiScreen$n(pnpn$GuiControl$$uiul)_",
    "tu": "src/gui/alert.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-15"
   },
   "PopLoadResource#PopLoadResource": {
    "va": "00425978",
@@ -5535,7 +5535,7 @@
    "status": "matched",
    "mangled": "W?Reset$:GuiScreen$n(pnpn$GuiControl$$uiul)pn$1$",
    "tu": "src/gui/alert.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-15"
   },
   "GuiScreen::Reset#W?Reset$:GuiScreen$n(pnpn$GuiControl$$uiul)v": {
    "va": "004259c1",
@@ -5557,7 +5557,7 @@
    "status": "matched",
    "mangled": "W?LoadLayout$:GuiScreen$n(l)v",
    "tu": "src/gui/alert.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-15"
   },
   "GuiScreen::LoadLayout#W?LoadLayout$:GuiScreen$n(pnxa)v": {
    "va": "004259f7",
@@ -5572,7 +5572,7 @@
    "status": "matched",
    "mangled": "W?SetLayout$:GuiScreen$n(iipnx$GuiRect$$pnx$2$)v",
    "tu": "src/gui/alert.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-15"
   },
   "GuiScreen::Activate": {
    "va": "00425b48",
@@ -5580,7 +5580,7 @@
    "status": "matched",
    "mangled": "W?Activate$:GuiScreen$n(ui)i",
    "tu": "src/gui/alert.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-15"
   },
   "BriefStateSet": {
    "va": "00425ba1",
@@ -5602,7 +5602,7 @@
    "status": "matched",
    "mangled": "W?Update$:GuiScreen$n()i",
    "tu": "src/gui/alert.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-15"
   },
   "f_00425ba1": {
    "va": "00425ba1",
@@ -5653,7 +5653,7 @@
    "status": "matched",
    "mangled": "W?SetStrings$:GuiScreen$n(l)v",
    "tu": "src/gui/alert.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-15"
   },
   "BriefStatus": {
    "va": "00425f1c",
@@ -5675,7 +5675,7 @@
    "status": "matched",
    "mangled": "W?Invalidate$:GuiScreen$n()v",
    "tu": "src/gui/alert.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-15"
   },
   "GuiScreen::ResetControls": {
    "va": "00425f47",
@@ -5683,7 +5683,7 @@
    "status": "matched",
    "mangled": "W?ResetControls$:GuiScreen$n()v",
    "tu": "src/gui/alert.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-15"
   },
   "BriefObjectLoadResource": {
    "va": "00425f87",
@@ -5698,7 +5698,7 @@
    "status": "matched",
    "mangled": "W?Open$:GuiScreen$n(pn$InputReq$$pn$StrPool$$li)v",
    "tu": "src/gui/alert.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-15"
   },
   "GuiScreen::Open#W?Open$:GuiScreen$n(pnvpnvii)v": {
    "va": "00425f87",
@@ -5727,7 +5727,7 @@
    "status": "matched",
    "mangled": "W?HitTest$:GuiScreen$n(pnx$GuiPoint$$)l",
    "tu": "src/gui/alert.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-15"
   },
   "GuiScreen::HitTest#W?HitTest$:GuiScreen$n(pnx$GuiPoint$$)i": {
    "va": "0042604d",
@@ -14429,7 +14429,7 @@
    "status": "matched",
    "mangled": "W?SimFireAt$n(pn$SimGame$$pnvpnll)i",
    "tu": "src/sim/simfire.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-15"
   },
   "SimFire": {
    "va": "00452980",
@@ -17829,7 +17829,7 @@
    "status": "matched",
    "mangled": "W?ActorStrengthAt$n(pn$LogicActor$$pnxa)i",
    "tu": "src/logic/lfire.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-15"
   },
   "NeighborResponse": {
    "va": "00464d7c",
@@ -17844,7 +17844,7 @@
    "status": "matched",
    "mangled": "W?ActorNetStrengthAt$n(pnxa)i",
    "tu": "src/logic/lfire.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-15"
   },
   "IntelChooseCandidate": {
    "va": "00464e86",
@@ -17859,7 +17859,7 @@
    "status": "matched",
    "mangled": "W?ActorChooseNearest$n(pn$LogicActor$$pn$1$)pn$1$",
    "tu": "src/logic/lfire.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-15"
   },
   "ActorChooseByMode": {
    "va": "00464f50",
@@ -17882,7 +17882,7 @@
    "status": "matched",
    "mangled": "W?ActorUpdateView$n(pn$LogicActor$$i)i",
    "tu": "src/logic/lfire.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-15"
   },
   "IntelClearReservation": {
    "va": "004651fd",
@@ -17904,7 +17904,7 @@
    "status": "matched",
    "mangled": "W?ActorTryTargetAction$n(pn$LogicActor$$i)i",
    "tu": "src/logic/lfire.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-15"
   },
   "f_004654cc": {
    "va": "004654cc",
@@ -25055,7 +25055,7 @@
    "status": "matched",
    "mangled": "IsWin32s",
    "tu": "src/_unknown/tu_00480390.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-15"
   },
   "LoadWinG": {
    "va": "004803c0",
@@ -25063,7 +25063,7 @@
    "status": "matched",
    "mangled": "LoadWinG",
    "tu": "src/_unknown/tu_00480390.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-15"
   },
   "_GdiRecommendDIBFormat@4": {
    "va": "004804d0",
@@ -25071,7 +25071,7 @@
    "status": "matched",
    "mangled": "_GdiRecommendDIBFormat@4",
    "tu": "src/_unknown/tu_00480390.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-15"
   },
   "_GdiCreateDC@0": {
    "va": "00480510",
@@ -25079,7 +25079,7 @@
    "status": "matched",
    "mangled": "_GdiCreateDC@0",
    "tu": "src/_unknown/tu_00480390.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-15"
   },
   "_GdiCreateBitmap@12": {
    "va": "00480520",
@@ -25087,7 +25087,7 @@
    "status": "matched",
    "mangled": "_GdiCreateBitmap@12",
    "tu": "src/_unknown/tu_00480390.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-15"
   },
   "_GdiSetDIBColorTable@16": {
    "va": "00480550",
@@ -25095,7 +25095,7 @@
    "status": "matched",
    "mangled": "_GdiSetDIBColorTable@16",
    "tu": "src/_unknown/tu_00480390.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-15"
   },
   "_GdiGetDIBColorTable@16": {
    "va": "00480580",
@@ -25103,7 +25103,7 @@
    "status": "matched",
    "mangled": "_GdiGetDIBColorTable@16",
    "tu": "src/_unknown/tu_00480390.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-15"
   },
   "_GdiBitBlt@32": {
    "va": "004805b0",
@@ -25111,7 +25111,7 @@
    "status": "matched",
    "mangled": "_GdiBitBlt@32",
    "tu": "src/_unknown/tu_00480390.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-15"
   },
   "_GdiStretchBlt@40": {
    "va": "004805f0",
@@ -25119,7 +25119,7 @@
    "status": "matched",
    "mangled": "_GdiStretchBlt@40",
    "tu": "src/_unknown/tu_00480390.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-15"
   },
   "UseGdiFallback": {
    "va": "00480640",
@@ -25127,14 +25127,15 @@
    "status": "matched",
    "mangled": "UseGdiFallback",
    "tu": "src/_unknown/tu_00480390.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-15"
   },
   "InitializeWinG": {
    "va": "004806a0",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?InitializeWinG$n()i",
-   "evidence": "implied by src/_unknown/tu_0047b260.c 2026-11-09"
+   "status": "matched",
+   "mangled": "InitializeWinG",
+   "tu": "src/_unknown/tu_00480390.c",
+   "evidence": "strict match 2026-11-15"
   },
   "InitializeWinG#InitializeWinG": {
    "va": "004806a0",
@@ -25143,6 +25144,13 @@
    "mangled": "InitializeWinG",
    "tu": "src/_unknown/tu_00480390.c",
    "evidence": "placed (at) in src/_unknown/tu_00480390.c 2026-11-09"
+  },
+  "InitializeWinG#W?InitializeWinG$n()i": {
+   "va": "004806a0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?InitializeWinG$n()i",
+   "evidence": "implied by src/_unknown/tu_0047b260.c 2026-11-09"
   },
   "GFXCDSSurface::$ct": {
    "va": "00480870",

@@ -77,12 +77,17 @@ struct ActorRecord; struct ActorUnit; struct Context;
 
 
 /* ---- sim\simmisc.c part (working assumption) ---- */
+struct TargetSide { int id; GridPoint cell,position; char unknown14[0x44-0x14]; ActorRecord *actor; int actorId,heading,band; };
+struct TargetRecord { TargetSide source,target; int distance,elevation,modifier; };
+struct Weapon { char unknown00[0x28]; signed char skill; char unknown29[2]; int energy; char unknown2f[0xd]; signed char rings,spread; char unknown3e[8]; };
+struct WeaponScore { int state,accuracy,power,chance,rangeFactor,maximum,expected,ammoFactor; Weapon weapon; char unknown66[8]; };
+struct Context { int id; TargetRecord target; char fog[0x27]; WeaponScore scores[8]; };
 struct SimGame {
     unsigned char unknown00[0x2c]; unsigned char flags; unsigned char unknown2d[0xb]; ActorRecord *focus; unsigned char unknown3c[0x44]; unsigned char oldUnit[0x10b]; unsigned char unknown18b[0x2c2-0x18b];
     int network;                        // +0x2c2
     unsigned char unknown2c6[0x986 - 0x2c6];
     int player;                         // +0x986
-    int localPlayer; unsigned char unknown98e[0x9a6-0x98e]; unsigned char weaponContext[0xfa1-0x9a6]; Context *Weapons() { return (Context *)weaponContext; } int zoom; unsigned char unknownfa5[0x10e9-0xfa5];
+    int localPlayer; unsigned char unknown98e[0x9a6-0x98e]; Context weapons; unsigned char unknowndf5[0xfa1-0xdf5]; Context *Weapons() { return &weapons; } int zoom; unsigned char unknownfa5[0x10e9-0xfa5];
     int quiet;                          // +0x10e9
 };
 struct ActorPosition { long x, y; };
@@ -133,11 +138,6 @@ void SimSoundSetup(SimSound *sound, GridPoint *at);
 
 #pragma pack(pop)
 #pragma pack(push,1)
-struct TargetSide { int id; GridPoint cell,position; char unknown14[0x44-0x14]; ActorRecord *actor; int actorId,heading,band; };
-struct TargetRecord { TargetSide source,target; int distance,elevation,modifier; };
-struct Weapon { char unknown00[0x28]; signed char skill; char unknown29[2]; int energy; char unknown2f[0xd]; signed char rings,spread; char unknown3e[8]; };
-struct WeaponScore { int state,accuracy,power,chance,rangeFactor,maximum,expected,ammoFactor; Weapon weapon; char unknown66[8]; };
-struct Context { int id; TargetRecord target; char fog[0x27]; WeaponScore scores[8]; };
 
 #pragma pack(pop)
 struct WeaponPopup { void Invalidate(); void SetMode(int,int=0,int=0); }; extern WeaponPopup simActions;
@@ -167,7 +167,8 @@ int RandomRange(unsigned *,int,int);
 extern "C" GridPoint *PointFromAngle(GridPoint *,int,int);
 int VectorLength(int,int);
 long GridPointToIndex(const char *,GridPoint *);
-inline int FireClamp(int n,int lo,int hi) { return n<=lo?lo:n>=hi?hi:n; }
+inline unsigned RandomBelow(unsigned limit) { return next_link_seed(&gFxSeed)%limit; }
+inline int ClampValue(int n,int lo,int hi) { if (n<=lo) return lo; if (n>=hi) return hi; return n; }
 
 struct SimGame;
 extern int SimFire(SimGame *, ActorRecord *, long, long, long);
@@ -185,7 +186,7 @@ int SimFire(SimGame *game, ActorRecord *actor, long destination, long slot, long
 {
     TargetRecord target;
     Weapon weaponBuffer;
-    GridPoint fireAt, missWorld, screen, missTo;
+    GridPoint missTo, fireAt, missWorld, screen;
     ActorRecord *other;
     int targetCell,angle,scatter;
     unsigned seed;
@@ -215,10 +216,10 @@ int SimFire(SimGame *game, ActorRecord *actor, long destination, long slot, long
     UnitSlot *unitSlot=&actor->unit->slots[slot+11];
     unitSlot->uses += unitSlot->uses!=250;
     unitSlot->amount -= unitSlot->amount!=0;
-    unsigned chance=game->Weapons()->scores[slot].chance;
+    unsigned chance=game->weapons.scores[slot].chance;
     if (forced>=0) chance=forced;
     hit=next_link_seed(&simItemSeed)%100<chance;
-    if (game->network && ModeCheck(game)) ((PacketList *)modeLogName)->Fire((ActorRecord *)target.source.actor,target.target.actorId,(unsigned char)slot,seed,chance);
+    if (game->network && ModeCheck(game)) ((PacketList *)modeLogName)->Fire((ActorRecord *)target.source.actor,target.target.id,(unsigned char)slot,seed,chance);
     AnimAction action=actor->action;
     AnimActionUpdateTrajectory((int *)&action,(int *)gView);
     AnimActionInterpolateDrawPos(&action,&fireAt,slot,PopFindItem(actor->unit,0,-1),gView);
@@ -232,12 +233,12 @@ int SimFire(SimGame *game, ActorRecord *actor, long destination, long slot, long
         screen.x=0; screen.y=0;
         if (other) {
             screen=other->action.screen;
-            screen.x+=next_link_seed(&gFxSeed)%game->zoom-game->zoom/2;
-            screen.y+=next_link_seed(&gFxSeed)%game->zoom-game->zoom/2;
+            screen.x+=RandomBelow(game->zoom)-game->zoom/2;
+            screen.y+=RandomBelow(game->zoom)-game->zoom/2;
             screen.y-=other->action.rect.height/5;
         } else ViewToScreen(gView,&screen,&target.target.position);
         FxFire(game,fireAt,screen,weapon,slot,&target,&target.target.position,1);
-        ApplyDamage((int)game,target.target.actorId,targetCell,weapon);
+        ApplyDamage((int)game,target.target.id,targetCell,weapon);
         if (actor->owner==game->player) simActions.SetMode(2,gApplyTotalLoss,gApplyTotalDamage);
         if (other && other->owner==game->player) simPilot.SetOther(actor,gApplyTotalLoss,gApplyTotalDamage);
     } else {
@@ -247,7 +248,7 @@ int SimFire(SimGame *game, ActorRecord *actor, long destination, long slot, long
         if (other && other->owner==game->player) simPilot.SetOther(actor,-1,-1);
         int distance=VectorLength(target.target.position.x-target.source.position.x,target.target.position.y-target.source.position.y);
         angle=PointAngle(&target.source.position,&target.target.position);
-        int error=FireClamp((int)((100-chance)*256)/100,0,256);
+        int error=ClampValue((int)((100-chance)*256)/100,0,256);
         scatter=(distance/10)*error>>8;
         distance+=RandomRange(&simItemSeed,-(distance/20+scatter),distance/20+scatter);
         int deviation=(error*15>>8)+5;

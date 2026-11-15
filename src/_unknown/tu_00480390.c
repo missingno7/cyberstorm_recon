@@ -68,9 +68,9 @@ extern "C" int InitializeWinG()
         if (IsWin32s()) {
             if (!LoadWinG()) return 0;
             wingApi.initialized = 1;
-            return wingApi.initialized;
+        } else {
+            wingApi.initialized = UseGdiFallback();
         }
-        wingApi.initialized = UseGdiFallback();
     }
     return wingApi.initialized;
 }

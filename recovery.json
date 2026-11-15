@@ -9864,6 +9864,11 @@
      "va": "00480640",
      "size": 96,
      "mangled": "UseGdiFallback"
+    },
+    "InitializeWinG": {
+     "va": "004806a0",
+     "size": 451,
+     "mangled": "InitializeWinG"
     }
    },
    "data": {
@@ -9872,7 +9877,7 @@
      "size": 132
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-15"
   },
   "src/graph/gfx/g_cds.c": {
    "as": "graph\\gfx\\g_cds.c",
@@ -10628,7 +10633,7 @@
      "size": 66
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-15"
   },
   "src/sim/simmisc.c": {
    "as": "sim\\simmisc.c",
@@ -12340,7 +12345,7 @@
      "size": 12
     }
    },
-   "accepted": "2026-11-11"
+   "accepted": "2026-11-15"
   },
   "src/gui/slider.c": {
    "as": "gui\\slider.c",
@@ -14144,7 +14149,7 @@
      "size": 14
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-15"
   },
   "src/logic/slog.c": {
    "as": "logic\\slog.c",

@@ -101,7 +101,7 @@ public:
         }
     }
 }
-    void DrawControlCore(unsigned i){GuiSetControlClip(&g513888,controls[i]);controls[i]->Draw(i);}
+    void DrawControlCore(unsigned i){if (Control(i)->Hidden()) return; GuiSetControlClip(&g513888,controls[i]);controls[i]->Draw(i);}
     int ActivateCore(unsigned index){
     int result = 0;
     if (input && index < count) {
@@ -245,9 +245,7 @@ void GuiScreen::Draw()
         gGuiStringBase = firstString;
         GuiRect saved = gGuiClipRect;
         for (unsigned i = 0; i < count; ++i) {
-            if (!Control(i)->Hidden()) {
-                DrawControlCore(i);
-            }
+            DrawControlCore(i);
         }
         gGuiStringPool = 0;
         gGuiClipRect = saved;
@@ -309,3 +307,4 @@ long GuiScreen::HitTest(const GuiPoint *point)
 
 typedef char GuiControlSizeMustBe32[sizeof(GuiControl) == 0x20 ? 1 : -1];
 typedef char GuiScreenSizeMustBe76[sizeof(GuiScreen) == 0x4c ? 1 : -1];
+

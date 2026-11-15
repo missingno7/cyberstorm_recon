@@ -106,12 +106,12 @@ LogicActor *ActorChooseByMode(LogicActor *actor, int origin, int radius)
                 case 5: value = ActorNetStrengthAt(ActorName(other)); break;
                 case 8:
                     value = other->value34 * other->value34;
-                    divisor = Product(other->value38, other->count30);
+                    divisor = other->count30 * other->value38;
                     if (divisor > 1) value /= divisor;
                     break;
                 case 9:
                     value = other->value34 * other->value34;
-                    divisor = Product(other->value38, other->count30);
+                    divisor = other->count30 * other->value38;
                     if (divisor > 1) value /= divisor;
                     divisor = LogicCopyPoint(ActorName(actor), ActorName(other));
                     if (divisor > 1) value /= divisor;
@@ -186,6 +186,7 @@ int ActorTryTargetAction(LogicActor *actor, int attack)
     }
     return result;
 }
+
 
 
 
