@@ -11,7 +11,8 @@ Classes (candidate vs original, same placement):
   REG+SLOT    both of the above
   OPERANDS    same instruction lengths and mnemonics, other operand differences (constant, field offset, callee)
   SHAPE       the function has a different SIZE: control flow, expression shape, inlining or a field is wrong
-  SAME-SIZE   original size, but some arithmetic/compare/branch/call instruction differs (one construct is off)
+  SAME-SIZE   original size, but some arithmetic/compare/branch/call instruction differs (one construct is off);
+              `--fn` and the index's last column name those instructions on both sides
   HOMES       original size and the same core instructions; only moves, register homes or instruction order differ
               (same family as REG-SWAP: needs a different expression/record set, see docs/watcom_playbook.md)
   ASM         the original starts with `enter` or pushes segment registers: hand assembly, no C source matches it
@@ -46,6 +47,32 @@ SLOT = re.compile(r"e[sb]p [+-] 0x[0-9a-f]+|e[sb]p\]")
 BR = re.compile(r"^(j\w+|call|loop\w*)$")
 
 
+LAST_HINT = []
+SKIP = ("mov", "push", "pop", "lea", "nop")
+
+
+def core_hint(a, b):
+    """The core instructions (no moves) that only one side has, at their offsets: what the source must change."""
+    import difflib
+    ca = [(x[0] - a[0][0], f"{x[2]} {x[3]}") for x in a if x[2] not in SKIP]
+    cb = [(y[0] - b[0][0], f"{y[2]} {y[3]}") for y in b if y[2] not in SKIP]
+    # relocated operands are not linked in the candidate object ([0], 0): compare them as one symbol A; branch and
+    # call targets are distances, not constructs
+    norm = lambda s: REG.sub("r", re.sub(r"\[(?:0x[0-9a-f]+|0)\]|0x[0-9a-f]{5,}", "A",
+                                         re.sub(r"^(j\w+|call) .*$", r" T", s)))
+    out = []
+    sm = difflib.SequenceMatcher(None, [norm(s) for _, s in ca], [norm(s) for _, s in cb], autojunk=False)
+    for tag, i1, i2, j1, j2 in sm.get_opcodes():
+        if tag == "equal":
+            continue
+        left = "; ".join(f"+{o:x} {s}" for o, s in ca[i1:i2][:3])
+        right = "; ".join(f"+{o:x} {s}" for o, s in cb[j1:j2][:3])
+        out.append(f"original [{left or '-'}] vs candidate [{right or '-'}]")
+        if len(out) == 3:
+            break
+    return " | ".join(out)
+
+
 def classify(orig, cand, va, fix, size_bad=False):
     if size_bad:
         return "SHAPE"              # the extent does not end where the original function ends
@@ -56,7 +83,11 @@ def classify(orig, cand, va, fix, size_bad=False):
             return "SHAPE"              # different size: the source still says something else
         core = lambda rows: collections.Counter(r[2] for r in rows if r[2] not in ("mov", "push", "pop", "lea", "nop"))
         # same size: same arithmetic/compare/branch/call instructions (moves aside) = only homes and scheduling
-        return "HOMES" if core(a) == core(b) else "SAME-SIZE"
+        if core(a) == core(b):
+            return "HOMES"
+        LAST_HINT.clear()
+        LAST_HINT.append(core_hint(a, b))
+        return "SAME-SIZE"
     kinds = set()
     for x, y in zip(a, b):
         if x[4] == y[4] or any(x[0] <= f < x[0] + x[1] for f in fix):
@@ -157,27 +188,31 @@ def main(argv):
                                        bool(e.get("size_bad")))
                     hits = [(lane, ln.strip()) for lane, lines in reports.items() for ln in lines
                             if (lab in ln and len(lab) > 5) or e["va"] in ln.lower()]
+                    hint = LAST_HINT[0] if cls == "SAME-SIZE" and LAST_HINT else ""
+                    LAST_HINT.clear()
                     n = len({h[0] for h in hits})
                     work = ("no:asm" if cls == "ASM" else "no:neighbour" if cls.startswith("WAIT") else
                             "no:invariant" if "invariant" in ledger_verdicts.get(e["va"], ()) else
                             "no:invariant" if cls in ("REG-SWAP", "SLOT-SWAP", "REG+SLOT", "HOMES") and n >= 3
                             else "yes")
-                    rows.append((tu, e["va"], size, e.get("diff_bytes"), cls, n, lab, hits, work))
+                    rows.append((tu, e["va"], size, e.get("diff_bytes"), cls, n, lab, hits, work, hint))
     counts = collections.Counter(r[4] for r in rows)
-    for tu, va, size, diff, cls, n, lab, hits, work in rows:
+    for tu, va, size, diff, cls, n, lab, hits, work, hint in rows:
         print(f"{va} {size:5d} B  {str(diff):>5s} differ  {cls:10s} {n:2d} reports  {work:12s} {lab[:42]:42s} {tu}")
+        if want and hint:
+            print(f"    core difference: {hint}")
         if want:
             for lane, ln in hits[:40]:
                 print(f"    [{lane}] {ln[:230]}")
     print("\n" + ", ".join(f"{k} {v}" for k, v in counts.most_common()) + f"; total {len(rows)}")
     print("work: " + ", ".join(f"{k} {v}" for k, v in collections.Counter(r[8] for r in rows).most_common()))
     if out:
-        Path(out).write_text("\n".join("\t".join(str(x) for x in r[:7] + (r[8],)) for r in rows) + "\n",
+        Path(out).write_text("\n".join("\t".join(str(x) for x in r[:7] + (r[8], r[9])) for r in rows) + "\n",
                              encoding="utf-8")
     if "--targets" in argv:
         sel = sorted((r for r in rows if r[8] == "yes"), key=lambda r: -r[2])
         Path(argv[argv.index("--targets") + 1]).write_text(
-            "\n".join("\t".join(str(x) for x in r[:7]) for r in sel) + "\n", encoding="utf-8")
+            "\n".join("\t".join(str(x) for x in r[:7] + (r[9],)) for r in sel) + "\n", encoding="utf-8")
     return 0
 
 

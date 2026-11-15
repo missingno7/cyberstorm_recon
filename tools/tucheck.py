@@ -131,7 +131,17 @@ def check_reports(reports, mods, img, starts):
             why.append(f"extent {e['names'][0]} ends before its own filler ({e['tail_fill']} bytes)")
     end = base + main["size"]
     if base not in starts:
-        why.append(f"object start {base:08x} is not an original function start")
+        # a leading switch table (compare.py skips it as an extent): the object starts at the table, its first
+        # function right after it; the bytes between must be relocated dwords
+        first = int(ext[0]["va"], 16)
+        relocs = img.reloc_sites()
+        n = 0
+        while n + 4 <= ext[0]["off"] and base + n in relocs:
+            n += 4
+        import compare
+        gap = img.read_va(base + n, ext[0]["off"] - n)
+        if not (n > 0 and first in starts and (not gap or compare._all_filler(gap))):
+            why.append(f"object start {base:08x} is not an original function start")
     nxt = min((s for s in starts if s >= end), default=None)
     if nxt is not None and nxt > end and any(img.read_va(end, nxt - end)):
         why.append(f"bytes {end:08x}..{nxt:08x} after the object are not zero fill (missing function?)")

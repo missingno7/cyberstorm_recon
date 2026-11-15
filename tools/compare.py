@@ -381,6 +381,26 @@ class Comparison:
                     return self.ext_va[(si, o)][0] + off - o
         return None
 
+    def _leading_table(self, si, e):
+        """True if [0, e) of code segment si is only whole code-pointer dwords (a jump table) that a jmp in a later
+        extent of the same segment uses. Without -ot a switch table is emitted in FRONT of its function; for the
+        object's first switch function that is the start of the segment, with no public of its own. Such a range is
+        not a function: the owner proves it (external jump table rule, audit v1 F3)."""
+        ptrs = {f.off for f in self.fx_by_seg.get(si, []) if f.size() == 4 and not f.self_rel
+                and f.target[0] & 3 == 0 and is_code(self.m.segments[f.target[1]])}
+        n = 0
+        while n + 4 <= e and n in ptrs:
+            n += 4
+        seg = self.m.segments[si]
+        if n == 0 or (n < e and not _all_filler(bytes(seg.data[n:e]))):
+            return False                # table dwords, then only alignment filler up to the first function
+        for f in self.fx_by_seg.get(si, []):
+            if f.off >= e and f.size() == 4 and not f.self_rel and f.target[0] & 3 == 0 and f.target[1] == si:
+                toff = ((0 if f.target[0] & 4 else f.disp) + self._addend(si, f)) & 0xFFFFFFFF
+                if 0 <= toff < e:
+                    return True
+        return False
+
     def _foreign_tail(self, si, o, e):
         """(own_end, table_start) when code extent [o, e) ends with a jump table that the extent itself does not
         reference: without -ot Watcom puts a switch table in FRONT of its function, so it lands at the end of
@@ -723,6 +743,8 @@ class Comparison:
             for o, e, names in self.extents.get(si, []):
                 if e <= o:
                     continue
+                if code and o == 0 and not names and self._leading_table(si, e):
+                    continue        # a switch table in front of the object's first function: proven by its owner
                 va = self.va_of(si, o)
                 ext = {"off": o, "end": e, "names": names or ["<segment start>"],
                        "local": any(n in self.local for n in names), "scope": self.scope}
