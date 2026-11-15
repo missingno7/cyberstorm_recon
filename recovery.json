@@ -2142,10 +2142,15 @@
      "va": "0042a68f",
      "size": 29,
      "mangled": "W?Next$:RangeCounter$n()v"
+    },
+    "RangeCounter::Previous": {
+     "va": "0042a6ac",
+     "size": 29,
+     "mangled": "W?Previous$:RangeCounter$n()v"
     }
    },
    "data": {},
-   "accepted": "2026-11-11"
+   "accepted": "2026-11-15"
   },
   "src/multi/mstart.c": {
    "as": "multi\\mstart.c",
@@ -9175,10 +9180,15 @@
      "va": "0042754d",
      "size": 61,
      "mangled": "W?SurfaceCopyRegion$n(pn$Surface$$pn$1$ll)v"
+    },
+    "SurfaceGetFrame": {
+     "va": "0042758a",
+     "size": 48,
+     "mangled": "SurfaceGetFrame"
     }
    },
    "data": {},
-   "accepted": "2026-11-11"
+   "accepted": "2026-11-15"
   },
   "src/_unknown/tu_004275bc.c": {
    "as": "_unknown\\tu_004275bc.c",

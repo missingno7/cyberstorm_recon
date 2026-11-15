@@ -6047,7 +6047,7 @@
    "status": "matched",
    "mangled": "W?$ct:Surface$n(ul)_",
    "tu": "src/_unknown/tu_0042726c.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-15"
   },
   "Surface::$dt": {
    "va": "0042728b",
@@ -6055,7 +6055,7 @@
    "status": "matched",
    "mangled": "W?$dt:Surface$n()_",
    "tu": "src/_unknown/tu_0042726c.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-15"
   },
   "SurfaceAttach": {
    "va": "004272cd",
@@ -6063,7 +6063,7 @@
    "status": "matched",
    "mangled": "W?SurfaceAttach$n(pn$Surface$$pnvll)i",
    "tu": "src/_unknown/tu_0042726c.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-15"
   },
   "SurfaceAttach#W?SurfaceAttach$n(pnvpnvll)v": {
    "va": "004272cd",
@@ -6078,7 +6078,7 @@
    "status": "matched",
    "mangled": "W?SurfaceCreate$n(pn$Surface$$ll)i",
    "tu": "src/_unknown/tu_0042726c.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-15"
   },
   "SurfaceCreate#W?SurfaceCreate$n(pnvll)i": {
    "va": "0042732e",
@@ -6100,7 +6100,7 @@
    "status": "matched",
    "mangled": "W?SurfaceFree$n(pn$Surface$$)v",
    "tu": "src/_unknown/tu_0042726c.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-15"
   },
   "SurfaceFree#W?SurfaceFree$n(pnv)v": {
    "va": "00427399",
@@ -6115,7 +6115,7 @@
    "status": "matched",
    "mangled": "W?SurfaceGetPixel$n(pn$Surface$$ll)i",
    "tu": "src/_unknown/tu_0042726c.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-15"
   },
   "SurfaceGetRow": {
    "va": "00427405",
@@ -6123,7 +6123,7 @@
    "status": "matched",
    "mangled": "W?SurfaceGetRow$n(pn$Surface$$l)pnc",
    "tu": "src/_unknown/tu_0042726c.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-15"
   },
   "SurfaceClear": {
    "va": "0042742c",
@@ -6131,7 +6131,7 @@
    "status": "matched",
    "mangled": "W?SurfaceClear$n(pn$Surface$$)v",
    "tu": "src/_unknown/tu_0042726c.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-15"
   },
   "SurfaceClear#W?SurfaceClear$n(pnv)v": {
    "va": "0042742c",
@@ -6146,7 +6146,7 @@
    "status": "matched",
    "mangled": "W?MenuRestore$n(pn$Surface$$pn$1$rnx$GuiRect$$ll)i",
    "tu": "src/_unknown/tu_0042726c.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-15"
   },
   "MenuRestore#W?MenuRestore$n(pnvpnvpnx$GuiRect$$ll)v": {
    "va": "00427459",
@@ -6161,7 +6161,7 @@
    "status": "matched",
    "mangled": "W?SurfaceCopyRegion$n(pn$Surface$$pn$1$ll)v",
    "tu": "src/_unknown/tu_0042726c.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-15"
   },
   "SurfaceCopyRegion#W?SurfaceCopyRegion$n(pnvpnvii)v": {
    "va": "0042754d",
@@ -6180,9 +6180,10 @@
   "SurfaceGetFrame": {
    "va": "0042758a",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "SurfaceGetFrame",
-   "evidence": "implied by src/pop/pdeath.c 2026-11-09"
+   "tu": "src/_unknown/tu_0042726c.c",
+   "evidence": "strict match 2026-11-15"
   },
   "PlyMatch": {
    "va": "004275dc",
@@ -7320,7 +7321,7 @@
    "status": "matched",
    "mangled": "W?SetRange$:RangeCounter$n(ususus)v",
    "tu": "src/_unknown/tu_0042a5fc.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-15"
   },
   "RangeCounter::$ct": {
    "va": "0042a618",
@@ -7328,7 +7329,7 @@
    "status": "matched",
    "mangled": "W?$ct:RangeCounter$n()_",
    "tu": "src/_unknown/tu_0042a5fc.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-15"
   },
   "RangeCounter::$dt": {
    "va": "0042a634",
@@ -7336,7 +7337,7 @@
    "status": "matched",
    "mangled": "W?$dt:RangeCounter$n()_",
    "tu": "src/_unknown/tu_0042a5fc.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-15"
   },
   "RangeCounter::Set": {
    "va": "0042a639",
@@ -7344,7 +7345,7 @@
    "status": "matched",
    "mangled": "W?Set$:RangeCounter$n(us)v",
    "tu": "src/_unknown/tu_0042a5fc.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-15"
   },
   "RangeCounter::Increment": {
    "va": "0042a655",
@@ -7352,7 +7353,7 @@
    "status": "matched",
    "mangled": "W?Increment$:RangeCounter$n()v",
    "tu": "src/_unknown/tu_0042a5fc.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-15"
   },
   "RangeCounter::Decrement": {
    "va": "0042a672",
@@ -7360,7 +7361,7 @@
    "status": "matched",
    "mangled": "W?Decrement$:RangeCounter$n()v",
    "tu": "src/_unknown/tu_0042a5fc.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-15"
   },
   "RangeCounter::Next": {
    "va": "0042a68f",
@@ -7368,15 +7369,15 @@
    "status": "matched",
    "mangled": "W?Next$:RangeCounter$n()v",
    "tu": "src/_unknown/tu_0042a5fc.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-15"
   },
   "RangeCounter::Previous": {
    "va": "0042a6ac",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?Previous$:RangeCounter$n()v",
    "tu": "src/_unknown/tu_0042a5fc.c",
-   "evidence": "placed (at) in src/_unknown/tu_0042a5fc.c 2026-11-09"
+   "evidence": "strict match 2026-11-15"
   },
   "RichTextCommand": {
    "va": "0042a6e8",

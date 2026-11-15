@@ -91,11 +91,13 @@ def is_bss(seg):
 _STARTS = {}
 
 
-def _table_tail(gap, va, relsites):
-    """gap (original bytes from va to the next function start) = 0..3 filler bytes + one or more relocated dwords."""
+def _table_tail(gap, va, relsites, zero_ok=False):
+    """gap (original bytes from va to the next function start) = 0..3 filler bytes + one or more relocated dwords.
+    zero_ok: the pad may also be zero linker fill (the table is the NEXT object's leading switch table)."""
     for pad in range(0, 4):
         rest = len(gap) - pad
-        if rest >= 4 and rest % 4 == 0 and (pad == 0 or _all_filler(gap[:pad])) and \
+        padded = pad == 0 or _all_filler(gap[:pad]) or (zero_ok and not any(gap[:pad]))
+        if rest >= 4 and rest % 4 == 0 and padded and \
                 all(va + pad + k in relsites for k in range(0, rest, 4)):
             return True
     return False
@@ -669,6 +671,8 @@ class Comparison:
                     pass                      # filler + the next function's switch table (proven by that function)
                 elif last and gap and not any(gap):
                     pass                      # zero linker fill after the object's last function
+                elif last and gap and _table_tail(gap, end, self.relsites, zero_ok=True):
+                    pass                      # linker fill + the next object's leading switch table (its owner proves it)
                 elif last and gap and _all_filler(gap):
                     tail_fill = len(gap)      # partial TU: compiler filler of the original, not produced here
                 else:

@@ -142,6 +142,35 @@ def audit_v1_r2_scalars(check):
     check(not any(x == "STRICT" for x in res["zero"]), "R2.2 negative: zero (BSS) object over nonzero oracle data is not STRICT")
 
 
+def table_neighbour_checks(check):
+    """A switch table in front of the NEXT object's first function is neither part of the last function before it
+    (that function ends at its own bytes) nor counted anywhere until its owner is STRICT; a byte change in the last
+    function itself still fails."""
+    import gate
+    from common import ROOT
+    tu = "src/_unknown/tu_0042a5fc.c"
+    entry = gate.load_ledger()["tus"][tu]
+    r, _, _ = gate.build_and_compare(ROOT / tu, entry)
+    e = gate.by_label(gate.extents(r)).get("RangeCounter::Previous", {})
+    check(e.get("status") == "STRICT" and e["end"] - e["off"] == 29,
+          "next-object table: last function before it is STRICT with its own 29 bytes")
+    text = (ROOT / tu).read_text(encoding="latin-1")
+    marker = "RangeCounter::Previous"
+    i = text.rfind(marker)
+    j = text.find("}", i)
+    k = text.rfind(";", i, j)
+    with tempfile.TemporaryDirectory(dir=ROOT / "build") as td:
+        p = Path(td) / "tu_0042a5fc.c"
+        p.write_text(text[:k] + "+1" + text[k:], encoding="latin-1")
+        try:
+            r2, _, _ = gate.build_and_compare(p, entry)
+            e2 = gate.by_label(gate.extents(r2)).get("RangeCounter::Previous", {})
+            bad = e2.get("status") != "STRICT"
+        except RuntimeError:
+            bad = True
+        check(bad, "next-object table: a change in the last function itself is not STRICT")
+
+
 def resource_checks(check):
     """tools/rsrc.py: policy and sensitivity (a one-pixel or one-character change is not STRICT)."""
     import shutil
@@ -269,6 +298,7 @@ def main():
         check(all(v != "STRICT" for v in st6.values()), "placement at an interior address is not STRICT (F4)")
     audit_v1_f3_f5(check)
     audit_v1_r2_scalars(check)
+    table_neighbour_checks(check)
     resource_checks(check)
     print("TEST GATE OK" if not fails else f"TEST GATE FAILED: {fails}")
     return 1 if fails else 0
