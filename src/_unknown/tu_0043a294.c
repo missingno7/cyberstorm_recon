@@ -14,7 +14,9 @@ struct ItemHeader {
 };
 struct ActorItem : ItemHeader { union { int words[16]; U8 bytes[64]; signed char chars[64]; } detail; };
 struct ItemTable { int kind; char *items; int size,stringBase,count; };
-struct Mount { U8 allowed,field01; U8 weights[6]; U8 chance; U8 rest[13]; unsigned mask; };
+struct Mount { U8 allowed,field01; U8 weights[6]; U8 chance; U8 rest[13]; unsigned mask;
+    U8 &Allowed(){return allowed;} /* reference return: HercSelectHit tests the byte through the mount pointer */
+    int Weight(int a,int x,int b,int y){return weights[a]*x/100+weights[b]*y/100;} };
 struct Chassis : ItemHeader { Mount mounts[23]; U8 rest[100]; };
 struct StrPool { long id; char *buffer; long capacity; void *data; long size;
  int Lock(); void Unlock(); char *GetString(long,int=0); char *GetSecondString(long,int); };
@@ -76,7 +78,7 @@ void HercAdvanceTurn(ActorUnit *u,void *actor){
  if(actor){p=PopFindItem(u,10,-1);efficiency=HercItemEfficiency(u,10);
  SendEvent(actor,122,(void *)((p->detail.words[1]*efficiency+50)/100),(p->detail.words[2]*efficiency+50)/100+HercSensorBase,(p->detail.words[3]*efficiency+50)/100);}
  char shield[56];p=(ActorItem *)UnitFogObject(u,7,shield);
- u->slots[7].amount+=p->detail.words[2];u->slots[7].amount=Clamp(u->slots[7].amount,0,p->detail.words[1]);
+ int value=u->slots[7].amount+=p->detail.words[2];u->slots[7].amount=Clamp(value,0,p->detail.words[1]);
  u->slots[5].amount-=HercPowerUse(u,1);u->slots[5].amount=Clamp(u->slots[5].amount,0,0x7fffffff);
  for(int i=0;i<8;i++)u->slots[i+11].uses=0;
  for(i=0;i<4;i++){
@@ -207,7 +209,7 @@ int HercSelectHit(ActorUnit *u,int direction){
  HercAngleWeights(direction/0xb60b61,&a,&b,&x,&y);
  unsigned total=0;Chassis *c=(Chassis *)PopFindItem(u,0,-1);
  for(int i=0;i<23;i++){
- if(c->mounts[i].allowed && u->slots[i].condition){int weight=c->mounts[i].weights[a]*x/100;weight+=c->mounts[i].weights[b]*y/100;weight+=HercHitBias[i];thresholds[i]=total;total+=weight;}
+ if(c->mounts[i].Allowed() && u->slots[i].condition){int weight=c->mounts[i].Weight(a,x,b,y);weight+=HercHitBias[i];thresholds[i]=total;total+=weight;}
  else thresholds[i]=0x7fffffff;
  }
  if(!total)return 0;
@@ -217,9 +219,3 @@ int HercSelectHit(ActorUnit *u,int direction){
  if(chance){chance=chance*HercItemEfficiency(u,0)/100;if(next_link_seed(&simItemSeed.value)%100<chance)selected=0;}
  return selected;
 }
-
-
-
-
-
-

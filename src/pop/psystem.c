@@ -194,8 +194,8 @@ void PopUpdateItem(PopNode *node, int index)
     MenuDrawWrapped(text, -1, 0, 1, label, &rect);
     if (((PopItemData *)item)->category != 1) label = ((PopItemData *)item)->amount13;
     else label = ((PopItemData *)item)->capacity;
-    int amount=((PopSlot *)row)->amount; int templateId = ((PopItemData *)item)->category * 3 + 0x261 +
-        (label == amount) + (amount == 0) * 2;
+    int templateId = ((PopItemData *)item)->category * 3 + 0x261 +
+        (label == ((PopSlot *)row)->amount) + (((PopSlot *)row)->amount == 0) * 2;
     sprintf(text, AllocateMissionImage((int *)targetBriefResource, templateId), ((PopSlot *)row)->amount);
     MenuDrawWrapped(text, 1, 0, 0, 10, &rect);
 }

@@ -104,7 +104,7 @@ extern MenuNetwork gMenuNetwork; extern void HotbriefEmpty(void *); extern void 
 extern void BestLocSetData(void *,void *,void *); extern int SimAddPlayer(SimGame *,int,PlayerSlot * = 0); extern "C" void *f_0043c6ed(void *,void *);
 struct ActorBlock; struct ActorListObject; struct ActorPosition; struct GridPoint; extern ActorRecord *ActorListAdd(int,ActorBlock *,ActorListObject *,ActorPosition *,int,int); extern void LogicActorDelete(void *,int),ActorActivate(ActorRecord *); extern "C" int ResolveName(void *,void *);
 extern void TargetObjectInit(char *,ActorPosition *,int); extern void SimCenterOn(SimGame *,GridPoint *),SimRefreshFog(SimGame *,int),SimChangePlayer(SimGame *,int); extern void FogInitialize(FogBuffer *,int,int);
-inline int SimActorHidden(int index) { return g4d3604[index]==0; }
+inline int SimActorHidden(int index) { return !g4d3604[index]; }
 inline int SimActorUnitId(int index) { return actorIndexTable[index*2]; }
 
 
@@ -269,8 +269,8 @@ void SimGameRefresh(SimGame *game)
 
 void SimDrawBar(long x, long y, int image, long width, long value, long maximum, long trend)
 {
-    long filled = value * width / maximum;
     viewportClipLeft = g4d381c;
+    long filled = value * width / maximum;
     if (filled) MenuDrawImage(&g513888, &drawCursorImages->images[image], x, y);
     if (value != maximum) {
         viewportClipLeft.left = x + filled;
@@ -282,8 +282,8 @@ void SimDrawBar(long x, long y, int image, long width, long value, long maximum,
         MenuDrawImage(&g513888, &drawCursorImages->images[image + 1], x, y);
     }
     viewportClipLeft = g4d381c;
-    int down = trend < 0;
-    MenuDrawImage(&g513888, &drawCursorImages->images[image + 3 + down], x - 10, y);
+    int arrow = image + 3 + (trend < 0);
+    MenuDrawImage(&g513888, &drawCursorImages->images[arrow], x - 10, y);
 }
 
 void SimGameDrawPanel(SimGame *game)
@@ -334,10 +334,11 @@ void SimGameDrawStatus(SimGame *game)
         int image, k;
         long text;
         for (k = 0, image = 0x75, text = 0x514; image != 0x7b; k++, image += 2, text++) {
-            int filled = (game->stats[k].value * 19 + game->stats[k].maximum / 2) / game->stats[k].maximum;
+            int value = game->stats[k].value, maximum = game->stats[k].maximum;
+            int filled = (value * 19 + maximum / 2) / maximum;
             long left = g4a0338 + 0x185;
             long top = g4a033c + g4a031c[k] + 0x1b;
-            filled = Clamp(filled, game->stats[k].value >= 0, 19);
+            filled = Clamp(filled, value >= 0, 19);
             int n;
             for (n = 0; n < filled; n++) MenuDrawImage(&g513888, &drawCursorImages->images[image], left + n * 3, top);
             for (; n < 19; n++) MenuDrawImage(&g513888, &drawCursorImages->images[image + 1], left + n * 3, top);
@@ -375,9 +376,9 @@ void SimGameDrawFrames(SimGame *game)
             MenuLine(&g513888,right,bottom,right-length,bottom); MenuLine(&g513888,right,bottom,right,bottom-length);
             MenuLine(&g513888,left,bottom,left+length,bottom); MenuLine(&g513888,left,bottom,left,bottom-length);
         }
-        if(second>=0 && game->target && g4d3604[game->target->action.resource]) {
+        if(second>=0 && game->target && !SimActorHidden(game->target->action.resource)) {
             ActorRecord *actor=game->target;
-            width=actor->action.rect.width+6; height=actor->action.rect.height+6;
+            int width=actor->action.rect.width+6, height=actor->action.rect.height+6;
             int left=actor->action.rect.x-3,top=actor->action.rect.y-3;
             int right=left+width-1,bottom=top+height-1;
             int length=actor->action.Width()/6+1;

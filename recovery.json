@@ -790,6 +790,11 @@
      "size": 1,
      "mangled": "W?BestLocEmpty$n()v"
     },
+    "BestLocSubCandidate": {
+     "va": "004660cb",
+     "size": 233,
+     "mangled": "W?BestLocSubCandidate$n(pn$BestLocEntry$$)i"
+    },
     "BestLocBegin": {
      "va": "004661b4",
      "size": 154,
@@ -802,7 +807,7 @@
     }
    },
    "data": {},
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-16"
   },
   "src/io/resource.c": {
    "as": "io\\resource.c",
@@ -901,7 +906,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-15"
+   "accepted": "2026-11-16"
   },
   "src/shell/missbrf.c": {
    "as": "shell\\missbrf.c",
@@ -994,7 +999,13 @@
   "src/shell/hercbay.c": {
    "as": "shell\\hercbay.c",
    "install": "wc106",
-   "profile": "plain",
+   "flags": [
+    "-4s",
+    "-s",
+    "-bm",
+    "-oe"
+   ],
+   "tool": "wpp386",
    "functions": {
     "W?.fn_init$n()v": {
      "va": "00415a88",
@@ -1015,6 +1026,11 @@
      "va": "00415d6b",
      "size": 178,
      "mangled": "W?HercBayConfigureControls$n()v"
+    },
+    "HercBayOpen": {
+     "va": "00415edc",
+     "size": 183,
+     "mangled": "W?HercBayOpen$n(pn$HercBay$$pnv)v"
     },
     "HercBayAltStart": {
      "va": "00415f93",
@@ -1115,7 +1131,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-16"
   },
   "src/pop/psystem.c": {
    "as": "pop\\psystem.c",
@@ -1204,7 +1220,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-16"
   },
   "src/sim/target.c": {
    "as": "sim\\target.c",
@@ -2101,7 +2117,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-16"
   },
   "src/_unknown/tu_0042a5fc.c": {
    "as": "_unknown\\tu_0042a5fc.c",
@@ -2965,7 +2981,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-11"
+   "accepted": "2026-11-16"
   },
   "src/sim/anim.c": {
    "as": "sim\\anim.c",
@@ -3930,6 +3946,11 @@
      "size": 23,
      "mangled": "W?ScriptSetVar$n(pn$Script$$il)v"
     },
+    "ScriptRef": {
+     "va": "00467ed7",
+     "size": 246,
+     "mangled": "W?ScriptRef$n(pn$Script$$i)pn$ScriptPoint$$"
+    },
     "ScriptCommandTarget": {
      "va": "00467fe0",
      "size": 341,
@@ -3984,7 +4005,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-16"
   },
   "src/shell/hotseat.c": {
    "as": "shell\\hotseat.c",
@@ -4240,7 +4261,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-16"
   },
   "src/multi/minipkt.c": {
    "as": "multi\\minipkt.c",
@@ -5592,21 +5613,7 @@
     }
    },
    "data": {},
-   "accepted": "2026-11-14"
-  },
-  "src/_unknown/tu_004599a0.c": {
-   "as": "_unknown\\tu_004599a0.c",
-   "install": "wc106",
-   "profile": "plain-oe",
-   "functions": {
-    "UnknownIdentityThunk": {
-     "va": "004599a0",
-     "size": 5,
-     "mangled": "W?UnknownIdentityThunk$n(ul)ul"
-    }
-   },
-   "data": {},
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-16"
   },
   "src/sim/animbmp.c": {
    "as": "sim\\animbmp.c",
@@ -6339,7 +6346,7 @@
      "size": 124
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-16"
   },
   "src/sim/simturn.c": {
    "as": "sim\\simturn.c",
@@ -6975,7 +6982,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-15"
+   "accepted": "2026-11-16"
   },
   "src/terr/tsurface.c": {
    "as": "terr\\tsurface.c",
@@ -7263,7 +7270,7 @@
      "size": 16
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-16"
   },
   "src/_unknown/tu_00407204.c": {
    "as": "_unknown\\tu_00407204.c",
@@ -7674,6 +7681,11 @@
      "size": 28,
      "mangled": "W?PilotGuiReleaseChatMenu$n()v"
     },
+    "f_004120fe": {
+     "va": "004120fe",
+     "size": 459,
+     "mangled": "f_004120fe"
+    },
     "PilotGuiClearProfileModified": {
      "va": "004122c9",
      "size": 15,
@@ -7720,7 +7732,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-16"
   },
   "src/_unknown/tu_00438374.c": {
    "as": "_unknown\\tu_00438374.c",
@@ -7979,6 +7991,11 @@
      "size": 65,
      "mangled": "W?UnitSpend$n(pn$ActorUnit$$i)i"
     },
+    "HercAdvanceTurn": {
+     "va": "0043a2d5",
+     "size": 706,
+     "mangled": "W?HercAdvanceTurn$n(pn$ActorUnit$$pnv)v"
+    },
     "HercBuildDamage": {
      "va": "0043a597",
      "size": 111,
@@ -8051,7 +8068,7 @@
     }
    },
    "data": {},
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-16"
   },
   "src/_unknown/tu_004413e0.c": {
    "as": "_unknown\\tu_004413e0.c",
@@ -8103,19 +8120,14 @@
      "size": 74,
      "mangled": "f_0044220e"
     },
-    "f_004422f0": {
-     "va": "004422f0",
-     "size": 231,
-     "mangled": "f_004422f0"
-    },
-    "f_004423d7": {
-     "va": "004423d7",
-     "size": 253,
-     "mangled": "f_004423d7"
+    "f_00442258": {
+     "va": "00442258",
+     "size": 152,
+     "mangled": "f_00442258"
     }
    },
    "data": {},
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-16"
   },
   "src/_unknown/tu_0042cf40.c": {
    "as": "_unknown\\tu_0042cf40.c",
@@ -10427,6 +10439,11 @@
      "size": 112,
      "mangled": "W?SimGameRefresh$n(pn$SimGame$$)v"
     },
+    "SimDrawBar": {
+     "va": "00451070",
+     "size": 352,
+     "mangled": "W?SimDrawBar$n(llillll)v"
+    },
     "SimGameDrawPanel": {
      "va": "004511d0",
      "size": 416,
@@ -10439,7 +10456,7 @@
      "size": 36
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-16"
   },
   "src/sim/simmini.c": {
    "as": "sim\\simmini.c",
@@ -12006,7 +12023,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-16"
   },
   "src/pop/preport.c": {
    "as": "pop\\preport.c",
@@ -13152,6 +13169,11 @@
      "size": 61,
      "mangled": "W?QueueSent$n(pnapn$MenuMessage$$)i"
     },
+    "QueueReceive": {
+     "va": "0047457f",
+     "size": 288,
+     "mangled": "W?QueueReceive$n(pnapn$MenuMessage$$)i"
+    },
     "QueueNode::Key": {
      "va": "0047469f",
      "size": 15,
@@ -13230,7 +13252,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-16"
   },
   "src/main/help.c": {
    "as": "main\\help.c",
@@ -13396,6 +13418,11 @@
      "va": "0047b5b0",
      "size": 160,
      "mangled": "W?PaletteBlend$n(pn$Palette$$pnx$1$iui)v"
+    },
+    "SimPaletteCycle": {
+     "va": "0047b650",
+     "size": 193,
+     "mangled": "W?SimPaletteCycle$n(pn$Palette$$)v"
     }
    },
    "data": {
@@ -13416,7 +13443,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-16"
   },
   "src/graph/vs.c": {
    "as": "graph\\vs.c",
@@ -13971,6 +13998,11 @@
      "size": 192,
      "mangled": "W?AnimClearBetweenRows$n()v"
     },
+    "f_00459020": {
+     "va": "00459020",
+     "size": 1072,
+     "mangled": "W?f_00459020$n($DrawPoint$$i)v"
+    },
     "AnimDrawBitmap": {
      "va": "00459450",
      "size": 336,
@@ -13980,6 +14012,11 @@
      "va": "004595a0",
      "size": 160,
      "mangled": "W?AnimSetViewportRect$n(pnipniiiii)i"
+    },
+    "AnimDrawAction::$dt": {
+     "va": "004599a0",
+     "size": 5,
+     "mangled": "W?$dt:AnimDrawAction$n()_"
     }
    },
    "data": {
@@ -13992,7 +14029,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-16"
   },
   "src/sim/animglob.c": {
    "as": "sim\\animglob.c",
@@ -14027,6 +14064,11 @@
      "va": "0045ba00",
      "size": 304,
      "mangled": "W?UpdatePayload$n(pn$Unit$$i)v"
+    },
+    "UnitDamageIndicator": {
+     "va": "0045bb30",
+     "size": 281,
+     "mangled": "W?UnitDamageIndicator$n(pn$Unit$$ipn$1$)pnuc"
     }
    },
    "data": {
@@ -14035,7 +14077,7 @@
      "size": 24
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-16"
   },
   "src/sim/weapfx.c": {
    "as": "sim\\weapfx.c",
@@ -14324,6 +14366,30 @@
    },
    "data": {},
    "accepted": "2026-11-14"
+  },
+  "src/sim/actorver.c": {
+   "as": "sim\\actorver.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "f_004422f0": {
+     "va": "004422f0",
+     "size": 231,
+     "mangled": "f_004422f0"
+    },
+    "f_004423d7": {
+     "va": "004423d7",
+     "size": 253,
+     "mangled": "f_004423d7"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048b1f0",
+     "size": 170
+    }
+   },
+   "accepted": "2026-11-16"
   }
  },
  "accepted_losses": [
@@ -15729,6 +15795,23 @@
    "functions": [],
    "date": "2026-11-14",
    "retired": true
+  },
+  {
+   "tu": "src/_unknown/tu_004413e0.c",
+   "functions": [
+    "f_004422f0",
+    "f_004423d7"
+   ],
+   "date": "2026-11-16",
+   "moved_to": "src/sim/actorver.c"
+  },
+  {
+   "tu": "src/_unknown/tu_004599a0.c",
+   "functions": [
+    "UnknownIdentityThunk"
+   ],
+   "date": "2026-11-16",
+   "moved_to": "src/sim/animout.c"
   }
  ]
 }

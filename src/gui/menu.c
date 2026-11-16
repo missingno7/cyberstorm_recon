@@ -669,8 +669,10 @@ int MenuChat::Event(unsigned,U32) {
             break;
             case 82:gMenuChatInsert^=1;
             break;
+            case 1:
             case 28:
             case 75:
+            case 77:
             break;
         }
     }

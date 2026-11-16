@@ -804,6 +804,9 @@ void Shell::UpdateHercUpgrade()
         gHercUpgradeLastClick=now;
     }
     switch(result){
+    case 48:
+        HercUpgradeAction48(&g4b700c);HercUpgradeAction48(&g4b700c);HercUpgradeClose(&g4b700c);
+        ShellStorageReopen(&g4b5b50,&input);screen=27;break;
     case 85:HercUpgradeAction85(&g4b700c);break;
     case 47:
         HercUpgradeAction47(&g4b700c);HercUpgradeClose(&g4b700c);
@@ -825,9 +828,6 @@ void Shell::UpdateHercUpgrade()
         }
         break;
     case 58:HercUpgradeAction58(&g4b700c);break;
-    case 48:
-        HercUpgradeAction48(&g4b700c);HercUpgradeAction48(&g4b700c);HercUpgradeClose(&g4b700c);
-        ShellStorageReopen(&g4b5b50,&input);screen=27;break;
     }
 }
 void Shell::UpdateMainMenuSelection()

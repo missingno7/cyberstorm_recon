@@ -64,18 +64,17 @@ int QueueSequence(char *object,int peer) { Transport *t=(Transport*)object; retu
 int QueueSent(char *object,MenuMessage *m) { Transport *t=(Transport*)object; int peer=m->To(); if(!m->Sequence()) return 0; t->peers[peer].queue.Add(474,m); return 1; }
 int QueueReceive(char *object,MenuMessage *m) {
  int sequence=m->Sequence();
- if(sequence && !IsSystemMessage(m)) {
-  int current; int peer=m->From(), directed=m->To();
-  PeerQueue *p=&((Transport*)object)->peers[peer]; int *received=directed?&p->received:&p->unreliable;
-  if(!*received) *received=sequence-1;
-  current=*received; if(sequence>current) {
-   if(current+1==m->Sequence()) {
-    MenuMessage *copy=new MenuMessage;
-    *copy=*m; gReceiveQueue.Add(474,copy); ++*received;
-   } else { int type=directed?0x1004:0x1005; MenuMessage request(type,current+1,sequence,0); MenuSend(&request,peer); }
-  }
-  if(directed) MessageAcknowledge(m,object);
+ if(!sequence || IsSystemMessage(m)) return 1;
+ int peer=m->From(), directed=m->To();
+ PeerQueue *p=&((Transport*)object)->peers[peer]; int *received=directed?&p->received:&p->unreliable;
+ if(!*received) *received=sequence-1;
+ if(sequence>*received) {
+  if(*received+1==m->Sequence()) {
+   MenuMessage *copy=new MenuMessage;
+   *copy=*m; gReceiveQueue.Add(474,copy); ++*received;
+  } else { int type=directed?0x1004:0x1005; MenuMessage request(type,*received+1,sequence,0); MenuSend(&request,peer); }
  }
+ if(directed) MessageAcknowledge(m,object);
  return 1;
 }
 int QueueNode::Key() { MenuMessage *m=Data(); return m?m->Sequence():0; }

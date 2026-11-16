@@ -183,7 +183,7 @@ int LogicCheckActorCollision(unsigned char *mission, int unused)
 {
     if (DAT_004d3551 != 0)
         return 0;
-    LogicActor *candidateActors[32];
+    char *message; LogicActor *candidateActors[32];
     int candidateCount = DAT_004d3551;
     if (!logicActorList.AllLocalActorsPresent()) {
         LogicActor *entry = logicActorList.First(); while (entry != 0) {
@@ -274,18 +274,19 @@ int LogicCheckActorCollision(unsigned char *mission, int unused)
         }
     }
     if (candidateCount != 0) {
+        message = (char *)DAT_004fb944;
         char *prompt = AllocateMissionImage(g511ddc, 0xf6, 0);
-        strcpy((char *)DAT_004fb944, prompt);
-        strcat((char *)DAT_004fb944, (char *)DAT_0048b5ac);
+        strcpy(message, prompt);
+        strcat(message, (char *)DAT_0048b5ac);
         for (int i = 0; i < candidateCount; ++i) {
-            strcat((char *)DAT_004fb944, (char *)DAT_0048b5ae);
-            strcat((char *)DAT_004fb944, ActorGetEvent(candidateActors[i]));
-            strcat((char *)DAT_004fb944, (char *)DAT_0048b5b2);
+            strcat(message, (char *)DAT_0048b5ae);
+            strcat(message, ActorGetEvent(candidateActors[i]));
+            strcat(message, (char *)DAT_0048b5b2);
         }
-        strcat((char *)DAT_004fb944, (char *)DAT_0048b5b4);
+        strcat(message, (char *)DAT_0048b5b4);
         prompt = AllocateMissionImage(g511ddc, 0xf3, 0);
-        strcat((char *)DAT_004fb944, prompt);
-        if (f_004771aa((char *)DAT_004fb944) == 0)
+        strcat(message, prompt);
+        if (f_004771aa(message) == 0)
             return 0;
         for (int releaseIndex = 0; releaseIndex < candidateCount; ++releaseIndex)
             ActorRelease(candidateActors[releaseIndex]);

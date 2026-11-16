@@ -137,22 +137,13 @@ void HercBayConfigureControls()
     g4b3734 = (g4b3734 & 0xff1fffff) + 0xa00000;
 }
 
+void HercBayAltStart(HercBay *bay, void *callback);
+void HercBaySetDisplay();
 void HercBayReturnFromPurchase(HercBay *bay, void *callback)
 {
     if (bay->IsActive())
         return;
-    register char *screen = (char *)bay;
-    register int selector = logicMode;
-    if (selector == 1) { HercSelect(2); } else { HercSelect(9); }
-    g4b37bc = -1;
-    ((GuiScreen *)screen)->LoadLayout((long)g48aa60);
-    register void *handler = callback;
-    ((GuiScreen *)screen)->Open((InputReq *)handler, &gShellStrings, 0x709, 1);
-    BriefStatus(screen);
-    screen += 0x58;
-    ((Flic *)screen)->Open((long)g48aa6c);
-    *(int *)(screen + 0x4c) = -1;
-    ((MenuNumber *)&g4b3748)->SetValue(g4d0413, 0);
+    HercBayAltStart(bay, callback);
     bay->display = g4d030f;
     bay->state = 1;
     bay->transition = 0;
@@ -162,20 +153,9 @@ void HercBayOpen(HercBay *bay, void *callback)
 {
     if (bay->IsActive())
         return;
-    
-    register int selector = logicMode;
-    if (selector == 1) { HercSelect(2); } else { HercSelect(9); }
-    g4b37bc = -1;
-    bay->LoadLayout((long)g48aa60);
-    register void *handler = callback;
-    bay->Open((InputReq *)handler, &gShellStrings, 0x709, 1);
-    BriefStatus((char*)bay);
-    char *screen=(char*)bay+0x58;
-    ((Flic *)screen)->Open((long)g48aa6c);
-    *(int *)(screen + 0x4c) = -1;
-    ((MenuNumber *)&g4b3748)->SetValue(g4d0413, 0);
-    *(int *)(screen - 0x58 + 0xec) = 1;
-    *(int *)(screen - 0x58 + 0x54) = 0;
+    HercBayAltStart(bay, callback);
+    bay->state = 1;
+    bay->closed = 0;
 }
 
 void HercBayAltStart(HercBay *bay, void *callback)
@@ -190,8 +170,7 @@ void HercBayAltStart(HercBay *bay, void *callback)
     ((Flic *)((char *)bay+0x58))->Open((long)g48aa6c);
     char *animation=(char*)bay+0x58;
     *(int *)(animation + 0x4c) = -1;
-    int display = g4d0413;
-    ((MenuNumber *)&g4b3748)->SetValue(display, 0);
+    HercBaySetDisplay();
 }
 
 

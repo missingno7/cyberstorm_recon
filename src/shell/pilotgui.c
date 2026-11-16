@@ -618,10 +618,11 @@ void PilotGuiSelectProfileAt(void *p, int index)
 }
 
 extern int chat_menu_valid(void *);
-extern int f_0043c73a(void *, int);
-extern void *f_00477a08(const char *, int);
-extern void f_00477ad2(void *);
-extern void f_00477b03(void *, int, const char *, int);
+extern char *f_0043c73a(void *, unsigned int);
+void *create_chat_popup(void *, int);
+void SimUnitsMenuClear(void *);
+void build_chat_menu_line(void *, unsigned int, const char *, unsigned int = 0xffffffff);
+extern char gPilotGuiPilots[];
 void PilotGuiReleaseChatMenu(void)
 {
     if (gPilotChatMenu) {
@@ -635,46 +636,42 @@ extern "C" void f_004120fe(void *p, int menu)
     char item[128];
     char profileName[64];
     int selected;
-    int count = PilotProfileCount(&gShellGame);
-    if (count < 2) {
+    int i;
+    char *current, *description;
+    if (PilotProfileCount(&gShellGame) < 2) {
         if (gPilotChatMenu != 0) {
             chat_menu_valid((void *)gPilotChatMenu);
             gPilotChatMenu = 0;
         }
+        return;
     }
-    else {
-        void *profile = PilotProfileSelect(&gShellGame, -1);
-        *(void **)((char *)p + 0x705) = profile;
-        selected = f_0043bf81(&gShellGame, (int)profile);
-        if (menu == 0) {
-            if (gPilotChatMenu != 0) {
-                chat_menu_valid((void *)gPilotChatMenu);
-                gPilotChatMenu = (unsigned long)menu;
-            }
-        }
-        if (gPilotChatMenu == 0)
-            gPilotChatMenu = (unsigned long)f_00477a08("Pilots", -1);
-        if (gPilotChatMenu != 0) {
-            f_00477ad2((void *)gPilotChatMenu);
-            f_0043bed7(&gShellGame, 1);
-            int i = 0;
-            while (i < PilotProfileCount(&gShellGame)) {
-                char *current = (char *)PilotProfileSelect(&gShellGame, -1);
-                SendEvent(current, 0x67, profileName);
-                if (((PilotGuiFields *)p)->profileFlag != 1) {
-                    char *description = (char *)f_0043c73a(&gShellGame, (int)current);
-                    if (description == 0) sprintf(item, "%s (%s)", profileName, " unlinked");
-                    else sprintf(item, "%s (%s)", profileName, description);
-                } else sprintf(item, "%s", profileName);
-                f_00477b03((void *)gPilotChatMenu, i + 0x4e21, item, 0x28);
-                PilotProfileAdvance(&gShellGame, 1);
-                ++i;
-            }
-        }
-        if (selected == 0)
-            selected = 1;
-        f_0043bed7(&gShellGame, selected);
+    *(void **)((char *)p + 0x705) = PilotProfileSelect(&gShellGame, -1);
+    selected = f_0043bf81(&gShellGame, (int)*(void **)((char *)p + 0x705));
+    if (!menu && gPilotChatMenu) {
+        chat_menu_valid((void *)gPilotChatMenu);
+        gPilotChatMenu = 0;
     }
+    if (gPilotChatMenu == 0)
+        gPilotChatMenu = (unsigned long)create_chat_popup(gPilotGuiPilots, -1);
+    if (gPilotChatMenu != 0) {
+        SimUnitsMenuClear((void *)gPilotChatMenu);
+        f_0043bed7(&gShellGame, 1);
+        for (i = 0; i < PilotProfileCount(&gShellGame); i++) {
+            current = (char *)PilotProfileSelect(&gShellGame, -1);
+            SendEvent(current, 0x67, profileName);
+            if (((PilotGuiFields *)p)->profileFlag == 1)
+                sprintf(item, "%s", profileName);
+            else if ((description = f_0043c73a(&gShellGame, (unsigned int)current)) == 0)
+                sprintf(item, "%s (%s)", profileName, " unlinked");
+            else
+                sprintf(item, "%s (%s)", profileName, description);
+            build_chat_menu_line((void *)gPilotChatMenu, i + 0x4e21, item, 0x28);
+            PilotProfileAdvance(&gShellGame, 1);
+        }
+    }
+    if (selected == 0)
+        selected = 1;
+    f_0043bed7(&gShellGame, selected);
 }
 
 void PilotGuiClearProfileModified(void *p)
@@ -735,3 +732,4 @@ GuiControl *gPilotGuiResourceTemplate[40] = {
     (GuiControl *)&gPilotGuiLabel29,
     (GuiControl *)&gPilotGuiHelpRegion
 };
+

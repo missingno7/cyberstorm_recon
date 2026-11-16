@@ -144,12 +144,12 @@ extern "C" int f_004413e0(GameSession *s,UnitTemplate *t) {
 extern "C" ListRow *f_00441456(GameSession *s,int *count) {
     *count=0;
     int standard=0,custom=0,i;
-    { for(int templateIndex=0;unitTemplates[templateIndex].name;++templateIndex)
-        if(f_004413e0(s,&unitTemplates[templateIndex])) ++standard; }
+    for(i=0; unitTemplates[i].name; ++i)
+        if(f_004413e0(s,&unitTemplates[i])) ++standard;
     Snapshot *p=s->snapshots;
     while(p) {
-        ++custom;
         p=p->next;
+        ++custom;
     }
     *count=standard+custom;
     if(!*count)return 0;
@@ -159,6 +159,7 @@ extern "C" ListRow *f_00441456(GameSession *s,int *count) {
     g4c9338=new ListRow[*count+1];
     memset(g4c9338,0,(*count+1)*sizeof(ListRow));
     int n=0;
+    ActorUnit unit;
     for(i=0; unitTemplates[i].name; ++i) {
         UnitTemplate t=unitTemplates[i];
         if(n<*count && f_004413e0(s,&unitTemplates[i])) {
@@ -166,7 +167,6 @@ extern "C" ListRow *f_00441456(GameSession *s,int *count) {
             g4c9338[n].image=g511e18.GetString(t.name);
             g4c9338[n].type=t.slots[0];
             g4c9338[n].index=i;
-            ActorUnit unit;
             LoadActorData(&unit,&unitTemplates[i],0);
             g4c9338[n].cost=f_0043ce5d(s,&unit);
             g4c9338[n].value=HercFreePower(&unit);
@@ -174,19 +174,23 @@ extern "C" ListRow *f_00441456(GameSession *s,int *count) {
             ++n;
         }
     }
-    for(p=s->snapshots,i=1; p; p=p->next,++i) {
+    p=s->snapshots;
+    int j=1;
+    ActorUnit unit2;
+    while(p) {
         g4c9338[n].name=(char *)p;
         g4c9338[n].image=g511ddc.GetString(150);
         g4c9338[n].type=p->slots[0];
-        g4c9338[n].index=-i;
+        g4c9338[n].index=-j;
         UnitTemplate t;
         memcpy(t.slots,p->slots,23);
-        ActorUnit unit;
-        LoadActorData(&unit,&t,p);
-        g4c9338[n].cost=f_0043ce5d(s,&unit);
-        g4c9338[n].value=HercFreePower(&unit);
-        g4c9338[n].capacity=HercMobility(&unit);
+        LoadActorData(&unit2,&t,p);
+        g4c9338[n].cost=f_0043ce5d(s,&unit2);
+        g4c9338[n].value=HercFreePower(&unit2);
+        g4c9338[n].capacity=HercMobility(&unit2);
+        p=p->next;
         ++n;
+        ++j;
     }
     return g4c9338;
 }
@@ -263,7 +267,7 @@ extern "C" int f_00441c2c(GameSession *s,unsigned index) {
 }
 extern "C" int f_00441ca7(GameSession *s,int value,int levels) {
 if (levels >= 1) {
-        if (levels > 1) value = f_00441ca7(s, value, levels - 1);
+        if (levels > 1) value = f_00441ca7(s, value, --levels);
         value = value * 80 / 100;
     }
     return value;
@@ -330,7 +334,7 @@ extern "C" void f_00441ec5(GameSession *,Choice *list,int count) {
     memcpy(list,sortRows,count*sizeof(Choice));
 }
 extern "C" Choice *f_00442045(GameSession *s,int index,int slot,int *count) {
-*count=0;
+    *count=0;
     if(index<0 || index>=s->hercCount)return 0;
     int max=76;
     memset(upgradeRows,0,sizeof(upgradeRows));
@@ -348,12 +352,8 @@ extern "C" Choice *f_00442045(GameSession *s,int index,int slot,int *count) {
     if(remaining<0)remaining=0;
     for(int i=0; upgradeRows[i].item && i<max; ++i) {
         Choice *row=&upgradeRows[i];
-        item=row->item;
-        if(slot<11)row->cost=item->cost-remaining;
-        else {
-            int levels=(int)s->level-(int)item->level;
-            row->cost=f_00441ca7(s,item->cost,levels)-remaining;
-        }
+        if(slot<11)row->cost=row->item->cost-remaining;
+        else row->cost=f_00441ca7(s,row->item->cost,s->level-row->item->level)-remaining;
         if(i==0 && cost-f_004394e0(unit,slot)<0)row->cost=f_004394e0(unit,slot);
     }
     f_00441ec5(s,upgradeRows,max);
@@ -374,54 +374,3 @@ extern "C" char *f_00442258(GameSession *s,int index,int slot,int choice) {
     s->credits-=list[choice].cost;
     return name;
 }
-extern "C" int f_004422f0(ActorUnit *unit,int slot) {
-    TypeItem type=*(TypeItem *)PopFindItem(unit,0);
-    UnitSlot selected=unit->slots[slot];
-    unsigned value=selected.item;
-    U32 mask=type.rules[slot].mask;
-    if(slot && value) {
-        if(slot>=11 && slot<=18) {
-            if(!(*(U32 *)(weaponTypes+value*70+0x31)&mask))return 1;
-        }
-        else if(slot>=19 && slot<=22) {
-            if(!(*(U32 *)(systemTypes+value*71+0x32)&mask))return 1;
-        }
-        else {
-            ActorItem item=*PopFindItem(unit,slot,value);
-            if(!(mask&(1<<item.head[1])))return 1;
-        }
-    }
-    return 0;
-}
-extern "C" int f_004423d7(ActorUnit *unit,int level) {
-    int type=unit->slots[0].item;
-    if(type<=0 || type>=34)return 1;
-    if(type>=9 && type<=17)return 1;
-    if(f_00439daf(unit)>level+1)return 1;
-    for(int i=0; i<23; ++i) {
-        if(!HercMountAllowed(unit,i) && unit->slots[i].item)return 1;
-        if(unit->slots[i].condition>100)return 1;
-        ActorItem *item=PopFindItem(unit,i);
-        if(item->max && item->max<unit->slots[i].amount)return 1;
-        if(f_004422f0(unit,i))return 1;
-    }
-    ActorItem *item=PopFindItem(unit,7);
-    if(*(int *)((char *)unit+0x4d)>*(int *)((char *)item+0x1f))return 1;
-    int a,b,c,d;
-    StateInvoke(unit,&a,&b);
-    StateInvokeEnergy(unit,&c,&d);
-    return a>b || c>d;
-}
-extern "C" void f_004424d4(ActorRecord *actor) {
-    if(!g494290 || playerCount<=2 || actor->owner==gRemoteActorKind)return;
-    unsigned level;
-    if(modeSwitch) level=gLaunchBudget; else level=g4c978a;
-    if(g4d3551)level=14;
-    int pilot=actor->pilot && ActorStateInvalid((ActorState *)actor->pilot,level);
-    int unit=actor->unit && f_004423d7(actor->unit,level);
-    if(pilot || unit) {
-        f_00477295(BriefFormat("WARNING: I detect a possible cheater in our midst.\nPlayer: (#%d) %s\nHerc name: %s %s\nPilot name: %s %s\n",actor->owner,(char *)GetModePlayer(modeCheckName,actor->owner)+0x44,actor->unit,unit?"(QUESTIONABLE DATA)":"(looks fine)",actor->pilot,pilot?"(QUESTIONABLE DATA)":"(looks fine)"));
-    }
-}
-
-

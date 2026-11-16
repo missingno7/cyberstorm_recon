@@ -443,12 +443,10 @@ int f_00446493(int param_1, int param_2, int *param_3, int *param_4) {
     return (local_14 * 100) / iVar6;
 }
 void f_00446570(HercModule *param_1) {
-    FrameList *list=param_1->Frames();
     int iVar2;
-    if(!list||!(iVar2=list->Count()))iVar2=40;
-    int angle = ((param_1->frame * 0x168) / iVar2 + 0x1e) % 0x168;
-    param_1->angle = angle;
-    param_1->grid = GridClamp((uint)angle * 0xb60b61);
+    if(!param_1->frames||!(iVar2=param_1->frames->Count()))iVar2=40;
+    param_1->angle = ((param_1->frame * 0x168) / iVar2 + 0x1e) % 0x168;
+    param_1->grid = GridClamp((uint)param_1->angle * 0xb60b61);
 }
 void f_004465d6(int param_1) {
     int iVar1, iVar2, iVar4;

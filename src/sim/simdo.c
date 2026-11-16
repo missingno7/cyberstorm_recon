@@ -485,8 +485,8 @@ int SimUseItem(SimGame *s,int item,int mode) {
 void SimSetReturnFire(SimGame *s,int index,int all,int value) {
  if(SimFocusReady(s)) {
   if(s->multi && ModeCheck((const char *)s))modeLogName.ReturnFire(s->focus,(char)index,(char)all,(char)value);
-  unsigned char mask=1;mask<<=index;unsigned char *bits=&s->focus->returnFire;
-  int set=(mask&*bits)!=0;int enabled=value>=0?value:!set;
+  unsigned char mask=1;mask<<=index;unsigned char *bits=&s->focus->returnFire;unsigned char current=*bits;
+  int set=(mask&current)!=0;int enabled=value>=0?value:!set;
   if(s->linked && value<0){if(enabled)SoundTrigger(420,0);else SoundTrigger(393,0);}
   if(all)for(int i=0;i<8;i++)SimSetReturnFire(s,i,0,enabled);
   else if(enabled)*bits|=mask;else *bits&=~mask;

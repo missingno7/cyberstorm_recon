@@ -63,8 +63,7 @@ extern int g_004d3405;
 extern int gView[];
 extern int g_004d4320;
 extern int g_004d4324;
-extern int g_004d4328;
-extern int g_004d432c;
+
 extern int g_004d433c;
 extern int g_004d4338;
 extern int g_004d4344;
@@ -84,99 +83,83 @@ extern int animViewportY;
 extern int animViewportWidth;
 extern int animViewportHeight;
 extern int ResolveName(unsigned long name, int *point);
-extern void f_0042c040(int *source, int *result, int *point, int target);
+extern void DisplayPointToScreen(int *source, int *result, int *point, int target);
 extern void f_0047f114(int *bitmap, int x, int y, int a, int width, int height);
 
-struct DrawPoint { int x; int y; DrawPoint() {} DrawPoint(const DrawPoint &p) { x = p.x; y = p.y; } }; struct DrawDefaults {
-    DrawPoint steps[6];
-    DrawDefaults()
-    {
-        steps[0].x = 1;
-        steps[0].y = 1;
-        steps[1].x = 0;
-        steps[1].y = 2;
-        steps[2].x = -1;
-        steps[2].y = 1;
-        steps[3].x = -1;
-        steps[3].y = -1;
-        steps[4].x = 0;
-        steps[4].y = -2;
-        steps[5].x = 1;
-        steps[5].y = -1;
-    }
-};
-
+struct DrawPoint { int x; int y; DrawPoint() {} DrawPoint(int px, int py) { x = px; y = py; } DrawPoint(const DrawPoint &p) { x = p.x; y = p.y; } };
+// The first eight bytes of animDrawState hold the best (lowest) projected point.
+inline DrawPoint &AnimDrawBest() { return *(DrawPoint *)animDrawState; }
 void f_00459020(DrawPoint point, int phase)
 {
-    static DrawDefaults defaults;
+    static DrawPoint steps[6] = { DrawPoint(1, 1), DrawPoint(0, 2), DrawPoint(-1, 1), DrawPoint(-1, -1), DrawPoint(0, -2), DrawPoint(1, -1) };
+
     int target = ResolveName((unsigned long)animFallbackName, (int *)&point);
     if (target == 0)
         return;
 
-    int phaseOffset = (phase + g_004d3405) % 6;
-    unsigned char *targetEntry = targetDefinitionTable + target * 12;
-    unsigned char oldType = targetEntry[1];
-    DrawPoint step = defaults.steps[phaseOffset];
+    int oldType = targetDefinitionTable[target * 12 + 1];
+    DrawPoint step(steps[(phase + g_004d3405) % 6]);
+    int phaseOffset;
     point.x += step.x;
     point.y += step.y;
-
     phaseOffset = (g_004d3405 + 1) % 6;
-    step = defaults.steps[phaseOffset];
-    g_004d432c = 99999;
+    step = steps[phaseOffset];
+    AnimDrawBest().y = 99999;
 
-    int result[2];
-    if (phase == 1 && targetEntry[4]) {
-        f_0042c040(gView, result, (int *)&point, target);
-        result[1] -= gZoom / 8;
-        if (result[1] < g_004d432c) {
-            g_004d4328 = result[0];
-            g_004d432c = result[1];
-        }
+    DrawPoint result;
+    if (phase == 1 && targetDefinitionTable[target * 12 + 4]) {
+        DisplayPointToScreen(gView, (int *)&result, (int *)&point, target);
+        result.y -= gZoom / 8;
+        if (result.y < AnimDrawBest().y)
+            AnimDrawBest() = result;
     }
 
-    int scan = 0;
-    do {
+    for (int scan = 0; scan < 3; ++scan) {
         int next = ResolveName((unsigned long)animFallbackName, (int *)&point);
-        if (next != 0 && oldType < targetDefinitionTable[next * 12 + 1]) {
-            f_0042c040(gView, result, (int *)&point, next);
-            if (result[1] < g_004d432c) {
-                g_004d4328 = result[0];
-                g_004d432c = result[1];
-            }
+        if (next != 0 && targetDefinitionTable[next * 12 + 1] > oldType) {
+            DisplayPointToScreen(gView, (int *)&result, (int *)&point, next);
+            if (result.y < AnimDrawBest().y)
+                AnimDrawBest() = result;
         }
         point.x += step.x;
-        ++scan;
         point.y += step.y;
-    } while (scan < 3);
+    }
 
-    if (g_004d432c != 99999) {
-        int halfWidth = animDrawWidth / 2;
-        int halfHeight = animDrawRowLimit / 2;
-        animDrawX0 = (((g_004d4328 - g_004d4320 - animViewportX) * animDrawWidth) + halfWidth) / animViewportWidth;
-        animDrawX1 = (((g_004d4328 + g_004d4320 - animViewportX) * animDrawWidth) + halfWidth) / animViewportWidth;
-        g_004d4338 = (((g_004d4328 - g_004d4324 - animViewportX) * animDrawWidth) + halfWidth) / animViewportWidth;
-        g_004d4348 = (((g_004d4328 + g_004d4324 - animViewportX) * animDrawWidth) + halfWidth) / animViewportWidth;
-        g_004d4344 = (((g_004d432c - g_004d4324 - animViewportY) * animDrawRowLimit) + halfHeight) / animViewportHeight;
-        g_004d433c = (((g_004d432c - animViewportY) * animDrawRowLimit) + halfHeight) / animViewportHeight;
-        g_004d434c = g_004d433c;
-        unsigned long right = ((unsigned long)animDrawX1 << 16) | 0x8000;
-        unsigned long left = ((unsigned long)animDrawX0 << 16) | 0x8000;
-        register int row = g_004d4344;
-        int height = g_004d433c - row;
-        animDrawRowStart = row;
+    if (AnimDrawBest().y != 99999) {
+        animDrawX0 = AnimDrawBest().x - g_004d4320;
+        animDrawX1 = AnimDrawBest().x + g_004d4320;
+        g_004d4338 = AnimDrawBest().x - g_004d4324;
+        animDrawX1End = AnimDrawBest().x + g_004d4324;
+        animDrawRowStart = g_004d4344 = AnimDrawBest().y - g_004d4324;
+        animDrawRowLast = g_004d434c = AnimDrawBest().y;
+        int halfWidth = animViewportWidth / 2;
+        int halfHeight = animViewportY / 2;
+        animDrawX0 = ((animDrawX0 - animViewportX) * animDrawWidth + halfWidth) / animViewportWidth;
+        animDrawX1 = ((animDrawX1 - animViewportX) * animDrawWidth + halfWidth) / animViewportWidth;
+        g_004d4338 = ((g_004d4338 - animViewportX) * animDrawWidth + halfWidth) / animViewportWidth;
+        animDrawX1End = ((animDrawX1End - animViewportX) * animDrawWidth + halfWidth) / animViewportWidth;
+        animDrawRowStart = ((animDrawRowStart - animViewportY) * animDrawRowLimit + halfHeight) / animViewportHeight;
+        g_004d4344 = ((g_004d4344 - animViewportY) * animDrawRowLimit + halfHeight) / animViewportHeight;
+        animDrawRowLast = ((animDrawRowLast - animViewportY) * animDrawRowLimit + halfHeight) / animViewportHeight;
+        g_004d434c = ((g_004d434c - animViewportY) * animDrawRowLimit + halfHeight) / animViewportHeight;
+        int row = animDrawRowStart;
+        int height = animDrawRowLast;
+        int left = (animDrawX0 << 16) | 0x8000;
+        int right = (animDrawX1 << 16) | 0x8000;
         int slope = 0;
+        height -= row;
         if (height != 0)
-            slope = ((g_004d4348 - animDrawX1) * 0x10000) / height;
+            slope = ((animDrawX1End - animDrawX1) << 16) / height;
         while (row < animDrawRowLimit) {
             if (row >= 0) {
-                int rightPixel = (int)right >> 16;
-                int leftPixel = (int)left >> 16;
+                int rightPixel = right >> 16;
+                int leftPixel = left >> 16;
                 if (rightPixel >= 0 && leftPixel < animDrawWidth) {
                     if (animDrawWidth - 1 < rightPixel)
                         rightPixel = animDrawWidth - 1;
                     if (leftPixel < 0)
                         leftPixel = 0;
-                    memset(animDrawBuffer + animDrawWidth * row + leftPixel,
+                    memset(animDrawBuffer + (animDrawWidth * row + leftPixel),
                            0, (rightPixel - leftPixel) + 1);
                 }
             }
@@ -327,17 +310,21 @@ void f_00459640(unsigned char *p)
         gDrawRemap = 0;
         if (((DrawAction *)p)->state == 0x11) {
             static AnimDrawAction actions[3];
-            static int actionIndex;
-            while (actionIndex != 3) {
+            static unsigned actionIndex;
+            for (; actionIndex < 3; actionIndex++) {
                 AnimActionInitialize(actions[actionIndex].bytes, 4, 1, 99, 0x20);
                 WorldActionNotify(actions[actionIndex].bytes, 0x15);
                 actions[actionIndex].bytes[8] = (unsigned char)actionIndex * 3;
             }
-
-
-
-
-            if (metadata[4] == 0) {
+            if (metadata[4] != 0) {
+                animViewportWidth = ((DrawAction *)p)->clipWidth;
+                animViewportHeight = ((DrawAction *)p)->clipHeight;
+                animViewportX = ((DrawAction *)p)->clipX;
+                animViewportY = ((DrawAction *)p)->clipY;
+                AnimDrawPoint fallbackPosition = ((DrawAction *)p)->destination;
+                AnimDrawBitmap((MenuImage *)AnimBitmapFrame(actions[0].bytes),
+                               (DrawPoint *)&fallbackPosition);
+            } else {
                 animViewportWidth = ((DrawAction *)p)->clipWidth;
                 animViewportHeight = ((DrawAction *)p)->clipHeight;
                 animViewportX = ((DrawAction *)p)->screen.x - ((animViewportWidth << 15) >> 16);
@@ -358,21 +345,23 @@ void f_00459640(unsigned char *p)
                 AnimDrawPoint thirdPosition = ((DrawAction *)p)->destination;
                 AnimDrawBitmap((MenuImage *)AnimBitmapFrame(actions[2].bytes),
                                (DrawPoint *)&thirdPosition);
-            } else {
-                animViewportWidth = ((DrawAction *)p)->clipWidth;
-                animViewportHeight = ((DrawAction *)p)->clipHeight;
-                animViewportX = ((DrawAction *)p)->clipX;
-                animViewportY = ((DrawAction *)p)->clipY;
-                AnimDrawPoint fallbackPosition = ((DrawAction *)p)->destination;
-                AnimDrawBitmap((MenuImage *)AnimBitmapFrame(actions[0].bytes),
-                               (DrawPoint *)&fallbackPosition);
             }
+
+
+
+
             AnimActionStep(actions[0].bytes);
             AnimActionStep(actions[1].bytes);
             AnimActionStep(actions[2].bytes);
         }
     }
 }
+
+
+
+
+
+
 
 
 

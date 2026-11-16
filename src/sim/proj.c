@@ -69,17 +69,16 @@ void UpdatePayload(Unit *u, int unused)
 }
 unsigned char *UnitDamageIndicator(Unit *u, int direction, Unit *previous)
 {
-    unsigned int time=TimerNow()/1500;
-    unsigned int phase=time&1;
+    unsigned int phase=TimerNow()/1500&1;
     int maximum = PopFindItem((ActorUnit *)u,7)->strength / 4;
-    for (int i=0; i<6; ++i, ++direction) {
+    for (int i=0; i<6; ++i) {
         int level=u->facingArmor[i] * 10 / maximum;
         if (level >= 10) level=9;
-        unsigned char color=u->facingArmor[i]==0 ? 0 : damageLevelColors[level];
+        unsigned char color=u->facingArmor[i] ? damageLevelColors[level] : 0;
         if (previous && previous->facingArmor[i] != u->facingArmor[i]) color=255;
-        damageIndicator[1+direction%6]=color;
+        damageIndicator[1+(direction+i)%6]=color;
         unsigned char flash=u->facingArmor[i] ? 0 : damageFlashColors[phase];
-        damageIndicator[7+direction%6]=flash;
+        damageIndicator[7+(direction+i)%6]=flash;
     }
     return damageIndicator;
 }

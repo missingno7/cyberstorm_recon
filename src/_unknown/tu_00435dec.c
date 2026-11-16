@@ -229,7 +229,7 @@ int ActorQuery(ActorState *s, U32 event) {
     if (event >= 216) return 0;
     switch(event) {
     case 200: return s->health;
-    case 201: return ActorScale(s, s->descriptor->health, 201);
+    case 201: return ActorScale(s, s->descriptor->health, event);
     case 202: return s->descriptor->marker;
     case 203: return s->descriptor->value;
     case 204:
@@ -237,7 +237,7 @@ int ActorQuery(ActorState *s, U32 event) {
         if (!s->health) result = 0;
         return result < 100 ? result : 99;
     case 205:
-        result = ActorScale(s, s->descriptor->morale, 205) - s->descriptor->threshold;
+        result = ActorScale(s, s->descriptor->morale, event) - s->descriptor->threshold;
         return result < 100 ? result : 99;
     case 207: return s->fatigue < 100 ? s->fatigue : 99;
     case 208: return ActorScale(s, s->descriptor->fatigue, 209);
@@ -257,14 +257,9 @@ int ActorEffectiveSkill(ActorState *s, U32 index) {
     if (index == 7) result = s->skill * 10;
     else if (index <= 8) result = s->skills[index].value >> 12;
     int firstThreshold = s->descriptor->threshold;
-    int maximum = s->descriptor->morale;
-    maximum = s->level + maximum - 1;
-    if (maximum >= 100) maximum = 99;
-    int middle = (maximum-firstThreshold)/2;
-    middle += s->descriptor->threshold;
-    middle = (U8)middle;
+    int middle = (U8)((ActorScale(s, s->descriptor->morale, 205) - firstThreshold)/2 + s->descriptor->threshold);
     if (s->morale <= middle) result -= middle - s->morale + 1;
-    int threshold = s->descriptor->threshold;
+    U8 threshold = s->descriptor->threshold;
     if (s->morale <= threshold) result -= (threshold - s->morale + 1) * 6;
     if (result < 0) result = 0;
     if (result > 99) result = 99;

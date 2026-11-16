@@ -75,13 +75,13 @@ struct WorldView {
 };
 struct DisplaySettings {GuiPoint point;int detail,scale,rotation,flags,unknown18,height;};
 inline int DisplayClamp(int n,int low,int high){if(n<=low)return low;if(n>=high)return high;return n;} extern FastBuffer g4d35e4;
-inline int DisplayMaxRef(int a,const int &b){return a>b?a:b;}
+inline int DisplayMax(int a,int b){return a>b?a:b;}
 void DisplayConfigure(WorldView *view, DisplaySettings *settings, int reset)
 {
     view->focus=settings->point;
     view->rotation=settings->rotation%6;if(view->rotation<0)view->rotation+=6;
     view->angle=view->rotation*0x2aaaaabc;view->flags=settings->flags;
-    int scale=settings->scale;view->scale=scale;view->scale=DisplayMaxRef(scale,1);
+    int scale=settings->scale;view->scale=scale;view->scale=DisplayMax(scale,1);
     view->twice=view->scale*2;view->triple=view->scale+view->twice;view->quad=view->twice*2;
     SetTerrainSpanSize(view->scale);
     view->heightScale=view->scale*settings->height*heightStep/50000;
@@ -131,52 +131,43 @@ void DisplayConfigure(WorldView *view, DisplaySettings *settings, int reset)
 
 int DisplayZoomArea(int *view, unsigned int *result, int position, int candidate, int adjust)
 {
+    GuiPoint origin, targetPoint, originPoint, target, delta;
     if (position == 0) return 0;
-    GuiPoint origin;
-    GuiPoint originPoint;
     BestLocSetData((void *)*view, &origin, (void *)position);
     TargetObjectInit((const char *)*view, &originPoint, position);
     int scaleCount = view[0x0d] / view[0x1d] + 1;
     int halfScale = scaleCount >> 1;
-    GuiPoint target;
-    GuiPoint targetPoint;
-    int targetIndex;
-    if(!candidate) {BestLocSetData((void *)*view,&target,(void *)view[0x19]);targetIndex=view[0x19];}
-    else {BestLocSetData((void *)*view,&target,(void *)candidate);targetIndex=candidate;}
-    TargetObjectInit((const char *)*view,&targetPoint,targetIndex);
-    GuiPoint delta;delta.x=targetPoint.x-originPoint.x;delta.y=targetPoint.y-originPoint.y;
+    if(!candidate) {BestLocSetData((void *)*view,&target,(void *)view[0x19]);TargetObjectInit((const char *)*view,&targetPoint,view[0x19]);}
+    else {BestLocSetData((void *)*view,&target,(void *)candidate);TargetObjectInit((const char *)*view,&targetPoint,candidate);}
+    delta.x=targetPoint.x-originPoint.x;delta.y=targetPoint.y-originPoint.y;
     f_0047efb0(&delta, view[0x20]);
     delta.x = (int)(delta.x * view[0x0d]) / view[0x0c];
-    int vertical = abs(delta.y);
-    int horizontal = abs((int)delta.x);
-    if (horizontal <= vertical) horizontal = vertical;
+    int horizontal = DisplayMax(abs((int)delta.x), abs(delta.y));
     int rings = horizontal / ((TerrainGrid *)*view)->CellWidth() + 1;
     if (candidate == 0) {
         if (((adjust == 0 || view[0x1a] == 0xe) && rings < halfScale)) return 0;
         *(GuiPoint *)result=originPoint;
         if (adjust != 0) result[3] = 0xe;
     } else {
-        if (rings < halfScale) {
-            if (rings < (halfScale >> 1) && adjust != 0) {
-                result[3] = DisplayMaxRef((int)result[3],1);
-
-
-                while (rings < (halfScale >> 1) && (int)result[3] < 0xe) {
-                    ++result[3];
-                    halfScale = view[0x0d] / (int)(result[3] * 4) + 1 >> 1;
-                }
-            }
-        } else {
+        if (rings >= halfScale) {
             unsigned int oldLevel = result[3];
             if (adjust != 0) {
-                while (halfScale <= rings && (int)result[3] > 4) {
+                while (rings >= halfScale && (int)result[3] > 4) {
                     --result[3];
                     halfScale = view[0x0d] / (int)(result[3] * 4) + 1 >> 1;
                 }
             }
-            if (halfScale <= rings) {
+            if (rings >= halfScale) {
                 result[3] = oldLevel;
                 return 0;
+            }
+        } else {
+            if (rings < (halfScale >> 1) && adjust != 0) {
+                result[3] = DisplayMax(result[3],1);
+                while (rings < (halfScale >> 1) && (int)result[3] < 0xe) {
+                    ++result[3];
+                    halfScale = view[0x0d] / (int)(result[3] * 4) + 1 >> 1;
+                }
             }
         }
         result[0] = (originPoint.x + targetPoint.x) >> 1;

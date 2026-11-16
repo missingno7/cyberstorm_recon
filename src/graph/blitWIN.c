@@ -76,19 +76,20 @@ void ApplyPaletteData(const PALETTEENTRY *data,unsigned first,int count)
 void PaletteAttach(Palette *p,const CycleConfig *cfg)
 {
     memset(p->cycles,0,sizeof(p->cycles));
+    PALETTEENTRY *color=p->colors;
     unsigned char group=cfg->group;
     int modeSet=0;
     unsigned char count=0,first=0;
     PaletteCycle *cycle=p->cycles;
-    for(int i=0;i<6;i++,cycle++,cfg++) {
+    for(int i=0;i<6;color++,cycle++,i++,cfg++) {
         if(cfg->mode!=0) {
-            p->colors[10+i].peFlags=1;
+            color[10].peFlags=1;
             if(!modeSet) { modeSet=1; p->mode=cfg->mode; }
         }
-        cycle->delay=cycle->timer=cfg->delay;
+        cycle->timer=cycle->delay=cfg->delay;
         cycle->current=i;
         if(p->mode==1) {
-            if(group==cfg->group) { cycle->first=first; count++; }
+            if(cfg->group==group) { cycle->first=first; count++; }
             else {
                 for(int n=0;n<count;n++) p->cycles[first+n].count=count;
                 count=1; first=i; group=cfg->group; cycle->first=first;
@@ -114,22 +115,20 @@ void SimPaletteCycle(Palette *p)
 {
     unsigned char changed=0;
     PaletteCycle *cycle=p->cycles;
-    PALETTEENTRY *color=p->colors;
-    do {
-        if((int)color[10].peFlags==1) {
+    for(int i=0; i<6; i++, cycle++) {
+        if((int)p->colors[i+10].peFlags==1) {
             cycle->timer--;
             if((int)cycle->timer<=0) {
                 cycle->timer=cycle->delay;
                 int end=cycle->first+cycle->count;
-                cycle->current++;
-                unsigned char current=cycle->current;
-                if((int)current>=end) current=cycle->current=cycle->first;
-                color[10]=p->saved[current];
+                unsigned char current;
+                if(++cycle->current<end) current=cycle->current;
+                else current=cycle->current=cycle->first;
+                p->colors[i+10]=p->saved[current];
                 changed=1;
             }
         }
-        color++; cycle++;
-    } while(color!=p->colors+6);
+    }
     if(changed) {
         HPALETTE palette=displaySurface->palette;
         HPALETTE old=SelectPalette(g512538,palette,0);

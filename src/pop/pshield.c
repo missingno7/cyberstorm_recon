@@ -8,7 +8,7 @@ struct GuiPoint { long x,y; };
 struct AimPoint:GuiPoint { AimPoint(long a=0,long b=0){x=a;y=b;} };
 struct ViewRect { long left,top,right,bottom; };
 struct InputReq;
-struct StrPool { char *GetString(long,int=0); };
+struct StrPool { char *GetString(long,int=0); char *Prefix(long id){return GetString(id,0);} };
 class GuiControl:public GuiRect {
 public: U8 style[4]; U32 attributes,shortcut;
     GuiControl(U32,U32); virtual ~GuiControl();
@@ -76,7 +76,7 @@ extern void *gDrawRemap;
 extern Font shellFont;
 extern SoundSettings shieldSoundDefaults;
 extern MenuImages *shieldImages,*shieldImagesDim,*drawCursorImages;
-extern int shieldFacing,shieldImageX,shieldImageY;
+extern int shieldImageX,shieldImageY;
 extern int DAT_004bc560,DAT_004bc4e8;
 extern SimAnim shieldAnim;
 extern ActorUnit shieldPreview;
@@ -153,18 +153,11 @@ int ShieldControl::Event(unsigned index,U32 event) {
         SoundPlay(239,&sound);
     }
     if(event&12) {
-        int dx=g4bb78c.x,dy=g4bb78c.y; dx-=width/2+x;dy-=height/2+y;
+        int dx=g4bb78c.x-(width/2+x); int dy=g4bb78c.y-(height/2+y);
         sound.pan=dx*30/width;
         sound.rate=(int)g4d2498->unit->shieldRange/5+100;
         updateSound=1; changed=1;
-        AimPoint point(dx,dy);
-        int angle=f_0047ef00(&point)+shieldFacing*0x2aaaaabc;
-        int distance=ISqrt(point.x*point.x+point.y*point.y);
-        if(distance>48)distance=48;
-        if(ShieldShift())angle=GridClamp(angle)*0x2aaaaabc;
-        g4d2498->unit->SetDirection(angle>>24);
-        g4d2498->unit->shieldRange=distance;
-        shieldControl.attributes&=~0x1000000UL;
+        simInventory.SetAim(dx,dy);
         result=index+1;
     }
     if(!HasFlags(0x20000))step=-5;
@@ -211,7 +204,7 @@ void ShieldPopup::Refresh() {
             MenuSetClip(&gMenuClip,left,top,w,h);
             int current=unit->slots[7].amount;
             int maximum=*(int *)((char *)PopFindItem(unit,7)+0x1f);
-            char *text=BriefFormat(targetBriefResource.GetString((current!=0)+804+(current==maximum)),
+            char *text=BriefFormat(targetBriefResource.Prefix((current!=0)+804+(current==maximum)),
                 current,maximum,(current*100+50)/maximum);
             MenuDrawWrapped(text,-1,-1,1,11,this,10,60);
             facing=g4d2498->action.angle;

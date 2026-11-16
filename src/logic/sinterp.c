@@ -43,7 +43,7 @@ class Script { public:
     char title[0x320], name[0x50], brief[0x320]; unsigned long size; long savedEnd;           // + 0x40 .. + 0x6d4
     Script(); ~Script();
 };
-static char scriptText[0x800]; Script gScript;
+Script gScript;
 unsigned short *ScriptStep(Script *s, unsigned short *ip, unsigned short *stop); long ScriptEval(Script *s, int expr);
 int ScriptFormat(Script *s, char *dst, int max, const char *src); char *ScriptString(Script *s, long offset); int ScriptRun(Script *s);
 
@@ -206,7 +206,7 @@ ScriptPoint *ScriptRef(Script *s, int ref)
 {
     static ScriptPoint result;
     int index, kind;
-    long actor;
+    long *slot;
     ScriptPoint *pair;
 
     if (ref == 0) {
@@ -220,19 +220,19 @@ ScriptPoint *ScriptRef(Script *s, int ref)
             result.x = ScriptEval(s, pair->x);
             result.y = ScriptEval(s, pair->y);
         } else if (kind == 0xa000) {
-            actor = s->actors[index];
-            if (actor)
-                LogicActorPosition(gLogic, actor, &result);
+            slot = &s->actors[index];
+            if (*slot)
+                LogicActorPosition(gLogic, *slot, &result);
             else
                 result = ScriptPoint(0, 0);
         } else
             AssertFail(__FILE__, __LINE__, "Bad Reference");
     } else {
-        result.x = s->points[ref].x; result.y = s->points[ref].y;
+        pair = &s->points[ref];
+        result.x = pair->x; result.y = pair->y;
     }
     return &result;
 }
-
 
 
 
@@ -1523,6 +1523,7 @@ int ScriptFormat(Script *s, char *dst, int max, const char *src)
 
 char *ScriptString(Script *s, long offset)
 {
+    static char scriptText[0x800];
     int len = ScriptFormat(s, scriptText, sizeof(scriptText) - 1, s->base + s->table[SecStrings] + offset);
     scriptText[len] = 0;
     return scriptText;

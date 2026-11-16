@@ -7,7 +7,7 @@
    "status": "matched",
    "mangled": "W?.fn_init$n()v",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "BriefCloseAudio": {
    "va": "004010b0",
@@ -22,7 +22,7 @@
    "status": "matched",
    "mangled": "W?ShellClearFrame$n()v",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "ShellCloseAllScreens": {
    "va": "004010da",
@@ -30,7 +30,7 @@
    "status": "matched",
    "mangled": "W?ShellCloseAllScreens$n()v",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "f_004010da": {
    "va": "004010da",
@@ -52,7 +52,7 @@
    "status": "matched",
    "mangled": "W?Close$:Shell$n(i)v",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "ShellConfirmPurchases": {
    "va": "0040130b",
@@ -91,7 +91,7 @@
    "status": "matched",
    "mangled": "W?DifficultyLabel$:Shell$n()pna",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "Shell::UpdateSelection": {
    "va": "0040278c",
@@ -115,7 +115,7 @@
    "status": "matched",
    "mangled": "W?UpdateBriefing$:Shell$n()v",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "Shell::BeginBriefing": {
    "va": "00402e32",
@@ -123,7 +123,7 @@
    "status": "matched",
    "mangled": "W?BeginBriefing$:Shell$n(uc)v",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "Shell::UpdateComms": {
    "va": "00402e67",
@@ -146,7 +146,7 @@
    "status": "matched",
    "mangled": "W?SumRosterResponses$:Shell$n()l",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "Shell::ProfileValueTotal": {
    "va": "00403572",
@@ -154,7 +154,7 @@
    "status": "matched",
    "mangled": "W?ProfileValueTotal$:Shell$n()l",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "Shell::UpdateMission": {
    "va": "0040359c",
@@ -162,7 +162,7 @@
    "status": "matched",
    "mangled": "W?UpdateMission$:Shell$n()v",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "Shell::UpdateHercBay": {
    "va": "004038e4",
@@ -170,7 +170,7 @@
    "status": "matched",
    "mangled": "W?UpdateHercBay$:Shell$n()v",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "Shell::UpdateHercBuy": {
    "va": "00403b6e",
@@ -178,7 +178,7 @@
    "status": "matched",
    "mangled": "W?UpdateHercBuy$:Shell$n()v",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "Shell::UpdateStorage": {
    "va": "00403c42",
@@ -186,7 +186,7 @@
    "status": "matched",
    "mangled": "W?UpdateStorage$:Shell$n()v",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "Shell::UpdateHercUpgrade": {
    "va": "00403cdf",
@@ -226,7 +226,7 @@
    "status": "matched",
    "mangled": "W?UpdateNetworkSetup$:Shell$n()v",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "Shell::UpdateLaunch": {
    "va": "004048c8",
@@ -234,7 +234,7 @@
    "status": "matched",
    "mangled": "W?UpdateLaunch$:Shell$n()v",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "Shell::UpdateMap": {
    "va": "00404a70",
@@ -242,7 +242,7 @@
    "status": "matched",
    "mangled": "W?UpdateMap$:Shell$n()v",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "Shell::UpdateMultiplayer": {
    "va": "00404d74",
@@ -258,7 +258,7 @@
    "status": "matched",
    "mangled": "W?UpdateMissionBrief$:Shell$n()v",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "Shell::UpdateCampaignMenu": {
    "va": "004051f0",
@@ -266,7 +266,7 @@
    "status": "matched",
    "mangled": "W?UpdateCampaignMenu$:Shell$n()v",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "Shell::UpdateMainMenu": {
    "va": "00405338",
@@ -282,7 +282,7 @@
    "status": "matched",
    "mangled": "W?UpdateBiodermSkills$:Shell$n()v",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "Shell::ShowIntro": {
    "va": "0040605b",
@@ -290,7 +290,7 @@
    "status": "matched",
    "mangled": "W?ShowIntro$:Shell$n()v",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "Shell::ReplayIntro": {
    "va": "004060ac",
@@ -298,7 +298,7 @@
    "status": "matched",
    "mangled": "W?ReplayIntro$:Shell$n()v",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "ShellLoadPalette": {
    "va": "00406150",
@@ -306,7 +306,7 @@
    "status": "matched",
    "mangled": "W?ShellLoadPalette$n(pnxa)v",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "ShellApplyPalette": {
    "va": "00406208",
@@ -314,7 +314,7 @@
    "status": "matched",
    "mangled": "W?ShellApplyPalette$n(pn$Palette$$)v",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "ShellApplyPalette#W?ShellApplyPalette$n(pnv)v": {
    "va": "00406208",
@@ -329,7 +329,7 @@
    "status": "matched",
    "mangled": "W?ShellShadeRect$n(llll)v",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "f_0040627a": {
    "va": "0040627a",
@@ -344,7 +344,7 @@
    "status": "matched",
    "mangled": "W?Open$:Shell$n()v",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "Shell::BeginComms": {
    "va": "004067b0",
@@ -352,7 +352,7 @@
    "status": "matched",
    "mangled": "W?BeginComms$:Shell$n(uc)v",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "Shell::ResumeMenus": {
    "va": "0040680d",
@@ -360,7 +360,7 @@
    "status": "matched",
    "mangled": "W?ResumeMenus$:Shell$n()v",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "Shell::RestoreMenu": {
    "va": "0040693b",
@@ -368,7 +368,7 @@
    "status": "matched",
    "mangled": "W?RestoreMenu$:Shell$n(i)v",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "Shell::Event": {
    "va": "00406a54",
@@ -376,7 +376,7 @@
    "status": "matched",
    "mangled": "W?Event$:Shell$n(uc)v",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "Shell::PlayTakeoff": {
    "va": "00406c4b",
@@ -384,7 +384,7 @@
    "status": "matched",
    "mangled": "W?PlayTakeoff$:Shell$n(i)i",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "Shell::PlayTravel": {
    "va": "00406e50",
@@ -392,7 +392,7 @@
    "status": "matched",
    "mangled": "W?PlayTravel$:Shell$n(ul)v",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "Shell::UpdateCredits": {
    "va": "00406fc9",
@@ -400,7 +400,7 @@
    "status": "matched",
    "mangled": "W?UpdateCredits$:Shell$n()i",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "f_00406fc9": {
    "va": "00406fc9",
@@ -415,7 +415,7 @@
    "status": "matched",
    "mangled": "W?NextCreditBreakpoint$:Shell$n(ul)ul",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "Shell::$dt": {
    "va": "00407130",
@@ -423,7 +423,7 @@
    "status": "matched",
    "mangled": "W?$dt:Shell$n()_",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "Shell::$ct": {
    "va": "0040717c",
@@ -431,7 +431,7 @@
    "status": "matched",
    "mangled": "W?$ct:Shell$n()_",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "ProfileManager::Mode": {
    "va": "004071a4",
@@ -439,7 +439,7 @@
    "status": "matched",
    "mangled": "W?Mode$:ProfileManager$n()ul",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "ShellBase::Close": {
    "va": "004071b0",
@@ -447,7 +447,7 @@
    "status": "matched",
    "mangled": "W?Close$:ShellBase$n(i)v",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "ShellBase::Open": {
    "va": "004071c4",
@@ -455,7 +455,7 @@
    "status": "matched",
    "mangled": "W?Open$:ShellBase$n()v",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "ShellBase::$dt": {
    "va": "004071d0",
@@ -463,7 +463,7 @@
    "status": "matched",
    "mangled": "W?$dt:ShellBase$n()_",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "GuiCanvas::ResetClip": {
    "va": "004071ec",
@@ -471,7 +471,7 @@
    "status": "matched",
    "mangled": "W?ResetClip$:GuiCanvas$n()v",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "W?$Wdf0jSigsStart$n(pnvi)v1$n()i": {
    "va": "00407200",
@@ -479,7 +479,7 @@
    "status": "matched",
    "mangled": "W?$Wdf0jSigsStart$n(pnvi)v1$n()i",
    "tu": "src/shell/shell.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-16"
   },
   "W?.fn_init$n()v@_unknown/tu_00407204.c": {
    "va": "00407204",
@@ -2009,7 +2009,7 @@
    "status": "matched",
    "mangled": "W?.fn_init$n()v",
    "tu": "src/shell/pilotgui.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "PilotGuiModule::$ct": {
    "va": "00410b7c",
@@ -2017,7 +2017,7 @@
    "status": "matched",
    "mangled": "W?$ct:PilotGuiModule$n()_",
    "tu": "src/shell/pilotgui.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "PilotGuiOpen": {
    "va": "00410bc2",
@@ -2025,7 +2025,7 @@
    "status": "matched",
    "mangled": "W?PilotGuiOpen$n(pnvpnv)v",
    "tu": "src/shell/pilotgui.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "PilotGuiCloseResources": {
    "va": "00411027",
@@ -2033,7 +2033,7 @@
    "status": "matched",
    "mangled": "W?PilotGuiCloseResources$n(pnv)v",
    "tu": "src/shell/pilotgui.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ShellSelectionControlsRender": {
    "va": "004110ad",
@@ -2048,7 +2048,7 @@
    "status": "matched",
    "mangled": "W?PilotGuiSelectionControlsRender$n(pnv)v",
    "tu": "src/shell/pilotgui.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "PilotGuiDrawSelectionFrame": {
    "va": "0041124c",
@@ -2056,7 +2056,7 @@
    "status": "matched",
    "mangled": "W?PilotGuiDrawSelectionFrame$n(pnv)v",
    "tu": "src/shell/pilotgui.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "PilotGuiDrawSelectionFrame#W?PilotGuiDrawSelectionFrame$n()v": {
    "va": "0041124c",
@@ -2079,7 +2079,7 @@
    "status": "matched",
    "mangled": "W?f_0041170c$n(pnv)v",
    "tu": "src/shell/pilotgui.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "f_0041170c#W?f_0041170c$n(pnv)v": {
    "va": "0041170c",
@@ -2101,7 +2101,7 @@
    "status": "matched",
    "mangled": "W?PilotGuiDrawBars$n(pnviii)v",
    "tu": "src/shell/pilotgui.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "PilotGuiRenderControls": {
    "va": "00411cf3",
@@ -2109,7 +2109,7 @@
    "status": "matched",
    "mangled": "W?PilotGuiRenderControls$n(pnv)v",
    "tu": "src/shell/pilotgui.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "PilotGuiHandleInput": {
    "va": "00411dc6",
@@ -2117,7 +2117,7 @@
    "status": "matched",
    "mangled": "W?PilotGuiHandleInput$n(pnv)v",
    "tu": "src/shell/pilotgui.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ShellSelectionTabExit": {
    "va": "00411dc6",
@@ -2132,7 +2132,7 @@
    "status": "matched",
    "mangled": "W?PilotGuiDone$n()v",
    "tu": "src/shell/pilotgui.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ShellSelectionTabHitTest": {
    "va": "00411e7c",
@@ -2147,7 +2147,7 @@
    "status": "matched",
    "mangled": "W?PilotGuiNextProfile$n(pnv)v",
    "tu": "src/shell/pilotgui.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ShellSelectionPrevious": {
    "va": "00411e8a",
@@ -2162,7 +2162,7 @@
    "status": "matched",
    "mangled": "W?PilotGuiPreviousProfile$n(pnv)v",
    "tu": "src/shell/pilotgui.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ShellSelectionNext": {
    "va": "00411ec2",
@@ -2177,7 +2177,7 @@
    "status": "matched",
    "mangled": "W?PilotGuiPreviousProfileByKey$n(pnv)v",
    "tu": "src/shell/pilotgui.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "PilotGuiSelectProfileByKey": {
    "va": "00411f75",
@@ -2185,7 +2185,7 @@
    "status": "matched",
    "mangled": "W?PilotGuiSelectProfileByKey$n(pnv)v",
    "tu": "src/shell/pilotgui.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ShellSelectionTabAction30": {
    "va": "00411f75",
@@ -2200,7 +2200,7 @@
    "status": "matched",
    "mangled": "W?PilotGuiEnable$n(pnv)v",
    "tu": "src/shell/pilotgui.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "f_0041204b": {
    "va": "0041204b",
@@ -2215,7 +2215,7 @@
    "status": "matched",
    "mangled": "W?PilotGuiDisable$n(pnv)v",
    "tu": "src/shell/pilotgui.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "f_00412068": {
    "va": "00412068",
@@ -2230,7 +2230,7 @@
    "status": "matched",
    "mangled": "W?PilotGuiPaletteForward$n()v",
    "tu": "src/shell/pilotgui.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "f_0041207d": {
    "va": "0041207d",
@@ -2245,7 +2245,7 @@
    "status": "matched",
    "mangled": "W?PilotGuiPaletteBackward$n()v",
    "tu": "src/shell/pilotgui.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "PilotGuiSelectProfileAt": {
    "va": "00412089",
@@ -2253,7 +2253,7 @@
    "status": "matched",
    "mangled": "W?PilotGuiSelectProfileAt$n(pnvi)v",
    "tu": "src/shell/pilotgui.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "f_004120e2": {
    "va": "004120e2",
@@ -2268,14 +2268,15 @@
    "status": "matched",
    "mangled": "W?PilotGuiReleaseChatMenu$n()v",
    "tu": "src/shell/pilotgui.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "f_004120fe": {
    "va": "004120fe",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "f_004120fe",
-   "evidence": "implied by src/_unknown/tu_0040d2b0.c 2026-11-09"
+   "tu": "src/shell/pilotgui.c",
+   "evidence": "strict match 2026-11-16"
   },
   "PilotGuiClearProfileModified": {
    "va": "004122c9",
@@ -2283,7 +2284,7 @@
    "status": "matched",
    "mangled": "W?PilotGuiClearProfileModified$n(pnv)v",
    "tu": "src/shell/pilotgui.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ShellSelectionTabReset": {
    "va": "004122c9",
@@ -2298,7 +2299,7 @@
    "status": "matched",
    "mangled": "W?PilotGuiSetProfileModified$n(pnv)v",
    "tu": "src/shell/pilotgui.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "W?.tdctor$:MenuLabel$n()rn$1$": {
    "va": "004122e8",
@@ -2314,7 +2315,7 @@
    "status": "matched",
    "mangled": "W?$Wda018$:MenuLabel$n(ui)pnv",
    "tu": "src/shell/pilotgui.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "PilotGuiModule::$dt": {
    "va": "0041231c",
@@ -2954,7 +2955,7 @@
    "status": "matched",
    "mangled": "W?.fn_init$n()v",
    "tu": "src/shell/hercbay.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HercBayGetObject": {
    "va": "00415b70",
@@ -2970,7 +2971,7 @@
    "status": "matched",
    "mangled": "W?$ct:HercBay$n()_",
    "tu": "src/shell/hercbay.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HercBay::Start": {
    "va": "00415b96",
@@ -2978,7 +2979,7 @@
    "status": "matched",
    "mangled": "W?Start$:HercBay$n(pnv)v",
    "tu": "src/shell/hercbay.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HercBayConfigureControls": {
    "va": "00415d6b",
@@ -2986,7 +2987,7 @@
    "status": "matched",
    "mangled": "W?HercBayConfigureControls$n()v",
    "tu": "src/shell/hercbay.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HercBayReturnFromPurchase": {
    "va": "00415e1d",
@@ -2995,12 +2996,21 @@
    "mangled": "W?HercBayReturnFromPurchase$n(pn$Scene$$pn$InputReq$$)v",
    "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
+  "HercBayReturnFromPurchase#W?HercBayReturnFromPurchase$n(pn$HercBay$$pnv)v": {
+   "va": "00415e1d",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HercBayReturnFromPurchase$n(pn$HercBay$$pnv)v",
+   "tu": "src/shell/hercbay.c",
+   "evidence": "placed (at) in src/shell/hercbay.c 2026-11-16"
+  },
   "HercBayOpen": {
    "va": "00415edc",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?HercBayOpen$n(pn$Scene$$pn$InputReq$$)v",
-   "evidence": "implied by src/shell/shell.c 2026-11-09"
+   "status": "matched",
+   "mangled": "W?HercBayOpen$n(pn$HercBay$$pnv)v",
+   "tu": "src/shell/hercbay.c",
+   "evidence": "strict match 2026-11-16"
   },
   "HercBayOpen#W?HercBayOpen$n(pn$HercBay$$pnv)v": {
    "va": "00415edc",
@@ -3010,13 +3020,20 @@
    "tu": "src/shell/hercbay.c",
    "evidence": "placed (at) in src/shell/hercbay.c 2026-11-09"
   },
+  "HercBayOpen#W?HercBayOpen$n(pn$Scene$$pn$InputReq$$)v": {
+   "va": "00415edc",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HercBayOpen$n(pn$Scene$$pn$InputReq$$)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
   "HercBayAltStart": {
    "va": "00415f93",
    "kind": "func",
    "status": "matched",
    "mangled": "W?HercBayAltStart$n(pn$HercBay$$pnv)v",
    "tu": "src/shell/hercbay.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HercBayClose": {
    "va": "00416024",
@@ -3024,7 +3041,7 @@
    "status": "matched",
    "mangled": "W?HercBayClose$n(pn$HercBay$$)v",
    "tu": "src/shell/hercbay.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HercBayShutdown": {
    "va": "0041604c",
@@ -3039,7 +3056,7 @@
    "status": "matched",
    "mangled": "W?HercBayCleanup$n(pn$HercBay$$)v",
    "tu": "src/shell/hercbay.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HercBaySetStatus": {
    "va": "004160b2",
@@ -3047,7 +3064,7 @@
    "status": "matched",
    "mangled": "W?HercBaySetStatus$n(pn$HercBay$$)v",
    "tu": "src/shell/hercbay.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HercBaySetStatus#W?HercBaySetStatus$n(pn$HercBay$$)i": {
    "va": "004160b2",
@@ -3069,7 +3086,7 @@
    "status": "matched",
    "mangled": "W?HercBayUpdateState$n(pn$HercBay$$)v",
    "tu": "src/shell/hercbay.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HercBaySetDisplay": {
    "va": "0041617f",
@@ -3077,7 +3094,7 @@
    "status": "matched",
    "mangled": "W?HercBaySetDisplay$n()v",
    "tu": "src/shell/hercbay.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HercBayNoStorage": {
    "va": "00416195",
@@ -3092,7 +3109,7 @@
    "status": "matched",
    "mangled": "W?HercBayDrawMission$n(pn$HercBay$$)v",
    "tu": "src/shell/hercbay.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HercBay::DrawImage": {
    "va": "00416284",
@@ -3100,7 +3117,7 @@
    "status": "matched",
    "mangled": "W?DrawImage$:HercBay$n(pnv)v",
    "tu": "src/shell/hercbay.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HercFrame::Draw": {
    "va": "0041635e",
@@ -3108,7 +3125,7 @@
    "status": "matched",
    "mangled": "W?Draw$:HercFrame$n(i)v",
    "tu": "src/shell/hercbay.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HercBayActions::Reactivate": {
    "va": "004163a2",
@@ -3116,7 +3133,7 @@
    "status": "matched",
    "mangled": "W?Reactivate$:HercBayActions$n()v",
    "tu": "src/shell/hercbay.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HercBayActions::Reactivate#W?Reactivate$:HercBayActions$n()v": {
    "va": "004163a2",
@@ -3131,7 +3148,7 @@
    "status": "matched",
    "mangled": "W?HercBayDone$n()v",
    "tu": "src/shell/hercbay.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HercBay::$dt": {
    "va": "00416424",
@@ -3139,7 +3156,7 @@
    "status": "matched",
    "mangled": "W?$dt:HercBay$n()_",
    "tu": "src/shell/hercbay.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "W?.fn_init$n()v@shell/hercbuy.c": {
    "va": "00416444",
@@ -6299,7 +6316,7 @@
    "status": "matched",
    "mangled": "W?$ct:MenuLabel$n(pnxalucli)_",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuLabel::SetFont": {
    "va": "00427e48",
@@ -6307,7 +6324,7 @@
    "status": "matched",
    "mangled": "W?SetFont$:MenuLabel$n(uc)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuLabel::SetText": {
    "va": "00427e54",
@@ -6315,7 +6332,7 @@
    "status": "matched",
    "mangled": "W?SetText$:MenuLabel$n(pnxa)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuLabel::SetColor": {
    "va": "00427e60",
@@ -6323,7 +6340,7 @@
    "status": "matched",
    "mangled": "W?SetColor$:MenuLabel$n(l)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuLabel::SetAlign": {
    "va": "00427e6c",
@@ -6331,7 +6348,7 @@
    "status": "matched",
    "mangled": "W?SetAlign$:MenuLabel$n(l)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuLabel::Reset": {
    "va": "00427e78",
@@ -6339,7 +6356,7 @@
    "status": "matched",
    "mangled": "W?Reset$:MenuLabel$n(ui)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuEdit::Reset": {
    "va": "00427e78",
@@ -6368,7 +6385,7 @@
    "status": "matched",
    "mangled": "W?SetBackground$:MenuLabel$n(i)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuLabel::Draw": {
    "va": "00427e96",
@@ -6398,7 +6415,7 @@
    "status": "matched",
    "mangled": "W?$ct:MenuHelpRegion$n()_",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "W?.tdctor$:MenuHelpRegion$n()rn$1$": {
    "va": "00427f89",
@@ -6420,7 +6437,7 @@
    "status": "matched",
    "mangled": "W?Draw$:MenuHelpRegion$n(ui)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuHelpRegion::Event": {
    "va": "00427ff0",
@@ -6428,7 +6445,7 @@
    "status": "matched",
    "mangled": "W?Event$:MenuHelpRegion$n(uiul)i",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuCaption::$ct": {
    "va": "00428018",
@@ -6436,7 +6453,7 @@
    "status": "matched",
    "mangled": "W?$ct:MenuCaption$n(pnxac)_",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuCaption::$ct#W?$ct:MenuCaption$n(pnxaciii)_": {
    "va": "00428018",
@@ -6451,7 +6468,7 @@
    "status": "matched",
    "mangled": "W?SetText$:MenuCaption$n(pnxa)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuCaption::Reset": {
    "va": "00428053",
@@ -6459,7 +6476,7 @@
    "status": "matched",
    "mangled": "W?Reset$:MenuCaption$n(ui)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuCaption::Draw": {
    "va": "00428066",
@@ -6467,7 +6484,7 @@
    "status": "matched",
    "mangled": "W?Draw$:MenuCaption$n(ui)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuEdit::$ct": {
    "va": "00428103",
@@ -6475,7 +6492,7 @@
    "status": "matched",
    "mangled": "W?$ct:MenuEdit$n(pnaul)_",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuEdit::GetText": {
    "va": "00428131",
@@ -6483,7 +6500,7 @@
    "status": "matched",
    "mangled": "W?GetText$:MenuEdit$n()pna",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuEdit::SetText": {
    "va": "00428139",
@@ -6491,7 +6508,7 @@
    "status": "matched",
    "mangled": "W?SetText$:MenuEdit$n(pnxa)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuEdit::Draw": {
    "va": "00428162",
@@ -6499,7 +6516,7 @@
    "status": "matched",
    "mangled": "W?Draw$:MenuEdit$n(ui)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuEdit::Event": {
    "va": "0042827d",
@@ -6529,7 +6546,7 @@
    "status": "matched",
    "mangled": "W?$ct:MenuButton$n(pnxaul)_",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HercBuyInitButton::$ct": {
    "va": "004284d5",
@@ -6544,7 +6561,7 @@
    "status": "matched",
    "mangled": "W?Reset$:MenuButton$n(ui)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuNumber::Reset": {
    "va": "00428501",
@@ -6559,7 +6576,7 @@
    "status": "matched",
    "mangled": "W?Draw$:MenuButton$n(ui)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuButton::Event": {
    "va": "0042860f",
@@ -6567,7 +6584,7 @@
    "status": "matched",
    "mangled": "W?Event$:MenuButton$n(uiul)i",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuTextButton::Event": {
    "va": "0042860f",
@@ -6596,7 +6613,7 @@
    "status": "matched",
    "mangled": "W?$ct:MenuTextButton$n(pnxaulccc)_",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuTextButton::Reset": {
    "va": "0042865d",
@@ -6604,7 +6621,7 @@
    "status": "matched",
    "mangled": "W?Reset$:MenuTextButton$n(ui)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuTextButton::SetColor": {
    "va": "0042867c",
@@ -6612,7 +6629,7 @@
    "status": "matched",
    "mangled": "W?SetColor$:MenuTextButton$n(c)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuTextButton::SetAlign": {
    "va": "0042868c",
@@ -6620,7 +6637,7 @@
    "status": "matched",
    "mangled": "W?SetAlign$:MenuTextButton$n(c)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuTextButton::SetFont": {
    "va": "0042869c",
@@ -6628,7 +6645,7 @@
    "status": "matched",
    "mangled": "W?SetFont$:MenuTextButton$n(c)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuTextButton::Draw": {
    "va": "004286ac",
@@ -6636,7 +6653,7 @@
    "status": "matched",
    "mangled": "W?Draw$:MenuTextButton$n(ui)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuListButton::$ct": {
    "va": "00428739",
@@ -6644,7 +6661,7 @@
    "status": "matched",
    "mangled": "W?$ct:MenuListButton$n()_",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuListButton::Draw": {
    "va": "00428759",
@@ -6652,7 +6669,7 @@
    "status": "matched",
    "mangled": "W?Draw$:MenuListButton$n(ui)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuImageButton::$ct": {
    "va": "0042885c",
@@ -6660,7 +6677,7 @@
    "status": "matched",
    "mangled": "W?$ct:MenuImageButton$n(llul)_",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuImageButton::Draw": {
    "va": "0042888f",
@@ -6668,7 +6685,7 @@
    "status": "matched",
    "mangled": "W?Draw$:MenuImageButton$n(ui)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuImageButton::Event": {
    "va": "00428992",
@@ -6676,7 +6693,7 @@
    "status": "matched",
    "mangled": "W?Event$:MenuImageButton$n(uiul)i",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuImageLabel::$ct": {
    "va": "00428a47",
@@ -6684,7 +6701,7 @@
    "status": "matched",
    "mangled": "W?$ct:MenuImageLabel$n(lcccccc)_",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuImageLabel::SetStyle": {
    "va": "00428a98",
@@ -6692,7 +6709,7 @@
    "status": "matched",
    "mangled": "W?SetStyle$:MenuImageLabel$n(cccccc)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuImageLabel::Draw": {
    "va": "00428ac7",
@@ -6700,7 +6717,7 @@
    "status": "matched",
    "mangled": "W?Draw$:MenuImageLabel$n(ui)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuSpacer::$ct": {
    "va": "00428c2e",
@@ -6708,7 +6725,7 @@
    "status": "matched",
    "mangled": "W?$ct:MenuSpacer$n()_",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuSpacer::Draw": {
    "va": "00428c47",
@@ -6716,7 +6733,7 @@
    "status": "matched",
    "mangled": "W?Draw$:MenuSpacer$n(ui)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HercModuleInitWidget": {
    "va": "00428c5f",
@@ -6731,7 +6748,7 @@
    "status": "matched",
    "mangled": "W?$ct:MenuPrefixButton$n(pnxaccc)_",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuPrefixButton::SetText": {
    "va": "00428c9f",
@@ -6739,7 +6756,7 @@
    "status": "matched",
    "mangled": "W?SetText$:MenuPrefixButton$n(pnxa)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuPrefixButton::SetText#W?SetText$:MenuPrefixButton$n(pna)v": {
    "va": "00428c9f",
@@ -6754,7 +6771,7 @@
    "status": "matched",
    "mangled": "W?SetColor$:MenuPrefixButton$n(c)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuPrefixButton::SetAlign": {
    "va": "00428cbf",
@@ -6762,7 +6779,7 @@
    "status": "matched",
    "mangled": "W?SetAlign$:MenuPrefixButton$n(c)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuPrefixButton::SetAlign#W?SetAlign$:MenuPrefixButton$n(a)v": {
    "va": "00428cbf",
@@ -6777,7 +6794,7 @@
    "status": "matched",
    "mangled": "W?SetPrefix$:MenuPrefixButton$n(c)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuPrefixButton::SetPrefix#W?SetPrefix$:MenuPrefixButton$n(uc)v": {
    "va": "00428ccf",
@@ -6792,7 +6809,7 @@
    "status": "matched",
    "mangled": "W?Reset$:MenuPrefixButton$n(ui)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuPrefixButton::Draw": {
    "va": "00428cee",
@@ -6800,7 +6817,7 @@
    "status": "matched",
    "mangled": "W?Draw$:MenuPrefixButton$n(ui)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuPrefixButton::SetFont": {
    "va": "00428e2b",
@@ -6808,7 +6825,7 @@
    "status": "matched",
    "mangled": "W?SetFont$:MenuPrefixButton$n(c)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HercModuleInitC": {
    "va": "00428e3b",
@@ -6823,7 +6840,7 @@
    "status": "matched",
    "mangled": "W?$ct:MenuPanel$n()_",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HercBuyInitPanel::$ct": {
    "va": "00428e3b",
@@ -6838,7 +6855,7 @@
    "status": "matched",
    "mangled": "W?Draw$:MenuPanel$n(ui)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HercModuleInitB": {
    "va": "00428efa",
@@ -6853,7 +6870,7 @@
    "status": "matched",
    "mangled": "W?$ct:MenuNumber$n(cc)_",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HercSetDisplay": {
    "va": "00428f33",
@@ -6868,7 +6885,7 @@
    "status": "matched",
    "mangled": "W?SetValue$:MenuNumber$n(lc)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuNumber::SetValue#W?SetValue$:MenuNumber$n(la)v": {
    "va": "00428f33",
@@ -6883,7 +6900,7 @@
    "status": "matched",
    "mangled": "W?SetFont$:MenuNumber$n(c)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuNumber::Draw": {
    "va": "00428f56",
@@ -6891,7 +6908,7 @@
    "status": "matched",
    "mangled": "W?Draw$:MenuNumber$n(ui)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuChat::$ct": {
    "va": "0042902f",
@@ -6899,7 +6916,7 @@
    "status": "matched",
    "mangled": "W?$ct:MenuChat$n(ul)_",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuChat::GetText": {
    "va": "004290db",
@@ -6907,7 +6924,7 @@
    "status": "matched",
    "mangled": "W?GetText$:MenuChat$n()pna",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuChat::Reset": {
    "va": "004290e1",
@@ -6915,7 +6932,7 @@
    "status": "matched",
    "mangled": "W?Reset$:MenuChat$n(ui)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuChat::Clear": {
    "va": "0042912f",
@@ -6923,7 +6940,7 @@
    "status": "matched",
    "mangled": "W?Clear$:MenuChat$n()v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuChat::Draw": {
    "va": "00429136",
@@ -6931,7 +6948,7 @@
    "status": "matched",
    "mangled": "W?Draw$:MenuChat$n(ui)v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuChat::Send": {
    "va": "00429286",
@@ -6939,7 +6956,7 @@
    "status": "matched",
    "mangled": "W?Send$:MenuChat$n()v",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuChat::Event": {
    "va": "004292e1",
@@ -6955,7 +6972,7 @@
    "status": "matched",
    "mangled": "W?$dt:MenuImageLabel$n()_",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuSpacer::$dt": {
    "va": "0042974c",
@@ -6963,7 +6980,7 @@
    "status": "matched",
    "mangled": "W?$dt:MenuSpacer$n()_",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MenuImageButton::$dt": {
    "va": "00429790",
@@ -6971,7 +6988,7 @@
    "status": "matched",
    "mangled": "W?$dt:MenuImageButton$n()_",
    "tu": "src/gui/menu.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "W?.fn_init$n()v@tu_004297d4.c": {
    "va": "004297d4",
@@ -7085,7 +7102,7 @@
    "status": "matched",
    "mangled": "W?$ct:GuiPoint$n()_",
    "tu": "src/terr/tdisplay.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "BriefModuleInitC": {
    "va": "00429a44",
@@ -7586,6 +7603,13 @@
    "mangled": "W?ResolveName$n(pnapn$GridPoint$$)i",
    "evidence": "implied by src/multi/message.c 2026-11-14"
   },
+  "ResolveName#W?ResolveName$n(ulpni)i": {
+   "va": "0042b230",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ResolveName$n(ulpni)i",
+   "evidence": "implied by src/sim/animout.c 2026-11-16"
+  },
   "BestLocSetData": {
    "va": "0042b290",
    "kind": "func",
@@ -7765,7 +7789,7 @@
    "status": "matched",
    "mangled": "W?.fn_init$n()v",
    "tu": "src/terr/tdisplay.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "DisplayInitialize": {
    "va": "0042b960",
@@ -7773,7 +7797,7 @@
    "status": "matched",
    "mangled": "W?DisplayInitialize$n(pnvpnxai)v",
    "tu": "src/terr/tdisplay.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "WorldView::$ct": {
    "va": "0042b960",
@@ -7788,7 +7812,7 @@
    "status": "matched",
    "mangled": "W?DisplayIdentity$n(pnv)pnv",
    "tu": "src/terr/tdisplay.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "WorldView::$dt": {
    "va": "0042b980",
@@ -7803,7 +7827,7 @@
    "status": "matched",
    "mangled": "W?DisplaySetRect$n(pnvpnx$DisplayRect$$)v",
    "tu": "src/terr/tdisplay.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "SetTerrainView": {
    "va": "0042b9e0",
@@ -7863,7 +7887,7 @@
    "status": "matched",
    "mangled": "W?DisplayScale$n(pni)i",
    "tu": "src/terr/tdisplay.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "ViewScale": {
    "va": "0042bf10",
@@ -7878,7 +7902,7 @@
    "status": "matched",
    "mangled": "W?DisplayPointScale$n(pnii)i",
    "tu": "src/terr/tdisplay.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "ViewToScreen": {
    "va": "0042bf30",
@@ -7893,7 +7917,7 @@
    "status": "matched",
    "mangled": "W?DisplayGetBounds$n(pnipnuipnui)v",
    "tu": "src/terr/tdisplay.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "ViewToScreen#W?ViewToScreen$n(pnvpn$GridPoint$$pn$1$)v": {
    "va": "0042bf30",
@@ -7908,7 +7932,7 @@
    "status": "matched",
    "mangled": "W?DisplayPointToScreen$n(pnipnipnii)v",
    "tu": "src/terr/tdisplay.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "DisplayPointToScreenScaled": {
    "va": "0042c130",
@@ -7916,7 +7940,7 @@
    "status": "matched",
    "mangled": "W?DisplayPointToScreenScaled$n(pnipnuipnui)i",
    "tu": "src/terr/tdisplay.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "DisplayRectOutside": {
    "va": "0042c1f0",
@@ -7924,7 +7948,7 @@
    "status": "matched",
    "mangled": "W?DisplayRectOutside$n(ipni)i",
    "tu": "src/terr/tdisplay.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "DisplaySubmitElement": {
    "va": "0042c250",
@@ -7932,7 +7956,7 @@
    "status": "matched",
    "mangled": "W?DisplaySubmitElement$n(pni)i",
    "tu": "src/terr/tdisplay.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "DisplaySort": {
    "va": "0042c3f0",
@@ -7940,7 +7964,7 @@
    "status": "matched",
    "mangled": "W?DisplaySort$n(pnpnvi)v",
    "tu": "src/terr/tdisplay.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "DisplayProcess": {
    "va": "0042c490",
@@ -7948,7 +7972,7 @@
    "status": "matched",
    "mangled": "W?DisplayProcess$n(pnipnvpnvpnv)v",
    "tu": "src/terr/tdisplay.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "DisplayProcess#W?DisplayProcess$n(pnipnvii)v": {
    "va": "0042c490",
@@ -7971,7 +7995,7 @@
    "status": "matched",
    "mangled": "W?DisplayConsiderElement$n(pni)i",
    "tu": "src/terr/tdisplay.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "DisplayPickAt": {
    "va": "0042c880",
@@ -7979,7 +8003,7 @@
    "status": "matched",
    "mangled": "W?DisplayPickAt$n(pnipni)i",
    "tu": "src/terr/tdisplay.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "GuiPickTarget": {
    "va": "0042c880",
@@ -8009,7 +8033,7 @@
    "status": "matched",
    "mangled": "W?$dt:GuiPoint$n()_",
    "tu": "src/terr/tdisplay.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "DisplayIdentityB": {
    "va": "0042c9e0",
@@ -8025,7 +8049,7 @@
    "status": "matched",
    "mangled": "W?$dt:DisplayRenderItem$n()_",
    "tu": "src/terr/tdisplay.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "DisplayIdentityC": {
    "va": "0042c9f0",
@@ -8041,7 +8065,7 @@
    "status": "matched",
    "mangled": "W?$ct:DisplayRenderItem$n()_",
    "tu": "src/terr/tdisplay.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "DisplayWalkInit": {
    "va": "0042ca00",
@@ -8049,7 +8073,7 @@
    "status": "matched",
    "mangled": "W?DisplayWalkInit$n(pn$AreaWalk$$ui)v",
    "tu": "src/terr/tdisplay.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "DisplayStep": {
    "va": "0042ca30",
@@ -8057,7 +8081,7 @@
    "status": "matched",
    "mangled": "DisplayStep",
    "tu": "src/terr/tdisplay.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "BestLocInitialize": {
    "va": "0042caf0",
@@ -8079,7 +8103,7 @@
    "status": "matched",
    "mangled": "W?DisplayCount$n(i)i",
    "tu": "src/terr/tdisplay.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "BestLocSetCandidate": {
    "va": "0042cb50",
@@ -8101,7 +8125,7 @@
    "status": "matched",
    "mangled": "W?DisplaySetCandidate$n(pnii)v",
    "tu": "src/terr/tdisplay.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "DisplaySetRadius": {
    "va": "0042cb70",
@@ -8109,7 +8133,7 @@
    "status": "matched",
    "mangled": "W?DisplaySetRadius$n(pnii)i",
    "tu": "src/terr/tdisplay.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "DisplaySetRadius#W?DisplaySetRadius$n(pnii)v": {
    "va": "0042cb70",
@@ -9669,7 +9693,7 @@
    "status": "matched",
    "mangled": "W?$ct:ActorListObject$n()_",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorListGlobalObject::$dt": {
    "va": "00435dfd",
@@ -9677,7 +9701,7 @@
    "status": "matched",
    "mangled": "W?$dt:ActorListGlobalObject$n()_",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorListObject::$dt": {
    "va": "00435dfd",
@@ -9692,7 +9716,7 @@
    "status": "matched",
    "mangled": "W?$ct:ActorListGlobalObject$n(pnxv)_",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorBaseHealth": {
    "va": "00435e2f",
@@ -9700,7 +9724,7 @@
    "status": "matched",
    "mangled": "W?ActorBaseHealth$n(pn$ActorState$$pn$ActorDescriptor$$)i",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "f_00435e43": {
    "va": "00435e43",
@@ -9708,7 +9732,7 @@
    "status": "matched",
    "mangled": "f_00435e43",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorBindDescriptor": {
    "va": "00435e70",
@@ -9716,7 +9740,7 @@
    "status": "matched",
    "mangled": "W?ActorBindDescriptor$n(pn$ActorState$$i)v",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "RefreshActorState": {
    "va": "00435e9c",
@@ -9724,7 +9748,7 @@
    "status": "matched",
    "mangled": "W?RefreshActorState$n(pn$ActorState$$)v",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorStateInvalid": {
    "va": "00436070",
@@ -9732,7 +9756,7 @@
    "status": "matched",
    "mangled": "W?ActorStateInvalid$n(pn$ActorState$$)i",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SendEvent": {
    "va": "00436138",
@@ -9754,7 +9778,7 @@
    "status": "matched",
    "mangled": "W?Fixup$:ActorListObject$n()v",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorAdjustFixed": {
    "va": "00436c0f",
@@ -9762,7 +9786,7 @@
    "status": "matched",
    "mangled": "W?ActorAdjustFixed$n(pn$ActorState$$pnuiiui)v",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorAdjustScalar": {
    "va": "00436c3a",
@@ -9770,7 +9794,7 @@
    "status": "matched",
    "mangled": "W?ActorAdjustScalar$n(pn$ActorState$$pnuiiui)v",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorScale": {
    "va": "00436c65",
@@ -9786,7 +9810,7 @@
    "status": "matched",
    "mangled": "W?RefreshActorFlags$n(pn$ActorState$$)v",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimLogicFlags": {
    "va": "00436db7",
@@ -9794,7 +9818,7 @@
    "status": "matched",
    "mangled": "W?SimLogicFlags$n(pnv)ui",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "PilotValue": {
    "va": "00436dcc",
@@ -9839,7 +9863,7 @@
    "status": "matched",
    "mangled": "W?ActorGetDescriptor$n(pn$ActorState$$)pn$ActorDescriptor$$",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorCondition": {
    "va": "00437245",
@@ -9847,7 +9871,7 @@
    "status": "matched",
    "mangled": "W?ActorCondition$n(pn$ActorState$$)i",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorSetName": {
    "va": "004372b6",
@@ -9855,7 +9879,7 @@
    "status": "matched",
    "mangled": "W?ActorSetName$n(pn$ActorState$$pnxa)v",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "f_004372cd": {
    "va": "004372cd",
@@ -9870,7 +9894,7 @@
    "status": "matched",
    "mangled": "W?ActorGetName$n(pn$ActorState$$pna)v",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorWork": {
    "va": "004372db",
@@ -9894,7 +9918,7 @@
    "status": "matched",
    "mangled": "W?ActorChangeMorale$n(pn$ActorState$$i)v",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorTrainSkill": {
    "va": "004375f4",
@@ -9910,7 +9934,7 @@
    "status": "matched",
    "mangled": "W?ActorGainExperience$n(pn$ActorState$$i)v",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorTrainingCost": {
    "va": "004376ee",
@@ -9918,7 +9942,7 @@
    "status": "matched",
    "mangled": "W?ActorTrainingCost$n(pn$ActorState$$uii)i",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorRestoreHealth": {
    "va": "00437821",
@@ -9926,7 +9950,7 @@
    "status": "matched",
    "mangled": "W?ActorRestoreHealth$n(pn$ActorState$$)v",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorHealthCost": {
    "va": "00437848",
@@ -9942,7 +9966,7 @@
    "status": "matched",
    "mangled": "W?ActorRestoreMorale$n(pn$ActorState$$)v",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorMoraleCost": {
    "va": "004378e5",
@@ -9958,7 +9982,7 @@
    "status": "matched",
    "mangled": "W?ActorFatigueCost$n(pn$ActorState$$)i",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "f_004379ba": {
    "va": "004379ba",
@@ -9973,7 +9997,7 @@
    "status": "matched",
    "mangled": "W?ActorRemainingValue$n(pn$ActorState$$)i",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "UnitReset": {
    "va": "00437a28",
@@ -9988,7 +10012,7 @@
    "status": "matched",
    "mangled": "W?ActorRememberLevel$n(pn$ActorState$$)v",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "UnitReset#W?UnitReset$n(pn$ActorState$$)v": {
    "va": "00437a28",
@@ -10003,7 +10027,7 @@
    "status": "matched",
    "mangled": "W?ActorApplyDamage$:ActorState$n(uc)v",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorTick": {
    "va": "00437c68",
@@ -10019,7 +10043,7 @@
    "status": "matched",
    "mangled": "W?ActorDamageHealth$n(pn$ActorState$$i)v",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorZeroVitals": {
    "va": "00437e2f",
@@ -10027,7 +10051,7 @@
    "status": "matched",
    "mangled": "W?ActorZeroVitals$n(pn$ActorState$$)v",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorVoice": {
    "va": "00437e49",
@@ -10035,7 +10059,7 @@
    "status": "matched",
    "mangled": "W?ActorVoice$n(pn$ActorState$$)v",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorAdjustFatigue": {
    "va": "00437eb6",
@@ -10043,7 +10067,7 @@
    "status": "matched",
    "mangled": "W?ActorAdjustFatigue$n(pn$ActorState$$i)v",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorAdjustMorale": {
    "va": "00437fbe",
@@ -10051,7 +10075,7 @@
    "status": "matched",
    "mangled": "W?ActorAdjustMorale$n(pn$ActorState$$i)v",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorRecoverInjuries": {
    "va": "00438085",
@@ -10067,7 +10091,7 @@
    "status": "matched",
    "mangled": "W?ActorAdjustSkills$n(pn$ActorState$$i)v",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorAdjustSkill": {
    "va": "0043814f",
@@ -10075,7 +10099,7 @@
    "status": "matched",
    "mangled": "W?ActorAdjustSkill$n(pn$ActorState$$ii)v",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "PilotChecksum": {
    "va": "0043819f",
@@ -10083,7 +10107,7 @@
    "status": "matched",
    "mangled": "W?PilotChecksum$n(pnv)i",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorState::Equal": {
    "va": "004381f7",
@@ -10091,7 +10115,7 @@
    "status": "matched",
    "mangled": "W?Equal$:ActorState$n(pnx$1$)i",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorCopyState": {
    "va": "00438221",
@@ -10099,7 +10123,7 @@
    "status": "matched",
    "mangled": "W?ActorCopyState$n(pn$ActorState$$pn$1$)v",
    "tu": "src/_unknown/tu_00435dec.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "PrepareActorDescriptor": {
    "va": "00438244",
@@ -10632,7 +10656,7 @@
    "status": "matched",
    "mangled": "W?UnitSpend$n(pn$ActorUnit$$i)i",
    "tu": "src/_unknown/tu_0043a294.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "UnitSpend#W?UnitSpend$n(pn$UnitState$$i)i": {
    "va": "0043a294",
@@ -10644,10 +10668,10 @@
   "HercAdvanceTurn": {
    "va": "0043a2d5",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?HercAdvanceTurn$n(pn$ActorUnit$$pnv)v",
    "tu": "src/_unknown/tu_0043a294.c",
-   "evidence": "placed (at) in src/_unknown/tu_0043a294.c 2026-11-09"
+   "evidence": "strict match 2026-11-16"
   },
   "HercBuildDamage": {
    "va": "0043a597",
@@ -10655,7 +10679,7 @@
    "status": "matched",
    "mangled": "W?HercBuildDamage$n(pn$ActorUnit$$)v",
    "tu": "src/_unknown/tu_0043a294.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HercBuildDamageCopy": {
    "va": "0043a606",
@@ -10663,7 +10687,7 @@
    "status": "matched",
    "mangled": "W?HercBuildDamageCopy$n(pn$ActorUnit$$)v",
    "tu": "src/_unknown/tu_0043a294.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HercDamageAtRange": {
    "va": "0043a670",
@@ -10671,7 +10695,7 @@
    "status": "matched",
    "mangled": "W?HercDamageAtRange$n(pn$ActorUnit$$i)i",
    "tu": "src/_unknown/tu_0043a294.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HercWeaponDamage": {
    "va": "0043a69c",
@@ -10679,7 +10703,7 @@
    "status": "matched",
    "mangled": "W?HercWeaponDamage$n(pn$ActorUnit$$ii)i",
    "tu": "src/_unknown/tu_0043a294.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HercRepairPoints": {
    "va": "0043a739",
@@ -10687,7 +10711,7 @@
    "status": "matched",
    "mangled": "W?HercRepairPoints$n(pn$ActorUnit$$)i",
    "tu": "src/_unknown/tu_0043a294.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HercRepairNeeded": {
    "va": "0043a782",
@@ -10695,7 +10719,7 @@
    "status": "matched",
    "mangled": "W?HercRepairNeeded$n(pn$ActorUnit$$i)i",
    "tu": "src/_unknown/tu_0043a294.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "f_0043a7e8": {
    "va": "0043a7e8",
@@ -10703,7 +10727,7 @@
    "status": "matched",
    "mangled": "W?f_0043a7e8$n(pn$ActorUnit$$i)i",
    "tu": "src/_unknown/tu_0043a294.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "f_0043a7e8#W?f_0043a7e8$n(iul)ul": {
    "va": "0043a7e8",
@@ -10718,7 +10742,7 @@
    "status": "matched",
    "mangled": "W?HercAmmoCost$n(pn$ActorUnit$$i)i",
    "tu": "src/_unknown/tu_0043a294.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HercAddAmmo": {
    "va": "0043a97f",
@@ -10726,7 +10750,7 @@
    "status": "matched",
    "mangled": "W?HercAddAmmo$n(pn$ActorUnit$$i)i",
    "tu": "src/_unknown/tu_0043a294.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HercNeedsAmmo": {
    "va": "0043a9e7",
@@ -10734,7 +10758,7 @@
    "status": "matched",
    "mangled": "W?HercNeedsAmmo$n(pn$ActorUnit$$)i",
    "tu": "src/_unknown/tu_0043a294.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HercNeedsAmmo#W?HercNeedsAmmo$n(i)i": {
    "va": "0043a9e7",
@@ -10749,7 +10773,7 @@
    "status": "matched",
    "mangled": "W?StateAction$n(pn$ActorUnit$$)i",
    "tu": "src/_unknown/tu_0043a294.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "StateAction#W?StateAction$n(pnv)i": {
    "va": "0043aa29",
@@ -10764,7 +10788,7 @@
    "status": "matched",
    "mangled": "W?SimAddMission$n(pn$ActorUnit$$)v",
    "tu": "src/_unknown/tu_0043a294.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimAddMission#W?SimAddMission$n(pn$ActorUnit$$)v": {
    "va": "0043aa62",
@@ -10794,7 +10818,7 @@
    "status": "matched",
    "mangled": "W?HercAngleWeights$n(ipnipnipnipni)v",
    "tu": "src/_unknown/tu_0043a294.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "f_0043ac9c": {
    "va": "0043ac9c",
@@ -10816,7 +10840,7 @@
    "status": "matched",
    "mangled": "W?f_0043ad4f$n(pn$ActorUnit$$ii)i",
    "tu": "src/_unknown/tu_0043a294.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HercDefense": {
    "va": "0043adf6",
@@ -10854,6 +10878,13 @@
    "status": "hypothesis",
    "mangled": "W?UnitFogObject$n(pn$ActorUnit$$ipnv)pn$FogObject$$",
    "evidence": "implied by src/sim/weapai.c 2026-11-09"
+  },
+  "UnitFogObject#W?UnitFogObject$n(pn$ActorUnit$$ipnv)pnv": {
+   "va": "0043b044",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?UnitFogObject$n(pn$ActorUnit$$ipnv)pnv",
+   "evidence": "implied by src/_unknown/tu_0043a294.c 2026-11-16"
   },
   "CurveInit": {
    "va": "0043b3d0",
@@ -11893,7 +11924,7 @@
    "status": "matched",
    "mangled": "f_004413e0",
    "tu": "src/_unknown/tu_004413e0.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "f_00441456": {
    "va": "00441456",
@@ -11916,7 +11947,7 @@
    "status": "matched",
    "mangled": "f_00441b19",
    "tu": "src/_unknown/tu_004413e0.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "f_00441c2c": {
    "va": "00441c2c",
@@ -11924,7 +11955,7 @@
    "status": "matched",
    "mangled": "f_00441c2c",
    "tu": "src/_unknown/tu_004413e0.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "f_00441ca7": {
    "va": "00441ca7",
@@ -11939,7 +11970,7 @@
    "status": "matched",
    "mangled": "f_00441ce1",
    "tu": "src/_unknown/tu_004413e0.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "f_00441d1f": {
    "va": "00441d1f",
@@ -11947,7 +11978,7 @@
    "status": "matched",
    "mangled": "f_00441d1f",
    "tu": "src/_unknown/tu_004413e0.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "MainMenuMissionReady": {
    "va": "00441d5d",
@@ -11962,7 +11993,7 @@
    "status": "matched",
    "mangled": "f_00441d5d",
    "tu": "src/_unknown/tu_004413e0.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "f_00441dad": {
    "va": "00441dad",
@@ -11970,7 +12001,7 @@
    "status": "matched",
    "mangled": "f_00441dad",
    "tu": "src/_unknown/tu_004413e0.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "f_00441ec5": {
    "va": "00441ec5",
@@ -11978,7 +12009,7 @@
    "status": "matched",
    "mangled": "f_00441ec5",
    "tu": "src/_unknown/tu_004413e0.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "f_00442045": {
    "va": "00442045",
@@ -11993,31 +12024,31 @@
    "status": "matched",
    "mangled": "f_0044220e",
    "tu": "src/_unknown/tu_004413e0.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "f_00442258": {
    "va": "00442258",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "f_00442258",
    "tu": "src/_unknown/tu_004413e0.c",
-   "evidence": "placed (at) in src/_unknown/tu_004413e0.c 2026-11-09"
+   "evidence": "strict match 2026-11-16"
   },
   "f_004422f0": {
    "va": "004422f0",
    "kind": "func",
    "status": "matched",
    "mangled": "f_004422f0",
-   "tu": "src/_unknown/tu_004413e0.c",
-   "evidence": "strict match 2026-11-14"
+   "tu": "src/sim/actorver.c",
+   "evidence": "strict match 2026-11-16"
   },
   "f_004423d7": {
    "va": "004423d7",
    "kind": "func",
    "status": "matched",
    "mangled": "f_004423d7",
-   "tu": "src/_unknown/tu_004413e0.c",
-   "evidence": "strict match 2026-11-14"
+   "tu": "src/sim/actorver.c",
+   "evidence": "strict match 2026-11-16"
   },
   "ActorActivate": {
    "va": "004424d4",
@@ -12377,7 +12408,7 @@
    "status": "matched",
    "mangled": "W?.fn_init$n()v",
    "tu": "src/pop/psystem.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "PopLoadItem": {
    "va": "00443fa7",
@@ -12385,7 +12416,7 @@
    "status": "matched",
    "mangled": "W?PopLoadItem$n(i)i",
    "tu": "src/pop/psystem.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "W?.tdctor$:PopNode$n()rn$1$": {
    "va": "00443fa7",
@@ -12408,7 +12439,7 @@
    "status": "matched",
    "mangled": "W?Open$:PopNode$n(pnv)v",
    "tu": "src/pop/psystem.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "PopNodeClear": {
    "va": "004440b0",
@@ -12416,7 +12447,7 @@
    "status": "matched",
    "mangled": "W?PopNodeClear$n(pn$PopNode$$)v",
    "tu": "src/pop/psystem.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "PopNodeHandleSelection": {
    "va": "004440ca",
@@ -12424,7 +12455,7 @@
    "status": "matched",
    "mangled": "W?PopNodeHandleSelection$n(pn$PopNode$$)i",
    "tu": "src/pop/psystem.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "PopNodeUpdate": {
    "va": "00444184",
@@ -12432,7 +12463,7 @@
    "status": "matched",
    "mangled": "W?PopNodeUpdate$n(pn$PopNode$$)v",
    "tu": "src/pop/psystem.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "PopNodeChanged": {
    "va": "004441e3",
@@ -12440,7 +12471,7 @@
    "status": "matched",
    "mangled": "W?PopNodeChanged$n(pn$PopNode$$)v",
    "tu": "src/pop/psystem.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "PopUpdateItem": {
    "va": "004441f8",
@@ -12455,7 +12486,7 @@
    "status": "matched",
    "mangled": "W?GetValue$:PopNode$n(i)i",
    "tu": "src/pop/psystem.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "PopSystemCallback": {
    "va": "004444cd",
@@ -12463,7 +12494,7 @@
    "status": "matched",
    "mangled": "W?PopSystemCallback$n(pn$SimGame$$)v",
    "tu": "src/pop/psystem.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "PopSystemCallback#W?PopSystemCallback$n(pnv)v": {
    "va": "004444cd",
@@ -12486,7 +12517,7 @@
    "status": "matched",
    "mangled": "W?$Wda014$:WeaponControl$n(ui)pnv",
    "tu": "src/pop/psystem.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "PopNode::$dt": {
    "va": "00444550",
@@ -12494,7 +12525,7 @@
    "status": "matched",
    "mangled": "W?$dt:PopNode$n()_",
    "tu": "src/pop/psystem.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "W?.fn_init$n()v@_unknown/tu_0044455c.c": {
    "va": "0044455c",
@@ -12510,7 +12541,7 @@
    "status": "matched",
    "mangled": "W?.fn_init$n()v",
    "tu": "src/pop/pshield.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ShieldControl::$ct": {
    "va": "004445ce",
@@ -12518,7 +12549,7 @@
    "status": "matched",
    "mangled": "W?$ct:ShieldControl$n()_",
    "tu": "src/pop/pshield.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ShieldControl::Reset": {
    "va": "00444613",
@@ -12526,7 +12557,7 @@
    "status": "matched",
    "mangled": "W?Reset$:ShieldControl$n(ui)v",
    "tu": "src/pop/pshield.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ShieldControl::Draw": {
    "va": "0044462c",
@@ -12534,7 +12565,7 @@
    "status": "matched",
    "mangled": "W?Draw$:ShieldControl$n(ui)v",
    "tu": "src/pop/pshield.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ShieldControl::Event": {
    "va": "00444766",
@@ -12550,7 +12581,7 @@
    "status": "matched",
    "mangled": "W?Commit$:ShieldControl$n()v",
    "tu": "src/pop/pshield.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ShieldControl::IsPressed": {
    "va": "004449b6",
@@ -12558,7 +12589,7 @@
    "status": "matched",
    "mangled": "W?IsPressed$:ShieldControl$n()i",
    "tu": "src/pop/pshield.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ShieldPopup::$ct": {
    "va": "004449c7",
@@ -12566,7 +12597,7 @@
    "status": "matched",
    "mangled": "W?$ct:ShieldPopup$n()_",
    "tu": "src/pop/pshield.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ShieldPopup::OpenShield": {
    "va": "004449de",
@@ -12574,7 +12605,7 @@
    "status": "matched",
    "mangled": "W?OpenShield$:ShieldPopup$n(pn$InputReq$$)v",
    "tu": "src/pop/pshield.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimInventoryClose": {
    "va": "00444a84",
@@ -12582,7 +12613,7 @@
    "status": "matched",
    "mangled": "W?SimInventoryClose$n(pn$ShieldPopup$$)v",
    "tu": "src/pop/pshield.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimInventoryClose#W?SimInventoryClose$n(pnv)v": {
    "va": "00444a84",
@@ -12605,7 +12636,7 @@
    "status": "matched",
    "mangled": "W?SetAim$:ShieldPopup$n(ii)v",
    "tu": "src/pop/pshield.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ShieldPopup::Process": {
    "va": "00444e61",
@@ -12613,7 +12644,7 @@
    "status": "matched",
    "mangled": "W?Process$:ShieldPopup$n()i",
    "tu": "src/pop/pshield.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimInventoryDraw": {
    "va": "00444f2a",
@@ -12621,7 +12652,7 @@
    "status": "matched",
    "mangled": "W?SimInventoryDraw$n(pn$ShieldPopup$$)v",
    "tu": "src/pop/pshield.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimInventoryDraw#W?SimInventoryDraw$n(pnv)v": {
    "va": "00444f2a",
@@ -12636,7 +12667,7 @@
    "status": "matched",
    "mangled": "W?Commit$:ShieldPopup$n()v",
    "tu": "src/pop/pshield.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ShieldPopup::AllowsWeapons": {
    "va": "00444f8f",
@@ -12644,7 +12675,7 @@
    "status": "matched",
    "mangled": "W?AllowsWeapons$:ShieldPopup$n()i",
    "tu": "src/pop/pshield.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimInventoryEvent": {
    "va": "00444fbb",
@@ -12659,7 +12690,7 @@
    "status": "matched",
    "mangled": "W?$dt:ShieldPopup$n()_",
    "tu": "src/pop/pshield.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ShieldControl::$dt": {
    "va": "004451f4",
@@ -12667,7 +12698,7 @@
    "status": "matched",
    "mangled": "W?$dt:ShieldControl$n()_",
    "tu": "src/pop/pshield.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "f_00445238": {
    "va": "00445238",
@@ -12683,7 +12714,7 @@
    "status": "matched",
    "mangled": "W?.fn_init$n()v",
    "tu": "src/pop/pherc.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HercModule::$ct": {
    "va": "00445289",
@@ -12691,7 +12722,7 @@
    "status": "matched",
    "mangled": "W?$ct:HercModule$n()_",
    "tu": "src/pop/pherc.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HercControl::$ct": {
    "va": "004453dd",
@@ -12699,7 +12730,7 @@
    "status": "matched",
    "mangled": "W?$ct:HercControl$n()_",
    "tu": "src/pop/pherc.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "f_004453fd": {
    "va": "004453fd",
@@ -12707,7 +12738,7 @@
    "status": "matched",
    "mangled": "W?f_004453fd$n(pnv)v",
    "tu": "src/pop/pherc.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "f_0044540f": {
    "va": "0044540f",
@@ -12731,7 +12762,7 @@
    "status": "matched",
    "mangled": "W?f_00445633$n(pnviuc)ul",
    "tu": "src/pop/pherc.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HercDetailControl::$ct": {
    "va": "004456db",
@@ -12739,7 +12770,7 @@
    "status": "matched",
    "mangled": "W?$ct:HercDetailControl$n()_",
    "tu": "src/pop/pherc.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "f_004456f3": {
    "va": "004456f3",
@@ -12747,7 +12778,7 @@
    "status": "matched",
    "mangled": "W?f_004456f3$n()v",
    "tu": "src/pop/pherc.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "f_004456f4": {
    "va": "004456f4",
@@ -12787,7 +12818,7 @@
    "status": "matched",
    "mangled": "W?f_00445c81$n(i)v",
    "tu": "src/pop/pherc.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "f_00445cfe": {
    "va": "00445cfe",
@@ -12811,7 +12842,7 @@
    "status": "matched",
    "mangled": "W?f_00446253$n(i)v",
    "tu": "src/pop/pherc.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "f_00446350": {
    "va": "00446350",
@@ -12819,7 +12850,7 @@
    "status": "matched",
    "mangled": "W?f_00446350$n(pn$HercModule$$)v",
    "tu": "src/pop/pherc.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "f_00446350#W?f_00446350$n(i)v": {
    "va": "00446350",
@@ -12835,7 +12866,7 @@
    "status": "matched",
    "mangled": "W?f_00446493$n(iipnipni)i",
    "tu": "src/pop/pherc.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "f_00446570": {
    "va": "00446570",
@@ -12859,7 +12890,7 @@
    "status": "matched",
    "mangled": "W?f_004465d6$n(i)v",
    "tu": "src/pop/pherc.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HercModule::Update": {
    "va": "004466d6",
@@ -12867,7 +12898,7 @@
    "status": "matched",
    "mangled": "W?Update$:HercModule$n()v",
    "tu": "src/pop/pherc.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "f_00446781": {
    "va": "00446781",
@@ -12875,7 +12906,7 @@
    "status": "matched",
    "mangled": "W?f_00446781$n(i)v",
    "tu": "src/pop/pherc.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "W?.tdctor$:MenuImageLabel$n()rn$1$": {
    "va": "004467e4",
@@ -12891,7 +12922,7 @@
    "status": "matched",
    "mangled": "W?$dt:HercControl$n()_",
    "tu": "src/pop/pherc.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HercDetailControl::$dt": {
    "va": "00446848",
@@ -12899,7 +12930,7 @@
    "status": "matched",
    "mangled": "W?$dt:HercDetailControl$n()_",
    "tu": "src/pop/pherc.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "W?.fn_init$n()v@pop/ppilot.c": {
    "va": "0044688c",
@@ -13693,7 +13724,7 @@
    "status": "matched",
    "mangled": "W?SimFocusReady$n(pn$SimGame$$)i",
    "tu": "src/sim/simdo.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimPan": {
    "va": "0044d7a0",
@@ -13701,7 +13732,7 @@
    "status": "matched",
    "mangled": "W?SimPan$n(pn$SimGame$$ii)v",
    "tu": "src/sim/simdo.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimPanBy": {
    "va": "0044d850",
@@ -13725,7 +13756,7 @@
    "status": "matched",
    "mangled": "W?SimSetMode$n(pn$SimGame$$i)v",
    "tu": "src/sim/simdo.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimSetMode#SimSetMode": {
    "va": "0044da10",
@@ -13740,7 +13771,7 @@
    "status": "matched",
    "mangled": "W?SimSetView$n(pn$SimGame$$i)v",
    "tu": "src/sim/simdo.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimSetView#SimSetView": {
    "va": "0044da90",
@@ -13755,7 +13786,7 @@
    "status": "matched",
    "mangled": "W?f_44db70$n(pn$SimGame$$i)v",
    "tu": "src/sim/simdo.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "f_44db70#W?f_44db70$n(pn$SimGame$$i)v": {
    "va": "0044db70",
@@ -13778,7 +13809,7 @@
    "status": "matched",
    "mangled": "W?SimSaveBookmark$n(pn$SimGame$$i)v",
    "tu": "src/sim/simdo.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimRestoreBookmark": {
    "va": "0044dcb0",
@@ -13786,7 +13817,7 @@
    "status": "matched",
    "mangled": "W?SimRestoreBookmark$n(pn$SimGame$$i)v",
    "tu": "src/sim/simdo.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimCycleFocus": {
    "va": "0044dcf0",
@@ -13794,7 +13825,7 @@
    "status": "matched",
    "mangled": "W?SimCycleFocus$n(pn$SimGame$$i)i",
    "tu": "src/sim/simdo.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimSetFocus": {
    "va": "0044dd40",
@@ -13816,7 +13847,7 @@
    "status": "matched",
    "mangled": "W?SimFinishFocus$n(pn$SimGame$$)v",
    "tu": "src/sim/simdo.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimPreviewCost": {
    "va": "0044e150",
@@ -13824,7 +13855,7 @@
    "status": "matched",
    "mangled": "W?SimPreviewCost$n(pn$SimGame$$ii)i",
    "tu": "src/sim/simdo.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimSpendFocus": {
    "va": "0044e270",
@@ -13832,7 +13863,7 @@
    "status": "matched",
    "mangled": "W?SimSpendFocus$n(pn$SimGame$$i)i",
    "tu": "src/sim/simdo.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimSpendOnActor": {
    "va": "0044e2c0",
@@ -13840,7 +13871,7 @@
    "status": "matched",
    "mangled": "W?SimSpendOnActor$n(pn$SimGame$$pn$ActorRecord$$i)i",
    "tu": "src/sim/simdo.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimTrySpendFocus": {
    "va": "0044e360",
@@ -13848,7 +13879,7 @@
    "status": "matched",
    "mangled": "W?SimTrySpendFocus$n(pn$SimGame$$i)i",
    "tu": "src/sim/simdo.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimFaceTarget": {
    "va": "0044e420",
@@ -13856,7 +13887,7 @@
    "status": "matched",
    "mangled": "W?SimFaceTarget$n(pn$SimGame$$ii)v",
    "tu": "src/sim/simdo.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimFaceTarget#W?SimFaceTarget$n(pnxaii)i": {
    "va": "0044e420",
@@ -13871,7 +13902,7 @@
    "status": "matched",
    "mangled": "W?SimTargetAction$n(pn$SimGame$$i)v",
    "tu": "src/sim/simdo.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimResetFocusCache": {
    "va": "0044e630",
@@ -13879,7 +13910,7 @@
    "status": "matched",
    "mangled": "W?SimResetFocusCache$n()v",
    "tu": "src/sim/simdo.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimCenterTarget": {
    "va": "0044e650",
@@ -13887,7 +13918,7 @@
    "status": "matched",
    "mangled": "W?SimCenterTarget$n(pn$SimGame$$i)i",
    "tu": "src/sim/simdo.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimPrepareAction": {
    "va": "0044e820",
@@ -13895,7 +13926,7 @@
    "status": "matched",
    "mangled": "W?SimPrepareAction$n(pn$SimGame$$i)v",
    "tu": "src/sim/simdo.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimPrepareAction#W?SimPrepareAction$n(pnxai)i": {
    "va": "0044e820",
@@ -13910,7 +13941,7 @@
    "status": "matched",
    "mangled": "W?SimRefreshFog$n(pn$SimGame$$i)v",
    "tu": "src/sim/simdo.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimSelectTarget": {
    "va": "0044ea00",
@@ -13918,7 +13949,7 @@
    "status": "matched",
    "mangled": "W?SimSelectTarget$n(pn$SimGame$$i)i",
    "tu": "src/sim/simdo.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimSelectTarget#W?SimSelectTarget$n(pnvi)v": {
    "va": "0044ea00",
@@ -13933,7 +13964,7 @@
    "status": "matched",
    "mangled": "W?ModeCheck$n(pnxa)i",
    "tu": "src/sim/simdo.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ModeCheck#W?ModeCheck$n(pn$SimGame$$)i": {
    "va": "0044eb00",
@@ -13948,7 +13979,7 @@
    "status": "matched",
    "mangled": "W?SimFireFocus$n(pn$SimGame$$i)i",
    "tu": "src/sim/simdo.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimFireFocus#W?SimFireFocus$n(pn$SimGame$$i)i": {
    "va": "0044eb50",
@@ -14004,7 +14035,7 @@
    "status": "matched",
    "mangled": "W?SimAdoptFocus$n(pn$SimGame$$pn$ActorRecord$$)v",
    "tu": "src/sim/simdo.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimRandomFire": {
    "va": "0044f290",
@@ -14042,7 +14073,7 @@
    "status": "matched",
    "mangled": "W?SimStartPhase$n(pn$SimGame$$)v",
    "tu": "src/sim/simdo.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimDelayPhase": {
    "va": "0044f6a0",
@@ -14050,7 +14081,7 @@
    "status": "matched",
    "mangled": "W?SimDelayPhase$n(pn$SimGame$$)v",
    "tu": "src/sim/simdo.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimDelayPhase#W?SimDelayPhase$n(pnv)v": {
    "va": "0044f6a0",
@@ -14065,7 +14096,7 @@
    "status": "matched",
    "mangled": "W?PilotNext$n(pn$SimGame$$pn$ActorRecord$$ii)v",
    "tu": "src/sim/simdo.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "PilotNext#W?PilotNext$n(pnvpn$ActorRecord$$ii)v": {
    "va": "0044f6d0",
@@ -14080,7 +14111,7 @@
    "status": "matched",
    "mangled": "W?PilotPrevious$n(pn$SimGame$$pn$ActorRecord$$ii)v",
    "tu": "src/sim/simdo.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "PilotPrevious#W?PilotPrevious$n(pnvpn$ActorRecord$$ii)v": {
    "va": "0044f830",
@@ -14117,7 +14148,7 @@
    "status": "matched",
    "mangled": "W?SimSetUpdate$n(pn$SimGame$$i)v",
    "tu": "src/sim/simdo.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimOnlyStationary": {
    "va": "00450130",
@@ -14257,7 +14288,7 @@
    "status": "matched",
    "mangled": "W?SimGameDrawPortrait$n(pn$SimGame$$)v",
    "tu": "src/sim/simout.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimGameRefresh": {
    "va": "00451000",
@@ -14265,15 +14296,15 @@
    "status": "matched",
    "mangled": "W?SimGameRefresh$n(pn$SimGame$$)v",
    "tu": "src/sim/simout.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimDrawBar": {
    "va": "00451070",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?SimDrawBar$n(llillll)v",
-   "tu": "src/sim/simgame.c",
-   "evidence": "placed (at) in src/sim/simgame.c 2026-11-09"
+   "tu": "src/sim/simout.c",
+   "evidence": "strict match 2026-11-16"
   },
   "SimGameDrawPanel": {
    "va": "004511d0",
@@ -14281,7 +14312,7 @@
    "status": "matched",
    "mangled": "W?SimGameDrawPanel$n(pn$SimGame$$)v",
    "tu": "src/sim/simout.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimGameDrawStatus": {
    "va": "00451370",
@@ -15892,7 +15923,7 @@
    "status": "matched",
    "mangled": "W?ResetAnimDrawState$n()v",
    "tu": "src/sim/animout.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "AnimClearBetweenRows": {
    "va": "00458f60",
@@ -15900,15 +15931,15 @@
    "status": "matched",
    "mangled": "W?AnimClearBetweenRows$n()v",
    "tu": "src/sim/animout.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "f_00459020": {
    "va": "00459020",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?f_00459020$n(pnii)v",
-   "tu": "src/_unknown/tu_00458f20.c",
-   "evidence": "placed (at) in src/_unknown/tu_00458f20.c 2026-11-09"
+   "status": "matched",
+   "mangled": "W?f_00459020$n($DrawPoint$$i)v",
+   "tu": "src/sim/animout.c",
+   "evidence": "strict match 2026-11-16"
   },
   "f_00459020#W?f_00459020$n($DrawPoint$$i)v": {
    "va": "00459020",
@@ -15918,13 +15949,21 @@
    "tu": "src/sim/animout.c",
    "evidence": "placed (at) in src/sim/animout.c 2026-11-14"
   },
+  "f_00459020#W?f_00459020$n(pnii)v": {
+   "va": "00459020",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?f_00459020$n(pnii)v",
+   "tu": "src/_unknown/tu_00458f20.c",
+   "evidence": "placed (at) in src/_unknown/tu_00458f20.c 2026-11-09"
+  },
   "AnimDrawBitmap": {
    "va": "00459450",
    "kind": "func",
    "status": "matched",
    "mangled": "AnimDrawBitmap",
    "tu": "src/sim/animout.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "AnimSetViewportRect": {
    "va": "004595a0",
@@ -15932,7 +15971,7 @@
    "status": "matched",
    "mangled": "W?AnimSetViewportRect$n(pnipniiiii)i",
    "tu": "src/sim/animout.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "f_00459640": {
    "va": "00459640",
@@ -15945,17 +15984,18 @@
   "UnknownIdentityThunk": {
    "va": "004599a0",
    "kind": "func",
-   "status": "matched",
+   "status": "hypothesis",
    "mangled": "W?UnknownIdentityThunk$n(ul)ul",
    "tu": "src/_unknown/tu_004599a0.c",
-   "evidence": "strict match 2026-11-09"
+   "evidence": "moved to src/sim/animout.c 2026-11-16"
   },
   "AnimDrawAction::$dt": {
    "va": "004599a0",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?$dt:AnimDrawAction$n()_",
-   "evidence": "implied by src/sim/animout.c 2026-11-14"
+   "tu": "src/sim/animout.c",
+   "evidence": "strict match 2026-11-16"
   },
   "AnimBitmapName": {
    "va": "004599b0",
@@ -16361,7 +16401,7 @@
    "status": "matched",
    "mangled": "W?UnitHealth$n(pn$Unit$$i)i",
    "tu": "src/sim/proj.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "UnitHealth#W?UnitHealth$n(pn$ActorUnit$$i)i": {
    "va": "0045b9e0",
@@ -16376,7 +16416,7 @@
    "status": "matched",
    "mangled": "W?UpdatePayload$n(pn$Unit$$i)v",
    "tu": "src/sim/proj.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "UpdatePayload#W?UpdatePayload$n(pn$UnitState$$i)i": {
    "va": "0045ba00",
@@ -16402,10 +16442,10 @@
   "UnitDamageIndicator": {
    "va": "0045bb30",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?UnitDamageIndicator$n(pn$Unit$$ipn$1$)pnuc",
-   "tu": "src/_unknown/tu_0045b7d0.c",
-   "evidence": "placed (at) in src/_unknown/tu_0045b7d0.c 2026-11-09"
+   "tu": "src/sim/proj.c",
+   "evidence": "strict match 2026-11-16"
   },
   "W?.fn_init$n()v@sim/apply.c": {
    "va": "0045bc50",
@@ -17247,7 +17287,7 @@
    "status": "matched",
    "mangled": "W?LogicReadActorRecord$n(pnvpn$FileRecord$$)i",
    "tu": "src/logic/logic.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "LogicSystem::Save": {
    "va": "00462d9a",
@@ -17262,7 +17302,7 @@
    "status": "matched",
    "mangled": "W?LogicWriteActorRecord$n(pnxvpn$FileRecord$$)i",
    "tu": "src/logic/logic.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "LogicLoadActorState": {
    "va": "00462de8",
@@ -17270,7 +17310,7 @@
    "status": "matched",
    "mangled": "W?LogicLoadActorState$n(pnulpnxulpnul)v",
    "tu": "src/logic/logic.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "LogicGetScriptData": {
    "va": "00462e33",
@@ -17278,7 +17318,7 @@
    "status": "matched",
    "mangled": "W?LogicGetScriptData$n()pnv",
    "tu": "src/logic/logic.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "LogicGetScriptData#W?LogicGetScriptData$n(pnv)pnv": {
    "va": "00462e33",
@@ -17293,7 +17333,7 @@
    "status": "matched",
    "mangled": "W?LogicActorBuild$n(pnvpnxul)pnv",
    "tu": "src/logic/logic.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "LogicStoreActorLink": {
    "va": "00462fff",
@@ -17301,7 +17341,7 @@
    "status": "matched",
    "mangled": "W?LogicStoreActorLink$n(pnvpnv)i",
    "tu": "src/logic/logic.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "LogicCheckActorCollision": {
    "va": "00463040",
@@ -17317,7 +17357,7 @@
    "status": "matched",
    "mangled": "W?LogicCheckActorOrder$n(pnucui)v",
    "tu": "src/logic/logic.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "LogicResetActorList": {
    "va": "004634ea",
@@ -17325,7 +17365,7 @@
    "status": "matched",
    "mangled": "W?LogicResetActorList$n()v",
    "tu": "src/logic/logic.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "LogicUpdateMissionStatus": {
    "va": "0046350d",
@@ -17333,7 +17373,7 @@
    "status": "matched",
    "mangled": "W?LogicUpdateMissionStatus$n(pnuc)v",
    "tu": "src/logic/logic.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "LogicMarkMissionReady": {
    "va": "004635a7",
@@ -17341,7 +17381,7 @@
    "status": "matched",
    "mangled": "W?LogicMarkMissionReady$n(pnuci)v",
    "tu": "src/logic/logic.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "LogicCheckMissionAction": {
    "va": "004635dc",
@@ -17349,7 +17389,7 @@
    "status": "matched",
    "mangled": "W?LogicCheckMissionAction$n(pnuc)v",
    "tu": "src/logic/logic.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "LogicDispatchIntel": {
    "va": "004637ed",
@@ -17365,7 +17405,7 @@
    "status": "matched",
    "mangled": "W?LogicCopyActorValues$n(pnvii)v",
    "tu": "src/logic/logic.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "LogicAdvanceMissionState": {
    "va": "004639bc",
@@ -17373,7 +17413,7 @@
    "status": "matched",
    "mangled": "W?LogicAdvanceMissionState$n(pnuc)v",
    "tu": "src/logic/logic.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "LogicGetMissionSummary": {
    "va": "00463a2f",
@@ -17381,7 +17421,7 @@
    "status": "matched",
    "mangled": "W?LogicGetMissionSummary$n(pnucpnul)v",
    "tu": "src/logic/logic.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorRead": {
    "va": "00463b18",
@@ -18051,7 +18091,7 @@
    "status": "matched",
    "mangled": "W?BestLocEmpty$n()v",
    "tu": "src/logic/bestloc.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "IntelFindBest": {
    "va": "00465f1c",
@@ -18063,9 +18103,10 @@
   "BestLocSubCandidate": {
    "va": "004660cb",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?BestLocSubCandidate$n(pnv)i",
-   "evidence": "implied by src/logic/bestloc.c 2026-11-09"
+   "status": "matched",
+   "mangled": "W?BestLocSubCandidate$n(pn$BestLocEntry$$)i",
+   "tu": "src/logic/bestloc.c",
+   "evidence": "strict match 2026-11-16"
   },
   "BestLocSubCandidate#W?BestLocSubCandidate$n(pn$BestLocEntry$$)i": {
    "va": "004660cb",
@@ -18074,13 +18115,20 @@
    "mangled": "W?BestLocSubCandidate$n(pn$BestLocEntry$$)i",
    "evidence": "implied by src/logic/bestloc.c (overload-safe migration 2026-11-09)"
   },
+  "BestLocSubCandidate#W?BestLocSubCandidate$n(pnv)i": {
+   "va": "004660cb",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?BestLocSubCandidate$n(pnv)i",
+   "evidence": "implied by src/logic/bestloc.c 2026-11-09"
+  },
   "BestLocBegin": {
    "va": "004661b4",
    "kind": "func",
    "status": "matched",
    "mangled": "W?BestLocBegin$n(pnvpnv)i",
    "tu": "src/logic/bestloc.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ScoreCandidate": {
    "va": "0046624e",
@@ -18095,7 +18143,7 @@
    "status": "matched",
    "mangled": "W?BestLocRun$n(pnv)i",
    "tu": "src/logic/bestloc.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "BestLocRun#W?BestLocRun$n(pni)i": {
    "va": "0046631e",
@@ -18244,7 +18292,7 @@
    "status": "matched",
    "mangled": "W?.fn_init$n()v",
    "tu": "src/logic/sinterp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "Script::$ct": {
    "va": "00467971",
@@ -18252,7 +18300,7 @@
    "status": "matched",
    "mangled": "W?$ct:Script$n()_",
    "tu": "src/logic/sinterp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "Script::$dt": {
    "va": "0046797c",
@@ -18260,7 +18308,7 @@
    "status": "matched",
    "mangled": "W?$dt:Script$n()_",
    "tu": "src/logic/sinterp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "f_0046799a": {
    "va": "0046799a",
@@ -18275,7 +18323,7 @@
    "status": "matched",
    "mangled": "W?ScriptFree$n(pn$Script$$)v",
    "tu": "src/logic/sinterp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ScriptSetup": {
    "va": "004679b6",
@@ -18283,7 +18331,7 @@
    "status": "matched",
    "mangled": "W?ScriptSetup$n(pn$Script$$)v",
    "tu": "src/logic/sinterp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SafeCopy": {
    "va": "00467a4c",
@@ -18291,7 +18339,7 @@
    "status": "matched",
    "mangled": "W?SafeCopy$n(pnapnxaui)v",
    "tu": "src/logic/sinterp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ScriptLoad": {
    "va": "00467a86",
@@ -18299,7 +18347,7 @@
    "status": "matched",
    "mangled": "W?ScriptLoad$n(pn$Script$$iui)v",
    "tu": "src/logic/sinterp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ScriptLoad#W?ScriptLoad$n(pnulii)v": {
    "va": "00467a86",
@@ -18314,7 +18362,7 @@
    "status": "matched",
    "mangled": "W?ScriptRestore$n(pn$Script$$pn$FileRecord$$)i",
    "tu": "src/logic/sinterp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ScriptRestore#W?ScriptRestore$n(pnulpn$FileRecord$$)i": {
    "va": "00467d54",
@@ -18329,7 +18377,7 @@
    "status": "matched",
    "mangled": "W?ScriptSave$n(pn$Script$$pn$FileRecord$$)i",
    "tu": "src/logic/sinterp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ScriptSave#W?ScriptSave$n(pnulpn$FileRecord$$)i": {
    "va": "00467dd7",
@@ -18344,7 +18392,7 @@
    "status": "matched",
    "mangled": "W?ScriptCode$n(pn$Script$$i)pnus",
    "tu": "src/logic/sinterp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ScriptGetVar": {
    "va": "00467e4a",
@@ -18352,7 +18400,7 @@
    "status": "matched",
    "mangled": "W?ScriptGetVar$n(pn$Script$$i)l",
    "tu": "src/logic/sinterp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ScriptSetVar": {
    "va": "00467ec0",
@@ -18360,14 +18408,15 @@
    "status": "matched",
    "mangled": "W?ScriptSetVar$n(pn$Script$$il)v",
    "tu": "src/logic/sinterp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ScriptRef": {
    "va": "00467ed7",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ScriptRef$n(pn$Script$$i)pn$ScriptPoint$$",
-   "evidence": "implied by src/logic/sinterp.c 2026-11-09"
+   "tu": "src/logic/sinterp.c",
+   "evidence": "strict match 2026-11-16"
   },
   "ScriptCommandTarget": {
    "va": "00467fe0",
@@ -18375,7 +18424,7 @@
    "status": "matched",
    "mangled": "W?ScriptCommandTarget$n(pn$Script$$ipnus)v",
    "tu": "src/logic/sinterp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ScriptFormatArgs": {
    "va": "00468135",
@@ -18398,7 +18447,7 @@
    "status": "matched",
    "mangled": "W?ScriptAbort$n(pn$Script$$)v",
    "tu": "src/logic/sinterp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ScriptTick": {
    "va": "0046906a",
@@ -18406,7 +18455,7 @@
    "status": "matched",
    "mangled": "W?ScriptTick$n(pn$Script$$)v",
    "tu": "src/logic/sinterp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ScriptRunState": {
    "va": "00469072",
@@ -18414,7 +18463,7 @@
    "status": "matched",
    "mangled": "W?ScriptRunState$n(pn$Script$$)v",
    "tu": "src/logic/sinterp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ScriptRun": {
    "va": "004690b8",
@@ -18422,7 +18471,7 @@
    "status": "matched",
    "mangled": "W?ScriptRun$n(pn$Script$$)i",
    "tu": "src/logic/sinterp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ScriptRun#W?ScriptRun$n(pnul)i": {
    "va": "004690b8",
@@ -18452,7 +18501,7 @@
    "status": "matched",
    "mangled": "W?ScriptEval$n(pn$Script$$i)l",
    "tu": "src/logic/sinterp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ScriptFormat": {
    "va": "00469a95",
@@ -18467,7 +18516,7 @@
    "status": "matched",
    "mangled": "W?ScriptString$n(pn$Script$$l)pna",
    "tu": "src/logic/sinterp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "W?.fn_init$n()v@logic/lgen.c": {
    "va": "00469c78",
@@ -18911,6 +18960,13 @@
    "mangled": "W?LogicActorPosition$n(pnvipni)v",
    "tu": "src/logic/lsys.c",
    "evidence": "strict match 2026-11-11"
+  },
+  "LogicActorPosition#W?LogicActorPosition$n(pnvlpn$ScriptPoint$$)v": {
+   "va": "0046b6ce",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?LogicActorPosition$n(pnvlpn$ScriptPoint$$)v",
+   "evidence": "implied by src/logic/sinterp.c 2026-11-16"
   },
   "LogicActorArrayGet": {
    "va": "0046b722",
@@ -20955,7 +21011,7 @@
    "status": "matched",
    "mangled": "W?.fn_init$n()v",
    "tu": "src/multi/linkg.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "PeerQueue::Clear": {
    "va": "004742ea",
@@ -20963,7 +21019,7 @@
    "status": "matched",
    "mangled": "W?Clear$:PeerQueue$n()v",
    "tu": "src/multi/linkg.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ResetQueue": {
    "va": "0047431b",
@@ -20971,7 +21027,7 @@
    "status": "matched",
    "mangled": "W?ResetQueue$n(pnv)v",
    "tu": "src/multi/linkg.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ResetQueue#W?ResetQueue$n(pna)v": {
    "va": "0047431b",
@@ -20986,7 +21042,7 @@
    "status": "matched",
    "mangled": "W?ValidateSlot$n(i)v",
    "tu": "src/multi/linkg.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "Queue::DiscardThrough": {
    "va": "00474367",
@@ -20994,7 +21050,7 @@
    "status": "matched",
    "mangled": "W?DiscardThrough$:Queue$n(i)v",
    "tu": "src/multi/linkg.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "OldestAcknowledgement": {
    "va": "004743af",
@@ -21002,7 +21058,7 @@
    "status": "matched",
    "mangled": "W?OldestAcknowledgement$n(pn$Transport$$)i",
    "tu": "src/multi/linkg.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "QueueAcknowledge": {
    "va": "00474419",
@@ -21017,7 +21073,7 @@
    "status": "matched",
    "mangled": "W?QueueRedeliver$n(pnaii)i",
    "tu": "src/multi/linkg.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "QueueSequence": {
    "va": "00474524",
@@ -21025,7 +21081,7 @@
    "status": "matched",
    "mangled": "W?QueueSequence$n(pnai)i",
    "tu": "src/multi/linkg.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "QueueSent": {
    "va": "00474542",
@@ -21033,15 +21089,15 @@
    "status": "matched",
    "mangled": "W?QueueSent$n(pnapn$MenuMessage$$)i",
    "tu": "src/multi/linkg.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "QueueReceive": {
    "va": "0047457f",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?QueueReceive$n(pnapn$MenuMessage$$)i",
-   "tu": "src/_unknown/tu_004742bc.c",
-   "evidence": "placed (at) in src/_unknown/tu_004742bc.c 2026-11-09"
+   "tu": "src/multi/linkg.c",
+   "evidence": "strict match 2026-11-16"
   },
   "QueueNode::Key": {
    "va": "0047469f",
@@ -21049,7 +21105,7 @@
    "status": "matched",
    "mangled": "W?Key$:QueueNode$n()i",
    "tu": "src/multi/linkg.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "Queue::Less": {
    "va": "004746ae",
@@ -21057,7 +21113,7 @@
    "status": "matched",
    "mangled": "W?Less$:Queue$n(pnvpnv)i",
    "tu": "src/multi/linkg.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "QueueResend": {
    "va": "004746d2",
@@ -21065,7 +21121,7 @@
    "status": "matched",
    "mangled": "W?QueueResend$n(pnaiii)i",
    "tu": "src/multi/linkg.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "QueueRelease": {
    "va": "00474723",
@@ -21073,7 +21129,7 @@
    "status": "matched",
    "mangled": "W?QueueRelease$n(pnaii)i",
    "tu": "src/multi/linkg.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "QueueUpdate": {
    "va": "00474758",
@@ -21081,7 +21137,7 @@
    "status": "matched",
    "mangled": "W?QueueUpdate$n(pnaiiiii)i",
    "tu": "src/multi/linkg.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "QueueStatus": {
    "va": "00474807",
@@ -21089,7 +21145,7 @@
    "status": "matched",
    "mangled": "W?QueueStatus$n(pnaipnipnipnipni)v",
    "tu": "src/multi/linkg.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "QueueAcks": {
    "va": "00474845",
@@ -21097,7 +21153,7 @@
    "status": "matched",
    "mangled": "W?QueueAcks$n(pnaipnipni)v",
    "tu": "src/multi/linkg.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "PeerQueue::$dt": {
    "va": "00474894",
@@ -21105,7 +21161,7 @@
    "status": "matched",
    "mangled": "W?$dt:PeerQueue$n()_",
    "tu": "src/multi/linkg.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "PeerQueue::$ct": {
    "va": "004748ac",
@@ -21113,7 +21169,7 @@
    "status": "matched",
    "mangled": "W?$ct:PeerQueue$n()_",
    "tu": "src/multi/linkg.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "Transport::$dt": {
    "va": "004748d0",
@@ -21121,7 +21177,7 @@
    "status": "matched",
    "mangled": "W?$dt:Transport$n()_",
    "tu": "src/multi/linkg.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "Transport::$ct": {
    "va": "004748e8",
@@ -21129,7 +21185,7 @@
    "status": "matched",
    "mangled": "W?$ct:Transport$n()_",
    "tu": "src/multi/linkg.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "Options::$ct": {
    "va": "00474900",
@@ -22709,7 +22765,7 @@
    "status": "matched",
    "mangled": "W?.fn_init$n()v",
    "tu": "src/graph/blitWIN.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SurfaceBackendReady": {
    "va": "0047b290",
@@ -22717,7 +22773,7 @@
    "status": "matched",
    "mangled": "W?SurfaceBackendReady$n()i",
    "tu": "src/graph/blitWIN.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SurfaceBackendClose": {
    "va": "0047b2a0",
@@ -22725,7 +22781,7 @@
    "status": "matched",
    "mangled": "W?SurfaceBackendClose$n()v",
    "tu": "src/graph/blitWIN.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "f_47b2d0": {
    "va": "0047b2d0",
@@ -22740,7 +22796,7 @@
    "status": "matched",
    "mangled": "W?SurfacePresent$n(pnv)v",
    "tu": "src/graph/blitWIN.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SurfacePresent#SurfacePresent": {
    "va": "0047b3a0",
@@ -22755,7 +22811,7 @@
    "status": "matched",
    "mangled": "W?f_0047b3d0$n(pn$GuiCanvas$$iiii)v",
    "tu": "src/graph/blitWIN.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "f_0047b3d0#W?f_0047b3d0$n(pnvllll)v": {
    "va": "0047b3d0",
@@ -22770,7 +22826,7 @@
    "status": "matched",
    "mangled": "W?SurfacePaletteReset$n()v",
    "tu": "src/graph/blitWIN.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ApplyPaletteData": {
    "va": "0047b430",
@@ -22778,7 +22834,7 @@
    "status": "matched",
    "mangled": "W?ApplyPaletteData$n(pnx$tagPALETTEENTRY$$uii)v",
    "tu": "src/graph/blitWIN.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ApplyPaletteData#W?ApplyPaletteData$n(pnvii)v": {
    "va": "0047b430",
@@ -22808,7 +22864,7 @@
    "status": "matched",
    "mangled": "W?PaletteBlend$n(pn$Palette$$pnx$1$iui)v",
    "tu": "src/graph/blitWIN.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "PaletteBlend#PaletteBlend": {
    "va": "0047b5b0",
@@ -22820,9 +22876,10 @@
   "SimPaletteCycle": {
    "va": "0047b650",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?SimPaletteCycle$n(pnv)v",
-   "evidence": "implied by src/sim/simgame.c 2026-11-09"
+   "status": "matched",
+   "mangled": "W?SimPaletteCycle$n(pn$Palette$$)v",
+   "tu": "src/graph/blitWIN.c",
+   "evidence": "strict match 2026-11-16"
   },
   "SimPaletteCycle#W?SimPaletteCycle$n(pn$Palette$$)v": {
    "va": "0047b650",
@@ -22831,6 +22888,13 @@
    "mangled": "W?SimPaletteCycle$n(pn$Palette$$)v",
    "tu": "src/_unknown/tu_0047b260.c",
    "evidence": "placed (at) in src/_unknown/tu_0047b260.c 2026-11-09"
+  },
+  "SimPaletteCycle#W?SimPaletteCycle$n(pnv)v": {
+   "va": "0047b650",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SimPaletteCycle$n(pnv)v",
+   "evidence": "implied by src/sim/simgame.c 2026-11-09"
   },
   "GuiCanvas::$ct": {
    "va": "0047b720",
@@ -23340,7 +23404,7 @@
    "status": "matched",
    "mangled": "W?$ct:ResMgr$n()_",
    "tu": "src/io/resource.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "ResMgr::$dt": {
    "va": "0047c580",
@@ -23348,7 +23412,7 @@
    "status": "matched",
    "mangled": "W?$dt:ResMgr$n()_",
    "tu": "src/io/resource.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "ResMgr::Init": {
    "va": "0047c5f0",
@@ -23371,7 +23435,7 @@
    "status": "matched",
    "mangled": "W?Close$:ResMgr$n()v",
    "tu": "src/io/resource.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "ResMgr::FindPath": {
    "va": "0047c710",
@@ -23379,7 +23443,7 @@
    "status": "matched",
    "mangled": "W?FindPath$:ResMgr$n(pnxapnai)i",
    "tu": "src/io/resource.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "ResMgr::FindPath#W?FindPath$:ResMgr$n(pnxaypnai)i": {
    "va": "0047c710",
@@ -23408,7 +23472,7 @@
    "status": "matched",
    "mangled": "ResMgrOpen",
    "tu": "src/io/resource.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "ResMgr::CloseFile": {
    "va": "0047c860",
@@ -23416,7 +23480,7 @@
    "status": "matched",
    "mangled": "W?CloseFile$:ResMgr$n()i",
    "tu": "src/io/resource.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "ResMgr::IsOpen": {
    "va": "0047c890",
@@ -23424,7 +23488,7 @@
    "status": "matched",
    "mangled": "W?IsOpen$:ResMgr$n()i",
    "tu": "src/io/resource.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "f_c8a0": {
    "va": "0047c8a0",
@@ -23432,7 +23496,7 @@
    "status": "matched",
    "mangled": "f_c8a0",
    "tu": "src/io/resource.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "f_c8c0": {
    "va": "0047c8c0",
@@ -23440,7 +23504,7 @@
    "status": "matched",
    "mangled": "f_c8c0",
    "tu": "src/io/resource.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "f_c8e0": {
    "va": "0047c8e0",
@@ -23448,7 +23512,7 @@
    "status": "matched",
    "mangled": "f_c8e0",
    "tu": "src/io/resource.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "f_c900": {
    "va": "0047c900",
@@ -23456,7 +23520,7 @@
    "status": "matched",
    "mangled": "f_c900",
    "tu": "src/io/resource.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "ResMgr::Load": {
    "va": "0047c920",
@@ -23464,7 +23528,7 @@
    "status": "matched",
    "mangled": "W?Load$:ResMgr$n(pnauipniui)pni",
    "tu": "src/io/resource.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "ResMgr::Load#W?Load$:ResMgr$n(pnauipniui)pni": {
    "va": "0047c920",
@@ -23507,7 +23571,7 @@
    "status": "matched",
    "mangled": "f_cb80",
    "tu": "src/io/resource.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "f_cba0": {
    "va": "0047cba0",
@@ -23515,7 +23579,7 @@
    "status": "matched",
    "mangled": "f_cba0",
    "tu": "src/io/resource.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "f_cba0#W?f_cba0$n(pnvpnxa)v": {
    "va": "0047cba0",
@@ -23530,7 +23594,7 @@
    "status": "matched",
    "mangled": "f_cbf0",
    "tu": "src/io/resource.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "f_cbf0#W?f_cbf0$n(pnv)v": {
    "va": "0047cbf0",
@@ -23552,7 +23616,7 @@
    "status": "matched",
    "mangled": "MeasureResourceTextWidth",
    "tu": "src/io/resource.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "RenderResourceGlyph": {
    "va": "0047cc50",
@@ -23588,7 +23652,7 @@
    "status": "matched",
    "mangled": "RenderFormattedResourceText",
    "tu": "src/io/resource.c",
-   "evidence": "strict match 2026-11-15"
+   "evidence": "strict match 2026-11-16"
   },
   "W?.fn_init$n()v@io/resource.c": {
    "va": "0047d0e0",
@@ -30439,6 +30503,13 @@
    "mangled": "W?cdMissingCaption$n[]a",
    "evidence": "implied by src/_unknown/tu_00476058.c 2026-11-09"
   },
+  "gPilotGuiPilots": {
+   "va": "004a477c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gPilotGuiPilots$n[]a",
+   "evidence": "implied by src/shell/pilotgui.c 2026-11-16"
+  },
   "gPilotGuiUnlinked": {
    "va": "004a4784",
    "kind": "data",
@@ -37164,6 +37235,13 @@
    "mangled": "W?HercRepairScale$ni",
    "evidence": "implied by src/_unknown/tu_0043a294.c 2026-11-09"
   },
+  "HercSensorBase": {
+   "va": "004c9284",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?HercSensorBase$ni",
+   "evidence": "implied by src/_unknown/tu_0043a294.c 2026-11-16"
+  },
   "HercMassScale": {
    "va": "004c9288",
    "kind": "data",
@@ -38039,12 +38117,26 @@
    "mangled": "W?gZoom$ni",
    "evidence": "implied by src/sim/fxout.c 2026-11-09"
   },
+  "g_004d3405": {
+   "va": "004d3405",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g_004d3405$ni",
+   "evidence": "implied by src/sim/animout.c 2026-11-16"
+  },
   "drawOverlayFlags": {
    "va": "004d3409",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?drawOverlayFlags$nuc",
    "evidence": "implied by src/_unknown/tu_00454990.c 2026-11-09"
+  },
+  "g4d3485": {
+   "va": "004d3485",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4d3485$ni",
+   "evidence": "implied by src/sim/simout.c 2026-11-16"
   },
   "moveDefaultCost": {
    "va": "004d3491",
@@ -38290,6 +38382,13 @@
    "status": "hypothesis",
    "mangled": "W?gView$n$WorldView$$",
    "evidence": "implied by src/_unknown/tu_0044bcd0.c 2026-11-09"
+  },
+  "gView#W?gView$n[]i": {
+   "va": "004d360c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gView$n[]i",
+   "evidence": "implied by src/sim/animout.c 2026-11-16"
   },
   "g_004d3690": {
    "va": "004d3690",
@@ -38966,6 +39065,20 @@
    "mangled": "W?animReleaseSentinel$nul",
    "evidence": "implied by src/sim/anim.c 2026-11-09"
   },
+  "W?steps$:.0$:?f_00459020$n($DrawPoint$$i)vn[]$2$": {
+   "va": "004d427c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?steps$:.0$:?f_00459020$n($DrawPoint$$i)vn[]$2$",
+   "evidence": "implied by src/sim/animout.c 2026-11-16"
+  },
+  "W?$Wbi00$:.0$:?f_00459020$n($DrawPoint$$i)vn[]uc": {
+   "va": "004d42ac",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wbi00$:.0$:?f_00459020$n($DrawPoint$$i)vn[]uc",
+   "evidence": "implied by src/sim/animout.c 2026-11-16"
+  },
   "animImageHeader": {
    "va": "004d42b0",
    "kind": "data",
@@ -39064,6 +39177,13 @@
    "mangled": "W?animDrawRowStart$ni",
    "evidence": "implied by src/_unknown/tu_00458f20.c 2026-11-09"
   },
+  "g_004d4338": {
+   "va": "004d4338",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g_004d4338$ni",
+   "evidence": "implied by src/sim/animout.c 2026-11-16"
+  },
   "animDrawRowLast": {
    "va": "004d433c",
    "kind": "data",
@@ -39078,12 +39198,26 @@
    "mangled": "W?animDrawX1$ni",
    "evidence": "implied by src/_unknown/tu_00458f20.c 2026-11-09"
   },
+  "g_004d4344": {
+   "va": "004d4344",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g_004d4344$ni",
+   "evidence": "implied by src/sim/animout.c 2026-11-16"
+  },
   "animDrawX1End": {
    "va": "004d4348",
    "kind": "data",
    "status": "hypothesis",
    "mangled": "W?animDrawX1End$ni",
    "evidence": "implied by src/_unknown/tu_00458f20.c 2026-11-09"
+  },
+  "g_004d434c": {
+   "va": "004d434c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g_004d434c$ni",
+   "evidence": "implied by src/sim/animout.c 2026-11-16"
   },
   "animNameBuffer": {
    "va": "004d4350",
@@ -39266,6 +39400,13 @@
    "status": "hypothesis",
    "mangled": "W?$Wbi00$:.0$:?UpdatePayload$n(pn$Unit$$i)vn[]uc",
    "evidence": "implied by src/_unknown/tu_0045b7d0.c 2026-11-09"
+  },
+  "damageIndicator": {
+   "va": "004dcbb8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?damageIndicator$n[]uc",
+   "evidence": "implied by src/sim/proj.c 2026-11-16"
   },
   "gApplyWeapon": {
    "va": "004dcbc0",
@@ -39690,6 +39831,20 @@
    "mangled": "W?bestLocData$npnv",
    "evidence": "implied by src/logic/bestloc.c 2026-11-09"
   },
+  "bestLocCurrentScore": {
+   "va": "004f2884",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?bestLocCurrentScore$ni",
+   "evidence": "implied by src/logic/bestloc.c 2026-11-16"
+  },
+  "bestLocCurrentTie": {
+   "va": "004f2888",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?bestLocCurrentTie$ni",
+   "evidence": "implied by src/logic/bestloc.c 2026-11-16"
+  },
   "bestLocIndex": {
    "va": "004f288c",
    "kind": "data",
@@ -39703,6 +39858,30 @@
    "status": "hypothesis",
    "mangled": "W?scriptText$n[]a",
    "evidence": "implied by src/logic/sinterp.c 2026-11-09"
+  },
+  "W?scriptText$:.0$:?ScriptString$n(pn$Script$$l)pnan[]a@logic/sinterp.c": {
+   "va": "004f28a8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?scriptText$:.0$:?ScriptString$n(pn$Script$$l)pnan[]a",
+   "tu": "src/logic/sinterp.c",
+   "evidence": "own data placed in src/logic/sinterp.c 2026-11-16"
+  },
+  "W?result$:.0$:?ScriptRef$n(pn$Script$$i)pn$ScriptPoint$$n$3$@logic/sinterp.c": {
+   "va": "004f30a8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?result$:.0$:?ScriptRef$n(pn$Script$$i)pn$ScriptPoint$$n$3$",
+   "tu": "src/logic/sinterp.c",
+   "evidence": "own data placed in src/logic/sinterp.c 2026-11-16"
+  },
+  "W?$Wbi00$:.0$:?ScriptRef$n(pn$Script$$i)pn$ScriptPoint$$n[]uc@logic/sinterp.c": {
+   "va": "004f30b0",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?$Wbi00$:.0$:?ScriptRef$n(pn$Script$$i)pn$ScriptPoint$$n[]uc",
+   "tu": "src/logic/sinterp.c",
+   "evidence": "own data placed in src/logic/sinterp.c 2026-11-16"
   },
   "gScript": {
    "va": "004f30b4",

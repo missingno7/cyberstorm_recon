@@ -236,7 +236,7 @@ int BestLocSubCandidate(BestLocEntry *entry)
         return 0;
     if (rank > ActorEnable((LogicActor *)bestLocActor))
         return 0;
-    int mapActor = actorIndexTable[index * 2];
+    int mapActor = ActorIndexUnit(index);
     if (mapActor != 0) {
         LogicActor *actor = (LogicActor *)bestLocActor;
         if (mapActor != (actor->unit ? actor->unit->id : 0))
@@ -245,7 +245,8 @@ int BestLocSubCandidate(BestLocEntry *entry)
     int score = LogicCopyPoint(&entry->pos, bestLocOutput);
     if (score >= ((LogicActor *)bestLocActor)->farRange + 3)
         score = ActorNetStrengthAt((const char *)&entry->pos) + 1000;
-    int tie = -targetDefinitionTable[index * 12 + 1];
+    int tie = targetDefinitionTable[index * 12 + 1];
+    tie = -tie;
     if (bestLocIndex == 0 || score > bestLocCurrentScore ||
         (score == bestLocCurrentScore && tie > bestLocCurrentTie)) {
         bestLocIndex = index;
