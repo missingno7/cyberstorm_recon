@@ -105,7 +105,7 @@ void ActorDrawEffect(void *);
 int BestLocSetup(void *,int,int);
 int GridClearSelection(TerrainGrid *);
 void SimRefreshFog(SimGame *,int);
-void SimCenterOn(SimGame *,GridPoint *);
+void SimCenterOn(SimGame *,GridPoint);
 int SimCenterTarget(SimGame *,int);
 void f_00443d08(void *);
 void f_004429f8(void *);
@@ -144,8 +144,8 @@ void ActorAdvanceState(ActorRecord *actor)
                 gRedrawFlags |= 1;
             SimRefreshFog((SimGame *)modeCheckName,0);
             if (actorFollowSelection) {
-                GridPoint position = actor->action.position;
-                SimCenterOn((SimGame *)modeCheckName,&position);
+                
+                SimCenterOn((SimGame *)modeCheckName,actor->action.position);
                 gRedrawFlags |= 1;
             }
         }

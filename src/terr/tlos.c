@@ -88,10 +88,10 @@ void RayCollect(RayPoint *point)
 int RayOcclusion(RayTerrain *grid, int origin, int target, int sample, RayPoint *hit)
 {
     if (!origin || !target) return 0;
-RayPoint impact, end, start, point, startCell, endCell;
+RayPoint endCell, start, point, startCell, end, impact;
     TargetObjectInit((const char *)grid, &start, origin);
     TargetObjectInit((const char *)grid, &end, target);
-    int startOccupant = grid->occupants[origin].actor; int endOccupant = grid->occupants[target].actor;
+    int endOccupant, startOccupant = grid->occupants[origin].actor; endOccupant = grid->occupants[target].actor;
     if (RayCachedOrigin == origin && RayCachedTarget == target && RayCachedSample == sample) {
         if (hit) *hit = RayHit;
         return RayCachedResult;
@@ -101,15 +101,15 @@ RayPoint impact, end, start, point, startCell, endCell;
     memset(RaySamples, -1, 100);
     RayCell *startTile = &grid->cells[origin];
     RayCell *endTile = &grid->cells[target];
-    impact = end;
-    int sampleRow = sample / 10, sampleColumn = sample % 10;
+    impact.x = end.x; impact.y = end.y;
+    int sampleColumn, sampleRow = sample / 10; sampleColumn = sample % 10;
 
     BestLocSetData(grid, &startCell, (void *)origin);
     BestLocSetData(grid, &endCell, (void *)target);
-    unsigned char found = 0;
+    int found = 0;
     RayWalk(&startCell, &endCell, RayCollect);
     if (!RayCount) return 100;
-    int squareX=(end.x-start.x)*(end.x-start.x); uint distance=ISqrt(squareX+(end.y-start.y)*(end.y-start.y));
+    uint distance=ISqrt((end.x-start.x)*(end.x-start.x)+(end.y-start.y)*(end.y-start.y));
     int angle = PointAngle((ApplyPoint *)&start, (ApplyPoint *)&end);
     int tenth = grid->scale / 10;
     if (!tenth || !distance) return 100;
@@ -121,38 +121,33 @@ RayPoint impact, end, start, point, startCell, endCell;
         f_0047efb0(&point, -angle);
         if (point.y > 0 && point.y < (int)distance && abs(point.x) < grid->scale) {
             uint along=RayClamp(point.y,0,(int)distance);
-
-
-
-            int rise = grid->cells[RayLocations[i]].height * heightStep -
+            int location = RayLocations[i];
+            int rise = grid->cells[location].height * heightStep -
                 ((int)((uint)(endTile->height - startTile->height) * along * heightStep) / (int)distance + startTile->height * heightStep);
-            int occupant = grid->occupants[RayLocations[i]].actor;
+            int occupant = grid->occupants[location].actor;
             if (occupant && occupant != startOccupant && occupant != endOccupant) rise += 800;
             if (rise > 0) {
                 int left, right;
-                if (!occupant) {
-                    left = (point.x - (grid->scale * 8 >> 4)) / tenth + 5;
-                    right = (point.x + (grid->scale * 7 >> 4)) / tenth + 5;
+                if (occupant) {
+                    left = (point.x - (grid->scale * 4 >> 4)) / tenth;
+                    right = (point.x + (grid->scale * 3 >> 4)) / tenth;
                 } else {
-                    left = (point.x - (grid->scale * 4 >> 4)) / tenth + 5;
-                    right = (point.x + (grid->scale * 3 >> 4)) / tenth + 5;
+                    left = (point.x - (grid->scale * 8 >> 4)) / tenth;
+                    right = (point.x + (grid->scale * 7 >> 4)) / tenth;
                 }
-                left = RayClamp(left,0,9);
-                right = RayClamp(right,0,9);
-                rise /= tenth;
-                rise = RayClamp(rise,1,10);
-                for (int row = 10 - rise; row < 10; ++row) {
+                left = RayClamp(left + 5,0,9);
+                right = RayClamp(right + 5,0,9);
+                for (int row = 10 - RayClamp(rise / tenth,1,10); row <= 9; ++row) {
                     for (int column = left; column <= right; ++column) {
-                        int offset = row * 10 + column;
-                        if (RaySamples[offset]) {
+                        if (RaySamples[row * 10 + column]) {
                             if (!found && row == sampleRow && column == sampleColumn) {
-                                impact.x = tenth * (sampleColumn - 5); found = 1;
-                                
+                                impact.x = (column - 5) * tenth; found = 1;
+
                                 if(startTile->height<endTile->height && (impact.y=(grid->scale>>1)*(grid->scale>>1)-(impact.x-point.x)*(impact.x-point.x))>0) { impact.y=ISqrt(impact.y);impact.y=point.y-impact.y; }else impact.y=point.y;
                                 f_0047efb0(&impact, angle);
                                 impact.x += start.x; impact.y += start.y;
                             }
-                            --result; RaySamples[offset] = 0;
+                            --result; RaySamples[row * 10 + column] = 0;
                         }
                     }
                 }

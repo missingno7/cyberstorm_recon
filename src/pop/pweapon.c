@@ -255,7 +255,7 @@ extern int PointAngle(ApplyPoint *,ApplyPoint *);
 signed char weaponMarkerOffsets[][2] = {{35,-10},{0,5},{0,55},{35,70},{65,55},{65,5}};
 static char pweaponSourceFile[] = __FILE__;
 extern void SetTerrainView(void *,const FogData *,int);
-extern "C" void f_0042d640(void *,U32,GuiPoint,int);
+extern void TerrainDrawTile(void *,U32,GuiPoint,int);
 struct PlayerSlot;
 extern PlayerSlot *GetModePlayer(void *,int);
 extern void MenuDrawTextAt(Font *,long,long,int,const char *);
@@ -427,7 +427,8 @@ void WeaponPopup::UpdatePreview() {
         gDrawRemap=f_0045bb30(unit,actor->action.angle,&previewUnit);
         MenuDrawImage(&g513888,(MenuImage *)((char *)weaponImages+0x43c),x-1,y-1);
         gDrawRemap=0;
-        int direction=(actor->action.angle+GridClamp(PointAngle(&scene->destination,&scene->source)-actor->action.direction))%6;
+        int turn=GridClamp(PointAngle(&scene->destination,&scene->source)-actor->action.direction);
+        int direction=(actor->action.angle+turn)%6;
         MenuDrawImage(&g513888,&weaponImages->images[direction+168],x+weaponMarkerOffsets[direction][0],y+weaponMarkerOffsets[direction][1]);
         previewUnit=*unit;
     }
@@ -436,7 +437,7 @@ void WeaponPopup::UpdatePreview() {
         fog.v[3]=16;
         fog.v[5]=-57;
         SetTerrainView(gView,&fog,0);
-        f_0042d640(gView,scene->model,GuiPoint(x+40,y+40),0);
+        TerrainDrawTile(gView,scene->model,GuiPoint(x+40,y+40),0);
         SetTerrainView(gView,&gFogDefaultData,0);
     }
     int topY=y+90, bottomY=y+103; if(mode || !actor) {

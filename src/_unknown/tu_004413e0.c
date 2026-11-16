@@ -266,11 +266,8 @@ extern "C" int f_00441c2c(GameSession *s,unsigned index) {
     return s->hercCount;
 }
 extern "C" int f_00441ca7(GameSession *s,int value,int levels) {
-if (levels >= 1) {
-        if (levels > 1) value = f_00441ca7(s, value, --levels);
-        value = value * 80 / 100;
-    }
-    return value;
+    if (levels < 1) return value;
+    return (levels > 1 ? f_00441ca7(s, value, --levels) : value) * 80 / 100;
 }
 
 extern "C" int f_00441ce1(GameSession *s,int index) {
@@ -344,10 +341,7 @@ extern "C" Choice *f_00442045(GameSession *s,int index,int slot,int *count) {
     ActorItem *item=PopFindItem(unit,slot);
     int cost;
     if(slot<11)cost=item->cost;
-    else {
-        int levels=(int)s->level-(int)item->level;
-        cost=f_00441ca7(s,item->cost,levels);
-    }
+    else cost=f_00441ca7(s,item->cost,s->level-item->level);
     int remaining=cost-f_004394e0(unit,slot);
     if(remaining<0)remaining=0;
     for(int i=0; upgradeRows[i].item && i<max; ++i) {
@@ -374,3 +368,4 @@ extern "C" char *f_00442258(GameSession *s,int index,int slot,int choice) {
     s->credits-=list[choice].cost;
     return name;
 }
+

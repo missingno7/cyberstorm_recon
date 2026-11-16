@@ -148,7 +148,7 @@ extern char simChatMenu;extern int g4faf44;
 extern short mainSelectedMission;extern unsigned long missionScripts[][22];
 extern int simWorldBackground,simWorldForeground;
 extern void SimGameLoadMissions(SimGame *),SigsStart(void *,int),SurfacePresent(void *),ReleasePoolData(void *),LogicTextBegin(void *),GridDestroy(TerrainGrid *),FastBufferDestroy(FastBuffer *),FogRelease(FogBuffer *),HotbriefEmpty(void *),ReportAnimClose(SimAnim *),TerrainReleaseImage();
-extern int AnimBitmapSweep(int,int,int,int,int);
+extern void AnimBitmapSweep(int,int,int,int,int);
 extern void SimSetUpdate(SimGame *,int);
 struct Timer {U32 start,end,duration;};extern Timer gFogTimer;
 extern int TimerExpired(Timer *),retryTimeout,ModeCheck(const char *),SimOnlyStationary(SimGame *);

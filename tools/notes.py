@@ -110,7 +110,18 @@ def main(argv):
         REPORTS.mkdir(parents=True, exist_ok=True)
         n = 0
         for p in glob.glob(str(ROOT / "candidates" / "*" / "REPORT.md")):
-            shutil.copyfile(p, REPORTS / f"{Path(p).parent.name}.md")
+            lane = Path(p).parent.name
+            dest = REPORTS / f"{lane}.md"
+            new = Path(p).read_bytes().replace(b"\r\n", b"\n")
+            if dest.exists() and dest.read_bytes().replace(b"\r\n", b"\n") != new:
+                # lane names get reused (r1 research 2026-11-09, r1 matching 2026-11-16): never overwrite an
+                # archived report with a different lane's report; keep it, file the new one under its date
+                old_head = dest.read_text(encoding="utf-8", errors="replace").split("\n", 1)[0]
+                new_head = new.decode("utf-8", errors="replace").split("\n", 1)[0]
+                if old_head != new_head:
+                    day = datetime.date.fromtimestamp(Path(p).stat().st_mtime).isoformat()
+                    dest = REPORTS / f"{lane}.{day}.md"
+            dest.write_bytes(new)
             n += 1
         print(f"{len(rows)} attempts in docs/attempts.jsonl; {n} lane reports archived in docs/lane_reports/")
         return 0

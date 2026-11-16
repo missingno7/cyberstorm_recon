@@ -76,7 +76,7 @@ extern GuiRect gMenuClip;
 extern void SigsStart(void *,int),SurfacePresent(void *),GuiResetClip(void *),SimClipInitialize(ClipState *,const ViewRect *);
 void f_44bba0(SimGame *);
 extern int SimShortcutMode();extern void SimResetLimits(SimGame *);extern unsigned char *simActorVisibility;extern int SoundPlay(unsigned,const SoundSettings *);
-extern void SimPan(SimGame *,int,int);extern void SimCenterOn(SimGame *,GridPoint *);
+extern void SimPan(SimGame *,int,int);extern void SimCenterOn(SimGame *,GridPoint);
 extern ViewRect gViewRect;
 extern GridPoint g4bb78c;
 
@@ -87,7 +87,7 @@ extern void SimHoverActor(SimGame *,int,int);
 extern void SimHoverObject(SimGame *,int);
 extern void SimPan(SimGame *,int,int);
 extern unsigned char *simActorVisibility;
-extern void SimCenterOn(SimGame *,GridPoint *);extern int SoundPlay(unsigned,const SoundSettings *);
+extern void SimCenterOn(SimGame *,GridPoint);extern int SoundPlay(unsigned,const SoundSettings *);
 extern U32 gIn7c;
 extern char g4dd0c0[],profileManager[],chatPlayerName[],chatAddress[],chatMessage[],chatTitle[];
 extern int g4faf40,g4faf44,gApplyFreeShots;
@@ -123,7 +123,7 @@ void SimHandleInput(SimGame *s) {
  case 75:SimPan(s,-1,0);break;
  case 71:SimPan(s,-1,1);break;
  case 73:SimPan(s,1,1);break;
- case 76:if(s->focus && !SimActorHidden(s->focus->action.resource)){GridPoint point=s->focus->action.position;SimCenterOn(s,&point);}break;
+ case 76:if(s->focus && !SimActorHidden(s->focus->action.resource)){SimCenterOn(s,s->focus->action.position);}break;
  case 82:SimSetMode(s,1);break;
  case 83:SimSetMode(s,-1);break;
  case 78:SimSetView(s,1);break;
@@ -239,7 +239,7 @@ extern "C" void TargetObjectInit(void *,GridPoint *,int);
 extern ActorRecord *ActorGetByUnit(int);
 extern int SimHotbriefCheckActor(ActorRecord *),SoundPlay(unsigned,const SoundSettings *),GridClearSelection(TerrainGrid *);
 extern char g4dd0c0[];inline int SimActorHidden(int n){return !simActorVisibility[n];}
-extern void SimCenterOn(SimGame *,GridPoint *);extern void SimSetFocus(SimGame *,ActorRecord *),SimTargetAction(SimGame *,int),SimPrepareAction(SimGame *,int),SimSelectTarget(SimGame *,int),PilotSetState(SimGame *,int),LogicTextMark(void *);
+extern void SimCenterOn(SimGame *,GridPoint);extern void SimSetFocus(SimGame *,ActorRecord *),SimTargetAction(SimGame *,int),SimPrepareAction(SimGame *,int),SimSelectTarget(SimGame *,int),PilotSetState(SimGame *,int),LogicTextMark(void *);
 extern int SimRandomFire(SimGame *,int,int);
 extern void SimSetCursor(int,int),ReportSelect(ReportScreen *,ActorRecord *),ReportMission(ReportScreen *,int);
 extern int targetLimits;
@@ -255,7 +255,7 @@ void SimHoverActor(SimGame *s,int unit,int cursor) {
    SimSetCursor(cursor,0);targetLimits=cursor+15;
    if(!s->input.Down(16))return;
    if((s->input.Pressed(16)) || (s->input.Pressed(32)))SoundPlay(9,0);
-   TargetObjectInit(&fallbackName,&point,unit);GridPoint center=point;SimCenterOn(s,&center);return;
+   TargetObjectInit(&fallbackName,&point,unit);SimCenterOn(s,point);return;
   }
  }
  if(unit) {

@@ -103,7 +103,7 @@ struct MenuNetwork { int id, flags; int IsHost() { return flags; } void CompactP
 extern MenuNetwork gMenuNetwork; extern void HotbriefEmpty(void *); extern void *LogicActorBuild(void *,const unsigned long *);
 extern void BestLocSetData(void *,void *,void *); extern int SimAddPlayer(SimGame *,int,PlayerSlot * = 0); extern "C" void *f_0043c6ed(void *,void *);
 struct ActorBlock; struct ActorListObject; struct ActorPosition; struct GridPoint; extern ActorRecord *ActorListAdd(int,ActorBlock *,ActorListObject *,ActorPosition *,int,int); extern void LogicActorDelete(void *,int),ActorActivate(ActorRecord *); extern "C" int ResolveName(void *,void *);
-extern void TargetObjectInit(char *,ActorPosition *,int); extern void SimCenterOn(SimGame *,GridPoint *),SimRefreshFog(SimGame *,int),SimChangePlayer(SimGame *,int); extern void FogInitialize(FogBuffer *,int,int);
+extern void TargetObjectInit(char *,ActorPosition *,int); extern void SimCenterOn(SimGame *,GridPoint),SimRefreshFog(SimGame *,int),SimChangePlayer(SimGame *,int); extern void FogInitialize(FogBuffer *,int,int);
 inline int SimActorHidden(int index) { return g4d3604[index]==0; }
 inline int SimActorUnitId(int index) { return actorIndexTable[index*2]; }
 
@@ -263,8 +263,8 @@ void SimGameNewGame(SimGame *game)
     }
     SimPoint world;
     TargetObjectInit((char *)&fallbackName,(ActorPosition *)&world,ResolveName(&fallbackName,&grid));
-    SimPoint at=world;
-    SimCenterOn(game,(GridPoint *)&at);
+
+    SimCenterOn(game,*(GridPoint *)&world);
     SimRefreshFog(game,1);
     if(game->multi) {
         if(game->localPlayer && !gMenuNetwork.IsHost()) game->players[game->localPlayer-1].state=5;

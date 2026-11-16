@@ -83,7 +83,7 @@ extern void HelpSetDirty(int);extern ActorRecord *ActorGetByIndex(int);extern Ac
 extern unsigned long gIn80,gInA0;extern long gIn7c;extern int SimShortcutMode(void *); extern "C" int sprintf(char *,const char *,...);
 void f_0044591f(HercModule *,int);void f_00446570(HercModule *);void f_00446253(int);
 void f_004465d6(int);
-inline uint RandomBelow(uint limit){return next_link_seed(&gFxSeed)%limit;}inline int AbsValue(int v){return v<0?-v:v;}inline int Percent(int n,int p){return n*p/100;}inline int ClampValue(int n,int lo,int hi){if(n<=lo)return lo;if(n>=hi)return hi;return n;}
+inline uint RandomBelow(uint limit){return next_link_seed(&gFxSeed)%limit;}inline int Percent(int n,int p){return n*p/100;}inline int ClampValue(int n,int lo,int hi){if(n<=lo)return lo;if(n>=hi)return hi;return n;}
 inline void GuiControl::Clip(){int left=x;int top=y;int w=width;int h=height;MenuSetClip(&gMenuClip,left,top,w,h);}
 inline void GuiControl::Background(){PopDrawSurface(&g513888,1,0,x,y,width,height);}
 // Two static image buttons: the compiler generates the initializer at 00445238 (module registration, two
@@ -351,7 +351,7 @@ int f_00445e23(HercModule *self) {
  int oldPoints=self->points;self->points=HercRepairPoints((ActorUnit *)self->unit);
  long hit=self->HitTest(&g4bb78c);
  self->help.SetId(hit);
- self->selected=(hit<3||hit>25)?-1:self->ids[hit];
+ self->selected=(hit>=3&&hit<=25)?self->ids[hit]:-1;
  if(hit==26)self->selected=23;
  if(self->HelpPressed()&&self->selected>=0&&self->selected<23){
   HercFormatItem((ActorUnit *)self->unit,PopFindItem((ActorUnit *)self->unit,self->selected),self->selected,0xfffffaff);
@@ -360,27 +360,29 @@ int f_00445e23(HercModule *self) {
  int damage=gInA0;if(!self->totalBytes)damage=0;
  if(damage||damage!=self->showDamage){self->changed=1;self->Invalidate();}self->showDamage=damage;
  if(self->selected>=0){
-  if(!self->showDamage){
+  if(self->showDamage)self->help.SetId(36);
+  else{
    if(self->points){int need=HercRepairNeeded((ActorUnit *)self->unit,self->selected);if(need){
-    if(need<100000){if(oldPoints!=self->points)HelpSetDirty(1);self->help.SetId(self->selected+38);
+    if(need>=100000)self->help.SetId(self->selected+62);
+    else{if(oldPoints!=self->points)HelpSetDirty(1);self->help.SetId(self->selected+38);
      char *destination=gShellMiniStrings.GetString(339,0);const char *format=targetBriefResource.GetString(338,0);sprintf(destination,format,need,self->points);
-    }else self->help.SetId(self->selected+62);
+    }
    }}
-  }else self->help.SetId(36);
+  }
  }
  f_00446253((int)self);
- if(gIn7c>=20000&&gIn7c<=20199){ActorRecord *actor=ActorGetByIndex(gIn7c-20000);f_00445c81((int)self);f_0044591f(self,(int)actor);LogicCallMode(6,0);}
+ long sel=gIn7c;if(sel>=20000&&sel<=20199){ActorRecord *actor=ActorGetByIndex(sel-20000);f_00445c81((int)self);f_0044591f(self,(int)actor);LogicCallMode(6,0);}
  int result=(gIn80==1||gIn80==57);
  switch(self->GuiScreen::Update()-1){
+ case 29:result=1;break;
  case 27:{ActorRecord *a=ActorFindRelated(self->actor);if(a){f_00445c81((int)self);f_0044591f(self,(int)a);LogicCallMode(6,0);}else LogicCallMode(7,0);break;}
  case 28:{ActorRecord *a=ActorFindRelatedOther(self->actor);if(a){f_00445c81((int)self);f_0044591f(self,(int)a);LogicCallMode(6,0);}else LogicCallMode(7,0);break;}
- case 29:result=1;break;
  }
  switch(gIn80){
  case 1:case 57:result=1;break;
- case 75:{int *rate=&self->speed;int step;if(AutoAdvanceEnabled())step=5;else{step=AbsValue(self->speed)/5+1;}*rate+=step;break;}
  case 76:self->speed=0;break;
- case 77:{int *rate=&self->speed;int step;if(AutoAdvanceEnabled())step=5;else{step=AbsValue(self->speed)/5+1;}*rate-=step;break;}
+ case 75:{int *rate=&self->speed;int step;if(AutoAdvanceEnabled())step=5;else{step=(self->speed<0?-self->speed:self->speed)/5+1;}*rate+=step;break;}
+ case 77:{int *rate=&self->speed;int step;if(AutoAdvanceEnabled())step=5;else{step=(self->speed<0?-self->speed:self->speed)/5+1;}*rate-=step;break;}
  }
  int shortcut=SimShortcutMode((void *)self->active);if(shortcut&&shortcut!=5)result=-shortcut;
  int speed=self->speed;if(speed<=-40)speed=-40;else if(speed>=40)speed=40;self->speed=speed;

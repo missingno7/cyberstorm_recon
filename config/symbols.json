@@ -2992,9 +2992,10 @@
   "HercBayReturnFromPurchase": {
    "va": "00415e1d",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?HercBayReturnFromPurchase$n(pn$Scene$$pn$InputReq$$)v",
-   "evidence": "implied by src/shell/shell.c 2026-11-09"
+   "status": "matched",
+   "mangled": "W?HercBayReturnFromPurchase$n(pn$HercBay$$pnv)v",
+   "tu": "src/shell/hercbay.c",
+   "evidence": "strict match 2026-11-16"
   },
   "HercBayReturnFromPurchase#W?HercBayReturnFromPurchase$n(pn$HercBay$$pnv)v": {
    "va": "00415e1d",
@@ -3003,6 +3004,13 @@
    "mangled": "W?HercBayReturnFromPurchase$n(pn$HercBay$$pnv)v",
    "tu": "src/shell/hercbay.c",
    "evidence": "placed (at) in src/shell/hercbay.c 2026-11-16"
+  },
+  "HercBayReturnFromPurchase#W?HercBayReturnFromPurchase$n(pn$Scene$$pn$InputReq$$)v": {
+   "va": "00415e1d",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?HercBayReturnFromPurchase$n(pn$Scene$$pn$InputReq$$)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
   },
   "HercBayOpen": {
    "va": "00415edc",
@@ -8588,7 +8596,7 @@
    "status": "matched",
    "mangled": "W?.fn_init$n()v",
    "tu": "src/terr/tlos.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "RayWalk": {
    "va": "0042ecb0",
@@ -8612,7 +8620,7 @@
    "status": "matched",
    "mangled": "W?RayCollect$n(pn$Point$$)v",
    "tu": "src/terr/tlos.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "RayCollect#W?RayCollect$n(pn$Point$$)v": {
    "va": "0042ee30",
@@ -9205,7 +9213,7 @@
    "status": "matched",
    "mangled": "W?.fn_init$n()v",
    "tu": "src/terr/tbuild.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "TerrainFilename": {
    "va": "00433670",
@@ -9213,7 +9221,7 @@
    "status": "matched",
    "mangled": "W?TerrainFilename$n(pnvpnxa)pna",
    "tu": "src/terr/tbuild.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimLoadImage": {
    "va": "004336d0",
@@ -9221,7 +9229,7 @@
    "status": "matched",
    "mangled": "W?SimLoadImage$n(pnvipnv)v",
    "tu": "src/terr/tbuild.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "TerrainReleaseImage": {
    "va": "00433a60",
@@ -9229,7 +9237,7 @@
    "status": "matched",
    "mangled": "W?TerrainReleaseImage$n()v",
    "tu": "src/terr/tbuild.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "TerrainHeightRange": {
    "va": "00433a80",
@@ -9245,7 +9253,7 @@
    "status": "matched",
    "mangled": "W?TerrainSetHeights$n(pn$TerrainGrid$$pn$Noise$$)v",
    "tu": "src/terr/tbuild.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "TerrainSetTypes": {
    "va": "00433d40",
@@ -9285,7 +9293,7 @@
    "status": "matched",
    "mangled": "W?TerrainSetNoiseHeight$n(pn$Point$$uc)v",
    "tu": "src/terr/tbuild.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "TerrainBuildHeights": {
    "va": "00434770",
@@ -9293,7 +9301,7 @@
    "status": "matched",
    "mangled": "W?TerrainBuildHeights$n(pn$TerrainGrid$$pn$MissionTerrain$$ipnv)v",
    "tu": "src/terr/tbuild.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "TerrainBuildHeights#W?TerrainBuildHeights$n(pnxapnvipnv)v": {
    "va": "00434770",
@@ -9308,7 +9316,7 @@
    "status": "matched",
    "mangled": "W?TerrainBuildFeatures$n(pn$TerrainGrid$$pn$MissionTerrain$$ii)v",
    "tu": "src/terr/tbuild.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "TerrainBuildFeatures#W?TerrainBuildFeatures$n(pnxapnvii)v": {
    "va": "00434890",
@@ -9323,7 +9331,7 @@
    "status": "matched",
    "mangled": "W?TerrainDestroyNoise$n(pn$Noise$$)v",
    "tu": "src/terr/tbuild.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "Noise::$dt": {
    "va": "004349a0",
@@ -9338,7 +9346,7 @@
    "status": "matched",
    "mangled": "W?TerrainConstructNoise$n(pn$Noise$$)v",
    "tu": "src/terr/tbuild.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "W?.fn_init$n()v@_unknown/tu_004349c0.c": {
    "va": "004349c0",
@@ -11960,9 +11968,10 @@
   "f_00441ca7": {
    "va": "00441ca7",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "f_00441ca7",
-   "evidence": "implied by src/_unknown/tu_0043b8e8.c 2026-11-09"
+   "tu": "src/_unknown/tu_004413e0.c",
+   "evidence": "strict match 2026-11-16"
   },
   "f_00441ce1": {
    "va": "00441ce1",
@@ -12014,9 +12023,10 @@
   "f_00442045": {
    "va": "00442045",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "f_00442045",
-   "evidence": "implied by src/shell/hbupgrad.c 2026-11-09"
+   "tu": "src/_unknown/tu_004413e0.c",
+   "evidence": "strict match 2026-11-16"
   },
   "f_0044220e": {
    "va": "0044220e",
@@ -12174,7 +12184,7 @@
    "status": "matched",
    "mangled": "W?.fn_init$n()v",
    "tu": "src/pop/pweapon.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "WeaponControl::$ct": {
    "va": "0044318c",
@@ -12182,7 +12192,7 @@
    "status": "matched",
    "mangled": "W?$ct:WeaponControl$n()_",
    "tu": "src/pop/pweapon.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "WeaponControl::Reset": {
    "va": "004431b3",
@@ -12190,7 +12200,7 @@
    "status": "matched",
    "mangled": "W?Reset$:WeaponControl$n(ui)v",
    "tu": "src/pop/pweapon.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "PopRegisterItem": {
    "va": "004431c5",
@@ -12205,7 +12215,7 @@
    "status": "matched",
    "mangled": "W?SetText$:WeaponControl$n(pnxa)v",
    "tu": "src/pop/pweapon.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "WeaponControl::Draw": {
    "va": "004431d1",
@@ -12213,7 +12223,7 @@
    "status": "matched",
    "mangled": "W?Draw$:WeaponControl$n(ui)v",
    "tu": "src/pop/pweapon.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "WeaponControl::Event": {
    "va": "00443328",
@@ -12221,7 +12231,7 @@
    "status": "matched",
    "mangled": "W?Event$:WeaponControl$n(uiul)i",
    "tu": "src/pop/pweapon.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "WeaponPopup::$ct": {
    "va": "0044332e",
@@ -12229,7 +12239,7 @@
    "status": "matched",
    "mangled": "W?$ct:WeaponPopup$n()_",
    "tu": "src/pop/pweapon.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "WeaponPopup::OpenWeapons": {
    "va": "00443366",
@@ -12237,7 +12247,7 @@
    "status": "matched",
    "mangled": "W?OpenWeapons$:WeaponPopup$n(pn$InputReq$$)v",
    "tu": "src/pop/pweapon.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "WeaponPopup::Close": {
    "va": "0044346f",
@@ -12245,7 +12255,7 @@
    "status": "matched",
    "mangled": "W?Close$:WeaponPopup$n()v",
    "tu": "src/pop/pweapon.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "WeaponPopup::UpdateWeapons": {
    "va": "00443489",
@@ -12253,7 +12263,7 @@
    "status": "matched",
    "mangled": "W?UpdateWeapons$:WeaponPopup$n()v",
    "tu": "src/pop/pweapon.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "WeaponPopup::Process": {
    "va": "004435e5",
@@ -12261,7 +12271,7 @@
    "status": "matched",
    "mangled": "W?Process$:WeaponPopup$n()i",
    "tu": "src/pop/pweapon.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "WeaponPopup::UpdatePreview": {
    "va": "004437a2",
@@ -12277,7 +12287,7 @@
    "status": "matched",
    "mangled": "W?SimActionsDraw$n(pn$WeaponPopup$$)v",
    "tu": "src/pop/pweapon.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimActionsDraw#W?SimActionsDraw$n(pnv)v": {
    "va": "00443cec",
@@ -12299,7 +12309,7 @@
    "status": "matched",
    "mangled": "W?Invalidate$:WeaponPopup$n()v",
    "tu": "src/pop/pweapon.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "WeaponPopup::SetMode": {
    "va": "00443d14",
@@ -12307,7 +12317,7 @@
    "status": "matched",
    "mangled": "W?SetMode$:WeaponPopup$n(iii)v",
    "tu": "src/pop/pweapon.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimClearActions": {
    "va": "00443d14",
@@ -12330,7 +12340,7 @@
    "status": "matched",
    "mangled": "W?.tdctor$:MenuImageButton$n()rn$1$",
    "tu": "src/pop/pweapon.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "W?$Wda018$:WeaponControl$n(ui)pnv": {
    "va": "00443ea0",
@@ -12338,7 +12348,7 @@
    "status": "matched",
    "mangled": "W?$Wda018$:WeaponControl$n(ui)pnv",
    "tu": "src/pop/pweapon.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "W?$Wda018$:MenuImageButton$n(ui)pnv": {
    "va": "00443eb8",
@@ -12346,7 +12356,7 @@
    "status": "matched",
    "mangled": "W?$Wda018$:MenuImageButton$n(ui)pnv",
    "tu": "src/pop/pweapon.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimMapGadget::$dt": {
    "va": "00443ed0",
@@ -12354,7 +12364,7 @@
    "status": "matched",
    "mangled": "W?$dt:SimMapGadget$n()_",
    "tu": "src/pop/pweapon.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "W?.tdtor$:WeaponMapGadget$n()pnv": {
    "va": "00443ed0",
@@ -12369,7 +12379,7 @@
    "status": "matched",
    "mangled": "W?$dt:WeaponControl$n()_",
    "tu": "src/pop/pweapon.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "PopNodeReset": {
    "va": "00443f58",
@@ -12385,7 +12395,7 @@
    "status": "matched",
    "mangled": "W?$dt:WeaponPopup$n()_",
    "tu": "src/pop/pweapon.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "W?.tdtor$:WeaponPopup$n()pnv": {
    "va": "00443f58",
@@ -13401,7 +13411,7 @@
    "status": "matched",
    "mangled": "W?.fn_init$n()v",
    "tu": "src/sim/sim.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimClosePopups": {
    "va": "00449f60",
@@ -13409,7 +13419,7 @@
    "status": "matched",
    "mangled": "W?SimClosePopups$n(pn$SimGame$$)v",
    "tu": "src/sim/sim.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "PilotSetState": {
    "va": "0044a190",
@@ -13424,7 +13434,7 @@
    "status": "matched",
    "mangled": "W?SimAmbientSound$n(pn$SimGame$$)v",
    "tu": "src/sim/sim.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimGame::Update": {
    "va": "0044a6c0",
@@ -13432,7 +13442,7 @@
    "status": "matched",
    "mangled": "W?Update$:SimGame$n()v",
    "tu": "src/sim/sim.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "WorldDrawTerrain": {
    "va": "0044ad70",
@@ -13440,7 +13450,7 @@
    "status": "matched",
    "mangled": "W?WorldDrawTerrain$n(pn$SimGame$$)v",
    "tu": "src/sim/sim.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "WorldDrawTerrain#W?WorldDrawTerrain$n(pnv)v": {
    "va": "0044ad70",
@@ -13463,7 +13473,7 @@
    "status": "matched",
    "mangled": "W?Event$:SimGame$n(uc)v",
    "tu": "src/sim/sim.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimGame::Open": {
    "va": "0044aff0",
@@ -13471,7 +13481,7 @@
    "status": "matched",
    "mangled": "W?Open$:SimGame$n()v",
    "tu": "src/sim/sim.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimGame::Close": {
    "va": "0044b470",
@@ -13479,7 +13489,7 @@
    "status": "matched",
    "mangled": "W?Close$:SimGame$n(i)v",
    "tu": "src/sim/sim.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ViewState::$ct": {
    "va": "0044b810",
@@ -13487,7 +13497,7 @@
    "status": "matched",
    "mangled": "W?$ct:ViewState$n()_",
    "tu": "src/sim/sim.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimGame::$dt": {
    "va": "0044b820",
@@ -13495,7 +13505,7 @@
    "status": "matched",
    "mangled": "W?$dt:SimGame$n()_",
    "tu": "src/sim/sim.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimGame::$ct": {
    "va": "0044b870",
@@ -13503,7 +13513,7 @@
    "status": "matched",
    "mangled": "W?$ct:SimGame$n()_",
    "tu": "src/sim/sim.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "W?.fn_init$n()v@_unknown/tu_0044b8b0.c": {
    "va": "0044b8b0",
@@ -13589,7 +13599,7 @@
    "status": "matched",
    "mangled": "W?SimHandleCursor$n(pn$SimGame$$)v",
    "tu": "src/sim/simmain.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimHoverActor": {
    "va": "0044ca30",
@@ -13612,7 +13622,7 @@
    "status": "matched",
    "mangled": "W?SimHoverObject$n(pn$SimGame$$i)v",
    "tu": "src/sim/simmain.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimWorldStep": {
    "va": "0044d040",
@@ -13620,7 +13630,7 @@
    "status": "matched",
    "mangled": "W?SimWorldStep$n(pn$SimGame$$)v",
    "tu": "src/sim/simmain.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "W?.fn_init$n()v@_unknown/tu_0044d150.c": {
    "va": "0044d150",
@@ -13737,12 +13747,28 @@
   "SimPanBy": {
    "va": "0044d850",
    "kind": "func",
+   "status": "matched",
+   "mangled": "W?SimPanBy$n(pn$SimGame$$$GridPoint$$)v",
+   "tu": "src/sim/simdo.c",
+   "evidence": "strict match 2026-11-16"
+  },
+  "SimPanBy#W?SimPanBy$n(pn$SimGame$$pn$GridPoint$$)v": {
+   "va": "0044d850",
+   "kind": "func",
    "status": "hypothesis",
    "mangled": "W?SimPanBy$n(pn$SimGame$$pn$GridPoint$$)v",
    "tu": "src/sim/simdo.c",
    "evidence": "placed (at) in src/sim/simdo.c 2026-11-09"
   },
   "SimCenterOn": {
+   "va": "0044d980",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?SimCenterOn$n(pn$SimGame$$$GridPoint$$)v",
+   "tu": "src/sim/simdo.c",
+   "evidence": "strict match 2026-11-16"
+  },
+  "SimCenterOn#W?SimCenterOn$n(pn$SimGame$$pn$GridPoint$$)v": {
    "va": "0044d980",
    "kind": "func",
    "status": "hypothesis",
@@ -14391,7 +14417,7 @@
    "status": "matched",
    "mangled": "W?SimGameLoad$n(pn$SimGame$$pn$FileRecord$$)i",
    "tu": "src/sim/simgame.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimGameSave": {
    "va": "004524c0",
@@ -14399,7 +14425,7 @@
    "status": "matched",
    "mangled": "W?SimGameSave$n(pn$SimGame$$pn$FileRecord$$)i",
    "tu": "src/sim/simgame.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimGameNewGame": {
    "va": "00452570",
@@ -14407,7 +14433,7 @@
    "status": "matched",
    "mangled": "W?SimGameNewGame$n(pn$SimGame$$)v",
    "tu": "src/sim/simgame.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimStartMission": {
    "va": "00452570",
@@ -14422,7 +14448,7 @@
    "status": "matched",
    "mangled": "W?SimGameLeave$n(pn$SimGame$$)v",
    "tu": "src/sim/simgame.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimGameLoadMissions": {
    "va": "004528f0",
@@ -14430,7 +14456,7 @@
    "status": "matched",
    "mangled": "W?SimGameLoadMissions$n()v",
    "tu": "src/sim/simgame.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimGameLoadMissions#W?SimGameLoadMissions$n(pn$SimGame$$)v": {
    "va": "004528f0",
@@ -14445,7 +14471,7 @@
    "status": "matched",
    "mangled": "W?SimGameEnd$n()v",
    "tu": "src/sim/simgame.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimGameEnd#W?SimGameEnd$n(i)v": {
    "va": "00452940",
@@ -14953,7 +14979,7 @@
    "status": "matched",
    "mangled": "W?ActorAdvanceState$n(pn$ActorRecord$$)v",
    "tu": "src/sim/actor.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorFinishMove": {
    "va": "00455890",
@@ -14984,7 +15010,7 @@
    "status": "matched",
    "mangled": "W?SimHotbriefClearActor$n(pn$ActorRecord$$)v",
    "tu": "src/sim/actor.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorClearAndSelect": {
    "va": "00455c40",
@@ -14992,7 +15018,7 @@
    "status": "matched",
    "mangled": "W?ActorClearAndSelect$n(pn$ActorRecord$$)i",
    "tu": "src/sim/actor.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "SimHotbriefCheckActor": {
    "va": "00455d10",
@@ -15000,7 +15026,7 @@
    "status": "matched",
    "mangled": "W?SimHotbriefCheckActor$n(pn$ActorRecord$$)i",
    "tu": "src/sim/actor.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorIsSpecial": {
    "va": "00455d30",
@@ -15008,7 +15034,7 @@
    "status": "matched",
    "mangled": "W?ActorIsSpecial$n(pn$ActorRecord$$)i",
    "tu": "src/sim/actor.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorCrouch": {
    "va": "00455d60",
@@ -15016,7 +15042,7 @@
    "status": "matched",
    "mangled": "W?ActorCrouch$n(pn$ActorRecord$$i)i",
    "tu": "src/sim/actor.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorStand": {
    "va": "00455e50",
@@ -15024,7 +15050,7 @@
    "status": "matched",
    "mangled": "W?ActorStand$n(pn$ActorRecord$$i)i",
    "tu": "src/sim/actor.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorSetExternal": {
    "va": "00455f40",
@@ -15032,7 +15058,7 @@
    "status": "matched",
    "mangled": "W?ActorSetExternal$n(pn$ActorRecord$$iul)v",
    "tu": "src/sim/actor.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorSetHeading": {
    "va": "00455f70",
@@ -15040,7 +15066,7 @@
    "status": "matched",
    "mangled": "W?ActorSetHeading$n(pn$ActorRecord$$i)v",
    "tu": "src/sim/actor.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorSetDirection": {
    "va": "00455f70",
@@ -15055,7 +15081,7 @@
    "status": "matched",
    "mangled": "W?ActorChecksum$n(pn$ActorRecord$$)i",
    "tu": "src/sim/actor.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorSaveState": {
    "va": "00456060",
@@ -15063,7 +15089,7 @@
    "status": "matched",
    "mangled": "W?ActorSaveState$n(pn$ActorRecord$$pn$ActorWireState$$)v",
    "tu": "src/sim/actor.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorSaveState#W?ActorSaveState$n(pn$ActorRecord$$pn$ActorState$$)v": {
    "va": "00456060",
@@ -15078,7 +15104,7 @@
    "status": "matched",
    "mangled": "W?ActorLoad$n(pn$ActorRecord$$pnvpn$ActorState$$pn$ActorWireState$$)i",
    "tu": "src/sim/actor.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorLoad#W?ActorLoad$n(pn$ActorRecord$$pn$ActorBlock$$pn$ActorListObject$$pn$ActorState$$)i": {
    "va": "004560a0",
@@ -15100,7 +15126,7 @@
    "status": "matched",
    "mangled": "W?ActorUpdate$n(pn$ActorRecord$$pnvpn$ActorState$$pn$ActorWireState$$)v",
    "tu": "src/sim/actor.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "ActorUpdate#W?ActorUpdate$n(pn$ActorRecord$$pn$ActorBlock$$pn$ActorListObject$$pn$ActorState$$)v": {
    "va": "00456140",
@@ -16003,7 +16029,7 @@
    "status": "matched",
    "mangled": "W?AnimBitmapName$n(pnv)pna",
    "tu": "src/sim/animbmp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "AnimBitmapFrame": {
    "va": "00459a30",
@@ -16026,9 +16052,17 @@
    "status": "matched",
    "mangled": "W?AnimEnsureFX$n(i)pnv",
    "tu": "src/sim/animbmp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "AnimBitmapSweep": {
+   "va": "00459ee0",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?AnimBitmapSweep$n(iiiii)v",
+   "tu": "src/sim/animbmp.c",
+   "evidence": "strict match 2026-11-16"
+  },
+  "AnimBitmapSweep#W?AnimBitmapSweep$n(iiiii)i": {
    "va": "00459ee0",
    "kind": "func",
    "status": "hypothesis",
@@ -17138,7 +17172,7 @@
    "status": "matched",
    "mangled": "W?$ct:HotbriefResources$n()_",
    "tu": "src/sim/hotbrief.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HotbriefOpen": {
    "va": "00461e60",
@@ -17146,7 +17180,7 @@
    "status": "matched",
    "mangled": "W?HotbriefOpen$n(pnvpnvi)v",
    "tu": "src/sim/hotbrief.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HotbriefRelease": {
    "va": "00461f50",
@@ -17154,7 +17188,7 @@
    "status": "matched",
    "mangled": "W?HotbriefRelease$n(pnv)v",
    "tu": "src/sim/hotbrief.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HotbriefUpdate": {
    "va": "00461fb0",
@@ -17162,7 +17196,7 @@
    "status": "matched",
    "mangled": "W?HotbriefUpdate$n(pnv)i",
    "tu": "src/sim/hotbrief.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HotbriefUpdate#W?HotbriefUpdate$n(pnv)v": {
    "va": "00461fb0",
@@ -17178,7 +17212,7 @@
    "status": "matched",
    "mangled": "W?HotbriefTimerUpdate$n(pnv)v",
    "tu": "src/sim/hotbrief.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HotbriefSetup": {
    "va": "004620e0",
@@ -17194,7 +17228,7 @@
    "status": "matched",
    "mangled": "W?HotbriefMainLoop$n(pnvi)v",
    "tu": "src/sim/hotbrief.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HotbriefClearActive": {
    "va": "004625f0",
@@ -17202,7 +17236,7 @@
    "status": "matched",
    "mangled": "W?HotbriefClearActive$n(pnv)v",
    "tu": "src/sim/hotbrief.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-16"
   },
   "HotbriefResources::$dt": {
    "va": "004625f0",
@@ -37431,6 +37465,13 @@
    "mangled": "W?inventoryRows$n[]$InventoryRow$$",
    "evidence": "implied by src/_unknown/tu_004413e0.c 2026-11-09"
   },
+  "upgradeRows": {
+   "va": "004d0958",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?upgradeRows$n[]$Choice$$",
+   "evidence": "implied by src/_unknown/tu_004413e0.c 2026-11-16"
+  },
   "sortRows": {
    "va": "004d0f48",
    "kind": "data",
@@ -38390,6 +38431,13 @@
    "mangled": "W?gView$n[]i",
    "evidence": "implied by src/sim/animout.c 2026-11-16"
   },
+  "g4d368c": {
+   "va": "004d368c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?g4d368c$ni",
+   "evidence": "implied by src/sim/simdo.c 2026-11-16"
+  },
   "g_004d3690": {
    "va": "004d3690",
    "kind": "data",
@@ -39226,6 +39274,22 @@
    "mangled": "animNameBuffer",
    "tu": "src/sim/animbmp.c",
    "evidence": "own data placed in src/sim/animbmp.c 2026-11-11"
+  },
+  "animationResourceTable": {
+   "va": "004d4360",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "animationResourceTable",
+   "tu": "src/sim/animbmp.c",
+   "evidence": "own data placed in src/sim/animbmp.c 2026-11-16"
+  },
+  "animationLastUseTable": {
+   "va": "004d81b8",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "animationLastUseTable",
+   "tu": "src/sim/animbmp.c",
+   "evidence": "own data placed in src/sim/animbmp.c 2026-11-16"
   },
   "effectResourceTable": {
    "va": "004dc010",

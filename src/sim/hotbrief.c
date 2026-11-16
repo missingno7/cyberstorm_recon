@@ -14,7 +14,7 @@ struct StrPool { char *GetString(long,int=0); }; extern unsigned long gMenuColor
 void f_cb80(void *); void f_cbf0(void *); void f_0041cab0(void *);
 void ReleasePoolData(void *); void GuiFadeOut(void); void ShellClearFrame(void);
 int f_0042604d(void *, GuiPoint *); int f_00425ba1(void *); void SigsStart(void *, int);
-void SurfacePresent(void *); void GuiResetClip(void *); void *ActorGetByIndex(int);
+void SurfacePresent(void *); void GuiResetClip(void *); struct ActorRecord; ActorRecord *ActorGetByIndex(int);
 void *BriefWaitA(int); unsigned long BriefWaitB(int); void f_cba0(void *, const char *);
 char *f_0047c350(void *, int, int);  
 class ResMgr { public: void *Load(const char *, int, void * = 0, int = 0); }; void f_d2c0(void *); void HercSetMissionStart(void *, int);
@@ -37,8 +37,8 @@ extern int DAT_004d2de6; extern int DAT_004d3551; extern int DAT_004dd0b4;
 extern int DAT_004dd0b8; extern int DAT_004f65e8; extern char DAT_004fb944[];
 extern char DAT_00511ddc[]; extern char DAT_0048b5ac[]; extern char DAT_0048b5ae[];
 extern char DAT_0048b5b2[]; extern char DAT_0048b5b4[]; extern char DAT_0051445c[];
-extern int gHotbriefMissionFlags; extern char g511dc0[], hotbriefPlayerMaps[], hotbriefCountFormat[]; extern int hotbriefPlayerColors[];
-
+extern int gHotbriefMissionFlags; extern char g511dc0[], hotbriefPlayerMaps[], hotbriefCountFormat[]; extern int hotbriefPlayerColors[]; struct HotbriefSlot { int status, id, points, actor; char name[0xbc - 16]; }; extern HotbriefSlot hotbriefSlots[];
+#include "actor.h"
 
 class MenuButton { public:
     char objectBytes[40]; MenuButton(const char * =0, unsigned long =0); ~MenuButton();
@@ -147,42 +147,40 @@ void HotbriefTimerUpdate(void *screen)
 
 void HotbriefSetup(void *screen)
 {
+    HotbriefResources *s = (HotbriefResources *)screen;
     SigsStart(g513888, 0);
     SurfacePresent(g513888);
     GuiResetClip(gMenuClip);
     struct DrawCopy { unsigned long words[4]; };
     *(DrawCopy *)&viewportClipLeft = *(DrawCopy *)gBriefDrawSource;
     gDrawRemap = 0;
-    ((HotbriefResources *)screen)->x = (g5138ac - 0x280) / 2;
-    ((HotbriefResources *)screen)->y = (g5138b0 - 0x1e0) / 2;
-    ((HotbriefResources *)screen)->frame = 0;
-    ((HotbriefResources *)screen)->count = ((HotbriefResources *)screen)->frame;
-    if (((HotbriefResources *)screen)->image != 0)
-        ((HotbriefResources *)screen)->count = *(int *)((HotbriefResources *)screen)->image;
-    gMenuTextMap = (char *)(gMenuColorMap+((HotbriefResources *)screen)->mission+20); gMenuTextColor=hotbriefPlayerColors[((HotbriefResources *)screen)->mission]; gMenuTextMap = gBriefTextMap;
+    s->x = (g5138ac - 0x280) / 2;
+    s->y = (g5138b0 - 0x1e0) / 2;
+    s->frame = 0;
+    s->count = s->frame;
+    if (s->image != 0)
+        s->count = *(int *)s->image;
+    gMenuTextMap = (char *)&gMenuColorMap[s->mission + 20];
+    gMenuTextColor = hotbriefPlayerColors[s->mission - 1];
+    gMenuTextMap = gBriefTextMap;
     gMenuTextColor = gBriefTextColor;
-    char *title = BriefFormat(((StrPool *)targetBriefResource)->GetString(0x5e2),DAT_004d274e+(((HotbriefResources *)screen)->mission-1)*0xbc);
-
-    f_0047cfc0(gShellFont, ((HotbriefResources *)screen)->x + 400,
-               ((HotbriefResources *)screen)->y + 0x1b3, 0, title);
+    char *title = BriefFormat(((StrPool *)targetBriefResource)->GetString(0x5e2), hotbriefSlots[s->mission - 1].name);
+    f_0047cfc0(gShellFont, s->x + 400, s->y + 0x1b3, 0, title);
     gMenuTextMap = gBriefTextMap;
     gMenuTextColor = gBriefTextColor;
     title = f_0047c350(targetBriefResource, 0x5e3, 0);
-    f_0047cfc0(gShellFontBefore, ((HotbriefResources *)screen)->x + 10,
-               ((HotbriefResources *)screen)->y + 0x4b, -1, title);
+    f_0047cfc0(gShellFontBefore, s->x + 10, s->y + 0x4b, -1, title);
     title = f_0047c350(targetBriefResource, 0x5e4, 0);
-    f_0047cfc0(gShellFontBefore, ((HotbriefResources *)screen)->x + 0xb9,
-               ((HotbriefResources *)screen)->y + 0x4b, 1, title);
+    f_0047cfc0(gShellFontBefore, s->x + 0xb9, s->y + 0x4b, 1, title);
     int ownerCounts[9];
-    int aiOwnerCounts[9];
+    int aiCounts[9];
+    memset(aiCounts, 0, sizeof(aiCounts));
     memset(ownerCounts, 0, sizeof(ownerCounts));
-    memset(aiOwnerCounts, 0, sizeof(aiOwnerCounts));
     for (int actorId = 1; ; ++actorId) {
-        char *actor = (char *)ActorGetByIndex(actorId);
+        ActorRecord *actor = ActorGetByIndex(actorId);
         if (actor == 0)
             break;
-        int owner = *(int *)(actor + 8) - 1;
-        if (owner < 0 || owner > 8)
+        int owner = actor->Owner() - 1;
 // Original ASSERT source-line padding.
 // Original ASSERT source-line padding.
 // Original ASSERT source-line padding.
@@ -201,51 +199,53 @@ void HotbriefSetup(void *screen)
 // Original ASSERT source-line padding.
 // Original ASSERT source-line padding.
 // Original ASSERT source-line padding.
-            ASSERT(owner >= 0 && owner < 9);
+// Original ASSERT source-line padding.
+// Original ASSERT source-line padding.
+        ASSERT(owner >= 0 && owner < 9);
         ++ownerCounts[owner];
-        if (actor[0x88] == 0)
-            ++aiOwnerCounts[owner];
+        if (actor->active == 0)
+            ++aiCounts[owner];
     }
-    int row = 0;
-    int yOffset = 0;
-    char *rowName = hotbriefPlayerMaps;
-    char *missionNames = DAT_004d274e;
-    for (; row < playerCount; ++row) {
-        if (ownerCounts[row] == 0) {
-            if (row != gRemoteActorKind - 1) {
-                gMenuTextMap = rowName; gMenuTextColor = hotbriefPlayerColors[row];
-                gMenuTextColor = gBriefTextColor;
-                gMenuTextMap = rowName; gMenuTextColor = hotbriefPlayerColors[row];
-            gMenuTextMap = gBriefTextMap;
-                f_0047cfc0(g511dc0,
-                           ((HotbriefResources *)screen)->x + 10,
-                           ((HotbriefResources *)screen)->y + 100 + yOffset,
-                           -1, missionNames);
-                title = f_0047c350(targetBriefResource, 0x5e5, 0);
-                f_0047cfc0(g511dc0,
-                           ((HotbriefResources *)screen)->x + 0xb9,
-                           ((HotbriefResources *)screen)->y + 100 + yOffset,
-                           1, title);
-            }
-        } else {
-            gMenuTextMap = rowName; gMenuTextColor = hotbriefPlayerColors[row];
+    for (int row = 0; row < playerCount; ++row) {
+        if (ownerCounts[row] != 0) {
+            gMenuTextMap = (char *)&gMenuColorMap[row + 21];
+            gMenuTextColor = hotbriefPlayerColors[row];
             gMenuTextMap = gBriefTextMap;
             gMenuTextColor = gBriefTextColor;
-            f_0047cfc0(g511dc0,
-                       ((HotbriefResources *)screen)->x + 10,
-                       ((HotbriefResources *)screen)->y + 100 + yOffset,
-                       -1, missionNames);
-            title = BriefFormat(hotbriefCountFormat, aiOwnerCounts[row]);
-            f_0047cfc0(g511dc0,
-                       ((HotbriefResources *)screen)->x + 0xb9,
-                       ((HotbriefResources *)screen)->y + 100 + yOffset,
-                       1, title);
+            f_0047cfc0(g511dc0, s->x + 10, s->y + 100 + row * 0x16, -1, hotbriefSlots[row].name);
+            title = BriefFormat(hotbriefCountFormat, aiCounts[row]);
+            f_0047cfc0(g511dc0, s->x + 0xb9, s->y + 100 + row * 0x16, 1, title);
+        } else if (row != gRemoteActorKind - 1) {
+            gMenuTextMap = (char *)&gMenuColorMap[row + 21];
+            gMenuTextColor = hotbriefPlayerColors[row];
+            gMenuTextColor = gBriefTextColor;
+            gMenuTextMap = gBriefTextMap;
+            f_0047cfc0(g511dc0, s->x + 10, s->y + 100 + row * 0x16, -1, hotbriefSlots[row].name);
+            title = f_0047c350(targetBriefResource, 0x5e5, 0);
+            f_0047cfc0(g511dc0, s->x + 0xb9, s->y + 100 + row * 0x16, 1, title);
         }
-        yOffset += 0x16;
-        rowName += 4;
-        missionNames += 0xbc;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

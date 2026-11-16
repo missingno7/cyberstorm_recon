@@ -52,7 +52,7 @@ extern int StateInvoke(ActorUnit *,long *,long *),StateInvokeEnergy(ActorUnit *,
 extern int UnitSpend(ActorUnit *,int);
 extern int SoundTrigger(unsigned,int);
 extern void SimResetLimits(SimGame *);
-void SimPanBy(SimGame *,GridPoint *);
+void SimPanBy(SimGame *,GridPoint);
 void f_44db70(SimGame *,int);
 
 struct PacketList {void Focus(ActorRecord *);void Face(ActorRecord *,int,int);void Remove(ActorRecord *);void ReturnFire(ActorRecord *,signed char,signed char,signed char);void JackUp(ActorRecord *);void Placidex(ActorRecord *);void Toggle(ActorRecord *,char);};
@@ -62,7 +62,7 @@ extern int ModeCheck(const char *);
 extern "C" void AssertFail(const char *,int,const char *);
 static char SimDoSourceFile[]=__FILE__;
 static int simLastActor=-1,simLastIndex=-1,simLastTarget=-1;
-extern int AnimBitmapSweep(int,int,int,int,int);
+extern void AnimBitmapSweep(int,int,int,int,int);
 extern int UnitPortrait(ActorUnit *);
 extern void SimAnimSet(SimAnim *,int,int,int);
 extern void SimRefreshPanel(SimGame *,int);
@@ -108,25 +108,25 @@ void SimPan(SimGame *s,int dx,int dy) {
  int multiplier=SimShiftDown()?10:1;
  dx=dx*866*multiplier*speed*16/(s->view.scale*100);
  dy=dy*500*multiplier*speed*16/(s->view.scale*100);
- GridPoint d;
- d.x=dx;d.y=dy;
- SimPanBy(s,&d);
+ SimPanBy(s,GridPoint(dx,dy));
+
+
 }
-void SimPanBy(SimGame *s,GridPoint *d) {
+void SimPanBy(SimGame *s,GridPoint d) {
  GridPoint point(s->view.point);
- f_0047efb0((Point *)d,-g4d368c);
- point.x+=d->x; point.y+=d->y;
- if(!GridPointToIndex(&fallbackName,&point)) { point=s->view.point; point.x+=d->x/4; point.y+=d->y/4; }
+ f_0047efb0((Point *)&d,-g4d368c);
+ point.x+=d.x; point.y+=d.y;
+ if(!GridPointToIndex(&fallbackName,&point)) { point=s->view.point; point.x+=d.x/4; point.y+=d.y/4; }
  if(s->view.point!=point) {
   if(GridPointToIndex(&fallbackName,&point)) { ExploCompact(1);
    s->view.point=point; SetTerrainView(gView,&s->view,1);s->savedView=s->view; s->screen|=1;
   }
  }
 }
-void SimCenterOn(SimGame *s,GridPoint *point) {
- if(s->view.point!=*point) {
-  if(GridPointToIndex(&fallbackName,point)) { ExploCompact(1);
-   s->view.point=*point; SetTerrainView(gView,&s->view,0);s->savedView=s->view; s->screen|=1;
+void SimCenterOn(SimGame *s,GridPoint point) {
+ if(s->view.point!=point) {
+  if(GridPointToIndex(&fallbackName,&point)) { ExploCompact(1);
+   s->view.point=point; SetTerrainView(gView,&s->view,0);s->savedView=s->view; s->screen|=1;
   }
  }
 }
@@ -275,18 +275,18 @@ void SimSetFocus(SimGame *s,ActorRecord *a) {
  bestLocCount=0;
  if(s->linked) {
   if(!s->focus->hidden) {
-   SimRefreshFog(s,0);TargetInitializeRecord(s,&s->targetRecord,s->focus->id,s->focus->targetId);
-   int destination=s->targetRecord.destination;
-   if(destination) {
-    if(SimActorHidden(destination))s->focus->targetId=0;
-    if(s->targetRecord.target && s->targetRecord.target->hidden)s->focus->targetId=0;
-    if(s->targetRecord.target && !s->targetRecord.target->active)s->focus->targetId=0;
+   SimRefreshFog(s,0);TargetRecord *r=&s->targetRecord;TargetInitializeRecord(s,r,s->focus->id,s->focus->targetId);
+
+   if(s->targetRecord.destination) {
+    if(SimActorHidden(s->targetRecord.destination))s->focus->targetId=0;
+    {ActorRecord *t=s->targetRecord.target; if(t && t->hidden)s->focus->targetId=0;}
+    {ActorRecord *t=s->targetRecord.target; if(t && !t->active)s->focus->targetId=0;}
 
     TargetInitializeRecord(s,&s->targetRecord,s->focus->id,s->focus->targetId);
    }
   }
   GridClearSelection(&fallbackName);SimPreviewCost(s,1,0);SimPreviewCost(s,0,0);s->actionCost=0;
-  GridPoint point(s->focus->action.position);SimCenterOn(s,&point);
+  SimCenterOn(s,s->focus->action.position);
   int target=s->focus->target;if(target && target!=s->focus->action.resource)SimTargetAction(s,target);
   if(oldMode>4)oldMode=(s->focus->targetId!=0)+1;
   PilotSetState(s,oldMode);s->screen=-1;
@@ -1214,6 +1214,9 @@ void SimSetUpdate(SimGame *s,int open) {
   }
  }
 }
+
+
+
 
 
 

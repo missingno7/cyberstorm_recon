@@ -137,13 +137,14 @@ int TerrainHeightRange(TerrainGrid *grid,Noise *noise,Range *range,int percent,u
         int value=NoiseGet(noise,&point);
         range->lo=TerrainMin(value,range->lo);
         range->hi=TerrainMax(value,range->hi);
-        ++count; ++histogram[value];
+        ++histogram[value]; ++count;
     }
     if(percent) {
+        int limit=(percent*count+50)/100;
         int total=0;
         for(int h=range->hi;h>range->lo;h--) {
             total+=histogram[h];
-            if(total>(percent*count+50)/100) {
+            if(total>limit) {
                 if(h==range->hi)*range=Range(255,0);
                 else range->lo=h+1;
                 break;
@@ -362,4 +363,5 @@ void TerrainBuildFeatures(TerrainGrid *grid,MissionTerrain *mission,int seed,int
 
 void TerrainDestroyNoise(Noise *p){NoiseDestroy(p,1);}
 void TerrainConstructNoise(Noise *p){NoiseConstruct(p);}
+
 

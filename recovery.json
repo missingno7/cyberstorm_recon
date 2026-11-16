@@ -1027,6 +1027,11 @@
      "size": 178,
      "mangled": "W?HercBayConfigureControls$n()v"
     },
+    "HercBayReturnFromPurchase": {
+     "va": "00415e1d",
+     "size": 191,
+     "mangled": "W?HercBayReturnFromPurchase$n(pn$HercBay$$pnv)v"
+    },
     "HercBayOpen": {
      "va": "00415edc",
      "size": 183,
@@ -4504,7 +4509,7 @@
      "size": 14
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-16"
   },
   "src/shell/commscrn.c": {
    "as": "shell\\commscrn.c",
@@ -5534,7 +5539,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-16"
   },
   "src/logic/logic.c": {
    "as": "logic\\logic.c",
@@ -5618,7 +5623,7 @@
   "src/sim/animbmp.c": {
    "as": "sim\\animbmp.c",
    "install": "wc106",
-   "profile": "ot",
+   "profile": "ot-oe",
    "functions": {
     "AnimBitmapName": {
      "va": "004599b0",
@@ -5629,6 +5634,11 @@
      "va": "00459e60",
      "size": 128,
      "mangled": "W?AnimEnsureFX$n(i)pnv"
+    },
+    "AnimBitmapSweep": {
+     "va": "00459ee0",
+     "size": 357,
+     "mangled": "W?AnimBitmapSweep$n(iiiii)v"
     }
    },
    "data": {
@@ -5641,7 +5651,7 @@
      "size": 51
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-16"
   },
   "src/shell/hbupgrad.c": {
    "as": "shell\\hbupgrad.c",
@@ -6192,7 +6202,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-16"
   },
   "src/sim/simdo.c": {
    "as": "sim\\simdo.c",
@@ -6208,6 +6218,16 @@
      "va": "0044d7a0",
      "size": 176,
      "mangled": "W?SimPan$n(pn$SimGame$$ii)v"
+    },
+    "SimPanBy": {
+     "va": "0044d850",
+     "size": 304,
+     "mangled": "W?SimPanBy$n(pn$SimGame$$$GridPoint$$)v"
+    },
+    "SimCenterOn": {
+     "va": "0044d980",
+     "size": 144,
+     "mangled": "W?SimCenterOn$n(pn$SimGame$$$GridPoint$$)v"
     },
     "SimSetMode": {
      "va": "0044da10",
@@ -6492,7 +6512,7 @@
      "size": 6
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-16"
   },
   "src/_unknown/tu_004349c0.c": {
    "as": "_unknown\\tu_004349c0.c",
@@ -8090,6 +8110,11 @@
      "size": 123,
      "mangled": "f_00441c2c"
     },
+    "f_00441ca7": {
+     "va": "00441ca7",
+     "size": 58,
+     "mangled": "f_00441ca7"
+    },
     "f_00441ce1": {
      "va": "00441ce1",
      "size": 62,
@@ -8114,6 +8139,11 @@
      "va": "00441ec5",
      "size": 384,
      "mangled": "f_00441ec5"
+    },
+    "f_00442045": {
+     "va": "00442045",
+     "size": 457,
+     "mangled": "f_00442045"
     },
     "f_0044220e": {
      "va": "0044220e",
@@ -11872,6 +11902,10 @@
     }
    },
    "data": {
+    "CONST": {
+     "va": "0048b2a8",
+     "size": 34
+    },
     "CONST2": {
      "va": "0048dbb0",
      "size": 36
@@ -11901,7 +11935,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-16"
   },
   "src/pop/pshield.c": {
    "as": "pop\\pshield.c",
@@ -12631,7 +12665,7 @@
      "size": 6
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-16"
   },
   "src/shell/promosh.c": {
    "as": "shell\\promosh.c",
@@ -13668,7 +13702,7 @@
      "size": 14
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-16"
   },
   "src/sim/simalert.c": {
    "as": "sim\\simalert.c",
@@ -13981,7 +14015,7 @@
      "size": 28
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-16"
   },
   "src/sim/animout.c": {
    "as": "sim\\animout.c",

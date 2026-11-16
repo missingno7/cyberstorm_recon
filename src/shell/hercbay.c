@@ -144,7 +144,8 @@ void HercBayReturnFromPurchase(HercBay *bay, void *callback)
     if (bay->IsActive())
         return;
     HercBayAltStart(bay, callback);
-    bay->display = g4d030f;
+    int display = g4d030f;
+    bay->display = display;
     bay->state = 1;
     bay->transition = 0;
 }
@@ -206,12 +207,6 @@ void HercBaySetStatus(HercBay *bay)
     }
 }
 
-void HercBaySetDisplay()
-{
-    register int value = g4d0413;
-    ((MenuNumber *)&g4b3748)->SetValue(value, 0);
-}
-
 void HercBayUpdateState(HercBay *bay)
 {
     unsigned int state;
@@ -254,6 +249,13 @@ state_zero:
         goto redraw;
     return;
 }
+
+void HercBaySetDisplay()
+{
+    register int value = g4d0413;
+    ((MenuNumber *)&g4b3748)->SetValue(value, 0);
+}
+
 
 void HercBayDrawMission(HercBay *bay)
 {
