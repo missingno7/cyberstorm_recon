@@ -31,6 +31,11 @@ next public or the segment end, including compiler alignment filler and jump tab
    audit v1 F3) and is addressed backwards from that function's start. Effect: a function no longer fails
    because the NEXT function's switch is wrong or because earlier functions shift the table's alignment filler;
    table and filler bytes are not counted in any function's size. test_gate covers both directions.
+7. embedded code data (2026-11-18, review rv1): data inside the code segment that the extent reads through an
+   instruction operand (e.g. the word keys of a `repne scasw` switch dispatch, placed in front of the function)
+   must equal the oracle byte for byte; otherwise the extent is UNBOUND (`<external code data>`). Before this rule
+   ScriptEvalOp stayed STRICT with a wrong case key. Pointer-table entries and function pointers are not data.
+   test_gate covers it.
 UNBOUND = all bytes equal but some fixup target unbound; DIFF = any byte, relocation or extent difference.
 
 Soundness note (2026-11-09): Watcom references into a segment as `SEG + 0` with the item offset in the

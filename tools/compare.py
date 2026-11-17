@@ -691,7 +691,34 @@ class Comparison:
                 if d == si and lo <= toff < hi:
                     continue
                 tva = self._oracle_u32(va0 + f.off - lo)
-                if tva is None or tva not in self.tables:
+                if tva is None:
+                    continue
+                if tva not in self.tables:
+                    # not a registered jump table: either a pointer to a function (its address is checked as a
+                    # fixup) or DATA embedded in code that this extent reads, e.g. the word keys of a
+                    # `repne scasw` switch dispatch placed in front of the function (review rv1, 2026-11-18:
+                    # ScriptEvalOp stayed STRICT with a wrong case key). Embedded data must equal the oracle.
+                    if toff in {o for o, _, _ in self.extents.get(d, [])}:
+                        continue
+                    # an entry of a code-pointer table (a run of 4-byte code fixups) points at code, not data:
+                    # its address is checked as a fixup; only an instruction operand can address embedded data
+                    ptr_sites = {g.off for g in self.fx_by_seg.get(si, []) if g.size() == 4 and not g.self_rel
+                                 and g.target[0] & 3 == 0 and is_code(self.m.segments[g.target[1]])}
+                    if f.off - 4 in ptr_sites or f.off + 4 in ptr_sites:
+                        continue
+                    seg_d = self.m.segments[d]
+                    bounds = {seg_d.size} | {o for o, _, _ in self.extents.get(d, []) if o > toff}
+                    for g in self.m.fixups:
+                        if g.size() == 4 and not g.self_rel and g.target[0] & 3 == 0 and g.target[1] == d:
+                            r = ((0 if g.target[0] & 4 else g.disp) + self._addend(g.seg, g)) & 0xFFFFFFFF
+                            if r > toff:
+                                bounds.add(r)
+                    end = min(bounds)
+                    inside = any(toff <= g.off < end for g in self.fx_by_seg.get(d, []))
+                    cand_bytes = bytes(seg_d.data[toff:end])
+                    if inside or end <= toff or not all(seg_d.covered[toff:end]) or \
+                            self.img.read_va(tva, end - toff) != cand_bytes:
+                        unbound.setdefault("<external code data>", set()).add(None)
                     continue
                 # table length as compiled: consecutive 4-byte code-target fixups starting at toff (the oracle's
                 # relocated run can continue into an adjacent table)

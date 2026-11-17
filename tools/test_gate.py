@@ -171,6 +171,23 @@ def table_neighbour_checks(check):
         check(bad, "next-object table: a change in the last function itself is not STRICT")
 
 
+def embedded_data_checks(check):
+    """Data embedded in code that a function reads (the word keys of a `repne scasw` switch, placed in front of the
+    function) must equal the oracle: a wrong case value in ScriptEvalOp is not STRICT (review rv1, 2026-11-18)."""
+    import gate
+    from common import ROOT
+    tu = "src/logic/sinterp.c"
+    entry = gate.load_ledger()["tus"][tu]
+    text = (ROOT / tu).read_text(encoding="latin-1")
+    check(text.count("case 0x1021:") == 1, "embedded data fixture: ScriptEvalOp has one case 0x1021")
+    with tempfile.TemporaryDirectory(dir=ROOT / "build") as td:
+        p = Path(td) / "sinterp.c"
+        p.write_text(text.replace("case 0x1021:", "case 0x1022:", 1), encoding="latin-1")
+        r, _, _ = gate.build_and_compare(p, entry)
+        e = gate.by_label(gate.extents(r)).get("ScriptEvalOp", {})
+        check(e.get("status") != "STRICT", "embedded data: a wrong switch key leaves ScriptEvalOp not STRICT")
+
+
 def resource_checks(check):
     """tools/rsrc.py: policy and sensitivity (a one-pixel or one-character change is not STRICT)."""
     import shutil
@@ -299,6 +316,7 @@ def main():
     audit_v1_f3_f5(check)
     audit_v1_r2_scalars(check)
     table_neighbour_checks(check)
+    embedded_data_checks(check)
     resource_checks(check)
     print("TEST GATE OK" if not fails else f"TEST GATE FAILED: {fails}")
     return 1 if fails else 0

@@ -199,8 +199,7 @@ def main(argv):
                     n = len({h[0] for h in hits})
                     work = ("no:asm" if cls == "ASM" else "no:neighbour" if cls.startswith("WAIT") else
                             "no:invariant" if "invariant" in ledger_verdicts.get(e["va"], ()) else
-                            "no:invariant" if cls in ("REG-SWAP", "SLOT-SWAP", "REG+SLOT", "HOMES") and n >= 3
-                            else "yes")
+                            "yes")      # report counts no longer withhold work: only a ledger verdict does (review rv1)
                     rows.append((tu, e["va"], size, e.get("diff_bytes"), cls, n, lab, hits, work, hint))
     counts = collections.Counter(r[4] for r in rows)
     for tu, va, size, diff, cls, n, lab, hits, work, hint in rows:
