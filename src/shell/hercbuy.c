@@ -1,8 +1,6 @@
-/* shell\hercbuy.c: working names and packed layouts reconstructed from accesses.
- * The complete DIFF bodies and their code-generation blockers are recorded in REPORT.md. */
-
+/* shell: HERC purchase screen */
 struct Surface; struct HercRect {int v[4];}; struct HercTabs { long v[2]; };
-struct GuiPoint;
+static char hercBuySourceFile[] = __FILE__; struct GuiPoint;
 struct GuiControl;
 extern GuiControl *gHercBuyControls[];
 struct StrPool;
@@ -19,11 +17,14 @@ public:
     int UpdateCredits();
 };
 class Flic {
+    char beforeLoops[0x4c];
+    long loops;
+    char afterLoops[0x40];
 public:
     Flic(); ~Flic();
     unsigned long Update(Surface *surface);
     void Close();
-    int Open(long source, int priority=100, int mode=0); void SetLoops(int n){*(int*)((char*)this+0x4c)=n;}
+    int Open(long source, int priority=100, int mode=0); void SetLoops(int n){loops=n;}
 };
 #pragma pack(push, 1)
 class MenuNumber {
@@ -59,12 +60,19 @@ class ResMgr {
 public:
     void *Load(long resource, int flags=1, int first=0, int second=0);
 };
+#pragma pack(push, 1)
 class HercBuyCtor : public GuiScreen {
     char gap[0x0d];
     Flic animation;
+    unsigned char entryCount;
+    long highlight,dirty; char names[100][17]; unsigned char images[100]; char prices[100][12];
+    long units[100],pilots[100]; unsigned char *records;
+    unsigned char currentIndex,selected,lastSelected,base,previousBase;
+    unsigned short textTop,previousTop; long totalHeight,visibleHeight; const unsigned char *description; unsigned char purchaseIndex;
 public:
-    HercBuyCtor(); ~HercBuyCtor();
+    HercBuyCtor(); ~HercBuyCtor() {}
 };
+#pragma pack(pop)
 extern int g511948; extern int gShellStrings;
 extern int gMenuSavedSurface; extern int g513888;
 extern int gShellImages; extern char uiSystem[];
@@ -86,7 +94,7 @@ extern int g4b4040, g4b3fec, g4b4014, g4b3f94, g4b3fbc, g4b3918;
 extern int g4b4090, g4b40c0, g4b4150;
 extern int g4b3fd0;
 extern int g511dd4;
-extern int g48ec0c, g48ec10;
+extern HercTabs hercBuyTabs;
 extern long gGuiEffectPriority;
 extern MenuPrefixButton g4b39e4[15];
 extern MenuLabel g4b3c78[15];
@@ -129,7 +137,6 @@ void f_00417219(void*); void f_004176b1(void*); void f_00416b76(void*); void f_0
 void f_0041686f(void *object);
 void f_0041733c(void *object);
 void f_00417842(void *object);
-
 #pragma pack(push, 1)
 struct HercBuyRecord { const char *name; const unsigned char *description; long price; unsigned char image; long pilots,units; unsigned char other[4]; };
 struct HercBuyDataView {
@@ -144,7 +151,6 @@ struct HercBuyDataView {
     unsigned char Count(){return entryCount;}
 };
 #pragma pack(pop)
-
 void f_004166de(void)
 {
     InputReq request;
@@ -158,17 +164,14 @@ void f_004166de(void)
         GuiPumpMessages();
     }
 }
-
 HercBuyCtor::HercBuyCtor()
     : GuiScreen(gHercBuyControls, 0x31, 0), animation()
 {
 }
-
 void f_00416764(void *object, void *input)
 {
     if (((HercBuyDataView *)object)->IsActive())
         return;
-
     f_00477798(3);
     f_0043ba3e(&g4a70b8, profileManager);
     *(int *)((char *)object + 0xf2) = 0;
@@ -179,10 +182,7 @@ void f_00416764(void *object, void *input)
     *(void **)((char *)object + 0x4c) = gResMgr.Load((long)"SHELLHRC.bmx");
     if (*(void **)((char *)object + 0x4c) == 0) {
 // Original source-line padding.
-// Original source-line padding.
-// Original source-line padding.
-// Original source-line padding.
-        AssertFail(__FILE__, __LINE__, 0);
+        AssertFail(hercBuySourceFile, __LINE__, 0);
     }
     ((Flic *)((char *)object + 0x5d))->Open((long)"hb_buy.flx");
     ((Flic *)((char *)object + 0x5d))->SetLoops(1);
@@ -782,7 +782,7 @@ void f_004177af(void *object, char amount)
 // Original source-line padding.
 // Original source-line padding.
 // Original source-line padding.
-        AssertFail(__FILE__, __LINE__, "no text for purchase window");
+        AssertFail(hercBuySourceFile, __LINE__, "no text for purchase window");
     }
     f_00417842(object);
     f_00429aa0(&g4b3fd0, *(int *)((char *)object + 0xfdb) - 0x174);
@@ -790,7 +790,7 @@ void f_004177af(void *object, char amount)
 
 void f_00417842(void *object)
 {
-    HercTabs tabs=*(HercTabs*)&g48ec0c;
+    HercTabs tabs=hercBuyTabs;
     long selected=g4b3fd0;
     HercBuyDataView *screen=(HercBuyDataView*)object;
     screen->textTop=(unsigned short)selected;
@@ -1012,12 +1012,7 @@ public:
     HercBuyInitPanel();
     virtual ~HercBuyInitPanel();
 };
-class HercBuyInitScreen {
-    char data[0x68];
-public:
-    HercBuyInitScreen();
-    virtual ~HercBuyInitScreen();
-};
+
 #pragma pack(pop)
 
 HercBuyInitButton initButton0(0, 0);
@@ -1044,11 +1039,25 @@ MenuNumber initNumber2;
 MenuNumber initNumber3;
 MenuNumber initNumber4;
 MenuNumber initNumber5;
-HercBuyInitScreen initScreen;
+HercBuyCtor initScreen;
 
-
-HercBuyCtor::~HercBuyCtor() {} 
-
-
-
-
+GuiControl *gHercBuyControls[] = {
+    (GuiControl *)&g4b39e4[0], (GuiControl *)&g4b39e4[1], (GuiControl *)&g4b39e4[2],
+    (GuiControl *)&g4b39e4[3], (GuiControl *)&g4b39e4[4], (GuiControl *)&g4b39e4[5],
+    (GuiControl *)&g4b39e4[6], (GuiControl *)&g4b39e4[7], (GuiControl *)&g4b39e4[8],
+    (GuiControl *)&g4b39e4[9], (GuiControl *)&g4b39e4[10], (GuiControl *)&g4b39e4[11],
+    (GuiControl *)&g4b39e4[12], (GuiControl *)&g4b39e4[13], (GuiControl *)&g4b39e4[14],
+    (GuiControl *)&g4b3c78[0], (GuiControl *)&g4b3c78[1], (GuiControl *)&g4b3c78[2],
+    (GuiControl *)&g4b3c78[3], (GuiControl *)&g4b3c78[4], (GuiControl *)&g4b3c78[5],
+    (GuiControl *)&g4b3c78[6], (GuiControl *)&g4b3c78[7], (GuiControl *)&g4b3c78[8],
+    (GuiControl *)&g4b3c78[9], (GuiControl *)&g4b3c78[10], (GuiControl *)&g4b3c78[11],
+    (GuiControl *)&g4b3c78[12], (GuiControl *)&g4b3c78[13], (GuiControl *)&g4b3c78[14],
+    (GuiControl *)&initButton0, (GuiControl *)&initButton1, (GuiControl *)&initButton2,
+    (GuiControl *)&initChild1, (GuiControl *)&initBar0, (GuiControl *)&initChild0,
+    (GuiControl *)&initNumber0, (GuiControl *)&initButton3, (GuiControl *)&initButton4,
+    (GuiControl *)&initChild3, (GuiControl *)&initBar1, (GuiControl *)&initChild2,
+    (GuiControl *)&initPanel, (GuiControl *)&initNumber1, (GuiControl *)&initNumber2,
+    (GuiControl *)&initNumber3, (GuiControl *)&initNumber4, (GuiControl *)&initNumber5,
+    (GuiControl *)&initHelp
+};
+HercTabs hercBuyTabs = {{0, 70}};

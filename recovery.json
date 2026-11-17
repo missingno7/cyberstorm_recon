@@ -87,8 +87,13 @@
      "mangled": "W?GetSecondString$:StrPool$n(li)pna"
     }
    },
-   "data": {},
-   "accepted": "2026-11-14"
+   "data": {
+    "_DATA": {
+     "va": "004a49e8",
+     "size": 15
+    }
+   },
+   "accepted": "2026-11-18"
   },
   "src/_unknown/tu_0042a598.c": {
    "as": "tu_0042a598.c",
@@ -702,6 +707,16 @@
      "size": 28,
      "mangled": "W?ActorArraySet$n(pn$LogicActor$$ii)v"
     },
+    "ActorRandomAction": {
+     "va": "00463ff6",
+     "size": 22,
+     "mangled": "W?ActorRandomAction$n(pn$LogicActor$$)v"
+    },
+    "ActorFinalize": {
+     "va": "0046400c",
+     "size": 22,
+     "mangled": "W?ActorFinalize$n(pn$LogicActor$$)v"
+    },
     "ActorIsAvailable": {
      "va": "00464022",
      "size": 47,
@@ -709,7 +724,7 @@
     }
    },
    "data": {},
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-18"
   },
   "src/logic/miss.c": {
    "as": "logic\\miss.c",
@@ -3363,7 +3378,7 @@
      "size": 35
     }
    },
-   "accepted": "2026-11-09"
+   "accepted": "2026-11-18"
   },
   "src/sim/apply.c": {
    "as": "sim\\apply.c",
@@ -3775,13 +3790,17 @@
     }
    },
    "data": {
+    "CONST": {
+     "va": "0048aa8c",
+     "size": 72
+    },
     "CONST2": {
      "va": "0048d0d8",
      "size": 180
     },
     "_DATA": {
      "va": "0048eb2c",
-     "size": 12
+     "size": 232
     },
     "XI": {
      "va": "004a6bac",
@@ -3814,9 +3833,13 @@
     "W?$Wts0kn$HercBuyInitPanel$$$nx[]uc": {
      "va": "0048c99c",
      "size": 17
+    },
+    "W?$Wts0fn$HercBuyCtor$$$nx[]uc": {
+     "va": "0048d18c",
+     "size": 17
     }
    },
-   "accepted": "2026-11-11"
+   "accepted": "2026-11-18"
   },
   "src/logic/lgen.c": {
    "as": "logic\\lgen.c",
@@ -6022,80 +6045,6 @@
    "data": {},
    "accepted": "2026-11-14"
   },
-  "src/_unknown/tu_0043ef34.c": {
-   "as": "_unknown\\tu_0043ef34.c",
-   "install": "wc106",
-   "profile": "plain-oe",
-   "functions": {
-    "ResetProfileUnits": {
-     "va": "0043ef34",
-     "size": 48,
-     "mangled": "W?ResetProfileUnits$n(pn$ProfileManager$$)v"
-    },
-    "ProfileManager::RefreshMission": {
-     "va": "004404a2",
-     "size": 137,
-     "mangled": "W?RefreshMission$:ProfileManager$n(i)v"
-    },
-    "ProfileManager::SetMissionChoice": {
-     "va": "00440dea",
-     "size": 27,
-     "mangled": "W?SetMissionChoice$:ProfileManager$n(ul)v"
-    },
-    "ProfileManager::SelectMissionNumber": {
-     "va": "00440e05",
-     "size": 161,
-     "mangled": "W?SelectMissionNumber$:ProfileManager$n(irnulrnul)v"
-    },
-    "GetGameInfo": {
-     "va": "00440ea6",
-     "size": 272,
-     "mangled": "W?GetGameInfo$n(pn$ProfileManager$$pn$GameInfo$$pn$MissionRecord$$)v"
-    },
-    "ApplyGameInfo": {
-     "va": "00440fb6",
-     "size": 78,
-     "mangled": "W?ApplyGameInfo$n(pn$ProfileManager$$pn$MissionRecord$$)v"
-    },
-    "ProfileManager::LaunchMission": {
-     "va": "00441004",
-     "size": 420,
-     "mangled": "W?LaunchMission$:ProfileManager$n(pn$GameInfo$$)i"
-    },
-    "ApplyProgress": {
-     "va": "004411a8",
-     "size": 90,
-     "mangled": "W?ApplyProgress$n(pn$ProfileManager$$pn$ProgressInfo$$)v"
-    },
-    "ProfileConstant": {
-     "va": "00441202",
-     "size": 6,
-     "mangled": "W?ProfileConstant$n()i"
-    },
-    "ProfileValue": {
-     "va": "00441331",
-     "size": 11,
-     "mangled": "W?ProfileValue$n(pn$ProfileManager$$)i"
-    },
-    "ProfileManager::MissionIsBlocked": {
-     "va": "0044133c",
-     "size": 93,
-     "mangled": "W?MissionIsBlocked$:ProfileManager$n(rn$MissionInfo$$)i"
-    },
-    "ProfileManager::HasContinuation": {
-     "va": "00441399",
-     "size": 32,
-     "mangled": "W?HasContinuation$:ProfileManager$n()i"
-    },
-    "ProfileManager::SetProfileMode": {
-     "va": "004413b9",
-     "size": 38,
-     "mangled": "W?SetProfileMode$:ProfileManager$n(uc)pn$1$"
-    }
-   },
-   "data": {},
-   "accepted": "2026-11-17"
-  },
   "src/sim/sim.c": {
    "as": "sim\\sim.c",
    "install": "wc106",
@@ -8095,75 +8044,6 @@
    "data": {},
    "accepted": "2026-11-16"
   },
-  "src/_unknown/tu_004413e0.c": {
-   "as": "_unknown\\tu_004413e0.c",
-   "install": "wc106",
-   "profile": "plain-oe",
-   "functions": {
-    "f_004413e0": {
-     "va": "004413e0",
-     "size": 118,
-     "mangled": "f_004413e0"
-    },
-    "f_00441b19": {
-     "va": "00441b19",
-     "size": 275,
-     "mangled": "f_00441b19"
-    },
-    "f_00441c2c": {
-     "va": "00441c2c",
-     "size": 123,
-     "mangled": "f_00441c2c"
-    },
-    "f_00441ca7": {
-     "va": "00441ca7",
-     "size": 58,
-     "mangled": "f_00441ca7"
-    },
-    "f_00441ce1": {
-     "va": "00441ce1",
-     "size": 62,
-     "mangled": "f_00441ce1"
-    },
-    "f_00441d1f": {
-     "va": "00441d1f",
-     "size": 62,
-     "mangled": "f_00441d1f"
-    },
-    "f_00441d5d": {
-     "va": "00441d5d",
-     "size": 80,
-     "mangled": "f_00441d5d"
-    },
-    "f_00441dad": {
-     "va": "00441dad",
-     "size": 280,
-     "mangled": "f_00441dad"
-    },
-    "f_00441ec5": {
-     "va": "00441ec5",
-     "size": 384,
-     "mangled": "f_00441ec5"
-    },
-    "f_00442045": {
-     "va": "00442045",
-     "size": 457,
-     "mangled": "f_00442045"
-    },
-    "f_0044220e": {
-     "va": "0044220e",
-     "size": 74,
-     "mangled": "f_0044220e"
-    },
-    "f_00442258": {
-     "va": "00442258",
-     "size": 152,
-     "mangled": "f_00442258"
-    }
-   },
-   "data": {},
-   "accepted": "2026-11-16"
-  },
   "src/_unknown/tu_0042cf40.c": {
    "as": "_unknown\\tu_0042cf40.c",
    "install": "wc106",
@@ -8532,8 +8412,13 @@
      "mangled": "W?HelpTextWindowTitle$n(pnxa)v"
     }
    },
-   "data": {},
-   "accepted": "2026-11-11"
+   "data": {
+    "CONST": {
+     "va": "0048bed4",
+     "size": 9
+    }
+   },
+   "accepted": "2026-11-18"
   },
   "src/_unknown/tu_0047682c.c": {
    "as": "_unknown\\tu_0047682c.c",
@@ -9280,8 +9165,13 @@
      "mangled": "W?GuiFilterPalette$n(pn$Palette$$i)v"
     }
    },
-   "data": {},
-   "accepted": "2026-11-09"
+   "data": {
+    "_DATA": {
+     "va": "0048f40c",
+     "size": 136
+    }
+   },
+   "accepted": "2026-11-18"
   },
   "src/_unknown/tu_004323c0.c": {
    "as": "_unknown\\tu_004323c0.c",
@@ -9403,83 +9293,6 @@
    },
    "data": {},
    "accepted": "2026-11-14"
-  },
-  "src/_unknown/tu_0043e3ac.c": {
-   "as": "_unknown\\tu_0043e3ac.c",
-   "install": "wc106",
-   "profile": "plain",
-   "functions": {
-    "BriefMissionFile": {
-     "va": "0043e3ac",
-     "size": 1842,
-     "mangled": "BriefMissionFile"
-    },
-    "BriefNewEquipment": {
-     "va": "0043eade",
-     "size": 536,
-     "mangled": "W?BriefNewEquipment$n(pn$ProfileManager$$)pna"
-    }
-   },
-   "data": {
-    "CONST": {
-     "va": "0048adfc",
-     "size": 318
-    }
-   },
-   "accepted": "2026-11-09"
-  },
-  "src/_unknown/tu_0043ecf8.c": {
-   "as": "_unknown\\tu_0043ecf8.c",
-   "install": "wc106",
-   "profile": "plain",
-   "functions": {
-    "LoadSession": {
-     "va": "0043ecf8",
-     "size": 248,
-     "mangled": "W?LoadSession$n(pn$GameSession$$pn$FileRecord$$)i"
-    },
-    "SaveSession": {
-     "va": "0043edf0",
-     "size": 39,
-     "mangled": "W?SaveSession$n(pn$GameSession$$pn$FileRecord$$)i"
-    },
-    "f_43ee17": {
-     "va": "0043ee17",
-     "size": 90,
-     "mangled": "W?f_43ee17$n(pn$GameSession$$pn$FileRecord$$i)i"
-    },
-    "f_43ee71": {
-     "va": "0043ee71",
-     "size": 192,
-     "mangled": "W?f_43ee71$n(pnvpn$FileRecord$$)i"
-    }
-   },
-   "data": {},
-   "accepted": "2026-11-14"
-  },
-  "src/_unknown/tu_0047d400.c": {
-   "as": "_unknown\\tu_0047d400.c",
-   "install": "wc106",
-   "profile": "ot",
-   "functions": {
-    "FormatSetBuffer": {
-     "va": "0047d400",
-     "size": 32,
-     "mangled": "FormatSetBuffer"
-    },
-    "BriefFormat": {
-     "va": "0047d420",
-     "size": 82,
-     "mangled": "BriefFormat"
-    }
-   },
-   "data": {
-    "CONST": {
-     "va": "0048bff0",
-     "size": 1
-    }
-   },
-   "accepted": "2026-11-11"
   },
   "src/_unknown/tu_0047d680.c": {
    "as": "_unknown\\tu_0047d680.c",
@@ -11128,6 +10941,10 @@
     }
    },
    "data": {
+    "CONST": {
+     "va": "0048ab54",
+     "size": 22
+    },
     "CONST2": {
      "va": "0048d3a8",
      "size": 196
@@ -11161,7 +10978,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-11"
+   "accepted": "2026-11-18"
   },
   "src/shell/mphbase.c": {
    "as": "shell\\mphbase.c",
@@ -14429,6 +14246,249 @@
     }
    },
    "accepted": "2026-11-16"
+  },
+  "src/core/mcpbrfs.c": {
+   "as": "core\\mcpbrfs.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "BriefMissionFile": {
+     "va": "0043e3ac",
+     "size": 1842,
+     "mangled": "BriefMissionFile"
+    },
+    "BriefNewEquipment": {
+     "va": "0043eade",
+     "size": 536,
+     "mangled": "W?BriefNewEquipment$n(pn$ProfileManager$$)pna"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048adfc",
+     "size": 318
+    },
+    "_DATA": {
+     "va": "00494234",
+     "size": 15
+    }
+   },
+   "accepted": "2026-11-18"
+  },
+  "src/core/mcpio.c": {
+   "as": "core\\mcpio.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "LoadSession": {
+     "va": "0043ecf8",
+     "size": 248,
+     "mangled": "W?LoadSession$n(pn$GameSession$$pn$FileRecord$$)i"
+    },
+    "SaveSession": {
+     "va": "0043edf0",
+     "size": 39,
+     "mangled": "W?SaveSession$n(pn$GameSession$$pn$FileRecord$$)i"
+    },
+    "f_43ee17": {
+     "va": "0043ee17",
+     "size": 90,
+     "mangled": "W?f_43ee17$n(pn$GameSession$$pn$FileRecord$$i)i"
+    },
+    "f_43ee71": {
+     "va": "0043ee71",
+     "size": 192,
+     "mangled": "W?f_43ee71$n(pnvpn$FileRecord$$)i"
+    }
+   },
+   "data": {
+    "_DATA": {
+     "va": "00494244",
+     "size": 13
+    }
+   },
+   "accepted": "2026-11-18"
+  },
+  "src/core/mcpcamp.c": {
+   "as": "core\\mcpcamp.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "ResetProfileUnits": {
+     "va": "0043ef34",
+     "size": 48,
+     "mangled": "W?ResetProfileUnits$n(pn$ProfileManager$$)v"
+    },
+    "ProfileManager::RefreshMission": {
+     "va": "004404a2",
+     "size": 137,
+     "mangled": "W?RefreshMission$:ProfileManager$n(i)v"
+    },
+    "ProfileManager::SetMissionChoice": {
+     "va": "00440dea",
+     "size": 27,
+     "mangled": "W?SetMissionChoice$:ProfileManager$n(ul)v"
+    },
+    "ProfileManager::SelectMissionNumber": {
+     "va": "00440e05",
+     "size": 161,
+     "mangled": "W?SelectMissionNumber$:ProfileManager$n(irnulrnul)v"
+    },
+    "GetGameInfo": {
+     "va": "00440ea6",
+     "size": 272,
+     "mangled": "W?GetGameInfo$n(pn$ProfileManager$$pn$GameInfo$$pn$MissionRecord$$)v"
+    },
+    "ApplyGameInfo": {
+     "va": "00440fb6",
+     "size": 78,
+     "mangled": "W?ApplyGameInfo$n(pn$ProfileManager$$pn$MissionRecord$$)v"
+    },
+    "ProfileManager::LaunchMission": {
+     "va": "00441004",
+     "size": 420,
+     "mangled": "W?LaunchMission$:ProfileManager$n(pn$GameInfo$$)i"
+    },
+    "ApplyProgress": {
+     "va": "004411a8",
+     "size": 90,
+     "mangled": "W?ApplyProgress$n(pn$ProfileManager$$pn$ProgressInfo$$)v"
+    },
+    "ProfileConstant": {
+     "va": "00441202",
+     "size": 6,
+     "mangled": "W?ProfileConstant$n()i"
+    },
+    "ProfileValue": {
+     "va": "00441331",
+     "size": 11,
+     "mangled": "W?ProfileValue$n(pn$ProfileManager$$)i"
+    },
+    "ProfileManager::MissionIsBlocked": {
+     "va": "0044133c",
+     "size": 93,
+     "mangled": "W?MissionIsBlocked$:ProfileManager$n(rn$MissionInfo$$)i"
+    },
+    "ProfileManager::HasContinuation": {
+     "va": "00441399",
+     "size": 32,
+     "mangled": "W?HasContinuation$:ProfileManager$n()i"
+    },
+    "ProfileManager::SetProfileMode": {
+     "va": "004413b9",
+     "size": 38,
+     "mangled": "W?SetProfileMode$:ProfileManager$n(uc)pn$1$"
+    }
+   },
+   "data": {
+    "_DATA": {
+     "va": "00494254",
+     "size": 28
+    }
+   },
+   "accepted": "2026-11-18"
+  },
+  "src/core/mcphmisc.c": {
+   "as": "core\\mcphmisc.c",
+   "install": "wc106",
+   "profile": "plain-oe",
+   "functions": {
+    "f_004413e0": {
+     "va": "004413e0",
+     "size": 118,
+     "mangled": "f_004413e0"
+    },
+    "f_00441b19": {
+     "va": "00441b19",
+     "size": 275,
+     "mangled": "f_00441b19"
+    },
+    "f_00441c2c": {
+     "va": "00441c2c",
+     "size": 123,
+     "mangled": "f_00441c2c"
+    },
+    "f_00441ca7": {
+     "va": "00441ca7",
+     "size": 58,
+     "mangled": "f_00441ca7"
+    },
+    "f_00441ce1": {
+     "va": "00441ce1",
+     "size": 62,
+     "mangled": "f_00441ce1"
+    },
+    "f_00441d1f": {
+     "va": "00441d1f",
+     "size": 62,
+     "mangled": "f_00441d1f"
+    },
+    "f_00441d5d": {
+     "va": "00441d5d",
+     "size": 80,
+     "mangled": "f_00441d5d"
+    },
+    "f_00441dad": {
+     "va": "00441dad",
+     "size": 280,
+     "mangled": "f_00441dad"
+    },
+    "f_00441ec5": {
+     "va": "00441ec5",
+     "size": 384,
+     "mangled": "f_00441ec5"
+    },
+    "f_00442045": {
+     "va": "00442045",
+     "size": 457,
+     "mangled": "f_00442045"
+    },
+    "f_0044220e": {
+     "va": "0044220e",
+     "size": 74,
+     "mangled": "f_0044220e"
+    },
+    "f_00442258": {
+     "va": "00442258",
+     "size": 152,
+     "mangled": "f_00442258"
+    }
+   },
+   "data": {
+    "_DATA": {
+     "va": "00494270",
+     "size": 16
+    }
+   },
+   "accepted": "2026-11-18"
+  },
+  "src/misc/format.c": {
+   "as": "misc\\format.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "FormatSetBuffer": {
+     "va": "0047d400",
+     "size": 32,
+     "mangled": "FormatSetBuffer"
+    },
+    "BriefFormat": {
+     "va": "0047d420",
+     "size": 82,
+     "mangled": "BriefFormat"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048bff0",
+     "size": 1
+    },
+    "_DATA": {
+     "va": "004a4a24",
+     "size": 14
+    }
+   },
+   "accepted": "2026-11-18"
   }
  },
  "accepted_losses": [
@@ -15851,6 +15911,81 @@
    ],
    "date": "2026-11-16",
    "moved_to": "src/sim/animout.c"
+  },
+  {
+   "tu": "src/shell/hercbuy.c",
+   "functions": [
+    "data:_DATA"
+   ],
+   "date": "2026-11-18"
+  },
+  {
+   "tu": "src/_unknown/tu_0043e3ac.c",
+   "functions": [
+    "BriefMissionFile",
+    "BriefNewEquipment"
+   ],
+   "date": "2026-11-18",
+   "moved_to": "src/core/mcpbrfs.c"
+  },
+  {
+   "tu": "src/_unknown/tu_0043ecf8.c",
+   "functions": [
+    "LoadSession",
+    "SaveSession",
+    "f_43ee17",
+    "f_43ee71"
+   ],
+   "date": "2026-11-18",
+   "moved_to": "src/core/mcpio.c"
+  },
+  {
+   "tu": "src/_unknown/tu_0043ef34.c",
+   "functions": [
+    "ApplyGameInfo",
+    "ApplyProgress",
+    "GetGameInfo",
+    "ProfileConstant",
+    "ProfileManager::HasContinuation",
+    "ProfileManager::LaunchMission",
+    "ProfileManager::MissionIsBlocked",
+    "ProfileManager::RefreshMission",
+    "ProfileManager::SelectMissionNumber",
+    "ProfileManager::SetMissionChoice",
+    "ProfileManager::SetProfileMode",
+    "ProfileValue",
+    "ResetProfileUnits"
+   ],
+   "date": "2026-11-18",
+   "moved_to": "src/core/mcpcamp.c"
+  },
+  {
+   "tu": "src/_unknown/tu_004413e0.c",
+   "functions": [
+    "f_004413e0",
+    "f_00441b19",
+    "f_00441c2c",
+    "f_00441ca7",
+    "f_00441ce1",
+    "f_00441d1f",
+    "f_00441d5d",
+    "f_00441dad",
+    "f_00441ec5",
+    "f_00442045",
+    "f_0044220e",
+    "f_00442258"
+   ],
+   "date": "2026-11-18",
+   "moved_to": "src/core/mcphmisc.c"
+  },
+  {
+   "tu": "src/_unknown/tu_0047d400.c",
+   "functions": [
+    "BriefFormat",
+    "FormatSetBuffer"
+   ],
+   "date": "2026-11-18",
+   "moved_to": "src/misc/format.c"
   }
  ]
 }

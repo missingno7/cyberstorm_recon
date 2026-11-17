@@ -5,7 +5,7 @@ extern "C" void RegisterAssertCallback(void (*)());
 extern HDC g512538;
 extern HWND g_mainWindow;
 extern int gViewX,gViewY,g5138ac,g5138b0;
-extern char helpTitle[];
+extern char helpTitle[], helpDefaultTitle[];
 extern HFONT helpFont;
 extern int helpTextHeight,helpTextMode;
 void GdiTextClose();
@@ -31,7 +31,7 @@ void HelpTextDraw(const char *message);
 void HelpTextDisplay(const char *message) {
  char title[256];
  if(helpTextMode&1) {
-  if(message) { strcpy(title,"CyberStorm          "); strcat(title,message); SetWindowText(g_mainWindow,title); }
+  if(message) { strcpy(title,helpDefaultTitle); strcat(title,message); SetWindowText(g_mainWindow,title); }
   else SetWindowText(g_mainWindow,helpTitle);
  }
  if(helpTextMode&2) HelpTextDraw(message);
@@ -46,7 +46,7 @@ void HelpTextDraw(const char *message) {
 }
 void HelpTextWindowTitle(const char *message) {
  char title[256];
- if(message) { strcpy(title,"CyberStorm          "); strcat(title,message); SetWindowText(g_mainWindow,title); }
+ if(message) { strcpy(title,helpDefaultTitle); strcat(title,message); SetWindowText(g_mainWindow,title); }
  else SetWindowText(g_mainWindow,helpTitle);
 }
 

@@ -32,8 +32,8 @@ extern void SendEvent(void *owner, int event, void *result = &eventCode,
                       int a = 0, int b = 0);
 extern int StateInvoke(void *action, int a, int b);
 extern int StateAction(void *action);
-extern void ReleaseUnit(void *state, int flags);
-extern void StopUnit(void *state, int flags);
+extern int ActorCrouch(ActorRecord *actor, int force);
+extern int ActorStand(ActorRecord *actor, int force);
 extern int UpdatePayload(void *unit, int rank);
 extern int ModeCheck(const char *name);
 extern void LogMode(const char *name, void *state, int a, int b);
@@ -242,16 +242,16 @@ void ActorArraySet(LogicActor *actor, int index, int value)
         ((int *)((char *)actor + 0x28))[index] = value;
 }
 
-void ActorReleaseUnit(LogicActor *actor)
+void ActorRandomAction(LogicActor *actor)
 {
     if (actor->state)
-        ReleaseUnit(actor->state, 0);
+        ActorCrouch((ActorRecord *)actor->state, 0);
 }
 
-void ActorStopUnit(LogicActor *actor)
+void ActorFinalize(LogicActor *actor)
 {
     if (actor->state)
-        StopUnit(actor->state, 0);
+        ActorStand((ActorRecord *)actor->state, 0);
 }
 
 int ActorIsAvailable(LogicActor *actor)

@@ -127,6 +127,7 @@ void QuickDrawOptions(Scene *s) {
   }
  }
 }
+extern char missionLoadErrorText[];
 void QuickShowMessage(Scene *,const char *);
 void ShellBriefingContinue(Scene *s) {
  quickBack.SetVisibility(5);quickRandom.SetVisibility(5);quickLaunch.SetVisibility(5);
@@ -135,7 +136,7 @@ void ShellBriefingContinue(Scene *s) {
  quickPrev2.SetVisibility(5);quickBar2.SetVisibility(5);quickNext2.SetVisibility(5);
  quickPrev3.SetVisibility(5);quickBar3.SetVisibility(5);quickNext3.SetVisibility(5);
  quickConfirm.flags&=0xfe1fffffUL;
- QuickShowMessage(s," Unable to load mission file. ");
+ QuickShowMessage(s,missionLoadErrorText);
 }
 void QuickShowMessage(Scene *,const char *text) {
  MenuDrawImage(&g513888,(MenuImage *)((char *)gShellImages+0x31c),200,150);SurfacePresent(&g513888);

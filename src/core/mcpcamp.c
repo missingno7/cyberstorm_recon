@@ -1,6 +1,5 @@
-/* Assigned fragment of a larger ProfileManager TU; its true starting VA is not established.
- * Working labels; packed offsets are read from the cs11 callers. Unknown areas
- * remain temporary storage declarations until the surrounding ProfileManager TU is recovered. */
+static char mcpcampSourceFile[] = __FILE__;
+/* Campaign mission generation. Packed record offsets come from the cs11 callers. */
 typedef unsigned char byte;
 typedef unsigned short ushort;
 typedef unsigned long U32;
@@ -282,7 +281,7 @@ void ProfileManager::RefreshMission(int slot) {
 }
 
 /* 0044052b: nine explicit offerings, with an inlined RefreshMission per slot. */
-extern int missionFinalIndex[];
+static int missionFinalIndex[] = {1, 2, 0};
 void GenerateMissions(ProfileManager *p) {
     byte count=MissionCountForType(p->missionType);
     int category=p->missionType!=0;

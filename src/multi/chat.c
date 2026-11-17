@@ -1,5 +1,5 @@
 #include <windows.h>
-extern char dialogOpenData[], g4dd0c0[]; int chatLogPending; char chatLogText[256];
+extern char dialogOpenData[], g4dd0c0[]; int chatLogPending; char chatLogText[200];
 
 inline const char *ChatWildcard() { return "**********"; }
 /* The reset and append sentinels occupy separate original literal slots. */

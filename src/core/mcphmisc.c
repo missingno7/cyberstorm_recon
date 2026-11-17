@@ -1,3 +1,4 @@
+static char mcphmiscSourceFile[] = __FILE__;
 /* Working names. Packed records follow the observed inventory layouts.
  * Unknown spans are provisional until the surrounding profile types are recovered. */
 #include <string.h>

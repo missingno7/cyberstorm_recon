@@ -1,3 +1,4 @@
+static char formatSourceFile[] = __FILE__;
 #include <stdarg.h>
 extern "C" int vsprintf(char *, const char *, va_list);
 static int formatBusy;

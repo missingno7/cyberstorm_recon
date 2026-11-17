@@ -5,11 +5,11 @@ extern void AssertFail(const char *file, int line, const char *message);
 extern void ReleasePoolData(void *data);
 extern "C" unsigned long strlen(const char *text);
 extern "C" void *memcpy(void *dest, const void *source, unsigned long size);
-#define ASSERT(e) if (!(e)) AssertFail(__FILE__, __LINE__, 0)
+static char strpoolSourceFile[] = __FILE__;
+#define ASSERT(e) if (!(e)) AssertFail(strpoolSourceFile, __LINE__, 0)
 class StrPool { public: long id; char *buffer; long capacity; PoolData *data; long size; StrPool(long id, long buffer, long capacity); StrPool *Reset(); int Lock(); int LockCore(); void Unlock(); char *GetString(long id, int loadData); char *GetSecondString(long id, int loadData); };
 StrPool::StrPool(long ident, long first, long second) { data = 0; buffer = (char *)first; capacity = second; id = ident; }
 StrPool *StrPool::Reset() { if (data != 0) { ReleasePoolData(data); data = 0; } return this; }
-// source-line padding before the line-59 ASSERTs
 // source-line padding before the line-59 ASSERTs
 // source-line padding before the line-59 ASSERTs
 // source-line padding before the line-59 ASSERTs
@@ -145,7 +145,7 @@ if(LockCore()){char *found=GetString(stringId,0);if(found!=0){if(buffer==0||size
             // source-line padding before the line-148 ASSERT
             // source-line padding before the line-148 ASSERT
             // source-line padding before the line-148 ASSERT
-                AssertFail(__FILE__, __LINE__, 0);
+                AssertFail(strpoolSourceFile, __LINE__, 0);
             }
             memcpy(buffer, found, size);
             if(data!=0){ReleasePoolData(data);data=0;}

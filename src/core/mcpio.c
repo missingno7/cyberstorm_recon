@@ -1,5 +1,5 @@
-/* Provisional fragment of the ProfileManager object; no embedded path.
- * Packed layouts shared with the published tu_0043b8e8. Names are working labels. */
+static char mcpioSourceFile[] = __FILE__;
+/* Session file I/O. The packed records are shared with core/mcp.c. */
 #include <string.h>
 typedef unsigned char U8;
 #pragma pack(push,1)

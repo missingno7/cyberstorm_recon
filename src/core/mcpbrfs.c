@@ -1,6 +1,6 @@
-/* Provisional briefing fragment, 0043e3ac..0043ecf8. It shares session and
- * report data with adjacent ProfileManager objects; exact TU boundaries remain
- * uncertain. No embedded path. All semantic names below are working labels. */
+static char mcpbrfsSourceFile[] = __FILE__;
+/* Mission briefing reports share the session tables with core/mcp.c.
+ * Function and record names are working labels. */
 #include <string.h>
 typedef unsigned char U8;
 struct MissionRecord {unsigned long words[22];};
