@@ -228,7 +228,12 @@ def analyse(img, known_data=frozenset(), known_jt_sites=frozenset()):
     ng = []
     ngp = ROOT / "config" / "nongame.json"
     if img.name == "cs11" and ngp.exists():
-        ng = [(int(r["start"], 16), int(r["end"], 16), r["class"]) for r in json.loads(ngp.read_text())["ranges"]]
+        rng = json.loads(ngp.read_text(encoding="utf-8"))["ranges"]
+        ng = [(int(r["start"], 16), int(r["end"], 16), r["class"]) for r in rng]
+        # class "embedded": data inside a function's object that the scanner read as an orphan start (switch keys);
+        # it is not a function, so no start may lie inside it
+        emb = [(int(r["start"], 16), int(r["end"], 16)) for r in rng if r["class"] == "embedded"]
+        starts = [s for s in starts if not any(a <= s < b for a, b in emb)]
 
     def kind_of(s):
         if s in libsyms:

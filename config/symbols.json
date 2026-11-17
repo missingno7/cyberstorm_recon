@@ -902,7 +902,7 @@
    "status": "matched",
    "mangled": "W?.fn_init$n()v",
    "tu": "src/shell/promosh.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-18"
   },
   "PromoScreen::$ct": {
    "va": "0040947e",
@@ -910,7 +910,7 @@
    "status": "matched",
    "mangled": "W?$ct:PromoScreen$n()_",
    "tu": "src/shell/promosh.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-18"
   },
   "ShellMapOpen": {
    "va": "004094b9",
@@ -925,7 +925,7 @@
    "status": "matched",
    "mangled": "W?Open$:PromoScreen$n(pn$InputReq$$i)v",
    "tu": "src/shell/promosh.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-18"
   },
   "PromoScreen::SetPage": {
    "va": "00409704",
@@ -933,7 +933,7 @@
    "status": "matched",
    "mangled": "W?SetPage$:PromoScreen$n()v",
    "tu": "src/shell/promosh.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-18"
   },
   "PromoScreen::NextPage": {
    "va": "0040b8f6",
@@ -941,7 +941,7 @@
    "status": "matched",
    "mangled": "W?NextPage$:PromoScreen$n()i",
    "tu": "src/shell/promosh.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-18"
   },
   "PromoScreen::SetLayout": {
    "va": "0040b9b2",
@@ -949,7 +949,7 @@
    "status": "matched",
    "mangled": "W?SetLayout$:PromoScreen$n()v",
    "tu": "src/shell/promosh.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-18"
   },
   "PromoScreen::Play": {
    "va": "0040ba39",
@@ -957,7 +957,7 @@
    "status": "matched",
    "mangled": "W?Play$:PromoScreen$n(pnxa)v",
    "tu": "src/shell/promosh.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-18"
   },
   "PromoScreen::PlayOnce": {
    "va": "0040bb0e",
@@ -965,7 +965,7 @@
    "status": "matched",
    "mangled": "W?PlayOnce$:PromoScreen$n(pnxapn$FlicSound$$)v",
    "tu": "src/shell/promosh.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-18"
   },
   "PromoScreen::DrawText": {
    "va": "0040bc26",
@@ -973,7 +973,7 @@
    "status": "matched",
    "mangled": "W?DrawText$:PromoScreen$n()v",
    "tu": "src/shell/promosh.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-18"
   },
   "ShellMapClose": {
    "va": "0040bd73",
@@ -988,7 +988,7 @@
    "status": "matched",
    "mangled": "W?Close$:PromoScreen$n()v",
    "tu": "src/shell/promosh.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-18"
   },
   "PromoScreen::Update": {
    "va": "0040bdb5",
@@ -996,7 +996,7 @@
    "status": "matched",
    "mangled": "W?Update$:PromoScreen$n()i",
    "tu": "src/shell/promosh.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-18"
   },
   "ShellMapRender": {
    "va": "0040be1b",
@@ -1011,7 +1011,7 @@
    "status": "matched",
    "mangled": "W?Render$:PromoScreen$n()v",
    "tu": "src/shell/promosh.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-18"
   },
   "PromoScreen::Finish": {
    "va": "0040be8c",
@@ -1019,7 +1019,7 @@
    "status": "matched",
    "mangled": "W?Finish$:PromoScreen$n()v",
    "tu": "src/shell/promosh.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-18"
   },
   "PromoScreen::$dt": {
    "va": "0040be9c",
@@ -1027,7 +1027,7 @@
    "status": "matched",
    "mangled": "W?$dt:PromoScreen$n()_",
    "tu": "src/shell/promosh.c",
-   "evidence": "strict match 2026-11-11"
+   "evidence": "strict match 2026-11-18"
   },
   "W?.fn_init$n()v@shell/biomenu.c": {
    "va": "0040bec0",
@@ -8226,7 +8226,7 @@
    "status": "matched",
    "mangled": "W?SearchInitialize$n(pn$SearchWorkspace$$pnxai)v",
    "tu": "src/_unknown/tu_0042cf40.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "BestLocState::$dt": {
    "va": "0042cf80",
@@ -8241,7 +8241,7 @@
    "status": "matched",
    "mangled": "W?SearchDestroy$n(pn$SearchWorkspace$$)pn$1$",
    "tu": "src/_unknown/tu_0042cf40.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "SearchAllocate": {
    "va": "0042cfc0",
@@ -8249,7 +8249,7 @@
    "status": "matched",
    "mangled": "W?SearchAllocate$n(pn$SearchWorkspace$$)i",
    "tu": "src/_unknown/tu_0042cf40.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "SimBestLocOpen": {
    "va": "0042cfc0",
@@ -8271,7 +8271,7 @@
    "status": "matched",
    "mangled": "W?SearchRelease$n(pn$SearchWorkspace$$)v",
    "tu": "src/_unknown/tu_0042cf40.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "BestLocSetup": {
    "va": "0042d080",
@@ -8299,10 +8299,10 @@
   "SearchGetCost": {
    "va": "0042d370",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?SearchGetCost$n(pn$SearchWorkspace$$i)i",
    "tu": "src/_unknown/tu_0042cf40.c",
-   "evidence": "placed (at) in src/_unknown/tu_0042cf40.c 2026-11-09"
+   "evidence": "strict match 2026-11-18"
   },
   "TerrainDrawOverlay": {
    "va": "0042d3f0",
@@ -18465,10 +18465,10 @@
   "ScriptFormatArgs": {
    "va": "00468135",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ScriptFormatArgs$n(pn$Script$$pnusi)pna",
    "tu": "src/logic/sinterp.c",
-   "evidence": "placed (found) in src/logic/sinterp.c 2026-11-09"
+   "evidence": "strict match 2026-11-18"
   },
   "ScriptStep": {
    "va": "004682dc",

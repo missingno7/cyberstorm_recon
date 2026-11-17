@@ -23,6 +23,13 @@
    "evidence": "Terrain blitters: ENTER/LEAVE, mirrored BSWAP path, explicit DS→ES, packed CH/CL loop state, ROL-based transparent dword copies."
   },
   {
+   "start": "00468200",
+   "end": "00468248",
+   "class": "embedded",
+   "member": "",
+   "evidence": "ScriptStep (logic\\\\sinterp.c) switch keys: 36 unrelocated words read by `repne scasw` (ECX=37, EDI=00468200), followed by the 37 relocated destinations at 00468248; the function map read 00468208 as an orphan start (review rv1/rv2)"
+  },
+  {
    "start": "0046cdbc",
    "end": "0046ceec",
    "class": "asm",

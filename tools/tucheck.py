@@ -143,7 +143,9 @@ def check_reports(reports, mods, img, starts):
         if not (n > 0 and first in starts and (not gap or compare._all_filler(gap))):
             why.append(f"object start {base:08x} is not an original function start")
     nxt = min((s for s in starts if s >= end), default=None)
-    if nxt is not None and nxt > end and any(img.read_va(end, nxt - end)):
+    import compare
+    if nxt is not None and nxt > end and any(img.read_va(end, nxt - end)) and \
+            not compare._table_tail(img.read_va(end, nxt - end), end, img.reloc_sites(), zero_ok=True):
         why.append(f"bytes {end:08x}..{nxt:08x} after the object are not zero fill (missing function?)")
     inside = [s for s in starts if base <= s < end]
     extent_starts = {int(e["va"], 16) for e in ext}

@@ -3984,6 +3984,11 @@
      "size": 341,
      "mangled": "W?ScriptCommandTarget$n(pn$Script$$ipnus)v"
     },
+    "ScriptFormatArgs": {
+     "va": "00468135",
+     "size": 200,
+     "mangled": "W?ScriptFormatArgs$n(pn$Script$$pnusi)pna"
+    },
     "ScriptAbort": {
      "va": "00468fbb",
      "size": 175,
@@ -8068,10 +8073,15 @@
      "va": "0042d040",
      "size": 64,
      "mangled": "W?SearchRelease$n(pn$SearchWorkspace$$)v"
+    },
+    "SearchGetCost": {
+     "va": "0042d370",
+     "size": 84,
+     "mangled": "W?SearchGetCost$n(pn$SearchWorkspace$$i)i"
     }
    },
    "data": {},
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-18"
   },
   "src/_unknown/tu_0042d3d0.c": {
    "as": "_unknown\\tu_0042d3d0.c",
@@ -12506,7 +12516,7 @@
     },
     "PromoScreen::Open": {
      "va": "004094b9",
-     "size": 495,
+     "size": 451,
      "mangled": "W?Open$:PromoScreen$n(pn$InputReq$$i)v"
     },
     "PromoScreen::SetPage": {
@@ -12587,7 +12597,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-11"
+   "accepted": "2026-11-18"
   },
   "src/shell/vrmenu.c": {
    "as": "shell\\vrmenu.c",
@@ -15986,6 +15996,13 @@
    ],
    "date": "2026-11-18",
    "moved_to": "src/misc/format.c"
+  },
+  {
+   "tu": "src/shell/promosh.c",
+   "functions": [
+    "PromoScreen::Open"
+   ],
+   "date": "2026-11-18"
   }
  ]
 }

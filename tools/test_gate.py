@@ -188,6 +188,51 @@ def embedded_data_checks(check):
         check(e.get("status") != "STRICT", "embedded data: a wrong switch key leaves ScriptEvalOp not STRICT")
 
 
+def key_ownership_checks(check):
+    """Switch keys and a following object's leading table belong to their reader, not to the function in front
+    (review rv1/rv2, 2026-11-18): ScriptFormatArgs and SearchGetCost are STRICT with their own bytes only,
+    PromoScreen::Open no longer counts SetPage's 44 key bytes, a wrong SetPage key is not STRICT, and the
+    zero-fill leading-table rule rejects a nonzero prefix byte, a missing relocation and a non-filler suffix."""
+    import compare
+    import gate
+    import pe as pemod
+    from common import ROOT
+    led = gate.load_ledger()["tus"]
+    for tu, label, size in (("src/logic/sinterp.c", "ScriptFormatArgs", 200),
+                            ("src/_unknown/tu_0042cf40.c", "SearchGetCost", 84),
+                            ("src/shell/promosh.c", "PromoScreen::Open", 451)):
+        r, _, _ = gate.build_and_compare(ROOT / tu, led[tu])
+        e = gate.by_label(gate.extents(r)).get(label, {})
+        check(e.get("status") == "STRICT" and e["end"] - e["off"] == size,
+              f"key/table ownership: {label} is STRICT with its own {size} bytes")
+    tu = "src/shell/promosh.c"
+    text = (ROOT / tu).read_text(encoding="latin-1")
+    check(text.count("case 1004:") == 1, "key ownership fixture: SetPage has one case 1004")
+    with tempfile.TemporaryDirectory(dir=ROOT / "build") as td:
+        q = Path(td) / "promosh.c"
+        q.write_text(text.replace("case 1004:", "case 1005:", 1), encoding="latin-1")
+        r, _, _ = gate.build_and_compare(q, led[tu])
+        ex = gate.by_label(gate.extents(r))
+        check(ex.get("PromoScreen::SetPage", {}).get("status") != "STRICT",
+              "key ownership: a wrong SetPage key is not STRICT")
+        check(ex.get("PromoScreen::Open", {}).get("status") == "STRICT",
+              "key ownership: the function in front of the keys stays STRICT (it does not own them)")
+    img = pemod.load(None)
+    rel = img.reloc_sites()
+    va, nxt = 0x0042D3C4, 0x0042D3F0          # SearchGetCost end .. next object's first public
+    gap = bytearray(img.read_va(va, nxt - va))
+    check(compare._table_tail(bytes(gap), va, rel, zero_ok=True), "leading table: oracle gap after SearchGetCost accepted")
+    g1 = bytearray(gap)
+    g1[0] = 0x90
+    g1[1] = 0x01
+    check(not compare._table_tail(bytes(g1), va, rel, zero_ok=True), "leading table: a nonzero prefix byte is rejected")
+    check(not compare._table_tail(bytes(gap), va, rel - {0x0042D3D0}, zero_ok=True),
+          "leading table: a missing relocation is rejected")
+    g3 = bytearray(gap)
+    g3[-1] = 0xCC
+    check(not compare._table_tail(bytes(g3), va, rel, zero_ok=True), "leading table: a non-filler suffix is rejected")
+
+
 def resource_checks(check):
     """tools/rsrc.py: policy and sensitivity (a one-pixel or one-character change is not STRICT)."""
     import shutil
@@ -317,6 +362,7 @@ def main():
     audit_v1_r2_scalars(check)
     table_neighbour_checks(check)
     embedded_data_checks(check)
+    key_ownership_checks(check)
     resource_checks(check)
     print("TEST GATE OK" if not fails else f"TEST GATE FAILED: {fails}")
     return 1 if fails else 0

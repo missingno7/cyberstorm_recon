@@ -93,7 +93,19 @@ _STARTS = {}
 
 def _table_tail(gap, va, relsites, zero_ok=False):
     """gap (original bytes from va to the next function start) = 0..3 filler bytes + one or more relocated dwords.
-    zero_ok: the pad may also be zero linker fill (the table is the NEXT object's leading switch table)."""
+    zero_ok: the table is the NEXT object's leading switch table: the pad may be zero linker fill of any length,
+    and compiler filler may follow the table up to that object's first function."""
+    if zero_ok:
+        z = 0
+        while z < len(gap) and gap[z] == 0:
+            z += 1
+        for start in range(z, min(z + 4, len(gap))):
+            n = 0
+            while start + n + 4 <= len(gap) and va + start + n in relsites:
+                n += 4
+            rest = gap[start + n:]
+            if n and (start == z or _all_filler(gap[z:start])) and (not rest or _all_filler(rest)):
+                return True
     for pad in range(0, 4):
         rest = len(gap) - pad
         padded = pad == 0 or _all_filler(gap[:pad]) or (zero_ok and not any(gap[:pad]))
@@ -421,6 +433,21 @@ class Comparison:
             while t - 4 > o and (t - 4) in ptrs:
                 t -= 4
             if t < e:
+                # data in front of the table that only a later extent reads (the word keys of a `repne scasw`
+                # dispatch) belongs to that later function as well
+                later_refs = set()
+                tab_sites = {g.off for g in self.m.fixups if g.seg == si and g.size() == 4 and not g.self_rel
+                             and g.target[0] & 3 == 0 and is_code(self.m.segments[g.target[1]])}
+                for g in self.m.fixups:
+                    if g.off - 4 in tab_sites or g.off + 4 in tab_sites:
+                        continue        # an entry of a pointer table points at code (a shared epilogue), not data
+                    if g.size() == 4 and not g.self_rel and g.target[0] & 3 == 0 and g.target[1] == si and \
+                            g.seg == si and g.off >= e and \
+                            not (g.off >= 3 and seg.data[g.off - 3] == 0xFF and seg.data[g.off - 2] == 0x24):
+                        later_refs.add(((0 if g.target[0] & 4 else g.disp) + self._addend(si, g)) & 0xFFFFFFFF)
+                k = min((r for r in later_refs if o < r < t), default=None)
+                if k is not None and not any(k <= f.off < t for f in self.fx_by_seg.get(si, [])):
+                    t = k
                 own = False
                 for f in self.fx_by_seg.get(si, []):
                     if o <= f.off < t and f.off in ptrs and f.target[1] == si:
@@ -669,6 +696,9 @@ class Comparison:
                 gap = self.img.read_va(end, nxt - end) if end < nxt else b""
                 if foreign_tail and end < nxt and _table_tail(gap, end, self.relsites):
                     pass                      # filler + the next function's switch table (proven by that function)
+                elif foreign_tail and end < nxt and isinstance(foreign_tail, tuple) and nxt - end == foreign_tail[0] \
+                        and all(nxt - 4 * (k + 1) in self.relsites for k in range(foreign_tail[1])):
+                    pass                      # filler + the next function's embedded data + table, same length
                 elif last and gap and not any(gap):
                     pass                      # zero linker fill after the object's last function
                 elif last and gap and _table_tail(gap, end, self.relsites, zero_ok=True):
@@ -786,7 +816,15 @@ class Comparison:
                     if ft:
                         # the extent ends before the next function's switch table (and its alignment filler)
                         ext.update(end=ft[0], full_end=e, foreign_table=e - ft[1])
-                    ext.update(self._evaluate(si, o, ext["end"], va, foreign_tail=bool(ft)), va=f"{va:08x}",
+                    ftail = None
+                    if ft:
+                        ptrs = {g.off for g in self.fx_by_seg.get(si, []) if g.size() == 4 and not g.self_rel
+                                and g.target[0] & 3 == 0 and is_code(self.m.segments[g.target[1]])}
+                        n_tab = 0
+                        while e - 4 * (n_tab + 1) >= ft[1] and e - 4 * (n_tab + 1) in ptrs:
+                            n_tab += 1
+                        ftail = (e - ft[0], n_tab)
+                    ext.update(self._evaluate(si, o, ext["end"], va, foreign_tail=ftail), va=f"{va:08x}",
                                placed=(self.ext_va.get((si, o), (0, "segment"))[1] if code else rep["placed"]))
                 rep["extents"].append(ext)
             sts = {x["status"] for x in rep["extents"]}

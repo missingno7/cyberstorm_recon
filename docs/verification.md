@@ -36,6 +36,17 @@ next public or the segment end, including compiler alignment filler and jump tab
    must equal the oracle byte for byte; otherwise the extent is UNBOUND (`<external code data>`). Before this rule
    ScriptEvalOp stayed STRICT with a wrong case key. Pointer-table entries and function pointers are not data.
    test_gate covers it.
+8. key and leading-table ownership (2026-11-18, reviews rv1/rv2): data in front of a foreign table that only a
+   LATER extent reads through a data operand (the word keys of a `repne scasw` dispatch; not a `jmp cs:[r*4+X]`
+   base, not a pointer-table entry) belongs to that later function together with its table. The extent in front
+   ends at its own last byte, and the original gap must have the same length and end in the same number of
+   relocated dwords; the keys themselves are proven by rule 7 at their reader. An object's last function may also
+   be followed by the NEXT object's leading table: any run of zero linker fill, then relocated dwords, then
+   compiler filler up to that object's first function (`_table_tail(zero_ok=True)`, also used by tucheck).
+   config/nongame.json class `embedded` removes false function starts inside such data (ScriptStep's keys at
+   00468200). Effect: ScriptFormatArgs (200 B) and SearchGetCost (84 B) became STRICT; PromoScreen::Open shrank
+   from 495 to 451 B (the 44 bytes were SetPage's keys, still proven by SetPage). test_gate covers positive
+   cases, a wrong key, a nonzero prefix byte, a missing relocation and a non-filler suffix.
 UNBOUND = all bytes equal but some fixup target unbound; DIFF = any byte, relocation or extent difference.
 
 Soundness note (2026-11-09): Watcom references into a segment as `SEG + 0` with the item offset in the
@@ -82,7 +93,7 @@ that moves when the file is cut at the real object boundary).
 A TU is COMPLETE when, in verify's view: every extent of its main code segment is STRICT and contiguous at
 base + object offset (no tail_fill); the object occupies the original range exactly (base is an original function
 start, every original start inside the range is one of its extents, and the bytes after it up to the next start are
-zero fill); every initialized data segment with bytes (CONST, CONST2, _DATA, XI/YI) is STRICT as a whole segment;
+zero fill, or zero fill plus the next object's leading switch table and filler, rule 8); every initialized data segment with bytes (CONST, CONST2, _DATA, XI/YI) is STRICT as a whole segment;
 a BSS segment is placed (base implied consistently by references); and every placed CONST/CONST2/_DATA/_BSS/XI
 segment lies on the longest increasing sequence of that segment name over objects sorted by code base (WLINK
 concatenates same-named segments in object order, so an outlier sits in another segment's region); and for two
