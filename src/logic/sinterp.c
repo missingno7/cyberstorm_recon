@@ -1169,9 +1169,9 @@ int ScriptRun(Script *s)
 long *ScriptCall(Script *s, unsigned short op, long *sp)
 {
     long result = 0;
-
+    int remainingArgs;
     if ((op & 0xf000) == 0xc000) {
-        int more = (op & 0x0f) - 1;
+        remainingArgs = (op & 0x0f) - 1;
         long who = *sp;
         sp = sp + 1;
         switch (op) {
@@ -1291,12 +1291,13 @@ long *ScriptCall(Script *s, unsigned short op, long *sp)
         default:
             AssertFail(__FILE__, __LINE__, "unknown function");
         }
-        sp += more;
+
     } else if ((op & 0xfff0) == 0xb030) {
         int pairs = (op & 0x0f) - 1;
         long total = *sp;
         long pick = next_link_seed(&MissionRandomTable) % total;
         long *p = sp = sp + 1 + pairs;
+        // Scan backward from the end of the arguments.
         pairs >>= 1;
         while (pairs-- > 0) {
             long value = *--p;
@@ -1315,8 +1316,9 @@ long *ScriptCall(Script *s, unsigned short op, long *sp)
                 }
             }
         }
+        goto storeResult;
     } else {
-        int n = op & 0x0f;
+        remainingArgs = op & 0x0f;
         switch (op) {
         case 0xb011:
             result = LogicStateValue(gLogic, *sp);
@@ -1346,17 +1348,15 @@ long *ScriptCall(Script *s, unsigned short op, long *sp)
 
 
 
-
-
             AssertFail(__FILE__, __LINE__, "unknown function");
         }
-        sp += n;
+
     }
+    sp += remainingArgs;
+storeResult:
     *--sp = result;
     return sp;
 }
-
-
 
 
 

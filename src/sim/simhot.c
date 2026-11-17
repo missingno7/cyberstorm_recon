@@ -1,4 +1,5 @@
-#include <string.h>
+extern "C" char *strcpy(char *, const char *);
+extern "C" void *memset(void *, int, unsigned);
 struct HotseatInput { int state, bits; int Pressed(int mask, int value) { return (bits & mask) == value; } }; struct ViewRect { int left, top, right, bottom; }; extern ViewRect viewportClipLeft, gBriefDrawSource; extern unsigned long *gMenuTextMap, shellDefaultTextMap[]; extern unsigned long gMenuTextColor, shellDefaultTextColor;
 
 extern char gHotbriefStrings[]; class FileRecord; class ResMgr; class FogBuffer; struct FogSource; int sprintf(char *, const char *, ...);
@@ -101,7 +102,13 @@ void SimHotWriteFogStream(FileRecord *stream)
     StreamWrite(stream, &clockValue, 4);
     StreamWrite(stream, &timerValue, 4);
 }
-struct MissionRecord { unsigned char header[16]; char name[172]; }; extern MissionRecord *gMissionRecords;
+struct MissionRecord {
+    unsigned char header[16];
+    char name[164];
+    int owner;
+    int reserved;
+};
+extern MissionRecord *gMissionRecords;
 void *AllocateMissionImage(void *, int, int); char *BriefFormat(void *, const char *); void f_00477295(char *); void AssertExit(int);void SimHotLoadMission(int index)
 {
     char *image = (char *)AllocateMissionImage(gHotbriefStrings, 0x1a2, 1);
@@ -117,7 +124,10 @@ void AssertFail(const char *, int, const char *);
 #define ASSERT(test) if (!(test)) AssertFail(__FILE__, __LINE__, 0)
 extern char DAT_0048b5ac[], DAT_0048b5ae[], DAT_0048b5b2[], DAT_0048b5b4[];
 extern short hotseatMapSizes[]; extern char g511ddc[]; extern char DAT_004d028b[]; extern int DAT_004d030f, DAT_004d3551, DAT_004d3555, DAT_004d3559, DAT_004fb940; extern short DAT_004c975c;
-extern unsigned long DAT_004c9354[], DAT_004f6600; extern char g4dd0c0[];
+struct MissionScript { int words[22]; };
+extern MissionScript missionScripts[];
+extern unsigned long DAT_004f6600;
+extern char g4dd0c0[];
 int f_00450930(void *, int, void *); char *f_0047c350(void *, int, int); void MissionRecordInitialize(void *, int, int, int, int, int); void MissionDataInit(void *, int, int, int, int, int, int);
 void HotbriefEmpty(void); void *LogicActorBuild(void *, void *); void BestLocSetData(void *, void *, void *); struct FastBuffer; void FastBufferReset(FastBuffer *); extern FastBuffer g4d35e4;
 ActorRecord *ActorGetByIndex(int); void *GetModePlayer(void *, int); void *f_0043c6ed(void *, int); 
@@ -171,22 +181,12 @@ inline int MissionIsActive(int *mission) { return *mission; }
 void SimHotStartMission(int *mission)
 {
     int result, slot, pathOffset, briefOffset, recordOffset;
-    int localPosition[2]; int localRecord[0x16]; char path[256]; int packedSize, width, height;
+    int localPosition[2]; MissionScript localRecord; char path[256]; short packedSize; int width, height;
     int ownerIndex, searchIndex, found, rawOwner;
     char *missionName;
-    char *missionOwner;
+    MissionRecord *players;
     char *logicData;
     ActorRecord *actor;
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
-// Original assertion source-line padding.
 // Original assertion source-line padding.
 // Original assertion source-line padding.
 // Original assertion source-line padding.
@@ -207,7 +207,7 @@ void SimHotStartMission(int *mission)
         gFogBuffers[fogIndex]->Resize(); FogCopy(gFogBuffers[fogIndex], &gFogBufferSource); gViewState[fogIndex] = gFogDefaultData;
     }
     gFogBufferInitialized = 1;
-    briefOffset = 0; recordOffset = 0; missionName = (char *)mission + 0x2ee; missionOwner = (char *)mission + 0x2de;
+    briefOffset = 0; missionName = (char *)mission + 0x2ee; players = (MissionRecord *)((char *)mission + 0x2de);
     for (slot = 0; slot < *(int *)((char *)gShellHotseat + 0x4c); ++slot) {
         result = f_00450930(mission, 1, 0);
 // Original assertion source-line padding.
@@ -217,8 +217,8 @@ void SimHotStartMission(int *mission)
 // Original assertion source-line padding.
         ASSERT(result == slot + 1);
         strcpy(missionName, (char *)gShellHotseat + 0x58 + briefOffset);
-        *(int *)(missionOwner + recordOffset + 0xb4) = *(signed char *)((char *)gShellHotseat + 0x1298 + slot);
-        briefOffset += 0x20; recordOffset += 0xbc; missionName += 0xbc;
+        players[slot].owner = *(signed char *)((char *)gShellHotseat + 0x1298 + slot);
+        briefOffset += 0x20; missionName += 0xbc;
     }
     *(int *)((char *)mission + 0x97e) = 1;
     *(int *)((char *)mission + 0x99e) = *(int *)((char *)mission + 0x97e);
@@ -227,16 +227,16 @@ void SimHotStartMission(int *mission)
     *(int *)((char *)mission + ((*(int *)((char *)mission + 0x98a) - 1) * 0xbc) + 0x392) = 8;
     char *poolText = f_0047c350(g511ddc, 0x9d, 0);
     strcpy((char *)mission + ((*(int *)((char *)mission + 0x98a) - 1) * 0xbc) + 0x2ee, poolText);
-    packedSize = (unsigned short)hotseatMapSizes[*(int *)((char *)gShellHotseat + 0x12c0)];
+    packedSize = hotseatMapSizes[*(int *)((char *)gShellHotseat + 0x12c0)];
     width = (hotseatMapSizes[*(int *)((char *)gShellHotseat + 0x12c0)] >> 8) - 1;
     height = (packedSize & 0xf) - 1;
-    MissionRecordInitialize(localRecord, 8, width, height, 1, 1);
-    MissionDataInit(localRecord, 3, 0, 0, *(int *)((char *)gShellHotseat + 0x12b0), *(int *)((char *)gShellHotseat + 0x12b4), *(int *)((char *)gShellHotseat + 0x12a0));
-    localRecord[7] = 0x67; HotbriefEmpty(); logicData = (char *)LogicActorBuild(g4dd0c0, localRecord);
+    MissionRecordInitialize(&localRecord, 8, width, height, 1, 1);
+    MissionDataInit(&localRecord, 3, 0, 0, *(int *)((char *)gShellHotseat + 0x12b0), *(int *)((char *)gShellHotseat + 0x12b4), *(int *)((char *)gShellHotseat + 0x12a0));
+    localRecord.words[7] = 0x67; HotbriefEmpty(); logicData = (char *)LogicActorBuild(g4dd0c0, &localRecord);
     slot = 0; pathOffset = 0; recordOffset = 0;
     for (;;) {
         if (slot >= *(int *)((char *)gShellHotseat + 0x4c)) {
-            DAT_004c975c = 0; memcpy(DAT_004c9354, localRecord, 0x58);
+            DAT_004c975c = 0; missionScripts[0] = localRecord;
             gFogBufferSource.Initialize(*(int *)((char *)gShellHotseat + 0x12a4), 1);
             DAT_004d3551 = 1; DAT_004d3555 = *(int *)((char *)gShellHotseat + 0x12c4); DAT_004d3559 = *(int *)((char *)gShellHotseat + 0x12c8);
             DAT_004f6600 = *(unsigned long *)((char *)gShellHotseat + 0x12bc); FastBufferReset(&g4d35e4); *(int *)((char *)mission + 0x2ba) = 0; return;

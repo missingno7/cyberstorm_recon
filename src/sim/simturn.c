@@ -146,7 +146,7 @@ void SimApplyLeadership(SimGame *s,ActorRecord *target) {
   int value=PilotValue(a->pilot,7);if(distance>2)value-=(distance-2)*10;if(value>0)total+=value/2;}
  unsigned before=PilotValue(target->pilot,204);
  SendEvent(target->pilot,108,(void *)total,0,0); unsigned after=PilotValue(target->pilot,204);
- if(before!=after && s->linked) {sprintf(text,targetBriefResource.GetString(1204),target->pilot); SimMessage(s,text);}
+ if(before!=after && s->linked) {sprintf(text,targetBriefResource.GetString(1204),target->Pilot()); SimMessage(s,text);}
 }
 
 int SimAddPlayer(SimGame *s,int status,PlayerSlot *source) {

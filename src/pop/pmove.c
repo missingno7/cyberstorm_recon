@@ -301,6 +301,12 @@ void MovementCommand(SimGame *s) {
         SimTargetAction(s,s->focus->target);
         SimPrepareAction(s,s->focus->target);
         break;
+        case 8:
+            if (s->target) {
+                SimTargetAction(s, s->target);
+                SimPrepareAction(s, s->target);
+            } else SoundPlay(7, 0);
+        break;
         case 7: {
             SoundPlay(9,0);
             ActorRecord *saved=g4d2498;
@@ -314,12 +320,6 @@ void MovementCommand(SimGame *s) {
             }
             SimSetFocus((SimGame *)&modeCheckName,saved);
         }
-        break;
-        case 8:if(s->target) {
-            SimTargetAction(s,s->target);
-            SimPrepareAction(s,s->target);
-        }
-        else SoundPlay(7,0);
         break;
         case 10:if(!s->target) {
             SoundPlay(7,0);

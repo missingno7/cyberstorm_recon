@@ -1,5 +1,5 @@
 #include <string.h>
-#include <stdlib.h>
+extern "C" int abs(int);
 char animSourcePath[] = "sim\\anim.c";
 extern void AssertFail(const char *file, int line, const char *message);
 struct AnimBlockAllocation { unsigned char bytes[0x494]; };
@@ -368,8 +368,8 @@ void AnimActionInterpolateDrawPos(AnimAction *p, int *position, int frame,
 
 unsigned long AnimActionCommitTrajectory(AnimAction *p) {
 
-    int listA[10];
-    int listB[10];
+
+
     int distance = PointAngle((GridPoint *)(&p->from), (GridPoint *)(&p->to));
     unsigned long direction = (unsigned long)GridClamp(distance) * 0x2aaaaabcUL;
     
@@ -442,14 +442,14 @@ success:
         if (*((unsigned char *)actor + 0x89) == 0) {
             int resourceCount = animationMetaAt0cbc[(p->kind) * 15];
             p->resource = target;
-            if (resourceCount < 2) {
-                actorIndexTable[target * 2] = actor[0];
-            } else {
-                animReleaseSentinel = (unsigned long)actor[0];
-                BestLocInitialize(listA, fallbackName, resourceCount - 1);
-                BestLocSetCandidate(listA, (void *)target);
-                BestLocVisit(listA, (int (*)(void *))AnimActionRelease);
-            }
+            AnimActionAssign(p, actor[0], target, resourceCount);
+
+
+
+
+
+
+
         }
         if (g_004d2dee == 4 || g_004d271a == 2) {
             p->frame = 0;
@@ -464,7 +464,7 @@ success:
                                             (GridPoint *)(&p->to));
             int groupDistance = abs((int)startGroup -
                 (int)targetDefinitionTable[endIndex * 12 + 1]);
-            if (799 < groupDistance * g_004c7e50) {
+            if (groupDistance * g_004c7e50 >= 800) {
                 p->state = 9;
                 p->frame = 0;
                 rate = animationModeRate[g_004d2dee];

@@ -82,21 +82,23 @@ void GenerateMissions(ProfileManager *); void ReplaceMission(ProfileManager *);
 void ProfileManager::BeginMissions() {
     MissionInfo initial;
     DebriefStats stats;
+    struct MissionPayout {
+        int objectives, possible, damage, kills, base, earned;
+    } payout;
     int regenerate=0, promote=0;
     LogicGetMissionSummary((byte *)g4dd0c0,(U32 *)&stats);
     specialMission=missions[choice];
     DecodeMission(&missions[choice],&initial);
     int rate = initial.category==1 ? 80 : 30;
-    int damageBonus=stats.value*((U32)(rate*stats.damaged)/100);
-    int killBonus=stats.kills*stats.value;
-    int baseBonus=initial.value;
-    int reward=killBonus;
-    if(stats.objectives==stats.totalObjectives) reward+=damageBonus;
+    payout.damage = stats.value * ((U32)(rate * stats.damaged) / 100);
+    int reward = payout.kills = stats.kills * stats.value;
+    payout.base = initial.value;
+    if(stats.objectives==stats.totalObjectives) reward+=payout.damage;
     if(IsSpecial()) reward*=10;
-    int objectiveBonus=stats.objectives*initial.value20;
-    if(initial.category==1 && stats.kills==0 && stats.damaged==0) baseBonus=0;
-    int earned=baseBonus+(reward+objectiveBonus);
-    int possible=initial.value+(stats.totalObjectives*initial.value20+stats.totalKills*stats.value);
+    payout.objectives=stats.objectives*initial.value20;
+    if(initial.category==1 && stats.kills==0 && stats.damaged==0) payout.base=0;
+    payout.earned = payout.base + (reward + payout.objectives);
+    payout.possible = initial.value + (stats.totalKills * stats.value + stats.totalObjectives * initial.value20);
     ++field40c; ++missionsTotal;
     int experience=(initial.difficulty*g4c9280+50)/100;
     for(int i=0;i<unitCount;++i) {
@@ -111,7 +113,7 @@ void ProfileManager::BeginMissions() {
     case 1:
         ++field408;++wins;++streak;
         killsTotal+=stats.kills;objectivesTotal+=stats.objectives;
-        regenerate=1;money+=earned;
+        regenerate=1;money+=payout.earned;
         if(!IsSpecial() && initial.category==2) progress+=3; else ++progress;
         if(rank!=14) {
             if(IsSpecial()) {
@@ -158,14 +160,14 @@ void ProfileManager::BeginMissions() {
         if(!IsSpecial()) DebugTextAppend(BriefFormat("%s%s\n%s%s\n",reportToken_004941c8,reportToken_00494184,LogicTextPointer(g4dd0c0),reportToken_004941c8));
         DebugTextAppend("\n");
         DebugTextAppend(BriefFormat("\n%s%s:\n",reportToken_0049417c,g511ddc.GetString(0xbc)));
-        DebugTextAppend(BriefFormat("%s%s%s: %s%s%d %s%s\n",reportToken_004941a8,reportToken_0049417c,g511ddc.GetString(0xa0),reportToken_00494184,reportToken_004941b8,killBonus,reportToken_004941c0,g511ddc.GetString(0xb1)));
-        if(stats.objectives==stats.totalObjectives) DebugTextAppend(BriefFormat("%s%s%s: %s%s%d %s%s\n",reportToken_004941a8,reportToken_0049417c,g511ddc.GetString(0xa2),reportToken_00494184,reportToken_004941b8,damageBonus,reportToken_004941c0,g511ddc.GetString(0xb1)));
-        DebugTextAppend(BriefFormat("%s%s%s: %s%s%d %s%s\n",reportToken_004941a8,reportToken_0049417c,g511ddc.GetString(0xbf),reportToken_00494184,reportToken_004941b8,objectiveBonus,reportToken_004941c0,g511ddc.GetString(0xb1)));
-        DebugTextAppend(BriefFormat("%s%s%s: %s%s%d %s%s\n",reportToken_004941a8,reportToken_0049417c,g511ddc.GetString(0xc2),reportToken_00494184,reportToken_004941b8,baseBonus,reportToken_004941c0,g511ddc.GetString(0xb1)));
+        DebugTextAppend(BriefFormat("%s%s%s: %s%s%d %s%s\n",reportToken_004941a8,reportToken_0049417c,g511ddc.GetString(0xa0),reportToken_00494184,reportToken_004941b8,payout.kills,reportToken_004941c0,g511ddc.GetString(0xb1)));
+        if(stats.objectives==stats.totalObjectives) DebugTextAppend(BriefFormat("%s%s%s: %s%s%d %s%s\n",reportToken_004941a8,reportToken_0049417c,g511ddc.GetString(0xa2),reportToken_00494184,reportToken_004941b8,payout.damage,reportToken_004941c0,g511ddc.GetString(0xb1)));
+        DebugTextAppend(BriefFormat("%s%s%s: %s%s%d %s%s\n",reportToken_004941a8,reportToken_0049417c,g511ddc.GetString(0xbf),reportToken_00494184,reportToken_004941b8,payout.objectives,reportToken_004941c0,g511ddc.GetString(0xb1)));
+        DebugTextAppend(BriefFormat("%s%s%s: %s%s%d %s%s\n",reportToken_004941a8,reportToken_0049417c,g511ddc.GetString(0xc2),reportToken_00494184,reportToken_004941b8,payout.base,reportToken_004941c0,g511ddc.GetString(0xb1)));
         DebugTextAppend(BriefFormat("\n\n%s%s:\n",reportToken_0049417c,g511ddc.GetString(0xb8)));
         DebugTextAppend(BriefFormat("%s%s%s: %s%s%d%s%d%%\n",reportToken_004941a8,reportToken_0049417c,g511ddc.GetString(0xa1),reportToken_00494184,reportToken_004941b8,stats.kills,reportToken_004941c0,(stats.kills && stats.totalKills ? stats.kills*100/stats.totalKills : 0)));
         DebugTextAppend(BriefFormat("%s%s%s: %s%s%d%s%d%%\n",reportToken_004941a8,reportToken_0049417c,g511ddc.GetString(0x9e),reportToken_00494184,reportToken_004941b8,stats.objectives,reportToken_004941c0,(stats.objectives && stats.totalObjectives ? stats.objectives*100/stats.totalObjectives : 0)));
-        DebugTextAppend(BriefFormat("\n%s%s%s: %s%s%d%s%s%d%%\n",reportToken_004941a8,reportToken_0049417c,g511ddc.GetString(0xb9),reportToken_00494194,reportToken_004941b8,earned,reportToken_004941c0,reportToken_00494184,(earned && possible ? earned*100/possible : 0)));
+        DebugTextAppend(BriefFormat("\n%s%s%s: %s%s%d%s%s%d%%\n",reportToken_004941a8,reportToken_0049417c,g511ddc.GetString(0xb9),reportToken_00494194,reportToken_004941b8,payout.earned,reportToken_004941c0,reportToken_00494184,(payout.earned && payout.possible ? payout.earned*100/payout.possible : 0)));
         if(promote) {
             byte oldRank=rank,newRank=rank;
             if(initial.category==3) {do {++newRank;} while(rankDescriptors[newRank].skip>0);} else newRank=oldRank+1;
@@ -208,7 +210,7 @@ void ProfileManager::BeginMissions() {
             } else {
                 DebugTextAppend(BriefFormat("%s%s%s: %s",reportToken_0049417c,reportToken_004941a8,g511ddc.GetString(0x66),reportToken_004941b0));
                 int damage=PilotValue(GetUnit(index),0xd4)*10-GetUnit(index)->wounds;
-                char *description=g511ddc.GetString(damage==1 ? 0x71 : 0x72);
+                char *description=damage == 1 ? g511ddc.GetString(0x71) : g511ddc.GetString(0x72);
                 if(flags&0x40000) {
                     DebugTextAppend(BriefFormat("%s%d %s\n",reportToken_00494194,damage,description));
                     DebugTextAppend(BriefFormat("%s%s%s\n",reportToken_004941b0,reportToken_00494194,g511ddc.GetString(0x74)));
@@ -238,7 +240,7 @@ void ProfileManager::BeginMissions() {
             } else {
                 DebugTextAppend(BriefFormat("%s%s%s: %s",reportToken_0049417c,reportToken_004941a8,g511ddc.GetString(0x66),reportToken_004941b0));
                 int damage=PilotValue(unit,0xd4)*10-base[number-1].wounds;
-                char *description=g511ddc.GetString(damage==1 ? 0x71 : 0x72);
+                char *description=damage == 1 ? g511ddc.GetString(0x71) : g511ddc.GetString(0x72);
                 if(flags&0x40000) {
                     DebugTextAppend(BriefFormat("%s%d %s\n",reportToken_00494194,damage,description));
                     DebugTextAppend(BriefFormat("%s%s%s\n",reportToken_004941b0,reportToken_00494194,g511ddc.GetString(0x74)));

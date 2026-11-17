@@ -79,11 +79,12 @@ void SimSetupWorld(SimGame *s) {
  int width=g5138ac,height=g5138b0;if(screenHeight<500)height-=20;
  SigsStart(&g513888,0);SurfacePresent(&g513888);GuiResetClip(&gMenuClip);
  simTransform.direction=s->view.direction;SetFastView(&gFastTransform,&simTransform);
- gViewRect.Set(148,0,width-1,height-87);
  simPortraitRect.Set(0,0,147,140);
- simStatusRect.Set(0,141,147,height-1);
- g4d381c.Set(0,0,width-1,height-1);
- g4d385c.Set(148,height-86,width-1,height-1);
+ --width;
+ gViewRect.Set(148,0,width,height-87);
+ g4d381c.Set(0,0,width,height-1);
+ simStatusRect.Set(0,141,147,g4d381c.bottom);
+ g4d385c.Set(148,height-86,width,g4d381c.bottom);
  SimClipInitialize(&g4d3c9c,&simPortraitRect);SimClipInitialize(&simClip,&simStatusRect);SimClipInitialize(&g4d3cec,&g4d385c);SimClipInitialize(&simMainClip,&gViewRect);
  simMainSaved=simMainClip;simDetailClip=simMainClip;simDetailSaved=simMainClip;
  GuiRect clip;clip.x=gViewRect.left;clip.y=gViewRect.top;clip.width=gViewRect.right-gViewRect.left+1;clip.height=gViewRect.bottom-gViewRect.top+1;

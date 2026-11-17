@@ -83,7 +83,15 @@ extern void HelpSetDirty(int);extern ActorRecord *ActorGetByIndex(int);extern Ac
 extern unsigned long gIn80,gInA0;extern long gIn7c;extern int SimShortcutMode(void *); extern "C" int sprintf(char *,const char *,...);
 void f_0044591f(HercModule *,int);void f_00446570(HercModule *);void f_00446253(int);
 void f_004465d6(int);
-inline uint RandomBelow(uint limit){return next_link_seed(&gFxSeed)%limit;}inline int Percent(int n,int p){return n*p/100;}inline int ClampValue(int n,int lo,int hi){if(n<=lo)return lo;if(n>=hi)return hi;return n;}
+inline uint RandomBelow(uint limit){return next_link_seed(&gFxSeed)%limit;}
+inline int ScaleFraction(int value, int numerator, int denominator = 100)
+{
+    int product = value;
+    product *= numerator;
+    product /= denominator;
+    return product;
+}
+inline int ClampValue(int n,int lo,int hi){if(n<=lo)return lo;if(n>=hi)return hi;return n;}
 inline void GuiControl::Clip(){int left=x;int top=y;int w=width;int h=height;MenuSetClip(&gMenuClip,left,top,w,h);}
 inline void GuiControl::Background(){PopDrawSurface(&g513888,1,0,x,y,width,height);}
 // Two static image buttons: the compiler generates the initializer at 00445238 (module registration, two
@@ -159,12 +167,12 @@ void f_004456f3(void) {
 uint f_004456f4(int *box) {
  int mouse=g4bb78c;
  int left=box[0];
- int low=left+Percent(box[2],42);
- int high=Percent(box[2],58)+left;
+ int low=left+ScaleFraction(box[2], 42);
+ int high=ScaleFraction(box[2], 58)+left;
  int right=box[2]+left;
  int speed=0;
- if(mouse<low)speed=(low-mouse)*40/(low-left)+1;
- else if(mouse>high)speed=-(mouse-high)*40/(right-high)-1;
+ if(mouse<low)speed=ScaleFraction(low - mouse, 40, low - left)+1;
+ else if(mouse>high)speed=ScaleFraction(-(mouse - high), 40, right - high)-1;
  speed=ClampValue(speed,-40,40);
  *(int *)(DAT_004d1fa4+0x607)=speed;
  return 0;
@@ -217,14 +225,6 @@ void f_0044591f(HercModule *self,int actor) {
  if(self->portrait){
   if(gResMgr.FindPath((char *)BriefFormat("DMGHRC%02d.BMX",self->portrait),&self->file,1)){
    self->totalBytes=IoClose(&self->file);self->loaded=0;self->buffer=GlobalBlockAlloc(self->totalBytes,0);
-
-
-
-
-
-
-
-
 
 
 

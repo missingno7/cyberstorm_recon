@@ -3120,7 +3120,7 @@
      "size": 11
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-17"
   },
   "src/multi/linkapp.c": {
    "as": "multi\\linkapp.c",
@@ -3981,6 +3981,11 @@
      "size": 165,
      "mangled": "W?ScriptRun$n(pn$Script$$)i"
     },
+    "ScriptEvalOp": {
+     "va": "004697a8",
+     "size": 534,
+     "mangled": "W?ScriptEvalOp$n(pn$Script$$uspnl)pnl"
+    },
     "ScriptEval": {
      "va": "004699be",
      "size": 215,
@@ -4010,7 +4015,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-16"
+   "accepted": "2026-11-18"
   },
   "src/shell/hotseat.c": {
    "as": "shell\\hotseat.c",
@@ -4266,7 +4271,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-16"
+   "accepted": "2026-11-17"
   },
   "src/multi/minipkt.c": {
    "as": "multi\\minipkt.c",
@@ -4743,7 +4748,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-11"
+   "accepted": "2026-11-17"
   },
   "src/main/WIN/winmain.c": {
    "as": "main\\WIN\\winmain.c",
@@ -5470,7 +5475,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-17"
   },
   "src/sim/hotbrief.c": {
    "as": "sim\\hotbrief.c",
@@ -6089,7 +6094,7 @@
     }
    },
    "data": {},
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-17"
   },
   "src/sim/sim.c": {
    "as": "sim\\sim.c",
@@ -6440,7 +6445,7 @@
      "size": 14
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-17"
   },
   "src/terr/tbuild.c": {
    "as": "terr\\tbuild.c",
@@ -11793,7 +11798,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-17"
   },
   "src/pop/pweapon.c": {
    "as": "pop\\pweapon.c",
@@ -12151,7 +12156,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-17"
   },
   "src/pop/pturn.c": {
    "as": "pop\\pturn.c",
@@ -13673,7 +13678,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-18"
   },
   "src/sim/simmain.c": {
    "as": "sim\\simmain.c",

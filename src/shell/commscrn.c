@@ -249,7 +249,13 @@ GuiControl *g48e8f4[0x4a] = {
     &gCommsSystems[11], &gCommsSystems[12], &gCommsSystems[13], &g4b21bc, &g4b2048, &g4b21ec, &gCommsOptions[0],
     &gCommsOptions[1], &gCommsOptions[2], &gCommsOptions[3], &gCommsOptions[4], &g4b2148, &g4b2aa8
 };
-inline long Percent(long value, long percent) { return value * percent / 100; }
+inline long Percent(long value, long percent)
+{
+    long product = value;
+    product *= percent;
+    product /= 100;
+    return product;
+}
 
 CommsScreen::CommsScreen() : GuiScreen(g48e8f4, 0x4a, 0), timer(0), timer2(0) {}
 
@@ -259,26 +265,26 @@ void CommsLogView::Draw(unsigned) {}
 
 int CommsLogView::Event(unsigned, U32)
 {
-    if (!g4b2e30.IsLoaded()) return 0;
-    {
+    int result = g4b2e30.IsLoaded();
+    if (result) {
         long mouse = g4bb78c.x;
-        
-        
-        long low = x + width * 42 / 100;
-        long high = x + width * 58 / 100;
-        long right = width + x;
+        long left = x;
+        long low = left + Percent(width, 42);
+        long high = left + Percent(width, 58);
+        long right = width + left;
         if (mouse < low) {
             g4b2e30.scrollDirection = 1;
-            g4b2e30.scrollSpeed = (mouse - x) * 150 / 100 + 5;
+            g4b2e30.scrollSpeed = Percent(mouse - left, 150) + 5;
         } else if (mouse > high) {
             g4b2e30.scrollDirection = -1;
-            g4b2e30.scrollSpeed = (right - mouse) * 150 / 100 + 5;
+            g4b2e30.scrollSpeed = Percent(right - mouse, 150) + 5;
         } else {
             g4b2e30.scrollDirection = 0;
             g4b2e30.scrollSpeed = 0x53;
         }
+        result = 0;
     }
-    return 0;
+    return result;
 }
 
 void CommsScreenUpdate(CommsScreen *screen);
@@ -298,12 +304,6 @@ void CommsDrawSelected(CommsScreen *screen);
 void CommsReadChunk(CommsScreen *screen);
 void CommsAnimate(CommsScreen *screen);
 void CommsShowContact(CommsScreen *screen);
-
-
-
-
-
-
 
 
 

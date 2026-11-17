@@ -417,7 +417,8 @@ void ReportDrawUnit(ReportScreen *s) {
                 int j;
                 for(j=0;j<filled;j++)MenuDrawImage(&g513888,&drawCursorImages->image[image],bx+j*3,by);
                 for(;j<19;j++)MenuDrawImage(&g513888,&drawCursorImages->image[image+1],bx+j*3,by);
-                MenuDrawText(&reportFont,bx+21,by-11,targetBriefResource.GetString(row+1300));
+                long textId = row + 1300;
+                MenuDrawText(&reportFont,bx+21,by-11,targetBriefResource.GetString(textId));
                 MenuDrawTextAt(&reportFont,bx+57,by-11,1,BriefFormat("%d",value[row]));
             }
             U32 flash=s->tick&1;

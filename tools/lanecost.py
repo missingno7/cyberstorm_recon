@@ -4,8 +4,8 @@
 
 Codex lanes: cx run records (~/.codex-dashboard/runs) joined with the session rollout's last token_count.
 Claude subagents: sum of the `usage` of every assistant message in the subagent transcript (deduplicated by message
-id). Prices in USD per million tokens, defaults: gpt-6.1-sol 2.00 in / 0.10 cached / 10.00 out (third-party price
-lists, 2026-11); claude-fable-5-2 8.00 in / 0.20 cache read / 40.00 out, cache writes 1.25x input (5 min) and 2x
+id). Prices in USD per million tokens, defaults: gpt-6.1-sol 2.00 in / 0.10 cached / 10.00 out (OpenAI, "Introducing GPT-6.2 Astra and Sol": 6.2 Sol keeps
+6.1 Sol's rates; 6.2 Astra $8 / $0.40 / $40); claude-fable-5-2 8.00 in / 0.20 cache read / 40.00 out, cache writes 1.25x input (5 min) and 2x
 (1 h). Override with --price MODEL=in,cached,out.
 """
 import glob
@@ -13,7 +13,8 @@ import json
 import sys
 from pathlib import Path
 
-PRICE = {"gpt-6.1-sol": (2.0, 0.10, 10.0), "gpt-6-luna": (0.1, 0.005, 0.5), "claude-fable-5-2": (8.0, 0.20, 40.0)}
+PRICE = {"gpt-6.2-astra": (8.0, 0.40, 40.0), "gpt-6.2-sol": (2.0, 0.10, 10.0), "claude-opus-5-5": (4.0, 0.20, 20.0),
+         "gpt-6.1-sol": (2.0, 0.10, 10.0), "gpt-6-luna": (0.1, 0.005, 0.5), "claude-fable-5-2": (8.0, 0.20, 40.0)}
 
 
 def codex(names):
