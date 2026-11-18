@@ -167,7 +167,7 @@ unsigned long IoClose(FileRecord *file)
         // source-line padding before the line-170 ASSERT
         // source-line padding before the line-170 ASSERT
         // source-line padding before the line-170 ASSERT
-        AssertFail(fileSourcePath, __LINE__, (const char *)active);
+        AssertFail(fileSourcePath, __LINE__, 0);
     }
     if (file->direct) return file->length;
     current = IoRead(file,0, 1);

@@ -7,7 +7,9 @@ typedef unsigned long U32;
 
 struct GuiPoint {
     long x,y;
-    GuiPoint(long a=0,long b=0):x(a),y(b) {
+    GuiPoint(long a=0,long b=0) {
+        y=b;
+        x=a;
     }
 };
 struct ViewRect {
@@ -220,7 +222,7 @@ extern U8 previewDirection;
 extern TargetScene targetScene;
 extern WeaponReport weaponReport;
 extern int targetSceneActive,targetActorId,modeSwitch,previewMode;
-extern MenuImages *weaponImages;
+extern MenuImages *drawCursorImages;
 extern char fallbackName[],gView[];
 extern FogData gFogDefaultData;
 extern int MenuControlChanged(void *,unsigned,U32 *);
@@ -423,13 +425,13 @@ void WeaponPopup::UpdatePreview() {
         DrawSprite(&g513888,SimAnimFrame(&previewAnim,-1),x+2,y+2,0,size-4,size-4);
         gDrawRemap=0;
         f_0042f490(fallbackName,x,y,8);
-        MenuDrawImage(&g513888,(MenuImage *)((char *)weaponImages+0x7d8),x,y);
+        MenuDrawImage(&g513888,(MenuImage *)((char *)drawCursorImages+0x7d8),x,y);
         gDrawRemap=f_0045bb30(unit,actor->action.angle,&previewUnit);
-        MenuDrawImage(&g513888,(MenuImage *)((char *)weaponImages+0x43c),x-1,y-1);
+        MenuDrawImage(&g513888,(MenuImage *)((char *)drawCursorImages+0x43c),x-1,y-1);
         gDrawRemap=0;
         int turn=GridClamp(PointAngle(&scene->destination,&scene->source)-actor->action.direction);
         int direction=(actor->action.angle+turn)%6;
-        MenuDrawImage(&g513888,&weaponImages->images[direction+168],x+weaponMarkerOffsets[direction][0],y+weaponMarkerOffsets[direction][1]);
+        MenuDrawImage(&g513888,&drawCursorImages->images[direction+168],x+weaponMarkerOffsets[direction][0],y+weaponMarkerOffsets[direction][1]);
         previewUnit=*unit;
     }
     else if(scene->model) {

@@ -35,10 +35,10 @@ extern "C" void BriefModuleOpen(void *object, int id, int delay, int flags); ext
 extern void f_00425e1a(int); struct SimGame;struct ActorRecord;extern void SimDrawTimer(SimGame *,int,int,int=1,int=-1); extern void f_0047ae20(unsigned long *); struct HercModule;extern int f_00445e23(HercModule *); extern void PilotSetState(SimGame *,int);
 extern void SimSetFocus(SimGame *,ActorRecord *); struct FileRecord; extern unsigned long StreamRead(FileRecord *, void *, unsigned long); extern "C" int GameTimerExpired(int); extern "C" void GameTimerSet(int *, int);
 extern void HercAngleWeights(int, int *, int *, int *, int *); extern void f_0047c320(void *); extern void SigsStart(void *,int); extern void SurfacePresent(void *); extern void SetGameWindowSize(int=-1,int=-1);
-extern void f_004272cd(void *, long, long, long); extern void f_0042732e(void *, long, long); extern "C" int BriefWaitB(int); extern "C" int BriefWaitA(int); extern void f_0047eb40(void *);
-extern void f_0041caf9(void *, int); extern void f_00445c81(int); extern char DAT_00511df0, DAT_00511948, DAT_00511958;
-extern long DAT_00513890, DAT_00513898, g5138ac, DAT_005138b0, DAT_00511960; extern int DAT_004faf44; extern "C" void ReleasePoolData(void *); extern "C" void GlobalBlockFree(void *);
-extern char g4b74f4; extern char g511948, gMenuSavedSurface; extern void GuiResetClip(void *); extern "C" void BriefRenderUpdate(void *); extern char modeCheckName[]; inline int SurfaceWidth(){return g5138ac;}inline int SurfaceHeight(){return DAT_005138b0;}inline void *SurfacePixels(){return (void *)DAT_00513890;}
+struct Surface; extern int SurfaceAttach(Surface *, void *, long, long); extern int SurfaceCreate(Surface *, long, long); extern "C" int BriefWaitB(int); extern "C" int BriefWaitA(int); extern void f_0047eb40(void *);
+extern "C" void HercSetMission(void *, unsigned); extern void f_00445c81(int); extern char DAT_00511df0, DAT_00511948, DAT_00511958;
+extern void *gShellSurfacePixels, *gShellDrawPixels, *savedSurfacePixels; extern long g5138ac, g5138b0; extern int g4faf44; extern void ReleasePoolData(void *); extern "C" void GlobalBlockFree(void *);
+extern char g4b74f4; extern Surface g511948, gMenuSavedSurface; extern void GuiResetClip(void *); extern "C" void BriefRenderUpdate(void *); extern char modeCheckName[]; inline int SurfaceWidth(){return g5138ac;}inline int SurfaceHeight(){return g5138b0;}inline void *SurfacePixels(){return gShellSurfacePixels;}
 extern int modeSwitch; extern char DAT_004faf48;
 struct ActorRecordCopy {byte data[267];};
 struct ActorRecord;struct PacketList {void Repair(ActorRecord *,char,char,int);};extern PacketList modeLogName;
@@ -180,7 +180,7 @@ uint f_004456f4(int *box) {
 void f_0044579c(int *param_1, void *param_2) {
 
     if (!((GuiScreen *)param_1)->IsActive()) {
-        DAT_004faf44 = 0;
+        g4faf44 = 0;
         if (modeSwitch != 0 && DAT_004faf40 != 0)
             TimeSleep(0xfa);
         memset(param_1 + 0x13, 0,
@@ -190,9 +190,9 @@ void f_0044579c(int *param_1, void *param_2) {
         SetGameWindowSize(640,480);
         SigsStart(&g513888,0);
         SurfacePresent(&g513888);
-        f_004272cd(&g511948,(long)SurfacePixels(),SurfaceWidth(),SurfaceHeight());
-        f_0042732e(&gMenuSavedSurface,SurfaceWidth(),SurfaceHeight());
-        DAT_00513898 = DAT_00511960;
+        SurfaceAttach(&g511948,SurfacePixels(),SurfaceWidth(),SurfaceHeight());
+        SurfaceCreate(&gMenuSavedSurface,SurfaceWidth(),SurfaceHeight());
+        gShellDrawPixels = savedSurfacePixels;
         int *gui = gResMgr.Load(s_DMGGUI_BMX_0048b310);
         *(int **)((char *)param_1 + 0x51) = gui;
         int *herc = gResMgr.Load(s_DMGHRC_BMX_0048b31b);
@@ -306,7 +306,7 @@ void f_0044591f(HercModule *self,int actor) {
  }
  viewportClipLeft=gBriefDrawSource;
  SigsStart(&g513888,0);GuiResetClip(&gMenuClip);MenuDrawImage(&g513888,self->guiImages+1,0,0);
- PopDrawSurface(&g513888,0,1,0,0,g5138ac,DAT_005138b0);
+ PopDrawSurface(&g513888,0,1,0,0,g5138ac,g5138b0);
  if(self->portrait){gDrawRemap=self->remap;MenuDrawImage(&g513888,(int *)((byte *)self->hercImages+4+self->portrait*12),260,0);gDrawRemap=0;}
 }
 
@@ -332,17 +332,18 @@ void f_00445cfe(int param_1) {
         SigsStart(&g513888,0);
         SurfacePresent(&g513888);
         SetGameWindowSize();
-        f_004272cd(&g511948,DAT_00513890,SurfaceWidth(),SurfaceHeight());
-        f_0042732e(&gMenuSavedSurface,SurfaceWidth(),SurfaceHeight());
-        DAT_00513898 = DAT_00511960;
-        BriefWaitB(((HercModule *)param_1)->SavedManual());
-        BriefWaitA(*(uint *)(param_1+0x5d7));
+        SurfaceAttach(&g511948,gShellSurfacePixels,SurfaceWidth(),SurfaceHeight());
+        SurfaceCreate(&gMenuSavedSurface,SurfaceWidth(),SurfaceHeight());
+        gShellDrawPixels = savedSurfacePixels;
+        HercModule *panel = (HercModule *)param_1;
+        BriefWaitB(panel->savedManual);
+        BriefWaitA(panel->savedAudio);
         if (*(int *)(param_1 + 0x5f7) != 0)
             GlobalBlockFree(*(void **)(param_1 + 0x5f7));
         *(int *)(param_1 + 0x5f7) = 0;
-        f_0041caf9(&g4b74f4, 0x927);
+        HercSetMission(&g4b74f4, 0x927);
         *(int *)(param_1 + 0x10) = 0;
-        DAT_004faf44 = 1;
+        g4faf44 = 1;
     }
 }
 int f_00445e23(HercModule *self) {

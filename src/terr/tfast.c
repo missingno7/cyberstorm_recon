@@ -80,7 +80,9 @@ void FastBuffer::BuildFlags() {
         unsigned char flags = 0;
         for (long side = 0; side < 6; ++side) {
             long cell = FastNeighborCell(&base, (this->current + side) % 6);
-            if (cell && ((unsigned char *)targetDefinitionTable)[cell * 12 + 1] < currentColor) flags |= (unsigned char)(1 << side);
+            if (!cell) continue;
+            int neighborColor = ((unsigned char *)targetDefinitionTable)[cell * 12 + 1];
+            if (neighborColor < currentColor) flags |= (unsigned char)(1 << side);
         }
         item->raw[6] = flags;
     }

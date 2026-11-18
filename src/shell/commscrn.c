@@ -104,7 +104,7 @@ extern void MenuDrawImage(void *, const MenuImage *, long, long);
 extern int g513888, g4b74f4, g4b2ac8;
 extern GuiPoint g4bb78c;
 extern Surface g511948;
-extern short g4c975c;
+extern short mainSelectedMission;
 extern StrPool gShellStrings;
 struct ContactHeader { unsigned char id, system; unsigned char unknown2[10]; long field0c; long field10; unsigned char unknown14[8]; char *name; char *rank; char *ship; char *text; };
 struct CommsLog { ContactHeader header; char name[100]; char rank[100]; char ship[100]; char text[0x2868 - 0x158]; };
@@ -870,9 +870,9 @@ void CommsScreenRender(CommsScreen *screen)
         }
         CommsAnimate(screen);
         CommsDrawSelected(screen);
-        if (TimerExpired(&screen->timer2) && g4c975c >= 0) {
+        if (TimerExpired(&screen->timer2) && mainSelectedMission >= 0) {
             int blink = screen->blink;
-            MenuPrefixButton *button = &gCommsButtons[g4c975c];
+            MenuPrefixButton *button = &gCommsButtons[mainSelectedMission];
             if (blink == 0) {
                 screen->blink = 1;
                 button->SetColor(2);

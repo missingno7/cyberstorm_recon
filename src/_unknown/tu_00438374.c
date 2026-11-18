@@ -213,8 +213,9 @@ int HercFreePower(ActorUnit *u){
  int current,maximum;StateInvoke(u,&current,&maximum);
  int value=maximum-HercPowerUse(u,0);
  for(int i=0;i<4;i++){
- int slot=i+19; ActorItem *p=PopFindItem(u,slot,-1);
- if(p->detail.bytes[41]==4) value-=p->detail.words[7];
+     int slot=i+19; ActorItem *p=PopFindItem(u,slot,-1);
+     int type = p->detail.bytes[41];
+     if (type == 4) value -= p->detail.words[7];
  }return value;
 }
 

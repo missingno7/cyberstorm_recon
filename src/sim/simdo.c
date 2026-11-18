@@ -476,7 +476,7 @@ int SimUseItem(SimGame *s,int item,int mode) {
  int result=SimExecuteItem(s,item,mode);
  ActorItem *entry=UnitItem(s->focus->unit,item+19);
  U32 kind=entry->kind;
- switch(kind) {default:return result;case 5:case 9:
+ switch(kind) {default:break;case 5:case 9:
   HercCalculateMass(s->focus->unit);ConfigureMovement(&fallbackName,s->focus->unit,s->focus->pilot);SimRefreshFog(s,0);
   if(s->focus->target)SimTargetAction(s,s->focus->target);
  }

@@ -443,8 +443,8 @@ void f_00419d52(char *);
 class FileRecord;
 
 extern MenuNumber g4b6f4c, g4b6f7c;
-extern "C" long f_00441d1f(void *, int);
-extern "C" long f_00441ce1(void *, int);
+extern "C" int f_00441d1f(GameSession *, int);
+extern "C" int f_00441ce1(GameSession *, int);
 extern "C" unsigned long IoClose(FileRecord *);
 void *GlobalBlockAlloc(unsigned long, unsigned int);
 
@@ -1084,24 +1084,11 @@ void f_00419d21(void *param_1)
     f_0041c096((char *)param_1);
 }
 
-inline void UpgradeStreamStep(char *screen)
-{
-    if (*(int *)(screen + 0x70) < *(int *)(screen + 0x6c)) {
-        int amount = *(int *)(screen + 0x6c) - *(int *)(screen + 0x70);
-        if (amount > 0x4000) amount = 0x4000;
-        StreamRead((FileRecord *)(screen + 0x4c), *(char **)(screen + 0x68) + *(int *)(screen + 0x70), amount);
-        *(int *)(screen + 0x70) += amount;
-        ++*(short *)(screen + 0x194);
-    } else {
-        *(int *)(screen + 0x90) = 1;
-    }
-}
-
 void f_00419d52(char *screen)
 {
     if (*(int *)(screen + 0x6c)) {
         if (*(int *)(screen + 0x90) == 0) {
-            UpgradeStreamStep(screen);
+            UpgradeReadStream(screen);
             if (*(unsigned short *)(screen + 0x194) < 12) return;
             if (*(int *)(screen + 0x70) - 0x7fff < (int)(&(*(MovieHeader **)(screen+0x8c))->images[*(int *)(screen+0x74)])->offset) return;
         }

@@ -347,6 +347,11 @@
      "size": 112,
      "mangled": "W?IORelease$n(pn$FileRecord$$)i"
     },
+    "IoClose": {
+     "va": "0047e610",
+     "size": 96,
+     "mangled": "W?IoClose$n(pn$FileRecord$$)ul"
+    },
     "StreamRead": {
      "va": "0047e670",
      "size": 128,
@@ -414,7 +419,7 @@
     }
    },
    "data": {},
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-18"
   },
   "src/terr/tgrid.c": {
    "as": "terr\\tgrid.c",
@@ -633,6 +638,11 @@
      "size": 160,
      "mangled": "W?Update$:FastBuffer$n(ll)v"
     },
+    "FastBuffer::BuildFlags": {
+     "va": "00434e30",
+     "size": 288,
+     "mangled": "W?BuildFlags$:FastBuffer$n()v"
+    },
     "FastBuffer::BuildPixels": {
      "va": "00434f50",
      "size": 192,
@@ -655,7 +665,7 @@
      "size": 13
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-18"
   },
   "src/logic/lactor.c": {
    "as": "logic\\lactor.c",
@@ -1841,6 +1851,11 @@
      "size": 12,
      "mangled": "W?SetBackground$:MenuLabel$n(i)v"
     },
+    "MenuLabel::Draw": {
+     "va": "00427e96",
+     "size": 243,
+     "mangled": "W?Draw$:MenuLabel$n(ui)v"
+    },
     "MenuHelpRegion::$ct": {
      "va": "00427f89",
      "size": 39,
@@ -2186,7 +2201,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-16"
+   "accepted": "2026-11-18"
   },
   "src/_unknown/tu_0042a5fc.c": {
    "as": "_unknown\\tu_0042a5fc.c",
@@ -4347,6 +4362,11 @@
      "size": 125,
      "mangled": "W?f_00445c81$n(i)v"
     },
+    "f_00445cfe": {
+     "va": "00445cfe",
+     "size": 293,
+     "mangled": "W?f_00445cfe$n(i)v"
+    },
     "f_00446253": {
      "va": "00446253",
      "size": 253,
@@ -4422,7 +4442,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-17"
+   "accepted": "2026-11-18"
   },
   "src/multi/minipkt.c": {
    "as": "multi\\minipkt.c",
@@ -5247,7 +5267,7 @@
     }
    },
    "data": {},
-   "accepted": "2026-11-11"
+   "accepted": "2026-11-18"
   },
   "src/shell/mplaunch.c": {
    "as": "shell\\mplaunch.c",
@@ -6450,6 +6470,11 @@
      "size": 144,
      "mangled": "W?SimFireFocus$n(pn$SimGame$$i)i"
     },
+    "SimUseItem": {
+     "va": "0044f030",
+     "size": 160,
+     "mangled": "W?SimUseItem$n(pn$SimGame$$ii)i"
+    },
     "SimAdoptFocus": {
      "va": "0044f220",
      "size": 112,
@@ -6487,7 +6512,7 @@
      "size": 124
     }
    },
-   "accepted": "2026-11-16"
+   "accepted": "2026-11-18"
   },
   "src/sim/simturn.c": {
    "as": "sim\\simturn.c",
@@ -7980,6 +8005,11 @@
      "size": 303,
      "mangled": "W?HercPowerUse$n(pn$ActorUnit$$i)i"
     },
+    "HercFreePower": {
+     "va": "00439218",
+     "size": 144,
+     "mangled": "W?HercFreePower$n(pn$ActorUnit$$)i"
+    },
     "HercMobility": {
      "va": "004392a8",
      "size": 139,
@@ -8007,7 +8037,7 @@
     }
    },
    "data": {},
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-18"
   },
   "src/_unknown/tu_004394d8.c": {
    "as": "_unknown\\tu_004394d8.c",
@@ -8749,7 +8779,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-11"
+   "accepted": "2026-11-18"
   },
   "src/_unknown/tu_004770d0.c": {
    "as": "_unknown\\tu_004770d0.c",
@@ -12029,7 +12059,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-16"
+   "accepted": "2026-11-18"
   },
   "src/pop/pshield.c": {
    "as": "pop\\pshield.c",

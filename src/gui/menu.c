@@ -145,8 +145,8 @@ void MenuLabel::Draw(unsigned) {
         long left=x;
         if(align>=0) {
             long extra=width-MenuTextWidth(gMenuFonts[font],text);
-            if(align<=0)extra>>=1;
-            left+=extra;
+            left += align > 0 ? extra
+                              : (extra >> 1);
         }
         MenuDrawText(gMenuFonts[font],left,y,text);
     }
