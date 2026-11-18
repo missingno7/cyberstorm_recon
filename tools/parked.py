@@ -21,9 +21,11 @@ Classes (candidate vs original, same placement):
               problem (wrong extern, ctor/dtor role), not a source-shape problem
   UNPLACED    an extent the comparator could not place; the last column names the placed publics around it
   ASM         the original starts with `enter` or pushes segment registers: hand assembly, no C source matches it
-Column `work`: yes = give it to a lane; no:<why> = withhold (asm origin, waits for a neighbour, or a register/slot
-swap that three or more lanes already reported on: invariant under respelling until there is new evidence).
-`--targets FILE` writes only the `yes` rows, largest first, as a lane target list.
+Column `work`: yes = give it to a lane; no:<why> = withhold (asm origin, waits for a neighbour, or an attempt-ledger
+`invariant` verdict). An invariant verdict covers only the hypothesis families its records name, not the function
+(fb1 closed UpdateHercUpgrade after tail1's invariant): the last column quotes them ("invariant only for: ...").
+`--targets FILE` writes only the `yes` rows, largest first, as a lane target list. `--reopen` treats invariant
+rows as `yes` (with their scopes in the last column) for a round whose brief asks for families outside those scopes.
 REG-SWAP / SLOT-SWAP functions that many lanes already tried are usually invariant under respelling: read the notes
 (--fn prints the report lines that mention the function) before spending time. SHAPE functions are where reading
 the original listing pays: something in the source says a different thing.
@@ -183,15 +185,20 @@ def history():
 
 
 def verdicts():
-    """VA -> set of verdicts recorded in the attempt ledger (tools/notes.py)."""
+    """VA -> set of verdicts recorded in the attempt ledger (tools/notes.py), and VA -> the invariant records' scopes."""
     import notes
     out = collections.defaultdict(set)
+    scopes = collections.defaultdict(list)
     for r in notes.load():
         # only a function-level record decides: a SUMMARY, or a record of a lane that tested the function itself;
         # one invariant hypothesis family among several does not withhold the function
         if r.get("hyp", "").startswith("SUMMARY") or not r.get("lane", "").startswith("bf"):
             out[r["va"]].add(r.get("verdict", "open"))
-    return out
+            if r.get("verdict") == "invariant":
+                # an invariant verdict covers the families its record names, not the function (fb1 closed
+                # UpdateHercUpgrade after tail1's invariant; Rayman wave 7: negatives never prune outside their scope)
+                scopes[r["va"]].append(f"{r.get('lane', '?')}: {' '.join(r.get('hyp', '').split())[:140]}")
+    return out, scopes
 
 
 def main(argv):
@@ -202,7 +209,8 @@ def main(argv):
     out = argv[argv.index("--out") + 1] if "--out" in argv else None
     ledger = gate.load_ledger()
     reports = history()
-    ledger_verdicts = verdicts()
+    ledger_verdicts, inv_scopes = verdicts()
+    reopen = "--reopen" in argv
     accepted = {f["va"]: tu for tu, ent in ledger["tus"].items() for f in ent.get("functions", {}).values()}
     rows = []
     for tu, ent in sorted(ledger["tus"].items()):
@@ -262,6 +270,11 @@ def main(argv):
                     work = ("no:asm" if cls == "ASM" else "no:neighbour" if cls.startswith("WAIT") else
                             "no:invariant" if "invariant" in ledger_verdicts.get(e["va"], ()) else
                             "yes")      # report counts no longer withhold work: only a ledger verdict does (review rv1)
+                    if work == "no:invariant":
+                        sc = inv_scopes.get(e["va"], [])
+                        hint = (hint + "; " if hint else "") + "invariant only for: " + " | ".join(sc[-3:])
+                        if reopen:
+                            work = "yes"    # a lane brief must then ask for a family outside these scopes
                     rows.append((tu, e["va"], size, e.get("diff_bytes"), cls, 0, lab, [], work, hint))
     # report mentions: by VA always, by label only when the label names one function (a generic label such as a
     # static initializer's matched 71 reports for one VA, review rv1). Mentions are not independent attempts.
@@ -278,7 +291,7 @@ def main(argv):
         print(f"{va} {size:5d} B  {str(diff):>5s} differ  {cls:10s} {n:2d} reports  {work:12s} {lab[:42]:42s} {tu}"
               + (f"  ({hint})" if cls == "UNPLACED" else ""))
         if want and hint:
-            print(f"    core difference: {hint}")
+            print(f"    core difference: {hint}" if "invariant only for" not in hint else f"    note: {hint}")
         if want:
             for lane, ln in hits[:40]:
                 print(f"    [{lane}] {ln[:230]}")

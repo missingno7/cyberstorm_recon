@@ -254,6 +254,10 @@ def classifier_checks(check):
     check(cls("8b0d00005000", "8b0d00000000", range(2, 6)) == "RELOC",
           "classifier: an instruction equal except its unlinked fixup field is RELOC")
     check(cls("8b442404", "8b442408") == "SLOT-SWAP", "classifier: decimal stack displacements are SLOT-SWAP")
+    # an invariant verdict carries the scope of its record (fb1 closed UpdateHercUpgrade after tail1's invariant)
+    v, scopes = parked.verdicts()
+    check("invariant" in v.get("004375f4", ()) and any(s.startswith("bf3: SUMMARY") for s in scopes["004375f4"]),
+          "classifier: an invariant verdict is reported with the lane and hypothesis that scope it")
     check(cls("83f801740190c3", "9083f8027400c3") == "SAME-SIZE",
           "classifier: a changed compare immediate is SAME-SIZE, not HOMES")
     check(cls("05c0b74b00" + "90" * 3, "0500000000" + "90" * 3, range(1, 5)) not in ("SAME-SIZE", "OPERANDS"),

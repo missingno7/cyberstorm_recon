@@ -55,8 +55,11 @@ You reconstruct C++ source that Watcom 10.6 compiles to the exact bytes of `CSTO
 
 ## Before touching a parked function (the memory of this project)
 1. `python tools/notes.py show LABEL_OR_VA`: its residue class, every structured attempt with its verdict, and every
-   report line that mentions it. If the verdict is `invariant` or the class is REG-SWAP / SLOT-SWAP / HOMES with
-   several reports, leave it unless you have NEW evidence (a different expression shape, a field type, a callee).
+   report line that mentions it. An `invariant` verdict covers only the hypothesis families its records name
+   (`parked.py` quotes them: "invariant only for: ..."), not the function: fb1 closed UpdateHercUpgrade after
+   tail1's invariant. Do not repeat a covered family; a family outside that scope, or a COMBINATION of recorded
+   single levers, is new work. A REG-SWAP / SLOT-SWAP / HOMES function with several reports needs new evidence (a
+   different expression shape, a field type, a callee).
 2. Residue classes (`python tools/parked.py`): SHAPE = wrong size, the source says something else: rebuild the body
    from the original listing. SAME-SIZE = right size, one construct off: find that instruction. HOMES / REG-SWAP /
    SLOT-SWAP = same instructions, different homes: needs a different record set, rarely yields to respelling
@@ -66,7 +69,9 @@ You reconstruct C++ source that Watcom 10.6 compiles to the exact bytes of `CSTO
    names the placed publics around it (often an exact declaration of a callee or caller places it). WAIT-SIZE /
    WAIT-TABLE = fix the neighbour. ASM = hand assembly, not C. The index file starts with a `#` stamp (git and
    ledger revision): regenerate it when the ledger has moved on.
-3. Compiler facts: read `docs/codegen_rules.md` fully (verified core, short). `docs/codegen_rules_lanes.md` holds
+3. Start from `docs/levers.md`: per residue class, the levers that closed functions here and in Rayman, with an
+   example each. Combine levers; one that does nothing alone can be half of a coupled fix.
+   Compiler facts: read `docs/codegen_rules.md` fully (verified core, short). `docs/codegen_rules_lanes.md` holds
    150+ rows reported by lanes and not re-verified: search it for your symptom, do not read it through.
    `docs/watcom_playbook.md` is the symptom -> what-to-try table from two other Watcom projects.
 4. When you finish a hypothesis family on a function, also when it failed, record it:

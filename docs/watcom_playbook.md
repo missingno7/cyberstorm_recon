@@ -61,6 +61,38 @@ Differences to keep in mind:
   inline helpers - use src/include/inline_helpers.h (AGENTS.md exception, section "Original inline helpers").
 - Byte-forcing constructs (dead redundant init, empty cases, scratch clobbers, type-forcing block-scope externs)
 
+## Rayman wave 7 update (rayman_recon@d94c233 CAUSES.md/COMPILER.md, build/workers/w7_*; imported 2026-11-18)
+Wave 7 (2026-11-14, five workers, 72 targets that were "locally equivalent" but not STRICT) gave +13 STRICT with 0
+losses. What closed functions there, after earlier waves had stalled on the same targets:
+- **Coupled levers.** A lever measured ALONE and found worse can be the missing piece of a coupled edit. Rayman's abs
+  helper made three functions worse on its own (2->58, 5->17, 11->276); together with removing temporaries, nesting
+  them into one expression and fixing declaration order it closed five functions and reduced six more. Here: fb1's
+  dead `result=0;` did nothing until cases 85/59 also returned instead of breaking. When a single change leaves the
+  diff unchanged or worse, combine it with the next plausible change instead of discarding it.
+- **Scope of negatives.** Rayman's rule since then: a negative result is recorded WITH its scope (which spellings,
+  which functions) and never prunes a search outside that scope. The same holds for our `invariant` verdicts: tail1's
+  `invariant` on UpdateHercUpgrade covered its rule R1 only; fb1 closed the function with another family.
+- **Declaration order is a primary lever**, not only a tie-breaker (it corrects the W-DECL row above for the "last
+  residue" stage): it closed init_move_couteau (6 -> 0 after a statement-shape fix), setToleranceDist and
+  SET_RAY_DIST_SLOPEY_PLAT (each coupled with nesting), and moved DO_OBJ_COLLISIONS on its own. Do it AFTER the shape
+  is right; before that it only moves noise.
+- **Boolean materialisation:** `if (c) x = 1; else x = 0;` puts the byte predicate in AH (the rover's first byte
+  choice); `x = c;` puts it in AL (DARK_phase1 STRICT). `!(a == b)` versus `a != b` changes the byte-register rover
+  (DO_SAXO_COUP).
+- **Independent constant stores:** search all orders exhaustively when n! <= 120, and couple it with the right helper
+  or expression form (doMOSAMScommand: 3 of 120 orders STRICT, only together with the abs form).
+- **Un-merging (statement shape in reverse):** `if (k != 1) t = 4 - t; f(t, 6);` versus
+  `if (k == 1) f(t, 6); else f(4 - t, 6);` (a duplicated call instead of a modified temporary) changed 247 -> 6.
+  Splitting one expression back into an existing local can restore a 32-bit multiply that the one-expression form
+  narrows to 16 bits (RECALE_ALL_OBJECTS).
+- **Case label where the jump table points:** if a table entry points into another case's body, the original case
+  body was cross-jumped into that block; placing the case label inside it (`if (d > 2) { case 12: h = y; break; }`)
+  reproduced the table (CALC_MOV_ON_BLOC, which freed its carrier IS_ON_RESSORT_BLOC).
+- **Carrier rule (tables owned by a neighbour):** if the carrier's table has the original order and partition and only
+  the offsets drift, the owner's size is the cause; if the order differs, the owner's case structure is wrong.
+- **Callee return type from the call site:** `and eax,0xff` after a call to a function DEFINED as returning int means
+  the source masked an int result; a narrow local prototype hides that (BTYP s32 versus u8).
+
 ## Watcom 10.6 allocator internals (PROVEN from the WCC386 10.6 binary, build/workers/cg_re, 2026-10-22)
 - Stack homes: an UNSTABLE Shell exchange sort over ALL backend names of the function, then filtering to the names that
   need homes; no declaration-order key; same-ID aliases sort by descending offset (168/168 real sorts; 19/19 homes in
