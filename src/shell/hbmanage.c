@@ -342,6 +342,15 @@ void StorageStart(StorageScreen *);
 void StorageAnimate(StorageScreen *);
 StorageScreen::StorageScreen():GuiScreen(storageControls,58,0),animation() {
 }
+static inline void ResetStorageList(StorageScreen *s, int phase) {
+    s->offset = 0;
+    s->oldOffset = s->offset;
+    s->redraw = 0;
+    s->phase = phase;
+    s->selected = 0;
+    s->last = 99;
+    s->pending = 0;
+}
 void ShellStorageOpen(StorageScreen *s,InputReq *input)  {
     if(s->IsActive())return;
     if(LogicMode()==1)BriefWaitA(2);
@@ -364,13 +373,7 @@ void ShellStorageOpen(StorageScreen *s,InputReq *input)  {
     storageNumber.SetAlignCore(1);
     BriefSetMode(&storageRange,0);
     BriefAdjust(&storageRange,count-23);
-    s->offset=0;
-    s->oldOffset=s->offset;
-    s->redraw=0;
-    s->phase=0;
-    s->selected=0;
-    s->last=99;
-    s->pending=0;
+    ResetStorageList(s,0);
     StorageSetup();
     storageNumber.SetValue(g4a706d);
     s->Names(0);
@@ -390,13 +393,7 @@ void StorageReopen(StorageScreen *s,InputReq *input) {
     s->images=(MenuImages *)gResMgr.Load("DMGHRC.bmx");
     BriefSetMode(&storageRange,0);
     BriefAdjust(&storageRange,count-23);
-    s->offset=0;
-    s->oldOffset=s->offset;
-    s->redraw=0;
-    s->phase=3;
-    s->selected=0;
-    s->last=99;
-    s->pending=0;
+    ResetStorageList(s,3);
     StorageColors(s);
     storageNumber.SetValue(g4a706d);
     s->Names(0);

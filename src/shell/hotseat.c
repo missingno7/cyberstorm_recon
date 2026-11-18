@@ -38,12 +38,14 @@ struct UpgradeBar:GuiControl { UpgradeRange *range; int extra; __pragma("bar_cto
 struct UpgradeArrow:GuiControl { UpgradeRange *range; int delta,key; __pragma("step_ctor") UpgradeArrow(UpgradeRange*,unsigned,int); virtual ~UpgradeArrow(); };
 #pragma pack(pop)
 extern GuiControl *PTR_DAT_0048f1dc[];
+struct InputReq;
+struct StrPool;
 class GuiScreen
 {
 public:
     GuiScreen(GuiControl **controls = PTR_DAT_0048f1dc, unsigned count = 0x4c, unsigned long flags = 0);
     int HitTest(const GuiPoint *point);
-    int Update(); void LoadLayout(long); void Open(void *,void *,long,int); int IsActive(){return *(int*)((char*)this+0x10)!=0;} void Invalidate();
+    int Update(); void LoadLayout(long); void Open(InputReq *,StrPool *,long,int); int IsActive(){return *(int*)((char*)this+0x10)!=0;} void Invalidate();
 };
 
 class HotseatScreen : public GuiScreen
@@ -205,22 +207,23 @@ valid_count:
 
 void f_00424a07(int *screen,int input)
 {
-    if (((GuiScreen*)screen)->IsActive()) return;
-    memset((char*)screen+0x50,0,((char*)screen+0x12cc)-((char*)screen+0x50));
-    BriefWaitA(0);
-    *(ClipCopy*)&viewportClipLeft=*(ClipCopy*)&DAT_0051390c;
-    BriefCloseAudio(); _DAT_004bb6f0=-1;
-    ((GuiScreen*)screen)->LoadLayout((long)hotseatLayoutName);
-    ((GuiScreen*)screen)->Open((void*)input,&gShellStrings,0xfa1,1);
-    f_cba0(&DAT_00511dcc,hotseatFontName);
-    ((HotseatDataView *)screen)->images=(int)gResMgr.Load((long)hotseatImagesName);
-    DecodeLaunchPalette(&gShellBackground,(void*)(((HotseatDataView *)screen)->images+16)); ShellApplyPalette(&gShellBackground);
-    MenuDrawImage(&g513888, (const MenuImage*)((((HotseatDataView *)screen)->images+4)),0,0);
-    SurfaceCopyRegion(&gMenuSavedSurface,&g511948,0,0); BriefWaitB(9);
-    ((HotseatDataView *)screen)->option=1; f_00424d60((int)screen); f_00424cf4((int)screen);
-    BriefSetMode(&hotMapRange,HotRandom(7)); BriefSetMode(&hotRange3,12); BriefSetMode(&hotRange2,0); BriefSetMode(&hotRange1,2); BriefSetMode(&hotRange0,2);
-    for(int i=0;i<((HotseatDataView *)screen)->count;i++){ ((HotseatDataView *)screen)->team[i]=3; ((HotseatDataView *)screen)->last[i]=2; ((HotseatDataView *)screen)->value[i]=DAT_0048f30c[2]; }
-    f_0042515a((int)screen); f_0042539a((int)screen); f_004254d5((HotseatDataView*)screen); f_004255bf((int)screen);
+    if (!((GuiScreen*)screen)->IsActive()) {
+        memset((char*)screen+0x50,0,((char*)screen+0x12cc)-((char*)screen+0x50));
+        BriefWaitA(0);
+        *(ClipCopy*)&viewportClipLeft=*(ClipCopy*)&DAT_0051390c;
+        BriefCloseAudio(); _DAT_004bb6f0=-1;
+        ((GuiScreen*)screen)->LoadLayout((long)hotseatLayoutName);
+        ((GuiScreen*)screen)->Open((InputReq *)input,&gShellStrings,0xfa1,1);
+        f_cba0(&DAT_00511dcc,hotseatFontName);
+        ((HotseatDataView *)screen)->images=(int)gResMgr.Load((long)hotseatImagesName);
+        DecodeLaunchPalette(&gShellBackground,(void*)(((HotseatDataView *)screen)->images+16)); ShellApplyPalette(&gShellBackground);
+        MenuDrawImage(&g513888, (const MenuImage*)((((HotseatDataView *)screen)->images+4)),0,0);
+        SurfaceCopyRegion(&gMenuSavedSurface,&g511948,0,0); BriefWaitB(9);
+        ((HotseatDataView *)screen)->option=1; f_00424d60((int)screen); f_00424cf4((int)screen);
+        BriefSetMode(&hotMapRange,HotRandom(7)); BriefSetMode(&hotRange3,12); BriefSetMode(&hotRange2,0); BriefSetMode(&hotRange1,2); BriefSetMode(&hotRange0,2);
+        for(int i=0;i<((HotseatDataView *)screen)->count;i++){ ((HotseatDataView *)screen)->team[i]=3; ((HotseatDataView *)screen)->last[i]=2; ((HotseatDataView *)screen)->value[i]=DAT_0048f30c[2]; }
+        f_0042515a((int)screen); f_0042539a((int)screen); f_004254d5((HotseatDataView*)screen); f_004255bf((int)screen);
+    }
 }
 
 void f_00424cf4(int param_1)
@@ -382,12 +385,11 @@ void f_004254d5(HotseatDataView *screen)
 
 void f_004255bf(int param_1)
 {
-    int iVar1;
+    int i;
+    HotseatDataView *screen = (HotseatDataView *)param_1;
     GuiResetClip(&gMenuClip);
-    for (iVar1 = 0; iVar1 < ((HotseatDataView *)param_1)->count; iVar1 = iVar1 + 1) {
-        MenuDrawImage(&g513888, (const MenuImage*)(((((HotseatDataView *)param_1)->colors[iVar1] + 0x19) * 0xc +
-                               (((HotseatDataView *)param_1)->images + 4))),
-                      0x87, iVar1 * 0x1a + 0x32);
+    for (i = 0; i < screen->count; ++i) {
+        MenuDrawImage(&g513888, (const MenuImage *)((screen->colors[i] + 25) * sizeof(MenuImage) + (screen->images + 4)), 135, i * 26 + 50);
     }
 }
 
@@ -427,8 +429,6 @@ void f_004256eb(int param_1, int param_2)
     if (selected != 0) {
         *(int *)(slot + 0x1218) = 1;
         // preserve ASSERT immediate line
-// Original source-line padding.
-// Original source-line padding.
 // Original source-line padding.
 // Original source-line padding.
 // Original source-line padding.
@@ -689,4 +689,3 @@ GuiControl *PTR_DAT_0048f1dc[]={
 };
 int DAT_0048f30c[]={20000,50000,100000,200000,400000,750000,1000000,3000000,7500000,15000000};
 short DAT_0048f334[]={30,45,60,90,120,180,240,300,480,600,900,1200,-1};
-

@@ -251,7 +251,8 @@ void GFXCDSSurface::setPalette(const PALETTEENTRY *source, int start, int count)
     { HPALETTE previous = SelectPalette(windowDC,created,0);
     if (previous == currentPalette) DeleteObject(currentPalette);
     else oldPalette = previous; }
+    HDC display = windowDC;
     currentPalette = created;
-    RealizePalette(windowDC);
+    RealizePalette(display);
 }
 

@@ -419,6 +419,11 @@ void ActorState::ActorApplyDamage(U8 amount) { ActorState *s = this;
     }
     RefreshActorFlags(s);
 }
+inline void ApplyTickFatigue(ActorState *s, int fatigue) {
+    if (fatigue)
+        ActorAdjustScalar(s, (U32 *)&s->fatigue, -fatigue, 0);
+    s->fatigue = s->fatigue < 0 ? 0 : s->fatigue;
+}
 void ActorTick(ActorState *s, int health, int morale, int fatigue) {
     if ((health == -1 && morale == -1 && fatigue == -1) || !s->active || !s->health) {
         if (s->descriptor->health <= 99) {
@@ -427,16 +432,20 @@ void ActorTick(ActorState *s, int health, int morale, int fatigue) {
         }
         s->health = 1;
     }
-    if (fatigue) ActorAdjustScalar(s, (U32 *)&s->fatigue, -fatigue, 0);
-    s->fatigue = s->fatigue < 0 ? 0 : s->fatigue;
+    ApplyTickFatigue(s, fatigue);
     ActorAdjustFatigue(s, health);
     ActorAdjustMorale(s, morale);
     for (int i = 0; i < 8; ++i) {
         int injury = s->injuries[i];
         if (injury > 0) {
             int step = s->descriptor->rules[15];
-            if (injury < step) { ActorAdjustSkill(s, i, -injury); s->injuries[i] = 0; }
-            else { ActorAdjustSkill(s, i, -step); s->injuries[i] -= step; }
+            if (injury >= step) {
+                ActorAdjustSkill(s, i, -step);
+                s->injuries[i] -= step;
+            } else {
+                ActorAdjustSkill(s, i, -injury);
+                s->injuries[i] = 0;
+            }
         }
     }
 }

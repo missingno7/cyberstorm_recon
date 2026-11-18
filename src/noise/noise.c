@@ -115,18 +115,18 @@ int SoundCreateBuffer(int id,SoundBuffer **result,WAVEFORMATEX *format) {
  else {
   memset(&desc,0,sizeof(desc));desc.size=sizeof(desc);desc.flags=0xe0;desc.bytes=bytes;desc.format=format;
   soundFrequency[id]=format->nSamplesPerSec;
-  if(soundDevice->vtable->CreateSoundBuffer(soundDevice,&desc,result,0)==0) {
-   SoundBuffer **const output=result;
+  SoundBuffer *&output = *result;
+  if(soundDevice->vtable->CreateSoundBuffer(soundDevice,&desc,&output,0)==0) {
    ++soundCreated;
    void *first,*second; U32 firstBytes,secondBytes;
-   long hr=(*output)->vtable->Lock(*output,0,bytes,&first,&firstBytes,&second,&secondBytes,0);
+   long hr=output->vtable->Lock(output,0,bytes,&first,&firstBytes,&second,&secondBytes,0);
    if(hr==(long)0x88780096UL) {
-    (*output)->vtable->Restore(*output);
-    hr=(*output)->vtable->Lock(*output,0,bytes,&first,&firstBytes,&second,&secondBytes,0);
+    output->vtable->Restore(output);
+    hr=output->vtable->Lock(output,0,bytes,&first,&firstBytes,&second,&secondBytes,0);
    }
    if(hr==0) {
     memcpy(first,samples,firstBytes); if(second) memcpy(second,samples+firstBytes,secondBytes);
-    if((*output)->vtable->Unlock(*output,first,firstBytes,second,secondBytes)==0) success=1;
+    if(output->vtable->Unlock(output,first,firstBytes,second,secondBytes)==0) success=1;
    }
   }
   if(resource)ReleasePoolData(resource); if(allocated)GlobalBlockFree(allocated);

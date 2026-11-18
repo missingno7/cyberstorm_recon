@@ -121,10 +121,10 @@ struct ExploAnim { unsigned char count; char pad01[3]; ExploFrame frames[1]; }; 
 #pragma pack()
 extern ExploAnim *AnimFrames(int anim);                        // 00459e60
 extern ActorRecord *ActorGetByIndex(int);
-extern char *UnitPart(ActorUnit *unit, int part = 0, int index = -1);        // 00438374
-extern void ActorAttachPoint(AnimAction *s, ExploPoint *out, int layer, char *part, void *view);   // 004579e0
+struct ActorItem; extern ActorItem *PopFindItem(ActorUnit *unit, int part = 0, int index = -1);        // 00438374
+extern void AnimActionInterpolateDrawPos(AnimAction *s, int *out, int layer, void *part, void *view);   // 004579e0
 extern void ExploIdle();                                       // 0047682c
-extern void FxBounds(ExploRecord *e);                          // 0045e310 (simxout.c)
+struct FxRect; extern void FxBounds(FxRect *e);                          // 0045e310 (simxout.c)
 extern void FxDrawCurrent();                                   // 0045e190
 extern void FxDrawJagged();                                    // 0045e1e0
 extern void DrawSprite(void *surface, ExploFrame *frame, int x, int y, int flags, int w, int h);   // 0047c0f0
@@ -543,26 +543,25 @@ int ExploPosition(ExploRecord *e)
         return 0;
     {
         ExploPoint at;
-        ActorRecord *actor;
         switch (e->type) {
         case 0:
             ExploIdle();
             break;
         case -2:
         case -3:
-            FxBounds(e);
+            FxBounds((FxRect *)e);
             break;
         case -11:
             ExploSetupFrame(e, &e->pos);
             break;
         case -6: {
-            actor = ActorGetByIndex(-e->target);
+            ActorRecord *actor = ActorGetByIndex(-e->target);
             if (actor == 0)
                 break;
             static ExploPoint spot;
             AnimAction *sprite = &actor->action;
             e->value = sprite->rect.height;
-            e->value = -sprite->rect.height;
+            e->value = -e->value;
             spot.x = sprite->screen.x;
             spot.y = sprite->rect.height / 2 + sprite->rect.y;
             e->depth = actor->action.depth + 10;
@@ -571,7 +570,7 @@ int ExploPosition(ExploRecord *e)
         }
         case -7:
         case -8: {
-            actor = ActorGetByIndex(-e->target);
+            ActorRecord *actor = ActorGetByIndex(-e->target);
             GuiRect *box = &actor->action.rect;
             at.x = box->width * e->pos.x / 100 + box->x;
             at.y = box->height * e->pos.y / 100 + box->y;
@@ -593,12 +592,13 @@ int ExploPosition(ExploRecord *e)
             e->depth = 40000;
             ExploSetupFrame(e, &at);
             break;
-        case -10:
-            actor = ActorGetByIndex(-e->target);
-            ActorAttachPoint(&actor->action, &at, e->layer, UnitPart(actor->unit), gView);
+        case -10: {
+            ActorRecord *actor = ActorGetByIndex(-e->target);
+            AnimActionInterpolateDrawPos(&actor->action, &at.x, e->layer, PopFindItem(actor->Unit()), gView);
             e->depth = actor->action.depth + 20000;
             ExploSetupFrame(e, &at);
             break;
+        }
         }
         return 1;
     }

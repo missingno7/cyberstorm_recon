@@ -2297,6 +2297,11 @@
      "size": 6,
      "mangled": "W?Active$:MenuNetwork$n()i"
     },
+    "StopMultiplayer": {
+     "va": "0046f7b6",
+     "size": 590,
+     "mangled": "W?StopMultiplayer$n(ii)i"
+    },
     "MenuNetwork::ThreadProc": {
      "va": "0046fa04",
      "size": 10,
@@ -3335,6 +3340,11 @@
      "size": 264,
      "mangled": "W?close_link_connection$n()v"
     },
+    "send_link_packet": {
+     "va": "0046d308",
+     "size": 208,
+     "mangled": "W?send_link_packet$n(ipnvuii)i"
+    },
     "receive_link_packet": {
      "va": "0046d3d8",
      "size": 113,
@@ -3372,7 +3382,7 @@
      "size": 13
     }
    },
-   "accepted": "2026-11-11"
+   "accepted": "2026-11-18"
   },
   "src/multi/chat.c": {
    "as": "multi\\chat.c",
@@ -3654,6 +3664,11 @@
      "size": 368,
      "mangled": "W?ExploSetupFrame$n(pn$ExploRecord$$pn$ExploPoint$$)v"
     },
+    "ExploPosition": {
+     "va": "00460340",
+     "size": 640,
+     "mangled": "W?ExploPosition$n(pn$ExploRecord$$)i"
+    },
     "ExploDraw": {
      "va": "004605c0",
      "size": 240,
@@ -3689,7 +3704,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-18"
   },
   "src/shell/hercbuy.c": {
    "as": "shell\\hercbuy.c",
@@ -3939,6 +3954,11 @@
      "size": 153,
      "mangled": "W?LogicGenSkill$n(pnvi)i"
     },
+    "LogicGenFindType": {
+     "va": "00469d26",
+     "size": 675,
+     "mangled": "W?LogicGenFindType$n(pnvilli)i"
+    },
     "LogicMapPointUpdate": {
      "va": "00469fc9",
      "size": 261,
@@ -3990,7 +4010,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-18"
   },
   "src/logic/sinterp.c": {
    "as": "logic\\sinterp.c",
@@ -4102,6 +4122,11 @@
      "size": 215,
      "mangled": "W?ScriptEval$n(pn$Script$$i)l"
     },
+    "ScriptFormat": {
+     "va": "00469a95",
+     "size": 428,
+     "mangled": "W?ScriptFormat$n(pn$Script$$pnaipnxa)i"
+    },
     "ScriptString": {
      "va": "00469c41",
      "size": 55,
@@ -4148,6 +4173,11 @@
      "size": 249,
      "mangled": "W?f_0042490e$n(i)i"
     },
+    "f_00424a07": {
+     "va": "00424a07",
+     "size": 749,
+     "mangled": "W?f_00424a07$n(pnii)v"
+    },
     "f_00424cf4": {
      "va": "00424cf4",
      "size": 108,
@@ -4192,6 +4222,11 @@
      "va": "004254d5",
      "size": 234,
      "mangled": "W?f_004254d5$n(pn$HotseatDataView$$)v"
+    },
+    "f_004255bf": {
+     "va": "004255bf",
+     "size": 87,
+     "mangled": "W?f_004255bf$n(i)v"
     },
     "f_00425616": {
      "va": "00425616",
@@ -4260,7 +4295,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-18"
   },
   "src/pop/pherc.c": {
    "as": "pop\\pherc.c",
@@ -6627,7 +6662,7 @@
      "size": 6
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-18"
   },
   "src/pop/pdeath.c": {
    "as": "pop\\pdeath.c",
@@ -7371,7 +7406,7 @@
      "size": 16
     }
    },
-   "accepted": "2026-11-16"
+   "accepted": "2026-11-18"
   },
   "src/_unknown/tu_00407204.c": {
    "as": "_unknown\\tu_00407204.c",
@@ -8230,6 +8265,11 @@
    "install": "wc106",
    "profile": "ot-oe",
    "functions": {
+    "TerrainDrawOverlay": {
+     "va": "0042d3f0",
+     "size": 592,
+     "mangled": "W?TerrainDrawOverlay$n(pn$TerrainView$$uiiiiii)v"
+    },
     "TerrainVisibleDrop": {
      "va": "0042dd70",
      "size": 192,
@@ -8237,7 +8277,7 @@
     }
    },
    "data": {},
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-18"
   },
   "src/_unknown/tu_00474900.c": {
    "as": "_unknown\\tu_00474900.c",
@@ -8948,7 +8988,7 @@
     }
    },
    "data": {},
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-18"
   },
   "src/sim/weapai.c": {
    "as": "sim\\weapai.c",
@@ -8989,6 +9029,11 @@
      "va": "0045d430",
      "size": 336,
      "mangled": "W?WeaponEvaluate$n(pn$Context$$ii)i"
+    },
+    "WeaponTerrain": {
+     "va": "0045d580",
+     "size": 304,
+     "mangled": "W?WeaponTerrain$n(ii)i"
     },
     "WeaponPrepare": {
      "va": "0045d6b0",
@@ -9928,7 +9973,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-11"
+   "accepted": "2026-11-18"
   },
   "src/pack/unpack.c": {
    "as": "pack\\unpack.c",
@@ -13964,6 +14009,11 @@
      "size": 176,
      "mangled": "W?SimSortDrawQueue$n(pn$SimGame$$)v"
     },
+    "SimDrawQueue": {
+     "va": "00455220",
+     "size": 384,
+     "mangled": "W?SimDrawQueue$n(pn$SimGame$$)v"
+    },
     "SimDrawBackground": {
      "va": "004553a0",
      "size": 208,
@@ -13985,7 +14035,7 @@
      "size": 6
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-18"
   },
   "src/sim/actor.c": {
    "as": "sim\\actor.c",
@@ -14165,7 +14215,7 @@
      "size": 24
     }
    },
-   "accepted": "2026-11-16"
+   "accepted": "2026-11-18"
   },
   "src/sim/weapfx.c": {
    "as": "sim\\weapfx.c",
@@ -14195,6 +14245,11 @@
      "va": "00460800",
      "size": 384,
      "mangled": "W?FxDamage$n(pn$WeaponInfo$$pn$ActorRecord$$ii)v"
+    },
+    "FxExtra": {
+     "va": "00460bc0",
+     "size": 137,
+     "mangled": "W?FxExtra$n(pn$WeaponInfo$$pn$ExploPoint$$)v"
     }
    },
    "data": {
@@ -14203,7 +14258,7 @@
      "size": 1192
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-18"
   },
   "src/sim/opfire.c": {
    "as": "sim\\opfire.c",
@@ -14279,7 +14334,7 @@
      "size": 14
     }
    },
-   "accepted": "2026-11-15"
+   "accepted": "2026-11-18"
   },
   "src/logic/slog.c": {
    "as": "logic\\slog.c",
@@ -14410,7 +14465,7 @@
      "size": 250
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-18"
   },
   "src/_unknown/asm_0046cdbc.asm": {
    "as": "_unknown\\asm_0046cdbc.asm",
@@ -14629,6 +14684,11 @@
      "va": "004413e0",
      "size": 118,
      "mangled": "f_004413e0"
+    },
+    "f_004418a9": {
+     "va": "004418a9",
+     "size": 624,
+     "mangled": "f_004418a9"
     },
     "f_00441b19": {
      "va": "00441b19",

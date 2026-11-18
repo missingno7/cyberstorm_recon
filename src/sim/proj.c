@@ -33,24 +33,28 @@ void UnitDamageSplit(Unit *u, int range, int damage, Weapon *w, int &armor, int 
 int UnitDamage(Unit *u, int range, int damage, Weapon *w)
 {
     damage = PopFindItem((ActorUnit *)u, 7)->typeFactor[w->kind] * damage / 50;
-    int shield = w->armorDamage * damage / 100; int direct = w->directDamage * damage / 100; int penetrate = w->penetrationDamage * damage / 100;
-
-
+    int shield = w->armorDamage * damage / 100;
+    int direct = w->directDamage * damage / 100;
+    int penetrate = w->penetrationDamage * damage / 100;
     int overflow = w->overflow;
     int facing = GridClamp(range);
-    int health = u->facingArmor[facing];
-    int removed = 0, result;
-    if (health == 0) result = direct;
-    else {
-        removed = shield; result = penetrate;
-        if (shield > health) { result = penetrate + (shield - health) * overflow / 100; removed = health; }
+    int removed = 0;
+    if (!u->facingArmor[facing]) {
+        penetrate = direct;
+    } else if (shield > u->facingArmor[facing]) {
+        removed = u->facingArmor[facing];
+        penetrate += (shield - removed) * overflow / 100;
+    } else {
+        removed = shield;
     }
+
     if (removed) {
+        UnitArmor &armor = u->armor;
         u->facingArmor[facing] -= removed;
         if (u->facingArmor[facing] <= 0) u->facingArmor[facing] = 0;
-        u->armor.Remove(removed);
+        armor.Remove(removed);
     }
-    return result;
+    return penetrate;
 }
 int UnitHealth(Unit *u, int range) { return u->facingArmor[GridClamp(range)]; }
 void UpdatePayload(Unit *u, int unused)

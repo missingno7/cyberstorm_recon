@@ -7,13 +7,13 @@ struct MenuMessage { char data[476]; MenuMessage() {} MenuMessage(unsigned,const
 extern void TimerSet(void*,unsigned long); struct Timer { unsigned long start,end,duration; Timer() { TimerSet(this,0); } };
 struct Chat { char data[0x3d7a]; Chat(); int Reset(); void Activate(); void Log(int,const char*); void Flush(); };
 struct Options { char data[66]; Options(); void Reset(); }; struct CriticalSection { CRITICAL_SECTION lock; CriticalSection(); ~CriticalSection(); };
-extern int modeSwitch; extern int multiplayerActive,playerCount,multiState,localPeer,hostPeer,networkEnabled,serverMode,canRestart,restartData,connectionType,isHostPeer,hostDropFlag,retryTimeout,savedRandom,lastPlayer,leaderPlayer,localPlayer; extern HANDLE networkThread; extern int MissionRandomTable[];
-extern char modeCheckName[],modeLogName[],networkLog[],networkQueue[],networkSystem[],profileManager[],uiSystem[],resourcePool[],textPool[]; extern HWND g_mainWindow; extern void (*ShowStatus)(HWND,const char*,int,int); extern char *searchPaths[]; extern unsigned char playerColors[]; extern char startGuid[16],sessionGuid[16]; extern Options currentOptions; extern int globalReady[10];
+extern int modeSwitch; extern int multiplayerActive,playerCount,multiState,localPeer,hostPeer,networkEnabled,gLinkSigsMode,DAT_004d3549,gLinkIsSigs,isHostPeer,hostDropFlag,retryTimeout,savedRandom,lastPlayer,leaderPlayer,localPlayer; extern void *sigsModule; extern HANDLE gLinkThread; extern int MissionRandomTable[];
+extern char modeCheckName[],modeLogName[],networkLog[],networkQueue[],profileManager[],uiSystem[],resourcePool[],textPool[]; extern HWND g_mainWindow; extern void (*ShowStatus)(HWND,const char*,int,int); extern char *searchPaths[]; extern unsigned char playerColors[]; extern char startGuid[16],sessionGuid[16]; extern Options defaultOptions; extern int globalReady[10];
 extern void ResetPlayer(PlayerSlot*); extern void ValidateSlot(int); extern void MenuMessageInfo(MenuMessage*,int,int,void*); extern void MenuMessageSlot(MenuMessage*,int,int,PlayerSlot*); extern void MenuSend(const MenuMessage*,int);
 extern void MenuMessageBasic(MenuMessage*,int); extern void MenuMessageData(MenuMessage*,int,int,int=0,int=0); extern void MenuMessageGame(MenuMessage*,int,GameInfo*); extern void MenuMessageStart(MenuMessage*,int,void*); extern void QueuePump(void*);
 extern void AssertFail(const char*,int,const char*); extern void *AllocateMissionImage(void*,int,int=0); extern int FileExists(const char*); extern void GetPlayerInfo(void*,PlayerInfo*); extern int HasMission(void*); extern int LoadMission(const char*,int); extern void GetGameInfo(void*,Options*,GameInfo*); extern void ApplyGameInfo(void*,GameInfo*);
-extern int StopMultiplayer(int,int=0); extern void NetworkReset(); extern int NetworkCreate(const char*); extern int NetworkJoin(const char*); extern void NetworkBegin(); extern void NetworkPoll(); extern void NetworkStop(); extern void NetworkShutdown(); extern void NetworkRefresh(); extern int PeerAlive(int); extern void NetworkCallback(); extern void GuiPumpMessages(); extern void CloseStartScreen(); extern void ShowMessage(const char*); extern void TimedMessage(const char*,int); extern int RestartNetwork();
-extern PlayerSlot modePlayers[]; extern void OpenModeLog(void*); extern void ClearList(void*); extern void SetList(void*); extern void ResetQueue(void*); extern void ResetTransport(void*); extern PlayerSlot *GetModePlayer(void*,int); extern void RemoveModePlayer(void*,int); extern void ClearModePlayers(void*); extern void CommitModePlayers(void*); extern void AddModePlayer(void*,int,PlayerSlot*); extern void OpenMode(void*); extern void UpdateMode(void*); extern void FinishMode(void*); extern void UiEvent(void*,int);
+extern int StopMultiplayer(int,int=0); extern void NetworkReset(); extern int NetworkCreate(const char*); extern int NetworkJoin(const char*); extern void NetworkBegin(); extern void NetworkPoll(); extern void NetworkStop(); extern void shutdown_directplay(); extern void NetworkRefresh(); extern int PeerAlive(int); extern void NetworkCallback(); extern void GuiPumpMessages(); extern void CloseStartScreen(); extern void f_00477295(const char*); extern void HelpTextTimed(const char*,unsigned long); extern int SigsRestart();
+extern PlayerSlot modePlayers[]; extern void OpenModeLog(void*); extern void ClearList(void*); extern void SetList(void*); extern void ResetQueue(void*); class Queue { public: void RemoveAll(); }; extern Queue gReceiveQueue; extern PlayerSlot *GetModePlayer(void*,int); extern void RemoveModePlayer(void*,int); struct SimGame; extern void SimCheckEndTurn(SimGame*); extern void SimResetPlayers(SimGame*); extern void AddModePlayer(void*,int,PlayerSlot*); extern void OpenMode(void*); extern void UpdateMode(void*); extern void FinishMode(void*); extern void UiEvent(void*,int);
 #pragma pack(push,2)
 struct SessionTail { int unknown4902,unknown4906; };
 #pragma pack(pop)
@@ -28,9 +28,9 @@ extern const char mstartFile[]="multi\\mstart.c",startFormat[]="%sqstart\\MP%02d
 #pragma data_seg()
 #define ASSERT(e) do { if(!(e)) AssertFail(mstartFile,__LINE__,0); } while(0)
 
-inline PlayerSlot *ModeSlot(int index) { return &modePlayers[index-1]; } inline int ReadRandom() { return MissionRandomTable[0]; } inline int ReadLocalPeer() { return localPeer; } inline int CanContinue() { return canRestart==0; }
-inline const char *DisconnectMessage() { if(connectionType) return (const char*)AllocateMissionImage(resourcePool,13,0); else return (const char*)AllocateMissionImage(resourcePool,12,0); }
-inline void TimedCore(const char *message,int duration) { TimedMessage(message,duration); }
+inline PlayerSlot *ModeSlot(int index) { return &modePlayers[index-1]; } inline int ReadRandom() { return MissionRandomTable[0]; } inline int ReadLocalPeer() { return localPeer; } inline int CanContinue() { return DAT_004d3549==0; }
+inline const char *DisconnectMessage() { int type = gLinkIsSigs; if(type) return (const char*)AllocateMissionImage(resourcePool,13,0); else return (const char*)AllocateMissionImage(resourcePool,12,0); }
+inline void TimedCore(const char *message,int duration) { HelpTextTimed(message,duration); }
 inline void StatusCore(const char *message,int duration) { ShowStatus(g_mainWindow,message,-1,duration); }
 inline int MenuNetwork::CountCore() { int count=0; for(int i=1;i<9;i++) { if(slots[i].state==2 || slots[i].state==1) count++; } return count; }
 inline int MenuNetwork::PeerCore(int slot) { ValidateSlot(slot); int state=slots[slot].state; if(state==2 || state==1) return slots[slot].peer; return -1; }
@@ -67,7 +67,7 @@ ASSERT(peer<=32);
     if(slot>=1) ready[slot]=1;
     if(slot==1 && multiState==6) {
         CloseStartScreen();
-        ShowMessage((const char*)AllocateMissionImage(resourcePool,5,0));
+        f_00477295((const char*)AllocateMissionImage(resourcePool,5,0));
         slots[localSlot].state=0;
         StopMultiplayer(0);
         return;
@@ -358,37 +358,38 @@ int StopMultiplayer(int notify,int restart) {
     int result;
     if(!multiplayerActive) result=0;
     else {
-    if(gMenuNetwork.IsHost()) currentOptions=gameOptions;
-    if(restart && serverMode && restartData) {
+    if(gMenuNetwork.IsHost()) defaultOptions=gameOptions;
+    if(restart && gLinkSigsMode && sigsModule) {
         multiplayerActive=0;
         modeSwitch=0;
-        ResetTransport(networkSystem);
+        gReceiveQueue.RemoveAll();
         ClearList(modeLogName);
         ClearList(networkLog);
         ResetQueue(networkQueue);
-        if(!RestartNetwork()) {
+        if(!SigsRestart()) {
             NetworkStop();
-            NetworkShutdown();
+            shutdown_directplay();
         }
+        return 1;
     }
-    else if(serverMode && notify) {
+    else if(gLinkSigsMode && notify) {
         modeSwitch=0;
-        if(networkThread) {
+        if(gLinkThread) {
             Sleep(300);
-            TerminateThread(networkThread,0);
-            CloseHandle(networkThread);
-            networkThread=0;
+            TerminateThread(gLinkThread,0);
+            CloseHandle(gLinkThread);
+            gLinkThread=0;
         }
-        ResetTransport(networkSystem);
+        gReceiveQueue.RemoveAll();
         ClearList(modeLogName);
         ClearList(networkLog);
         ResetQueue(networkQueue);
     }
     else {
-        if(notify && CanContinue()) ShowMessage((const char*)AllocateMissionImage(resourcePool,3,0));
+        if(notify && CanContinue()) f_00477295((const char*)AllocateMissionImage(resourcePool,3,0));
         else {
             gMenuNetwork.chat.Log(0,bailingMessage);
-            ClearModePlayers(modeCheckName);
+            SimCheckEndTurn((SimGame *)modeCheckName);
             MenuMessage packet;
             MenuMessageBasic(&packet,0x1016);
             MenuSend(&packet,0);
@@ -397,12 +398,12 @@ int StopMultiplayer(int notify,int restart) {
         multiplayerActive=0;
         modeSwitch=0;
         NetworkStop();
-        ResetTransport(networkSystem);
+        gReceiveQueue.RemoveAll();
         ClearList(modeLogName);
         ClearList(networkLog);
         ResetQueue(networkQueue);
-        CommitModePlayers(modeCheckName);
-        NetworkShutdown();
+        SimResetPlayers((SimGame *)modeCheckName);
+        shutdown_directplay();
     }
     result=1;
     }

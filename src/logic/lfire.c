@@ -96,7 +96,7 @@ LogicActor *ActorChooseByMode(LogicActor *actor, int origin, int radius)
     LogicActor *other = logicActorList.First();
     while (other) {
         if (other->Available() && actor->owner != other->owner) {
-            int hidden = 0;
+            unsigned char hidden = 0;
             if (actor->owner == gLocalActorKind) hidden = !((char *)simActorVisibility)[other->unit->Id()];
             int distance = LogicCopyPoint((const char *)&point, ActorName(other));
             if (!hidden && distance <= radius) {
@@ -104,18 +104,26 @@ LogicActor *ActorChooseByMode(LogicActor *actor, int origin, int radius)
                 int divisor;
                 switch (ActorArrayGet(actor, 7)) {
                 case 5: value = ActorNetStrengthAt(ActorName(other)); break;
-                case 8:
-                    value = other->value34 * other->value34;
-                    divisor = other->count30 * other->value38;
+                case 8: {
+                    value = other->value34;
+                    int rate = other->value38;
+                    divisor = other->count30;
+                    value *= value;
+                    divisor *= rate;
                     if (divisor > 1) value /= divisor;
                     break;
-                case 9:
-                    value = other->value34 * other->value34;
-                    divisor = other->count30 * other->value38;
+                }
+                case 9: {
+                    value = other->value34;
+                    int rate = other->value38;
+                    divisor = other->count30;
+                    value *= value;
+                    divisor *= rate;
                     if (divisor > 1) value /= divisor;
                     divisor = LogicCopyPoint(ActorName(actor), ActorName(other));
                     if (divisor > 1) value /= divisor;
                     break;
+                }
                 case 10: value = Product(other->value40, other->value3c); break;
                 default: value = -LogicCopyPoint(ActorName(actor), ActorName(other)); break;
                 }

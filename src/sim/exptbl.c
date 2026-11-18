@@ -210,15 +210,15 @@ void FxBlast(WeaponInfo *weapon, ExploPoint *position, int actor, int repeated)
 
 void FxExtra(WeaponInfo *weapon, ExploPoint *position)
 {
-    FxHitDef *definition = &fxHitDefinitions[weapon->kind]; int index = definition->extra;
-    if (index != 0) {
-        FxBurstDef *effect = &fxExtraDefinitions[index];
-        FxStirSeed(&gFxSeed);
-        int value = RandomRange(&gFxSeed, effect->minValue, effect->maxValue);
-        ExploRecord *result = ExploAddAt(effect->kind, position, value * 20);
-        if (result != 0)
-            result->frameStep = effect->minDelay;
-    }
+    FxHitDef *definition = &fxHitDefinitions[weapon->kind];
+    int index = definition->extra;
+    if (!index)
+        return;
+
+    FxBurstDef *effect = &fxExtraDefinitions[index];
+    FxStirSeed(&gFxSeed);
+    int value = RandomRange(&gFxSeed, effect->minValue, effect->maxValue);
+    ExploRecord *result = ExploAddAt(effect->kind, position, value * 20);
+    if (result != 0)
+        result->frameStep = effect->minDelay;
 }
-
-

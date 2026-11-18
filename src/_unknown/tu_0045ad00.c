@@ -74,8 +74,13 @@ inline int IsDefault(unsigned char value) { return value==255; }
 void TrajectoryEffects(Trajectory *t,unsigned char kind,unsigned char param,unsigned char rate,unsigned char part,unsigned char value)
 {
     ExploPoint start,end;
-    t->trailKind=kind;t->trailParam=param;t->trailRate=rate;
-    t->partKind=IsDefault(part)?t->effect->anim:part;
+    t->trailParam = param;
+    t->trailKind = kind;
+    t->trailRate = rate;
+    if (IsDefault(part))
+        t->partKind = t->effect->anim;
+    else
+        t->partKind = part;
     t->partValue=IsDefault(value)?t->effect->value/14:value;
     if(t->quality>5 && t->partKind && t->partValue) {
         t->part=ExploAddPart(t->partKind,t->partValue);

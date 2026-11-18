@@ -105,7 +105,7 @@ int SimHotReadTimer(char *);
 int f_0047add0(ClipState *,GuiRect *);
 int f_0047b170(ClipState *,GuiRect *);
 void f_0047ad90(ClipState *,ClipState *);
-void f_0047b1c0(ClipState *);
+void ClipApply(ClipState *);
 int f_0047b000(ClipState *,GuiRect *);
 void AnimActionUpdateTrajectory(int *,int *);
 int f_00460340(ExploRecord *);
@@ -134,7 +134,10 @@ inline void DrawActionBody(AnimAction *action)
                 BestLocSetData(fallbackName,&world,(void *)target);
                 DisplayPointToScreen((int *)gView,(int *)&screen,(int *)&world,target);
                 int zoom = gZoom*2;
-                int x = screen.x - zoom; int y = screen.y - zoom;
+                int x = screen.x;
+                int y = screen.y;
+                x -= zoom;
+                y -= zoom;
                 if (target & 2)
                     AnimSetViewportRect((int *)&terrainImage->images[image],(int *)&world,x+gZoom/2,y+gZoom,gZoom*3,gZoom*3);
                 else
@@ -273,7 +276,7 @@ void SimSortDrawQueue(SimGame *)
 void SimDrawQueue(SimGame *game)
 {
     SimSortDrawQueue(game);
-    f_0047b1c0(&simSmallClip);
+    ClipApply(&simSmallClip);
     for (int i=0; i<drawQueueCount; ++i) {
         DrawEntry *entry = drawQueue[i];
         if (entry->kind == 1) DrawActionBody((AnimAction *)entry);

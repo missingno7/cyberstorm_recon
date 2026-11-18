@@ -219,7 +219,10 @@ int i; if(index<0 || index>=s->stat70cf)return 0;
     }
     DebugTextAppend("\n\n");
     DebugTextAppend(BriefFormat("%s",reportToken_004941c8));
-    DebugTextAppend(id>=0?g511e18.GetString(t.name):g511ddc.GetString(150));
+    if (id >= 0)
+        DebugTextAppend(g511e18.GetString(t.name));
+    else
+        DebugTextAppend(g511ddc.GetString(150));
     if(!g4941dc)delete [] g4c933c;
     else g4941dc=0;
     int len=strlen(gDebugText);

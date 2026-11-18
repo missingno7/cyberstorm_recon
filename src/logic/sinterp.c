@@ -1492,12 +1492,12 @@ int ScriptFormat(Script *s, char *dst, int max, const char *src)
         const long *args=(const long *)(src+1);
         remaining=max-len; next=src+5;
         if (code==-1) {
-            const char *t=MissionAllocateFromData(gLogic,ScriptEval(s,*args)); src=next;
-            part=ScriptFormat(s,dst,remaining,t);
+            long id = ScriptEval(s, *args); src += 5;
+            part = ScriptFormat(s, dst, remaining, MissionAllocateFromData(gLogic, id));
             dst+=part; len+=part;
         } else if (code==-4) {
-            long n=ScriptEval(s,*args);
-            sprintf(number,"%d",n); src=next;
+            long n = ScriptEval(s, *args); src += 5;
+            sprintf(number, "%d", n);
             part=ScriptFormat(s,dst,remaining,number);
             dst+=part; len+=part;
         } else if (code==-2) {
@@ -1507,8 +1507,8 @@ int ScriptFormat(Script *s, char *dst, int max, const char *src)
             dst+=part; len+=part;
         } else if (code==-3) {
             lists=(ScriptList *)(s->base+s->table[SecStrLists]);
-            index=*args; pick=ScriptEval(s,*(long *)next); list=&lists[index];
-            src=next+4; count=list->count;
+            long listIndex = *args; src = next; pick = ScriptEval(s, *(const long *)src);
+            src += 4; list = lists + listIndex; count = list->count;
             text=s->base+s->table[SecStrings]+list->offset;
             if (pick>=0 && pick<count)
                 while(pick-- >0)text+=strlen(text)+1;

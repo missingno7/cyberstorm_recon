@@ -109,9 +109,9 @@ int LogicGenFindType(void *list, int type, long least, long most = 0, int side =
 {
     // each table has its own selection.
     if (type >= 10 && type <= 16) {
-        int best; int level = gLogic.level;
-        int i;
-        long bestCost = least;
+        long bestCost; int best, i;
+        int level = gLogic.level;
+        bestCost = least;
         best = -1;
         for (i = 0; gVehicleInfo[i].name; i++) {
             int skill = gVehicleInfo[i].skill;

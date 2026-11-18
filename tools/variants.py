@@ -1,6 +1,7 @@
 """Test many author-written source alternatives in one command (a manual permuter; diagnostic only).
 
-    python tools/variants.py TEMPLATE.c --as 'dir\\file.c' --profile P [--at Label=VA ...] [--fn SUBSTR ...]
+    python tools/variants.py TEMPLATE.c --as 'dir\\file.c' (--profile P | --flags "-4s -s ...") [--at Label=VA ...]
+                             [--fn SUBSTR ...]
                              [--max 256] [--jobs 6] [--top 8] [--write BEST.c]
 
 TEMPLATE is a complete candidate TU with choice points:
@@ -95,7 +96,7 @@ def score(text, prof, as_name, at, fns, name):
 def main(argv):
     argv = list(argv[1:])
     opts = {"at": {}, "fn": [], "max": "256", "jobs": "6", "top": "8"}
-    for key in ("--as", "--profile", "--at", "--fn", "--max", "--jobs", "--top", "--write"):
+    for key in ("--as", "--profile", "--flags", "--tool", "--at", "--fn", "--max", "--jobs", "--top", "--write"):
         while key in argv:
             i = argv.index(key)
             v = argv[i + 1]
@@ -107,7 +108,7 @@ def main(argv):
                 opts["fn"].append(v)
             else:
                 opts[key[2:]] = v
-    if len(argv) != 1 or "profile" not in opts:
+    if len(argv) != 1 or ("profile" not in opts and "flags" not in opts):
         print(__doc__)
         return 2
     tpl = Path(argv[0])
@@ -115,7 +116,10 @@ def main(argv):
     if not choices:
         print("no choice points in template")
         return 2
-    prof = load_json(CONFIG / "toolchain.json")["profiles"][opts["profile"]]
+    if "flags" in opts:         # a TU recorded with explicit flags (recovery.json "flags"), as in tools/try.py
+        prof = {"flags": opts["flags"].split(), "install": "wc106", "tool": opts.get("tool", "wpp386")}
+    else:
+        prof = load_json(CONFIG / "toolchain.json")["profiles"][opts["profile"]]
     total = 1
     for c in choices:
         total *= len(c)

@@ -289,7 +289,7 @@ int send_link_packet(int first, void *second, unsigned int third, int fourth)
         }
         if (result != 0 && result == (int)0x88770096) {
             if (first == 0)
-                PostMessageA(g_mainWindow, 0x111, 0x7663, first);
+                PostMessageA(g_mainWindow, 0x111, 0x7663, 0);
             else
                 PostMessageA(g_mainWindow, 0x111, 0x7664, first);
         }

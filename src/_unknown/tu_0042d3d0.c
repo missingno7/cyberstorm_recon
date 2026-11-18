@@ -4,7 +4,9 @@ typedef unsigned char byte;
 struct TerrainCell { byte type,height,feature,featureType,overlay,overlayType,shade,sprite; uint edges; }; struct TerrainMarker { byte unknown[4],sprite,unknown5[3]; }; struct TerrainWorld { byte header[68]; TerrainCell *cells; TerrainMarker *markers; };
 struct TerrainCanvas { byte unknown[0x60]; void *remap; byte unknown64[0x10]; int left,top,right,bottom; };
 
-struct TerrainView { TerrainWorld *world; int unknown04[19],rotation,unknown54[5],size,half,threeHalves,doubleSize,heightScale,unknown7c[2]; uint flags; int alternate; };
+struct TerrainView { TerrainWorld *world; int unknown04[19],rotation,unknown54[5],size,half,threeHalves,doubleSize,heightScale,unknown7c[2]; uint flags; int alternate;
+    int Facing(int direction) const { return (6 - rotation + direction) % 6; }
+};
 
 struct Point { int x, y; Point() {} Point(int a, int b) { x=a; y=b; } Point(const Point &p) { x=p.x; y=p.y; } Point &operator+=(const Point &p) { x+=p.x; y+=p.y; return *this; } };
 typedef Point DrawPoint;
@@ -35,7 +37,8 @@ extern void MenuLine(void *, long, long, long, long);
 extern void MenuFill(void *, long, long, long, long);
 extern void DrawSprite(void *, ExploFrame *, int, int, int, int, int);
 extern MenuImage *MenuImageData(void *, const MenuImage *);
-extern void f_00435c5e(MenuImage *, int, int, int, int, int);
+extern "C" void DrawTerrainTileClipped(MenuImage *, int, int, int, int, int);
+#pragma aux DrawTerrainTileClipped "DrawTerrainTileClipped";
 extern void f_00435830(int, int);
 extern void f_00435084(void *, void *, void *, uint, int);
 extern void f_00435b5c(MenuImage *, int, int, uint);
@@ -70,7 +73,8 @@ void TerrainDrawOverlay(TerrainView *view, uint location, int sprite, int type, 
             break;
         case 1: {
             int relative = sprite - def->base;
-            selected = def->base + ((6 + relative / 3 - view->rotation) % 6) * 3 + relative % 3;
+            int facing = view->Facing(relative / 3);
+            selected = def->base + facing * 3 + relative % 3;
             if (frame && def->animated) selected += def->animated - def->base + def->stride * (frame - 1);
             break;
         }
@@ -81,7 +85,7 @@ void TerrainDrawOverlay(TerrainView *view, uint location, int sprite, int type, 
     }
     if (selected >= 0) {
         MenuImage *image = MenuImageData(g513888, TerrainFrame(selected));
-        f_00435c5e(image, x, y, 0, view->doubleSize, view->doubleSize);
+        DrawTerrainTileClipped(image, x, y, 0, view->doubleSize, view->doubleSize);
     }
 }
 

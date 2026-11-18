@@ -28,6 +28,12 @@ int TerrainAverageHeight(TerrainGrid *grid,int index,int radius)
     BestLocVisit(&search,TerrainSumHeight);
     return heightCount>0?heightSum/heightCount:0;
 }
+inline int BlendHeightValue(int oldHeight, int target, int strength)
+{
+    target -= oldHeight;
+    target *= strength;
+    return (oldHeight * 100 + target + 50) / 100;
+}
 int TerrainBlendHeight(Visit *v)
 {
     int index=v->index;
@@ -43,8 +49,7 @@ int TerrainBlendHeight(Visit *v)
                     strength+=RandomRange(&MissionRandomTable,-range,range);
                     strength=strength<=0?0:(strength>=100?100:strength);
                 }
-                int oldHeight=cell->height;
-                cell->height=(oldHeight*100+(heightTarget-oldHeight)*strength+50)/100;
+                cell->height = BlendHeightValue(cell->height, heightTarget, strength);
             } else cell->height=heightTarget;
             TerrainSetNoiseHeight(&v->point,cell->height);
         }

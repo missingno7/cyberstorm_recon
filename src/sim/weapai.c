@@ -29,7 +29,7 @@ extern void UnitDamageSplit(ActorUnit *,int,int,Weapon *,int &,int &);
 extern "C" void TargetObjectInit(const char *,void *,int);
 extern void BestLocSetData(void *,void *,void *);
 extern int ResolveName(const char *,const char *);
-extern int PointAngle(Point *,Point *);
+extern "C" int PointAngle(Point *,Point *);
 extern int BestLocInitialize(void *,const char *,int);
 extern int BestLocSetCandidate(void *,void *);
 extern void AreaEnumerate(int *,void *,unsigned int,unsigned int);
@@ -159,8 +159,14 @@ int WeaponStatus(Context *c,int index)
 
     }
     if (!modeSwitch && gRemoteActorKind == c->target.sourceActor->owner) {
-        int kind=f_00439d02(c->target.sourceActor->unit); int visible=!IsTypeHidden(c->target.sourceActor->action.resource);
-        int range=weaponMissionRanges[gMissionKind]+weaponClassRanges[kind]+weaponRangeBase;
+        int kind=f_00439d02(c->target.sourceActor->unit);
+        int mission = gMissionKind;
+        int visible;
+        if (IsTypeHidden(c->target.sourceActor->action.resource))
+            visible = 0;
+        else
+            visible = 1;
+        int range=weaponMissionRanges[mission]+weaponClassRanges[kind]+weaponRangeBase;
         if (gMission==410) range+=2;
         if (gMission==418) range+=3;
         if (visible) range+=weaponVisibleRanges[kind];
@@ -172,12 +178,6 @@ int WeaponStatus(Context *c,int index)
 int WeaponAccuracy(Context *c,int index)
 {
     if (!c->target.sourceActor || !c->target.sourceActor->unit || !c->target.sourceActor->pilot)
-
-
-
-
-
-
 
 
 
@@ -494,27 +494,32 @@ int WeaponEvaluate(Context *c,int index,int checkEnabled)
     r->ammoFactor=WeaponAmmoFactor(c,index);
     return 1;
 }
-int WeaponTerrain(int source,int target)
+int WeaponTerrain(int source, int target)
 {
-    int total=0;
+    int total = 0;
     if (source && target) {
-        Point targetGrid,sourcePoint,targetPoint;
-        TargetObjectInit(fallbackName,&sourcePoint,source);
-        TargetObjectInit(fallbackName,&targetPoint,target);
-        int facing=GridClamp(PointAngle(&targetPoint,&sourcePoint));
-        BestLocSetData(fallbackName,&targetGrid,(void *)target);
-        unsigned int height=targetDefinitionTable[target].height;
-        Point *offset=pathDirections, *end=offset+6;
-        int weightIndex=facing*6;
-        for (; offset!=end; ++offset,++weightIndex) {
-            Point neighbor=targetGrid;
-            neighbor.x+=offset->x;neighbor.y+=offset->y;
-            int cell=ResolveName(fallbackName,(const char *)&neighbor);
-            if (cell) { int delta=targetDefinitionTable[cell].height-height; if (delta>0) total+=delta*weaponTerrainWeights[weightIndex]; }
+        Point sourcePoint, targetPoint, targetGrid;
+        TargetObjectInit(fallbackName, &sourcePoint, source);
+        TargetObjectInit(fallbackName, &targetPoint, target);
+        int facing = GridClamp(PointAngle(&targetPoint, &sourcePoint));
+        BestLocSetData(fallbackName, &targetGrid, (void *)target);
+        unsigned int height = targetDefinitionTable[target].height;
+        for (int i = 0; i < 6; ++i) {
+            Point *offset = &pathDirections[i];
+            Point neighbor = targetGrid;
+            neighbor.x += offset->x;
+            neighbor.y += offset->y;
+            int cell = ResolveName(fallbackName, (const char *)&neighbor);
+            if (cell) {
+                int delta = targetDefinitionTable[cell].height - height;
+                if (delta > 0)
+                    total += delta * weaponTerrainWeights[facing * 6 + i];
+            }
         }
     }
     return total;
 }
+
 void WeaponPrepare(Context *c,TargetRecord *target,int checkEnabled)
 {
     c->target=*target;
@@ -557,11 +562,6 @@ int WeaponChoose(Context *c,TargetRecord *target,int minimum,int checkEnabled)
     WeaponPrepare(c,target,checkEnabled);
     ActorRecord *actor=target->sourceActor;
     if (!actor)
-
-
-
-
-
 
 
 
