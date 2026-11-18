@@ -60,7 +60,7 @@ public:
 };
 class MenuListButton : public GuiControl {
 public:
-    U32 state; MenuListButton(); virtual ~MenuListButton(); virtual void Reset(unsigned); virtual void Draw(unsigned); virtual int Event(unsigned, U32);
+    U32 state; MenuListButton(); virtual void Reset(unsigned); virtual void Draw(unsigned); virtual int Event(unsigned, U32);
 };
 #pragma pack(pop)
 class GuiScreen : public GuiRect {
@@ -1229,3 +1229,16 @@ void CommsDispatch(CommsScreen *screen)
 }
 
 
+
+inline int GuiControl::HitTest(const GuiPoint *point)
+{
+    if (point->x >= x && point->x < x + width &&
+        point->y >= y && point->y < y + height)
+        return 1;
+    return 0;
+}
+
+inline void GuiControl::Reset(unsigned)
+{
+    attributes &= ~0x01060000UL;
+}

@@ -1,15 +1,13 @@
 #pragma aux pilot_gui_screen_ctor "W?$ct:GuiScreen$n(pnpn$GuiControl$$uiul)_";
 #pragma aux pilot_gui_flic_ctor "W?$ct:Flic$n()_";
-#pragma aux pilot_gui_flic_dtor "W?$dt:Flic$n()_";
 #pragma aux pilot_gui_surface_ctor "W?$ct:Surface$n(ul)_";
-#pragma aux pilot_gui_surface_dtor "W?$dt:Surface$n()_";
 int gPilotGuiBarImageIds[4] = {0,32,75,119}; static char pilotguiSourceFile[] = __FILE__; class GuiControl; extern GuiControl *gPilotGuiResourceTemplate[40];
 struct GuiRect { long x, y, width, height; }; struct GuiControlData : GuiRect { unsigned char style[4]; unsigned long attributes, shortcut; }; class GuiControl : public GuiControlData { public:     virtual ~GuiControl();     virtual void Reset(unsigned);     virtual void Draw(unsigned);     virtual int Event(unsigned, unsigned long);     virtual int HitTest(const void *); };
 struct GuiScreen {     char data[0x4c];     __pragma("pilot_gui_screen_ctor") GuiScreen(GuiControl *, unsigned long, unsigned long);     int IsActive() {return *(long *)((char *)this+0x10)!=0;}     ~GuiScreen() { *(long *)((char *)this + 0x10) = 0; } };
-struct Flic {     char data[0x3c]; unsigned long *palettePixels; char remaining[0x50];     __pragma("pilot_gui_flic_ctor") Flic();     __pragma("pilot_gui_flic_dtor") ~Flic(); };
+struct Flic {     char data[0x3c]; unsigned long *palettePixels; char remaining[0x50];     __pragma("pilot_gui_flic_ctor") Flic();     ~Flic(); };
 extern void FlicClose(void *);
 #pragma aux FlicClose "W?Close$:Flic$n()v";
-struct Surface {     char data[0x10];     __pragma("pilot_gui_surface_ctor") Surface(unsigned long);     __pragma("pilot_gui_surface_dtor") ~Surface(); };
+struct Surface {     char data[0x10];     __pragma("pilot_gui_surface_ctor") Surface(unsigned long);     ~Surface(); };
 struct ViewRect { int left, top, right, bottom; };
 struct MenuImage { unsigned long offset; unsigned short width, height; unsigned long flags; };
 struct MenuImages { unsigned count; MenuImage images[1]; };
@@ -75,6 +73,8 @@ extern int gPilotGuiBarImageIds[];
 extern int g4affc2;
 
 extern "C" void BriefModuleOpen(void *, int, unsigned long, int);
+
+
 
 
 

@@ -4763,6 +4763,11 @@
      "size": 21,
      "mangled": "W?$Wda019$:MenuPrefixButton$n(ui)pnv"
     },
+    "MenuListButton::$dt": {
+     "va": "00414f5c",
+     "size": 67,
+     "mangled": "W?$dt:MenuListButton$n()_"
+    },
     "CommsLogView::$dt": {
      "va": "00414fa0",
      "size": 67,
@@ -4772,6 +4777,16 @@
      "va": "00414fe4",
      "size": 63,
      "mangled": "W?$dt:CommsScreen$n()_"
+    },
+    "GuiControl::HitTest": {
+     "va": "00415024",
+     "size": 65,
+     "mangled": "W?HitTest$:GuiControl$n(pnx$GuiPoint$$)i"
+    },
+    "GuiControl::Reset": {
+     "va": "00415068",
+     "size": 11,
+     "mangled": "W?Reset$:GuiControl$n(ui)v"
     }
    },
    "data": {
@@ -4820,7 +4835,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-17"
+   "accepted": "2026-11-18"
   },
   "src/main/WIN/winmain.c": {
    "as": "main\\WIN\\winmain.c",
@@ -7737,6 +7752,11 @@
      "va": "00412304",
      "size": 21,
      "mangled": "W?$Wda018$:MenuLabel$n(ui)pnv"
+    },
+    "PilotGuiModule::$dt": {
+     "va": "0041231c",
+     "size": 63,
+     "mangled": "W?$dt:PilotGuiModule$n()_"
     }
    },
    "data": {
@@ -7769,7 +7789,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-16"
+   "accepted": "2026-11-18"
   },
   "src/_unknown/tu_00438374.c": {
    "as": "_unknown\\tu_00438374.c",
@@ -14554,6 +14574,364 @@
     "_DATA": {
      "va": "004a4a24",
      "size": 14
+    }
+   },
+   "accepted": "2026-11-18"
+  },
+  "src/gui/comma.c": {
+   "as": "gui\\comma.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "MenuFormatNumber": {
+     "va": "0042ac40",
+     "size": 164,
+     "mangled": "W?MenuFormatNumber$n(lpnal)pna"
+    }
+   },
+   "data": {
+    "_DATA": {
+     "va": "0048f4dc",
+     "size": 12
+    }
+   },
+   "accepted": "2026-11-18"
+  },
+  "src/_unknown/tu_00471c78.c": {
+   "as": "_unknown\\tu_00471c78.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "LinkBeginThread": {
+     "va": "00471c78",
+     "size": 64,
+     "mangled": "W?LinkBeginThread$n(pnvuipn(pnv)uipnvuiuipnul)pnv"
+    },
+    "LinkSetThreadPriority": {
+     "va": "00471cb8",
+     "size": 20,
+     "mangled": "W?LinkSetThreadPriority$n(pnvi)i"
+    },
+    "LinkSuspendThread": {
+     "va": "00471ccc",
+     "size": 13,
+     "mangled": "W?LinkSuspendThread$n(pnv)ul"
+    },
+    "LinkResumeThread": {
+     "va": "00471cd9",
+     "size": 13,
+     "mangled": "W?LinkResumeThread$n(pnv)ul"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-18"
+  },
+  "src/_unknown/tu_00485390.c": {
+   "as": "_unknown\\tu_00485390.c",
+   "install": "wc106",
+   "profile": "ot",
+   "functions": {
+    "Palette::$ct": {
+     "va": "00485390",
+     "size": 48,
+     "mangled": "W?$ct:Palette$n()_"
+    },
+    "Palette::$dt": {
+     "va": "004853c0",
+     "size": 16,
+     "mangled": "W?$dt:Palette$n()_"
+    },
+    "Palette::SetEntries": {
+     "va": "004853d0",
+     "size": 48,
+     "mangled": "W?SetEntries$:Palette$n(pnx$tagPALETTEENTRY$$)v"
+    },
+    "Palette::FromRgb": {
+     "va": "00485400",
+     "size": 96,
+     "mangled": "W?FromRgb$:Palette$n(pnx$tagRGBQUAD$$)v"
+    },
+    "Palette::GetEntries": {
+     "va": "00485460",
+     "size": 48,
+     "mangled": "W?GetEntries$:Palette$n(pn$tagPALETTEENTRY$$)v"
+    },
+    "Palette::ToRgb": {
+     "va": "00485490",
+     "size": 54,
+     "mangled": "W?ToRgb$:Palette$n(pn$tagRGBQUAD$$)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-18"
+  },
+  "src/_unknown/asm_0047f114.asm": {
+   "as": "_unknown\\asm_0047f114.asm",
+   "install": "wc106",
+   "profile": "asm-tasm50",
+   "functions": {
+    "RenderImage": {
+     "va": "0047f114",
+     "size": 517,
+     "mangled": "RenderImage"
+    },
+    "ScaleTransparentRows": {
+     "va": "0047f319",
+     "size": 139,
+     "mangled": "ScaleTransparentRows"
+    },
+    "ScaleRemappedRows": {
+     "va": "0047f3a4",
+     "size": 143,
+     "mangled": "ScaleRemappedRows"
+    },
+    "ScaleRemappedFractionalRows": {
+     "va": "0047f433",
+     "size": 140,
+     "mangled": "ScaleRemappedFractionalRows"
+    },
+    "ScaleBlendedRows": {
+     "va": "0047f4bf",
+     "size": 169,
+     "mangled": "ScaleBlendedRows"
+    },
+    "ScaleTranslatedRows": {
+     "va": "0047f568",
+     "size": 118,
+     "mangled": "ScaleTranslatedRows"
+    }
+   },
+   "data": {
+    "_DATA": {
+     "va": "004a4bbc",
+     "size": 72
+    }
+   },
+   "accepted": "2026-11-18"
+  },
+  "src/_unknown/asm_0047f5e0.asm": {
+   "as": "_unknown\\asm_0047f5e0.asm",
+   "install": "wc106",
+   "profile": "asm-tasm50",
+   "functions": {
+    "RenderSpecialImage": {
+     "va": "0047f5e0",
+     "size": 212,
+     "mangled": "RenderSpecialImage"
+    },
+    "RleAlignedFill": {
+     "va": "0047f6b4",
+     "size": 53,
+     "mangled": "RleAlignedFill"
+    },
+    "RleAlignedCopy": {
+     "va": "0047f6e9",
+     "size": 101,
+     "mangled": "RleAlignedCopy"
+    },
+    "RleMappedAlignedFill": {
+     "va": "0047f74e",
+     "size": 56,
+     "mangled": "RleMappedAlignedFill"
+    },
+    "RleMappedAlignedCopy": {
+     "va": "0047f786",
+     "size": 34,
+     "mangled": "RleMappedAlignedCopy"
+    },
+    "DrawTransparentBitmap": {
+     "va": "0047f7a8",
+     "size": 166,
+     "mangled": "DrawTransparentBitmap"
+    },
+    "SimMarkPosition": {
+     "va": "0047f84e",
+     "size": 46,
+     "mangled": "SimMarkPosition"
+    }
+   },
+   "data": {
+    "_DATA": {
+     "va": "004a4c04",
+     "size": 16
+    }
+   },
+   "accepted": "2026-11-18"
+  },
+  "src/_unknown/asm_00480ee0.asm": {
+   "as": "_unknown\\asm_00480ee0.asm",
+   "install": "wc106",
+   "profile": "asm-tasm50",
+   "functions": {
+    "RenderPutPixel": {
+     "va": "00480ee0",
+     "size": 32,
+     "mangled": "RenderPutPixel"
+    },
+    "RenderGetPixel": {
+     "va": "00480f00",
+     "size": 29,
+     "mangled": "RenderGetPixel"
+    },
+    "RenderFill": {
+     "va": "00480f1d",
+     "size": 124,
+     "mangled": "RenderFill"
+    },
+    "RenderCopy": {
+     "va": "00480f99",
+     "size": 76,
+     "mangled": "RenderCopy"
+    },
+    "RenderFillSpans": {
+     "va": "00480fe5",
+     "size": 121,
+     "mangled": "RenderFillSpans"
+    },
+    "RenderHorizontal": {
+     "va": "0048105e",
+     "size": 87,
+     "mangled": "RenderHorizontal"
+    },
+    "RenderVertical": {
+     "va": "004810b5",
+     "size": 54,
+     "mangled": "RenderVertical"
+    },
+    "RenderLine": {
+     "va": "004810eb",
+     "size": 166,
+     "mangled": "RenderLine"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-18"
+  },
+  "src/_unknown/asm_0047f87c.asm": {
+   "as": "_unknown\\asm_0047f87c.asm",
+   "install": "wc106",
+   "profile": "asm-tasm40",
+   "functions": {
+    "VectorLength": {
+     "va": "0047f87c",
+     "size": 38,
+     "mangled": "VectorLength"
+    },
+    "VectorLength3D": {
+     "va": "0047f8a2",
+     "size": 72,
+     "mangled": "VectorLength3D"
+    },
+    "ISqrt": {
+     "va": "0047f8ea",
+     "size": 82,
+     "mangled": "ISqrt"
+    },
+    "SignedMultiplyDivide": {
+     "va": "0047f93c",
+     "size": 15,
+     "mangled": "SignedMultiplyDivide"
+    },
+    "FixedMultiplyShift": {
+     "va": "0047f94b",
+     "size": 17,
+     "mangled": "FixedMultiplyShift"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-18"
+  },
+  "src/_unknown/tu_00438244.c": {
+   "as": "_unknown\\tu_00438244.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "PrepareActorDescriptor": {
+     "va": "00438244",
+     "size": 301,
+     "mangled": "W?PrepareActorDescriptor$n(pnv)v"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-18"
+  },
+  "src/_unknown/tu_0043b024.c": {
+   "as": "_unknown\\tu_0043b024.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "ClampRange": {
+     "va": "0043b024",
+     "size": 29,
+     "mangled": "W?ClampRange$n(iii)i"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-18"
+  },
+  "src/_unknown/tu_0043b044.c": {
+   "as": "_unknown\\tu_0043b044.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "UnitFogObject": {
+     "va": "0043b044",
+     "size": 907,
+     "mangled": "W?UnitFogObject$n(pn$ActorUnit$$ipnv)pn$FogObject$$"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-18"
+  },
+  "src/_unknown/tu_0043b3d0.c": {
+   "as": "_unknown\\tu_0043b3d0.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "CurveInit": {
+     "va": "0043b3d0",
+     "size": 60,
+     "mangled": "W?CurveInit$n(pn$Curve$$iiiiiiii)v"
+    },
+    "CurveForward": {
+     "va": "0043b40c",
+     "size": 294,
+     "mangled": "W?CurveForward$n(pn$Curve$$ui)ui"
+    },
+    "CurveInverse": {
+     "va": "0043b532",
+     "size": 287,
+     "mangled": "W?CurveInverse$n(pn$Curve$$ui)ui"
+    },
+    "CurveSlope": {
+     "va": "0043b651",
+     "size": 249,
+     "mangled": "W?CurveSlope$n(pn$Curve$$ui)ui"
+    }
+   },
+   "data": {},
+   "accepted": "2026-11-18"
+  },
+  "src/_unknown/tu_0043b74c.c": {
+   "as": "_unknown\\tu_0043b74c.c",
+   "install": "wc106",
+   "profile": "plain",
+   "functions": {
+    "SimLoadPalette": {
+     "va": "0043b74c",
+     "size": 88,
+     "mangled": "W?SimLoadPalette$n(ipnv)v"
+    },
+    "HercPrepareAssets": {
+     "va": "0043b7a4",
+     "size": 59,
+     "mangled": "HercPrepareAssets"
+    }
+   },
+   "data": {
+    "CONST": {
+     "va": "0048adcc",
+     "size": 11
     }
    },
    "accepted": "2026-11-18"

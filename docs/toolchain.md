@@ -35,6 +35,10 @@ WASM is rejected: it encodes register-register instructions in the r/m-destinati
 uses the register-destination form (8B/03) in 162 places (s46). Borland TASM32 with `-ml -m5` (profiles
 `asm-tasm40`, `asm-tasm50`, pinned) reproduces all 12 routines byte for byte (RenderClipLine by s49); `-m5` (multi-pass) is required,
 single-pass TASM reserves near jumps for forward references and pads with NOPs. TASM 4.0 and 5.0 give identical
-bytes, so the version stays undecided (5.0 is used: 1996, same year as the game). MASM 6.x is untested. Gate policy for
+bytes, so the version stays undecided (5.0 is used: 1996, same year as the game). Update 2026-11-18 (lane f3): pinned TASM32 5.0
+crashes (0xC0000005) on `bsr ecx, edx` even in a two-instruction file; 4.0 assembles it. The arithmetic object
+src/_unknown/asm_0047f87c.asm (ISqrt) is therefore accepted under `asm-tasm40`, the other asm objects under 5.0.
+This is evidence that the original was not built with this exact 5.0 binary (or that this object came from 4.0),
+not a decided version. MASM 6.x is untested. Gate policy for
 `.asm`: no binary inclusion, no data blobs (4+ comma-separated db/dw/dd values) unless a line is labelled
 UNKNOWN debt. verify counts accepted asm TUs separately from the C/C++ census.
