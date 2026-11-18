@@ -451,6 +451,11 @@
      "size": 48,
      "mangled": "W?GridClearNeighbors$n(pn$TerrainGrid$$)v"
     },
+    "GridPointToIndex": {
+     "va": "0042afb0",
+     "size": 496,
+     "mangled": "W?GridPointToIndex$n(pn$TerrainGrid$$pn$GridPoint$$)l"
+    },
     "TargetObjectInit": {
      "va": "0042b1a0",
      "size": 144,
@@ -460,6 +465,11 @@
      "va": "0042b290",
      "size": 64,
      "mangled": "W?BestLocSetData$n(pn$TerrainGrid$$pnll)pnl"
+    },
+    "GridFindNeighbor": {
+     "va": "0042b2d0",
+     "size": 208,
+     "mangled": "W?GridFindNeighbor$n(pn$TerrainGrid$$ll)l"
     },
     "GridClamp": {
      "va": "0042b3a0",
@@ -512,7 +522,7 @@
      "size": 6
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-18"
   },
   "src/terr/tfog.c": {
    "as": "terr\\tfog.c",
@@ -650,7 +660,7 @@
   "src/logic/lactor.c": {
    "as": "logic\\lactor.c",
    "install": "wc106",
-   "profile": "plain",
+   "profile": "plain-oe",
    "functions": {
     "ActorRead": {
      "va": "00463b18",
@@ -697,6 +707,16 @@
      "size": 164,
      "mangled": "W?ActorSetMode$n(pn$LogicActor$$i)v"
     },
+    "ActorCanChoose": {
+     "va": "00463d66",
+     "size": 111,
+     "mangled": "W?ActorCanChoose$n(pn$LogicActor$$)i"
+    },
+    "ActorInvoke": {
+     "va": "00463de8",
+     "size": 471,
+     "mangled": "ActorInvoke"
+    },
     "ActorArrayGet": {
      "va": "00463fbf",
      "size": 27,
@@ -723,7 +743,12 @@
      "mangled": "W?ActorIsAvailable$n(pn$LogicActor$$)i"
     }
    },
-   "data": {},
+   "data": {
+    "CONST": {
+     "va": "0048b5b8",
+     "size": 13
+    }
+   },
    "accepted": "2026-11-18"
   },
   "src/logic/miss.c": {
@@ -805,6 +830,11 @@
      "size": 1,
      "mangled": "W?BestLocEmpty$n()v"
     },
+    "IntelFindBest": {
+     "va": "00465f1c",
+     "size": 431,
+     "mangled": "W?IntelFindBest$n(pniii)i"
+    },
     "BestLocSubCandidate": {
      "va": "004660cb",
      "size": 233,
@@ -821,8 +851,13 @@
      "mangled": "W?BestLocRun$n(pnv)i"
     }
    },
-   "data": {},
-   "accepted": "2026-11-16"
+   "data": {
+    "_DATA": {
+     "va": "004a3c60",
+     "size": 16
+    }
+   },
+   "accepted": "2026-11-18"
   },
   "src/io/resource.c": {
    "as": "io\\resource.c",
@@ -838,6 +873,11 @@
      "va": "0047c580",
      "size": 112,
      "mangled": "W?$dt:ResMgr$n()_"
+    },
+    "ResMgr::Init": {
+     "va": "0047c5f0",
+     "size": 208,
+     "mangled": "W?Init$:ResMgr$n(pnpnxapnxa)i"
     },
     "ResMgr::Close": {
      "va": "0047c6c0",
@@ -916,12 +956,16 @@
     }
    },
    "data": {
+    "CONST": {
+     "va": "0048bfd0",
+     "size": 31
+    },
     "W?$Wts0hn$ResourceEntry$$$nx[]uc": {
      "va": "0048e2e8",
      "size": 17
     }
    },
-   "accepted": "2026-11-16"
+   "accepted": "2026-11-18"
   },
   "src/shell/missbrf.c": {
    "as": "shell\\missbrf.c",
@@ -2809,7 +2853,7 @@
     },
     "Shell::UpdateHercBay": {
      "va": "004038e4",
-     "size": 646,
+     "size": 650,
      "mangled": "W?UpdateHercBay$:Shell$n()v"
     },
     "Shell::UpdateHercBuy": {
@@ -2849,7 +2893,7 @@
     },
     "Shell::UpdateBiodermSkills": {
      "va": "00405f4c",
-     "size": 267,
+     "size": 271,
      "mangled": "W?UpdateBiodermSkills$:Shell$n()v"
     },
     "Shell::ShowIntro": {
@@ -3001,7 +3045,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-16"
+   "accepted": "2026-11-18"
   },
   "src/sim/anim.c": {
    "as": "sim\\anim.c",
@@ -3407,7 +3451,7 @@
      "size": 6
     }
    },
-   "accepted": "2026-11-15"
+   "accepted": "2026-11-18"
   },
   "src/sim/fxout.c": {
    "as": "sim\\fxout.c",
@@ -3680,7 +3724,7 @@
     },
     "f_00416eec": {
      "va": "00416eec",
-     "size": 700,
+     "size": 704,
      "mangled": "W?f_00416eec$n(pnv)v"
     },
     "f_004171ac": {
@@ -4886,6 +4930,11 @@
    "install": "wc106",
    "profile": "plain-oe",
    "functions": {
+    "W?.fn_init$n()v": {
+     "va": "00464054",
+     "size": 24,
+     "mangled": "W?.fn_init$n()v"
+    },
     "LogicActorList::Load": {
      "va": "0046406c",
      "size": 138,
@@ -4986,8 +5035,13 @@
      "size": 275,
      "mangled": "W?NotifyActorLinks$:LogicActorList$n()v"
     },
-    "LogicActor::$ct": {
+    "LogicActor::$dt": {
      "va": "00464d6c",
+     "size": 5,
+     "mangled": "W?$dt:LogicActor$n()_"
+    },
+    "LogicActor::$ct": {
+     "va": "00464d74",
      "size": 5,
      "mangled": "W?$ct:LogicActor$n()_"
     }
@@ -5004,9 +5058,13 @@
     "XI": {
      "va": "004a6ca8",
      "size": 6
+    },
+    "W?$Wts0en$LogicActor$$$nx[]uc": {
+     "va": "0048e0d8",
+     "size": 17
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-18"
   },
   "src/logic/intel.c": {
    "as": "logic\\intel.c",
@@ -5733,7 +5791,7 @@
     },
     "f_004199e8": {
      "va": "004199e8",
-     "size": 247,
+     "size": 251,
      "mangled": "W?f_004199e8$n(pna)v"
     },
     "f_00419ae3": {
@@ -5743,7 +5801,7 @@
     },
     "f_00419b3c": {
      "va": "00419b3c",
-     "size": 481,
+     "size": 485,
      "mangled": "W?f_00419b3c$n(pna)v"
     },
     "f_00419d21": {
@@ -6034,7 +6092,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-18"
   },
   "src/_unknown/tu_0043b7e0.c": {
    "as": "_unknown\\tu_0043b7e0.c",
@@ -6471,7 +6529,7 @@
      "size": 6
     }
    },
-   "accepted": "2026-11-16"
+   "accepted": "2026-11-18"
   },
   "src/_unknown/tu_004349c0.c": {
    "as": "_unknown\\tu_004349c0.c",
@@ -6580,7 +6638,7 @@
     },
     "ShellBiodermListRender": {
      "va": "0040d6b8",
-     "size": 1483,
+     "size": 1487,
      "mangled": "W?ShellBiodermListRender$n(pn$BiodermListScreen$$)v"
     },
     "BiodermListScreen::UpdateText": {
@@ -6595,7 +6653,7 @@
     },
     "BiodermListScreen::Buy": {
      "va": "0040dd64",
-     "size": 1273,
+     "size": 1277,
      "mangled": "W?Buy$:BiodermListScreen$n()v"
     },
     "BiodermListScreen::Cancel": {
@@ -6664,7 +6722,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-11"
+   "accepted": "2026-11-18"
   },
   "src/pop/ppilot.c": {
    "as": "pop\\ppilot.c",
@@ -8870,7 +8928,7 @@
     }
    },
    "data": {},
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-18"
   },
   "src/_unknown/tu_0047ab81.c": {
    "as": "_unknown\\tu_0047ab81.c",
@@ -10703,7 +10761,7 @@
     },
     "ShellStorageRender": {
      "va": "00418844",
-     "size": 673,
+     "size": 677,
      "mangled": "W?ShellStorageRender$n(pn$StorageScreen$$)v"
     },
     "StorageSetup": {
@@ -10819,7 +10877,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-18"
   },
   "src/shell/muzak.c": {
    "as": "shell\\muzak.c",
@@ -12351,7 +12409,7 @@
    "functions": {
     "RichTextCommand": {
      "va": "0042a6e8",
-     "size": 224,
+     "size": 228,
      "mangled": "W?RichTextCommand$n(pn$RichTextState$$pnxuc)ui"
     },
     "RichTextDraw": {
@@ -12370,7 +12428,7 @@
      "size": 14
     }
    },
-   "accepted": "2026-11-11"
+   "accepted": "2026-11-18"
   },
   "src/terr/trender.c": {
    "as": "terr\\trender.c",
@@ -12521,7 +12579,7 @@
     },
     "PromoScreen::SetPage": {
      "va": "00409704",
-     "size": 8686,
+     "size": 8690,
      "mangled": "W?SetPage$:PromoScreen$n()v"
     },
     "PromoScreen::NextPage": {
@@ -16001,6 +16059,65 @@
    "tu": "src/shell/promosh.c",
    "functions": [
     "PromoScreen::Open"
+   ],
+   "date": "2026-11-18"
+  },
+  {
+   "tu": "src/_unknown/tu_0040d2b0.c",
+   "functions": [
+    "ShellBiodermListRender",
+    "BiodermListScreen::Buy"
+   ],
+   "date": "2026-11-18"
+  },
+  {
+   "tu": "src/gui/wrapper.c",
+   "functions": [
+    "RichTextCommand"
+   ],
+   "date": "2026-11-18"
+  },
+  {
+   "tu": "src/shell/hbmanage.c",
+   "functions": [
+    "ShellStorageRender"
+   ],
+   "date": "2026-11-18"
+  },
+  {
+   "tu": "src/shell/hbupgrad.c",
+   "functions": [
+    "f_004199e8",
+    "f_00419b3c"
+   ],
+   "date": "2026-11-18"
+  },
+  {
+   "tu": "src/shell/hercbuy.c",
+   "functions": [
+    "f_00416eec"
+   ],
+   "date": "2026-11-18"
+  },
+  {
+   "tu": "src/shell/promosh.c",
+   "functions": [
+    "PromoScreen::SetPage"
+   ],
+   "date": "2026-11-18"
+  },
+  {
+   "tu": "src/shell/shell.c",
+   "functions": [
+    "Shell::UpdateHercBay",
+    "Shell::UpdateBiodermSkills"
+   ],
+   "date": "2026-11-18"
+  },
+  {
+   "tu": "src/logic/lactors.c",
+   "functions": [
+    "LogicActor::$ct"
    ],
    "date": "2026-11-18"
   }

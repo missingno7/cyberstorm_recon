@@ -1,3 +1,4 @@
+inline void *operator new(unsigned int, void *place) { return place; }
 #pragma pack(push,1)
 #include "actor.h"
 typedef unsigned char u8; typedef unsigned long u32; struct ActorPoint { int x, y; }; struct ActorPilot { u8 pad[0x12]; int active; int Active() { return active > 0; } }; struct ApplyPoint { int x, y; }; extern int PointAngle(ApplyPoint *left, ApplyPoint *right);
@@ -95,22 +96,21 @@ LogicActor *LogicActorList::Next(LogicActor *actor)
         return (LogicActor *)((char *)actor + 0xa8);
     return 0;
 }
-     
-     
-     
-     
-     
-LogicActor *LogicActorList::Reserve() { if (logicActors.actorCount >= 512) AssertFail(lactorsSourcePath, __LINE__, 0); LogicActor *actor = logicActors.actorRecords + logicActors.actorCount; actor->index = ++logicActors.actorCount; return actor; }
 
 
 
-
-
-
-
+LogicActor *LogicActorList::Reserve() {
+    if (logicActors.actorCount >= 512) AssertFail(lactorsSourcePath, __LINE__, 0);
+    LogicActor *actor = logicActors.actorRecords + logicActors.actorCount;
+    actor->~LogicActor();
+    actor = new (actor) LogicActor;
+    actor->index = ++logicActors.actorCount;
+    return actor;
+}
 
 LogicActor *LogicActorList::CreateActor(int type, ActorPoint *position, int value, const char *name)
 {
+
     if (type <= 0 || type >= 32) AssertFail(lactorsSourcePath, __LINE__, BriefFormat("Invalid Actor Type (%d)", type));
     if (name == 0) {
         if (type >= 17) name = (const char *)gLocalActorKind;

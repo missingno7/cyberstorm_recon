@@ -47,6 +47,12 @@ next public or the segment end, including compiler alignment filler and jump tab
    00468200). Effect: ScriptFormatArgs (200 B) and SearchGetCost (84 B) became STRICT; PromoScreen::Open shrank
    from 495 to 451 B (the 44 bytes were SetPage's keys, still proven by SetPage). test_gate covers positive
    cases, a wrong key, a nonzero prefix byte, a missing relocation and a non-filler suffix.
+   Correction (same day, lane u1): the address operand of a `jmp cs:[r*4 + table]` (ff 24 SIB disp32) that ENDS
+   a function is a relocated code pointer too, and rules 6/8 read it as a foreign table: the extent lost its last
+   4 bytes, so neither the table address nor the table it names was proven by anyone. Such a fixup is never a
+   table entry now. All 10 accepted functions it affected stayed STRICT with +4 bytes (ledger sizes updated:
+   ShellBiodermListRender, BiodermListScreen::Buy, RichTextCommand, ShellStorageRender, f_004199e8, f_00419b3c,
+   f_00416eec, PromoScreen::SetPage, Shell::UpdateHercBay, Shell::UpdateBiodermSkills). test_gate covers it.
 UNBOUND = all bytes equal but some fixup target unbound; DIFF = any byte, relocation or extent difference.
 
 Soundness note (2026-11-09): Watcom references into a segment as `SEG + 0` with the item offset in the

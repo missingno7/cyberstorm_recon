@@ -261,13 +261,13 @@ int WeaponAccuracy(Context *c,int index)
 
         AssertFail(__FILE__, __LINE__, 0);
     WeaponScore *r=&c->score[index];
-    ActorRecord *target=c->target.targetActor, *source=c->target.sourceActor;
-    void *pilot=source->pilot; int skill=UnitCapability(pilot,r->weapon.skill);
+    ActorRecord *source = c->target.sourceActor, *target = c->target.targetActor;
+    ActorPilot *pilot = source->pilot; int skill = UnitCapability(pilot, r->weapon.skill);
     int range=Interpolate(r->weapon.nearRange*1000,135,r->weapon.farRange*1000,0,c->target.distance);
     int sourceSkill=c->target.sourceSkill, targetSkill=c->target.targetSkill;
     if (source->action.state==7) sourceSkill-=20;
     if (target && target->action.state==7 && c->target.targetHeight >= c->target.sourceHeight) targetSkill+=20;
-    int heights=(int)c->target.sourceHeight-c->target.targetHeight; int modifiers=sourceSkill-targetSkill+heights*5;
+    int modifiers = sourceSkill - targetSkill + ((int)c->target.sourceHeight - c->target.targetHeight) * 5;
     int bonus=c->fog.accuracy+GetModePlayer(modeCheckName,source->owner)->accuracy;
     if (target) {
         bonus-=HercDefense(target->unit);
@@ -276,7 +276,7 @@ int WeaponAccuracy(Context *c,int index)
         ActorItem *part=PopFindItem(target->unit,0);
         bonus+=part->defense+weaponActionDefense[action];
     }
-    int chance=range+modifiers; chance+=bonus; chance=chance*skill/100;
+    int chance = skill * (range + modifiers + bonus) / 100;
     chance=Clamp(chance,0,100);
     if (weaponHalfAccuracy) chance=chance*50/100;
     return chance;

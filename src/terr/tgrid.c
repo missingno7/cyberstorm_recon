@@ -1,6 +1,6 @@
 // terr\tgrid.c. Names and partial field layouts remain working labels.
 struct GridPoint { long x, y; };
-struct GridCell { unsigned char terrain, water, ground, feature, height, flags, region, unused; long actor; }; struct GridNeighbors { unsigned short index[4]; }; struct TerrainGrid { long unknown00,spacing,radius,diameter; GridPoint center; long centerIndex,rowShift,rowWidth,rowSlack,cellCount,state,unknown30,counts[3],unknown40; GridCell *cells; GridNeighbors *neighbors; long PointToIndex(GridPoint *); };
+struct GridCell { unsigned char terrain, water, ground, feature, height, flags, region, unused; long actor; }; struct GridNeighbors { unsigned short index[4]; }; struct TerrainGrid { long unknown00,spacing,radius,diameter; GridPoint center; long centerIndex,rowShift,rowWidth,rowSlack,cellCount,state,unknown30,counts[3],unknown40; GridCell *cells; GridNeighbors *neighbors; long PointToIndex(const GridPoint &) const; };
 struct Point {
     long x, y;
     Point(long ax, long ay) : x(ax), y(ay) {}
@@ -9,13 +9,12 @@ Point pathDirections[6] = {
     Point(0,-2), Point(1,-1), Point(1,1), Point(0,2), Point(-1,1), Point(-1,-1)
 };
 struct GridIndex { unsigned short value; GridIndex(unsigned short n) : value(n) {} };
-// Provisional local-coordinate class; the unmatched conversion uses scalar copy construction.
-struct GridCoordLocal {
-    long x, y;
+// Local coordinates share the grid point layout and copy each component.
+struct GridCoordLocal : GridPoint {
     GridCoordLocal() {}
-    GridCoordLocal(const GridPoint &p) : x(p.x), y(p.y) {}
+    GridCoordLocal(const GridPoint &p) { x = p.x; y = p.y; }
     void Set(long ax, long ay) { x=ax; y=ay; }
-    void Add(const GridPoint *p) { x+=p->x; y+=p->y; }
+    void Add(const Point &direction) { x += direction.x; y += direction.y; }
 };
 struct GridSearchState { GridPoint point; long target, bestIndex, bestDistance; };
 extern GridSearchState gGridSearch;
@@ -47,12 +46,15 @@ inline GridPoint *GridScale(GridPoint *p, long amount) {
     p->x*=amount; p->y*=amount;
     return p;
 }
-inline long GridDistance(const GridPoint *a, const GridPoint *b) {
-    long dx=GridAbs(a->x-b->x); long dy=GridAbs(a->y-b->y); return GridMax(dx,(dx+dy)>>1); }
-inline long GridLookup(TerrainGrid *grid, const GridPoint *point) {
-    const GridPoint *center=&grid->center; long dx=GridAbs(center->x-point->x); long dy=GridAbs(center->y-point->y);
-    if(GridMax(dx,(dx+dy)>>1)>grid->radius) return 0;
-    return ((point->y>>1)<<grid->rowShift)+point->x+1;
+inline long GridDistance(const GridPoint *center, const GridPoint &point) {
+    long dx = GridAbs(center->x - point.x);
+    long dy = GridAbs(center->y - point.y);
+    return GridMax(dx, (dx + dy) >> 1);
+}
+inline long TerrainGrid::PointToIndex(const GridPoint &point) const {
+    if (GridDistance(&center, point) > radius)
+        return 0;
+    return ((point.y >> 1) << rowShift) + point.x + 1;
 }
 // Direction table is initialized by the global point constructors.
 TerrainGrid *GridClear(TerrainGrid *p) { p->cells = 0; p->neighbors = 0; return p; }
@@ -113,8 +115,6 @@ long GridInitialize(TerrainGrid *p, long spacing, long height) {
         // source-line padding
         // source-line padding
         // source-line padding
-        // source-line padding
-        // source-line padding
         AssertFail(GridSourcePath, __LINE__, 0);
     }
     memset(p->cells, 0, (p->cellCount + 1) * 12);
@@ -146,10 +146,7 @@ long GridPointToIndex(TerrainGrid *grid, GridPoint *point) {
     if(odd) local.y+=point->y<=0?1:-1;
     local.y+=grid->center.y;
     if(local.x&1)local.y|=1; else local.y&=~1;
-    return GridLookup(grid,(GridPoint*)&local);
-
-
-
+    return grid->PointToIndex(local);
 }
 
 
@@ -182,8 +179,11 @@ extern "C" GridPoint *TargetObjectInit(TerrainGrid *grid, GridPoint *out, long i
 
 
 
-extern "C" int ResolveName(TerrainGrid *grid,GridPoint *point) {
-    if(GridDistance(&grid->center,point)>grid->radius) return 0; return ((point->y>>1)<<grid->rowShift)+point->x+1; }
+extern "C" int ResolveName(TerrainGrid *grid, GridPoint *point) {
+    return grid->PointToIndex(*point);
+}
+
+
 
 
 
@@ -198,17 +198,16 @@ long *BestLocSetData(TerrainGrid *grid, long *out, long index) {
     out[1]=(index>>grid->rowShift)*2+((out[0]&1)!=0);
     return out;
 }
-long GridFindNeighbor(TerrainGrid *grid,long index,long wanted) {
+long GridFindNeighbor(TerrainGrid *grid, long index, long wanted) {
     GridPoint origin;
-    GridDecode(grid,&origin,index);
+    GridDecode(grid, &origin, index);
     long result;
-    for(result=0; result<6; ++result) {
+    for (result = 0; result < 6; ++result) {
         GridCoordLocal point(origin);
-        point.Add((const GridPoint *)&pathDirections[result]);
-        long candidate;
-        if(GridDistance(&grid->center,(GridPoint *)&point)>grid->radius) candidate=0;
-        else candidate=((point.y>>1)<<grid->rowShift)+point.x+1;
-        if(candidate==wanted) break;
+        point.Add(pathDirections[result]);
+        if (grid->PointToIndex(point) == wanted) {
+            return result;
+        }
     }
     return result;
 }
@@ -304,6 +303,7 @@ long GridLoad(TerrainGrid *grid, void *stream) {
     unsigned long headerBytes = (unsigned long)((char *)&grid->unknown40 - (char *)grid); int bytes = StreamRead(stream, grid, headerBytes);
     if (bytes != (int)headerBytes) return 0;
     if (count != grid->cellCount) {
+        // source-line padding
         // source-line padding
         // source-line padding
         // source-line padding

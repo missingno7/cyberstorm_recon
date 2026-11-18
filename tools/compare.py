@@ -427,8 +427,12 @@ class Comparison:
         res = None
         seg = self.m.segments[si]
         if is_code(seg) and getattr(seg, "comdat", None) is None and e - o > 4 and e < seg.size:
+            # the address operand of a `jmp cs:[r*4 + table]` dispatch (ff 24 SIB disp32) is a code pointer fixup
+            # too, but it is the extent's own LAST INSTRUCTION, not a table entry (lane u1: ActorInvoke ended in its
+            # dispatch and lost those 4 bytes, so neither the table address nor the table was proven)
             ptrs = {f.off: f for f in self.fx_by_seg.get(si, []) if f.size() == 4 and not f.self_rel
-                    and f.target[0] & 3 == 0 and is_code(self.m.segments[f.target[1]])}
+                    and f.target[0] & 3 == 0 and is_code(self.m.segments[f.target[1]])
+                    and not (f.off >= 3 and seg.data[f.off - 3] == 0xFF and seg.data[f.off - 2] == 0x24)}
             t = e
             while t - 4 > o and (t - 4) in ptrs:
                 t -= 4

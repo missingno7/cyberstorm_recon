@@ -205,6 +205,14 @@ def key_ownership_checks(check):
         e = gate.by_label(gate.extents(r)).get(label, {})
         check(e.get("status") == "STRICT" and e["end"] - e["off"] == size,
               f"key/table ownership: {label} is STRICT with its own {size} bytes")
+    # a function that ENDS in its switch dispatch `jmp cs:[r*4 + table]` keeps the 4-byte table address: it is
+    # its own last instruction operand, not a foreign table (lane u1, 2026-11-18; before, 10 accepted functions
+    # had that operand and their table unproven)
+    for tu, label, size in (("src/logic/lactor.c", "ActorInvoke", 471), ("src/gui/wrapper.c", "RichTextCommand", 228)):
+        r, _, _ = gate.build_and_compare(ROOT / tu, led[tu])
+        e = gate.by_label(gate.extents(r)).get(label, {})
+        check(e.get("status") == "STRICT" and e["end"] - e["off"] == size,
+              f"dispatch operand: {label} is STRICT including its final jmp operand ({size} bytes)")
     tu = "src/shell/promosh.c"
     text = (ROOT / tu).read_text(encoding="latin-1")
     check(text.count("case 1004:") == 1, "key ownership fixture: SetPage has one case 1004")

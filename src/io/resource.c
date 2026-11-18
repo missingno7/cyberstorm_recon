@@ -1,6 +1,8 @@
 #include <windows.h>
 #include <mmsystem.h>
 #include <stdarg.h>
+#include <string.h>
+#pragma function(strchr)
 extern "C" int MakePath(void *, const char *, const char *, int);
 extern "C" void AssertFail(const char *, int, const char *); extern "C" int sprintf(char *, const char *, ...); static const char ResourceSourcePath[] = "io\\resource.c"; static const char MissingResourceFormat[] = "Missing file: %s.  Possible cause: Bad installation, or CD removed at bad time."; extern char errorData[], errorMemory[];
 extern "C" int vsprintf(char *, const char *, va_list);
@@ -32,18 +34,14 @@ struct ResMgr {
 
 
 
-
 unsigned long IoRead(FileRecord *, long, long); unsigned long IoClose(FileRecord *);
 
 
 extern "C" void *IORelease(void *);
-extern "C" char *FindChar(const char *, int);
 ResMgr::ResMgr() { opened=0; loaded=opened; count=0; }
 ResMgr::~ResMgr()
 { Close(); }
-/* Keep this source line aligned with the original assertion immediates. */
-int ResMgr::Init(const char ** paths, const char *outDir)
-{ if (this == 0 || loaded != 0 || opened != 0)
+/* Preserve the source lines of the initialization assertions. */
 
 
 
@@ -65,23 +63,25 @@ int ResMgr::Init(const char ** paths, const char *outDir)
 
 
 
-
+int ResMgr::Init(const char **pathList, const char *outDir)
+{
+    if (this == 0 || loaded != 0 || opened != 0)
         AssertFail(ResourceSourcePath, __LINE__, 0);
-    ResourceEntry *entry=entries;
-    count=0;
-    for(int i=0;i<10;++i,++paths,++entry) {
-        const char *path=*paths; if (!path) break;
-        count=i+1; types[i]=1; this->paths[i]=path;
-        if (FindChar(path,'.')) {
-            types[i]=2;
-            if (!MakePath(entry,path,outDir,1))
+    count = 0;
+    for (int i = 0; i < 10; ++i) {
+        if (!pathList[i])
+            break;
 
-
-
+        count = i + 1;
+        paths[i] = pathList[i];
+        types[i] = 1;
+        if (strchr(pathList[i], '.')) {
+            types[i] = 2;
+            if (!MakePath(&entries[i], pathList[i], outDir, 1))
                 AssertFail(ResourceSourcePath, __LINE__, "Unable to open game data file!");
         }
     }
-    loaded=1;
+    loaded = 1;
     return loaded;
 }
 

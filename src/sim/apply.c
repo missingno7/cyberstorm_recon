@@ -329,8 +329,6 @@ static void ApplyOne(int damage)
 
 
 
-
-
 // Declarations used by ApplyVisit and ApplyDamage.
 inline int Square(int v) { return v * v; }
 extern "C" void TargetObjectInit(const char *, void *, int);
@@ -402,9 +400,11 @@ int ApplyVisit(BestLocCandidate *candidate)
     StatsRecord(g4dd0c0, gApplyAttacker, gApplyActor);
     ApplyFinish();
     ActorUnit *unit = gApplyActor->unit;
-    if (unit->slots[0].item > 8) {
+    unsigned char uniformCondition = unit->slots[0].item > 8;
+    if (uniformCondition != 0) {
+        unsigned char condition = unit->slots[0].condition;
         for (int j = 1; j < 23; j++)
-            unit->slots[j].condition = unit->slots[0].condition;
+            unit->slots[j].condition = condition;
     } else {
         int sum = 0;
         for (int j = 0; j < 23; j++)

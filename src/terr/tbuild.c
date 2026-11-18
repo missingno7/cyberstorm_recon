@@ -224,6 +224,16 @@ void TerrainSetWater(TerrainGrid *grid,int seed,int percent)
         NoiseClear(&noise);
     }
 }
+inline void SetTriplet(Cell &left, Cell &middle, Cell &right, int kind,
+                       int base, unsigned direction)
+{
+    U8 first = base + (U8)(direction * 3);
+    left.feature = first;
+    middle.feature = first + 1;
+    right.feature = first + 2;
+    left.featureKind = middle.featureKind = right.featureKind = kind;
+}
+
 void TerrainTriplet(TerrainGrid *grid,int index,int kind)
 {
     Point a,b;
@@ -238,11 +248,7 @@ void TerrainTriplet(TerrainGrid *grid,int index,int kind)
             Cell *middle=&grid->cells[index];
             U8 middleHeight=middle->height;
             if(left->height==middleHeight&&middleHeight==right->height) {
-                int base=featureTypes[kind-1].base;
-                U8 offset=direction*3;
-                base+=offset;
-                left->feature=base;middle->feature=base+1;right->feature=base+2;
-                left->featureKind=kind;middle->featureKind=kind;right->featureKind=kind;
+                SetTriplet(*left, *middle, *right, kind, featureTypes[kind - 1].base, direction);
             }
         }
     }
