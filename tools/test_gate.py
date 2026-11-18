@@ -233,6 +233,31 @@ def key_ownership_checks(check):
     check(not compare._table_tail(bytes(g3), va, rel, zero_ok=True), "leading table: a non-filler suffix is rejected")
 
 
+def classifier_checks(check):
+    """tools/parked.py residue classes (diagnostic, but they route lane work): controls from review rv1 (2026-11-18).
+    Byte strings are classifier test inputs, never compiled or promoted."""
+    import parked
+    va = 0x400000
+
+    def cls(a, b, fix=()):
+        return parked.classify(bytes.fromhex(a), bytes.fromhex(b), va, {va + x for x in fix})
+    check(cls("8b0d00005000", "8b1500000000", range(2, 6)) == "REG-SWAP",
+          "classifier: a changed register in `mov r32,[absolute]` is REG-SWAP, not RELOC (only the fixup is masked)")
+    check(cls("8b0d00005000", "8b0d00000000", range(2, 6)) == "RELOC",
+          "classifier: an instruction equal except its unlinked fixup field is RELOC")
+    check(cls("8b442404", "8b442408") == "SLOT-SWAP", "classifier: decimal stack displacements are SLOT-SWAP")
+    check(cls("83f801740190c3", "9083f8027400c3") == "SAME-SIZE",
+          "classifier: a changed compare immediate is SAME-SIZE, not HOMES")
+    check(cls("05c0b74b00" + "90" * 3, "0500000000" + "90" * 3, range(1, 5)) not in ("SAME-SIZE", "OPERANDS"),
+          "classifier: `add eax, ADDR` vs the unlinked `add eax, 0` is not a construct difference")
+    check(cls("2b03" + "90" * 2 + "c3", "8b13" + "2bc2" + "c3") == "HOMES",
+          "classifier: a value read from memory on one side and from a register on the other is HOMES (tentative)")
+    hint = parked.core_hint([(0, 2, "je", "0x1000")], [(0, 2, "jne", "0x1000")])
+    check("je" in hint and "jne" in hint, "classifier: je vs jne to the same target gives a hint")
+    check(not any(b < 9 for b in (ROOT / "tools" / "parked.py").read_bytes()),
+          "classifier: no control characters in tools/parked.py")
+
+
 def resource_checks(check):
     """tools/rsrc.py: policy and sensitivity (a one-pixel or one-character change is not STRICT)."""
     import shutil
@@ -363,6 +388,7 @@ def main():
     table_neighbour_checks(check)
     embedded_data_checks(check)
     key_ownership_checks(check)
+    classifier_checks(check)
     resource_checks(check)
     print("TEST GATE OK" if not fails else f"TEST GATE FAILED: {fails}")
     return 1 if fails else 0

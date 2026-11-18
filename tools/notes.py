@@ -89,6 +89,8 @@ def main(argv):
         label, va = q, q
         if idx.exists():
             for ln in idx.read_text(encoding="utf-8").splitlines():
+                if ln.startswith("#"):
+                    continue            # the index stamp (git / ledger revision)
                 c = ln.split("\t")
                 if q in (c[1], c[6].lower()):
                     va, label = c[1], c[6].lower()

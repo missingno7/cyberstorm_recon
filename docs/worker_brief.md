@@ -60,7 +60,12 @@ You reconstruct C++ source that Watcom 10.6 compiles to the exact bytes of `CSTO
 2. Residue classes (`python tools/parked.py`): SHAPE = wrong size, the source says something else: rebuild the body
    from the original listing. SAME-SIZE = right size, one construct off: find that instruction. HOMES / REG-SWAP /
    SLOT-SWAP = same instructions, different homes: needs a different record set, rarely yields to respelling
-   (docs/watcom_playbook.md). WAIT-SIZE / WAIT-TABLE = fix the neighbour. ASM = hand assembly, not C.
+   (docs/watcom_playbook.md); a HOMES row marked "operand homes (tentative)" reads a value from memory on one side
+   and from a register on the other, the hint names both. RELOC = instructions equal except unlinked fixup fields:
+   an identity/binding problem, not source shape. UNPLACED = the comparator could not place the extent; the hint
+   names the placed publics around it (often an exact declaration of a callee or caller places it). WAIT-SIZE /
+   WAIT-TABLE = fix the neighbour. ASM = hand assembly, not C. The index file starts with a `#` stamp (git and
+   ledger revision): regenerate it when the ledger has moved on.
 3. Compiler facts: read `docs/codegen_rules.md` fully (verified core, short). `docs/codegen_rules_lanes.md` holds
    150+ rows reported by lanes and not re-verified: search it for your symptom, do not read it through.
    `docs/watcom_playbook.md` is the symptom -> what-to-try table from two other Watcom projects.
