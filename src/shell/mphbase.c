@@ -422,22 +422,38 @@ int MultiplayerAttemptStart(MultiplayerBase *s) {
         if (!s->GetName()) return 0;
         SoundTrigger(0x1a4, 0);
         MultiplayerRelease(s);
-        if (!s->audioMode) { GuiFadeOut(); ShellClearFrame(); s->audioMode = 0; }
+        if (!s->audioMode) {
+            GuiFadeOut();
+            ShellClearFrame();
+            s->audioMode = 0;
+        }
         return 1;
+    } else {
+        s->busy = 1;
+        MenuDrawImage(&g513888, (MenuImage *)((char *)gShellImages + 0x31c), 200, 140);
+        for (int i = 0; i < 5; ++i) {
+            multiplayerButtons[i].SetVisibility(5);
+        }
+        /* Clear the first ordinary button's visibility and clean bits. */
+        g4b7cbc.flags &= 0xfe1fffffUL;
+        s->unknown157 = 0;
+
+        unsigned char countMissing = s->errors & 1;
+        unsigned char emptyRoster = s->errors & 2;
+        unsigned char noMission = s->errors & 4;
+        unsigned char otherError = s->errors & 8;
+        if (countMissing) {
+            MultiplayerDrawText(s, gShellStrings.GetString(0x274));
+        } else if (emptyRoster) {
+            MultiplayerDrawText(s, gShellStrings.GetString(0x275));
+        } else if (noMission) {
+            MultiplayerDrawText(s, gShellStrings.GetString(0x277));
+        } else if (otherError) {
+            MultiplayerDrawText(s, gShellStrings.GetString(0x276));
+            SoundTrigger(0x90, 0);
+        }
+        SurfacePresent(&g513888);
     }
-    s->busy = 1;
-    MenuDrawImage(&g513888, (MenuImage *)((char *)gShellImages + 0x31c), 200, 140);
-    { for (int i = 0; i < 5; ++i) multiplayerButtons[i].flags = (multiplayerButtons[i].flags & 0xff1fffffUL) + 0xa00000; }
-    /* Clear the first ordinary button's visibility and clean bits. */
-    extern U32 multiplayerFirstButtonFlags;
-    g4b7cbc.flags &= 0xfe1fffffUL;
-    s->unknown157 = 0;
-    unsigned char a = s->errors & 1, b = s->errors & 2, c = s->errors & 4, d = s->errors & 8;
-    if (a) MultiplayerDrawText(s, gShellStrings.GetString(0x274));
-    else if (b) MultiplayerDrawText(s, gShellStrings.GetString(0x275));
-    else if (c) MultiplayerDrawText(s, gShellStrings.GetString(0x277));
-    else if (d) { MultiplayerDrawText(s, gShellStrings.GetString(0x276)); SoundTrigger(0x90, 0); }
-    SurfacePresent(&g513888);
     return 0;
 }
 void MultiplayerDrawText(MultiplayerBase *s, const char *text) {

@@ -66,7 +66,7 @@ extern void HotseatClose(Scene *); extern void SoundClearContext();
 
 extern U32 gInDirty; extern void InputPoll(InputReq *); extern void SurfaceClear(void *); extern void ShellPlayMovie(const char *);
 extern void ShellIntroStart(Scene *,InputReq *,int=0);
-struct ProfileManager {unsigned char unknown00[0x426];U32 mode;unsigned char unknown42a[0x15];unsigned char ready;unsigned char unknown440[0x6c87];long credits;U32 Mode(){return mode;}long Credits(){return credits;}ProfileManager *SetProfileMode(unsigned char);void RefreshMissions();void UnlockItem(int,int);void RestartCampaign();void ApplyCampaignCheat();void AdvanceCampaign();void PrepareRoster();void SetMissionChoice(U32);int LaunchMission(void *);int IsReady(){return ready;}long PendingCost();void CommitPurchases();int HasContinuation();void SelectScenario(int);void SetMode(U32);int Count();void *Select(int);void Advance(int);long Value(int);};
+struct ProfileManager {unsigned char unknown00[0x426];U32 mode;unsigned char unknown42a[0x15];unsigned char ready;unsigned char unknown440[0x6c87];long credits;U32 Mode(){return mode;}long Credits(){return credits;}ProfileManager *SetProfileMode(unsigned char);void RefreshMissions();void SetMissionChoice(U32);int LaunchMission(void *);int IsReady(){return ready;}long PendingCost();void CommitPurchases();int HasContinuation();void SelectScenario(int);void SetMode(U32);int Count();void *Select(int);void Advance(int);long Value(int);};
 extern ProfileManager profileManager; extern int g4d030f; extern long SendEvent(void *,int,void * =0,int=0,int=0);
 extern void ShellMainMenuOpen(Scene *,InputReq *,int); extern void ShellMultiplayerOpen(Scene *,InputReq *,int); extern int gGuiPaletteFaded;
 extern void GuiFadeIn();extern void GuiFadeOut(); extern Scene g4b16a4,g4b07f8,g4b0c50,g4b01c8,g4b0e18,g4ba9a8; extern void ShellIntroRender(Scene *);
@@ -184,14 +184,16 @@ extern char gShellDefaultName[]; struct GameSettings {int moviesEnabled;};extern
 extern void ShellMapOpen(Scene *,InputReq *,long); extern void ShellMissionBegin(Scene *,InputReq *); extern int StopMultiplayer(int,int);
 extern void CommsScreenOpen(Scene *,InputReq *,unsigned char); extern void ShellNetworkSetupOpen(Scene *,InputReq *,unsigned char); extern Scene g4ba9a8;
 
-extern long gIn7c;
+extern U32 gIn7c;
 inline long ShellInputCommand(){return gIn7c;}
-extern void SpecialOptionSound(int); extern void ResetMultiplayerInput(); extern void ShellSelectionOpen(Scene *,InputReq *,const char *);
+extern void SpecialOptionSound(int); extern void ResetMultiplayerInput();
+struct BioScreen { void Open(InputReq *, const char *); };
 struct HercBay {unsigned char unknown00[0x4c];long ownedCount,buyActive,storageActive;long OwnedCount(){return ownedCount;}long Buying(){return buyActive;}long Storing(){return storageActive;}void Start(void *);};
-extern StrPool gShellMissionStrings; extern void ShellMainMenuRefresh(Scene *);
+extern StrPool g511e18;
+struct MainMenuScreen { void SetText(); };
 class GuiScreen:public GuiRect {public:InputReq *input;int IsActive(){return input!=0;}void Invalidate();};
-extern GuiRect gShellCurrentRect,gShellScreenRect; extern void MenuSetColors(void *,U32,long); extern void MenuFill(void *,long,long,long,long);
-extern void ShellSelectionActivate(Scene *,long); extern void MenuHelpSetTopic(long); extern void ShellMultiplayerTick(void *);
+extern GuiRect gGuiClipRect,gBriefDrawSource; extern void MenuSetColors(void *,U32,long); extern void MenuFill(void *,long,long,long,long);
+extern void PilotGuiSelectProfileAt(void *,int); extern void MenuHelpSetTopic(long); extern void ShellMultiplayerTick(void *);
 extern int MissBriefExit(MissBrief *); extern U32 ShellStorageExit(Scene *); extern unsigned char ShellStorageSelection(Scene *);
 extern void HercUpgradeOpen(Scene *,InputReq *,unsigned char); extern void HercBayOpen(Scene *,InputReq *); extern int ShellBriefingExit(Scene *);
 extern void ShellBriefingContinue(Scene *); extern void ShellBriefingBack(Scene *); extern void ShellBriefingAbort(Scene *); extern char gShellBriefingMission;
@@ -324,7 +326,15 @@ void Shell::Close(int exitCode)
 }
 
 
-extern StrPool gShellMessages; extern void GenerateMissions(ProfileManager *); extern "C" int f_0043d0c8(GameSession *); extern "C" int f_0043cef6(GameSession *);
+extern "C" void f_0043d1a6(GameSession *, int, int);
+extern "C" void f_0043e37c(GameSession *);
+extern "C" void f_0043e04d(GameSession *);
+extern "C" void f_0043df40(GameSession *);
+extern "C" int f_0043c844(GameSession *);
+extern StrPool DAT_00511e7c;
+extern void GenerateMissions(ProfileManager *);
+extern "C" int f_0043d0c8(GameSession *);
+extern "C" int f_0043cef6(GameSession *);
 extern "C" char *BriefFormat(const char *,...);
 extern void f_00477295(const char *);
 extern int f_0047723b(const char *);
@@ -347,8 +357,8 @@ static void ShellConfirmPurchases()
     long total=subtotal+pending;
     long budget=profileManager.Credits();
     if(total>budget){
-        f_00477295(BriefFormat(gShellMessages.GetString(423,1),total,budget));
-    }else if(f_0047723b(BriefFormat(gShellMessages.GetString(424,1),pending,subtotal,total,budget))){
+        f_00477295(BriefFormat(DAT_00511e7c.GetString(423,1),total,budget));
+    }else if(f_0047723b(BriefFormat(DAT_00511e7c.GetString(424,1),pending,subtotal,total,budget))){
         f_0043d0c8((GameSession *)&profileManager);
         index=1;
         for(; (current=profileManager.Select(index))!=0; ++index){
@@ -361,6 +371,13 @@ static void ShellConfirmPurchases()
 
 
 }
+static inline void GenerateCampaignMissions(unsigned char mode)
+{
+    profileManager.SetProfileMode(mode);
+    GenerateMissions(&profileManager);
+    ResetMultiplayerInput();
+}
+
 void Shell::ProcessInput()
 {
     long key=ShellInputCommand();
@@ -369,7 +386,7 @@ void Shell::ProcessInput()
     case 30202:
         ShellCloseAllScreens();resumeReason=0;ResumeMenus();break;
     case 30203:
-        if(screen!=8){ShellCloseAllScreens();ShellSelectionOpen(&g4aff6c,&input,"Bioderm");screen=8;}break;
+        if(screen!=8){ShellCloseAllScreens();((BioScreen *)&g4aff6c)->Open(&input,"Bioderm");screen=8;}break;
     case 30204:
         if(screen!=9){ShellCloseAllScreens();((HercBay *)&g4b37c4)->Start(&input);screen=9;}break;
     case 30205:
@@ -379,11 +396,11 @@ void Shell::ProcessInput()
     case 30207:
         if(screen!=10){ShellCloseAllScreens();BeginComms(6);}break;
     case 31995:
-        profileManager.SetProfileMode(0);GenerateMissions(&profileManager);ResetMultiplayerInput();break;
+        GenerateCampaignMissions(0);break;
     case 31996:
-        profileManager.SetProfileMode(1);GenerateMissions(&profileManager);ResetMultiplayerInput();break;
+        GenerateCampaignMissions(1);break;
     case 31997:
-        profileManager.SetProfileMode(2);GenerateMissions(&profileManager);ResetMultiplayerInput();break;
+        GenerateCampaignMissions(2);break;
     case 32001:++profileManager.credits;break;
     case 32002:profileManager.credits+=1000;break;
     case 32003:profileManager.credits+=10000;break;
@@ -397,39 +414,39 @@ void Shell::ProcessInput()
         }
         break;}
     case 32013:{
-        for(int i=101;i<1024;++i)profileManager.UnlockItem(i,1);
+        for(int i=101;i<1024;++i)f_0043d1a6((GameSession *)&profileManager,i,1);
         break;}
     case 32014:{
-        for(int i=51;i<=80;++i)profileManager.UnlockItem(i,1);
+        for(int i=51;i<=80;++i)f_0043d1a6((GameSession *)&profileManager,i,1);
         break;}
     case 32015:{
-        profileManager.RestartCampaign();
-        for(int i=101;i<1024;++i)profileManager.UnlockItem(i,1);
+        f_0043e37c((GameSession *)&profileManager);
+        for(int i=101;i<1024;++i)f_0043d1a6((GameSession *)&profileManager,i,1);
         break;}
     case 32011:{
-        int unlocked=!gShellMissionStrings.IsLocked();
-        if(unlocked)gShellMissionStrings.Lock();
-        profileManager.ApplyCampaignCheat();
-        if(unlocked)gShellMissionStrings.Unlock();
+        int unlocked=!g511e18.IsLocked();
+        if(unlocked)g511e18.Lock();
+        f_0043e04d((GameSession *)&profileManager);
+        if(unlocked)g511e18.Unlock();
         ShellCloseAllScreens();screen=5;ShellMainMenuOpen(&g4aebe0,&input,0);
         break;}
     case 32008:GenerateMissions(&profileManager);break;
-    case 32010:profileManager.AdvanceCampaign();break;
-    case 32012:profileManager.RestartCampaign();break;
+    case 32010:f_0043df40((GameSession *)&profileManager);break;
+    case 32012:f_0043e37c((GameSession *)&profileManager);break;
     case 31992:
         ShellConfirmPurchases();
-        if(((GuiScreen *)&g4aebe0)->IsActive())ShellMainMenuRefresh(&g4aebe0);
+        if(((GuiScreen *)&g4aebe0)->IsActive())((MainMenuScreen *)&g4aebe0)->SetText();
         break;
     case 31993:
-        profileManager.PrepareRoster();
+        f_0043c844((GameSession *)&profileManager);
         if(((GuiScreen *)&g4aebe0)->IsActive()){
-            ShellMainMenuRefresh(&g4aebe0);((GuiScreen *)&g4aebe0)->Invalidate();
-            gShellCurrentRect=gShellScreenRect;
+            ((MainMenuScreen *)&g4aebe0)->SetText();((GuiScreen *)&g4aebe0)->Invalidate();
+            gGuiClipRect=gBriefDrawSource;
             MenuSetColors(&g513888,196,196);MenuFill(&g513888,604,129,25,11);
         }
         break;
     }
-    if(key>20000&&key<20199){long index=key-20000;if(index>0)ShellSelectionActivate(&g4b16a4,index);}
+    if(key>20000&&key<20199){long index=key-20000;if(index>0)PilotGuiSelectProfileAt(&g4b16a4,index);}
 }
 void Shell::Update()
 {
@@ -470,23 +487,6 @@ char *Shell::DifficultyLabel()
     case 1:return gShellStrings.GetString(502,1);
     case 2:return gShellStrings.GetString(503,1);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -832,27 +832,30 @@ void Shell::UpdateHercUpgrade()
 }
 void Shell::UpdateMainMenuSelection()
 {
-    long hit=ShellMainMenuHitTest(&g4aebe0);
-    if(!InputButtonPressed(1))hit=-1;
-    if(hit>=0){
+    long selection = ShellMainMenuHitTest(&g4aebe0);
+    if(!InputButtonPressed(1))selection=-1;
+    if(selection>=0){
         SoundPlay(5,0);
-        switch(hit){
+        switch(selection){
         case 3:
-            if(ShellMainMenuCanLaunch(&g4aebe0)){PlayTravel(1);Close(6);return;}
+            if (ShellMainMenuCanLaunch(&g4aebe0)) {
+                PlayTravel(1);
+                goto closeForLaunch;
+            }
             break;
         case 0:
-            ShellMainMenuClose(&g4aebe0);ShellSelectionOpen(&g4aff6c,&input,"Bioderm");screen=8;break;
+            ShellMainMenuClose(&g4aebe0);((BioScreen *)&g4aff6c)->Open(&input,"Bioderm");screen=8;break;
         case 1:
             ShellMainMenuClose(&g4aebe0);((HercBay *)&g4b37c4)->Start(&input);screen=9;break;
         case 2:ShellMainMenuClose(&g4aebe0);BeginComms(2);break;
         }
     }
-    U32 result=ShellMainMenuExit(&g4aebe0);
-    if(!result&&ShellInputKey()==1)result=6;
-    if(!result)return;
-    switch(result){
+    selection = ShellMainMenuExit(&g4aebe0);
+    if(!selection&&ShellInputKey()==1)selection=6;
+    if(!selection)return;
+    switch(selection){
     case 2:
-        ShellMainMenuClose(&g4aebe0);ShellSelectionOpen(&g4aff6c,&input,"Bioderm");screen=8;break;
+        ShellMainMenuClose(&g4aebe0);((BioScreen *)&g4aff6c)->Open(&input,"Bioderm");screen=8;break;
     case 3:
         ShellMainMenuClose(&g4aebe0);((HercBay *)&g4b37c4)->Start(&input);screen=9;break;
     case 4:ShellMainMenuClose(&g4aebe0);BeginComms(2);break;
@@ -860,7 +863,11 @@ void Shell::UpdateMainMenuSelection()
     case 6:ShellMainMenuAction6(&g4aebe0);break;
     case 11:ShellMainMenuAction11(&g4aebe0);
     case 5:
-        if(ShellMainMenuCanLaunch(&g4aebe0)){PlayTravel(1);Close(6);}break;
+        if (!ShellMainMenuCanLaunch(&g4aebe0)) break;
+        PlayTravel(1);
+    closeForLaunch:
+        Close(6);
+        break;
     case 7:ShellLeaveSession(0);
     case 8:
         ShellMainMenuClose(&g4aebe0);TimerSet(&gShellIdleTimer,120000);
@@ -909,7 +916,7 @@ void Shell::UpdateMultiplayerMenu()
             }
         }break;
         case 1:
-            ShellMultiplayerClose(&g4b82fc);ShellSelectionOpen(&g4aff6c,&input,"Bioderm");screen=8;break;
+            ShellMultiplayerClose(&g4b82fc);((BioScreen *)&g4aff6c)->Open(&input,"Bioderm");screen=8;break;
         case 2:
             ShellMultiplayerClose(&g4b82fc);((HercBay *)&g4b37c4)->Start(&input);screen=9;break;
         }
@@ -922,7 +929,7 @@ void Shell::UpdateMultiplayerMenu()
     case 1:case 2:case 5:case 12:default:break;
     case 0:ExploIdle();break;
     case 3:
-        ShellMultiplayerClose(&g4b82fc);ShellSelectionOpen(&g4aff6c,&input,"Bioderm");screen=8;break;
+        ShellMultiplayerClose(&g4b82fc);((BioScreen *)&g4aff6c)->Open(&input,"Bioderm");screen=8;break;
     case 4:
         ShellMultiplayerClose(&g4b82fc);((HercBay *)&g4b37c4)->Start(&input);screen=9;break;
     case 6:if(ShellMultiplayerCanStart(&g4b82fc)){
@@ -942,7 +949,7 @@ show_intro:
         ShellMultiplayerClose(&g4b82fc);TimerSet(&gShellIdleTimer,120000);
         profileManager.SelectScenario(1);ShellIntroStart(&g4afa84,&input,0);screen=1;break;
     case 8:
-        if(!HasMission(&profileManager))profileManager.PrepareRoster();
+        if(!HasMission(&profileManager))f_0043c844((GameSession *)&profileManager);
         ShellLeaveSession(0);goto show_intro;
     }
 }
@@ -1287,13 +1294,6 @@ void ShellLoadPalette(const char *name)
 {
     Palette palette;
     void *loaded=gResMgr.Load(name,1,&palette,sizeof(palette));
-
-
-
-
-
-
-
 
 
 

@@ -449,7 +449,7 @@ extern "C" void DrawGlyphBackground(void *, int, int, int, int);
 extern "C" void BlitGlyphRows(int, int, unsigned int, int, unsigned char *, unsigned char *);
 extern "C" unsigned int RenderResourceGlyph(Font *handle, int x, int y, signed char character)
 {
-FontResource *font = handle->resource;
+    FontResource *font = handle->resource;
     unsigned int width;
     unsigned char *bits;
     int height;
@@ -503,42 +503,42 @@ FontResource *font = handle->resource;
             if (width != 0) {
                 do {
                     unsigned char bit;
-                if (!packed) {
-                    bit = *bits;
-                    if (bit != 0) {
-                        unsigned int color=bit;
-                        if (gGlyphColorTable != 0)
-                            color = gGlyphColorTable[color];
-                        gCurrentGlyphColor = color;
-                    }
-                    if (column < width - 1)
-                        ++bits;
-                } else {
-                    if (mask == 0) {
-                        ++bits;
-                        mask = 0x80;
-                    }
-                    bit = *bits & mask;
-                    mask >>= 1;
-                }
-                if (bit == 0) {
-                    if ((gGlyphRenderFlags & 8) && row == (unsigned int)handle->resource->baseline)
-                        DrawGlyphPixel(&gGlyphSurface, pixelX, y, (unsigned char)savedColor);
-                } else {
-                    unsigned int color=gCurrentGlyphColor;
-                    if ((gGlyphRenderFlags & 0x10) == 0) {
-                        DrawGlyphPixel(&gGlyphSurface, pixelX, y, color);
-                        if (gGlyphRenderFlags & 2)
-                            DrawGlyphPixel(&gGlyphSurface, pixelX + 1, y, (unsigned char)gCurrentGlyphColor);
-                    } else if (((pixelX + y) & 1) == 0) {
-                        if (gGlyphRenderFlags & 2)
-                            DrawGlyphPixel(&gGlyphSurface, pixelX + 1, y, color);
+                    if (!packed) {
+                        bit = *bits;
+                        if (bit != 0) {
+                            unsigned int color=bit;
+                            if (gGlyphColorTable != 0)
+                                color = gGlyphColorTable[color];
+                            gCurrentGlyphColor = color;
+                        }
+                        if (column < width - 1)
+                            ++bits;
                     } else {
-                        DrawGlyphPixel(&gGlyphSurface, pixelX, y, color);
+                        if (mask == 0) {
+                            ++bits;
+                            mask = 0x80;
+                        }
+                        bit = *bits & mask;
+                        mask >>= 1;
                     }
-                }
-                ++column;
-                ++pixelX;
+                    if (bit) {
+                        int nextX = pixelX + 1;
+                        if ((gGlyphRenderFlags & 0x10) != 0) {
+                            if ((pixelX + y) & 1)
+                                DrawGlyphPixel(&gGlyphSurface, pixelX, y, gCurrentGlyphColor);
+                            else if (gGlyphRenderFlags & 2)
+                                DrawGlyphPixel(&gGlyphSurface, nextX, y, gCurrentGlyphColor);
+                        } else {
+                            DrawGlyphPixel(&gGlyphSurface, pixelX, y, gCurrentGlyphColor);
+                            if (gGlyphRenderFlags & 2)
+                                DrawGlyphPixel(&gGlyphSurface, nextX, y, gCurrentGlyphColor);
+                        }
+                    } else {
+                        if ((gGlyphRenderFlags & 8) && row == (unsigned int)handle->resource->baseline)
+                            DrawGlyphPixel(&gGlyphSurface, pixelX, y, savedColor);
+                    }
+                    ++column;
+                    ++pixelX;
                 } while (column < width);
             }
             if ((gGlyphRenderFlags & 4) && (row & 1)) {

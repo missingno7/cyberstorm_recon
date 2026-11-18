@@ -949,6 +949,11 @@
      "size": 64,
      "mangled": "MeasureResourceTextWidth"
     },
+    "MenuDrawText": {
+     "va": "0047cf80",
+     "size": 64,
+     "mangled": "W?MenuDrawText$n(pn$Font$$llpnxa)v"
+    },
     "RenderFormattedResourceText": {
      "va": "0047d080",
      "size": 96,
@@ -2451,7 +2456,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-18"
   },
   "src/multi/linkdlg.c": {
    "as": "multi\\linkdlg.c",
@@ -2794,7 +2799,7 @@
      "size": 16
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-18"
   },
   "src/shell/shell.c": {
    "as": "shell\\shell.c",
@@ -2820,6 +2825,16 @@
      "va": "004011ac",
      "size": 351,
      "mangled": "W?Close$:Shell$n(i)v"
+    },
+    "ShellConfirmPurchases": {
+     "va": "0040130b",
+     "size": 353,
+     "mangled": "W?ShellConfirmPurchases$n()v"
+    },
+    "Shell::ProcessInput": {
+     "va": "00401500",
+     "size": 3206,
+     "mangled": "W?ProcessInput$:Shell$n()v"
     },
     "Shell::DifficultyLabel": {
      "va": "00402748",
@@ -3008,6 +3023,10 @@
     }
    },
    "data": {
+    "CONST": {
+     "va": "0048a004",
+     "size": 364
+    },
     "CONST2": {
      "va": "0048c82c",
      "size": 28
@@ -4535,7 +4554,7 @@
      "size": 6
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-18"
   },
   "src/sim/simgame.c": {
    "as": "sim\\simgame.c",
@@ -4862,6 +4881,11 @@
      "size": 34,
      "mangled": "W?ShutdownCallback$n()v"
     },
+    "InitApplication": {
+     "va": "00477f4c",
+     "size": 173,
+     "mangled": "W?InitApplication$n()i"
+    },
     "Problem": {
      "va": "00477ff9",
      "size": 144,
@@ -4917,6 +4941,11 @@
      "size": 76,
      "mangled": "W?PostCornerClick$n()v"
     },
+    "HandleMenuKey": {
+     "va": "004796ab",
+     "size": 132,
+     "mangled": "W?HandleMenuKey$n(uil)v"
+    },
     "GuiPumpMessages": {
      "va": "0047a3bd",
      "size": 142,
@@ -4938,7 +4967,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-18"
   },
   "src/logic/lactors.c": {
    "as": "logic\\lactors.c",
@@ -8113,19 +8142,34 @@
      "size": 268,
      "mangled": "W?SimAddMission$n(pn$ActorUnit$$)v"
     },
+    "HercConditionDiagram": {
+     "va": "0043ab6e",
+     "size": 148,
+     "mangled": "W?HercConditionDiagram$n(pn$ActorUnit$$pn$1$)pnv"
+    },
     "HercAngleWeights": {
      "va": "0043ac02",
      "size": 107,
      "mangled": "W?HercAngleWeights$n(ipnipnipnipni)v"
     },
+    "f_0043ac9c": {
+     "va": "0043ac9c",
+     "size": 179,
+     "mangled": "W?f_0043ac9c$n(pn$ActorUnit$$ii)i"
+    },
     "f_0043ad4f": {
      "va": "0043ad4f",
      "size": 167,
      "mangled": "W?f_0043ad4f$n(pn$ActorUnit$$ii)i"
+    },
+    "HercDefense": {
+     "va": "0043adf6",
+     "size": 129,
+     "mangled": "W?HercDefense$n(pn$ActorUnit$$)i"
     }
    },
    "data": {},
-   "accepted": "2026-11-16"
+   "accepted": "2026-11-18"
   },
   "src/_unknown/tu_0042cf40.c": {
    "as": "_unknown\\tu_0042cf40.c",
@@ -11088,6 +11132,16 @@
      "size": 94,
      "mangled": "W?$ct:MultiplayerBase$n()_"
     },
+    "ShellMultiplayerOpen": {
+     "va": "0041dc45",
+     "size": 913,
+     "mangled": "W?ShellMultiplayerOpen$n(pn$MultiplayerBase$$pn$InputReq$$i)v"
+    },
+    "RefreshMultiplayerControls": {
+     "va": "0041dfec",
+     "size": 1339,
+     "mangled": "W?RefreshMultiplayerControls$n(pn$MultiplayerBase$$)v"
+    },
     "MultiplayerConfigure": {
      "va": "0041e527",
      "size": 353,
@@ -11118,6 +11172,11 @@
      "size": 11,
      "mangled": "W?MultiplayerBusy$n(pn$MultiplayerBase$$)i"
     },
+    "MultiplayerHost": {
+     "va": "0041e966",
+     "size": 234,
+     "mangled": "W?MultiplayerHost$n(pn$MultiplayerBase$$)i"
+    },
     "MultiplayerRequest": {
      "va": "0041ea50",
      "size": 15,
@@ -11128,6 +11187,11 @@
      "size": 85,
      "mangled": "W?GetName$:MultiplayerBase$n()i"
     },
+    "MultiplayerWait": {
+     "va": "0041eab4",
+     "size": 194,
+     "mangled": "W?MultiplayerWait$n(pn$MultiplayerBase$$)v"
+    },
     "MultiplayerSearch": {
      "va": "0041eb76",
      "size": 150,
@@ -11137,6 +11201,11 @@
      "va": "0041ec0c",
      "size": 150,
      "mangled": "W?SigsJoin$n(pna)v"
+    },
+    "MultiplayerAttemptStart": {
+     "va": "0041eca2",
+     "size": 894,
+     "mangled": "W?MultiplayerAttemptStart$n(pn$MultiplayerBase$$)i"
     },
     "MultiplayerDrawText": {
      "va": "0041f020",
@@ -11230,7 +11299,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-18"
   },
   "src/shell/mpcomm.c": {
    "as": "shell\\mpcomm.c",
@@ -11305,6 +11374,11 @@
      "va": "0043bac3",
      "size": 265,
      "mangled": "f_0043bac3"
+    },
+    "f_0043bbcc": {
+     "va": "0043bbcc",
+     "size": 289,
+     "mangled": "f_0043bbcc"
     },
     "f_0043bced": {
      "va": "0043bced",
@@ -11426,10 +11500,25 @@
      "size": 89,
      "mangled": "f_0043c7eb"
     },
+    "f_0043c844": {
+     "va": "0043c844",
+     "size": 557,
+     "mangled": "f_0043c844"
+    },
     "f_0043ca71": {
      "va": "0043ca71",
      "size": 72,
      "mangled": "f_0043ca71"
+    },
+    "f_0043cab9": {
+     "va": "0043cab9",
+     "size": 142,
+     "mangled": "f_0043cab9"
+    },
+    "f_0043cb47": {
+     "va": "0043cb47",
+     "size": 383,
+     "mangled": "f_0043cb47"
     },
     "f_0043ccc6": {
      "va": "0043ccc6",
@@ -11521,6 +11610,11 @@
      "size": 90,
      "mangled": "f_0043d25f"
     },
+    "f_0043d2b9": {
+     "va": "0043d2b9",
+     "size": 275,
+     "mangled": "W?f_0043d2b9$n(pn$GameSession$$$GridPoint$$)i"
+    },
     "f_0043d3cc": {
      "va": "0043d3cc",
      "size": 453,
@@ -11556,6 +11650,11 @@
      "size": 219,
      "mangled": "f_0043dad7"
     },
+    "f_0043dbb2": {
+     "va": "0043dbb2",
+     "size": 331,
+     "mangled": "f_0043dbb2"
+    },
     "f_0043dcfd": {
      "va": "0043dcfd",
      "size": 494,
@@ -11576,6 +11675,11 @@
      "size": 70,
      "mangled": "f_0043e007"
     },
+    "f_0043e04d": {
+     "va": "0043e04d",
+     "size": 400,
+     "mangled": "f_0043e04d"
+    },
     "f_0043e1dd": {
      "va": "0043e1dd",
      "size": 11,
@@ -11595,6 +11699,16 @@
      "va": "0043e211",
      "size": 9,
      "mangled": "f_0043e211"
+    },
+    "f_0043e21a": {
+     "va": "0043e21a",
+     "size": 354,
+     "mangled": "f_0043e21a"
+    },
+    "f_0043e37c": {
+     "va": "0043e37c",
+     "size": 19,
+     "mangled": "f_0043e37c"
     },
     "f_0043e38f": {
      "va": "0043e38f",
@@ -11624,7 +11738,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-14"
+   "accepted": "2026-11-18"
   },
   "src/pop/pmove.c": {
    "as": "pop\\pmove.c",
@@ -12024,6 +12138,11 @@
      "size": 61,
      "mangled": "W?SetOther$:ReportScreen$n(pn$ActorRecord$$ii)v"
     },
+    "ReportDrawOther": {
+     "va": "00448b2d",
+     "size": 519,
+     "mangled": "W?ReportDrawOther$n(pn$ReportScreen$$)v"
+    },
     "ReportGlobalInput": {
      "va": "00448d34",
      "size": 63,
@@ -12061,7 +12180,7 @@
      "size": 17
     }
    },
-   "accepted": "2026-11-17"
+   "accepted": "2026-11-18"
   },
   "src/pop/pturn.c": {
    "as": "pop\\pturn.c",
@@ -13858,6 +13977,11 @@
      "size": 416,
      "mangled": "W?ActorAdvanceState$n(pn$ActorRecord$$)v"
     },
+    "ReleaseState": {
+     "va": "00455ac0",
+     "size": 304,
+     "mangled": "W?ReleaseState$n(pn$ActorRecord$$)v"
+    },
     "SimHotbriefClearActor": {
      "va": "00455bf0",
      "size": 80,
@@ -13925,7 +14049,7 @@
      "size": 28
     }
    },
-   "accepted": "2026-11-16"
+   "accepted": "2026-11-18"
   },
   "src/sim/animout.c": {
    "as": "sim\\animout.c",

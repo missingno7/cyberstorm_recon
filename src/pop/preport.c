@@ -237,7 +237,7 @@ extern void DrawSprite(void *,MenuImage *,int,int,int,int,int);
 extern void PopDrawSurface(void *,int,int,long,long,long,long);
 extern void GuiResetClip(void *);
 struct Font;
-extern Font reportFont,g511dc0,gDefaultFont;
+extern Font shellFont,g511dc0,gDefaultFont;
 extern U32 reportTextColor,reportPlayerTextColor[],reportTextMap[],deathTextColor,deathTextMap[],gMenuColorMap[],gMenuTextColor,*gMenuTextMap,gMenuTextMode;
 long reportBarY[3] = {0,22,44};
 long reportHeadingY=8,reportNameY=18,reportValueY1=38,reportValueY2=53,reportErrorY=44;
@@ -394,10 +394,10 @@ void ReportDrawUnit(ReportScreen *s) {
             int portrait;
             long px=reportStats.x,py=reportStats.y;
             int row;
-            int id=PilotValue(s->logic,202)+1;
+            int imageId=PilotValue(s->logic,202)+1;
             portrait=PilotValue(s->logic,215)-64;
             if(!s->logic->HasPilots())portrait=4;
-            SimAnimSet(&s->portrait,1,id,5);
+            SimAnimSet(&s->portrait,1,imageId,5);
             s->portrait.frame=portrait-1;
             MenuImage *portraitFrame=SimAnimFrame(&s->portrait,-1);
             MenuDrawImage(&g513888,portraitFrame,px,py);
@@ -418,16 +418,16 @@ void ReportDrawUnit(ReportScreen *s) {
                 for(j=0;j<filled;j++)MenuDrawImage(&g513888,&drawCursorImages->image[image],bx+j*3,by);
                 for(;j<19;j++)MenuDrawImage(&g513888,&drawCursorImages->image[image+1],bx+j*3,by);
                 long textId = row + 1300;
-                MenuDrawText(&reportFont,bx+21,by-11,targetBriefResource.GetString(textId));
-                MenuDrawTextAt(&reportFont,bx+57,by-11,1,BriefFormat("%d",value[row]));
+                MenuDrawText(&shellFont,bx+21,by-11,targetBriefResource.GetString(textId));
+                MenuDrawTextAt(&shellFont,bx+57,by-11,1,BriefFormat("%d",value[row]));
             }
             U32 flash=s->tick&1;
-            int image=123;
-            if(!flash||value[1]>=0)image++;
-            MenuDrawImage(&g513888,&drawCursorImages->image[image],px+82,py+49);
-            image=125;
-            if(!flash||value[2]<=maximum[2])image++;
-            MenuDrawImage(&g513888,&drawCursorImages->image[image],px+143,py+71);
+            imageId = 123;
+            if(!flash||value[1]>=0)imageId++;
+            MenuDrawImage(&g513888,&drawCursorImages->image[imageId],px+82,py+49);
+            int warningImage = 125;
+            if(!flash||value[2]<=maximum[2])warningImage++;
+            MenuDrawImage(&g513888,&drawCursorImages->image[warningImage],px+143,py+71);
         }
     }
 }
@@ -449,7 +449,7 @@ void ReportDrawOther(ReportScreen *s) {
             gMenuTextColor=reportPlayerTextColor[s->other->owner];
             name=GetModePlayer(modeCheckName,s->other->owner)->name;
         }
-        MenuDrawTextAt(&reportFont,x,y+reportHeadingY,-1,targetBriefResource.GetString(908));
+        MenuDrawTextAt(&shellFont,x,y+reportHeadingY,-1,targetBriefResource.GetString(908));
         MenuDrawTextAt(&g511dc0,x,y+reportNameY,-1,name);
         if(s->first>=0&&s->second>=0) {
             gMenuTextMap=reportTextMap;

@@ -184,11 +184,8 @@ void ActorFinishMove(ActorRecord *actor,int force)
             f_00432db0(&fallbackName,actor->action.resource);
             SimSound sound = defaultActorSound;
             SimSoundSetup(&sound,(ExploPoint *)&actor->action.position);
-            int pitch=sound.values[1], boundedPitch;
-            if(pitch<=50) boundedPitch=50;
-            else if(pitch>=150) boundedPitch=150;
-            else boundedPitch=pitch;
-            sound.values[1]=boundedPitch;
+            int pitch = sound.values[1];
+            sound.values[1] = pitch <= 50 ? 50 : (pitch >= 150 ? 150 : pitch);
             int pan=sound.values[2], boundedPan;
             if(pan<=-100) boundedPan=-100;
             else if(pan>=100) boundedPan=100;

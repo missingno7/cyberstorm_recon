@@ -70,13 +70,21 @@
    "tu": "src/shell/shell.c",
    "evidence": "placed (found) in src/shell/shell.c 2026-11-09"
   },
+  "ShellConfirmPurchases@shell/shell.c": {
+   "va": "0040130b",
+   "kind": "func",
+   "status": "matched",
+   "mangled": "W?ShellConfirmPurchases$n()v",
+   "tu": "src/shell/shell.c",
+   "evidence": "strict match 2026-11-18"
+  },
   "Shell::ProcessInput": {
    "va": "00401500",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ProcessInput$:Shell$n()v",
    "tu": "src/shell/shell.c",
-   "evidence": "placed (at) in src/shell/shell.c 2026-11-09"
+   "evidence": "strict match 2026-11-18"
   },
   "Shell::Update": {
    "va": "00402230",
@@ -660,7 +668,7 @@
    "status": "matched",
    "mangled": "W?$Wda0211$:MenuPrefixButton$n(ui)pnv",
    "tu": "src/shell/mphbase.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuHelpRegion::$dt": {
    "va": "00408610",
@@ -1052,6 +1060,13 @@
    "mangled": "W?Open$:BioScreen$n(pn$InputReq$$)v",
    "tu": "src/shell/biomenu.c",
    "evidence": "strict match 2026-11-11"
+  },
+  "BioScreen::Open#W?Open$:BioScreen$n(pn$InputReq$$pnxa)v": {
+   "va": "0040bf78",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?Open$:BioScreen$n(pn$InputReq$$pnxa)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-18"
   },
   "BioScreen::OpenVatExit": {
    "va": "0040c10c",
@@ -4592,7 +4607,7 @@
    "status": "matched",
    "mangled": "W?.fn_init$n()v",
    "tu": "src/shell/mphbase.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MultiplayerBase::$ct": {
    "va": "0041dbe7",
@@ -4600,14 +4615,15 @@
    "status": "matched",
    "mangled": "W?$ct:MultiplayerBase$n()_",
    "tu": "src/shell/mphbase.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "ShellMultiplayerOpen": {
    "va": "0041dc45",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?ShellMultiplayerOpen$n(pn$Scene$$pn$InputReq$$i)v",
-   "evidence": "implied by src/shell/shell.c 2026-11-09"
+   "status": "matched",
+   "mangled": "W?ShellMultiplayerOpen$n(pn$MultiplayerBase$$pn$InputReq$$i)v",
+   "tu": "src/shell/mphbase.c",
+   "evidence": "strict match 2026-11-18"
   },
   "ShellMultiplayerOpen#W?ShellMultiplayerOpen$n(pn$MultiplayerBase$$pn$InputReq$$i)v": {
    "va": "0041dc45",
@@ -4617,13 +4633,20 @@
    "tu": "src/_unknown/tu_0041d774.c",
    "evidence": "placed (at) in src/_unknown/tu_0041d774.c 2026-11-09"
   },
+  "ShellMultiplayerOpen#W?ShellMultiplayerOpen$n(pn$Scene$$pn$InputReq$$i)v": {
+   "va": "0041dc45",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ShellMultiplayerOpen$n(pn$Scene$$pn$InputReq$$i)v",
+   "evidence": "implied by src/shell/shell.c 2026-11-09"
+  },
   "RefreshMultiplayerControls": {
    "va": "0041dfec",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?RefreshMultiplayerControls$n(pn$MultiplayerBase$$)v",
-   "tu": "src/_unknown/tu_0041d774.c",
-   "evidence": "placed (at) in src/_unknown/tu_0041d774.c 2026-11-09"
+   "tu": "src/shell/mphbase.c",
+   "evidence": "strict match 2026-11-18"
   },
   "MultiplayerConfigure": {
    "va": "0041e527",
@@ -4631,7 +4654,7 @@
    "status": "matched",
    "mangled": "W?MultiplayerConfigure$n(pn$MultiplayerBase$$)v",
    "tu": "src/shell/mphbase.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MultiplayerRelease": {
    "va": "0041e688",
@@ -4639,7 +4662,7 @@
    "status": "matched",
    "mangled": "W?MultiplayerRelease$n(pn$MultiplayerBase$$)v",
    "tu": "src/shell/mphbase.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "ShellMultiplayerClose": {
    "va": "0041e6e4",
@@ -4647,7 +4670,7 @@
    "status": "matched",
    "mangled": "W?ShellMultiplayerClose$n(pn$MultiplayerBase$$)v",
    "tu": "src/shell/mphbase.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "ShellMultiplayerClose#W?ShellMultiplayerClose$n(pn$Scene$$)v": {
    "va": "0041e6e4",
@@ -4662,7 +4685,7 @@
    "status": "matched",
    "mangled": "W?ValidateMultiplayer$n(pn$MultiplayerBase$$)v",
    "tu": "src/shell/mphbase.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MultiplayerEnter": {
    "va": "0041e915",
@@ -4670,7 +4693,7 @@
    "status": "matched",
    "mangled": "W?MultiplayerEnter$n(pn$MultiplayerBase$$)v",
    "tu": "src/shell/mphbase.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MultiplayerBusy": {
    "va": "0041e95b",
@@ -4678,15 +4701,15 @@
    "status": "matched",
    "mangled": "W?MultiplayerBusy$n(pn$MultiplayerBase$$)i",
    "tu": "src/shell/mphbase.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MultiplayerHost": {
    "va": "0041e966",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?MultiplayerHost$n(pn$MultiplayerBase$$)i",
-   "tu": "src/_unknown/tu_0041d774.c",
-   "evidence": "placed (at) in src/_unknown/tu_0041d774.c 2026-11-09"
+   "tu": "src/shell/mphbase.c",
+   "evidence": "strict match 2026-11-18"
   },
   "MultiplayerRequest": {
    "va": "0041ea50",
@@ -4694,7 +4717,7 @@
    "status": "matched",
    "mangled": "W?MultiplayerRequest$n(pn$MultiplayerBase$$)v",
    "tu": "src/shell/mphbase.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MultiplayerBase::GetName": {
    "va": "0041ea5f",
@@ -4702,15 +4725,15 @@
    "status": "matched",
    "mangled": "W?GetName$:MultiplayerBase$n()i",
    "tu": "src/shell/mphbase.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MultiplayerWait": {
    "va": "0041eab4",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?MultiplayerWait$n(pn$MultiplayerBase$$)v",
-   "tu": "src/_unknown/tu_0041d774.c",
-   "evidence": "placed (at) in src/_unknown/tu_0041d774.c 2026-11-09"
+   "tu": "src/shell/mphbase.c",
+   "evidence": "strict match 2026-11-18"
   },
   "MultiplayerSearch": {
    "va": "0041eb76",
@@ -4718,7 +4741,7 @@
    "status": "matched",
    "mangled": "W?MultiplayerSearch$n(pn$MultiplayerBase$$)v",
    "tu": "src/shell/mphbase.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "SigsJoin": {
    "va": "0041ec0c",
@@ -4726,15 +4749,15 @@
    "status": "matched",
    "mangled": "W?SigsJoin$n(pna)v",
    "tu": "src/shell/mphbase.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MultiplayerAttemptStart": {
    "va": "0041eca2",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?MultiplayerAttemptStart$n(pn$MultiplayerBase$$)i",
-   "tu": "src/_unknown/tu_0041d774.c",
-   "evidence": "placed (at) in src/_unknown/tu_0041d774.c 2026-11-09"
+   "tu": "src/shell/mphbase.c",
+   "evidence": "strict match 2026-11-18"
   },
   "MultiplayerDrawText": {
    "va": "0041f020",
@@ -4742,7 +4765,7 @@
    "status": "matched",
    "mangled": "W?MultiplayerDrawText$n(pn$MultiplayerBase$$pnxa)v",
    "tu": "src/shell/mphbase.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MultiplayerDrawHover": {
    "va": "0041f08c",
@@ -4750,7 +4773,7 @@
    "status": "matched",
    "mangled": "W?MultiplayerDrawHover$n(pn$MultiplayerBase$$ii)v",
    "tu": "src/shell/mphbase.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MultiplayerUpdate": {
    "va": "0041f1a0",
@@ -4758,7 +4781,7 @@
    "status": "matched",
    "mangled": "W?MultiplayerUpdate$n(pn$MultiplayerBase$$)v",
    "tu": "src/shell/mphbase.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "ShellMultiplayerRender": {
    "va": "0041f306",
@@ -4766,7 +4789,7 @@
    "status": "matched",
    "mangled": "W?ShellMultiplayerRender$n(pn$MultiplayerBase$$)v",
    "tu": "src/shell/mphbase.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "ShellMultiplayerRender#W?ShellMultiplayerRender$n(pn$Scene$$)v": {
    "va": "0041f306",
@@ -4781,7 +4804,7 @@
    "status": "matched",
    "mangled": "W?MultiplayerDone$n(pn$MultiplayerBase$$)i",
    "tu": "src/shell/mphbase.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MultiplayerSetMoneyValues": {
    "va": "0041f4bc",
@@ -4789,7 +4812,7 @@
    "status": "matched",
    "mangled": "W?MultiplayerSetMoneyValues$n(pn$MultiplayerBase$$)v",
    "tu": "src/shell/mphbase.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MultiplayerUpdateValues": {
    "va": "0041f51f",
@@ -4797,7 +4820,7 @@
    "status": "matched",
    "mangled": "W?MultiplayerUpdateValues$n(pn$MultiplayerBase$$)v",
    "tu": "src/shell/mphbase.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MultiplayerSaveOptions": {
    "va": "0041f5cf",
@@ -4805,7 +4828,7 @@
    "status": "matched",
    "mangled": "W?MultiplayerSaveOptions$n(pn$MultiplayerBase$$)v",
    "tu": "src/shell/mphbase.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MultiplayerBase::$dt": {
    "va": "0041f610",
@@ -4813,7 +4836,7 @@
    "status": "matched",
    "mangled": "W?$dt:MultiplayerBase$n()_",
    "tu": "src/shell/mphbase.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "W?.fn_init$n()v@shell/mplaunch.c": {
    "va": "0041f648",
@@ -10677,7 +10700,7 @@
    "status": "matched",
    "mangled": "W?UnitSpend$n(pn$ActorUnit$$i)i",
    "tu": "src/_unknown/tu_0043a294.c",
-   "evidence": "strict match 2026-11-16"
+   "evidence": "strict match 2026-11-18"
   },
   "UnitSpend#W?UnitSpend$n(pn$UnitState$$i)i": {
    "va": "0043a294",
@@ -10692,7 +10715,7 @@
    "status": "matched",
    "mangled": "W?HercAdvanceTurn$n(pn$ActorUnit$$pnv)v",
    "tu": "src/_unknown/tu_0043a294.c",
-   "evidence": "strict match 2026-11-16"
+   "evidence": "strict match 2026-11-18"
   },
   "HercBuildDamage": {
    "va": "0043a597",
@@ -10700,7 +10723,7 @@
    "status": "matched",
    "mangled": "W?HercBuildDamage$n(pn$ActorUnit$$)v",
    "tu": "src/_unknown/tu_0043a294.c",
-   "evidence": "strict match 2026-11-16"
+   "evidence": "strict match 2026-11-18"
   },
   "HercBuildDamageCopy": {
    "va": "0043a606",
@@ -10708,7 +10731,7 @@
    "status": "matched",
    "mangled": "W?HercBuildDamageCopy$n(pn$ActorUnit$$)v",
    "tu": "src/_unknown/tu_0043a294.c",
-   "evidence": "strict match 2026-11-16"
+   "evidence": "strict match 2026-11-18"
   },
   "HercDamageAtRange": {
    "va": "0043a670",
@@ -10716,7 +10739,7 @@
    "status": "matched",
    "mangled": "W?HercDamageAtRange$n(pn$ActorUnit$$i)i",
    "tu": "src/_unknown/tu_0043a294.c",
-   "evidence": "strict match 2026-11-16"
+   "evidence": "strict match 2026-11-18"
   },
   "HercWeaponDamage": {
    "va": "0043a69c",
@@ -10724,7 +10747,7 @@
    "status": "matched",
    "mangled": "W?HercWeaponDamage$n(pn$ActorUnit$$ii)i",
    "tu": "src/_unknown/tu_0043a294.c",
-   "evidence": "strict match 2026-11-16"
+   "evidence": "strict match 2026-11-18"
   },
   "HercRepairPoints": {
    "va": "0043a739",
@@ -10732,7 +10755,7 @@
    "status": "matched",
    "mangled": "W?HercRepairPoints$n(pn$ActorUnit$$)i",
    "tu": "src/_unknown/tu_0043a294.c",
-   "evidence": "strict match 2026-11-16"
+   "evidence": "strict match 2026-11-18"
   },
   "HercRepairNeeded": {
    "va": "0043a782",
@@ -10740,7 +10763,7 @@
    "status": "matched",
    "mangled": "W?HercRepairNeeded$n(pn$ActorUnit$$i)i",
    "tu": "src/_unknown/tu_0043a294.c",
-   "evidence": "strict match 2026-11-16"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043a7e8": {
    "va": "0043a7e8",
@@ -10748,7 +10771,7 @@
    "status": "matched",
    "mangled": "W?f_0043a7e8$n(pn$ActorUnit$$i)i",
    "tu": "src/_unknown/tu_0043a294.c",
-   "evidence": "strict match 2026-11-16"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043a7e8#W?f_0043a7e8$n(iul)ul": {
    "va": "0043a7e8",
@@ -10763,7 +10786,7 @@
    "status": "matched",
    "mangled": "W?HercAmmoCost$n(pn$ActorUnit$$i)i",
    "tu": "src/_unknown/tu_0043a294.c",
-   "evidence": "strict match 2026-11-16"
+   "evidence": "strict match 2026-11-18"
   },
   "HercAddAmmo": {
    "va": "0043a97f",
@@ -10771,7 +10794,7 @@
    "status": "matched",
    "mangled": "W?HercAddAmmo$n(pn$ActorUnit$$i)i",
    "tu": "src/_unknown/tu_0043a294.c",
-   "evidence": "strict match 2026-11-16"
+   "evidence": "strict match 2026-11-18"
   },
   "HercNeedsAmmo": {
    "va": "0043a9e7",
@@ -10779,7 +10802,7 @@
    "status": "matched",
    "mangled": "W?HercNeedsAmmo$n(pn$ActorUnit$$)i",
    "tu": "src/_unknown/tu_0043a294.c",
-   "evidence": "strict match 2026-11-16"
+   "evidence": "strict match 2026-11-18"
   },
   "HercNeedsAmmo#W?HercNeedsAmmo$n(i)i": {
    "va": "0043a9e7",
@@ -10794,7 +10817,7 @@
    "status": "matched",
    "mangled": "W?StateAction$n(pn$ActorUnit$$)i",
    "tu": "src/_unknown/tu_0043a294.c",
-   "evidence": "strict match 2026-11-16"
+   "evidence": "strict match 2026-11-18"
   },
   "StateAction#W?StateAction$n(pnv)i": {
    "va": "0043aa29",
@@ -10809,7 +10832,7 @@
    "status": "matched",
    "mangled": "W?SimAddMission$n(pn$ActorUnit$$)v",
    "tu": "src/_unknown/tu_0043a294.c",
-   "evidence": "strict match 2026-11-16"
+   "evidence": "strict match 2026-11-18"
   },
   "SimAddMission#W?SimAddMission$n(pn$ActorUnit$$)v": {
    "va": "0043aa62",
@@ -10828,10 +10851,10 @@
   "HercConditionDiagram": {
    "va": "0043ab6e",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?HercConditionDiagram$n(pn$ActorUnit$$pn$1$)pnv",
    "tu": "src/_unknown/tu_0043a294.c",
-   "evidence": "placed (at) in src/_unknown/tu_0043a294.c 2026-11-09"
+   "evidence": "strict match 2026-11-18"
   },
   "HercAngleWeights": {
    "va": "0043ac02",
@@ -10839,14 +10862,15 @@
    "status": "matched",
    "mangled": "W?HercAngleWeights$n(ipnipnipnipni)v",
    "tu": "src/_unknown/tu_0043a294.c",
-   "evidence": "strict match 2026-11-16"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043ac9c": {
    "va": "0043ac9c",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?f_0043ac9c$n(pn$ActorUnit$$ii)i",
-   "evidence": "implied by src/_unknown/tu_00438374.c 2026-11-09"
+   "tu": "src/_unknown/tu_0043a294.c",
+   "evidence": "strict match 2026-11-18"
   },
   "IntelUnitQuery": {
    "va": "0043ac9c",
@@ -10861,15 +10885,15 @@
    "status": "matched",
    "mangled": "W?f_0043ad4f$n(pn$ActorUnit$$ii)i",
    "tu": "src/_unknown/tu_0043a294.c",
-   "evidence": "strict match 2026-11-16"
+   "evidence": "strict match 2026-11-18"
   },
   "HercDefense": {
    "va": "0043adf6",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?HercDefense$n(pn$ActorUnit$$)i",
    "tu": "src/_unknown/tu_0043a294.c",
-   "evidence": "placed (at) in src/_unknown/tu_0043a294.c 2026-11-09"
+   "evidence": "strict match 2026-11-18"
   },
   "HercSelectHit": {
    "va": "0043ae77",
@@ -11007,7 +11031,7 @@
    "status": "matched",
    "mangled": "W?.fn_init$n()v",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "Snapshot::$ct": {
    "va": "0043b90d",
@@ -11015,7 +11039,7 @@
    "status": "matched",
    "mangled": "W?$ct:Snapshot$n()_",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043b912": {
    "va": "0043b912",
@@ -11023,7 +11047,7 @@
    "status": "matched",
    "mangled": "f_0043b912",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043b956": {
    "va": "0043b956",
@@ -11031,7 +11055,7 @@
    "status": "matched",
    "mangled": "f_0043b956",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "GameSession::$ct": {
    "va": "0043b9ae",
@@ -11039,7 +11063,7 @@
    "status": "matched",
    "mangled": "W?$ct:GameSession$n()_",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "GameSession::$dt": {
    "va": "0043b9fe",
@@ -11047,7 +11071,7 @@
    "status": "matched",
    "mangled": "W?$dt:GameSession$n()_",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043ba3e": {
    "va": "0043ba3e",
@@ -11055,7 +11079,7 @@
    "status": "matched",
    "mangled": "f_0043ba3e",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043bac3": {
    "va": "0043bac3",
@@ -11063,15 +11087,15 @@
    "status": "matched",
    "mangled": "f_0043bac3",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043bbcc": {
    "va": "0043bbcc",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "f_0043bbcc",
-   "tu": "src/_unknown/tu_0043b8e8.c",
-   "evidence": "placed (at) in src/_unknown/tu_0043b8e8.c 2026-11-09"
+   "tu": "src/core/mcp.c",
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043bced": {
    "va": "0043bced",
@@ -11079,7 +11103,7 @@
    "status": "matched",
    "mangled": "f_0043bced",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043bd5f": {
    "va": "0043bd5f",
@@ -11087,7 +11111,7 @@
    "status": "matched",
    "mangled": "f_0043bd5f",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043bd78": {
    "va": "0043bd78",
@@ -11095,7 +11119,7 @@
    "status": "matched",
    "mangled": "f_0043bd78",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "ProfileManager::Select": {
    "va": "0043be65",
@@ -11103,7 +11127,7 @@
    "status": "matched",
    "mangled": "W?Select$:ProfileManager$n(i)pn$ActorListObject$$",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "ProfileManager::Select#W?Select$:ProfileManager$n(i)pnv": {
    "va": "0043be65",
@@ -11118,7 +11142,7 @@
    "status": "matched",
    "mangled": "f_0043bed7",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "ProfileManager::Advance": {
    "va": "0043befa",
@@ -11133,7 +11157,7 @@
    "status": "matched",
    "mangled": "f_0043befa",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043bf81": {
    "va": "0043bf81",
@@ -11141,7 +11165,7 @@
    "status": "matched",
    "mangled": "f_0043bf81",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043bf81#W?f_0043bf81$n(pnvi)i": {
    "va": "0043bf81",
@@ -11163,7 +11187,7 @@
    "status": "matched",
    "mangled": "f_0043bfe1",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043bffc": {
    "va": "0043bffc",
@@ -11171,7 +11195,7 @@
    "status": "matched",
    "mangled": "f_0043bffc",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043bffc#W?f_0043bffc$n(pnvi)i": {
    "va": "0043bffc",
@@ -11186,7 +11210,7 @@
    "status": "matched",
    "mangled": "f_0043c036",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043c05b": {
    "va": "0043c05b",
@@ -11194,7 +11218,7 @@
    "status": "matched",
    "mangled": "f_0043c05b",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043c167": {
    "va": "0043c167",
@@ -11202,7 +11226,7 @@
    "status": "matched",
    "mangled": "f_0043c167",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043c17c": {
    "va": "0043c17c",
@@ -11210,7 +11234,7 @@
    "status": "matched",
    "mangled": "f_0043c17c",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043c2ba": {
    "va": "0043c2ba",
@@ -11218,7 +11242,7 @@
    "status": "matched",
    "mangled": "f_0043c2ba",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043c327": {
    "va": "0043c327",
@@ -11226,7 +11250,7 @@
    "status": "matched",
    "mangled": "f_0043c327",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043c33c": {
    "va": "0043c33c",
@@ -11234,7 +11258,7 @@
    "status": "matched",
    "mangled": "f_0043c33c",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "ProfileManager::Mission": {
    "va": "0043c40e",
@@ -11242,7 +11266,7 @@
    "status": "matched",
    "mangled": "W?Mission$:ProfileManager$n(i)pn$ActorUnit$$",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "ProfileManager::Mission#W?Mission$:ProfileManager$n(i)pnv": {
    "va": "0043c40e",
@@ -11257,7 +11281,7 @@
    "status": "matched",
    "mangled": "f_0043c441",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043c450": {
    "va": "0043c450",
@@ -11265,7 +11289,7 @@
    "status": "matched",
    "mangled": "f_0043c450",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043c490": {
    "va": "0043c490",
@@ -11273,7 +11297,7 @@
    "status": "matched",
    "mangled": "f_0043c490",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043c4bf": {
    "va": "0043c4bf",
@@ -11281,7 +11305,7 @@
    "status": "matched",
    "mangled": "f_0043c4bf",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043c5d6": {
    "va": "0043c5d6",
@@ -11297,7 +11321,7 @@
    "status": "matched",
    "mangled": "f_0043c6ed",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043c73a": {
    "va": "0043c73a",
@@ -11305,7 +11329,7 @@
    "status": "matched",
    "mangled": "f_0043c73a",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043c73a#W?f_0043c73a$n(pnvui)pna": {
    "va": "0043c73a",
@@ -11320,15 +11344,15 @@
    "status": "matched",
    "mangled": "f_0043c7eb",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043c844": {
    "va": "0043c844",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "f_0043c844",
-   "tu": "src/_unknown/tu_0043b8e8.c",
-   "evidence": "placed (at) in src/_unknown/tu_0043b8e8.c 2026-11-09"
+   "tu": "src/core/mcp.c",
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043ca71": {
    "va": "0043ca71",
@@ -11336,7 +11360,7 @@
    "status": "matched",
    "mangled": "f_0043ca71",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "HasMission": {
    "va": "0043cab9",
@@ -11348,18 +11372,18 @@
   "f_0043cab9": {
    "va": "0043cab9",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "f_0043cab9",
-   "tu": "src/_unknown/tu_0043b8e8.c",
-   "evidence": "placed (at) in src/_unknown/tu_0043b8e8.c 2026-11-09"
+   "tu": "src/core/mcp.c",
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043cb47": {
    "va": "0043cb47",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "f_0043cb47",
-   "tu": "src/_unknown/tu_0043b8e8.c",
-   "evidence": "placed (at) in src/_unknown/tu_0043b8e8.c 2026-11-09"
+   "tu": "src/core/mcp.c",
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043ccc6": {
    "va": "0043ccc6",
@@ -11367,7 +11391,7 @@
    "status": "matched",
    "mangled": "f_0043ccc6",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043cce3": {
    "va": "0043cce3",
@@ -11375,7 +11399,7 @@
    "status": "matched",
    "mangled": "f_0043cce3",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043ccff": {
    "va": "0043ccff",
@@ -11383,7 +11407,7 @@
    "status": "matched",
    "mangled": "f_0043ccff",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043cd28": {
    "va": "0043cd28",
@@ -11391,7 +11415,7 @@
    "status": "matched",
    "mangled": "f_0043cd28",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043cd28#W?f_0043cd28$n(pnvi)i": {
    "va": "0043cd28",
@@ -11406,7 +11430,7 @@
    "status": "matched",
    "mangled": "f_0043cd6c",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043cd92": {
    "va": "0043cd92",
@@ -11414,7 +11438,7 @@
    "status": "matched",
    "mangled": "f_0043cd92",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "ProfileManager::Value": {
    "va": "0043cdcc",
@@ -11429,7 +11453,7 @@
    "status": "matched",
    "mangled": "f_0043cdcc",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043ce5d": {
    "va": "0043ce5d",
@@ -11437,7 +11461,7 @@
    "status": "matched",
    "mangled": "f_0043ce5d",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043cec6": {
    "va": "0043cec6",
@@ -11445,7 +11469,7 @@
    "status": "matched",
    "mangled": "f_0043cec6",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043cef6": {
    "va": "0043cef6",
@@ -11453,7 +11477,7 @@
    "status": "matched",
    "mangled": "f_0043cef6",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043cf2d": {
    "va": "0043cf2d",
@@ -11461,7 +11485,7 @@
    "status": "matched",
    "mangled": "f_0043cf2d",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043cffc": {
    "va": "0043cffc",
@@ -11469,7 +11493,7 @@
    "status": "matched",
    "mangled": "f_0043cffc",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043d066": {
    "va": "0043d066",
@@ -11477,7 +11501,7 @@
    "status": "matched",
    "mangled": "f_0043d066",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043d0c8": {
    "va": "0043d0c8",
@@ -11485,7 +11509,7 @@
    "status": "matched",
    "mangled": "f_0043d0c8",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043d152": {
    "va": "0043d152",
@@ -11493,7 +11517,7 @@
    "status": "matched",
    "mangled": "f_0043d152",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043d1a6": {
    "va": "0043d1a6",
@@ -11501,7 +11525,7 @@
    "status": "matched",
    "mangled": "f_0043d1a6",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043d1fd": {
    "va": "0043d1fd",
@@ -11509,7 +11533,7 @@
    "status": "matched",
    "mangled": "f_0043d1fd",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043d25f": {
    "va": "0043d25f",
@@ -11517,15 +11541,15 @@
    "status": "matched",
    "mangled": "f_0043d25f",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043d2b9": {
    "va": "0043d2b9",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "f_0043d2b9",
-   "tu": "src/_unknown/tu_0043b8e8.c",
-   "evidence": "placed (at) in src/_unknown/tu_0043b8e8.c 2026-11-09"
+   "status": "matched",
+   "mangled": "W?f_0043d2b9$n(pn$GameSession$$$GridPoint$$)i",
+   "tu": "src/core/mcp.c",
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043d2b9#W?f_0043d2b9$n(pnvpnx$PilotKey$$)i": {
    "va": "0043d2b9",
@@ -11534,13 +11558,21 @@
    "mangled": "W?f_0043d2b9$n(pnvpnx$PilotKey$$)i",
    "evidence": "implied by src/shell/pilotgui.c 2026-11-09"
   },
+  "f_0043d2b9#f_0043d2b9": {
+   "va": "0043d2b9",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "f_0043d2b9",
+   "tu": "src/_unknown/tu_0043b8e8.c",
+   "evidence": "placed (at) in src/_unknown/tu_0043b8e8.c 2026-11-09"
+  },
   "f_0043d3cc": {
    "va": "0043d3cc",
    "kind": "func",
    "status": "matched",
    "mangled": "f_0043d3cc",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043d3cc#W?f_0043d3cc$n(pnvpnv)i": {
    "va": "0043d3cc",
@@ -11570,7 +11602,7 @@
    "status": "matched",
    "mangled": "f_0043d6b1",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "ProfileManager::SelectScenario": {
    "va": "0043d6e3",
@@ -11585,7 +11617,7 @@
    "status": "matched",
    "mangled": "f_0043d6e3",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043d846": {
    "va": "0043d846",
@@ -11593,7 +11625,7 @@
    "status": "matched",
    "mangled": "f_0043d846",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "GetPlayerInfo": {
    "va": "0043d9e8",
@@ -11615,7 +11647,7 @@
    "status": "matched",
    "mangled": "f_0043d9e8",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043dab1": {
    "va": "0043dab1",
@@ -11623,7 +11655,7 @@
    "status": "matched",
    "mangled": "f_0043dab1",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043dad7": {
    "va": "0043dad7",
@@ -11631,7 +11663,7 @@
    "status": "matched",
    "mangled": "f_0043dad7",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "ProfileRefresh": {
    "va": "0043dad7",
@@ -11643,10 +11675,10 @@
   "f_0043dbb2": {
    "va": "0043dbb2",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "f_0043dbb2",
-   "tu": "src/_unknown/tu_0043b8e8.c",
-   "evidence": "placed (at) in src/_unknown/tu_0043b8e8.c 2026-11-09"
+   "tu": "src/core/mcp.c",
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043dcfd": {
    "va": "0043dcfd",
@@ -11654,7 +11686,7 @@
    "status": "matched",
    "mangled": "f_0043dcfd",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043dcfd#W?f_0043dcfd$n(ii)i": {
    "va": "0043dcfd",
@@ -11669,7 +11701,7 @@
    "status": "matched",
    "mangled": "f_0043deeb",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043df40": {
    "va": "0043df40",
@@ -11677,7 +11709,7 @@
    "status": "matched",
    "mangled": "f_0043df40",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043e007": {
    "va": "0043e007",
@@ -11685,15 +11717,15 @@
    "status": "matched",
    "mangled": "f_0043e007",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043e04d": {
    "va": "0043e04d",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "f_0043e04d",
-   "tu": "src/_unknown/tu_0043b8e8.c",
-   "evidence": "placed (at) in src/_unknown/tu_0043b8e8.c 2026-11-09"
+   "tu": "src/core/mcp.c",
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043e1dd": {
    "va": "0043e1dd",
@@ -11701,7 +11733,7 @@
    "status": "matched",
    "mangled": "f_0043e1dd",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043e1e8": {
    "va": "0043e1e8",
@@ -11709,7 +11741,7 @@
    "status": "matched",
    "mangled": "f_0043e1e8",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043e1f4": {
    "va": "0043e1f4",
@@ -11717,7 +11749,7 @@
    "status": "matched",
    "mangled": "f_0043e1f4",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043e211": {
    "va": "0043e211",
@@ -11725,23 +11757,23 @@
    "status": "matched",
    "mangled": "f_0043e211",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043e21a": {
    "va": "0043e21a",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "f_0043e21a",
-   "tu": "src/_unknown/tu_0043b8e8.c",
-   "evidence": "placed (at) in src/_unknown/tu_0043b8e8.c 2026-11-09"
+   "tu": "src/core/mcp.c",
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043e37c": {
    "va": "0043e37c",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "f_0043e37c",
-   "tu": "src/_unknown/tu_0043b8e8.c",
-   "evidence": "placed (at) in src/_unknown/tu_0043b8e8.c 2026-11-09"
+   "tu": "src/core/mcp.c",
+   "evidence": "strict match 2026-11-18"
   },
   "f_0043e38f": {
    "va": "0043e38f",
@@ -11749,7 +11781,7 @@
    "status": "matched",
    "mangled": "f_0043e38f",
    "tu": "src/core/mcp.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "BriefMissionFile": {
    "va": "0043e3ac",
@@ -13126,7 +13158,7 @@
    "status": "matched",
    "mangled": "W?.fn_init$n()v",
    "tu": "src/pop/preport.c",
-   "evidence": "strict match 2026-11-17"
+   "evidence": "strict match 2026-11-18"
   },
   "ReportScreen::$ct": {
    "va": "0044827b",
@@ -13134,7 +13166,7 @@
    "status": "matched",
    "mangled": "W?$ct:ReportScreen$n()_",
    "tu": "src/pop/preport.c",
-   "evidence": "strict match 2026-11-17"
+   "evidence": "strict match 2026-11-18"
   },
   "ReportOpen": {
    "va": "004482a5",
@@ -13142,7 +13174,7 @@
    "status": "matched",
    "mangled": "W?ReportOpen$n(pn$ReportScreen$$pn$InputReq$$)v",
    "tu": "src/pop/preport.c",
-   "evidence": "strict match 2026-11-17"
+   "evidence": "strict match 2026-11-18"
   },
   "ReportMission": {
    "va": "00448384",
@@ -13150,7 +13182,7 @@
    "status": "matched",
    "mangled": "W?ReportMission$n(pn$ReportScreen$$i)v",
    "tu": "src/pop/preport.c",
-   "evidence": "strict match 2026-11-17"
+   "evidence": "strict match 2026-11-18"
   },
   "ReportClose": {
    "va": "004483ec",
@@ -13158,7 +13190,7 @@
    "status": "matched",
    "mangled": "W?ReportClose$n(pn$ReportScreen$$)v",
    "tu": "src/pop/preport.c",
-   "evidence": "strict match 2026-11-17"
+   "evidence": "strict match 2026-11-18"
   },
   "ReportInput": {
    "va": "00448426",
@@ -13166,7 +13198,7 @@
    "status": "matched",
    "mangled": "W?ReportInput$n(pn$ReportScreen$$)v",
    "tu": "src/pop/preport.c",
-   "evidence": "strict match 2026-11-17"
+   "evidence": "strict match 2026-11-18"
   },
   "SimPilotDraw": {
    "va": "00448460",
@@ -13174,7 +13206,7 @@
    "status": "matched",
    "mangled": "W?SimPilotDraw$n(pn$ReportScreen$$)v",
    "tu": "src/pop/preport.c",
-   "evidence": "strict match 2026-11-17"
+   "evidence": "strict match 2026-11-18"
   },
   "SimPilotDraw#W?SimPilotDraw$n(pnv)v": {
    "va": "00448460",
@@ -13189,7 +13221,7 @@
    "status": "matched",
    "mangled": "W?ReportDirty$n(pn$ReportScreen$$)v",
    "tu": "src/pop/preport.c",
-   "evidence": "strict match 2026-11-17"
+   "evidence": "strict match 2026-11-18"
   },
   "ReportSelect": {
    "va": "00448511",
@@ -13197,7 +13229,7 @@
    "status": "matched",
    "mangled": "W?ReportSelect$n(pn$ReportScreen$$pn$ActorRecord$$)v",
    "tu": "src/pop/preport.c",
-   "evidence": "strict match 2026-11-17"
+   "evidence": "strict match 2026-11-18"
   },
   "ReportScreen::SetOther": {
    "va": "0044869c",
@@ -13205,7 +13237,7 @@
    "status": "matched",
    "mangled": "W?SetOther$:ReportScreen$n(pn$ActorRecord$$ii)v",
    "tu": "src/pop/preport.c",
-   "evidence": "strict match 2026-11-17"
+   "evidence": "strict match 2026-11-18"
   },
   "ReportDrawUnit": {
    "va": "004486d9",
@@ -13218,10 +13250,10 @@
   "ReportDrawOther": {
    "va": "00448b2d",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ReportDrawOther$n(pn$ReportScreen$$)v",
-   "tu": "src/_unknown/tu_004481c0.c",
-   "evidence": "placed (at) in src/_unknown/tu_004481c0.c 2026-11-09"
+   "tu": "src/pop/preport.c",
+   "evidence": "strict match 2026-11-18"
   },
   "ReportGlobalInput": {
    "va": "00448d34",
@@ -13229,7 +13261,7 @@
    "status": "matched",
    "mangled": "W?ReportGlobalInput$n()v",
    "tu": "src/pop/preport.c",
-   "evidence": "strict match 2026-11-17"
+   "evidence": "strict match 2026-11-18"
   },
   "DeathScreenClose": {
    "va": "00448d74",
@@ -13245,7 +13277,7 @@
    "status": "matched",
    "mangled": "W?$dt:ReportScreen$n()_",
    "tu": "src/pop/preport.c",
-   "evidence": "strict match 2026-11-17"
+   "evidence": "strict match 2026-11-18"
   },
   "DeathMovie": {
    "va": "00448d80",
@@ -15021,7 +15053,7 @@
    "status": "matched",
    "mangled": "W?ActorAdvanceState$n(pn$ActorRecord$$)v",
    "tu": "src/sim/actor.c",
-   "evidence": "strict match 2026-11-16"
+   "evidence": "strict match 2026-11-18"
   },
   "ActorFinishMove": {
    "va": "00455890",
@@ -15034,9 +15066,10 @@
   "ReleaseState": {
    "va": "00455ac0",
    "kind": "func",
-   "status": "hypothesis",
-   "mangled": "W?ReleaseState$n(pnv)v",
-   "evidence": "implied by src/logic/lactor.c 2026-11-09"
+   "status": "matched",
+   "mangled": "W?ReleaseState$n(pn$ActorRecord$$)v",
+   "tu": "src/sim/actor.c",
+   "evidence": "strict match 2026-11-18"
   },
   "ReleaseState#W?ReleaseState$n(pn$ActorRecord$$)v": {
    "va": "00455ac0",
@@ -15046,13 +15079,20 @@
    "tu": "src/_unknown/tu_004556f0.c",
    "evidence": "placed (at) in src/_unknown/tu_004556f0.c 2026-11-09"
   },
+  "ReleaseState#W?ReleaseState$n(pnv)v": {
+   "va": "00455ac0",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?ReleaseState$n(pnv)v",
+   "evidence": "implied by src/logic/lactor.c 2026-11-09"
+  },
   "SimHotbriefClearActor": {
    "va": "00455bf0",
    "kind": "func",
    "status": "matched",
    "mangled": "W?SimHotbriefClearActor$n(pn$ActorRecord$$)v",
    "tu": "src/sim/actor.c",
-   "evidence": "strict match 2026-11-16"
+   "evidence": "strict match 2026-11-18"
   },
   "ActorClearAndSelect": {
    "va": "00455c40",
@@ -15060,7 +15100,7 @@
    "status": "matched",
    "mangled": "W?ActorClearAndSelect$n(pn$ActorRecord$$)i",
    "tu": "src/sim/actor.c",
-   "evidence": "strict match 2026-11-16"
+   "evidence": "strict match 2026-11-18"
   },
   "SimHotbriefCheckActor": {
    "va": "00455d10",
@@ -15068,7 +15108,7 @@
    "status": "matched",
    "mangled": "W?SimHotbriefCheckActor$n(pn$ActorRecord$$)i",
    "tu": "src/sim/actor.c",
-   "evidence": "strict match 2026-11-16"
+   "evidence": "strict match 2026-11-18"
   },
   "ActorIsSpecial": {
    "va": "00455d30",
@@ -15076,7 +15116,7 @@
    "status": "matched",
    "mangled": "W?ActorIsSpecial$n(pn$ActorRecord$$)i",
    "tu": "src/sim/actor.c",
-   "evidence": "strict match 2026-11-16"
+   "evidence": "strict match 2026-11-18"
   },
   "ActorCrouch": {
    "va": "00455d60",
@@ -15084,7 +15124,7 @@
    "status": "matched",
    "mangled": "W?ActorCrouch$n(pn$ActorRecord$$i)i",
    "tu": "src/sim/actor.c",
-   "evidence": "strict match 2026-11-16"
+   "evidence": "strict match 2026-11-18"
   },
   "ActorStand": {
    "va": "00455e50",
@@ -15092,7 +15132,7 @@
    "status": "matched",
    "mangled": "W?ActorStand$n(pn$ActorRecord$$i)i",
    "tu": "src/sim/actor.c",
-   "evidence": "strict match 2026-11-16"
+   "evidence": "strict match 2026-11-18"
   },
   "ActorSetExternal": {
    "va": "00455f40",
@@ -15100,7 +15140,7 @@
    "status": "matched",
    "mangled": "W?ActorSetExternal$n(pn$ActorRecord$$iul)v",
    "tu": "src/sim/actor.c",
-   "evidence": "strict match 2026-11-16"
+   "evidence": "strict match 2026-11-18"
   },
   "ActorSetHeading": {
    "va": "00455f70",
@@ -15108,7 +15148,7 @@
    "status": "matched",
    "mangled": "W?ActorSetHeading$n(pn$ActorRecord$$i)v",
    "tu": "src/sim/actor.c",
-   "evidence": "strict match 2026-11-16"
+   "evidence": "strict match 2026-11-18"
   },
   "ActorSetDirection": {
    "va": "00455f70",
@@ -15123,7 +15163,7 @@
    "status": "matched",
    "mangled": "W?ActorChecksum$n(pn$ActorRecord$$)i",
    "tu": "src/sim/actor.c",
-   "evidence": "strict match 2026-11-16"
+   "evidence": "strict match 2026-11-18"
   },
   "ActorSaveState": {
    "va": "00456060",
@@ -15131,7 +15171,7 @@
    "status": "matched",
    "mangled": "W?ActorSaveState$n(pn$ActorRecord$$pn$ActorWireState$$)v",
    "tu": "src/sim/actor.c",
-   "evidence": "strict match 2026-11-16"
+   "evidence": "strict match 2026-11-18"
   },
   "ActorSaveState#W?ActorSaveState$n(pn$ActorRecord$$pn$ActorState$$)v": {
    "va": "00456060",
@@ -15146,7 +15186,7 @@
    "status": "matched",
    "mangled": "W?ActorLoad$n(pn$ActorRecord$$pnvpn$ActorState$$pn$ActorWireState$$)i",
    "tu": "src/sim/actor.c",
-   "evidence": "strict match 2026-11-16"
+   "evidence": "strict match 2026-11-18"
   },
   "ActorLoad#W?ActorLoad$n(pn$ActorRecord$$pn$ActorBlock$$pn$ActorListObject$$pn$ActorState$$)i": {
    "va": "004560a0",
@@ -15168,7 +15208,7 @@
    "status": "matched",
    "mangled": "W?ActorUpdate$n(pn$ActorRecord$$pnvpn$ActorState$$pn$ActorWireState$$)v",
    "tu": "src/sim/actor.c",
-   "evidence": "strict match 2026-11-16"
+   "evidence": "strict match 2026-11-18"
   },
   "ActorUpdate#W?ActorUpdate$n(pn$ActorRecord$$pn$ActorBlock$$pn$ActorListObject$$pn$ActorState$$)v": {
    "va": "00456140",
@@ -20075,7 +20115,7 @@
    "status": "matched",
    "mangled": "W?.fn_init$n()v",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuNetwork::DropPeer": {
    "va": "0046ecd8",
@@ -20091,7 +20131,7 @@
    "status": "matched",
    "mangled": "W?StartStatus$n(pnxai)v",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "StartMultiplayer": {
    "va": "0046efa0",
@@ -20099,7 +20139,7 @@
    "status": "matched",
    "mangled": "W?StartMultiplayer$n(pnxai)i",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuNetwork::Count": {
    "va": "0046f2e1",
@@ -20107,7 +20147,7 @@
    "status": "matched",
    "mangled": "W?Count$:MenuNetwork$n()i",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuNetwork::AllocateSlot": {
    "va": "0046f31f",
@@ -20115,7 +20155,7 @@
    "status": "matched",
    "mangled": "W?AllocateSlot$:MenuNetwork$n(i)i",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuNetwork::BroadcastInfo": {
    "va": "0046f381",
@@ -20123,7 +20163,7 @@
    "status": "matched",
    "mangled": "W?BroadcastInfo$:MenuNetwork$n(pnv)i",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuNetwork::BroadcastLocal": {
    "va": "0046f410",
@@ -20131,7 +20171,7 @@
    "status": "matched",
    "mangled": "W?BroadcastLocal$:MenuNetwork$n()i",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuNetwork::BroadcastSlot": {
    "va": "0046f4ec",
@@ -20139,7 +20179,7 @@
    "status": "matched",
    "mangled": "W?BroadcastSlot$:MenuNetwork$n(ipn$PlayerSlot$$)i",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuNetwork::BroadcastSlot#W?BroadcastSlot$:MenuNetwork$n(ipn$PlayerState$$)i": {
    "va": "0046f4ec",
@@ -20154,7 +20194,7 @@
    "status": "matched",
    "mangled": "W?Begin$:MenuNetwork$n()i",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuNetwork::Finish": {
    "va": "0046f738",
@@ -20162,7 +20202,7 @@
    "status": "matched",
    "mangled": "W?Finish$:MenuNetwork$n(pn$GameInfo$$)v",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuNetwork::Active": {
    "va": "0046f7b0",
@@ -20170,7 +20210,7 @@
    "status": "matched",
    "mangled": "W?Active$:MenuNetwork$n()i",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "StopMultiplayer": {
    "va": "0046f7b6",
@@ -20186,7 +20226,7 @@
    "status": "matched",
    "mangled": "W?ThreadProc$:MenuNetwork$n(pnv)ul",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuNetwork::$ct": {
    "va": "0046fa0e",
@@ -20194,7 +20234,7 @@
    "status": "matched",
    "mangled": "W?$ct:MenuNetwork$n()_",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuNetwork::Reset": {
    "va": "0046fa4b",
@@ -20202,7 +20242,7 @@
    "status": "matched",
    "mangled": "W?Reset$:MenuNetwork$n()v",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "GetActorState": {
    "va": "0046fb18",
@@ -20210,7 +20250,7 @@
    "status": "matched",
    "mangled": "W?GetActorState$n(i)i",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuNetwork::SetMapping": {
    "va": "0046fb29",
@@ -20218,7 +20258,7 @@
    "status": "matched",
    "mangled": "W?SetMapping$:MenuNetwork$n(ii)v",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuNetwork::CompactPlayers": {
    "va": "0046fb3c",
@@ -20234,7 +20274,7 @@
    "status": "matched",
    "mangled": "W?CopySlot$:MenuNetwork$n(ipn$PlayerSlot$$)v",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuNetwork::BroadcastAll": {
    "va": "0046fdc6",
@@ -20242,7 +20282,7 @@
    "status": "matched",
    "mangled": "W?BroadcastAll$:MenuNetwork$n()v",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuNetwork::ResetReady": {
    "va": "0046fe7a",
@@ -20250,7 +20290,7 @@
    "status": "matched",
    "mangled": "W?ResetReady$:MenuNetwork$n()v",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuNetwork::ResetReady#W?ResetReady$:MenuNetwork$n(i)v": {
    "va": "0046fe7a",
@@ -20265,7 +20305,7 @@
    "status": "matched",
    "mangled": "W?Synchronize$:MenuNetwork$n(iii)v",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuNetwork::Launch": {
    "va": "0047002e",
@@ -20273,7 +20313,7 @@
    "status": "matched",
    "mangled": "W?Launch$:MenuNetwork$n()v",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuNetwork::MarkReady": {
    "va": "00470131",
@@ -20281,7 +20321,7 @@
    "status": "matched",
    "mangled": "W?MarkReady$:MenuNetwork$n(i)v",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuNetwork::AllReady": {
    "va": "0047014e",
@@ -20289,7 +20329,7 @@
    "status": "matched",
    "mangled": "W?AllReady$:MenuNetwork$n()i",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuNetwork::SetAllReady": {
    "va": "00470175",
@@ -20297,7 +20337,7 @@
    "status": "matched",
    "mangled": "W?SetAllReady$:MenuNetwork$n()v",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuNetwork::SetTimeout": {
    "va": "00470197",
@@ -20305,7 +20345,7 @@
    "status": "matched",
    "mangled": "W?SetTimeout$:MenuNetwork$n()v",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuNetwork::SendStart": {
    "va": "004701fb",
@@ -20313,7 +20353,7 @@
    "status": "matched",
    "mangled": "W?SendStart$:MenuNetwork$n(pn$1$i)v",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuNetwork::SendStart#W?SendStart$:MenuNetwork$n(pn$GenRecord$$i)v": {
    "va": "004701fb",
@@ -20328,7 +20368,7 @@
    "status": "matched",
    "mangled": "W?PeerForSlot$:MenuNetwork$n(i)i",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuNetwork::SlotForPeer": {
    "va": "004702bd",
@@ -20336,7 +20376,7 @@
    "status": "matched",
    "mangled": "W?SlotForPeer$:MenuNetwork$n(i)i",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuNetwork::IsLeader": {
    "va": "00470301",
@@ -20344,7 +20384,7 @@
    "status": "matched",
    "mangled": "W?IsLeader$:MenuNetwork$n(i)i",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuNetwork::LeaderPeer": {
    "va": "00470341",
@@ -20352,7 +20392,7 @@
    "status": "matched",
    "mangled": "W?LeaderPeer$:MenuNetwork$n()i",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuNetwork::LeaderSlot": {
    "va": "004703ae",
@@ -20360,7 +20400,7 @@
    "status": "matched",
    "mangled": "W?LeaderSlot$:MenuNetwork$n()i",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuNetwork::CheckLeader": {
    "va": "004703d5",
@@ -20368,7 +20408,7 @@
    "status": "matched",
    "mangled": "W?CheckLeader$:MenuNetwork$n()i",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuNetwork::Connected": {
    "va": "0047051d",
@@ -20376,7 +20416,7 @@
    "status": "matched",
    "mangled": "W?Connected$:MenuNetwork$n()i",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuNetwork::Poll": {
    "va": "0047054f",
@@ -20384,7 +20424,7 @@
    "status": "matched",
    "mangled": "W?Poll$:MenuNetwork$n()i",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuNetwork::IsRemote": {
    "va": "0047062f",
@@ -20392,7 +20432,7 @@
    "status": "matched",
    "mangled": "W?IsRemote$:MenuNetwork$n(i)i",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuNetwork::PostStart": {
    "va": "00470660",
@@ -20400,7 +20440,7 @@
    "status": "matched",
    "mangled": "W?PostStart$:MenuNetwork$n()v",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuNetwork::Pause": {
    "va": "0047067b",
@@ -20408,7 +20448,7 @@
    "status": "matched",
    "mangled": "W?Pause$:MenuNetwork$n()v",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuNetwork::Resume": {
    "va": "0047068a",
@@ -20416,7 +20456,7 @@
    "status": "matched",
    "mangled": "W?Resume$:MenuNetwork$n()v",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuNetwork::IsRunning": {
    "va": "00470699",
@@ -20424,7 +20464,7 @@
    "status": "matched",
    "mangled": "W?IsRunning$:MenuNetwork$n()i",
    "tu": "src/multi/mstart.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuMessage::From": {
    "va": "004706b0",
@@ -20432,7 +20472,7 @@
    "status": "matched",
    "mangled": "W?From$:MenuMessage$n()i",
    "tu": "src/multi/message.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuMessage::IsBroadcast": {
    "va": "004706b8",
@@ -20440,7 +20480,7 @@
    "status": "matched",
    "mangled": "W?IsBroadcast$:MenuMessage$n()i",
    "tu": "src/multi/message.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "NetworkDropPeer": {
    "va": "004706c9",
@@ -20448,7 +20488,7 @@
    "status": "matched",
    "mangled": "W?NetworkDropPeer$n(i)v",
    "tu": "src/multi/message.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuMessage::ApplyPackets": {
    "va": "004706dc",
@@ -20456,7 +20496,7 @@
    "status": "matched",
    "mangled": "W?ApplyPackets$:MenuMessage$n()v",
    "tu": "src/multi/message.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MessageName": {
    "va": "0047070b",
@@ -20464,7 +20504,7 @@
    "status": "matched",
    "mangled": "W?MessageName$n()pnxa",
    "tu": "src/multi/message.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MessageActorMoved": {
    "va": "00470711",
@@ -20472,7 +20512,7 @@
    "status": "matched",
    "mangled": "W?MessageActorMoved$n(pn$MenuMessage$$pn$1$)v",
    "tu": "src/multi/message.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MessageActorCreated": {
    "va": "00470752",
@@ -20480,7 +20520,7 @@
    "status": "matched",
    "mangled": "W?MessageActorCreated$n(pn$MenuMessage$$pn$1$)v",
    "tu": "src/multi/message.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MessageActorUpdate": {
    "va": "00470959",
@@ -20488,7 +20528,7 @@
    "status": "matched",
    "mangled": "W?MessageActorUpdate$n(pn$MenuMessage$$pn$1$)v",
    "tu": "src/multi/message.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MessageJoinRequest": {
    "va": "00470a32",
@@ -20496,7 +20536,7 @@
    "status": "matched",
    "mangled": "W?MessageJoinRequest$n(pn$MenuMessage$$)v",
    "tu": "src/multi/message.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuMessage::Clear": {
    "va": "00470bdc",
@@ -20504,7 +20544,7 @@
    "status": "matched",
    "mangled": "W?Clear$:MenuMessage$n()v",
    "tu": "src/multi/message.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MessageCheckSync": {
    "va": "00470bf1",
@@ -20512,7 +20552,7 @@
    "status": "matched",
    "mangled": "W?MessageCheckSync$n(pn$MenuMessage$$)v",
    "tu": "src/multi/message.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MessageDispatch": {
    "va": "00470cf6",
@@ -20528,7 +20568,7 @@
    "status": "matched",
    "mangled": "W?MessageActorJoined$n(pn$MenuMessage$$pn$1$)v",
    "tu": "src/multi/message.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "LocalPeer": {
    "va": "0047157a",
@@ -20536,7 +20576,7 @@
    "status": "matched",
    "mangled": "W?LocalPeer$n()i",
    "tu": "src/multi/message.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "LocalPeer#W?LocalPeer$n(pn$MenuMessage$$)i": {
    "va": "0047157a",
@@ -20551,7 +20591,7 @@
    "status": "matched",
    "mangled": "W?MessageChecksum$n(pn$MenuMessage$$)ui",
    "tu": "src/multi/message.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MessageValid": {
    "va": "0047161b",
@@ -20559,7 +20599,7 @@
    "status": "matched",
    "mangled": "W?MessageValid$n(pn$MenuMessage$$)i",
    "tu": "src/multi/message.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "IsSystemMessage": {
    "va": "00471744",
@@ -20567,7 +20607,7 @@
    "status": "matched",
    "mangled": "W?IsSystemMessage$n(pn$MenuMessage$$)i",
    "tu": "src/multi/message.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MessageTransmit": {
    "va": "0047176f",
@@ -20575,7 +20615,7 @@
    "status": "matched",
    "mangled": "W?MessageTransmit$n(pn$MenuMessage$$)i",
    "tu": "src/multi/message.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuSend": {
    "va": "00471789",
@@ -20597,7 +20637,7 @@
    "status": "matched",
    "mangled": "W?MessageDeliver$n(pn$MenuMessage$$)i",
    "tu": "src/multi/message.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MessageAcknowledge": {
    "va": "00471935",
@@ -20605,7 +20645,7 @@
    "status": "matched",
    "mangled": "W?MessageAcknowledge$n(pn$MenuMessage$$pna)v",
    "tu": "src/multi/message.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MessageRequestStatus": {
    "va": "00471957",
@@ -20613,7 +20653,7 @@
    "status": "matched",
    "mangled": "W?MessageRequestStatus$n(i)v",
    "tu": "src/multi/message.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MessageSendStatus": {
    "va": "004719bd",
@@ -20621,7 +20661,7 @@
    "status": "matched",
    "mangled": "W?MessageSendStatus$n(i)v",
    "tu": "src/multi/message.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MessageSendPing": {
    "va": "004719d9",
@@ -20629,7 +20669,7 @@
    "status": "matched",
    "mangled": "W?MessageSendPing$n(i)v",
    "tu": "src/multi/message.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuMessageNull": {
    "va": "00471a09",
@@ -20637,7 +20677,7 @@
    "status": "matched",
    "mangled": "W?MenuMessageNull$n(pn$MenuMessage$$)pn$1$",
    "tu": "src/multi/message.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuMessage::$ct#W?$ct:MenuMessage$n()_": {
    "va": "00471a09",
@@ -20652,7 +20692,7 @@
    "status": "matched",
    "mangled": "W?MenuMessageBasic$n(pn$MenuMessage$$i)pn$1$",
    "tu": "src/multi/message.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuMessageBasic#W?MenuMessageBasic$n(pn$MenuMessage$$i)v": {
    "va": "00471a1b",
@@ -20674,7 +20714,7 @@
    "status": "matched",
    "mangled": "W?MenuMessageStart$n(pn$MenuMessage$$ipn$ActorRecord$$)pn$1$",
    "tu": "src/multi/message.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuMessageStart#W?MenuMessageStart$n(pn$MenuMessage$$ipnv)v": {
    "va": "00471aa9",
@@ -20696,7 +20736,7 @@
    "status": "matched",
    "mangled": "W?MenuMessageData$n(pn$MenuMessage$$iiii)pn$1$",
    "tu": "src/multi/message.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuMessageData#W?MenuMessageData$n(pn$MenuMessage$$iiii)v": {
    "va": "00471b2f",
@@ -20711,7 +20751,7 @@
    "status": "matched",
    "mangled": "W?MenuMessageInfo$n(pn$MenuMessage$$iipn$Options$$)pn$1$",
    "tu": "src/multi/message.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuMessageInfo#W?MenuMessageInfo$n(pn$MenuMessage$$iipnv)v": {
    "va": "00471b56",
@@ -20726,7 +20766,7 @@
    "status": "matched",
    "mangled": "W?MenuMessageGame$n(pn$MenuMessage$$ipn$GameInfo$$)pn$1$",
    "tu": "src/multi/message.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuMessageGame#W?MenuMessageGame$n(pn$MenuMessage$$ipn$GameInfo$$)v": {
    "va": "00471b91",
@@ -20741,7 +20781,7 @@
    "status": "matched",
    "mangled": "W?MenuMessageSlot$n(pn$MenuMessage$$iipn$PlayerSlot$$)pn$1$",
    "tu": "src/multi/message.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuMessageSlot#W?MenuMessageSlot$n(pn$MenuMessage$$iipn$PlayerSlot$$)v": {
    "va": "00471bb5",
@@ -20756,7 +20796,7 @@
    "status": "matched",
    "mangled": "W?$ct:MenuMessage$n(uipnxa)_",
    "tu": "src/multi/message.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "LinkBeginThread": {
    "va": "00471c78",
@@ -20796,7 +20836,7 @@
    "status": "matched",
    "mangled": "W?.fn_init$n()v",
    "tu": "src/multi/minipkt.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "PacketType": {
    "va": "00471d9b",
@@ -20804,7 +20844,7 @@
    "status": "matched",
    "mangled": "W?PacketType$n(pnv)i",
    "tu": "src/multi/minipkt.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "QueuePump": {
    "va": "00471da2",
@@ -20819,7 +20859,7 @@
    "status": "matched",
    "mangled": "W?Process$:PacketList$n()v",
    "tu": "src/multi/minipkt.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "PacketList::Step": {
    "va": "00471db6",
@@ -20827,7 +20867,7 @@
    "status": "matched",
    "mangled": "W?Step$:PacketList$n()i",
    "tu": "src/multi/minipkt.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "PacketApply": {
    "va": "00471e98",
@@ -20849,7 +20889,7 @@
    "status": "matched",
    "mangled": "W?CheckActor$n(pn$Packet$$pn$ActorRecord$$)v",
    "tu": "src/multi/minipkt.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "PacketName": {
    "va": "00472436",
@@ -20857,7 +20897,7 @@
    "status": "matched",
    "mangled": "W?PacketName$n(pn$Packet$$)pnxa",
    "tu": "src/multi/minipkt.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "PacketList::$ct": {
    "va": "00472444",
@@ -20865,7 +20905,7 @@
    "status": "matched",
    "mangled": "W?$ct:PacketList$n()_",
    "tu": "src/multi/minipkt.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "ClearList": {
    "va": "004724a1",
@@ -20894,7 +20934,7 @@
    "status": "matched",
    "mangled": "W?Stop$:PacketList$n()v",
    "tu": "src/multi/minipkt.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "PacketList::Add": {
    "va": "004724ba",
@@ -20902,7 +20942,7 @@
    "status": "matched",
    "mangled": "W?Add$:PacketList$n()pn$Packet$$",
    "tu": "src/multi/minipkt.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "PacketList::Poll": {
    "va": "004725bd",
@@ -20910,7 +20950,7 @@
    "status": "matched",
    "mangled": "W?Poll$:PacketList$n()v",
    "tu": "src/multi/minipkt.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "PacketList::Send": {
    "va": "00472690",
@@ -20918,7 +20958,7 @@
    "status": "matched",
    "mangled": "W?Send$:PacketList$n(i)v",
    "tu": "src/multi/minipkt.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "PacketList::Repair": {
    "va": "00472723",
@@ -20926,7 +20966,7 @@
    "status": "matched",
    "mangled": "W?Repair$:PacketList$n(pn$ActorRecord$$aai)v",
    "tu": "src/multi/minipkt.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "PacketList::Simple": {
    "va": "00472850",
@@ -20934,7 +20974,7 @@
    "status": "matched",
    "mangled": "W?Simple$:PacketList$n(ipn$ActorRecord$$)v",
    "tu": "src/multi/minipkt.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "PacketList::RepairCurrent": {
    "va": "00472964",
@@ -20942,7 +20982,7 @@
    "status": "matched",
    "mangled": "W?RepairCurrent$:PacketList$n(aai)v",
    "tu": "src/multi/minipkt.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "PacketList::JackUp": {
    "va": "00472a67",
@@ -20950,7 +20990,7 @@
    "status": "matched",
    "mangled": "W?JackUp$:PacketList$n(pn$ActorRecord$$)v",
    "tu": "src/multi/minipkt.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "PacketList::Placidex": {
    "va": "00472b3f",
@@ -20958,7 +20998,7 @@
    "status": "matched",
    "mangled": "W?Placidex$:PacketList$n(pn$ActorRecord$$)v",
    "tu": "src/multi/minipkt.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "PacketList::Remove": {
    "va": "00472b57",
@@ -20966,7 +21006,7 @@
    "status": "matched",
    "mangled": "W?Remove$:PacketList$n(pn$ActorRecord$$)v",
    "tu": "src/multi/minipkt.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "PacketList::Crouch": {
    "va": "00472b6f",
@@ -20974,7 +21014,7 @@
    "status": "matched",
    "mangled": "W?Crouch$:PacketList$n(pn$ActorRecord$$)v",
    "tu": "src/multi/minipkt.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "PacketList::Stand": {
    "va": "00472b87",
@@ -20982,7 +21022,7 @@
    "status": "matched",
    "mangled": "W?Stand$:PacketList$n(pn$ActorRecord$$)v",
    "tu": "src/multi/minipkt.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "PacketList::Face": {
    "va": "00472b9f",
@@ -20990,7 +21030,7 @@
    "status": "matched",
    "mangled": "W?Face$:PacketList$n(pn$ActorRecord$$ii)v",
    "tu": "src/multi/minipkt.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "LogMode": {
    "va": "00472cc3",
@@ -21005,7 +21045,7 @@
    "status": "matched",
    "mangled": "W?Shields$:PacketList$n(pn$ActorRecord$$aa)v",
    "tu": "src/multi/minipkt.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "PacketList::ShieldsCurrent": {
    "va": "00472de8",
@@ -21013,7 +21053,7 @@
    "status": "matched",
    "mangled": "W?ShieldsCurrent$:PacketList$n(aa)v",
    "tu": "src/multi/minipkt.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "PacketList::Toggle": {
    "va": "00472ed7",
@@ -21021,7 +21061,7 @@
    "status": "matched",
    "mangled": "W?Toggle$:PacketList$n(pn$ActorRecord$$a)v",
    "tu": "src/multi/minipkt.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "PacketList::ToggleCurrent": {
    "va": "00472ff3",
@@ -21029,7 +21069,7 @@
    "status": "matched",
    "mangled": "W?ToggleCurrent$:PacketList$n(a)v",
    "tu": "src/multi/minipkt.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "PacketList::Focus": {
    "va": "004730d1",
@@ -21037,7 +21077,7 @@
    "status": "matched",
    "mangled": "W?Focus$:PacketList$n(pn$ActorRecord$$)v",
    "tu": "src/multi/minipkt.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "PacketList::Move": {
    "va": "004731e8",
@@ -21045,7 +21085,7 @@
    "status": "matched",
    "mangled": "W?Move$:PacketList$n(pn$ActorRecord$$ii)v",
    "tu": "src/multi/minipkt.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "PacketList::DeadPilot": {
    "va": "0047330d",
@@ -21053,7 +21093,7 @@
    "status": "matched",
    "mangled": "W?DeadPilot$:PacketList$n(pn$ActorRecord$$)v",
    "tu": "src/multi/minipkt.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "PacketList::DeadActor": {
    "va": "00473421",
@@ -21061,7 +21101,7 @@
    "status": "matched",
    "mangled": "W?DeadActor$:PacketList$n(pn$ActorRecord$$)v",
    "tu": "src/multi/minipkt.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "PacketList::Fire": {
    "va": "0047352a",
@@ -21069,7 +21109,7 @@
    "status": "matched",
    "mangled": "W?Fire$:PacketList$n(pn$ActorRecord$$iiii)v",
    "tu": "src/multi/minipkt.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "PacketList::ReturnFire": {
    "va": "0047365e",
@@ -21077,7 +21117,7 @@
    "status": "matched",
    "mangled": "W?ReturnFire$:PacketList$n(pn$ActorRecord$$aaa)v",
    "tu": "src/multi/minipkt.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "PacketList::EndTurn": {
    "va": "0047378b",
@@ -21085,7 +21125,7 @@
    "status": "matched",
    "mangled": "W?EndTurn$:PacketList$n(i)v",
    "tu": "src/multi/minipkt.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "PacketList::EnsureCybridEndTurn": {
    "va": "0047398d",
@@ -21093,7 +21133,7 @@
    "status": "matched",
    "mangled": "W?EnsureCybridEndTurn$:PacketList$n()v",
    "tu": "src/multi/minipkt.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "FinishMode": {
    "va": "00473c08",
@@ -21108,7 +21148,7 @@
    "status": "matched",
    "mangled": "W?Diagnose$:PacketList$n()v",
    "tu": "src/multi/minipkt.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "PacketList::Check": {
    "va": "00474169",
@@ -21116,7 +21156,7 @@
    "status": "matched",
    "mangled": "W?Check$:PacketList$n(ipn$ActorRecord$$)v",
    "tu": "src/multi/minipkt.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "W?.fn_init$n()v@_unknown/tu_004742bc.c": {
    "va": "004742bc",
@@ -22376,7 +22416,7 @@
    "status": "matched",
    "mangled": "W?.fn_init$n()v",
    "tu": "src/main/WIN/winmain.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "CenterWindow": {
    "va": "00477dee",
@@ -22384,7 +22424,7 @@
    "status": "matched",
    "mangled": "W?CenterWindow$n(pnvui)v",
    "tu": "src/main/WIN/winmain.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "ActivateMainWindow": {
    "va": "00477ef3",
@@ -22392,7 +22432,7 @@
    "status": "matched",
    "mangled": "W?ActivateMainWindow$n()v",
    "tu": "src/main/WIN/winmain.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "ShutdownCallback": {
    "va": "00477f2a",
@@ -22400,15 +22440,15 @@
    "status": "matched",
    "mangled": "W?ShutdownCallback$n()v",
    "tu": "src/main/WIN/winmain.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "InitApplication": {
    "va": "00477f4c",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?InitApplication$n()i",
    "tu": "src/main/WIN/winmain.c",
-   "evidence": "placed (at) in src/main/WIN/winmain.c 2026-11-09"
+   "evidence": "strict match 2026-11-18"
   },
   "Problem": {
    "va": "00477ff9",
@@ -22416,7 +22456,7 @@
    "status": "matched",
    "mangled": "W?Problem$n(uli)v",
    "tu": "src/main/WIN/winmain.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "Problem#W?Problem$n(li)v": {
    "va": "00477ff9",
@@ -22431,7 +22471,7 @@
    "status": "matched",
    "mangled": "W?RunOptionsDialog$n()v",
    "tu": "src/main/WIN/winmain.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "SetMenuVisible": {
    "va": "0047817e",
@@ -22439,7 +22479,7 @@
    "status": "matched",
    "mangled": "W?SetMenuVisible$n(i)v",
    "tu": "src/main/WIN/winmain.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "AboutDlgProc": {
    "va": "004781cf",
@@ -22447,7 +22487,7 @@
    "status": "matched",
    "mangled": "W?AboutDlgProc$n(pnvuiuil)i",
    "tu": "src/main/WIN/winmain.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "SetGameWindowSize": {
    "va": "0047822d",
@@ -22455,7 +22495,7 @@
    "status": "matched",
    "mangled": "W?SetGameWindowSize$n(ii)v",
    "tu": "src/main/WIN/winmain.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "GetWindowOffset": {
    "va": "004782f3",
@@ -22463,7 +22503,7 @@
    "status": "matched",
    "mangled": "W?GetWindowOffset$n(pnipni)i",
    "tu": "src/main/WIN/winmain.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "LayoutGameWindow": {
    "va": "0047831c",
@@ -22471,7 +22511,7 @@
    "status": "matched",
    "mangled": "W?LayoutGameWindow$n(i)v",
    "tu": "src/main/WIN/winmain.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "ClearGameWindow": {
    "va": "004784d8",
@@ -22479,7 +22519,7 @@
    "status": "matched",
    "mangled": "W?ClearGameWindow$n()v",
    "tu": "src/main/WIN/winmain.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "SaveHercConfig": {
    "va": "0047852f",
@@ -22487,7 +22527,7 @@
    "status": "matched",
    "mangled": "W?SaveHercConfig$n(pnvi)i",
    "tu": "src/main/WIN/winmain.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "SaveHercConfig#W?SaveHercConfig$n(pnvui)i": {
    "va": "0047852f",
@@ -22509,7 +22549,7 @@
    "status": "matched",
    "mangled": "W?LoadHercConfig$n(pnv)i",
    "tu": "src/main/WIN/winmain.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "SaveGame": {
    "va": "004788db",
@@ -22532,15 +22572,15 @@
    "status": "matched",
    "mangled": "W?PostCornerClick$n()v",
    "tu": "src/main/WIN/winmain.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "HandleMenuKey": {
    "va": "004796ab",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?HandleMenuKey$n(uil)v",
    "tu": "src/main/WIN/winmain.c",
-   "evidence": "placed (at) in src/main/WIN/winmain.c 2026-11-09"
+   "evidence": "strict match 2026-11-18"
   },
   "WndProc": {
    "va": "004797f4",
@@ -22556,7 +22596,7 @@
    "status": "matched",
    "mangled": "W?GuiPumpMessages$n()v",
    "tu": "src/main/WIN/winmain.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "ApplySettings": {
    "va": "0047a44b",
@@ -22564,7 +22604,7 @@
    "status": "matched",
    "mangled": "W?ApplySettings$n(pna)i",
    "tu": "src/main/WIN/winmain.c",
-   "evidence": "strict match 2026-11-14"
+   "evidence": "strict match 2026-11-18"
   },
   "_WinMain@16": {
    "va": "0047a517",
@@ -22895,6 +22935,13 @@
    "mangled": "W?SurfaceBackendReady$n()i",
    "tu": "src/graph/blitWIN.c",
    "evidence": "strict match 2026-11-16"
+  },
+  "SurfaceBackendReady#W?SurfaceBackendReady$n(pn$GuiCanvas$$)i": {
+   "va": "0047b290",
+   "kind": "func",
+   "status": "hypothesis",
+   "mangled": "W?SurfaceBackendReady$n(pn$GuiCanvas$$)i",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-18"
   },
   "SurfaceBackendClose": {
    "va": "0047b2a0",
@@ -23764,9 +23811,10 @@
   "MenuDrawText": {
    "va": "0047cf80",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?MenuDrawText$n(pn$Font$$llpnxa)v",
-   "evidence": "implied by src/gui/menu.c 2026-11-09"
+   "tu": "src/io/resource.c",
+   "evidence": "strict match 2026-11-18"
   },
   "MenuDrawTextAt": {
    "va": "0047cfc0",
@@ -28457,6 +28505,13 @@
    "mangled": "W?equipmentCategories$n[]$EquipmentCategory$$",
    "evidence": "implied by src/_unknown/tu_0043e3ac.c 2026-11-09"
   },
+  "HercConditionColors": {
+   "va": "00493f5c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?HercConditionColors$n[]$SixBytes$$",
+   "evidence": "implied by src/_unknown/tu_0043a294.c 2026-11-18"
+  },
   "gLevelInfo": {
    "va": "00494074",
    "kind": "data",
@@ -30995,6 +31050,13 @@
    "status": "hypothesis",
    "mangled": "W?installDriveRoot$n[]a",
    "evidence": "implied by src/_unknown/tu_004770d0.c 2026-11-09"
+  },
+  "gMenuKeys": {
+   "va": "004a488c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?gMenuKeys$n[]$MenuKey$$",
+   "evidence": "implied by src/main/WIN/winmain.c 2026-11-18"
   },
   "g4a48e4": {
    "va": "004a48e4",
@@ -37136,6 +37198,13 @@
    "mangled": "W?DAT_004bc4e8$ni",
    "evidence": "implied by src/pop/pherc.c 2026-11-09"
   },
+  "reportTextColor": {
+   "va": "004bc4f4",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?reportTextColor$nul",
+   "evidence": "implied by src/pop/preport.c 2026-11-18"
+  },
   "deathMapColor": {
    "va": "004bc4f8",
    "kind": "data",
@@ -37149,6 +37218,13 @@
    "status": "hypothesis",
    "mangled": "W?g4bc4f8$ni",
    "evidence": "implied by src/shell/hercbuy.c 2026-11-11"
+  },
+  "reportPlayerTextColor": {
+   "va": "004bc50c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?reportPlayerTextColor$n[]ul",
+   "evidence": "implied by src/pop/preport.c 2026-11-18"
   },
   "gMenuColorMap": {
    "va": "004bc534",
@@ -37177,6 +37253,13 @@
    "status": "hypothesis",
    "mangled": "W?DAT_004bc560$ni",
    "evidence": "implied by src/pop/pherc.c 2026-11-09"
+  },
+  "reportTextMap": {
+   "va": "004bc56c",
+   "kind": "data",
+   "status": "hypothesis",
+   "mangled": "W?reportTextMap$n[]ul",
+   "evidence": "implied by src/pop/preport.c 2026-11-18"
   },
   "g4bc570": {
    "va": "004bc570",

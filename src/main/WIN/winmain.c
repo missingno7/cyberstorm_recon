@@ -61,7 +61,7 @@ extern WinConfig gConfigAlt;
 extern StrPool DAT_00511e7c;
 extern void *g_mainWindow;
 extern HINSTANCE g512580;
-extern char gCurDir[];
+extern char sigsGameId[];
 extern GuiCanvas g513888;
 extern "C" void RegisterAssertCallback(void (*callback)());
 extern "C" void AssertExit(unsigned int code);
@@ -70,12 +70,12 @@ extern "C" void DrainAssertCallbacks();
 extern void f_47d710();
 extern void f_47dde0();
 extern void f_46b9bd();
-extern void f_47682d();
-extern int f_47b290(GuiCanvas *canvas);
+extern void FormatVersion();
+extern int SurfaceBackendReady(GuiCanvas *canvas);
 extern int f_47b2d0(GuiCanvas *canvas);
-extern void f_47d6d0();
-extern void f_47dd80();
-extern void f_476b3c();
+extern "C" int InputInit();
+extern "C" int FrameInputInit();
+extern void CursorInit();
 extern int g512584;
 extern HMENU g512544;
 extern "C" char assertVersion[];
@@ -131,10 +131,10 @@ extern int gWindowY;
 extern void f_4770d0();
 extern void f_475a18(int settingsOk);
 LRESULT CALLBACK WndProc(HWND window, UINT msg, WPARAM wParam, LPARAM lParam);
-struct MenuKey { int key; int command; signed char shift; signed char control; };
+struct MenuKey { int key; int command; signed char control; signed char shift; };
 extern MenuKey gMenuKeys[];
-extern int f_47df40();
-extern int f_47df80();
+extern "C" int ControlKeyDown();
+extern "C" int ShiftKeyDown();
 struct MenuNetwork { static int Active(); void DropPeer(int peer); };
 extern MenuNetwork gMenuNetwork;
 extern int StopMultiplayer(int code = 0, int restart = 0);
@@ -226,22 +226,26 @@ void ShutdownCallback()
     if (g512580) FreeLibrary(g512580);
 }
 
+inline void InitCurrentDirectory()
+{
+    sigsGameId[0] = 0;
+    GetCurrentDirectoryA(0xc3, sigsGameId);
+    if (strlen(sigsGameId)) strcat(sigsGameId, "\\");
+}
 int InitApplication()
 {
-    f_47682d();
-    if (!f_47b290(&g513888)) {
+    FormatVersion();
+    if (!SurfaceBackendReady(&g513888)) {
         MessageBoxA((HWND)g_mainWindow, "This version of CyberStorm requires that WinG is installed.  Please install WinG to run CyberStorm.", "Error", MB_ICONHAND);
         return 0;
     }
     RegisterAssertCallback(ShutdownCallback);
     if (!f_47b2d0(&g513888)) return 0;
-    f_47d6d0();
-    f_47dd80();
+    InputInit();
+    FrameInputInit();
     BriefWaitA(0);
-    f_476b3c();
-    gCurDir[0] = 0;
-    GetCurrentDirectoryA(0xc3, gCurDir);
-    if (strlen(gCurDir)) strcat(gCurDir, "\\");
+    CursorInit();
+    InitCurrentDirectory();
     return 1;
 }
 
@@ -419,10 +423,6 @@ int LoadHercConfig(void *herc)
     return result;
 }
 
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
-// source-line padding before the line-867 ASSERT
 // source-line padding before the line-867 ASSERT
 // source-line padding before the line-867 ASSERT
 // source-line padding before the line-867 ASSERT
@@ -1067,8 +1067,8 @@ void HandleMenuKey(WPARAM key, LPARAM flags)
     if (flags & 0x40000000) return;
     for (MenuKey *entry = gMenuKeys; entry->key; entry++) {
         if (key != entry->key) continue;
-        if (f_47df40() != entry->shift) continue;
-        if (f_47df80() != entry->control) continue;
+        if (ControlKeyDown() != entry->control) continue;
+        if (ShiftKeyDown() != entry->shift) continue;
         UINT previous = EnableMenuItem(g512544, entry->command, MF_BYCOMMAND | MF_ENABLED);
         if (!previous) PostMessageA((HWND)g_mainWindow, WM_COMMAND, entry->command, 0);
         EnableMenuItem(g512544, entry->command, previous);

@@ -157,13 +157,22 @@ void SimAddMission(ActorUnit *u){
  HercAdvanceTurn(u,0);
 }
 
+inline int DiagramColorIndex(int condition, ActorUnit *previous, int slot)
+{
+    int index = condition * 4 / 100;
+    if (previous && condition != previous->slots[slot].condition) index = 6;
+    return index;
+}
+
 /* 0043ab6e */
-void *HercConditionDiagram(ActorUnit *u,ActorUnit *old){
- memset(gSessionTable,0,256);
- for(int i=0;i<23;i++){int condition=HercCondition(u,i),index=condition*4/100;
- if(old){U8 previous=old->slots[i].condition;if(condition!=previous)index=6;}
- memcpy((char *)gSessionTable+(16+i*6),&HercConditionColors[index],6);}
- return gSessionTable;
+void *HercConditionDiagram(ActorUnit *u, ActorUnit *old)
+{
+    memset(gSessionTable, 0, 256);
+    for (int i = 0; i < 23; ++i) {
+        int index = DiagramColorIndex(HercCondition(u,i), old, i);
+        memcpy((char *)gSessionTable + (16 + i * 6), &HercConditionColors[index], 6);
+    }
+    return gSessionTable;
 }
 
 

@@ -233,7 +233,7 @@ int PacketApply(Packet *p)
         ActorStand(actor, 1);
         break;
     case 9:
-        actor->unit->shieldDirection = p->shields.front;
+        actor->unit->SetDirection(p->shields.front);
         actor->unit->shieldRange = p->shields.back;
         UpdatePayload(actor->unit, actor->action.angle);
         break;

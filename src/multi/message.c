@@ -431,10 +431,9 @@ inline void PostNetworkEvent(int code)
 int MessageDispatch(MenuMessage *m, int expected)
 {
     MenuMessage request;
-    MenuMessage removed;
     char text[100];
 
-    int slot;
+    int player;
     if (!MessageValid(m))
         return 1;
     if (expected != 0x1025 && expected != m->type)
@@ -443,11 +442,14 @@ int MessageDispatch(MenuMessage *m, int expected)
         SetLinkTimer(m->from);
     switch (m->type) {
     case 5:
-        PostNetworkEvent(m->checksum);
+        player = m->checksum;
+    postDisconnect:
+        PostNetworkEvent(player);
         break;
     case 0x1016:
-        PostNetworkEvent(m->from);
-        break;
+        player = m->From();
+        goto postDisconnect;
+
     case 0x1005:
         QueueRelease(networkQueue, m->data.a, m->data.b);
         break;
@@ -462,8 +464,8 @@ int MessageDispatch(MenuMessage *m, int expected)
         QueueUpdate(networkQueue, m->from, m->ackHigh, m->ackLow, m->data.a, m->data.b);
         break;
     case 0x1001: {
-        slot = gMenuNetwork.SlotForPeer(m->from);
-        const char *name = slot > 0 && slot < 9 ? gMenuNetwork.slots[slot].name : "????";
+        player = gMenuNetwork.SlotForPeer(m->from);
+        const char *name = player > 0 && player < 9 ? gMenuNetwork.slots[player].name : "????";
         gMenuNetwork.chat.Show(name, m->text);
         break;
     }
@@ -485,7 +487,6 @@ int MessageDispatch(MenuMessage *m, int expected)
         MessageJoinRequest(m);
         break;
     case 0x1011: {
-
         MenuMessageBasic(&request, 0x100d);
         MenuSend(&request, m->from);
         break;
@@ -504,12 +505,12 @@ int MessageDispatch(MenuMessage *m, int expected)
         MissionRandomTable[0] = m->data.a;
         break;
     case 0x1014:
-        slot = m->slot.slot;
-        gMenuNetwork.CopySlot(slot, &m->slot.info);
+        gMenuNetwork.CopySlot(m->slot.slot, &m->slot.info);
+
         break;
     case 0x101c:
-        slot = m->data.a;
-        gMenuNetwork.MarkReady(slot, m->data.c);
+        player = m->data.a;
+        gMenuNetwork.MarkReady(player, m->data.c);
         break;
     case 0x101e:
         gMenuNetwork.SetAllReady();
@@ -535,12 +536,11 @@ int MessageDispatch(MenuMessage *m, int expected)
         MessageActorUpdate(m, m);
         break;
     case 0x1020:
-        slot = gMenuNetwork.SlotForPeer(m->from);
-        ValidateSlot(slot);
-        ScreenPlayerLeft(g4ba2bc, slot);
+        player = gMenuNetwork.SlotForPeer(m->from);
+        ValidateSlot(player);
+        ScreenPlayerLeft(g4ba2bc, player);
         break;
     case 0x1023: {
-
         int leader = gMenuNetwork.LeaderPeer();
         if (gMenuNetwork.CheckLeader())
             break;
@@ -549,13 +549,13 @@ int MessageDispatch(MenuMessage *m, int expected)
             break;
         gMenuNetwork.DropPeer(peer);
         gMenuNetwork.slots[gMenuNetwork.SlotForPeer(peer)].state = 0;
+        MenuMessage removed;
         MenuMessageData(&removed, 0x1024, peer);
         MenuSend(&removed, 0);
         break;
     }
     case 0x1024:
         if (m->data.a == LocalPeer()) {
-            
             sprintf(text, (const char *)AllocateMissionImage(resourcePool, 11), 30);
             ShowMessage(text);
             gMenuNetwork.slots[gMenuNetwork.localSlot].state = 0;
@@ -581,8 +581,8 @@ int MessageDispatch(MenuMessage *m, int expected)
         MessageSendStatus(m->from);
         break;
     case 0x1002:
-        slot = gMenuNetwork.SlotForPeer(m->from);
-        ScreenPlayerText(g4ba2bc, slot, m->text);
+        player = gMenuNetwork.SlotForPeer(m->from);
+        ScreenPlayerText(g4ba2bc, player, m->text);
         break;
     case 0x20:
     case 0x21:

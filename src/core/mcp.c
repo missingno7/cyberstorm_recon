@@ -37,7 +37,8 @@ struct ProfileManager : GameSession { Pilot *Select(int=-1); Herc *Mission(int=-
 
 extern "C" void f_00435e43(Pilot *,int);
 extern "C" void f_004372cd(Pilot *,char *);
-extern "C" void f_004372b6(Pilot *,char *);
+struct ActorState;
+void ActorSetName(ActorState *,const char *);
 extern "C" void f_00439d31(Herc *,char *);
 extern "C" char *f_00439d2c(Herc *);
 extern "C" int f_004394e0(Herc *,int);
@@ -49,7 +50,7 @@ extern ActorItem *PopFindItem(ActorUnit *,int,int);
 extern "C" int f_00441ca7(GameSession *,int,int);
 extern "C" int f_00439d48(Herc *);
 extern unsigned SimLogicFlags(void *);
-extern "C" unsigned f_00436dcc(Pilot *,int);
+int ActorQuery(ActorState *,unsigned);
 extern long SendEvent(void *,int,void *,int,int);
 
 
@@ -84,7 +85,7 @@ struct SessionSummary {U8 level,world,worldStage,previousLevel;char *title,*name
 #pragma pack(pop)
 extern PilotType *gPilotTypes[];
 extern ItemCatalog gItemCatalog[];
-struct StrPool {char *GetString(long,int);}; extern StrPool g511ddc;
+struct StrPool {char *GetString(long,int=1);}; extern StrPool g511ddc;
 struct Shell {unsigned long NextCreditBreakpoint(unsigned long);}; extern Shell uiSystem;
 extern int g4d0840;
 extern char g4c929c[],g4c92b8[];
@@ -92,12 +93,12 @@ extern char g4c929c[],g4c92b8[];
 struct Columns { int widths[2]; };
 
 extern int g4941f0;
-extern int (*g512500)(HWND,const char *,char *,int,int);
+extern int (*dialogChoose)(HWND,char *,char *,unsigned long,int);
 extern int (*dialogExport9)(HWND,const char *,int,int,int,int *,int);
 
 extern char *HercChassisName(Herc *);
 extern "C" int f_004379ba(Pilot *);
-extern "C" void f_00435e70(Pilot *,int);
+void ActorBindDescriptor(ActorState *,int);
 extern "C" void f_00441c2c(GameSession *,int);
 extern "C" void f_00441456(GameSession *,int *);
 extern "C" void f_00441b19(GameSession *,int);
@@ -109,13 +110,14 @@ extern "C" void f_0043c17c(GameSession *);
 extern "C" int f_0043d152(GameSession *,int);
 extern "C" void f_004773a1(Pilot *, int, int);
 
+inline int PromptName(HWND parent, int title, char *name, unsigned long limit)
+{
+    return dialogChoose(parent, g511ddc.GetString(title), name, limit, 1);
+}
+
 inline int SessionIsSpecial(GameSession *s) {return s->mode==2 || s->mode==3;}
 extern "C" void f_0043b7e0(GameSession *,int);
 
-/* Coordinate conversion is written as a macro: lexical parameter use is visible in register allocation. */
-#define CONVERT_CLIENT_POINT(point) {RECT client,window;GetWindowRect(g_mainWindow,&window);GetClientRect(g_mainWindow,&client); \
-int windowHeight=window.bottom-window.top;int clientHeight=client.bottom-client.top;int top=window.top; \
-point->x+=window.left;point->y+=top+(windowHeight-clientHeight);}
 GameSession profileManager;
 // Own initialized data, 00494170..00494234; labels are working names.
 static char mcpSourceFile[] = __FILE__;
@@ -151,7 +153,7 @@ extern "C" Snapshot *f_0043b912(Snapshot *s, Herc *h)
     s->next=0;
     return s;
 }
-extern "C" void f_0043b956(POINT *point)
+extern "C" void f_0043b956(GridPoint *point)
 {
     RECT client,window;
     GetWindowRect(g_mainWindow,&window);
@@ -212,10 +214,12 @@ extern "C" int f_0043bbcc(GameSession *s,const char *name,Pilot *pilot)
         }
     }
     if(suffix>0) {
-        char *end=base+strlen(base);--end;if(*end==':') *end=0;
+        char *text = base;
+        size_t length = strlen(text);
+        if (text[--length] == ':') text[length] = 0;
         sprintf(result,"%s:%d",base,suffix);
     } else strcpy(result,name);
-    f_004372b6(pilot,result);
+    ActorSetName((ActorState *)pilot,result);
     return 1;
 }
 extern "C" int f_0043bced(GameSession *s,int kind)
@@ -280,10 +284,11 @@ extern "C" int f_0043bf81(GameSession *s,Pilot *pilot)
 {
     if(s->reserveMode) {
         for(int i=0; i<s->reserveCount; ++i) if(pilot==&s->reserve[i]) return i+1;
+        return 0;
     } else {
         for(int i=0; i<s->pilotCount; ++i) if(pilot==&s->pilots[i]) return i+1;
+        return 0;
     }
-    return 0;
 }
 extern "C" int f_0043bfe1(GameSession *s)
 { if(s->reserveMode) return s->reserveCount; return s->pilotCount; }
@@ -399,13 +404,13 @@ extern "C" int f_0043c4bf(GameSession *s,const char *name,Herc *herc)
     return 1;
 }
 
-extern "C" int f_0043c5d6(GameSession *s,POINT *point)
+int f_0043c5d6(GameSession *s,GridPoint point)
 {
-    CONVERT_CLIENT_POINT(point);
+    f_0043b956(&point);
     Herc *h=((ProfileManager *)s)->Mission();
     strcpy(g4c929c,f_00439d2c(h));
     char name[52];strcpy(name,g4c929c);
-    int result=g512500(g_mainWindow,g511ddc.GetString(250,1),name,12,1);
+    int result=PromptName(g_mainWindow,250,name,12);
     if(result==1 && stricmp(name,g4c929c) && strlen(name)) {
         name[12]=0;return f_0043c4bf(s,name,h);
     }
@@ -445,7 +450,7 @@ extern "C" int f_0043c844(GameSession *s)
         for(int j=0;j<s->hercCount;++j) if(s->assignments[j].pilot==i) {unassigned=0;break;}
         if(unassigned) {
             Pilot *p=((ProfileManager *)s)->Select(i);
-            if(p && SendEvent(p,101,0,0,0)) {f_0043ca71(s,s->rankedPilots,f_00436dcc(p,203),i);++pilots;}
+            if(p && SendEvent(p,101,0,0,0)) {f_0043ca71(s,s->rankedPilots,ActorQuery((ActorState *)p,203),i);++pilots;}
         }
     }
     if(!hercs || !pilots) return 0;
@@ -468,12 +473,12 @@ extern "C" int f_0043cab9(GameSession *s)
 }
 extern "C" int f_0043cb47(GameSession *s)
 {
-    int pilots=0,hercs=0;
+    int hercs = 0, pilots = 0;
     for(int i=1;i<=60;++i) {
         if(i<=s->pilotCount && !f_0043c73a(s,&s->pilots[i-1])) ++pilots;
         if(i<=s->hercCount && !f_0043c6ed(s,&s->hercs[i-1])) ++hercs;
     }
-    return hercs<pilots?hercs:pilots;
+    return pilots < hercs ? pilots : hercs;
 }
 
 extern "C" int f_0043ccc6(GameSession *s,int index) {return s->assignments[index-1].active!=0;}
@@ -566,17 +571,20 @@ extern "C" int f_0043d1fd(GameSession *s)
 {int total=0;for(int i=0;i<1024;++i) total+=f_0043d152(s,i);return total;}
 extern "C" void f_0043d25f(GameSession *s,int value)
 {for(int i=0;i<1024;++i) f_0043d1a6(s,i,value);}
-extern "C" int f_0043d2b9(GameSession *s,POINT *point)
+int f_0043d2b9(GameSession *s,GridPoint point)
 {
     if(s->pilotCount<1) return -1;
-    f_0043b956(point);
+    f_0043b956(&point);
     char *list=new char[2048];memset(list,0,2048);
     for(int i=0;i<s->pilotCount;++i) {sprintf(g4c92b8,"%s\n",s->pilots[i].name);strcat(list,g4c92b8);}
-    int result=dialogExport9(g_mainWindow,list,point->x,point->y,16,0,0);
-    if(result<0 || result>=s->pilotCount) result=-1;
-    delete[] list;return result;
+    int result=dialogExport9(g_mainWindow,list,point.x,point.y,16,0,0);
+    int selected;
+    if (result >= 0 && result < s->pilotCount) selected = result;
+    else selected = -1;
+    delete[] list;
+    return selected;
 }
-extern "C" int f_0043d3cc(GameSession *s,POINT *point)
+extern "C" int f_0043d3cc(GameSession *s,GridPoint *point)
 {
     if(s->hercCount<1) return -1;
     f_0043b956(point);
@@ -595,16 +603,16 @@ extern "C" int f_0043d3cc(GameSession *s,POINT *point)
     delete [] list;return result;
 }
 
-extern "C" int f_0043d591(GameSession *s,POINT *point)
+int f_0043d591(GameSession *s,GridPoint point)
 {
-    CONVERT_CLIENT_POINT(point);
+    f_0043b956(&point);
     Pilot *p=((ProfileManager *)s)->Select();f_004372cd(p,g4c929c);
     char name[52];strcpy(name,g4c929c);
-    int result=g512500(g_mainWindow,g511ddc.GetString(251,1),name,12,1);
-    if(result==1 && stricmp(name,g4c929c) && strlen(name)) {
-        name[12]=0;result=f_0043bbcc(s,name,p);
-        if(result && !strcmp(name,"Kurosh")) f_00435e43(p,21);
-    } else result=0;
+    int result=PromptName(g_mainWindow,251,name,12);
+    if(result!=1 || !stricmp(name,g4c929c) || !strlen(name)) return 0;
+    name[12]=0;
+    result=f_0043bbcc(s,name,p);
+    if(result && !strcmp(name,"Kurosh")) f_00435e43(p,21);
     return result;
 }
 
@@ -665,7 +673,7 @@ extern "C" int f_0043dbb2(GameSession *s,Herc *source,Pilot *pilot)
     char name[28];strcpy(name,f_00439d2c(h));f_0043c4bf(s,name,h);
     ++s->hercCount;s->hercSelection=s->hercCount;
     Pilot *p=&s->pilots[s->pilotCount];*p=*pilot;
-    f_00435e70(p,p->type);f_004372cd(p,name);f_0043bbcc(s,name,p);
+    ActorBindDescriptor((ActorState *)p,p->type);f_004372cd(p,name);f_0043bbcc(s,name,p);
     ++s->pilotCount;s->pilotSelection=s->pilotCount;
     f_0043c7eb(s,s->hercSelection,s->pilotSelection);return s->hercSelection;
 }
@@ -707,14 +715,20 @@ extern "C" void f_0043e007(GameSession *s)
 extern "C" void f_0043e04d(GameSession *s)
 {
     if(s->level==13 && s->pilotCount>=gLevelInfo[13].pilots && s->hercCount>=gLevelInfo[13].hercs && s->mission==MissionBaseType()-1) return;
-    while(s->level<14) {f_0043b7e0(s,s->level);++s->level;}
+    for (; s->level <= 13; ++s->level) f_0043b7e0(s,s->level);
     s->level=13;s->mission=MissionBaseType()-1;s->progress=100;f_0044052b(s);
     memset(s->known,255,128);s->credits=9000000;
     int kind=0;
-    while(s->pilotCount<s->pilotCapacity) {f_0043bced(s,kind);if(++kind==20) kind=0;}
+    while (s->pilotCount < s->pilotCapacity) {
+        f_0043bced(s,kind++);
+        if (kind == 20) kind = 0;
+    }
     f_0043bed7(s,1);
     int count;f_00441456(s,&count);kind=0;
-    while(s->hercCount<s->hercCapacity) {f_00441b19(s,kind);if(++kind==count) kind=0;}
+    while (s->hercCount < s->hercCapacity) {
+        f_00441b19(s,kind++);
+        if (kind == count) kind = 0;
+    }
     s->hercSelection=1;f_0043c844(s);s->credits=9000000;
 }
 
