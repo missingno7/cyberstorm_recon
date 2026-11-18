@@ -7,13 +7,13 @@ struct MenuMessage { char data[476]; MenuMessage() {} MenuMessage(unsigned,const
 extern void TimerSet(void*,unsigned long); struct Timer { unsigned long start,end,duration; Timer() { TimerSet(this,0); } };
 struct Chat { char data[0x3d7a]; Chat(); int Reset(); void Activate(); void Log(int,const char*); void Flush(); };
 struct Options { char data[66]; Options(); void Reset(); }; struct CriticalSection { CRITICAL_SECTION lock; CriticalSection(); ~CriticalSection(); };
-extern int modeSwitch; extern int multiplayerActive,playerCount,multiState,localPeer,hostPeer,networkEnabled,gLinkSigsMode,DAT_004d3549,gLinkIsSigs,isHostPeer,hostDropFlag,retryTimeout,savedRandom,lastPlayer,leaderPlayer,localPlayer; extern void *sigsModule; extern HANDLE gLinkThread; extern int MissionRandomTable[];
-extern char modeCheckName[],modeLogName[],networkLog[],networkQueue[],profileManager[],uiSystem[],resourcePool[],textPool[]; extern HWND g_mainWindow; extern void (*ShowStatus)(HWND,const char*,int,int); extern char *searchPaths[]; extern unsigned char playerColors[]; extern char startGuid[16],sessionGuid[16]; extern Options defaultOptions; extern int globalReady[10];
+extern int modeSwitch; extern int multiplayerActive,playerCount,multiState,localPeer,hostPeer,networkEnabled,gLinkSigsMode,DAT_004d3549,gLinkIsSigs,isHostPeer,hostDropFlag,retryTimeout,savedRandom,gRemoteActorKind,leaderPlayer,gLocalActorKind; extern void *sigsModule; extern HANDLE gLinkThread; extern int MissionRandomTable[];
+extern char modeCheckName[],modeLogName[],networkLog[],networkQueue[],profileManager[],uiSystem[],resourcePool[],g511ddc[]; extern HWND g_mainWindow; extern void (*ShowStatus)(HWND,const char*,int,int); extern char *searchPaths[]; extern unsigned char gLaunchTeams[]; extern char startGuid[16],sessionGuid[16]; extern Options defaultOptions; extern int globalReady[10];
 extern void ResetPlayer(PlayerSlot*); extern void ValidateSlot(int); extern void MenuMessageInfo(MenuMessage*,int,int,void*); extern void MenuMessageSlot(MenuMessage*,int,int,PlayerSlot*); extern void MenuSend(const MenuMessage*,int);
 extern void MenuMessageBasic(MenuMessage*,int); extern void MenuMessageData(MenuMessage*,int,int,int=0,int=0); extern void MenuMessageGame(MenuMessage*,int,GameInfo*); extern void MenuMessageStart(MenuMessage*,int,void*); extern void QueuePump(void*);
 extern void AssertFail(const char*,int,const char*); extern void *AllocateMissionImage(void*,int,int=0); extern int FileExists(const char*); extern void GetPlayerInfo(void*,PlayerInfo*); extern int HasMission(void*); extern int LoadMission(const char*,int); extern void GetGameInfo(void*,Options*,GameInfo*); extern void ApplyGameInfo(void*,GameInfo*);
 extern int StopMultiplayer(int,int=0); extern void NetworkReset(); extern int NetworkCreate(const char*); extern int NetworkJoin(const char*); extern void NetworkBegin(); extern void NetworkPoll(); extern void NetworkStop(); extern void shutdown_directplay(); extern void NetworkRefresh(); extern int PeerAlive(int); extern void NetworkCallback(); extern void GuiPumpMessages(); extern void CloseStartScreen(); extern void f_00477295(const char*); extern void HelpTextTimed(const char*,unsigned long); extern int SigsRestart();
-extern PlayerSlot modePlayers[]; extern void OpenModeLog(void*); extern void ClearList(void*); extern void SetList(void*); extern void ResetQueue(void*); class Queue { public: void RemoveAll(); }; extern Queue gReceiveQueue; extern PlayerSlot *GetModePlayer(void*,int); extern void RemoveModePlayer(void*,int); struct SimGame; extern void SimCheckEndTurn(SimGame*); extern void SimResetPlayers(SimGame*); extern void AddModePlayer(void*,int,PlayerSlot*); extern void OpenMode(void*); extern void UpdateMode(void*); extern void FinishMode(void*); extern void UiEvent(void*,int);
+extern PlayerSlot modePlayers[]; extern void OpenModeLog(void*); extern void ClearList(void*); extern void SetList(void*); extern void ResetQueue(void*); class Queue { public: void RemoveAll(); }; extern Queue gReceiveQueue; extern PlayerSlot *GetModePlayer(void*,int); extern void RemoveModePlayer(void*,int); struct SimGame; extern void SimCheckEndTurn(SimGame*); extern void SimResetPlayers(SimGame*); extern int SimAddPlayer(SimGame*,int,PlayerSlot*); extern void OpenMode(void*); extern void UpdateMode(void*); extern void FinishMode(void*); extern void UiEvent(void*,int);
 #pragma pack(push,2)
 struct SessionTail { int unknown4902,unknown4906; };
 #pragma pack(pop)
@@ -78,10 +78,10 @@ ASSERT(peer<=32);
         int found=0;
         for(int i=1;i<gMenuNetwork.localSlot;i++) if(slots[i].state==2) found=1;
         if(!found) {
-            int extra=lastPlayer;
+            int extra=gRemoteActorKind;
             GetSlot(extra)->state=3;
             ModeSlot(extra)->state=3;
-            if(leaderPlayer==lastPlayer) {
+            if(leaderPlayer==gRemoteActorKind) {
                 if(multiplayerActive) OpenModeLog(modeLogName);
                 else OpenMode(modeCheckName);
             }
@@ -441,13 +441,13 @@ void MenuNetwork::CompactPlayers() {
     i=1;
     int dest=i;
     while(i<=9 && slots[i].state!=0) {
-        slots[i].color=playerColors[i];
+        slots[i].color=gLaunchTeams[i];
         i++;
         dest++;
     }
     while(i<=9) {
         if(slots[i].state!=0) {
-            slots[i].color=playerColors[i];
+            slots[i].color=gLaunchTeams[i];
             slots[i].index=dest;
             slots[dest++]=slots[i];
             slots[i].state=0;
@@ -456,19 +456,20 @@ void MenuNetwork::CompactPlayers() {
     }
     localSlot=FindPeer(peer);
     slots[localSlot].state=1;
-    int last;
-    for(last=9;last>0 && slots[last].state==0;last--) {
+    int last = 9;
+    for (; last > 0; --last) {
+        if (slots[last].state != 0) break;
     }
     int extra=last+1;
-    lastPlayer=extra;
+    gRemoteActorKind=extra;
     PlayerSlot *p=&slots[extra];
     p->state=3;
-    playerColors[lastPlayer]=16;
+    gLaunchTeams[gRemoteActorKind]=16;
     p->color=16;
-    strcpy(p->name,(const char*)AllocateMissionImage(textPool,0x9d,0));
+    strcpy(p->name,(const char*)AllocateMissionImage(g511ddc,0x9d,0));
     p=GetSlot(1);
-    for(int n=1;n<=extra;n++,p++) AddModePlayer(modeCheckName,p->state,p);
-    localPlayer=localSlot;
+    for(int n=1;n<=extra;n++,p++) SimAddPlayer((SimGame *)modeCheckName,p->state,p);
+    gLocalActorKind=localSlot;
 }
 void MenuNetwork::CopySlot(int index,PlayerSlot *info) {
     slots[index]=*info;

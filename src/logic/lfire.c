@@ -1,7 +1,7 @@
 static char lfireSourceFile[]=__FILE__;
 #include <string.h>
 typedef unsigned char u8;
-struct Point { int x, y; };
+struct TerrainGrid;
 #pragma pack(push,1)
 struct UnitInfo { u8 reserved[0x12]; int health; int Alive() { return health > 0; } };
 struct UnitData { u8 reserved[0xeb]; u8 strength[32]; };
@@ -24,14 +24,15 @@ extern const char *ActorName(LogicActor *);
 extern int ActorValue(LogicActor *), ActorArrayGet(LogicActor *, int);
 extern "C" int LogicCopyPoint(const char *, const char *);
 extern int gLocalActorKind, g4d359c; static inline int WorldRadius() { return g4d359c; }
-extern int gTargetOrigin, gCameraEnabled;
+extern int DAT_004d35ac, gCameraEnabled;
 extern u8 *simActorVisibility; static inline int ActorHidden(LogicActor *a) { return !simActorVisibility[a->unit->Id()]; }
-extern char fallbackName[], modeCheckName[], gFogBufferSource[], gView[];
+extern TerrainGrid fallbackName;
+extern char modeCheckName[], gFogBufferSource[], gView[];
 extern int gRedrawFlags;
 extern char weaponReport[], gTargetMode[];
 struct FogData { int words[8]; };
 extern FogData gFogDefaultData;
-extern void BestLocSetData(void *, void *, int);
+extern long *BestLocSetData(TerrainGrid *, long *, long);
 extern Unit *ActorGetByUnit(int);
 extern int FogSetValue(void *, int, int), DisplayZoomArea(void *, void *, int, int, int);
 extern void DisplayConfigure(void *, void *, int), SimSelectTarget(void *, int);
@@ -87,18 +88,18 @@ LogicActor *ActorChooseNearest(LogicActor *actor, LogicActor *excluded)
 
 LogicActor *ActorChooseByMode(LogicActor *actor, int origin, int radius)
 {
-    if (!origin) origin = gTargetOrigin;
+    if (!origin) origin = DAT_004d35ac;
     if (!radius) radius = WorldRadius() * 2;
-    Point point;
-    BestLocSetData(fallbackName, &point, origin);
+    long point[2];
+    BestLocSetData(&fallbackName, point, origin);
     int bestValue;
     LogicActor *best = 0;
     LogicActor *other = logicActorList.First();
     while (other) {
         if (other->Available() && actor->owner != other->owner) {
-            unsigned char hidden = 0;
-            if (actor->owner == gLocalActorKind) hidden = !((char *)simActorVisibility)[other->unit->Id()];
-            int distance = LogicCopyPoint((const char *)&point, ActorName(other));
+            int hidden = 0;
+            if (actor->owner == gLocalActorKind) hidden = ActorHidden(other);
+            int distance = LogicCopyPoint((const char *)point, ActorName(other));
             if (!hidden && distance <= radius) {
                 int value;
                 int divisor;
@@ -106,19 +107,19 @@ LogicActor *ActorChooseByMode(LogicActor *actor, int origin, int radius)
                 case 5: value = ActorNetStrengthAt(ActorName(other)); break;
                 case 8: {
                     value = other->value34;
-                    int rate = other->value38;
-                    divisor = other->count30;
+                    divisor = other->value38;
+                    int count = other->count30;
                     value *= value;
-                    divisor *= rate;
+                    divisor = Product(divisor, count);
                     if (divisor > 1) value /= divisor;
                     break;
                 }
                 case 9: {
                     value = other->value34;
-                    int rate = other->value38;
-                    divisor = other->count30;
+                    divisor = other->value38;
+                    int count = other->count30;
                     value *= value;
-                    divisor *= rate;
+                    divisor = Product(divisor, count);
                     if (divisor > 1) value /= divisor;
                     divisor = LogicCopyPoint(ActorName(actor), ActorName(other));
                     if (divisor > 1) value /= divisor;

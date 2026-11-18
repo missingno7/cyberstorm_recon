@@ -2327,6 +2327,11 @@
      "size": 19,
      "mangled": "W?SetMapping$:MenuNetwork$n(ii)v"
     },
+    "MenuNetwork::CompactPlayers": {
+     "va": "0046fb3c",
+     "size": 595,
+     "mangled": "W?CompactPlayers$:MenuNetwork$n()v"
+    },
     "MenuNetwork::CopySlot": {
      "va": "0046fd8f",
      "size": 55,
@@ -14316,6 +14321,11 @@
      "va": "00464e86",
      "size": 178,
      "mangled": "W?ActorChooseNearest$n(pn$LogicActor$$pn$1$)pn$1$"
+    },
+    "ActorChooseByMode": {
+     "va": "00464f50",
+     "size": 685,
+     "mangled": "W?ActorChooseByMode$n(pn$LogicActor$$ii)pn$1$"
     },
     "ActorUpdateView": {
      "va": "004651fd",

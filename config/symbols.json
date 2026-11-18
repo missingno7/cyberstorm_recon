@@ -18302,10 +18302,10 @@
   "ActorChooseByMode": {
    "va": "00464f50",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?ActorChooseByMode$n(pn$LogicActor$$ii)pn$1$",
-   "tu": "src/_unknown/tu_00464d7c.c",
-   "evidence": "placed (at) in src/_unknown/tu_00464d7c.c 2026-11-09"
+   "tu": "src/logic/lfire.c",
+   "evidence": "strict match 2026-11-18"
   },
   "ActorChooseByMode#W?ActorChooseByMode$n(pniii)i": {
    "va": "00464f50",
@@ -20549,10 +20549,10 @@
   "MenuNetwork::CompactPlayers": {
    "va": "0046fb3c",
    "kind": "func",
-   "status": "hypothesis",
+   "status": "matched",
    "mangled": "W?CompactPlayers$:MenuNetwork$n()v",
    "tu": "src/multi/mstart.c",
-   "evidence": "placed (at) in src/multi/mstart.c 2026-11-09"
+   "evidence": "strict match 2026-11-18"
   },
   "MenuNetwork::CopySlot": {
    "va": "0046fd8f",
