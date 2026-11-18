@@ -2881,6 +2881,26 @@
      "size": 157,
      "mangled": "W?UpdateStorage$:Shell$n()v"
     },
+    "Shell::UpdateHercUpgrade": {
+     "va": "00403cdf",
+     "size": 579,
+     "mangled": "W?UpdateHercUpgrade$:Shell$n()v"
+    },
+    "Shell::UpdateMainMenuSelection": {
+     "va": "00403f80",
+     "size": 698,
+     "mangled": "W?UpdateMainMenuSelection$:Shell$n()v"
+    },
+    "Shell::UpdateBiodermPanel": {
+     "va": "00404258",
+     "size": 254,
+     "mangled": "W?UpdateBiodermPanel$:Shell$n()v"
+    },
+    "Shell::UpdateMultiplayerMenu": {
+     "va": "004043a8",
+     "size": 711,
+     "mangled": "W?UpdateMultiplayerMenu$:Shell$n()v"
+    },
     "Shell::UpdateNetworkSetup": {
      "va": "0040466f",
      "size": 601,

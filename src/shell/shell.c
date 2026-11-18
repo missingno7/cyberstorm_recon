@@ -793,8 +793,7 @@ void Shell::UpdateStorage()
 // Numeric action labels are working names pending reconstruction of hercupgr.
 void Shell::UpdateHercUpgrade()
 {
-    U32 result=HercUpgradeExit(&g4b700c);
-    if(!result)return;
+    U32 result=HercUpgradeExit(&g4b700c);if(!result)return;
     if(result>=1&&result<=23){HercUpgradeSelectPart(&g4b700c,result-1);return;}
     if(result>23&&result<=46){HercUpgradeSelectInventory(&g4b700c,result-24);return;}
     if(result>=66&&result<=73){
@@ -807,7 +806,7 @@ void Shell::UpdateHercUpgrade()
     case 48:
         HercUpgradeAction48(&g4b700c);HercUpgradeAction48(&g4b700c);HercUpgradeClose(&g4b700c);
         ShellStorageReopen(&g4b5b50,&input);screen=27;break;
-    case 85:HercUpgradeAction85(&g4b700c);break;
+    case 85:HercUpgradeAction85(&g4b700c);return;
     case 47:
         HercUpgradeAction47(&g4b700c);HercUpgradeClose(&g4b700c);
         ShellStorageReopen(&g4b5b50,&input);screen=27;break;
@@ -815,7 +814,7 @@ void Shell::UpdateHercUpgrade()
     case 49:HercUpgradeAction49(&g4b700c);break;
     case 54:HercUpgradeRefresh(&g4b700c);break;
     case 57:HercUpgradeAction57(&g4b700c);break;
-    case 59:HercUpgradeRefresh(&g4b700c);break;
+    case 59:HercUpgradeRefresh(&g4b700c);return;
     case 64:HercUpgradeAction64(&g4b700c);break;
     case 65:HercUpgradeAction65(&g4b700c);break;
     case 52:HercUpgradeAction52(&g4b700c);break;
@@ -829,6 +828,7 @@ void Shell::UpdateHercUpgrade()
         break;
     case 58:HercUpgradeAction58(&g4b700c);break;
     }
+    result=0; // no code survives; it keeps the switch end a separate label, so cases 54 and 59 stay two blocks
 }
 void Shell::UpdateMainMenuSelection()
 {
